@@ -1,0 +1,12 @@
+ARM
+Debug
+Generated Files
+Release
+ipch
+x64
+x86
+.DS_Store
+*.opensdf
+*.sdf
+*.suo
+*.user

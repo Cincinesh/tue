@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA}</ItemsProjectGuid>
+    <ItemsProjectName>tests.common</ItemsProjectName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)test_case.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)test_failure.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)test_runner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)vec4.tests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)test_case.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)test_failure.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)test_runner.hpp" />
+  </ItemGroup>
+</Project>

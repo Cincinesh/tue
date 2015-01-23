@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)vec4.tests.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)test_case.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)test_failure.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)test_runner.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)test_case.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)test_failure.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)test_runner.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="framework">
+      <UniqueIdentifier>{0e0a1dfc-9c49-4657-bf7a-f64baaa917cd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
