@@ -44,7 +44,7 @@ namespace tue
 		std::string name() const;
 
 		function_ptr_t function_ptr() const;
-		
+
 		void run() const;
 
 		static void throw_test_failure(
