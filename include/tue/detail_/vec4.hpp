@@ -44,17 +44,17 @@ namespace tue
 			};
 		}
 
-		static constexpr vec zero() { return{ T(0) }; }
+		static constexpr vec zero() { return{ T(0), T(0), T(0), T(0) }; }
 		static constexpr vec x_axis() { return{ T(1), T(0), T(0), T(0) }; }
 		static constexpr vec y_axis() { return{ T(0), T(1), T(0), T(0) }; }
 		static constexpr vec z_axis() { return{ T(0), T(0), T(1), T(0) }; }
 		static constexpr vec w_axis() { return{ T(0), T(0), T(0), T(1) }; }
 
 		template<typename I>
-		constexpr const T& operator[](I i) const { return impl_.data[i]; }
+		T& operator[](I i) { return impl_.data[i]; }
 
 		template<typename I>
-		T& operator[](I i) { return impl_.data[i]; }
+		constexpr const T& operator[](I i) const { return impl_.data[i]; }
 
 		constexpr T x() const { return impl_.data[0]; }
 		void set_x(T x) { impl_.data[0] = x; }
