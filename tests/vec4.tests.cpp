@@ -223,7 +223,7 @@ namespace
 		test_assert(v[3] == +fv41[3]);
 	}
 
-	TEST_CASE(negate_operator)
+	TEST_CASE(unary_minus_operator)
 	{
 		CONST_OR_CONSTEXPR auto v = -fv41;
 		test_assert(v[0] == -fv41[0]);
@@ -232,7 +232,7 @@ namespace
 		test_assert(v[3] == -fv41[3]);
 	}
 
-	TEST_CASE(plus_operator)
+	TEST_CASE(addition_operator)
 	{
 		CONST_OR_CONSTEXPR auto v1 = f1 + dv42;
 		test_assert(v1[0] == f1 + dv42[0]);
@@ -253,7 +253,7 @@ namespace
 		test_assert(v3[3] == fv41[3] + dv42[3]);
 	}
 
-	TEST_CASE(minus_operator)
+	TEST_CASE(subtraction_operator)
 	{
 		CONST_OR_CONSTEXPR auto v1 = f1 - dv42;
 		test_assert(v1[0] == f1 - dv42[0]);
@@ -274,7 +274,7 @@ namespace
 		test_assert(v3[3] == fv41[3] - dv42[3]);
 	}
 
-	TEST_CASE(multiply_operator)
+	TEST_CASE(multiplication_operator)
 	{
 		CONST_OR_CONSTEXPR auto v1 = f1 * dv42;
 		test_assert(v1[0] == f1 * dv42[0]);
@@ -295,7 +295,7 @@ namespace
 		test_assert(v3[3] == fv41[3] * dv42[3]);
 	}
 
-	TEST_CASE(divide_operator)
+	TEST_CASE(division_operator)
 	{
 		CONST_OR_CONSTEXPR auto v1 = f1 / dv42;
 		test_assert(v1[0] == f1 / dv42[0]);
