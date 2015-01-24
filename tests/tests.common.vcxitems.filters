@@ -15,6 +15,7 @@
       <Filter>framework</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)vec3.tests.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)vec2.tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)test_case.hpp">

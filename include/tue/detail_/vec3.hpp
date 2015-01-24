@@ -367,7 +367,7 @@ namespace tue
 	// --
 	template<typename T>
 	inline TUE_CONSTEXPR auto operator~(const vec3<T>& v)
-		-> vec3<decltype(+v[0])>
+		-> vec3<decltype(~v[0])>
 	{
 		return{ ~v[0], ~v[1], ~v[2] };
 	}
