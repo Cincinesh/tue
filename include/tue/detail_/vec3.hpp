@@ -1005,6 +1005,22 @@ namespace tue
 				+ lhs[2] * rhs[2];
 		}
 
+		// -------
+		// cross()
+		// -------
+		template<typename T, typename U>
+		inline TUE_CONSTEXPR auto cross(
+			const vec3<T>& lhs,
+			const vec3<U>& rhs)
+			-> vec3<decltype(lhs[0] * rhs[0])>
+		{
+			return{
+				lhs[1] * rhs[2] - lhs[2] * rhs[1],
+				lhs[2] * rhs[0] - lhs[0] * rhs[2],
+				lhs[0] * rhs[1] - lhs[1] * rhs[0],
+			};
+		}
+
 		// ---------
 		// length2()
 		// ---------

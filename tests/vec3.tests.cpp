@@ -767,6 +767,23 @@ namespace
 			+ iv31[2] * uv32[2]);
 	}
 
+	TEST_CASE(cross)
+	{
+		CONST_OR_CONSTEXPR auto fcross = math::cross(fv31, dv32);
+		test_assert((fcross == dvec3{
+			fv31[1] * dv32[2] - fv31[2] * dv32[1],
+			fv31[2] * dv32[0] - fv31[0] * dv32[2],
+			fv31[0] * dv32[1] - fv31[1] * dv32[0],
+		}));
+
+		CONST_OR_CONSTEXPR auto icross = math::cross(iv31, uv32);
+		test_assert((icross == uvec3{
+			iv31[1] * uv32[2] - iv31[2] * uv32[1],
+			iv31[2] * uv32[0] - iv31[0] * uv32[2],
+			iv31[0] * uv32[1] - iv31[1] * uv32[0],
+		}));
+	}
+
 	TEST_CASE(length2)
 	{
 		test_assert(math::length2(fv31) ==
