@@ -33,4 +33,4 @@ namespace tue
 	using uvec4 = vec4<unsigned int>;
 }
 
-#include "vec4.hpp"
+#include "detail_/vec4.hpp"

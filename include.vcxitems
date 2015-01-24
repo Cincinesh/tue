@@ -3,8 +3,8 @@
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <ItemsProjectGuid>{c0d88744-472f-42c4-94a2-a25310ec9cd2}</ItemsProjectGuid>
-    <ItemsProjectName>common</ItemsProjectName>
+    <ItemsProjectGuid>{b6d38b62-a9e2-4c92-a84b-7a667f42224f}</ItemsProjectGuid>
+    <ItemsProjectName>include</ItemsProjectName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -13,5 +13,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include/tue/unused.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include/tue/vec.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec4.hpp" />
   </ItemGroup>
 </Project>

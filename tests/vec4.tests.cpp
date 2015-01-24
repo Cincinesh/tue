@@ -3,10 +3,10 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "vec.hpp"
+#include <tue/vec.hpp>
 #include "test_case.hpp"
 
-#include "unused.hpp"
+#include <tue/unused.hpp>
 
 #ifdef _MSC_VER
 #define CONST_OR_CONSTEXPR const

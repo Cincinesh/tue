@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "vec.hpp"
+#include "../vec.hpp"
 
 namespace tue
 {

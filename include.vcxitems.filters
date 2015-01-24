@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include/tue/unused.hpp">
+      <Filter>tue</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include/tue/vec.hpp">
+      <Filter>tue</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec4.hpp">
+      <Filter>tue\detail_</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="tue">
+      <UniqueIdentifier>{ad61718e-7d6e-49a3-bdba-4727718b4d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tue\detail_">
+      <UniqueIdentifier>{445371b1-4ce4-4db1-893b-9c0dfed5c124}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
