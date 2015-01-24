@@ -881,10 +881,10 @@ namespace tue
 		// -----
 		// pow()
 		// -----
-		template<typename T>
+		template<typename T, typename U>
 		inline auto pow(
 			const vec3<T>& base,
-			const T& exponent)
+			const U& exponent)
 			-> vec3<decltype(math::pow(base[0], exponent))>
 		{
 			return{
@@ -894,10 +894,10 @@ namespace tue
 			};
 		}
 
-		template<typename T>
+		template<typename T, typename U>
 		inline auto pow(
 			const vec3<T>& base,
-			const vec3<T>& exponent)
+			const vec3<U>& exponent)
 			-> vec3<decltype(math::pow(base[0], exponent[0]))>
 		{
 			return{
@@ -921,9 +921,9 @@ namespace tue
 			};
 		}
 
-		// -----
+		// ------
 		// sqrt()
-		// -----
+		// ------
 		template<typename T>
 		inline auto sqrt(const vec3<T>& v)
 			-> vec3<decltype(math::sqrt(v[0]))>
@@ -935,9 +935,9 @@ namespace tue
 			};
 		}
 
-		// -----
+		// -------
 		// rsqrt()
-		// -----
+		// -------
 		template<typename T>
 		inline auto rsqrt(const vec3<T>& v)
 			-> vec3<decltype(math::rsqrt(v[0]))>

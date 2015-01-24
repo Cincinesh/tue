@@ -20,6 +20,8 @@ namespace
 
 	constexpr auto f1 = 1.1f;
 
+	constexpr auto f2 = 2.2f;
+
 	constexpr auto d2 = 2.2;
 
 	constexpr auto i1 = 111;
@@ -28,11 +30,15 @@ namespace
 
 	constexpr fvec3 fv31(1.1f, 1.2f, 1.3f);
 
+	constexpr fvec3 fv32(2.2f, 2.4f, 2.6f);
+
 	constexpr dvec3 dv31(1.1, 1.2, 1.3);
 
 	constexpr dvec3 dv32(2.2, 2.4, 2.6);
 
 	constexpr ivec3 iv31(111, 222, 333);
+
+	constexpr ivec3 iv32(2, 4, 6);
 
 	constexpr uvec3 uv32(2U, 4U, 6U);
 
@@ -599,5 +605,187 @@ namespace
 		test_assert(result2 == true);
 		test_assert(result3 == true);
 		test_assert(result4 == true);
+	}
+
+	TEST_CASE(sincos)
+	{
+		fvec3 fsin, fcos;
+		math::sincos(fv31, fsin, fcos);
+		test_assert(fsin == math::sin(fv31));
+		test_assert(fcos == math::cos(fv31));
+
+		dvec3 isin, icos;
+		math::sincos(iv31, isin, icos);
+		test_assert(isin == math::sin(iv31));
+		test_assert(icos == math::cos(iv31));
+	}
+
+	TEST_CASE(sin)
+	{
+		const auto fsin = math::sin(fv31);
+		test_assert(fsin[0] == math::sin(fv31[0]));
+		test_assert(fsin[1] == math::sin(fv31[1]));
+		test_assert(fsin[2] == math::sin(fv31[2]));
+
+		const auto isin = math::sin(iv31);
+		test_assert(isin[0] == math::sin(iv31[0]));
+		test_assert(isin[1] == math::sin(iv31[1]));
+		test_assert(isin[2] == math::sin(iv31[2]));
+	}
+
+	TEST_CASE(cos)
+	{
+		const auto fcos = math::cos(fv31);
+		test_assert(fcos[0] == math::cos(fv31[0]));
+		test_assert(fcos[1] == math::cos(fv31[1]));
+		test_assert(fcos[2] == math::cos(fv31[2]));
+
+		const auto icos = math::cos(iv31);
+		test_assert(icos[0] == math::cos(iv31[0]));
+		test_assert(icos[1] == math::cos(iv31[1]));
+		test_assert(icos[2] == math::cos(iv31[2]));
+	}
+
+	TEST_CASE(pow)
+	{
+		const auto fpow1 = math::pow(fv31, f2);
+		test_assert(fpow1[0] == math::pow(fv31[0], f2));
+		test_assert(fpow1[1] == math::pow(fv31[1], f2));
+		test_assert(fpow1[2] == math::pow(fv31[2], f2));
+
+		const auto ipow1 = math::pow(iv31, f2);
+		test_assert(ipow1[0] == math::pow(iv31[0], f2));
+		test_assert(ipow1[1] == math::pow(iv31[1], f2));
+		test_assert(ipow1[2] == math::pow(iv31[2], f2));
+
+		const auto fpow2 = math::pow(fv31, fv32);
+		test_assert(fpow2[0] == math::pow(fv31[0], fv32[0]));
+		test_assert(fpow2[1] == math::pow(fv31[1], fv32[1]));
+		test_assert(fpow2[2] == math::pow(fv31[2], fv32[2]));
+
+		const auto ipow2 = math::pow(iv31, fv32);
+		test_assert(ipow2[0] == math::pow(iv31[0], fv32[0]));
+		test_assert(ipow2[1] == math::pow(iv31[1], fv32[1]));
+		test_assert(ipow2[2] == math::pow(iv31[2], fv32[2]));
+	}
+
+	TEST_CASE(rcp)
+	{
+		const auto frcp = math::rcp(fv31);
+		test_assert(frcp[0] == math::rcp(fv31[0]));
+		test_assert(frcp[1] == math::rcp(fv31[1]));
+		test_assert(frcp[2] == math::rcp(fv31[2]));
+
+		const auto ircp = math::rcp(iv31);
+		test_assert(ircp[0] == math::rcp(iv31[0]));
+		test_assert(ircp[1] == math::rcp(iv31[1]));
+		test_assert(ircp[2] == math::rcp(iv31[2]));
+	}
+
+	TEST_CASE(sqrt)
+	{
+		const auto fsqrt = math::sqrt(fv31);
+		test_assert(fsqrt[0] == math::sqrt(fv31[0]));
+		test_assert(fsqrt[1] == math::sqrt(fv31[1]));
+		test_assert(fsqrt[2] == math::sqrt(fv31[2]));
+
+		const auto isqrt = math::sqrt(iv31);
+		test_assert(isqrt[0] == math::sqrt(iv31[0]));
+		test_assert(isqrt[1] == math::sqrt(iv31[1]));
+		test_assert(isqrt[2] == math::sqrt(iv31[2]));
+	}
+
+	TEST_CASE(rsqrt)
+	{
+		const auto frsqrt = math::rsqrt(fv31);
+		test_assert(frsqrt[0] == math::rsqrt(fv31[0]));
+		test_assert(frsqrt[1] == math::rsqrt(fv31[1]));
+		test_assert(frsqrt[2] == math::rsqrt(fv31[2]));
+
+		const auto irsqrt = math::rsqrt(iv31);
+		test_assert(irsqrt[0] == math::rsqrt(iv31[0]));
+		test_assert(irsqrt[1] == math::rsqrt(iv31[1]));
+		test_assert(irsqrt[2] == math::rsqrt(iv31[2]));
+	}
+
+	TEST_CASE(min)
+	{
+		const auto fmin = math::min(fv31, fv32);
+		test_assert(fmin[0] == math::min(fv31[0], fv32[0]));
+		test_assert(fmin[1] == math::min(fv31[1], fv32[1]));
+		test_assert(fmin[2] == math::min(fv31[2], fv32[2]));
+
+		const auto imin = math::min(iv31, iv32);
+		test_assert(imin[0] == math::min(iv31[0], iv32[0]));
+		test_assert(imin[1] == math::min(iv31[1], iv32[1]));
+		test_assert(imin[2] == math::min(iv31[2], iv32[2]));
+	}
+
+	TEST_CASE(max)
+	{
+		const auto fmax = math::max(fv31, fv32);
+		test_assert(fmax[0] == math::max(fv31[0], fv32[0]));
+		test_assert(fmax[1] == math::max(fv31[1], fv32[1]));
+		test_assert(fmax[2] == math::max(fv31[2], fv32[2]));
+
+		const auto imax = math::max(iv31, iv32);
+		test_assert(imax[0] == math::max(iv31[0], iv32[0]));
+		test_assert(imax[1] == math::max(iv31[1], iv32[1]));
+		test_assert(imax[2] == math::max(iv31[2], iv32[2]));
+	}
+
+	TEST_CASE(abs)
+	{
+		const auto fabs = math::abs(fv32);
+		test_assert(fabs[0] == math::abs(fv32[0]));
+		test_assert(fabs[1] == math::abs(fv32[1]));
+		test_assert(fabs[2] == math::abs(fv32[2]));
+
+		const auto iabs = math::abs(iv32);
+		test_assert(iabs[0] == math::abs(iv32[0]));
+		test_assert(iabs[1] == math::abs(iv32[1]));
+		test_assert(iabs[2] == math::abs(iv32[2]));
+
+		const auto uabs = math::abs(uv32);
+		test_assert(uabs[0] == math::abs(uv32[0]));
+		test_assert(uabs[1] == math::abs(uv32[1]));
+		test_assert(uabs[2] == math::abs(uv32[2]));
+	}
+
+	TEST_CASE(dot)
+	{
+		CONST_OR_CONSTEXPR auto fdot = math::dot(fv31, dv32);
+		test_assert(fdot ==
+			fv31[0] * dv32[0]
+			+ fv31[1] * dv32[1]
+			+ fv31[2] * dv32[2]);
+
+		CONST_OR_CONSTEXPR auto idot = math::dot(iv31, uv32);
+		test_assert(idot ==
+			iv31[0] * uv32[0]
+			+ iv31[1] * uv32[1]
+			+ iv31[2] * uv32[2]);
+	}
+
+	TEST_CASE(length2)
+	{
+		test_assert(math::length2(fv31) ==
+			math::length2(fv31[0])
+			+ math::length2(fv31[1])
+			+ math::length2(fv31[2]));
+
+		test_assert(math::length2(iv31) == math::length2(dvec3(iv31)));
+	}
+
+	TEST_CASE(length)
+	{
+		test_assert(math::length(fv31) == math::sqrt(math::length2(fv31)));
+		test_assert(math::length(iv31) == math::length(dvec3(iv31)));
+	}
+
+	TEST_CASE(normalize)
+	{
+		test_assert(math::normalize(fv31) == fv31 / math::length(fv31));
+		test_assert(math::normalize(iv31) == math::normalize(dvec3(iv31)));
 	}
 }

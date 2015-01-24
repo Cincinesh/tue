@@ -847,6 +847,21 @@ namespace
 		test_assert(imin[3] == math::min(iv41[3], iv42[3]));
 	}
 
+	TEST_CASE(max)
+	{
+		const auto fmax = math::max(fv41, fv42);
+		test_assert(fmax[0] == math::max(fv41[0], fv42[0]));
+		test_assert(fmax[1] == math::max(fv41[1], fv42[1]));
+		test_assert(fmax[2] == math::max(fv41[2], fv42[2]));
+		test_assert(fmax[3] == math::max(fv41[3], fv42[3]));
+
+		const auto imax = math::max(iv41, iv42);
+		test_assert(imax[0] == math::max(iv41[0], iv42[0]));
+		test_assert(imax[1] == math::max(iv41[1], iv42[1]));
+		test_assert(imax[2] == math::max(iv41[2], iv42[2]));
+		test_assert(imax[3] == math::max(iv41[3], iv42[3]));
+	}
+
 	TEST_CASE(abs)
 	{
 		const auto fabs = math::abs(fv42);
