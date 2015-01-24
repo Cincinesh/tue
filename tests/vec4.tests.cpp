@@ -58,7 +58,7 @@ namespace
 		test_assert(v[3] == 1.1f);
 	}
 
-	TEST_CASE(explicit_cast_constructor)
+	TEST_CASE(explicit_conversion_constructor)
 	{
 		constexpr fvec4 v1(dv41);
 		test_assert(v1[0] == float(dv41[0]));
@@ -71,15 +71,6 @@ namespace
 		test_assert(v2[1] == float(dv41[1]));
 		test_assert(v2[2] == float(dv41[2]));
 		test_assert(v2[3] == float(dv41[3]));
-	}
-
-	TEST_CASE(implicit_cast_operator)
-	{
-		CONST_OR_CONSTEXPR dvec4 v = fv41;
-		test_assert(v[0] == double(fv41[0]));
-		test_assert(v[1] == double(fv41[1]));
-		test_assert(v[2] == double(fv41[2]));
-		test_assert(v[3] == double(fv41[3]));
 	}
 
 	TEST_CASE(zero)
@@ -125,6 +116,15 @@ namespace
 		test_assert(v[1] == 0);
 		test_assert(v[2] == 0);
 		test_assert(v[3] == 1);
+	}
+
+	TEST_CASE(implicit_conversion_operator)
+	{
+		CONST_OR_CONSTEXPR dvec4 v = fv41;
+		test_assert(v[0] == double(fv41[0]));
+		test_assert(v[1] == double(fv41[1]));
+		test_assert(v[2] == double(fv41[2]));
+		test_assert(v[3] == double(fv41[3]));
 	}
 
 	TEST_CASE(subscript_operator)
@@ -251,5 +251,68 @@ namespace
 		test_assert(v3[1] == fv41[1] + dv42[1]);
 		test_assert(v3[2] == fv41[2] + dv42[2]);
 		test_assert(v3[3] == fv41[3] + dv42[3]);
+	}
+
+	TEST_CASE(minus_operator)
+	{
+		CONST_OR_CONSTEXPR auto v1 = f1 - dv42;
+		test_assert(v1[0] == f1 - dv42[0]);
+		test_assert(v1[1] == f1 - dv42[1]);
+		test_assert(v1[2] == f1 - dv42[2]);
+		test_assert(v1[3] == f1 - dv42[3]);
+
+		CONST_OR_CONSTEXPR auto v2 = fv41 - d2;
+		test_assert(v2[0] == fv41[0] - d2);
+		test_assert(v2[1] == fv41[1] - d2);
+		test_assert(v2[2] == fv41[2] - d2);
+		test_assert(v2[3] == fv41[3] - d2);
+
+		CONST_OR_CONSTEXPR auto v3 = fv41 - dv42;
+		test_assert(v3[0] == fv41[0] - dv42[0]);
+		test_assert(v3[1] == fv41[1] - dv42[1]);
+		test_assert(v3[2] == fv41[2] - dv42[2]);
+		test_assert(v3[3] == fv41[3] - dv42[3]);
+	}
+
+	TEST_CASE(multiply_operator)
+	{
+		CONST_OR_CONSTEXPR auto v1 = f1 * dv42;
+		test_assert(v1[0] == f1 * dv42[0]);
+		test_assert(v1[1] == f1 * dv42[1]);
+		test_assert(v1[2] == f1 * dv42[2]);
+		test_assert(v1[3] == f1 * dv42[3]);
+
+		CONST_OR_CONSTEXPR auto v2 = fv41 * d2;
+		test_assert(v2[0] == fv41[0] * d2);
+		test_assert(v2[1] == fv41[1] * d2);
+		test_assert(v2[2] == fv41[2] * d2);
+		test_assert(v2[3] == fv41[3] * d2);
+
+		CONST_OR_CONSTEXPR auto v3 = fv41 * dv42;
+		test_assert(v3[0] == fv41[0] * dv42[0]);
+		test_assert(v3[1] == fv41[1] * dv42[1]);
+		test_assert(v3[2] == fv41[2] * dv42[2]);
+		test_assert(v3[3] == fv41[3] * dv42[3]);
+	}
+
+	TEST_CASE(divide_operator)
+	{
+		CONST_OR_CONSTEXPR auto v1 = f1 / dv42;
+		test_assert(v1[0] == f1 / dv42[0]);
+		test_assert(v1[1] == f1 / dv42[1]);
+		test_assert(v1[2] == f1 / dv42[2]);
+		test_assert(v1[3] == f1 / dv42[3]);
+
+		CONST_OR_CONSTEXPR auto v2 = fv41 / d2;
+		test_assert(v2[0] == fv41[0] / d2);
+		test_assert(v2[1] == fv41[1] / d2);
+		test_assert(v2[2] == fv41[2] / d2);
+		test_assert(v2[3] == fv41[3] / d2);
+
+		CONST_OR_CONSTEXPR auto v3 = fv41 / dv42;
+		test_assert(v3[0] == fv41[0] / dv42[0]);
+		test_assert(v3[1] == fv41[1] / dv42[1]);
+		test_assert(v3[2] == fv41[2] / dv42[2]);
+		test_assert(v3[3] == fv41[3] / dv42[3]);
 	}
 }

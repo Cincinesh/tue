@@ -55,7 +55,7 @@ namespace tue
 		static constexpr vec w_axis() { return{ T(0), T(0), T(0), T(1) }; }
 
 		// --------------------
-		// conversion functions
+		// conversion operators
 		// --------------------
 		template<typename U>
 		constexpr operator vec4<U>() const
@@ -432,6 +432,141 @@ namespace tue
 			lhs[1] + rhs[1],
 			lhs[2] + rhs[2],
 			lhs[3] + rhs[3],
+		};
+	}
+
+	// ---------
+	// lhs - rhs
+	// ---------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator-(
+		const T& lhs,
+		const vec4<U>& rhs)
+	-> vec4<decltype(lhs - rhs[0])>
+	{
+		return{
+			lhs - rhs[0],
+			lhs - rhs[1],
+			lhs - rhs[2],
+			lhs - rhs[3],
+		};
+	}
+
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator-(
+		const vec4<T>& lhs,
+		const U& rhs)
+	-> vec4<decltype(lhs[0] - rhs)>
+	{
+		return{
+			lhs[0] - rhs,
+			lhs[1] - rhs,
+			lhs[2] - rhs,
+			lhs[3] - rhs,
+		};
+	}	
+
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator-(
+		const vec4<T>& lhs,
+		const vec4<U>& rhs)
+	-> vec4<decltype(lhs[0] - rhs[0])>
+	{
+		return{
+			lhs[0] - rhs[0],
+			lhs[1] - rhs[1],
+			lhs[2] - rhs[2],
+			lhs[3] - rhs[3],
+		};
+	}
+
+	// ---------
+	// lhs * rhs
+	// ---------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const T& lhs,
+		const vec4<U>& rhs)
+	-> vec4<decltype(lhs * rhs[0])>
+	{
+		return{
+			lhs * rhs[0],
+			lhs * rhs[1],
+			lhs * rhs[2],
+			lhs * rhs[3],
+		};
+	}
+
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const vec4<T>& lhs,
+		const U& rhs)
+	-> vec4<decltype(lhs[0] * rhs)>
+	{
+		return{
+			lhs[0] * rhs,
+			lhs[1] * rhs,
+			lhs[2] * rhs,
+			lhs[3] * rhs,
+		};
+	}	
+
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const vec4<T>& lhs,
+		const vec4<U>& rhs)
+	-> vec4<decltype(lhs[0] * rhs[0])>
+	{
+		return{
+			lhs[0] * rhs[0],
+			lhs[1] * rhs[1],
+			lhs[2] * rhs[2],
+			lhs[3] * rhs[3],
+		};
+	}
+
+	// ---------
+	// lhs / rhs
+	// ---------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator/(
+		const T& lhs,
+		const vec4<U>& rhs)
+	-> vec4<decltype(lhs / rhs[0])>
+	{
+		return{
+			lhs / rhs[0],
+			lhs / rhs[1],
+			lhs / rhs[2],
+			lhs / rhs[3],
+		};
+	}
+
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator/(
+		const vec4<T>& lhs,
+		const U& rhs)
+	-> vec4<decltype(lhs[0] / rhs)>
+	{
+		return{
+			lhs[0] / rhs,
+			lhs[1] / rhs,
+			lhs[2] / rhs,
+			lhs[3] / rhs,
+		};
+	}	
+
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator/(
+		const vec4<T>& lhs,
+		const vec4<U>& rhs)
+	-> vec4<decltype(lhs[0] / rhs[0])>
+	{
+		return{
+			lhs[0] / rhs[0],
+			lhs[1] / rhs[1],
+			lhs[2] / rhs[2],
+			lhs[3] / rhs[3],
 		};
 	}
 
