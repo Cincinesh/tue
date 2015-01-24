@@ -194,9 +194,12 @@ namespace
 
 	TEST_CASE(set_x)
 	{
-		fvec4 v = fv41;
+		fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
 		v.set_x(2.1f);
-		test_assert(v.x() == 2.1f);
+		test_assert(v[0] == 2.1f);
+		test_assert(v[1] == 1.2f);
+		test_assert(v[2] == 1.3f);
+		test_assert(v[3] == 1.4f);
 	}
 
 	TEST_CASE(y)
@@ -207,9 +210,12 @@ namespace
 
 	TEST_CASE(set_y)
 	{
-		fvec4 v = fv41;
+		fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
 		v.set_y(2.2f);
-		test_assert(v.y() == 2.2f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 2.2f);
+		test_assert(v[2] == 1.3f);
+		test_assert(v[3] == 1.4f);
 	}
 
 	TEST_CASE(z)
@@ -220,9 +226,12 @@ namespace
 
 	TEST_CASE(set_z)
 	{
-		fvec4 v = fv41;
+		fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
 		v.set_z(2.3f);
-		test_assert(v.z() == 2.3f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 1.2f);
+		test_assert(v[2] == 2.3f);
+		test_assert(v[3] == 1.4f);
 	}
 
 	TEST_CASE(w)
@@ -233,9 +242,12 @@ namespace
 
 	TEST_CASE(set_w)
 	{
-		fvec4 v = fv41;
+		fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
 		v.set_w(2.4f);
-		test_assert(v.w() == 2.4f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 1.2f);
+		test_assert(v[2] == 1.3f);
+		test_assert(v[3] == 2.4f);
 	}
 
 	TEST_CASE(xy)

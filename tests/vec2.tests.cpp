@@ -142,9 +142,10 @@ namespace
 
 	TEST_CASE(set_x)
 	{
-		fvec2 v = fv21;
+		fvec2 v(1.1f, 1.2f);
 		v.set_x(2.1f);
-		test_assert(v.x() == 2.1f);
+		test_assert(v[0] == 2.1f);
+		test_assert(v[1] == 1.2f);
 	}
 
 	TEST_CASE(y)
@@ -155,9 +156,10 @@ namespace
 
 	TEST_CASE(set_y)
 	{
-		fvec2 v = fv21;
+		fvec2 v(1.1f, 1.2f);
 		v.set_y(2.2f);
-		test_assert(v.y() == 2.2f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 2.2f);
 	}
 
 	TEST_CASE(pre_increment_operator)

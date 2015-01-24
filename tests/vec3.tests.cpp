@@ -167,9 +167,11 @@ namespace
 
 	TEST_CASE(set_x)
 	{
-		fvec3 v = fv31;
+		fvec3 v(1.1f, 1.2f, 1.3f);
 		v.set_x(2.1f);
-		test_assert(v.x() == 2.1f);
+		test_assert(v[0] == 2.1f);
+		test_assert(v[1] == 1.2f);
+		test_assert(v[2] == 1.3f);
 	}
 
 	TEST_CASE(y)
@@ -180,9 +182,11 @@ namespace
 
 	TEST_CASE(set_y)
 	{
-		fvec3 v = fv31;
+		fvec3 v(1.1f, 1.2f, 1.3f);
 		v.set_y(2.2f);
-		test_assert(v.y() == 2.2f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 2.2f);
+		test_assert(v[2] == 1.3f);
 	}
 
 	TEST_CASE(z)
@@ -193,9 +197,11 @@ namespace
 
 	TEST_CASE(set_z)
 	{
-		fvec3 v = fv31;
+		fvec3 v(1.1f, 1.2f, 1.3f);
 		v.set_z(2.3f);
-		test_assert(v.z() == 2.3f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 1.2f);
+		test_assert(v[2] == 2.3f);
 	}
 
 	TEST_CASE(xy)
