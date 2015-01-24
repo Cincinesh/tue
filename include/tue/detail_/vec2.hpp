@@ -36,6 +36,12 @@ namespace tue
 		explicit constexpr vec(const T& s) :
 			impl_({ { s, s } }) {}
 
+		explicit constexpr vec(const vec3<T>& other) :
+			impl_({ { other[0], other[1] } }) {}
+
+		explicit constexpr vec(const vec4<T>& other) :
+			impl_({ { other[0], other[1] } }) {}
+
 		template<typename U>
 		explicit constexpr vec(const vec2<U>& other) :
 			impl_({ {

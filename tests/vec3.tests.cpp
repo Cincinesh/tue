@@ -63,6 +63,22 @@ namespace
 		test_assert(v[2] == 1.1f);
 	}
 
+	TEST_CASE(vec2_constructor)
+	{
+		constexpr fvec3 v(fvec2(1.1f, 2.2f), 3.3f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 2.2f);
+		test_assert(v[2] == 3.3f);
+	}
+
+	TEST_CASE(vec4_constructor)
+	{
+		constexpr fvec3 v(fvec4(1.1f, 2.2f, 3.3f, 4.4f));
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 2.2f);
+		test_assert(v[2] == 3.3f);
+	}
+
 	TEST_CASE(explicit_conversion_constructor)
 	{
 		constexpr fvec3 v1(dv31);
