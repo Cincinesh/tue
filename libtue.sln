@@ -34,18 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{9C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Public Headers", "1. Public Headers", "{D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tue", "tue", "{C74ED20F-1D83-4048-A8C0-B6358B04E2A5}"
-	ProjectSection(SolutionItems) = preProject
-		include\tue\unused.hpp = include\tue\unused.hpp
-		include\tue\vec.hpp = include\tue\vec.hpp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "detail_", "detail_", "{B11BF0D9-D759-4381-B128-A93B1F431895}"
-	ProjectSection(SolutionItems) = preProject
-		include\tue\detail_\vec2.hpp = include\tue\detail_\vec2.hpp
-		include\tue\detail_\vec3.hpp = include\tue\detail_\vec3.hpp
-		include\tue\detail_\vec4.hpp = include\tue\detail_\vec4.hpp
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tue", "tue.vcxitems", "{F35C7E57-08CE-41A4-B7A8-471606299296}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -53,6 +42,7 @@ Global
 		src\common\common.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
 		tests\tests.common.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
 		tests\tests.common.vcxitems*{eb016a8e-f7fd-4e20-bf85-a93f9e1424aa}*SharedItemsImports = 9
+		tue.vcxitems*{f35c7e57-08ce-41a4-b7a8-471606299296}*SharedItemsImports = 9
 		src\windows.common\windows.common.vcxitems*{ead6d685-abe1-4ba8-bfc6-ff4393c1422e}*SharedItemsImports = 9
 		src\common\common.vcxitems*{127e9f2c-454f-498b-a8df-a22a688863f2}*SharedItemsImports = 4
 		src\windows.common\windows.common.vcxitems*{127e9f2c-454f-498b-a8df-a22a688863f2}*SharedItemsImports = 4
@@ -179,7 +169,6 @@ Global
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 		{127E9F2C-454F-498B-A8DF-A22A688863F2} = {B64B8B7A-2762-4B99-88F0-59D68D1E9185}
-		{C74ED20F-1D83-4048-A8C0-B6358B04E2A5} = {D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}
-		{B11BF0D9-D759-4381-B128-A93B1F431895} = {C74ED20F-1D83-4048-A8C0-B6358B04E2A5}
+		{F35C7E57-08CE-41A4-B7A8-471606299296} = {D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}
 	EndGlobalSection
 EndGlobal

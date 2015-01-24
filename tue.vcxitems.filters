@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="detail_">
+      <UniqueIdentifier>{57ebbe33-4643-47a0-8dec-ea4a5db637df}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec2.hpp">
+      <Filter>detail_</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec3.hpp">
+      <Filter>detail_</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec4.hpp">
+      <Filter>detail_</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\unused.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\vec.hpp" />
+  </ItemGroup>
+</Project>
