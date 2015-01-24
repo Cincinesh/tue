@@ -34,7 +34,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{9C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Public Headers", "1. Public Headers", "{D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "include", "include.vcxitems", "{B6D38B62-A9E2-4C92-A84B-7A667F42224F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tue", "tue", "{C74ED20F-1D83-4048-A8C0-B6358B04E2A5}"
+	ProjectSection(SolutionItems) = preProject
+		include\tue\unused.hpp = include\tue\unused.hpp
+		include\tue\vec.hpp = include\tue\vec.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "detail_", "detail_", "{B11BF0D9-D759-4381-B128-A93B1F431895}"
+	ProjectSection(SolutionItems) = preProject
+		include\tue\detail_\vec4.hpp = include\tue\detail_\vec4.hpp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -52,7 +61,6 @@ Global
 		src\common\common.vcxitems*{c0d88744-472f-42c4-94a2-a25310ec9cd2}*SharedItemsImports = 9
 		src\common\common.vcxitems*{d89d5432-3c8b-431d-b468-d57b76d294b3}*SharedItemsImports = 4
 		src\windows.common\windows.common.vcxitems*{d89d5432-3c8b-431d-b468-d57b76d294b3}*SharedItemsImports = 4
-		include.vcxitems*{b6d38b62-a9e2-4c92-a84b-7a667f42224f}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -169,6 +177,7 @@ Global
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 		{127E9F2C-454F-498B-A8DF-A22A688863F2} = {B64B8B7A-2762-4B99-88F0-59D68D1E9185}
-		{B6D38B62-A9E2-4C92-A84B-7A667F42224F} = {D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}
+		{C74ED20F-1D83-4048-A8C0-B6358B04E2A5} = {D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}
+		{B11BF0D9-D759-4381-B128-A93B1F431895} = {C74ED20F-1D83-4048-A8C0-B6358B04E2A5}
 	EndGlobalSection
 EndGlobal
