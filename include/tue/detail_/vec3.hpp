@@ -16,13 +16,13 @@
 namespace tue
 {
 	// -------
-	// vec4<T>
+	// vec3<T>
 	// -------
 	template<typename T>
-	class vec<T, 4>
+	class vec<T, 3>
 	{
 	private:
-		struct { T data[4]; } impl_;
+		struct { T data[3]; } impl_;
 
 	public:
 		// ------------
@@ -30,41 +30,38 @@ namespace tue
 		// ------------
 		vec() = default;
 
-		constexpr vec(const T& x, const T& y, const T& z, const T& w) :
-			impl_({ { x, y, z, w } }) {}
+		constexpr vec(const T& x, const T& y, const T& z) :
+			impl_({ { x, y, z } }) {}
 
 		explicit constexpr vec(const T& s) :
-			impl_({ { s, s, s, s } }) {}
+			impl_({ { s, s, s } }) {}
 
 		template<typename U>
-		explicit constexpr vec(const vec4<U>& other) :
+		explicit constexpr vec(const vec3<U>& other) :
 			impl_({ {
 				static_cast<T>(other[0]),
 				static_cast<T>(other[1]),
 				static_cast<T>(other[2]),
-				static_cast<T>(other[3]),
 			} }) {}
 
 		// ---------------
 		// factory methods
 		// ---------------
-		static constexpr vec zero() { return{ T(0), T(0), T(0), T(0) }; }
-		static constexpr vec x_axis() { return{ T(1), T(0), T(0), T(0) }; }
-		static constexpr vec y_axis() { return{ T(0), T(1), T(0), T(0) }; }
-		static constexpr vec z_axis() { return{ T(0), T(0), T(1), T(0) }; }
-		static constexpr vec w_axis() { return{ T(0), T(0), T(0), T(1) }; }
+		static constexpr vec zero() { return{ T(0), T(0), T(0) }; }
+		static constexpr vec x_axis() { return{ T(1), T(0), T(0) }; }
+		static constexpr vec y_axis() { return{ T(0), T(1), T(0) }; }
+		static constexpr vec z_axis() { return{ T(0), T(0), T(1) }; }
 
 		// --------------------
 		// conversion operators
 		// --------------------
 		template<typename U>
-		constexpr operator vec4<U>() const
+		constexpr operator vec3<U>() const
 		{
 			return{
 				impl_.data[0],
 				impl_.data[1],
 				impl_.data[2],
-				impl_.data[3],
 			};
 		}
 
@@ -92,9 +89,6 @@ namespace tue
 		constexpr T z() const { return impl_.data[2]; }
 		void set_z(const T& z) { impl_.data[2] = z; }
 
-		constexpr T w() const { return impl_.data[3]; }
-		void set_w(const T& w) { impl_.data[3] = w; }
-
 		// ---
 		// ++v
 		// ---
@@ -103,7 +97,6 @@ namespace tue
 			++impl_.data[0];
 			++impl_.data[1];
 			++impl_.data[2];
-			++impl_.data[3];
 			return *this;
 		}
 
@@ -115,7 +108,6 @@ namespace tue
 			--impl_.data[0];
 			--impl_.data[1];
 			--impl_.data[2];
-			--impl_.data[3];
 			return *this;
 		}
 
@@ -148,17 +140,15 @@ namespace tue
 			impl_.data[0] += other;
 			impl_.data[1] += other;
 			impl_.data[2] += other;
-			impl_.data[3] += other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator+=(const vec4<U>& other)
+		vec& operator+=(const vec3<U>& other)
 		{
 			impl_.data[0] += other[0];
 			impl_.data[1] += other[1];
 			impl_.data[2] += other[2];
-			impl_.data[3] += other[3];
 			return *this;
 		}
 
@@ -171,17 +161,15 @@ namespace tue
 			impl_.data[0] -= other;
 			impl_.data[1] -= other;
 			impl_.data[2] -= other;
-			impl_.data[3] -= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator-=(const vec4<U>& other)
+		vec& operator-=(const vec3<U>& other)
 		{
 			impl_.data[0] -= other[0];
 			impl_.data[1] -= other[1];
 			impl_.data[2] -= other[2];
-			impl_.data[3] -= other[3];
 			return *this;
 		}
 
@@ -194,17 +182,15 @@ namespace tue
 			impl_.data[0] *= other;
 			impl_.data[1] *= other;
 			impl_.data[2] *= other;
-			impl_.data[3] *= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator*=(const vec4<U>& other)
+		vec& operator*=(const vec3<U>& other)
 		{
 			impl_.data[0] *= other[0];
 			impl_.data[1] *= other[1];
 			impl_.data[2] *= other[2];
-			impl_.data[3] *= other[3];
 			return *this;
 		}
 
@@ -217,17 +203,15 @@ namespace tue
 			impl_.data[0] /= other;
 			impl_.data[1] /= other;
 			impl_.data[2] /= other;
-			impl_.data[3] /= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator/=(const vec4<U>& other)
+		vec& operator/=(const vec3<U>& other)
 		{
 			impl_.data[0] /= other[0];
 			impl_.data[1] /= other[1];
 			impl_.data[2] /= other[2];
-			impl_.data[3] /= other[3];
 			return *this;
 		}
 
@@ -240,17 +224,15 @@ namespace tue
 			impl_.data[0] %= other;
 			impl_.data[1] %= other;
 			impl_.data[2] %= other;
-			impl_.data[3] %= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator%=(const vec4<U>& other)
+		vec& operator%=(const vec3<U>& other)
 		{
 			impl_.data[0] %= other[0];
 			impl_.data[1] %= other[1];
 			impl_.data[2] %= other[2];
-			impl_.data[3] %= other[3];
 			return *this;
 		}
 
@@ -263,17 +245,15 @@ namespace tue
 			impl_.data[0] &= other;
 			impl_.data[1] &= other;
 			impl_.data[2] &= other;
-			impl_.data[3] &= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator&=(const vec4<U>& other)
+		vec& operator&=(const vec3<U>& other)
 		{
 			impl_.data[0] &= other[0];
 			impl_.data[1] &= other[1];
 			impl_.data[2] &= other[2];
-			impl_.data[3] &= other[3];
 			return *this;
 		}
 
@@ -286,17 +266,15 @@ namespace tue
 			impl_.data[0] |= other;
 			impl_.data[1] |= other;
 			impl_.data[2] |= other;
-			impl_.data[3] |= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator|=(const vec4<U>& other)
+		vec& operator|=(const vec3<U>& other)
 		{
 			impl_.data[0] |= other[0];
 			impl_.data[1] |= other[1];
 			impl_.data[2] |= other[2];
-			impl_.data[3] |= other[3];
 			return *this;
 		}
 
@@ -309,17 +287,15 @@ namespace tue
 			impl_.data[0] ^= other;
 			impl_.data[1] ^= other;
 			impl_.data[2] ^= other;
-			impl_.data[3] ^= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator^=(const vec4<U>& other)
+		vec& operator^=(const vec3<U>& other)
 		{
 			impl_.data[0] ^= other[0];
 			impl_.data[1] ^= other[1];
 			impl_.data[2] ^= other[2];
-			impl_.data[3] ^= other[3];
 			return *this;
 		}
 
@@ -332,17 +308,15 @@ namespace tue
 			impl_.data[0] <<= other;
 			impl_.data[1] <<= other;
 			impl_.data[2] <<= other;
-			impl_.data[3] <<= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator<<=(const vec4<U>& other)
+		vec& operator<<=(const vec3<U>& other)
 		{
 			impl_.data[0] <<= other[0];
 			impl_.data[1] <<= other[1];
 			impl_.data[2] <<= other[2];
-			impl_.data[3] <<= other[3];
 			return *this;
 		}
 
@@ -355,17 +329,15 @@ namespace tue
 			impl_.data[0] >>= other;
 			impl_.data[1] >>= other;
 			impl_.data[2] >>= other;
-			impl_.data[3] >>= other;
 			return *this;
 		}
 
 		template<typename U>
-		vec& operator>>=(const vec4<U>& other)
+		vec& operator>>=(const vec3<U>& other)
 		{
 			impl_.data[0] >>= other[0];
 			impl_.data[1] >>= other[1];
 			impl_.data[2] >>= other[2];
-			impl_.data[3] >>= other[3];
 			return *this;
 		}
 	};
@@ -374,30 +346,30 @@ namespace tue
 	// +v
 	// --
 	template<typename T>
-	inline TUE_CONSTEXPR auto operator+(const vec4<T>& v)
-		-> vec4<decltype(+v[0])>
+	inline TUE_CONSTEXPR auto operator+(const vec3<T>& v)
+		-> vec3<decltype(+v[0])>
 	{
-		return{ +v[0], +v[1], +v[2], +v[3] };
+		return{ +v[0], +v[1], +v[2] };
 	}
 
 	// --
 	// -v
 	// --
 	template<typename T>
-	inline TUE_CONSTEXPR auto operator-(const vec4<T>& v)
-		-> vec4<decltype(+v[0])>
+	inline TUE_CONSTEXPR auto operator-(const vec3<T>& v)
+		-> vec3<decltype(+v[0])>
 	{
-		return{ -v[0], -v[1], -v[2], -v[3] };
+		return{ -v[0], -v[1], -v[2] };
 	}
 
 	// --
 	// ~v
 	// --
 	template<typename T>
-	inline TUE_CONSTEXPR auto operator~(const vec4<T>& v)
-		-> vec4<decltype(+v[0])>
+	inline TUE_CONSTEXPR auto operator~(const vec3<T>& v)
+		-> vec3<decltype(+v[0])>
 	{
-		return{ ~v[0], ~v[1], ~v[2], ~v[3] };
+		return{ ~v[0], ~v[1], ~v[2] };
 	}
 
 	// ---------
@@ -406,42 +378,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator+(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs + rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs + rhs[0])>
 	{
 		return{
 			lhs + rhs[0],
 			lhs + rhs[1],
 			lhs + rhs[2],
-			lhs + rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator+(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] + rhs)>
+		-> vec3<decltype(lhs[0] + rhs)>
 	{
 		return{
 			lhs[0] + rhs,
 			lhs[1] + rhs,
 			lhs[2] + rhs,
-			lhs[3] + rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator+(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] + rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] + rhs[0])>
 	{
 		return{
 			lhs[0] + rhs[0],
 			lhs[1] + rhs[1],
 			lhs[2] + rhs[2],
-			lhs[3] + rhs[3],
 		};
 	}
 
@@ -451,42 +420,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator-(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs - rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs - rhs[0])>
 	{
 		return{
 			lhs - rhs[0],
 			lhs - rhs[1],
 			lhs - rhs[2],
-			lhs - rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator-(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] - rhs)>
+		-> vec3<decltype(lhs[0] - rhs)>
 	{
 		return{
 			lhs[0] - rhs,
 			lhs[1] - rhs,
 			lhs[2] - rhs,
-			lhs[3] - rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator-(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] - rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] - rhs[0])>
 	{
 		return{
 			lhs[0] - rhs[0],
 			lhs[1] - rhs[1],
 			lhs[2] - rhs[2],
-			lhs[3] - rhs[3],
 		};
 	}
 
@@ -496,42 +462,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator*(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs * rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs * rhs[0])>
 	{
 		return{
 			lhs * rhs[0],
 			lhs * rhs[1],
 			lhs * rhs[2],
-			lhs * rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator*(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] * rhs)>
+		-> vec3<decltype(lhs[0] * rhs)>
 	{
 		return{
 			lhs[0] * rhs,
 			lhs[1] * rhs,
 			lhs[2] * rhs,
-			lhs[3] * rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator*(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] * rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] * rhs[0])>
 	{
 		return{
 			lhs[0] * rhs[0],
 			lhs[1] * rhs[1],
 			lhs[2] * rhs[2],
-			lhs[3] * rhs[3],
 		};
 	}
 
@@ -541,42 +504,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator/(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs / rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs / rhs[0])>
 	{
 		return{
 			lhs / rhs[0],
 			lhs / rhs[1],
 			lhs / rhs[2],
-			lhs / rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator/(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] / rhs)>
+		-> vec3<decltype(lhs[0] / rhs)>
 	{
 		return{
 			lhs[0] / rhs,
 			lhs[1] / rhs,
 			lhs[2] / rhs,
-			lhs[3] / rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator/(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] / rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] / rhs[0])>
 	{
 		return{
 			lhs[0] / rhs[0],
 			lhs[1] / rhs[1],
 			lhs[2] / rhs[2],
-			lhs[3] / rhs[3],
 		};
 	}
 
@@ -586,42 +546,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator%(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs % rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs % rhs[0])>
 	{
 		return{
 			lhs % rhs[0],
 			lhs % rhs[1],
 			lhs % rhs[2],
-			lhs % rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator%(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] % rhs)>
+		-> vec3<decltype(lhs[0] % rhs)>
 	{
 		return{
 			lhs[0] % rhs,
 			lhs[1] % rhs,
 			lhs[2] % rhs,
-			lhs[3] % rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator%(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] % rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] % rhs[0])>
 	{
 		return{
 			lhs[0] % rhs[0],
 			lhs[1] % rhs[1],
 			lhs[2] % rhs[2],
-			lhs[3] % rhs[3],
 		};
 	}
 
@@ -631,42 +588,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator&(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs & rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs & rhs[0])>
 	{
 		return{
 			lhs & rhs[0],
 			lhs & rhs[1],
 			lhs & rhs[2],
-			lhs & rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator&(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] & rhs)>
+		-> vec3<decltype(lhs[0] & rhs)>
 	{
 		return{
 			lhs[0] & rhs,
 			lhs[1] & rhs,
 			lhs[2] & rhs,
-			lhs[3] & rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator&(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] & rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] & rhs[0])>
 	{
 		return{
 			lhs[0] & rhs[0],
 			lhs[1] & rhs[1],
 			lhs[2] & rhs[2],
-			lhs[3] & rhs[3],
 		};
 	}
 
@@ -676,42 +630,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator|(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs | rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs | rhs[0])>
 	{
 		return{
 			lhs | rhs[0],
 			lhs | rhs[1],
 			lhs | rhs[2],
-			lhs | rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator|(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] | rhs)>
+		-> vec3<decltype(lhs[0] | rhs)>
 	{
 		return{
 			lhs[0] | rhs,
 			lhs[1] | rhs,
 			lhs[2] | rhs,
-			lhs[3] | rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator|(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] | rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] | rhs[0])>
 	{
 		return{
 			lhs[0] | rhs[0],
 			lhs[1] | rhs[1],
 			lhs[2] | rhs[2],
-			lhs[3] | rhs[3],
 		};
 	}
 
@@ -721,42 +672,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator^(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs ^ rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs ^ rhs[0])>
 	{
 		return{
 			lhs ^ rhs[0],
 			lhs ^ rhs[1],
 			lhs ^ rhs[2],
-			lhs ^ rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator^(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] ^ rhs)>
+		-> vec3<decltype(lhs[0] ^ rhs)>
 	{
 		return{
 			lhs[0] ^ rhs,
 			lhs[1] ^ rhs,
 			lhs[2] ^ rhs,
-			lhs[3] ^ rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator^(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] ^ rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] ^ rhs[0])>
 	{
 		return{
 			lhs[0] ^ rhs[0],
 			lhs[1] ^ rhs[1],
 			lhs[2] ^ rhs[2],
-			lhs[3] ^ rhs[3],
 		};
 	}
 
@@ -766,42 +714,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator<<(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs << rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs << rhs[0])>
 	{
 		return{
 			lhs << rhs[0],
 			lhs << rhs[1],
 			lhs << rhs[2],
-			lhs << rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator<<(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] << rhs)>
+		-> vec3<decltype(lhs[0] << rhs)>
 	{
 		return{
 			lhs[0] << rhs,
 			lhs[1] << rhs,
 			lhs[2] << rhs,
-			lhs[3] << rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator<<(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] << rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] << rhs[0])>
 	{
 		return{
 			lhs[0] << rhs[0],
 			lhs[1] << rhs[1],
 			lhs[2] << rhs[2],
-			lhs[3] << rhs[3],
 		};
 	}
 
@@ -811,42 +756,39 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator>>(
 		const T& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs >> rhs[0])>
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs >> rhs[0])>
 	{
 		return{
 			lhs >> rhs[0],
 			lhs >> rhs[1],
 			lhs >> rhs[2],
-			lhs >> rhs[3],
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator>>(
-		const vec4<T>& lhs,
+		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec4<decltype(lhs[0] >> rhs)>
+		-> vec3<decltype(lhs[0] >> rhs)>
 	{
 		return{
 			lhs[0] >> rhs,
 			lhs[1] >> rhs,
 			lhs[2] >> rhs,
-			lhs[3] >> rhs,
 		};
 	}
 
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator>>(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
-		-> vec4<decltype(lhs[0] >> rhs[0])>
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
+		-> vec3<decltype(lhs[0] >> rhs[0])>
 	{
 		return{
 			lhs[0] >> rhs[0],
 			lhs[1] >> rhs[1],
 			lhs[2] >> rhs[2],
-			lhs[3] >> rhs[3],
 		};
 	}
 
@@ -855,13 +797,12 @@ namespace tue
 	// ----------
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator==(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
 	{
 		return lhs[0] == rhs[0]
 			&& lhs[1] == rhs[1]
-			&& lhs[2] == rhs[2]
-			&& lhs[3] == rhs[3];
+			&& lhs[2] == rhs[2];
 	}
 
 	// ----------
@@ -869,8 +810,8 @@ namespace tue
 	// ----------
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator!=(
-		const vec4<T>& lhs,
-		const vec4<U>& rhs)
+		const vec3<T>& lhs,
+		const vec3<U>& rhs)
 	{
 		return !(lhs == rhs);
 	}

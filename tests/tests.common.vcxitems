@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)vec3.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)test_case.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)test_failure.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)test_runner.cpp" />
