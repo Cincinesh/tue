@@ -238,6 +238,52 @@ namespace
 		test_assert(v.w() == 2.4f);
 	}
 
+	TEST_CASE(xy)
+	{
+		CONST_OR_CONSTEXPR fvec2 xy = fv41.xy();
+		test_assert(xy == fvec2(fv41));
+	}
+
+	TEST_CASE(set_xy)
+	{
+		fvec4 v1(1.1f, 1.2f, 1.3f, 1.4f);
+		v1.set_xy(2.1f, 2.2f);
+		test_assert(v1[0] == 2.1f);
+		test_assert(v1[1] == 2.2f);
+		test_assert(v1[2] == 1.3f);
+		test_assert(v1[3] == 1.4f);
+
+		fvec4 v2(1.1f, 1.2f, 1.3f, 1.4f);
+		v2.set_xy(fvec2(2.1f, 2.2f));
+		test_assert(v2[0] == 2.1f);
+		test_assert(v2[1] == 2.2f);
+		test_assert(v2[2] == 1.3f);
+		test_assert(v2[3] == 1.4f);
+	}
+
+	TEST_CASE(xyz)
+	{
+		CONST_OR_CONSTEXPR fvec3 xyz = fv41.xyz();
+		test_assert(xyz == fvec3(fv41));
+	}
+
+	TEST_CASE(set_xyz)
+	{
+		fvec4 v1(1.1f, 1.2f, 1.3f, 1.4f);
+		v1.set_xyz(2.1f, 2.2f, 2.3f);
+		test_assert(v1[0] == 2.1f);
+		test_assert(v1[1] == 2.2f);
+		test_assert(v1[2] == 2.3f);
+		test_assert(v1[3] == 1.4f);
+
+		fvec4 v2(1.1f, 1.2f, 1.3f, 1.4f);
+		v2.set_xyz(fvec3(2.1f, 2.2f, 2.3f));
+		test_assert(v2[0] == 2.1f);
+		test_assert(v2[1] == 2.2f);
+		test_assert(v2[2] == 2.3f);
+		test_assert(v2[3] == 1.4f);
+	}
+
 	TEST_CASE(pre_increment_operator)
 	{
 		fvec4 v = fv41;

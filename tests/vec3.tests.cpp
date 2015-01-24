@@ -198,6 +198,27 @@ namespace
 		test_assert(v.z() == 2.3f);
 	}
 
+	TEST_CASE(xy)
+	{
+		CONST_OR_CONSTEXPR fvec2 xy = fv31.xy();
+		test_assert(xy == fvec2(fv31));
+	}
+
+	TEST_CASE(set_xy)
+	{
+		fvec3 v1(1.1f, 1.2f, 1.3f);
+		v1.set_xy(2.1f, 2.2f);
+		test_assert(v1[0] == 2.1f);
+		test_assert(v1[1] == 2.2f);
+		test_assert(v1[2] == 1.3f);
+
+		fvec3 v2(1.1f, 1.2f, 1.3f);
+		v2.set_xy(fvec2(2.1f, 2.2f));
+		test_assert(v2[0] == 2.1f);
+		test_assert(v2[1] == 2.2f);
+		test_assert(v2[2] == 1.3f);
+	}
+
 	TEST_CASE(pre_increment_operator)
 	{
 		fvec3 v = fv31;

@@ -101,6 +101,23 @@ namespace tue
 		constexpr T w() const { return impl_.data[3]; }
 		void set_w(const T& w) { impl_.data[3] = w; }
 
+		constexpr vec2<T> xy() const { return vec2<T>(*this); }
+		void set_xy(const T& x, const T& y)
+		{
+			impl_.data[0] = x;
+			impl_.data[1] = y;
+		}
+		void set_xy(const vec2<T>& xy) { set_xy(xy[0], xy[1]); }
+
+		constexpr vec3<T> xyz() const { return vec3<T>(*this); }
+		void set_xyz(const T& x, const T& y, const T& z)
+		{
+			impl_.data[0] = x;
+			impl_.data[1] = y;
+			impl_.data[2] = z;
+		}
+		void set_xyz(const vec3<T>& xyz) { set_xyz(xyz[0], xyz[1], xyz[2]); }
+
 		// ---
 		// ++v
 		// ---
