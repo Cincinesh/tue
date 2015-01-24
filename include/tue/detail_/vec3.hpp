@@ -5,13 +5,14 @@
 
 #pragma once
 
+#include "../math.hpp"
+#include "../vec.hpp"
+
 #ifdef _MSC_VER
 #define TUE_CONSTEXPR
 #else
 #define TUE_CONSTEXPR constexpr
 #endif
-
-#include "../vec.hpp"
 
 namespace tue
 {
@@ -828,6 +829,214 @@ namespace tue
 		const vec3<U>& rhs)
 	{
 		return !(lhs == rhs);
+	}
+
+	// ----
+	// math
+	// ----
+	namespace math
+	{
+		// --------
+		// sincos()
+		// --------
+		template<typename T>
+		inline void sincos(
+			const vec3<T>& v,
+			vec3<decltype(math::sin(v[0]))>& sin_result,
+			vec3<decltype(math::cos(v[0]))>& cos_result)
+		{
+			math::sincos(v[0], sin_result[0], cos_result[0]);
+			math::sincos(v[1], sin_result[1], cos_result[1]);
+			math::sincos(v[2], sin_result[2], cos_result[2]);
+		}
+
+		// -----
+		// sin()
+		// -----
+		template<typename T>
+		inline auto sin(const vec3<T>& v)
+			-> vec3<decltype(math::sin(v[0]))>
+		{
+			return{
+				math::sin(v[0]),
+				math::sin(v[1]),
+				math::sin(v[2]),
+			};
+		}
+
+		// -----
+		// cos()
+		// -----
+		template<typename T>
+		inline auto cos(const vec3<T>& v)
+			-> vec3<decltype(math::cos(v[0]))>
+		{
+			return{
+				math::cos(v[0]),
+				math::cos(v[1]),
+				math::cos(v[2]),
+			};
+		}
+
+		// -----
+		// pow()
+		// -----
+		template<typename T>
+		inline auto pow(
+			const vec3<T>& base,
+			const T& exponent)
+			-> vec3<decltype(math::pow(base[0], exponent))>
+		{
+			return{
+				math::pow(base[0], exponent),
+				math::pow(base[1], exponent),
+				math::pow(base[2], exponent),
+			};
+		}
+
+		template<typename T>
+		inline auto pow(
+			const vec3<T>& base,
+			const vec3<T>& exponent)
+			-> vec3<decltype(math::pow(base[0], exponent[0]))>
+		{
+			return{
+				math::pow(base[0], exponent[0]),
+				math::pow(base[1], exponent[1]),
+				math::pow(base[2], exponent[2]),
+			};
+		}
+
+		// -----
+		// rcp()
+		// -----
+		template<typename T>
+		inline auto rcp(const vec3<T>& v)
+			-> vec3<decltype(math::rcp(v[0]))>
+		{
+			return{
+				math::rcp(v[0]),
+				math::rcp(v[1]),
+				math::rcp(v[2]),
+			};
+		}
+
+		// -----
+		// sqrt()
+		// -----
+		template<typename T>
+		inline auto sqrt(const vec3<T>& v)
+			-> vec3<decltype(math::sqrt(v[0]))>
+		{
+			return{
+				math::sqrt(v[0]),
+				math::sqrt(v[1]),
+				math::sqrt(v[2]),
+			};
+		}
+
+		// -----
+		// rsqrt()
+		// -----
+		template<typename T>
+		inline auto rsqrt(const vec3<T>& v)
+			-> vec3<decltype(math::rsqrt(v[0]))>
+		{
+			return{
+				math::rsqrt(v[0]),
+				math::rsqrt(v[1]),
+				math::rsqrt(v[2]),
+			};
+		}
+
+		// -----
+		// min()
+		// -----
+		template<typename T>
+		inline auto min(const vec3<T>& v1, const vec3<T>& v2)
+			-> vec3<decltype(math::min(v1[0], v2[0]))>
+		{
+			return{
+				math::min(v1[0], v2[0]),
+				math::min(v1[1], v2[0]),
+				math::min(v1[2], v2[0]),
+			};
+		}
+
+		// -----
+		// max()
+		// -----
+		template<typename T>
+		inline auto max(const vec3<T>& v1, const vec3<T>& v2)
+			-> vec3<decltype(math::max(v1[0], v2[0]))>
+		{
+			return{
+				math::max(v1[0], v2[0]),
+				math::max(v1[1], v2[0]),
+				math::max(v1[2], v2[0]),
+			};
+		}
+
+		// -----
+		// abs()
+		// -----
+		template<typename T>
+		inline auto abs(const vec3<T>& v)
+			-> vec3<decltype(math::abs(v[0]))>
+		{
+			return{
+				math::abs(v[0]),
+				math::abs(v[1]),
+				math::abs(v[2]),
+			};
+		}
+
+		// -----
+		// dot()
+		// -----
+		template<typename T, typename U>
+		inline TUE_CONSTEXPR auto dot(
+			const vec3<T>& lhs,
+			const vec3<U>& rhs)
+			-> decltype(lhs[0] * rhs[0])
+		{
+			return lhs[0] * rhs[0]
+				+ lhs[1] * rhs[1]
+				+ lhs[2] * rhs[2];
+		}
+
+		// ---------
+		// length2()
+		// ---------
+		template<typename T>
+		inline auto length2(const vec3<T>& v)
+			-> decltype(math::length2(v[0]))
+		{
+			return math::length2(v[0])
+				+ math::length2(v[1])
+				+ math::length2(v[2]);
+		}
+
+		// --------
+		// length()
+		// --------
+		template<typename T>
+		inline auto length(const vec3<T>& v)
+			-> decltype(math::sqrt(math::length2(v)))
+		{
+			return math::sqrt(math::length2(v));
+		}
+
+		// -----------
+		// normalize()
+		// -----------
+		template<typename T>
+		inline auto normalize(const vec3<T>& v)
+			-> vec3<decltype(math::length(v))>
+		{
+			return vec3<decltype(math::length(v))>(v)
+				/ math::length(v);
+		}
 	}
 }
 

@@ -5,13 +5,14 @@
 
 #pragma once
 
+#include "../math.hpp"
+#include "../vec.hpp"
+
 #ifdef _MSC_VER
 #define TUE_CONSTEXPR
 #else
 #define TUE_CONSTEXPR constexpr
 #endif
-
-#include "../vec.hpp"
 
 namespace tue
 {
@@ -102,21 +103,31 @@ namespace tue
 		void set_w(const T& w) { impl_.data[3] = w; }
 
 		constexpr vec2<T> xy() const { return vec2<T>(*this); }
+		
 		void set_xy(const T& x, const T& y)
 		{
 			impl_.data[0] = x;
 			impl_.data[1] = y;
 		}
-		void set_xy(const vec2<T>& xy) { set_xy(xy[0], xy[1]); }
+		
+		void set_xy(const vec2<T>& xy)
+		{
+			set_xy(xy[0], xy[1]);
+		}
 
 		constexpr vec3<T> xyz() const { return vec3<T>(*this); }
+		
 		void set_xyz(const T& x, const T& y, const T& z)
 		{
 			impl_.data[0] = x;
 			impl_.data[1] = y;
 			impl_.data[2] = z;
 		}
-		void set_xyz(const vec3<T>& xyz) { set_xyz(xyz[0], xyz[1], xyz[2]); }
+		
+		void set_xyz(const vec3<T>& xyz)
+		{
+			set_xyz(xyz[0], xyz[1], xyz[2]);
+		}
 
 		// ---
 		// ++v
@@ -896,6 +907,227 @@ namespace tue
 		const vec4<U>& rhs)
 	{
 		return !(lhs == rhs);
+	}
+
+	// ----
+	// math
+	// ----
+	namespace math
+	{
+		// --------
+		// sincos()
+		// --------
+		template<typename T>
+		inline void sincos(
+			const vec4<T>& v,
+			vec4<decltype(math::sin(v[0]))>& sin_result,
+			vec4<decltype(math::cos(v[0]))>& cos_result)
+		{
+			math::sincos(v[0], sin_result[0], cos_result[0]);
+			math::sincos(v[1], sin_result[1], cos_result[1]);
+			math::sincos(v[2], sin_result[2], cos_result[2]);
+			math::sincos(v[3], sin_result[3], cos_result[3]);
+		}
+
+		// -----
+		// sin()
+		// -----
+		template<typename T>
+		inline auto sin(const vec4<T>& v)
+			-> vec4<decltype(math::sin(v[0]))>
+		{
+			return{
+				math::sin(v[0]),
+				math::sin(v[1]),
+				math::sin(v[2]),
+				math::sin(v[3]),
+			};
+		}
+
+		// -----
+		// cos()
+		// -----
+		template<typename T>
+		inline auto cos(const vec4<T>& v)
+			-> vec4<decltype(math::cos(v[0]))>
+		{
+			return{
+				math::cos(v[0]),
+				math::cos(v[1]),
+				math::cos(v[2]),
+				math::cos(v[3]),
+			};
+		}
+
+		// -----
+		// pow()
+		// -----
+		template<typename T>
+		inline auto pow(
+			const vec4<T>& base,
+			const T& exponent)
+			-> vec4<decltype(math::pow(base[0], exponent))>
+		{
+			return{
+				math::pow(base[0], exponent),
+				math::pow(base[1], exponent),
+				math::pow(base[2], exponent),
+				math::pow(base[3], exponent),
+			};
+		}
+
+		template<typename T>
+		inline auto pow(
+			const vec4<T>& base,
+			const vec4<T>& exponent)
+			-> vec4<decltype(math::pow(base[0], exponent[0]))>
+		{
+			return{
+				math::pow(base[0], exponent[0]),
+				math::pow(base[1], exponent[1]),
+				math::pow(base[2], exponent[2]),
+				math::pow(base[3], exponent[3]),
+			};
+		}
+
+		// -----
+		// rcp()
+		// -----
+		template<typename T>
+		inline auto rcp(const vec4<T>& v)
+			-> vec4<decltype(math::rcp(v[0]))>
+		{
+			return{
+				math::rcp(v[0]),
+				math::rcp(v[1]),
+				math::rcp(v[2]),
+				math::rcp(v[3]),
+			};
+		}
+
+		// -----
+		// sqrt()
+		// -----
+		template<typename T>
+		inline auto sqrt(const vec4<T>& v)
+			-> vec4<decltype(math::sqrt(v[0]))>
+		{
+			return{
+				math::sqrt(v[0]),
+				math::sqrt(v[1]),
+				math::sqrt(v[2]),
+				math::sqrt(v[3]),
+			};
+		}
+
+		// -----
+		// rsqrt()
+		// -----
+		template<typename T>
+		inline auto rsqrt(const vec4<T>& v)
+			-> vec4<decltype(math::rsqrt(v[0]))>
+		{
+			return{
+				math::rsqrt(v[0]),
+				math::rsqrt(v[1]),
+				math::rsqrt(v[2]),
+				math::rsqrt(v[3]),
+			};
+		}
+
+		// -----
+		// min()
+		// -----
+		template<typename T>
+		inline auto min(const vec4<T>& v1, const vec4<T>& v2)
+			-> vec4<decltype(math::min(v1[0], v2[0]))>
+		{
+			return{
+				math::min(v1[0], v2[0]),
+				math::min(v1[1], v2[0]),
+				math::min(v1[2], v2[0]),
+				math::min(v1[3], v2[0]),
+			};
+		}
+
+		// -----
+		// max()
+		// -----
+		template<typename T>
+		inline auto max(const vec4<T>& v1, const vec4<T>& v2)
+			-> vec4<decltype(math::max(v1[0], v2[0]))>
+		{
+			return{
+				math::max(v1[0], v2[0]),
+				math::max(v1[1], v2[0]),
+				math::max(v1[2], v2[0]),
+				math::max(v1[3], v2[0]),
+			};
+		}
+
+		// -----
+		// abs()
+		// -----
+		template<typename T>
+		inline auto abs(const vec4<T>& v)
+			-> vec4<decltype(math::abs(v[0]))>
+		{
+			return{
+				math::abs(v[0]),
+				math::abs(v[1]),
+				math::abs(v[2]),
+				math::abs(v[3]),
+			};
+		}
+
+		// -----
+		// dot()
+		// -----
+		template<typename T, typename U>
+		inline TUE_CONSTEXPR auto dot(
+			const vec4<T>& lhs,
+			const vec4<U>& rhs)
+			-> decltype(lhs[0] * rhs[0])
+		{
+			return lhs[0] * rhs[0]
+				+ lhs[1] * rhs[1]
+				+ lhs[2] * rhs[2]
+				+ lhs[3] * rhs[3];
+		}
+
+		// ---------
+		// length2()
+		// ---------
+		template<typename T>
+		inline auto length2(const vec4<T>& v)
+			-> decltype(math::length2(v[0]))
+		{
+			return math::length2(v[0])
+				+ math::length2(v[1])
+				+ math::length2(v[2])
+				+ math::length2(v[3]);
+		}
+
+		// --------
+		// length()
+		// --------
+		template<typename T>
+		inline auto length(const vec4<T>& v)
+			-> decltype(math::sqrt(math::length2(v)))
+		{
+			return math::sqrt(math::length2(v));
+		}
+
+		// -----------
+		// normalize()
+		// -----------
+		template<typename T>
+		inline auto normalize(const vec4<T>& v)
+			-> vec4<decltype(math::normalize(v))>
+		{
+			return vec4<decltype(math::length(v))>(v)
+				/ math::length(v);
+		}
 	}
 }
 
