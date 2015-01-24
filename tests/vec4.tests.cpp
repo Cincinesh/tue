@@ -18,9 +18,15 @@ namespace
 {
 	using namespace tue;
 
+	constexpr float f1 = 1.1f;
+
+	constexpr double d2 = 2.2;
+
 	constexpr fvec4 fv41(1.1f, 1.2f, 1.3f, 1.4f);
 
 	constexpr dvec4 dv41(1.1, 1.2, 1.3, 1.4);
+
+	constexpr dvec4 dv42(2.2, 2.4, 2.6, 2.8);
 
 	TEST_CASE(default_constructor)
 	{
@@ -204,5 +210,46 @@ namespace
 		fvec4 v = fv41;
 		v.set_w(2.4f);
 		test_assert(v.w() == 2.4f);
+	}
+
+	// TODO: member operators
+
+	TEST_CASE(unary_plus_operator)
+	{
+		CONST_OR_CONSTEXPR auto v = +fv41;
+		test_assert(v[0] == +fv41[0]);
+		test_assert(v[1] == +fv41[1]);
+		test_assert(v[2] == +fv41[2]);
+		test_assert(v[3] == +fv41[3]);
+	}
+
+	TEST_CASE(negate_operator)
+	{
+		CONST_OR_CONSTEXPR auto v = -fv41;
+		test_assert(v[0] == -fv41[0]);
+		test_assert(v[1] == -fv41[1]);
+		test_assert(v[2] == -fv41[2]);
+		test_assert(v[3] == -fv41[3]);
+	}
+
+	TEST_CASE(plus_operator)
+	{
+		CONST_OR_CONSTEXPR auto v1 = f1 + dv42;
+		test_assert(v1[0] == f1 + dv42[0]);
+		test_assert(v1[1] == f1 + dv42[1]);
+		test_assert(v1[2] == f1 + dv42[2]);
+		test_assert(v1[3] == f1 + dv42[3]);
+
+		CONST_OR_CONSTEXPR auto v2 = fv41 + d2;
+		test_assert(v2[0] == fv41[0] + d2);
+		test_assert(v2[1] == fv41[1] + d2);
+		test_assert(v2[2] == fv41[2] + d2);
+		test_assert(v2[3] == fv41[3] + d2);
+
+		CONST_OR_CONSTEXPR auto v3 = fv41 + dv42;
+		test_assert(v3[0] == fv41[0] + dv42[0]);
+		test_assert(v3[1] == fv41[1] + dv42[1]);
+		test_assert(v3[2] == fv41[2] + dv42[2]);
+		test_assert(v3[3] == fv41[3] + dv42[3]);
 	}
 }
