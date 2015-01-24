@@ -56,11 +56,11 @@ namespace tue
 
 				if (success)
 				{
-					cout << "  success" << endl;
+					cout << "  SUCCESS" << endl;
 				}
 				else
 				{
-					cout << "  failure" << endl;
+					cout << "  FAILURE" << endl;
 					status = EXIT_FAILURE;
 				}
 			}

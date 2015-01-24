@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec2.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec3.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec4.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\math.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\unused.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\vec.hpp" />
   </ItemGroup>
