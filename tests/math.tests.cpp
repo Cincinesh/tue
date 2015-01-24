@@ -39,8 +39,58 @@ namespace
 
 	TEST_CASE(pow)
 	{
-		test_assert(math::pow(1.23f, 4.56f) == std::pow(1.23f, 4.56f));
-		test_assert(math::pow(123, 456) == math::pow(123.0, 456.0));
+		test_assert(
+			math::pow(1.23f, 4.56f)
+			== std::pow(1.23f, 4.56f));
+		test_assert(
+			math::pow(1.23f, 4.56)
+			== math::pow(static_cast<double>(1.23f), 4.56));
+		test_assert(
+			math::pow(1.23f, 4.56L)
+			== math::pow(static_cast<long double>(1.23f), 4.56L));
+
+		test_assert(
+			math::pow(1.23, 4.56f)
+			== math::pow(1.23, static_cast<double>(4.56f)));
+		test_assert(
+			math::pow(1.23, 4.56)
+			== std::pow(1.23, 4.56));
+		test_assert(
+			math::pow(1.23, 4.56L)
+			== math::pow(static_cast<long double>(1.23), 4.56L));
+
+		test_assert(
+			math::pow(1.23L, 4.56f)
+			== math::pow(1.23L, static_cast<long double>(4.56f)));
+		test_assert(
+			math::pow(1.23L, 4.56)
+			== math::pow(1.23L, static_cast<long double>(4.56)));
+		test_assert(
+			math::pow(1.23L, 4.56L)
+			== std::pow(1.23L, 4.56L));
+
+		test_assert(
+			math::pow(123, 456)
+			== math::pow(123.0, 456.0));
+		test_assert(
+			math::pow(123, 4.56f)
+			== math::pow(123.0, static_cast<double>(4.56f)));
+		test_assert(
+			math::pow(123, 4.56)
+			== math::pow(123.0, 4.56));
+		test_assert(
+			math::pow(123, 4.56L)
+			== math::pow(123.0L, 4.56L));
+
+		test_assert(
+			math::pow(1.23f, 456)
+			== math::pow(static_cast<double>(1.23f), 456.0));
+		test_assert(
+			math::pow(1.23, 456)
+			== math::pow(1.23, 456.0));
+		test_assert(
+			math::pow(1.23L, 456)
+			== math::pow(1.23L, 456.0L));
 	}
 
 	TEST_CASE(rcp)

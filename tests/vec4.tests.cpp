@@ -26,8 +26,6 @@ namespace
 
 	constexpr auto i1 = 111;
 
-	constexpr auto i2 = 2;
-
 	constexpr auto u2 = 2U;
 
 	constexpr fvec4 fv41(1.1f, 1.2f, 1.3f, 1.4f);
@@ -770,11 +768,11 @@ namespace
 		test_assert(fpow1[2] == math::pow(fv41[2], f2));
 		test_assert(fpow1[3] == math::pow(fv41[3], f2));
 
-		const auto ipow1 = math::pow(iv41, i2);
-		test_assert(ipow1[0] == math::pow(iv41[0], i2));
-		test_assert(ipow1[1] == math::pow(iv41[1], i2));
-		test_assert(ipow1[2] == math::pow(iv41[2], i2));
-		test_assert(ipow1[3] == math::pow(iv41[3], i2));
+		const auto ipow1 = math::pow(iv41, f2);
+		test_assert(ipow1[0] == math::pow(iv41[0], f2));
+		test_assert(ipow1[1] == math::pow(iv41[1], f2));
+		test_assert(ipow1[2] == math::pow(iv41[2], f2));
+		test_assert(ipow1[3] == math::pow(iv41[3], f2));
 
 		const auto fpow2 = math::pow(fv41, fv42);
 		test_assert(fpow2[0] == math::pow(fv41[0], fv42[0]));
@@ -782,11 +780,11 @@ namespace
 		test_assert(fpow2[2] == math::pow(fv41[2], fv42[2]));
 		test_assert(fpow2[3] == math::pow(fv41[3], fv42[3]));
 
-		const auto ipow2 = math::pow(iv41, iv42);
-		test_assert(ipow2[0] == math::pow(iv41[0], iv42[0]));
-		test_assert(ipow2[1] == math::pow(iv41[1], iv42[1]));
-		test_assert(ipow2[2] == math::pow(iv41[2], iv42[2]));
-		test_assert(ipow2[3] == math::pow(iv41[3], iv42[3]));
+		const auto ipow2 = math::pow(iv41, fv42);
+		test_assert(ipow2[0] == math::pow(iv41[0], fv42[0]));
+		test_assert(ipow2[1] == math::pow(iv41[1], fv42[1]));
+		test_assert(ipow2[2] == math::pow(iv41[2], fv42[2]));
+		test_assert(ipow2[3] == math::pow(iv41[3], fv42[3]));
 	}
 
 	TEST_CASE(rcp)

@@ -84,15 +84,34 @@ namespace tue
 			return std::pow(base, exponent);
 		}
 
-		template<typename T>
+		template<typename T, typename U>
 		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type pow(
+			std::is_arithmetic<T>::value
+			&& std::is_arithmetic<U>::value
+			&& !std::is_same<T, long double>::value
+			&& !std::is_same<U, long double>::value,
+			double>::type pow(
 			T base,
-			T exponent) noexcept
+			U exponent) noexcept
 		{
 			return math::pow(
 				static_cast<double>(base),
 				static_cast<double>(exponent));
+		}
+
+		template<typename T, typename U>
+		inline typename std::enable_if<
+			std::is_arithmetic<T>::value
+			&& std::is_arithmetic<U>::value
+			&& (std::is_same<T, long double>::value
+				^ std::is_same<U, long double>::value),
+			long double>::type pow(
+			T base,
+			U exponent) noexcept
+		{
+			return math::pow(
+				static_cast<long double>(base),
+				static_cast<long double>(exponent));
 		}
 
 		// -----
