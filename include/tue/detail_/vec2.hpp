@@ -883,7 +883,7 @@ namespace tue
 		{
 			return{
 				math::min(v1[0], v2[0]),
-				math::min(v1[1], v2[0]),
+				math::min(v1[1], v2[1]),
 			};
 		}
 
@@ -896,7 +896,7 @@ namespace tue
 		{
 			return{
 				math::max(v1[0], v2[0]),
-				math::max(v1[1], v2[0]),
+				math::max(v1[1], v2[1]),
 			};
 		}
 
@@ -952,7 +952,7 @@ namespace tue
 		// -----------
 		template<typename T>
 		inline auto normalize(const vec2<T>& v)
-			-> vec2<decltype(math::normalize(v))>
+			-> vec2<decltype(math::length(v))>
 		{
 			return vec2<decltype(math::length(v))>(v)
 				/ math::length(v);

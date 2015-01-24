@@ -20,19 +20,27 @@ namespace
 
 	constexpr auto f1 = 1.1f;
 
+	constexpr auto f2 = 2.2f;
+
 	constexpr auto d2 = 2.2;
 
 	constexpr auto i1 = 111;
 
+	constexpr auto i2 = 2;
+
 	constexpr auto u2 = 2U;
 
 	constexpr fvec4 fv41(1.1f, 1.2f, 1.3f, 1.4f);
+
+	constexpr fvec4 fv42(2.2f, -2.4f, 2.6f, -2.8f);
 
 	constexpr dvec4 dv41(1.1, 1.2, 1.3, 1.4);
 
 	constexpr dvec4 dv42(2.2, 2.4, 2.6, 2.8);
 
 	constexpr ivec4 iv41(111, 222, 333, 444);
+
+	constexpr ivec4 iv42(2, -4, 6, -8);
 
 	constexpr uvec4 uv42(2U, 4U, 6U, 8U);
 
@@ -709,5 +717,196 @@ namespace
 		test_assert(result3 == true);
 		test_assert(result4 == true);
 		test_assert(result5 == true);
+	}
+
+	TEST_CASE(sincos)
+	{
+		fvec4 fsin, fcos;
+		math::sincos(fv41, fsin, fcos);
+		test_assert(fsin == math::sin(fv41));
+		test_assert(fcos == math::cos(fv41));
+
+		dvec4 isin, icos;
+		math::sincos(iv41, isin, icos);
+		test_assert(isin == math::sin(iv41));
+		test_assert(icos == math::cos(iv41));
+	}
+
+	TEST_CASE(sin)
+	{
+		const auto fsin = math::sin(fv41);
+		test_assert(fsin[0] == math::sin(fv41[0]));
+		test_assert(fsin[1] == math::sin(fv41[1]));
+		test_assert(fsin[2] == math::sin(fv41[2]));
+		test_assert(fsin[3] == math::sin(fv41[3]));
+
+		const auto isin = math::sin(iv41);
+		test_assert(isin[0] == math::sin(iv41[0]));
+		test_assert(isin[1] == math::sin(iv41[1]));
+		test_assert(isin[2] == math::sin(iv41[2]));
+		test_assert(isin[3] == math::sin(iv41[3]));
+	}
+
+	TEST_CASE(cos)
+	{
+		const auto fcos = math::cos(fv41);
+		test_assert(fcos[0] == math::cos(fv41[0]));
+		test_assert(fcos[1] == math::cos(fv41[1]));
+		test_assert(fcos[2] == math::cos(fv41[2]));
+		test_assert(fcos[3] == math::cos(fv41[3]));
+
+		const auto icos = math::cos(iv41);
+		test_assert(icos[0] == math::cos(iv41[0]));
+		test_assert(icos[1] == math::cos(iv41[1]));
+		test_assert(icos[2] == math::cos(iv41[2]));
+		test_assert(icos[3] == math::cos(iv41[3]));
+	}
+
+	TEST_CASE(pow)
+	{
+		const auto fpow1 = math::pow(fv41, f2);
+		test_assert(fpow1[0] == math::pow(fv41[0], f2));
+		test_assert(fpow1[1] == math::pow(fv41[1], f2));
+		test_assert(fpow1[2] == math::pow(fv41[2], f2));
+		test_assert(fpow1[3] == math::pow(fv41[3], f2));
+
+		const auto ipow1 = math::pow(iv41, i2);
+		test_assert(ipow1[0] == math::pow(iv41[0], i2));
+		test_assert(ipow1[1] == math::pow(iv41[1], i2));
+		test_assert(ipow1[2] == math::pow(iv41[2], i2));
+		test_assert(ipow1[3] == math::pow(iv41[3], i2));
+
+		const auto fpow2 = math::pow(fv41, fv42);
+		test_assert(fpow2[0] == math::pow(fv41[0], fv42[0]));
+		test_assert(fpow2[1] == math::pow(fv41[1], fv42[1]));
+		test_assert(fpow2[2] == math::pow(fv41[2], fv42[2]));
+		test_assert(fpow2[3] == math::pow(fv41[3], fv42[3]));
+
+		const auto ipow2 = math::pow(iv41, iv42);
+		test_assert(ipow2[0] == math::pow(iv41[0], iv42[0]));
+		test_assert(ipow2[1] == math::pow(iv41[1], iv42[1]));
+		test_assert(ipow2[2] == math::pow(iv41[2], iv42[2]));
+		test_assert(ipow2[3] == math::pow(iv41[3], iv42[3]));
+	}
+
+	TEST_CASE(rcp)
+	{
+		const auto frcp = math::rcp(fv41);
+		test_assert(frcp[0] == math::rcp(fv41[0]));
+		test_assert(frcp[1] == math::rcp(fv41[1]));
+		test_assert(frcp[2] == math::rcp(fv41[2]));
+		test_assert(frcp[3] == math::rcp(fv41[3]));
+
+		const auto ircp = math::rcp(iv41);
+		test_assert(ircp[0] == math::rcp(iv41[0]));
+		test_assert(ircp[1] == math::rcp(iv41[1]));
+		test_assert(ircp[2] == math::rcp(iv41[2]));
+		test_assert(ircp[3] == math::rcp(iv41[3]));
+	}
+
+	TEST_CASE(sqrt)
+	{
+		const auto fsqrt = math::sqrt(fv41);
+		test_assert(fsqrt[0] == math::sqrt(fv41[0]));
+		test_assert(fsqrt[1] == math::sqrt(fv41[1]));
+		test_assert(fsqrt[2] == math::sqrt(fv41[2]));
+		test_assert(fsqrt[3] == math::sqrt(fv41[3]));
+
+		const auto isqrt = math::sqrt(iv41);
+		test_assert(isqrt[0] == math::sqrt(iv41[0]));
+		test_assert(isqrt[1] == math::sqrt(iv41[1]));
+		test_assert(isqrt[2] == math::sqrt(iv41[2]));
+		test_assert(isqrt[3] == math::sqrt(iv41[3]));
+	}
+
+	TEST_CASE(rsqrt)
+	{
+		const auto frsqrt = math::rsqrt(fv41);
+		test_assert(frsqrt[0] == math::rsqrt(fv41[0]));
+		test_assert(frsqrt[1] == math::rsqrt(fv41[1]));
+		test_assert(frsqrt[2] == math::rsqrt(fv41[2]));
+		test_assert(frsqrt[3] == math::rsqrt(fv41[3]));
+
+		const auto irsqrt = math::rsqrt(iv41);
+		test_assert(irsqrt[0] == math::rsqrt(iv41[0]));
+		test_assert(irsqrt[1] == math::rsqrt(iv41[1]));
+		test_assert(irsqrt[2] == math::rsqrt(iv41[2]));
+		test_assert(irsqrt[3] == math::rsqrt(iv41[3]));
+	}
+
+	TEST_CASE(min)
+	{
+		const auto fmin = math::min(fv41, fv42);
+		test_assert(fmin[0] == math::min(fv41[0], fv42[0]));
+		test_assert(fmin[1] == math::min(fv41[1], fv42[1]));
+		test_assert(fmin[2] == math::min(fv41[2], fv42[2]));
+		test_assert(fmin[3] == math::min(fv41[3], fv42[3]));
+
+		const auto imin = math::min(iv41, iv42);
+		test_assert(imin[0] == math::min(iv41[0], iv42[0]));
+		test_assert(imin[1] == math::min(iv41[1], iv42[1]));
+		test_assert(imin[2] == math::min(iv41[2], iv42[2]));
+		test_assert(imin[3] == math::min(iv41[3], iv42[3]));
+	}
+
+	TEST_CASE(abs)
+	{
+		const auto fabs = math::abs(fv42);
+		test_assert(fabs[0] == math::abs(fv42[0]));
+		test_assert(fabs[1] == math::abs(fv42[1]));
+		test_assert(fabs[2] == math::abs(fv42[2]));
+		test_assert(fabs[3] == math::abs(fv42[3]));
+
+		const auto iabs = math::abs(iv42);
+		test_assert(iabs[0] == math::abs(iv42[0]));
+		test_assert(iabs[1] == math::abs(iv42[1]));
+		test_assert(iabs[2] == math::abs(iv42[2]));
+		test_assert(iabs[3] == math::abs(iv42[3]));
+
+		const auto uabs = math::abs(uv42);
+		test_assert(uabs[0] == math::abs(uv42[0]));
+		test_assert(uabs[1] == math::abs(uv42[1]));
+		test_assert(uabs[2] == math::abs(uv42[2]));
+		test_assert(uabs[3] == math::abs(uv42[3]));
+	}
+
+	TEST_CASE(dot)
+	{
+		CONST_OR_CONSTEXPR auto fdot = math::dot(fv41, dv42);
+		test_assert(fdot ==
+			fv41[0] * dv42[0]
+			+ fv41[1] * dv42[1]
+			+ fv41[2] * dv42[2]
+			+ fv41[3] * dv42[3]);
+
+		CONST_OR_CONSTEXPR auto idot = math::dot(iv41, uv42);
+		test_assert(idot ==
+			iv41[0] * uv42[0]
+			+ iv41[1] * uv42[1]
+			+ iv41[2] * uv42[2]
+			+ iv41[3] * uv42[3]);
+	}
+
+	TEST_CASE(length2)
+	{
+		test_assert(math::length2(fv41) ==
+			math::length2(fv41[0])
+			+ math::length2(fv41[1])
+			+ math::length2(fv41[2])
+			+ math::length2(fv41[3]));
+
+		test_assert(math::length2(iv41) == math::length2(dvec4(iv41)));
+	}
+
+	TEST_CASE(length)
+	{
+		test_assert(math::length(fv41) == math::sqrt(math::length2(fv41)));
+		test_assert(math::length(iv41) == math::length(dvec4(iv41)));
+	}
+
+	TEST_CASE(normalize)
+	{
+		test_assert(math::normalize(fv41) == fv41 / math::length(fv41));
+		test_assert(math::normalize(iv41) == math::normalize(dvec4(iv41)));
 	}
 }

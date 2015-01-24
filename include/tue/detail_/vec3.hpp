@@ -958,8 +958,8 @@ namespace tue
 		{
 			return{
 				math::min(v1[0], v2[0]),
-				math::min(v1[1], v2[0]),
-				math::min(v1[2], v2[0]),
+				math::min(v1[1], v2[1]),
+				math::min(v1[2], v2[2]),
 			};
 		}
 
@@ -972,8 +972,8 @@ namespace tue
 		{
 			return{
 				math::max(v1[0], v2[0]),
-				math::max(v1[1], v2[0]),
-				math::max(v1[2], v2[0]),
+				math::max(v1[1], v2[1]),
+				math::max(v1[2], v2[2]),
 			};
 		}
 
