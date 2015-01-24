@@ -390,6 +390,16 @@ namespace tue
 		return{ -v[0], -v[1], -v[2], -v[3] };
 	}
 
+	// --
+	// ~v
+	// --
+	template<typename T>
+	inline TUE_CONSTEXPR auto operator~(const vec4<T>& v)
+		-> vec4<decltype(+v[0])>
+	{
+		return{ ~v[0], ~v[1], ~v[2], ~v[3] };
+	}
+
 	// ---------
 	// lhs + rhs
 	// ---------

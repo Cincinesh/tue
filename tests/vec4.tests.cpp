@@ -220,7 +220,143 @@ namespace
 		test_assert(v.w() == 2.4f);
 	}
 
-	// TODO: member operators
+	TEST_CASE(pre_increment_operator)
+	{
+		fvec4 v = fv41;
+		test_assert(&(++v) == &v);
+		test_assert(v == fv41 + 1);
+	}
+
+	TEST_CASE(pre_decrement_operator)
+	{
+		fvec4 v = fv41;
+		test_assert(&(--v) == &v);
+		test_assert(v == fv41 - 1);
+	}
+
+	TEST_CASE(post_increment_operator)
+	{
+		fvec4 v = fv41;
+		test_assert(v++ == fv41);
+		test_assert(v == fv41 + 1);
+	}
+
+	TEST_CASE(post_decrement_operator)
+	{
+		fvec4 v = fv41;
+		test_assert(v-- == fv41);
+		test_assert(v == fv41 - 1);
+	}
+
+	TEST_CASE(addition_assignment_operator)
+	{
+		fvec4 v1 = fv41;
+		test_assert(&(v1 += u2) == &v1);
+		test_assert(v1 == fv41 + u2);
+
+		fvec4 v2 = fv41;
+		test_assert(&(v2 += uv42) == &v2);
+		test_assert(v2 == fv41 + uv42);
+	}
+
+	TEST_CASE(subtraction_assignment_operator)
+	{
+		fvec4 v1 = fv41;
+		test_assert(&(v1 -= u2) == &v1);
+		test_assert(v1 == fv41 - u2);
+
+		fvec4 v2 = fv41;
+		test_assert(&(v2 -= uv42) == &v2);
+		test_assert(v2 == fv41 - uv42);
+	}
+
+	TEST_CASE(multiplication_assignment_operator)
+	{
+		fvec4 v1 = fv41;
+		test_assert(&(v1 *= u2) == &v1);
+		test_assert(v1 == fv41 * u2);
+
+		fvec4 v2 = fv41;
+		test_assert(&(v2 *= uv42) == &v2);
+		test_assert(v2 == fv41 * uv42);
+	}
+
+	TEST_CASE(division_assignment_operator)
+	{
+		fvec4 v1 = fv41;
+		test_assert(&(v1 /= u2) == &v1);
+		test_assert(v1 == fv41 / u2);
+
+		fvec4 v2 = fv41;
+		test_assert(&(v2 /= uv42) == &v2);
+		test_assert(v2 == fv41 / uv42);
+	}
+
+	TEST_CASE(modulo_assignment_operator)
+	{
+		ivec4 v1 = iv41;
+		test_assert(&(v1 %= u2) == &v1);
+		test_assert(v1 == iv41 % u2);
+
+		ivec4 v2 = iv41;
+		test_assert(&(v2 %= uv42) == &v2);
+		test_assert(v2 == iv41 % uv42);
+	}
+
+	TEST_CASE(bitwise_and_assignment_operator)
+	{
+		ivec4 v1 = iv41;
+		test_assert(&(v1 &= u2) == &v1);
+		test_assert(v1 == (iv41 & u2));
+
+		ivec4 v2 = iv41;
+		test_assert(&(v2 &= uv42) == &v2);
+		test_assert(v2 == (iv41 & uv42));
+	}
+
+	TEST_CASE(bitwise_or_assignment_operator)
+	{
+		ivec4 v1 = iv41;
+		test_assert(&(v1 |= u2) == &v1);
+		test_assert(v1 == (iv41 | u2));
+
+		ivec4 v2 = iv41;
+		test_assert(&(v2 |= uv42) == &v2);
+		test_assert(v2 == (iv41 | uv42));
+	}
+
+	TEST_CASE(bitwise_xor_assignment_operator)
+	{
+		ivec4 v1 = iv41;
+		test_assert(&(v1 ^= u2) == &v1);
+		test_assert(v1 == (iv41 ^ u2));
+
+		ivec4 v2 = iv41;
+		test_assert(&(v2 ^= uv42) == &v2);
+		test_assert(v2 == (iv41 ^ uv42));
+	}
+
+	TEST_CASE(bitwise_shift_left_assignment_operator)
+	{
+		ivec4 v1 = iv41;
+		test_assert(&(v1 <<= u2) == &v1);
+		test_assert(v1 == (iv41 << u2));
+
+		ivec4 v2 = iv41;
+		test_assert(&(v2 <<= uv42) == &v2);
+		test_assert(v2 == (iv41 << uv42));
+	}
+
+	TEST_CASE(bitwise_shift_right_assignment_operator)
+	{
+		ivec4 v1 = iv41;
+		test_assert(&(v1 >>= u2) == &v1);
+		test_assert(v1 == (iv41 >> u2));
+
+		ivec4 v2 = iv41;
+		test_assert(&(v2 >>= uv42) == &v2);
+		test_assert(v2 == (iv41 >> uv42));
+	}
 
 	TEST_CASE(unary_plus_operator)
 	{
@@ -238,6 +374,15 @@ namespace
 		test_assert(v[1] == -fv41[1]);
 		test_assert(v[2] == -fv41[2]);
 		test_assert(v[3] == -fv41[3]);
+	}
+
+	TEST_CASE(bitwise_not_operator)
+	{
+		CONST_OR_CONSTEXPR auto v = ~iv41;
+		test_assert(v[0] == ~iv41[0]);
+		test_assert(v[1] == ~iv41[1]);
+		test_assert(v[2] == ~iv41[2]);
+		test_assert(v[3] == ~iv41[3]);
 	}
 
 	TEST_CASE(addition_operator)
@@ -448,5 +593,45 @@ namespace
 		test_assert(v3[1] == (iv41[1] >> uv42[1]));
 		test_assert(v3[2] == (iv41[2] >> uv42[2]));
 		test_assert(v3[3] == (iv41[3] >> uv42[3]));
+	}
+
+	TEST_CASE(equality_operator)
+	{
+		constexpr fvec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+		constexpr ivec4 v2(1, 2, 3, 4);
+		constexpr ivec4 v3(0, 2, 3, 4);
+		constexpr ivec4 v4(1, 0, 3, 4);
+		constexpr ivec4 v5(1, 2, 0, 4);
+		constexpr ivec4 v6(1, 2, 3, 0);
+		CONST_OR_CONSTEXPR bool result1 = (v1 == v2);
+		CONST_OR_CONSTEXPR bool result2 = (v1 == v3);
+		CONST_OR_CONSTEXPR bool result3 = (v1 == v4);
+		CONST_OR_CONSTEXPR bool result4 = (v1 == v5);
+		CONST_OR_CONSTEXPR bool result5 = (v1 == v6);
+		test_assert(result1 == true);
+		test_assert(result2 == false);
+		test_assert(result3 == false);
+		test_assert(result4 == false);
+		test_assert(result5 == false);
+	}
+
+	TEST_CASE(inequality_operator)
+	{
+		constexpr fvec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+		constexpr ivec4 v2(1, 2, 3, 4);
+		constexpr ivec4 v3(0, 2, 3, 4);
+		constexpr ivec4 v4(1, 0, 3, 4);
+		constexpr ivec4 v5(1, 2, 0, 4);
+		constexpr ivec4 v6(1, 2, 3, 0);
+		CONST_OR_CONSTEXPR bool result1 = (v1 != v2);
+		CONST_OR_CONSTEXPR bool result2 = (v1 != v3);
+		CONST_OR_CONSTEXPR bool result3 = (v1 != v4);
+		CONST_OR_CONSTEXPR bool result4 = (v1 != v5);
+		CONST_OR_CONSTEXPR bool result5 = (v1 != v6);
+		test_assert(result1 == false);
+		test_assert(result2 == true);
+		test_assert(result3 == true);
+		test_assert(result4 == true);
+		test_assert(result5 == true);
 	}
 }
