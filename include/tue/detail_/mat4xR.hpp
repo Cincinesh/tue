@@ -912,21 +912,6 @@ namespace tue
 	// ----
 	namespace math
 	{
-		// --------
-		// sincos()
-		// --------
-		template<typename T, int R>
-		inline void sincos(
-			const mat<T, 4, R>& m,
-			mat<decltype(math::sin(m[0][0])), 4, R>& sin_result,
-			mat<decltype(math::cos(m[0][0])), 4, R>& cos_result)
-		{
-			math::sincos(m[0], sin_result[0], cos_result[0]);
-			math::sincos(m[1], sin_result[1], cos_result[1]);
-			math::sincos(m[2], sin_result[2], cos_result[2]);
-			math::sincos(m[3], sin_result[3], cos_result[3]);
-		}
-
 		// -----
 		// sin()
 		// -----
@@ -955,6 +940,21 @@ namespace tue
 			};
 		}
 
+		// --------
+		// sincos()
+		// --------
+		template<typename T, int R>
+		inline void sincos(
+			const mat<T, 4, R>& m,
+			decltype(math::sin(m))& sin_result,
+			decltype(math::cos(m))& cos_result)
+		{
+			math::sincos(m[0], sin_result[0], cos_result[0]);
+			math::sincos(m[1], sin_result[1], cos_result[1]);
+			math::sincos(m[2], sin_result[2], cos_result[2]);
+			math::sincos(m[3], sin_result[3], cos_result[3]);
+		}
+
 		// -----
 		// pow()
 		// -----
@@ -963,7 +963,7 @@ namespace tue
 			const mat<T, 4, R>& base,
 			const U& exponent)
 		{
-			return mat<decltype(math::pow(base[0], exponent)), 4, R>{
+			return mat<decltype(math::pow(base[0][0], exponent)), 4, R>{
 				math::pow(base[0], exponent),
 				math::pow(base[1], exponent),
 				math::pow(base[2], exponent),
@@ -976,7 +976,7 @@ namespace tue
 			const mat<T, 4, R>& base,
 			const mat<U, 4, R>& exponent)
 		{
-			return mat<decltype(math::pow(base[0], exponent[0])), 4, R>{
+			return mat<decltype(math::pow(base[0][0], exponent[0][0])), 4, R>{
 				math::pow(base[0], exponent[0]),
 				math::pow(base[1], exponent[1]),
 				math::pow(base[2], exponent[2]),
@@ -1032,7 +1032,7 @@ namespace tue
 		template<typename T, int R>
 		inline auto min(const mat<T, 4, R>& m1, const mat<T, 4, R>& m2)
 		{
-			return mat<decltype(math::min(m1[0], m2[0])), 4, R>{
+			return mat<decltype(math::min(m1[0][0], m2[0][0])), 4, R>{
 				math::min(m1[0], m2[0]),
 				math::min(m1[1], m2[1]),
 				math::min(m1[2], m2[2]),
@@ -1046,7 +1046,7 @@ namespace tue
 		template<typename T, int R>
 		inline auto max(const mat<T, 4, R>& m1, const mat<T, 4, R>& m2)
 		{
-			return mat<decltype(math::max(m1[0], m2[0])), 4, R>{
+			return mat<decltype(math::max(m1[0][0], m2[0][0])), 4, R>{
 				math::max(m1[0], m2[0]),
 				math::max(m1[1], m2[1]),
 				math::max(m1[2], m2[2]),

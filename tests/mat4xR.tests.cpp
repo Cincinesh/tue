@@ -16,6 +16,8 @@ namespace
 
 	constexpr auto f1 = 1.1f;
 
+	constexpr auto f2 = 2.2f;
+
 	constexpr auto d2 = 2.2;
 
 	constexpr auto i1 = 111;
@@ -27,6 +29,13 @@ namespace
 		{ 2.1f, 2.2f },
 		{ 3.1f, 3.2f },
 		{ 4.1f, 4.2f },
+	};
+
+	constexpr fmat4x2 fm422 = {
+		{ 2.2f, 2.4f },
+		{ 4.2f, 4.4f },
+		{ 6.2f, 6.4f },
+		{ 8.2f, 8.4f },
 	};
 
 	constexpr dmat4x2 dm421 = {
@@ -48,6 +57,13 @@ namespace
 		{ 333, 444 },
 		{ 555, 666 },
 		{ 777, 888 },
+	};
+
+	constexpr mat4x2<int> im422 = {
+		{ 2, 3 },
+		{ 4, 5 },
+		{ 6, 7 },
+		{ 8, 9 },
 	};
 
 	constexpr mat4x2<unsigned int> um422 = {
@@ -651,5 +667,171 @@ namespace
 		test_assert(result3 == true);
 		test_assert(result4 == true);
 		test_assert(result5 == true);
+	}
+
+	TEST_CASE(sin)
+	{
+		const auto fsin = math::sin(fm421);
+		test_assert(fsin[0] == math::sin(fm421[0]));
+		test_assert(fsin[1] == math::sin(fm421[1]));
+		test_assert(fsin[2] == math::sin(fm421[2]));
+		test_assert(fsin[3] == math::sin(fm421[3]));
+
+		const auto isin = math::sin(im421);
+		test_assert(isin[0] == math::sin(im421[0]));
+		test_assert(isin[1] == math::sin(im421[1]));
+		test_assert(isin[2] == math::sin(im421[2]));
+		test_assert(isin[3] == math::sin(im421[3]));
+	}
+
+	TEST_CASE(cos)
+	{
+		const auto fcos = math::cos(fm421);
+		test_assert(fcos[0] == math::cos(fm421[0]));
+		test_assert(fcos[1] == math::cos(fm421[1]));
+		test_assert(fcos[2] == math::cos(fm421[2]));
+		test_assert(fcos[3] == math::cos(fm421[3]));
+
+		const auto icos = math::cos(im421);
+		test_assert(icos[0] == math::cos(im421[0]));
+		test_assert(icos[1] == math::cos(im421[1]));
+		test_assert(icos[2] == math::cos(im421[2]));
+		test_assert(icos[3] == math::cos(im421[3]));
+	}
+
+	TEST_CASE(sincos)
+	{
+		fmat4x2 fsin, fcos;
+		math::sincos(fm421, fsin, fcos);
+		test_assert(fsin == math::sin(fm421));
+		test_assert(fcos == math::cos(fm421));
+
+		dmat4x2 isin, icos;
+		math::sincos(im421, isin, icos);
+		test_assert(isin == math::sin(im421));
+		test_assert(icos == math::cos(im421));
+	}
+
+	TEST_CASE(pow)
+	{
+		const auto fpow1 = math::pow(fm421, f2);
+		test_assert(fpow1[0] == math::pow(fm421[0], f2));
+		test_assert(fpow1[1] == math::pow(fm421[1], f2));
+		test_assert(fpow1[2] == math::pow(fm421[2], f2));
+		test_assert(fpow1[3] == math::pow(fm421[3], f2));
+
+		const auto ipow1 = math::pow(im421, f2);
+		test_assert(ipow1[0] == math::pow(im421[0], f2));
+		test_assert(ipow1[1] == math::pow(im421[1], f2));
+		test_assert(ipow1[2] == math::pow(im421[2], f2));
+		test_assert(ipow1[3] == math::pow(im421[3], f2));
+
+		const auto fpow2 = math::pow(fm421, fm422);
+		test_assert(fpow2[0] == math::pow(fm421[0], fm422[0]));
+		test_assert(fpow2[1] == math::pow(fm421[1], fm422[1]));
+		test_assert(fpow2[2] == math::pow(fm421[2], fm422[2]));
+		test_assert(fpow2[3] == math::pow(fm421[3], fm422[3]));
+
+		const auto ipow2 = math::pow(im421, fm422);
+		test_assert(ipow2[0] == math::pow(im421[0], fm422[0]));
+		test_assert(ipow2[1] == math::pow(im421[1], fm422[1]));
+		test_assert(ipow2[2] == math::pow(im421[2], fm422[2]));
+		test_assert(ipow2[3] == math::pow(im421[3], fm422[3]));
+	}
+
+	TEST_CASE(rcp)
+	{
+		const auto frcp = math::rcp(fm421);
+		test_assert(frcp[0] == math::rcp(fm421[0]));
+		test_assert(frcp[1] == math::rcp(fm421[1]));
+		test_assert(frcp[2] == math::rcp(fm421[2]));
+		test_assert(frcp[3] == math::rcp(fm421[3]));
+
+		const auto ircp = math::rcp(im421);
+		test_assert(ircp[0] == math::rcp(im421[0]));
+		test_assert(ircp[1] == math::rcp(im421[1]));
+		test_assert(ircp[2] == math::rcp(im421[2]));
+		test_assert(ircp[3] == math::rcp(im421[3]));
+	}
+
+	TEST_CASE(sqrt)
+	{
+		const auto fsqrt = math::sqrt(fm421);
+		test_assert(fsqrt[0] == math::sqrt(fm421[0]));
+		test_assert(fsqrt[1] == math::sqrt(fm421[1]));
+		test_assert(fsqrt[2] == math::sqrt(fm421[2]));
+		test_assert(fsqrt[3] == math::sqrt(fm421[3]));
+
+		const auto isqrt = math::sqrt(im421);
+		test_assert(isqrt[0] == math::sqrt(im421[0]));
+		test_assert(isqrt[1] == math::sqrt(im421[1]));
+		test_assert(isqrt[2] == math::sqrt(im421[2]));
+		test_assert(isqrt[3] == math::sqrt(im421[3]));
+	}
+
+	TEST_CASE(rsqrt)
+	{
+		const auto frsqrt = math::rsqrt(fm421);
+		test_assert(frsqrt[0] == math::rsqrt(fm421[0]));
+		test_assert(frsqrt[1] == math::rsqrt(fm421[1]));
+		test_assert(frsqrt[2] == math::rsqrt(fm421[2]));
+		test_assert(frsqrt[3] == math::rsqrt(fm421[3]));
+
+		const auto irsqrt = math::rsqrt(im421);
+		test_assert(irsqrt[0] == math::rsqrt(im421[0]));
+		test_assert(irsqrt[1] == math::rsqrt(im421[1]));
+		test_assert(irsqrt[2] == math::rsqrt(im421[2]));
+		test_assert(irsqrt[3] == math::rsqrt(im421[3]));
+	}
+
+	TEST_CASE(min)
+	{
+		const auto fmin = math::min(fm421, fm422);
+		test_assert(fmin[0] == math::min(fm421[0], fm422[0]));
+		test_assert(fmin[1] == math::min(fm421[1], fm422[1]));
+		test_assert(fmin[2] == math::min(fm421[2], fm422[2]));
+		test_assert(fmin[3] == math::min(fm421[3], fm422[3]));
+
+		const auto imin = math::min(im421, im422);
+		test_assert(imin[0] == math::min(im421[0], im422[0]));
+		test_assert(imin[1] == math::min(im421[1], im422[1]));
+		test_assert(imin[2] == math::min(im421[2], im422[2]));
+		test_assert(imin[3] == math::min(im421[3], im422[3]));
+	}
+
+	TEST_CASE(max)
+	{
+		const auto fmax = math::max(fm421, fm422);
+		test_assert(fmax[0] == math::max(fm421[0], fm422[0]));
+		test_assert(fmax[1] == math::max(fm421[1], fm422[1]));
+		test_assert(fmax[2] == math::max(fm421[2], fm422[2]));
+		test_assert(fmax[3] == math::max(fm421[3], fm422[3]));
+
+		const auto imax = math::max(im421, im422);
+		test_assert(imax[0] == math::max(im421[0], im422[0]));
+		test_assert(imax[1] == math::max(im421[1], im422[1]));
+		test_assert(imax[2] == math::max(im421[2], im422[2]));
+		test_assert(imax[3] == math::max(im421[3], im422[3]));
+	}
+
+	TEST_CASE(abs)
+	{
+		const auto fabs = math::abs(fm422);
+		test_assert(fabs[0] == math::abs(fm422[0]));
+		test_assert(fabs[1] == math::abs(fm422[1]));
+		test_assert(fabs[2] == math::abs(fm422[2]));
+		test_assert(fabs[3] == math::abs(fm422[3]));
+
+		const auto iabs = math::abs(im422);
+		test_assert(iabs[0] == math::abs(im422[0]));
+		test_assert(iabs[1] == math::abs(im422[1]));
+		test_assert(iabs[2] == math::abs(im422[2]));
+		test_assert(iabs[3] == math::abs(im422[3]));
+
+		const auto uabs = math::abs(um422);
+		test_assert(uabs[0] == math::abs(um422[0]));
+		test_assert(uabs[1] == math::abs(um422[1]));
+		test_assert(uabs[2] == math::abs(um422[2]));
+		test_assert(uabs[3] == math::abs(um422[3]));
 	}
 }

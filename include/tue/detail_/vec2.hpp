@@ -785,19 +785,6 @@ namespace tue
 	// ----
 	namespace math
 	{
-		// --------
-		// sincos()
-		// --------
-		template<typename T>
-		inline void sincos(
-			const vec2<T>& v,
-			vec2<decltype(math::sin(v[0]))>& sin_result,
-			vec2<decltype(math::cos(v[0]))>& cos_result)
-		{
-			math::sincos(v[0], sin_result[0], cos_result[0]);
-			math::sincos(v[1], sin_result[1], cos_result[1]);
-		}
-
 		// -----
 		// sin()
 		// -----
@@ -820,6 +807,19 @@ namespace tue
 				math::cos(v[0]),
 				math::cos(v[1]),
 			};
+		}
+
+		// --------
+		// sincos()
+		// --------
+		template<typename T>
+		inline void sincos(
+			const vec2<T>& v,
+			decltype(math::sin(v))& sin_result,
+			decltype(math::cos(v))& cos_result)
+		{
+			math::sincos(v[0], sin_result[0], cos_result[0]);
+			math::sincos(v[1], sin_result[1], cos_result[1]);
 		}
 
 		// -----

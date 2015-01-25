@@ -592,19 +592,6 @@ namespace
 		test_assert(result4 == true);
 	}
 
-	TEST_CASE(sincos)
-	{
-		fvec3 fsin, fcos;
-		math::sincos(fv31, fsin, fcos);
-		test_assert(fsin == math::sin(fv31));
-		test_assert(fcos == math::cos(fv31));
-
-		dvec3 isin, icos;
-		math::sincos(iv31, isin, icos);
-		test_assert(isin == math::sin(iv31));
-		test_assert(icos == math::cos(iv31));
-	}
-
 	TEST_CASE(sin)
 	{
 		const auto fsin = math::sin(fv31);
@@ -629,6 +616,19 @@ namespace
 		test_assert(icos[0] == math::cos(iv31[0]));
 		test_assert(icos[1] == math::cos(iv31[1]));
 		test_assert(icos[2] == math::cos(iv31[2]));
+	}
+
+	TEST_CASE(sincos)
+	{
+		fvec3 fsin, fcos;
+		math::sincos(fv31, fsin, fcos);
+		test_assert(fsin == math::sin(fv31));
+		test_assert(fcos == math::cos(fv31));
+
+		dvec3 isin, icos;
+		math::sincos(iv31, isin, icos);
+		test_assert(isin == math::sin(iv31));
+		test_assert(icos == math::cos(iv31));
 	}
 
 	TEST_CASE(pow)
