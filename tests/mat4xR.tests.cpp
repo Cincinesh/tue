@@ -592,4 +592,64 @@ namespace
 		test_assert(m3[2] == (im421[2] >> um422[2]));
 		test_assert(m3[3] == (im421[3] >> um422[3]));
 	}
+
+	TEST_CASE(equality_operator)
+	{
+		constexpr fmat4x2 m1 = {
+			fvec2(1.0f),
+			fvec2(2.0f),
+			fvec2(3.0f),
+			fvec2(4.0f),
+		};
+		constexpr ivec2 iv0(0);
+		constexpr ivec2 iv1(1);
+		constexpr ivec2 iv2(2);
+		constexpr ivec2 iv3(3);
+		constexpr ivec2 iv4(4);
+		constexpr mat4x2<int> m2(iv1, iv2, iv3, iv4);
+		constexpr mat4x2<int> m3(iv0, iv2, iv3, iv4);
+		constexpr mat4x2<int> m4(iv1, iv0, iv3, iv4);
+		constexpr mat4x2<int> m5(iv1, iv2, iv0, iv4);
+		constexpr mat4x2<int> m6(iv1, iv2, iv3, iv0);
+		CONST_OR_CONSTEXPR bool result1 = (m1 == m2);
+		CONST_OR_CONSTEXPR bool result2 = (m1 == m3);
+		CONST_OR_CONSTEXPR bool result3 = (m1 == m4);
+		CONST_OR_CONSTEXPR bool result4 = (m1 == m5);
+		CONST_OR_CONSTEXPR bool result5 = (m1 == m6);
+		test_assert(result1 == true);
+		test_assert(result2 == false);
+		test_assert(result3 == false);
+		test_assert(result4 == false);
+		test_assert(result5 == false);
+	}
+
+	TEST_CASE(inequality_operator)
+	{
+		constexpr fmat4x2 m1 = {
+			fvec2(1.0f),
+			fvec2(2.0f),
+			fvec2(3.0f),
+			fvec2(4.0f),
+		};
+		constexpr ivec2 iv0(0);
+		constexpr ivec2 iv1(1);
+		constexpr ivec2 iv2(2);
+		constexpr ivec2 iv3(3);
+		constexpr ivec2 iv4(4);
+		constexpr mat4x2<int> m2(iv1, iv2, iv3, iv4);
+		constexpr mat4x2<int> m3(iv0, iv2, iv3, iv4);
+		constexpr mat4x2<int> m4(iv1, iv0, iv3, iv4);
+		constexpr mat4x2<int> m5(iv1, iv2, iv0, iv4);
+		constexpr mat4x2<int> m6(iv1, iv2, iv3, iv0);
+		CONST_OR_CONSTEXPR bool result1 = (m1 != m2);
+		CONST_OR_CONSTEXPR bool result2 = (m1 != m3);
+		CONST_OR_CONSTEXPR bool result3 = (m1 != m4);
+		CONST_OR_CONSTEXPR bool result4 = (m1 != m5);
+		CONST_OR_CONSTEXPR bool result5 = (m1 != m6);
+		test_assert(result1 == false);
+		test_assert(result2 == true);
+		test_assert(result3 == true);
+		test_assert(result4 == true);
+		test_assert(result5 == true);
+	}
 }
