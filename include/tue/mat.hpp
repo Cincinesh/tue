@@ -61,4 +61,5 @@ namespace tue
 	using dmat4x4 = mat4x4<double>;
 }
 
+#include "detail_/mat3xR.hpp"
 #include "detail_/mat4xR.hpp"

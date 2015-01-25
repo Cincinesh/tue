@@ -22,5 +22,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mat4xR.hpp">
       <Filter>detail_</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mat3xR.hpp">
+      <Filter>detail_</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

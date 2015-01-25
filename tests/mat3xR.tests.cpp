@@ -1,0 +1,774 @@
+//                Copyright Jo Bates 2015.
+// Distributed under the Boost Software License, Version 1.0.
+//    (See accompanying file LICENSE_1_0.txt or copy at
+//          http://www.boost.org/LICENSE_1_0.txt)
+
+#include <tue/mat.hpp>
+#include "test_case.hpp"
+
+#include <tue/math.hpp>
+#include <tue/unused.hpp>
+#include <tue/vec.hpp>
+
+namespace
+{
+	using namespace tue;
+
+	constexpr auto f1 = 1.1f;
+	constexpr auto f2 = 2.2f;
+
+	constexpr auto d2 = 2.2;
+
+	constexpr auto i1 = 111;
+
+	constexpr auto u2 = 2U;
+
+	constexpr fmat3x2 fm321 = {
+		{ 1.1f, 1.2f },
+		{ 2.1f, 2.2f },
+		{ 3.1f, 3.2f },
+	};
+
+	constexpr fmat3x2 fm322 = {
+		{ 2.2f, 2.4f },
+		{ 4.2f, 4.4f },
+		{ 6.2f, 6.4f },
+	};
+
+	constexpr dmat3x2 dm321 = {
+		{ 1.1, 1.2 },
+		{ 2.1, 2.2 },
+		{ 3.1, 3.2 },
+	};
+
+	constexpr dmat3x2 dm322 = {
+		{ 2.2, 2.4 },
+		{ 4.2, 4.4 },
+		{ 6.2, 6.4 },
+	};
+
+	constexpr mat3x2<int> im321 = {
+		{ 111, 222 },
+		{ 333, 444 },
+		{ 555, 666 },
+	};
+
+	constexpr mat3x2<int> im322 = {
+		{ 2, 3 },
+		{ 4, 5 },
+		{ 6, 7 },
+	};
+
+	constexpr mat3x2<unsigned int> um322 = {
+		{ 2U, 3U },
+		{ 4U, 5U },
+		{ 6U, 7U },
+	};
+
+	TEST_CASE(default_constructor)
+	{
+		fmat3x2 m;
+		unused(m);
+	}
+
+	TEST_CASE(scalar_constructor)
+	{
+		constexpr fmat3x2 m1(1.1f);
+		test_assert(m1[0] == fvec2(1.1f, 0.0f));
+		test_assert(m1[1] == fvec2(0.0f, 1.1f));
+		test_assert(m1[2] == fvec2(0.0f, 0.0f));
+
+		constexpr fmat3x3 m2(2.2f);
+		test_assert(m2[0] == fvec3(2.2f, 0.0f, 0.0f));
+		test_assert(m2[1] == fvec3(0.0f, 2.2f, 0.0f));
+		test_assert(m2[2] == fvec3(0.0f, 0.0f, 2.2f));
+
+		constexpr fmat3x4 m3(3.3f);
+		test_assert(m3[0] == fvec4(3.3f, 0.0f, 0.0f, 0.0f));
+		test_assert(m3[1] == fvec4(0.0f, 3.3f, 0.0f, 0.0f));
+		test_assert(m3[2] == fvec4(0.0f, 0.0f, 3.3f, 0.0f));
+	}
+
+	TEST_CASE(column_constructor)
+	{
+		constexpr fmat3x2 m = {
+			{ 1.1f, 1.2f },
+			{ 2.1f, 2.2f },
+			{ 3.1f, 3.2f },
+		};
+		test_assert(m[0] == fvec2(1.1f, 1.2f));
+		test_assert(m[1] == fvec2(2.1f, 2.2f));
+		test_assert(m[2] == fvec2(3.1f, 3.2f));
+	}
+
+	TEST_CASE(extend_and_truncate_constructors)
+	{
+		// TODO
+	}
+
+	TEST_CASE(explicit_conversion_constructor)
+	{
+		constexpr fmat3x2 m(dm321);
+		test_assert(m[0] == fvec2(dm321[0]));
+		test_assert(m[1] == fvec2(dm321[1]));
+		test_assert(m[2] == fvec2(dm321[2]));
+	}
+
+	TEST_CASE(implicit_conversion_operator)
+	{
+		CONST_OR_CONSTEXPR dmat3x2 m = fm321;
+		test_assert(m[0] == dvec2(fm321[0]));
+		test_assert(m[1] == dvec2(fm321[1]));
+		test_assert(m[2] == dvec2(fm321[2]));
+	}
+
+	TEST_CASE(identity)
+	{
+		CONST_OR_CONSTEXPR auto m1 = fmat3x2::identity();
+		CONST_OR_CONSTEXPR auto m2 = fmat3x3::identity();
+		CONST_OR_CONSTEXPR auto m3 = fmat3x4::identity();
+		test_assert(m1 == fmat3x2(1.0f));
+		test_assert(m2 == fmat3x3(1.0f));
+		test_assert(m3 == fmat3x4(1.0f));
+	}
+
+	TEST_CASE(zero)
+	{
+		CONST_OR_CONSTEXPR auto m1 = fmat3x2::zero();
+		CONST_OR_CONSTEXPR auto m2 = fmat3x3::zero();
+		CONST_OR_CONSTEXPR auto m3 = fmat3x4::zero();
+		test_assert(m1 == fmat3x2(0.0f));
+		test_assert(m2 == fmat3x3(0.0f));
+		test_assert(m3 == fmat3x4(0.0f));
+	}
+
+	TEST_CASE(column)
+	{
+		CONST_OR_CONSTEXPR fvec2 column0 = fm321.column(0);
+		CONST_OR_CONSTEXPR fvec2 column1 = fm321.column(1);
+		CONST_OR_CONSTEXPR fvec2 column2 = fm321.column(2);
+		test_assert(column0 == fm321[0]);
+		test_assert(column1 == fm321[1]);
+		test_assert(column2 == fm321[2]);
+	}
+
+	TEST_CASE(set_column)
+	{
+		fmat3x2 m;
+		m.set_column(0, fvec2(1.1f, 1.2f));
+		m.set_column(1, fvec2(2.1f, 2.2f));
+		m.set_column(2, fvec2(3.1f, 3.2f));
+		test_assert(m[0] == fvec2(1.1f, 1.2f));
+		test_assert(m[1] == fvec2(2.1f, 2.2f));
+		test_assert(m[2] == fvec2(3.1f, 3.2f));
+	}
+
+	TEST_CASE(row)
+	{
+		CONST_OR_CONSTEXPR fvec3 row0 = fm321.row(0);
+		CONST_OR_CONSTEXPR fvec3 row1 = fm321.row(1);
+		test_assert(row0 == fvec3(fm321[0][0], fm321[1][0], fm321[2][0]));
+		test_assert(row1 == fvec3(fm321[0][1], fm321[1][1], fm321[2][1]));
+	}
+
+	TEST_CASE(set_row)
+	{
+		fmat3x2 m;
+		m.set_row(0, fvec3(1.1f, 2.1f, 3.1f));
+		m.set_row(1, fvec3(1.2f, 2.2f, 3.2f));
+		test_assert(m[0] == fvec2(1.1f, 1.2f));
+		test_assert(m[1] == fvec2(2.1f, 2.2f));
+		test_assert(m[2] == fvec2(3.1f, 3.2f));
+	}
+
+	TEST_CASE(subscript_operator)
+	{
+		constexpr fmat3x2 cem = {
+			{ 1.1f, 1.2f },
+			{ 2.1f, 2.2f },
+			{ 3.1f, 3.2f },
+		};
+		CONST_OR_CONSTEXPR fvec2 cem0 = cem[0];
+		CONST_OR_CONSTEXPR fvec2 cem1 = cem[1];
+		CONST_OR_CONSTEXPR fvec2 cem2 = cem[2];
+		test_assert(cem0 == fvec2(1.1f, 1.2f));
+		test_assert(cem1 == fvec2(2.1f, 2.2f));
+		test_assert(cem2 == fvec2(3.1f, 3.2f));
+
+		fmat3x2 m = cem;
+		fvec2& m0 = m[0];
+		fvec2& m1 = m[1];
+		fvec2& m2 = m[2];
+		test_assert(static_cast<void*>(&m0) == static_cast<void*>(&m));
+		test_assert(&m1 == &m0 + 1);
+		test_assert(&m2 == &m0 + 2);
+
+		const fmat3x2& cm = m;
+		const fvec2& cm0 = cm[0];
+		const fvec2& cm1 = cm[1];
+		const fvec2& cm2 = cm[2];
+		test_assert(&cm0 == &m0);
+		test_assert(&cm1 == &m1);
+		test_assert(&cm2 == &m2);
+	}
+
+	TEST_CASE(pre_increment_operator)
+	{
+		fmat3x2 m = fm321;
+		test_assert(&(++m) == &m);
+		test_assert(m == fm321 + 1);
+	}
+
+	TEST_CASE(pre_decrement_operator)
+	{
+		fmat3x2 m = fm321;
+		test_assert(&(--m) == &m);
+		test_assert(m == fm321 - 1);
+	}
+
+	TEST_CASE(post_increment_operator)
+	{
+		fmat3x2 m = fm321;
+		test_assert(m++ == fm321);
+		test_assert(m == fm321 + 1);
+	}
+
+	TEST_CASE(post_decrement_operator)
+	{
+		fmat3x2 m = fm321;
+		test_assert(m-- == fm321);
+		test_assert(m == fm321 - 1);
+	}
+
+	TEST_CASE(addition_assignment_operator)
+	{
+		fmat3x2 m1 = fm321;
+		test_assert(&(m1 += u2) == &m1);
+		test_assert(m1 == fm321 + u2);
+
+		fmat3x2 m2 = fm321;
+		test_assert(&(m2 += um322) == &m2);
+		test_assert(m2 == fm321 + um322);
+	}
+
+	TEST_CASE(subtraction_assignment_operator)
+	{
+		fmat3x2 m1 = fm321;
+		test_assert(&(m1 -= u2) == &m1);
+		test_assert(m1 == fm321 - u2);
+
+		fmat3x2 m2 = fm321;
+		test_assert(&(m2 -= um322) == &m2);
+		test_assert(m2 == fm321 - um322);
+	}
+
+	TEST_CASE(multiplication_assignment_operator)
+	{
+		fmat3x2 m1 = fm321;
+		test_assert(&(m1 *= u2) == &m1);
+		test_assert(m1 == fm321 * u2);
+
+		// TODO
+		//fmat3x2 m2 = fm321;
+		//test_assert(&(m2 *= um322) == &m2);
+		//test_assert(m2 == fm321 * um322);
+	}
+
+	TEST_CASE(division_assignment_operator)
+	{
+		fmat3x2 m1 = fm321;
+		test_assert(&(m1 /= u2) == &m1);
+		test_assert(m1 == fm321 / u2);
+
+		fmat3x2 m2 = fm321;
+		test_assert(&(m2 /= um322) == &m2);
+		test_assert(m2 == fm321 / um322);
+	}
+
+	TEST_CASE(modulo_assignment_operator)
+	{
+		mat3x2<int> m1 = im321;
+		test_assert(&(m1 %= u2) == &m1);
+		test_assert(m1 == im321 % u2);
+
+		mat3x2<int> m2 = im321;
+		test_assert(&(m2 %= um322) == &m2);
+		test_assert(m2 == im321 % um322);
+	}
+
+	TEST_CASE(bitwise_and_assignment_operator)
+	{
+		mat3x2<int> m1 = im321;
+		test_assert(&(m1 &= u2) == &m1);
+		test_assert(m1 == (im321 & u2));
+
+		mat3x2<int> m2 = im321;
+		test_assert(&(m2 &= um322) == &m2);
+		test_assert(m2 == (im321 & um322));
+	}
+
+	TEST_CASE(bitwise_or_assignment_operator)
+	{
+		mat3x2<int> m1 = im321;
+		test_assert(&(m1 |= u2) == &m1);
+		test_assert(m1 == (im321 | u2));
+
+		mat3x2<int> m2 = im321;
+		test_assert(&(m2 |= um322) == &m2);
+		test_assert(m2 == (im321 | um322));
+	}
+
+	TEST_CASE(bitwise_xor_assignment_operator)
+	{
+		mat3x2<int> m1 = im321;
+		test_assert(&(m1 ^= u2) == &m1);
+		test_assert(m1 == (im321 ^ u2));
+
+		mat3x2<int> m2 = im321;
+		test_assert(&(m2 ^= um322) == &m2);
+		test_assert(m2 == (im321 ^ um322));
+	}
+
+	TEST_CASE(bitwise_shift_left_assignment_operator)
+	{
+		mat3x2<int> m1 = im321;
+		test_assert(&(m1 <<= u2) == &m1);
+		test_assert(m1 == (im321 << u2));
+
+		mat3x2<int> m2 = im321;
+		test_assert(&(m2 <<= um322) == &m2);
+		test_assert(m2 == (im321 << um322));
+	}
+
+	TEST_CASE(bitwise_shift_right_assignment_operator)
+	{
+		mat3x2<int> m1 = im321;
+		test_assert(&(m1 >>= u2) == &m1);
+		test_assert(m1 == (im321 >> u2));
+
+		mat3x2<int> m2 = im321;
+		test_assert(&(m2 >>= um322) == &m2);
+		test_assert(m2 == (im321 >> um322));
+	}
+
+	TEST_CASE(unary_plus_operator)
+	{
+		CONST_OR_CONSTEXPR auto m = +fm321;
+		test_assert(m[0] == +fm321[0]);
+		test_assert(m[1] == +fm321[1]);
+		test_assert(m[2] == +fm321[2]);
+	}
+
+	TEST_CASE(unary_minus_operator)
+	{
+		CONST_OR_CONSTEXPR auto m = -fm321;
+		test_assert(m[0] == -fm321[0]);
+		test_assert(m[1] == -fm321[1]);
+		test_assert(m[2] == -fm321[2]);
+	}
+
+	TEST_CASE(bitwise_not_operator)
+	{
+		CONST_OR_CONSTEXPR auto m = ~im321;
+		test_assert(m[0] == ~im321[0]);
+		test_assert(m[1] == ~im321[1]);
+		test_assert(m[2] == ~im321[2]);
+	}
+
+	TEST_CASE(addition_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 + dm322;
+		test_assert(m1[0] == f1 + dm322[0]);
+		test_assert(m1[1] == f1 + dm322[1]);
+		test_assert(m1[2] == f1 + dm322[2]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm321 + d2;
+		test_assert(m2[0] == fm321[0] + d2);
+		test_assert(m2[1] == fm321[1] + d2);
+		test_assert(m2[2] == fm321[2] + d2);
+
+		CONST_OR_CONSTEXPR auto m3 = fm321 + dm322;
+		test_assert(m3[0] == fm321[0] + dm322[0]);
+		test_assert(m3[1] == fm321[1] + dm322[1]);
+		test_assert(m3[2] == fm321[2] + dm322[2]);
+	}
+
+	TEST_CASE(subtraction_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 - dm322;
+		test_assert(m1[0] == f1 - dm322[0]);
+		test_assert(m1[1] == f1 - dm322[1]);
+		test_assert(m1[2] == f1 - dm322[2]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm321 - d2;
+		test_assert(m2[0] == fm321[0] - d2);
+		test_assert(m2[1] == fm321[1] - d2);
+		test_assert(m2[2] == fm321[2] - d2);
+
+		CONST_OR_CONSTEXPR auto m3 = fm321 - dm322;
+		test_assert(m3[0] == fm321[0] - dm322[0]);
+		test_assert(m3[1] == fm321[1] - dm322[1]);
+		test_assert(m3[2] == fm321[2] - dm322[2]);
+	}
+
+	TEST_CASE(multiplication_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 * dm322;
+		test_assert(m1[0] == f1 * dm322[0]);
+		test_assert(m1[1] == f1 * dm322[1]);
+		test_assert(m1[2] == f1 * dm322[2]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm321 * d2;
+		test_assert(m2[0] == fm321[0] * d2);
+		test_assert(m2[1] == fm321[1] * d2);
+		test_assert(m2[2] == fm321[2] * d2);
+	}
+
+	TEST_CASE(division_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 / dm322;
+		test_assert(m1[0] == f1 / dm322[0]);
+		test_assert(m1[1] == f1 / dm322[1]);
+		test_assert(m1[2] == f1 / dm322[2]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm321 / d2;
+		test_assert(m2[0] == fm321[0] / d2);
+		test_assert(m2[1] == fm321[1] / d2);
+		test_assert(m2[2] == fm321[2] / d2);
+
+		CONST_OR_CONSTEXPR auto m3 = fm321 / dm322;
+		test_assert(m3[0] == fm321[0] / dm322[0]);
+		test_assert(m3[1] == fm321[1] / dm322[1]);
+		test_assert(m3[2] == fm321[2] / dm322[2]);
+	}
+
+	TEST_CASE(modulo_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 % um322;
+		test_assert(m1[0] == i1 % um322[0]);
+		test_assert(m1[1] == i1 % um322[1]);
+		test_assert(m1[2] == i1 % um322[2]);
+
+		CONST_OR_CONSTEXPR auto m2 = im321 % u2;
+		test_assert(m2[0] == im321[0] % u2);
+		test_assert(m2[1] == im321[1] % u2);
+		test_assert(m2[2] == im321[2] % u2);
+
+		CONST_OR_CONSTEXPR auto m3 = im321 % um322;
+		test_assert(m3[0] == im321[0] % um322[0]);
+		test_assert(m3[1] == im321[1] % um322[1]);
+		test_assert(m3[2] == im321[2] % um322[2]);
+	}
+
+	TEST_CASE(bitwise_and_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 & um322;
+		test_assert(m1[0] == (i1 & um322[0]));
+		test_assert(m1[1] == (i1 & um322[1]));
+		test_assert(m1[2] == (i1 & um322[2]));
+
+		CONST_OR_CONSTEXPR auto m2 = im321 & u2;
+		test_assert(m2[0] == (im321[0] & u2));
+		test_assert(m2[1] == (im321[1] & u2));
+		test_assert(m2[2] == (im321[2] & u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im321 & um322;
+		test_assert(m3[0] == (im321[0] & um322[0]));
+		test_assert(m3[1] == (im321[1] & um322[1]));
+		test_assert(m3[2] == (im321[2] & um322[2]));
+	}
+
+	TEST_CASE(bitwise_or_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 | um322;
+		test_assert(m1[0] == (i1 | um322[0]));
+		test_assert(m1[1] == (i1 | um322[1]));
+		test_assert(m1[2] == (i1 | um322[2]));
+
+		CONST_OR_CONSTEXPR auto m2 = im321 | u2;
+		test_assert(m2[0] == (im321[0] | u2));
+		test_assert(m2[1] == (im321[1] | u2));
+		test_assert(m2[2] == (im321[2] | u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im321 | um322;
+		test_assert(m3[0] == (im321[0] | um322[0]));
+		test_assert(m3[1] == (im321[1] | um322[1]));
+		test_assert(m3[2] == (im321[2] | um322[2]));
+	}
+
+	TEST_CASE(bitwise_xor_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 ^ um322;
+		test_assert(m1[0] == (i1 ^ um322[0]));
+		test_assert(m1[1] == (i1 ^ um322[1]));
+		test_assert(m1[2] == (i1 ^ um322[2]));
+
+		CONST_OR_CONSTEXPR auto m2 = im321 ^ u2;
+		test_assert(m2[0] == (im321[0] ^ u2));
+		test_assert(m2[1] == (im321[1] ^ u2));
+		test_assert(m2[2] == (im321[2] ^ u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im321 ^ um322;
+		test_assert(m3[0] == (im321[0] ^ um322[0]));
+		test_assert(m3[1] == (im321[1] ^ um322[1]));
+		test_assert(m3[2] == (im321[2] ^ um322[2]));
+	}
+
+	TEST_CASE(bitwise_shift_left_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 << um322;
+		test_assert(m1[0] == (i1 << um322[0]));
+		test_assert(m1[1] == (i1 << um322[1]));
+		test_assert(m1[2] == (i1 << um322[2]));
+
+		CONST_OR_CONSTEXPR auto m2 = im321 << u2;
+		test_assert(m2[0] == (im321[0] << u2));
+		test_assert(m2[1] == (im321[1] << u2));
+		test_assert(m2[2] == (im321[2] << u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im321 << um322;
+		test_assert(m3[0] == (im321[0] << um322[0]));
+		test_assert(m3[1] == (im321[1] << um322[1]));
+		test_assert(m3[2] == (im321[2] << um322[2]));
+	}
+
+	TEST_CASE(bitwise_shift_right_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 >> um322;
+		test_assert(m1[0] == (i1 >> um322[0]));
+		test_assert(m1[1] == (i1 >> um322[1]));
+		test_assert(m1[2] == (i1 >> um322[2]));
+
+		CONST_OR_CONSTEXPR auto m2 = im321 >> u2;
+		test_assert(m2[0] == (im321[0] >> u2));
+		test_assert(m2[1] == (im321[1] >> u2));
+		test_assert(m2[2] == (im321[2] >> u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im321 >> um322;
+		test_assert(m3[0] == (im321[0] >> um322[0]));
+		test_assert(m3[1] == (im321[1] >> um322[1]));
+		test_assert(m3[2] == (im321[2] >> um322[2]));
+	}
+
+	TEST_CASE(equality_operator)
+	{
+		constexpr fmat3x2 m1 = {
+			fvec2(1.0f),
+			fvec2(2.0f),
+			fvec2(3.0f),
+		};
+		constexpr ivec2 iv0(0);
+		constexpr ivec2 iv1(1);
+		constexpr ivec2 iv2(2);
+		constexpr ivec2 iv3(3);
+		constexpr mat3x2<int> m2(iv1, iv2, iv3);
+		constexpr mat3x2<int> m3(iv0, iv2, iv3);
+		constexpr mat3x2<int> m4(iv1, iv0, iv3);
+		constexpr mat3x2<int> m5(iv1, iv2, iv0);
+		CONST_OR_CONSTEXPR bool result1 = (m1 == m2);
+		CONST_OR_CONSTEXPR bool result2 = (m1 == m3);
+		CONST_OR_CONSTEXPR bool result3 = (m1 == m4);
+		CONST_OR_CONSTEXPR bool result4 = (m1 == m5);
+		test_assert(result1 == true);
+		test_assert(result2 == false);
+		test_assert(result3 == false);
+		test_assert(result4 == false);
+	}
+
+	TEST_CASE(inequality_operator)
+	{
+		constexpr fmat3x2 m1 = {
+			fvec2(1.0f),
+			fvec2(2.0f),
+			fvec2(3.0f),
+		};
+		constexpr ivec2 iv0(0);
+		constexpr ivec2 iv1(1);
+		constexpr ivec2 iv2(2);
+		constexpr ivec2 iv3(3);
+		constexpr mat3x2<int> m2(iv1, iv2, iv3);
+		constexpr mat3x2<int> m3(iv0, iv2, iv3);
+		constexpr mat3x2<int> m4(iv1, iv0, iv3);
+		constexpr mat3x2<int> m5(iv1, iv2, iv0);
+		CONST_OR_CONSTEXPR bool result1 = (m1 != m2);
+		CONST_OR_CONSTEXPR bool result2 = (m1 != m3);
+		CONST_OR_CONSTEXPR bool result3 = (m1 != m4);
+		CONST_OR_CONSTEXPR bool result4 = (m1 != m5);
+		test_assert(result1 == false);
+		test_assert(result2 == true);
+		test_assert(result3 == true);
+		test_assert(result4 == true);
+	}
+
+	TEST_CASE(sin)
+	{
+		const auto fsin = math::sin(fm321);
+		test_assert(fsin[0] == math::sin(fm321[0]));
+		test_assert(fsin[1] == math::sin(fm321[1]));
+		test_assert(fsin[2] == math::sin(fm321[2]));
+
+		const auto isin = math::sin(im321);
+		test_assert(isin[0] == math::sin(im321[0]));
+		test_assert(isin[1] == math::sin(im321[1]));
+		test_assert(isin[2] == math::sin(im321[2]));
+	}
+
+	TEST_CASE(cos)
+	{
+		const auto fcos = math::cos(fm321);
+		test_assert(fcos[0] == math::cos(fm321[0]));
+		test_assert(fcos[1] == math::cos(fm321[1]));
+		test_assert(fcos[2] == math::cos(fm321[2]));
+
+		const auto icos = math::cos(im321);
+		test_assert(icos[0] == math::cos(im321[0]));
+		test_assert(icos[1] == math::cos(im321[1]));
+		test_assert(icos[2] == math::cos(im321[2]));
+	}
+
+	TEST_CASE(sincos)
+	{
+		fmat3x2 fsin, fcos;
+		math::sincos(fm321, fsin, fcos);
+		test_assert(fsin == math::sin(fm321));
+		test_assert(fcos == math::cos(fm321));
+
+		dmat3x2 isin, icos;
+		math::sincos(im321, isin, icos);
+		test_assert(isin == math::sin(im321));
+		test_assert(icos == math::cos(im321));
+	}
+
+	TEST_CASE(pow)
+	{
+		const auto fpow1 = math::pow(fm321, f2);
+		test_assert(fpow1[0] == math::pow(fm321[0], f2));
+		test_assert(fpow1[1] == math::pow(fm321[1], f2));
+		test_assert(fpow1[2] == math::pow(fm321[2], f2));
+
+		const auto ipow1 = math::pow(im321, f2);
+		test_assert(ipow1[0] == math::pow(im321[0], f2));
+		test_assert(ipow1[1] == math::pow(im321[1], f2));
+		test_assert(ipow1[2] == math::pow(im321[2], f2));
+
+		const auto fpow2 = math::pow(fm321, fm322);
+		test_assert(fpow2[0] == math::pow(fm321[0], fm322[0]));
+		test_assert(fpow2[1] == math::pow(fm321[1], fm322[1]));
+		test_assert(fpow2[2] == math::pow(fm321[2], fm322[2]));
+
+		const auto ipow2 = math::pow(im321, fm322);
+		test_assert(ipow2[0] == math::pow(im321[0], fm322[0]));
+		test_assert(ipow2[1] == math::pow(im321[1], fm322[1]));
+		test_assert(ipow2[2] == math::pow(im321[2], fm322[2]));
+	}
+
+	TEST_CASE(rcp)
+	{
+		const auto frcp = math::rcp(fm321);
+		test_assert(frcp[0] == math::rcp(fm321[0]));
+		test_assert(frcp[1] == math::rcp(fm321[1]));
+		test_assert(frcp[2] == math::rcp(fm321[2]));
+
+		const auto ircp = math::rcp(im321);
+		test_assert(ircp[0] == math::rcp(im321[0]));
+		test_assert(ircp[1] == math::rcp(im321[1]));
+		test_assert(ircp[2] == math::rcp(im321[2]));
+	}
+
+	TEST_CASE(sqrt)
+	{
+		const auto fsqrt = math::sqrt(fm321);
+		test_assert(fsqrt[0] == math::sqrt(fm321[0]));
+		test_assert(fsqrt[1] == math::sqrt(fm321[1]));
+		test_assert(fsqrt[2] == math::sqrt(fm321[2]));
+
+		const auto isqrt = math::sqrt(im321);
+		test_assert(isqrt[0] == math::sqrt(im321[0]));
+		test_assert(isqrt[1] == math::sqrt(im321[1]));
+		test_assert(isqrt[2] == math::sqrt(im321[2]));
+	}
+
+	TEST_CASE(rsqrt)
+	{
+		const auto frsqrt = math::rsqrt(fm321);
+		test_assert(frsqrt[0] == math::rsqrt(fm321[0]));
+		test_assert(frsqrt[1] == math::rsqrt(fm321[1]));
+		test_assert(frsqrt[2] == math::rsqrt(fm321[2]));
+
+		const auto irsqrt = math::rsqrt(im321);
+		test_assert(irsqrt[0] == math::rsqrt(im321[0]));
+		test_assert(irsqrt[1] == math::rsqrt(im321[1]));
+		test_assert(irsqrt[2] == math::rsqrt(im321[2]));
+	}
+
+	TEST_CASE(min)
+	{
+		const auto fmin = math::min(fm321, fm322);
+		test_assert(fmin[0] == math::min(fm321[0], fm322[0]));
+		test_assert(fmin[1] == math::min(fm321[1], fm322[1]));
+		test_assert(fmin[2] == math::min(fm321[2], fm322[2]));
+
+		const auto imin = math::min(im321, im322);
+		test_assert(imin[0] == math::min(im321[0], im322[0]));
+		test_assert(imin[1] == math::min(im321[1], im322[1]));
+		test_assert(imin[2] == math::min(im321[2], im322[2]));
+	}
+
+	TEST_CASE(max)
+	{
+		const auto fmax = math::max(fm321, fm322);
+		test_assert(fmax[0] == math::max(fm321[0], fm322[0]));
+		test_assert(fmax[1] == math::max(fm321[1], fm322[1]));
+		test_assert(fmax[2] == math::max(fm321[2], fm322[2]));
+
+		const auto imax = math::max(im321, im322);
+		test_assert(imax[0] == math::max(im321[0], im322[0]));
+		test_assert(imax[1] == math::max(im321[1], im322[1]));
+		test_assert(imax[2] == math::max(im321[2], im322[2]));
+	}
+
+	TEST_CASE(abs)
+	{
+		const auto fabs = math::abs(fm322);
+		test_assert(fabs[0] == math::abs(fm322[0]));
+		test_assert(fabs[1] == math::abs(fm322[1]));
+		test_assert(fabs[2] == math::abs(fm322[2]));
+
+		const auto iabs = math::abs(im322);
+		test_assert(iabs[0] == math::abs(im322[0]));
+		test_assert(iabs[1] == math::abs(im322[1]));
+		test_assert(iabs[2] == math::abs(im322[2]));
+
+		const auto uabs = math::abs(um322);
+		test_assert(uabs[0] == math::abs(um322[0]));
+		test_assert(uabs[1] == math::abs(um322[1]));
+		test_assert(uabs[2] == math::abs(um322[2]));
+	}
+
+	TEST_CASE(compmult)
+	{
+		CONST_OR_CONSTEXPR auto m = math::compmult(fm321, dm322);
+		test_assert(m[0] == fm321[0] * dm322[0]);
+		test_assert(m[1] == fm321[1] * dm322[1]);
+		test_assert(m[2] == fm321[2] * dm322[2]);
+	}
+
+	TEST_CASE(transpose)
+	{
+		constexpr fmat4x3 m43 = {
+			{ 1.1f, 1.2f, 1.3f },
+			{ 2.1f, 2.2f, 2.3f },
+			{ 3.1f, 3.2f, 3.3f },
+			{ 4.1f, 4.2f, 4.3f },
+		};
+
+		CONST_OR_CONSTEXPR fmat3x4 m1 = math::transpose(m43);
+		test_assert(m1[0] == m43.row(0));
+		test_assert(m1[1] == m43.row(1));
+		test_assert(m1[2] == m43.row(2));
+
+		// TODO
+		//constexpr fmat3x3 m33(m43);
+		//constexpr fmat2x3 m23(m43);
+	}
+}
