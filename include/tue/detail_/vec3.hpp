@@ -26,42 +26,46 @@ namespace tue
 		struct { T data[3]; } impl_;
 
 	public:
-		// ------------
-		// constructors
-		// ------------
+		// -------------------
+		// default constructor
+		// -------------------
 		vec() = default;
 
-		constexpr vec(const T& x, const T& y, const T& z) :
-			impl_({ { x, y, z } }) {}
-
+		// ------------------
+		// scalar constructor
+		// ------------------
 		explicit constexpr vec(const T& s) :
 			impl_({ { s, s, s } }) {}
+
+		// ----------------------
+		// component constructors
+		// ----------------------
+		constexpr vec(const T& x, const T& y, const T& z) :
+			impl_({ { x, y, z } }) {}
 
 		explicit constexpr vec(const vec2<T>& xy, const T& z) :
 			impl_({ { xy[0], xy[1], z } }) {}
 
+		// ---------------------
+		// truncate constructors
+		// ---------------------
 		explicit constexpr vec(const vec4<T>& other) :
 			impl_({ { other[0], other[1], other[2] } }) {}
 
+		// -------------------------------
+		// explicit conversion constructor
+		// -------------------------------
 		template<typename U>
 		explicit constexpr vec(const vec3<U>& other) :
 			impl_({ {
-				static_cast<T>(other[0]),
-				static_cast<T>(other[1]),
-				static_cast<T>(other[2]),
+				T(other[0]),
+				T(other[1]),
+				T(other[2]),
 			} }) {}
 
-		// ---------------
-		// factory methods
-		// ---------------
-		static constexpr vec zero() { return{ T(0), T(0), T(0) }; }
-		static constexpr vec x_axis() { return{ T(1), T(0), T(0) }; }
-		static constexpr vec y_axis() { return{ T(0), T(1), T(0) }; }
-		static constexpr vec z_axis() { return{ T(0), T(0), T(1) }; }
-
-		// --------------------
-		// conversion operators
-		// --------------------
+		// ----------------------------
+		// implicit conversion operator
+		// ----------------------------
 		template<typename U>
 		constexpr operator vec3<U>() const
 		{
@@ -72,9 +76,51 @@ namespace tue
 			};
 		}
 
-		// ----------
-		// properties
-		// ----------
+		// ---------------
+		// factory methods
+		// ---------------
+		static constexpr vec zero() { return{ T(0), T(0), T(0) }; }
+		static constexpr vec x_axis() { return{ T(1), T(0), T(0) }; }
+		static constexpr vec y_axis() { return{ T(0), T(1), T(0) }; }
+		static constexpr vec z_axis() { return{ T(0), T(0), T(1) }; }
+
+		// -
+		// x
+		// -
+		constexpr T x() const { return impl_.data[0]; }
+		void set_x(const T& x) { impl_.data[0] = x; }
+
+		// -
+		// y
+		// -
+		constexpr T y() const { return impl_.data[1]; }
+		void set_y(const T& y) { impl_.data[1] = y; }
+
+		// -
+		// z
+		// -
+		constexpr T z() const { return impl_.data[2]; }
+		void set_z(const T& z) { impl_.data[2] = z; }
+
+		// --
+		// xy
+		// --
+		constexpr vec2<T> xy() const { return vec2<T>(*this); }
+
+		void set_xy(const T& x, const T& y)
+		{
+			impl_.data[0] = x;
+			impl_.data[1] = y;
+		}
+
+		void set_xy(const vec2<T>& xy)
+		{
+			set_xy(xy[0], xy[1]);
+		}
+
+		// ----
+		// v[i]
+		// ----
 		template<typename I>
 		T& operator[](const I& i)
 		{
@@ -86,23 +132,6 @@ namespace tue
 		{
 			return impl_.data[i];
 		}
-
-		constexpr T x() const { return impl_.data[0]; }
-		void set_x(const T& x) { impl_.data[0] = x; }
-
-		constexpr T y() const { return impl_.data[1]; }
-		void set_y(const T& y) { impl_.data[1] = y; }
-
-		constexpr T z() const { return impl_.data[2]; }
-		void set_z(const T& z) { impl_.data[2] = z; }
-
-		constexpr vec2<T> xy() const { return vec2<T>(*this); }
-		void set_xy(const T& x, const T& y)
-		{
-			impl_.data[0] = x;
-			impl_.data[1] = y;
-		}
-		void set_xy(const vec2<T>& xy) { set_xy(xy[0], xy[1]); }
 
 		// ---
 		// ++v
@@ -354,6 +383,37 @@ namespace tue
 			impl_.data[1] >>= other[1];
 			impl_.data[2] >>= other[2];
 			return *this;
+		}
+
+	private:
+		// -----------------------------
+		// private helpers for class mat
+		// -----------------------------
+		template<typename U, int C, int R>
+		friend class mat;
+
+		static constexpr vec extend_(
+			const vec2<T>& v,
+			const T& z,
+			const T&)
+		{
+			return{ v, z };
+		}
+
+		static constexpr vec extend_(
+			const vec3<T>& v,
+			const T&,
+			const T&)
+		{
+			return v;
+		}
+
+		static constexpr vec extend_(
+			const vec4<T>& v,
+			const T&,
+			const T&)
+		{
+			return vec(v);
 		}
 	};
 

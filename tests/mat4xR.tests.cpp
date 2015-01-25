@@ -3,15 +3,13 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#pragma once
+#include <tue/vec.hpp>
+#include "test_case.hpp"
 
-namespace tue
+#include <tue/math.hpp>
+#include <tue/unused.hpp>
+#include <tue/vec.hpp>
+namespace
 {
-	// --------
-	// unused()
-	// --------
-	template<typename... Args>
-	inline void unused(Args&&...)
-	{
-	}
+	using namespace tue;
 }

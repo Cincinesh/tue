@@ -6,6 +6,7 @@
 #include <tue/vec.hpp>
 #include "test_case.hpp"
 
+#include <tue/math.hpp>
 #include <tue/unused.hpp>
 
 namespace
@@ -42,7 +43,15 @@ namespace
 		unused(v);
 	}
 
-	TEST_CASE(component_constructor)
+	TEST_CASE(scalar_constructor)
+	{
+		constexpr fvec3 v(1.1f);
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 1.1f);
+		test_assert(v[2] == 1.1f);
+	}
+
+	TEST_CASE(scalar_component_constructor)
 	{
 		constexpr fvec3 v1(1.1f, 2.2f, 3.3f);
 		test_assert(v1[0] == 1.1f);
@@ -55,15 +64,7 @@ namespace
 		test_assert(v2[2] == 3.3f);
 	}
 
-	TEST_CASE(scalar_constructor)
-	{
-		constexpr fvec3 v(1.1f);
-		test_assert(v[0] == 1.1f);
-		test_assert(v[1] == 1.1f);
-		test_assert(v[2] == 1.1f);
-	}
-
-	TEST_CASE(vec2_constructor)
+	TEST_CASE(vec2_component_constructor)
 	{
 		constexpr fvec3 v(fvec2(1.1f, 2.2f), 3.3f);
 		test_assert(v[0] == 1.1f);
@@ -71,7 +72,7 @@ namespace
 		test_assert(v[2] == 3.3f);
 	}
 
-	TEST_CASE(vec4_constructor)
+	TEST_CASE(truncate_vec4_constructor)
 	{
 		constexpr fvec3 v(fvec4(1.1f, 2.2f, 3.3f, 4.4f));
 		test_assert(v[0] == 1.1f);
@@ -90,6 +91,14 @@ namespace
 		test_assert(v2[0] == float(dv31[0]));
 		test_assert(v2[1] == float(dv31[1]));
 		test_assert(v2[2] == float(dv31[2]));
+	}
+
+	TEST_CASE(implicit_conversion_operator)
+	{
+		CONST_OR_CONSTEXPR dvec3 v = fv31;
+		test_assert(v[0] == static_cast<double>(fv31[0]));
+		test_assert(v[1] == static_cast<double>(fv31[1]));
+		test_assert(v[2] == static_cast<double>(fv31[2]));
 	}
 
 	TEST_CASE(zero)
@@ -122,41 +131,6 @@ namespace
 		test_assert(v[0] == 0);
 		test_assert(v[1] == 0);
 		test_assert(v[2] == 1);
-	}
-
-	TEST_CASE(implicit_conversion_operator)
-	{
-		CONST_OR_CONSTEXPR dvec3 v = fv31;
-		test_assert(v[0] == double(fv31[0]));
-		test_assert(v[1] == double(fv31[1]));
-		test_assert(v[2] == double(fv31[2]));
-	}
-
-	TEST_CASE(subscript_operator)
-	{
-		constexpr fvec3 cev(1.1f, 2.2f, 3.3f);
-		CONST_OR_CONSTEXPR float cev0 = cev[0];
-		CONST_OR_CONSTEXPR float cev1 = cev[1];
-		CONST_OR_CONSTEXPR float cev2 = cev[2];
-		test_assert(cev0 == 1.1f);
-		test_assert(cev1 == 2.2f);
-		test_assert(cev2 == 3.3f);
-
-		fvec3 v = cev;
-		float& v0 = v[0];
-		float& v1 = v[1];
-		float& v2 = v[2];
-		test_assert(static_cast<void*>(&v0) == static_cast<void*>(&v));
-		test_assert(&v1 == &v0 + 1);
-		test_assert(&v2 == &v0 + 2);
-
-		const fvec3& cv = v;
-		const float& cv0 = cv[0];
-		const float& cv1 = cv[1];
-		const float& cv2 = cv[2];
-		test_assert(&cv0 == &v0);
-		test_assert(&cv1 == &v1);
-		test_assert(&cv2 == &v2);
 	}
 
 	TEST_CASE(x)
@@ -223,6 +197,33 @@ namespace
 		test_assert(v2[0] == 2.1f);
 		test_assert(v2[1] == 2.2f);
 		test_assert(v2[2] == 1.3f);
+	}
+
+	TEST_CASE(subscript_operator)
+	{
+		constexpr fvec3 cev(1.1f, 2.2f, 3.3f);
+		CONST_OR_CONSTEXPR float cev0 = cev[0];
+		CONST_OR_CONSTEXPR float cev1 = cev[1];
+		CONST_OR_CONSTEXPR float cev2 = cev[2];
+		test_assert(cev0 == 1.1f);
+		test_assert(cev1 == 2.2f);
+		test_assert(cev2 == 3.3f);
+
+		fvec3 v = cev;
+		float& v0 = v[0];
+		float& v1 = v[1];
+		float& v2 = v[2];
+		test_assert(static_cast<void*>(&v0) == static_cast<void*>(&v));
+		test_assert(&v1 == &v0 + 1);
+		test_assert(&v2 == &v0 + 2);
+
+		const fvec3& cv = v;
+		const float& cv0 = cv[0];
+		const float& cv1 = cv[1];
+		const float& cv2 = cv[2];
+		test_assert(&cv0 == &v0);
+		test_assert(&cv1 == &v1);
+		test_assert(&cv2 == &v2);
 	}
 
 	TEST_CASE(pre_increment_operator)
