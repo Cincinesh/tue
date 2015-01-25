@@ -834,4 +834,13 @@ namespace
 		test_assert(uabs[2] == math::abs(um422[2]));
 		test_assert(uabs[3] == math::abs(um422[3]));
 	}
+
+	TEST_CASE(compmult)
+	{
+		CONST_OR_CONSTEXPR auto m = math::compmult(fm421, dm422);
+		test_assert(m[0] == fm421[0] * dm422[0]);
+		test_assert(m[1] == fm421[1] * dm422[1]);
+		test_assert(m[2] == fm421[2] * dm422[2]);
+		test_assert(m[3] == fm421[3] * dm422[3]);
+	}
 }

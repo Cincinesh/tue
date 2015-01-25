@@ -1068,6 +1068,9 @@ namespace tue
 			};
 		}
 
+		// ----------
+		// compmult()
+		// ----------
 		template<typename T, typename U, int R>
 		inline TUE_CONSTEXPR auto compmult(
 			const mat<T, 4, R>& lhs,
