@@ -77,15 +77,10 @@ namespace
 
 	TEST_CASE(explicit_conversion_constructor)
 	{
-		constexpr fvec3 v1(dv31);
-		test_assert(v1[0] == float(dv31[0]));
-		test_assert(v1[1] == float(dv31[1]));
-		test_assert(v1[2] == float(dv31[2]));
-
-		CONST_OR_CONSTEXPR auto v2 = static_cast<fvec3>(dv31);
-		test_assert(v2[0] == float(dv31[0]));
-		test_assert(v2[1] == float(dv31[1]));
-		test_assert(v2[2] == float(dv31[2]));
+		constexpr fvec3 v(dv31);
+		test_assert(v[0] == static_cast<float>(dv31[0]));
+		test_assert(v[1] == static_cast<float>(dv31[1]));
+		test_assert(v[2] == static_cast<float>(dv31[2]));
 	}
 
 	TEST_CASE(implicit_conversion_operator)

@@ -107,10 +107,10 @@ namespace tue
 		constexpr operator mat<U, 4, R>() const
 		{
 			return{
-				impl_.data[0],
-				impl_.data[1],
-				impl_.data[2],
-				impl_.data[3],
+				impl_.columns[0],
+				impl_.columns[1],
+				impl_.columns[2],
+				impl_.columns[3],
 			};
 		}
 
@@ -132,7 +132,7 @@ namespace tue
 		template<typename I>
 		void set_column(
 			const I& i,
-			const vec<T, R>& column) const
+			const vec<T, R>& column)
 		{
 			impl_.columns[i] = column;
 		}
@@ -154,7 +154,7 @@ namespace tue
 		template<typename J>
 		void set_row(
 			const J& j,
-			const vec<T, 4>& row) const
+			const vec<T, 4>& row)
 		{
 			impl_.columns[0][j] = row[0];
 			impl_.columns[1][j] = row[1];
@@ -280,14 +280,10 @@ namespace tue
 			return *this;
 		}
 
-		template<typename U>
-		mat& operator*=(const mat<U, 4, R>& other)
+		template<typename U, int OtherC, int OtherR>
+		mat& operator*=(const mat<U, OtherC, OtherR>& other)
 		{
-			impl_.columns[0] *= other[0];
-			impl_.columns[1] *= other[1];
-			impl_.columns[2] *= other[2];
-			impl_.columns[3] *= other[3];
-			return *this;
+			return *this = *this * other;
 		}
 
 		// ----------
