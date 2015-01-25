@@ -14,6 +14,12 @@ namespace
 {
 	using namespace tue;
 
+	constexpr auto f1 = 1.1f;
+
+	constexpr auto d2 = 2.2;
+
+	constexpr auto i1 = 111;
+
 	constexpr auto u2 = 2U;
 
 	constexpr fmat4x2 fm421 = {
@@ -28,6 +34,13 @@ namespace
 		{ 2.1, 2.2 },
 		{ 3.1, 3.2 },
 		{ 4.1, 4.2 },
+	};
+
+	constexpr dmat4x2 dm422 = {
+		{ 2.2, 2.4 },
+		{ 4.2, 4.4 },
+		{ 6.2, 6.4 },
+		{ 8.2, 8.4 },
 	};
 
 	constexpr mat4x2<int> im421 = {
@@ -347,5 +360,236 @@ namespace
 		mat4x2<int> m2 = im421;
 		test_assert(&(m2 >>= um422) == &m2);
 		test_assert(m2 == (im421 >> um422));
+	}
+
+	TEST_CASE(unary_plus_operator)
+	{
+		CONST_OR_CONSTEXPR auto m = +fm421;
+		test_assert(m[0] == +fm421[0]);
+		test_assert(m[1] == +fm421[1]);
+		test_assert(m[2] == +fm421[2]);
+		test_assert(m[3] == +fm421[3]);
+	}
+
+	TEST_CASE(unary_minus_operator)
+	{
+		CONST_OR_CONSTEXPR auto m = -fm421;
+		test_assert(m[0] == -fm421[0]);
+		test_assert(m[1] == -fm421[1]);
+		test_assert(m[2] == -fm421[2]);
+		test_assert(m[3] == -fm421[3]);
+	}
+
+	TEST_CASE(bitwise_not_operator)
+	{
+		CONST_OR_CONSTEXPR auto m = ~im421;
+		test_assert(m[0] == ~im421[0]);
+		test_assert(m[1] == ~im421[1]);
+		test_assert(m[2] == ~im421[2]);
+		test_assert(m[3] == ~im421[3]);
+	}
+
+	TEST_CASE(addition_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 + dm422;
+		test_assert(m1[0] == f1 + dm422[0]);
+		test_assert(m1[1] == f1 + dm422[1]);
+		test_assert(m1[2] == f1 + dm422[2]);
+		test_assert(m1[3] == f1 + dm422[3]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm421 + d2;
+		test_assert(m2[0] == fm421[0] + d2);
+		test_assert(m2[1] == fm421[1] + d2);
+		test_assert(m2[2] == fm421[2] + d2);
+		test_assert(m2[3] == fm421[3] + d2);
+
+		CONST_OR_CONSTEXPR auto m3 = fm421 + dm422;
+		test_assert(m3[0] == fm421[0] + dm422[0]);
+		test_assert(m3[1] == fm421[1] + dm422[1]);
+		test_assert(m3[2] == fm421[2] + dm422[2]);
+		test_assert(m3[3] == fm421[3] + dm422[3]);
+	}
+
+	TEST_CASE(subtraction_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 - dm422;
+		test_assert(m1[0] == f1 - dm422[0]);
+		test_assert(m1[1] == f1 - dm422[1]);
+		test_assert(m1[2] == f1 - dm422[2]);
+		test_assert(m1[3] == f1 - dm422[3]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm421 - d2;
+		test_assert(m2[0] == fm421[0] - d2);
+		test_assert(m2[1] == fm421[1] - d2);
+		test_assert(m2[2] == fm421[2] - d2);
+		test_assert(m2[3] == fm421[3] - d2);
+
+		CONST_OR_CONSTEXPR auto m3 = fm421 - dm422;
+		test_assert(m3[0] == fm421[0] - dm422[0]);
+		test_assert(m3[1] == fm421[1] - dm422[1]);
+		test_assert(m3[2] == fm421[2] - dm422[2]);
+		test_assert(m3[3] == fm421[3] - dm422[3]);
+	}
+
+	TEST_CASE(multiplication_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 * dm422;
+		test_assert(m1[0] == f1 * dm422[0]);
+		test_assert(m1[1] == f1 * dm422[1]);
+		test_assert(m1[2] == f1 * dm422[2]);
+		test_assert(m1[3] == f1 * dm422[3]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm421 * d2;
+		test_assert(m2[0] == fm421[0] * d2);
+		test_assert(m2[1] == fm421[1] * d2);
+		test_assert(m2[2] == fm421[2] * d2);
+		test_assert(m2[3] == fm421[3] * d2);
+	}
+
+	TEST_CASE(division_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = f1 / dm422;
+		test_assert(m1[0] == f1 / dm422[0]);
+		test_assert(m1[1] == f1 / dm422[1]);
+		test_assert(m1[2] == f1 / dm422[2]);
+		test_assert(m1[3] == f1 / dm422[3]);
+
+		CONST_OR_CONSTEXPR auto m2 = fm421 / d2;
+		test_assert(m2[0] == fm421[0] / d2);
+		test_assert(m2[1] == fm421[1] / d2);
+		test_assert(m2[2] == fm421[2] / d2);
+		test_assert(m2[3] == fm421[3] / d2);
+
+		CONST_OR_CONSTEXPR auto m3 = fm421 / dm422;
+		test_assert(m3[0] == fm421[0] / dm422[0]);
+		test_assert(m3[1] == fm421[1] / dm422[1]);
+		test_assert(m3[2] == fm421[2] / dm422[2]);
+		test_assert(m3[3] == fm421[3] / dm422[3]);
+	}
+
+	TEST_CASE(modulo_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 % um422;
+		test_assert(m1[0] == i1 % um422[0]);
+		test_assert(m1[1] == i1 % um422[1]);
+		test_assert(m1[2] == i1 % um422[2]);
+		test_assert(m1[3] == i1 % um422[3]);
+
+		CONST_OR_CONSTEXPR auto m2 = im421 % u2;
+		test_assert(m2[0] == im421[0] % u2);
+		test_assert(m2[1] == im421[1] % u2);
+		test_assert(m2[2] == im421[2] % u2);
+		test_assert(m2[3] == im421[3] % u2);
+
+		CONST_OR_CONSTEXPR auto m3 = im421 % um422;
+		test_assert(m3[0] == im421[0] % um422[0]);
+		test_assert(m3[1] == im421[1] % um422[1]);
+		test_assert(m3[2] == im421[2] % um422[2]);
+		test_assert(m3[3] == im421[3] % um422[3]);
+	}
+
+	TEST_CASE(bitwise_and_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 & um422;
+		test_assert(m1[0] == (i1 & um422[0]));
+		test_assert(m1[1] == (i1 & um422[1]));
+		test_assert(m1[2] == (i1 & um422[2]));
+		test_assert(m1[3] == (i1 & um422[3]));
+
+		CONST_OR_CONSTEXPR auto m2 = im421 & u2;
+		test_assert(m2[0] == (im421[0] & u2));
+		test_assert(m2[1] == (im421[1] & u2));
+		test_assert(m2[2] == (im421[2] & u2));
+		test_assert(m2[3] == (im421[3] & u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im421 & um422;
+		test_assert(m3[0] == (im421[0] & um422[0]));
+		test_assert(m3[1] == (im421[1] & um422[1]));
+		test_assert(m3[2] == (im421[2] & um422[2]));
+		test_assert(m3[3] == (im421[3] & um422[3]));
+	}
+
+	TEST_CASE(bitwise_or_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 | um422;
+		test_assert(m1[0] == (i1 | um422[0]));
+		test_assert(m1[1] == (i1 | um422[1]));
+		test_assert(m1[2] == (i1 | um422[2]));
+		test_assert(m1[3] == (i1 | um422[3]));
+
+		CONST_OR_CONSTEXPR auto m2 = im421 | u2;
+		test_assert(m2[0] == (im421[0] | u2));
+		test_assert(m2[1] == (im421[1] | u2));
+		test_assert(m2[2] == (im421[2] | u2));
+		test_assert(m2[3] == (im421[3] | u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im421 | um422;
+		test_assert(m3[0] == (im421[0] | um422[0]));
+		test_assert(m3[1] == (im421[1] | um422[1]));
+		test_assert(m3[2] == (im421[2] | um422[2]));
+		test_assert(m3[3] == (im421[3] | um422[3]));
+	}
+
+	TEST_CASE(bitwise_xor_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 ^ um422;
+		test_assert(m1[0] == (i1 ^ um422[0]));
+		test_assert(m1[1] == (i1 ^ um422[1]));
+		test_assert(m1[2] == (i1 ^ um422[2]));
+		test_assert(m1[3] == (i1 ^ um422[3]));
+
+		CONST_OR_CONSTEXPR auto m2 = im421 ^ u2;
+		test_assert(m2[0] == (im421[0] ^ u2));
+		test_assert(m2[1] == (im421[1] ^ u2));
+		test_assert(m2[2] == (im421[2] ^ u2));
+		test_assert(m2[3] == (im421[3] ^ u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im421 ^ um422;
+		test_assert(m3[0] == (im421[0] ^ um422[0]));
+		test_assert(m3[1] == (im421[1] ^ um422[1]));
+		test_assert(m3[2] == (im421[2] ^ um422[2]));
+		test_assert(m3[3] == (im421[3] ^ um422[3]));
+	}
+
+	TEST_CASE(bitwise_shift_left_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 << um422;
+		test_assert(m1[0] == (i1 << um422[0]));
+		test_assert(m1[1] == (i1 << um422[1]));
+		test_assert(m1[2] == (i1 << um422[2]));
+		test_assert(m1[3] == (i1 << um422[3]));
+
+		CONST_OR_CONSTEXPR auto m2 = im421 << u2;
+		test_assert(m2[0] == (im421[0] << u2));
+		test_assert(m2[1] == (im421[1] << u2));
+		test_assert(m2[2] == (im421[2] << u2));
+		test_assert(m2[3] == (im421[3] << u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im421 << um422;
+		test_assert(m3[0] == (im421[0] << um422[0]));
+		test_assert(m3[1] == (im421[1] << um422[1]));
+		test_assert(m3[2] == (im421[2] << um422[2]));
+		test_assert(m3[3] == (im421[3] << um422[3]));
+	}
+
+	TEST_CASE(bitwise_shift_right_operator)
+	{
+		CONST_OR_CONSTEXPR auto m1 = i1 >> um422;
+		test_assert(m1[0] == (i1 >> um422[0]));
+		test_assert(m1[1] == (i1 >> um422[1]));
+		test_assert(m1[2] == (i1 >> um422[2]));
+		test_assert(m1[3] == (i1 >> um422[3]));
+
+		CONST_OR_CONSTEXPR auto m2 = im421 >> u2;
+		test_assert(m2[0] == (im421[0] >> u2));
+		test_assert(m2[1] == (im421[1] >> u2));
+		test_assert(m2[2] == (im421[2] >> u2));
+		test_assert(m2[3] == (im421[3] >> u2));
+
+		CONST_OR_CONSTEXPR auto m3 = im421 >> um422;
+		test_assert(m3[0] == (im421[0] >> um422[0]));
+		test_assert(m3[1] == (im421[1] >> um422[1]));
+		test_assert(m3[2] == (im421[2] >> um422[2]));
+		test_assert(m3[3] == (im421[3] >> um422[3]));
 	}
 }
