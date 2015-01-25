@@ -58,6 +58,12 @@ namespace tue
 	bool operator!=(const test_case& lhs, const test_case& rhs);
 }
 
+#ifdef _MSC_VER
+#define CONST_OR_CONSTEXPR const
+#else
+#define CONST_OR_CONSTEXPR constexpr
+#endif
+
 #define TEST_CASE(name) \
 namespace TEST_CASE_##name \
 { \

@@ -8,12 +8,6 @@
 
 #include <tue/unused.hpp>
 
-#ifdef _MSC_VER
-#define CONST_OR_CONSTEXPR const
-#else
-#define CONST_OR_CONSTEXPR constexpr
-#endif
-
 namespace
 {
 	using namespace tue;
