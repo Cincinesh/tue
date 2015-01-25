@@ -457,9 +457,8 @@ namespace tue
 	// --
 	template<typename T, int R>
 	inline TUE_CONSTEXPR auto operator+(const mat<T, 4, R>& m)
-		-> mat<decltype(+m[0][0]), 4, R>
 	{
-		return{ +m[0], +m[1], +m[2], +m[3] };
+		return mat<decltype(+m[0][0]), 4, R>(+m[0], +m[1], +m[2], +m[3]);
 	}
 
 	// --
@@ -467,9 +466,8 @@ namespace tue
 	// --
 	template<typename T, int R>
 	inline TUE_CONSTEXPR auto operator-(const mat<T, 4, R>& m)
-		-> mat<decltype(+m[0][0]), 4, R>
 	{
-		return{ -m[0], -m[1], -m[2], -m[3] };
+		return mat<decltype(-m[0][0]), 4, R>(-m[0], -m[1], -m[2], -m[3]);
 	}
 
 	// --
@@ -477,9 +475,8 @@ namespace tue
 	// --
 	template<typename T, int R>
 	inline TUE_CONSTEXPR auto operator~(const mat<T, 4, R>& m)
-		-> mat<decltype(~m[0][0]), 4, R>
 	{
-		return{ ~m[0], ~m[1], ~m[2], ~m[3] };
+		return mat<decltype(~m[0][0]), 4, R>(~m[0], ~m[1], ~m[2], ~m[3]);
 	}
 
 	// ---------
@@ -489,9 +486,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator+(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs + rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs + rhs[0][0]), 4, R>{
 			lhs + rhs[0],
 			lhs + rhs[1],
 			lhs + rhs[2],
@@ -503,9 +499,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator+(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] + rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] + rhs), 4, R>{
 			lhs[0] + rhs,
 			lhs[1] + rhs,
 			lhs[2] + rhs,
@@ -517,9 +512,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator+(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] + rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] + rhs[0][0]), 4, R>{
 			lhs[0] + rhs[0],
 			lhs[1] + rhs[1],
 			lhs[2] + rhs[2],
@@ -534,9 +528,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator-(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs - rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs - rhs[0][0]), 4, R>{
 			lhs - rhs[0],
 			lhs - rhs[1],
 			lhs - rhs[2],
@@ -548,9 +541,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator-(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] - rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] - rhs), 4, R>{
 			lhs[0] - rhs,
 			lhs[1] - rhs,
 			lhs[2] - rhs,
@@ -562,9 +554,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator-(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] - rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] - rhs[0][0]), 4, R>{
 			lhs[0] - rhs[0],
 			lhs[1] - rhs[1],
 			lhs[2] - rhs[2],
@@ -579,9 +570,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator*(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs * rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs * rhs[0][0]), 4, R>{
 			lhs * rhs[0],
 			lhs * rhs[1],
 			lhs * rhs[2],
@@ -593,9 +583,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator*(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] * rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] * rhs), 4, R>{
 			lhs[0] * rhs,
 			lhs[1] * rhs,
 			lhs[2] * rhs,
@@ -610,9 +599,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator/(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs / rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs / rhs[0][0]), 4, R>{
 			lhs / rhs[0],
 			lhs / rhs[1],
 			lhs / rhs[2],
@@ -624,9 +612,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator/(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] / rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] / rhs), 4, R>{
 			lhs[0] / rhs,
 			lhs[1] / rhs,
 			lhs[2] / rhs,
@@ -638,9 +625,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator/(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] / rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] / rhs[0][0]), 4, R>{
 			lhs[0] / rhs[0],
 			lhs[1] / rhs[1],
 			lhs[2] / rhs[2],
@@ -655,9 +641,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator%(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs % rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs % rhs[0][0]), 4, R>{
 			lhs % rhs[0],
 			lhs % rhs[1],
 			lhs % rhs[2],
@@ -669,9 +654,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator%(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] % rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] % rhs), 4, R>{
 			lhs[0] % rhs,
 			lhs[1] % rhs,
 			lhs[2] % rhs,
@@ -683,9 +667,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator%(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] % rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] % rhs[0][0]), 4, R>{
 			lhs[0] % rhs[0],
 			lhs[1] % rhs[1],
 			lhs[2] % rhs[2],
@@ -700,9 +683,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator&(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs & rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs & rhs[0][0]), 4, R>{
 			lhs & rhs[0],
 			lhs & rhs[1],
 			lhs & rhs[2],
@@ -714,9 +696,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator&(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] & rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] & rhs), 4, R>{
 			lhs[0] & rhs,
 			lhs[1] & rhs,
 			lhs[2] & rhs,
@@ -728,9 +709,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator&(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] & rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] & rhs[0][0]), 4, R>{
 			lhs[0] & rhs[0],
 			lhs[1] & rhs[1],
 			lhs[2] & rhs[2],
@@ -745,9 +725,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator|(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs | rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs | rhs[0][0]), 4, R>{
 			lhs | rhs[0],
 			lhs | rhs[1],
 			lhs | rhs[2],
@@ -759,9 +738,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator|(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] | rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] | rhs), 4, R>{
 			lhs[0] | rhs,
 			lhs[1] | rhs,
 			lhs[2] | rhs,
@@ -773,9 +751,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator|(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] | rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] | rhs[0][0]), 4, R>{
 			lhs[0] | rhs[0],
 			lhs[1] | rhs[1],
 			lhs[2] | rhs[2],
@@ -790,9 +767,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator^(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs ^ rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs ^ rhs[0][0]), 4, R>{
 			lhs ^ rhs[0],
 			lhs ^ rhs[1],
 			lhs ^ rhs[2],
@@ -804,9 +780,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator^(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] ^ rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] ^ rhs), 4, R>{
 			lhs[0] ^ rhs,
 			lhs[1] ^ rhs,
 			lhs[2] ^ rhs,
@@ -818,9 +793,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator^(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] ^ rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] ^ rhs[0][0]), 4, R>{
 			lhs[0] ^ rhs[0],
 			lhs[1] ^ rhs[1],
 			lhs[2] ^ rhs[2],
@@ -835,9 +809,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator<<(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs << rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs << rhs[0][0]), 4, R>{
 			lhs << rhs[0],
 			lhs << rhs[1],
 			lhs << rhs[2],
@@ -849,9 +822,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator<<(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] << rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] << rhs), 4, R>{
 			lhs[0] << rhs,
 			lhs[1] << rhs,
 			lhs[2] << rhs,
@@ -863,9 +835,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator<<(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] << rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] << rhs[0][0]), 4, R>{
 			lhs[0] << rhs[0],
 			lhs[1] << rhs[1],
 			lhs[2] << rhs[2],
@@ -880,9 +851,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator>>(
 		const T& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs >> rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs >> rhs[0][0]), 4, R>{
 			lhs >> rhs[0],
 			lhs >> rhs[1],
 			lhs >> rhs[2],
@@ -894,9 +864,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator>>(
 		const mat<T, 4, R>& lhs,
 		const U& rhs)
-		-> mat<decltype(lhs[0][0] >> rhs), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] >> rhs), 4, R>{
 			lhs[0] >> rhs,
 			lhs[1] >> rhs,
 			lhs[2] >> rhs,
@@ -908,9 +877,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator>>(
 		const mat<T, 4, R>& lhs,
 		const mat<U, 4, R>& rhs)
-		-> mat<decltype(lhs[0][0] >> rhs[0][0]), 4, R>
 	{
-		return{
+		return mat<decltype(lhs[0][0] >> rhs[0][0]), 4, R>{
 			lhs[0] >> rhs[0],
 			lhs[1] >> rhs[1],
 			lhs[2] >> rhs[2],
@@ -968,9 +936,8 @@ namespace tue
 		// -----
 		template<typename T, int R>
 		inline auto sin(const mat<T, 4, R>& m)
-			-> mat<decltype(math::sin(m[0][0])), 4, R>
 		{
-			return{
+			return  mat<decltype(math::sin(m[0][0])), 4, R>{
 				math::sin(m[0]),
 				math::sin(m[1]),
 				math::sin(m[2]),
@@ -983,9 +950,8 @@ namespace tue
 		// -----
 		template<typename T, int R>
 		inline auto cos(const mat<T, 4, R>& m)
-			-> mat<decltype(math::cos(m[0][0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::cos(m[0][0])), 4, R>{
 				math::cos(m[0]),
 				math::cos(m[1]),
 				math::cos(m[2]),
@@ -1000,9 +966,8 @@ namespace tue
 		inline auto pow(
 			const mat<T, 4, R>& base,
 			const U& exponent)
-			-> mat<decltype(math::pow(base[0], exponent)), 4, R>
 		{
-			return{
+			return mat<decltype(math::pow(base[0], exponent)), 4, R>{
 				math::pow(base[0], exponent),
 				math::pow(base[1], exponent),
 				math::pow(base[2], exponent),
@@ -1014,9 +979,8 @@ namespace tue
 		inline auto pow(
 			const mat<T, 4, R>& base,
 			const mat<U, 4, R>& exponent)
-			-> mat<decltype(math::pow(base[0], exponent[0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::pow(base[0], exponent[0])), 4, R>{
 				math::pow(base[0], exponent[0]),
 				math::pow(base[1], exponent[1]),
 				math::pow(base[2], exponent[2]),
@@ -1029,9 +993,8 @@ namespace tue
 		// -----
 		template<typename T, int R>
 		inline auto rcp(const mat<T, 4, R>& m)
-			-> mat<decltype(math::rcp(m[0][0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::rcp(m[0][0])), 4, R>{
 				math::rcp(m[0]),
 				math::rcp(m[1]),
 				math::rcp(m[2]),
@@ -1044,9 +1007,8 @@ namespace tue
 		// ------
 		template<typename T, int R>
 		inline auto sqrt(const mat<T, 4, R>& m)
-			-> mat<decltype(math::sqrt(m[0][0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::sqrt(m[0][0])), 4, R>{
 				math::sqrt(m[0]),
 				math::sqrt(m[1]),
 				math::sqrt(m[2]),
@@ -1059,9 +1021,8 @@ namespace tue
 		// -------
 		template<typename T, int R>
 		inline auto rsqrt(const mat<T, 4, R>& m)
-			-> mat<decltype(math::rsqrt(m[0][0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::rsqrt(m[0][0])), 4, R>{
 				math::rsqrt(m[0]),
 				math::rsqrt(m[1]),
 				math::rsqrt(m[2]),
@@ -1074,9 +1035,8 @@ namespace tue
 		// -----
 		template<typename T, int R>
 		inline auto min(const mat<T, 4, R>& m1, const mat<T, 4, R>& m2)
-			-> mat<decltype(math::min(m1[0], m2[0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::min(m1[0], m2[0])), 4, R>{
 				math::min(m1[0], m2[0]),
 				math::min(m1[1], m2[1]),
 				math::min(m1[2], m2[2]),
@@ -1089,9 +1049,8 @@ namespace tue
 		// -----
 		template<typename T, int R>
 		inline auto max(const mat<T, 4, R>& m1, const mat<T, 4, R>& m2)
-			-> mat<decltype(math::max(m1[0], m2[0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::max(m1[0], m2[0])), 4, R>{
 				math::max(m1[0], m2[0]),
 				math::max(m1[1], m2[1]),
 				math::max(m1[2], m2[2]),
@@ -1104,9 +1063,8 @@ namespace tue
 		// -----
 		template<typename T, int R>
 		inline auto abs(const mat<T, 4, R>& m)
-			-> mat<decltype(math::abs(m[0][0])), 4, R>
 		{
-			return{
+			return mat<decltype(math::abs(m[0][0])), 4, R>{
 				math::abs(m[0]),
 				math::abs(m[1]),
 				math::abs(m[2]),
@@ -1118,9 +1076,8 @@ namespace tue
 		inline TUE_CONSTEXPR auto compmult(
 			const mat<T, 4, R>& lhs,
 			const mat<U, 4, R>& rhs)
-			-> mat<decltype(lhs[0][0] * rhs[0][0]), 4, R>
 		{
-			return{
+			return mat<decltype(lhs[0][0] * rhs[0][0]), 4, R>{
 				lhs[0] * rhs[0],
 				lhs[1] * rhs[1],
 				lhs[2] * rhs[2],

@@ -62,7 +62,7 @@
     <ClCompile />
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -70,7 +70,7 @@
     <ClCompile />
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -78,7 +78,7 @@
     <ClCompile />
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -86,7 +86,7 @@
     <ClCompile />
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
   </ItemDefinitionGroup>

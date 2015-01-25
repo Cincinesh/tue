@@ -422,9 +422,8 @@ namespace tue
 	// --
 	template<typename T>
 	inline TUE_CONSTEXPR auto operator+(const vec3<T>& v)
-		-> vec3<decltype(+v[0])>
 	{
-		return{ +v[0], +v[1], +v[2] };
+		return vec3<decltype(+v[0])>(+v[0], +v[1], +v[2]);
 	}
 
 	// --
@@ -432,9 +431,8 @@ namespace tue
 	// --
 	template<typename T>
 	inline TUE_CONSTEXPR auto operator-(const vec3<T>& v)
-		-> vec3<decltype(+v[0])>
 	{
-		return{ -v[0], -v[1], -v[2] };
+		return vec3<decltype(-v[0])>(-v[0], -v[1], -v[2]);
 	}
 
 	// --
@@ -442,9 +440,8 @@ namespace tue
 	// --
 	template<typename T>
 	inline TUE_CONSTEXPR auto operator~(const vec3<T>& v)
-		-> vec3<decltype(~v[0])>
 	{
-		return{ ~v[0], ~v[1], ~v[2] };
+		return vec3<decltype(~v[0])>(~v[0], ~v[1], ~v[2]);
 	}
 
 	// ---------
@@ -454,9 +451,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator+(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs + rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs + rhs[0])>{
 			lhs + rhs[0],
 			lhs + rhs[1],
 			lhs + rhs[2],
@@ -467,9 +463,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator+(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] + rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] + rhs)>{
 			lhs[0] + rhs,
 			lhs[1] + rhs,
 			lhs[2] + rhs,
@@ -480,9 +475,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator+(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] + rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] + rhs[0])>{
 			lhs[0] + rhs[0],
 			lhs[1] + rhs[1],
 			lhs[2] + rhs[2],
@@ -496,9 +490,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator-(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs - rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs - rhs[0])>{
 			lhs - rhs[0],
 			lhs - rhs[1],
 			lhs - rhs[2],
@@ -509,9 +502,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator-(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] - rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] - rhs)>{
 			lhs[0] - rhs,
 			lhs[1] - rhs,
 			lhs[2] - rhs,
@@ -522,9 +514,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator-(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] - rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] - rhs[0])>{
 			lhs[0] - rhs[0],
 			lhs[1] - rhs[1],
 			lhs[2] - rhs[2],
@@ -538,9 +529,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator*(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs * rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs * rhs[0])>{
 			lhs * rhs[0],
 			lhs * rhs[1],
 			lhs * rhs[2],
@@ -551,9 +541,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator*(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] * rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] * rhs)>{
 			lhs[0] * rhs,
 			lhs[1] * rhs,
 			lhs[2] * rhs,
@@ -564,9 +553,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator*(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] * rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] * rhs[0])>{
 			lhs[0] * rhs[0],
 			lhs[1] * rhs[1],
 			lhs[2] * rhs[2],
@@ -580,9 +568,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator/(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs / rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs / rhs[0])>{
 			lhs / rhs[0],
 			lhs / rhs[1],
 			lhs / rhs[2],
@@ -593,9 +580,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator/(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] / rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] / rhs)>{
 			lhs[0] / rhs,
 			lhs[1] / rhs,
 			lhs[2] / rhs,
@@ -606,9 +592,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator/(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] / rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] / rhs[0])>{
 			lhs[0] / rhs[0],
 			lhs[1] / rhs[1],
 			lhs[2] / rhs[2],
@@ -622,9 +607,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator%(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs % rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs % rhs[0])>{
 			lhs % rhs[0],
 			lhs % rhs[1],
 			lhs % rhs[2],
@@ -635,9 +619,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator%(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] % rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] % rhs)>{
 			lhs[0] % rhs,
 			lhs[1] % rhs,
 			lhs[2] % rhs,
@@ -648,9 +631,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator%(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] % rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] % rhs[0])>{
 			lhs[0] % rhs[0],
 			lhs[1] % rhs[1],
 			lhs[2] % rhs[2],
@@ -664,9 +646,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator&(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs & rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs & rhs[0])>{
 			lhs & rhs[0],
 			lhs & rhs[1],
 			lhs & rhs[2],
@@ -677,9 +658,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator&(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] & rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] & rhs)>{
 			lhs[0] & rhs,
 			lhs[1] & rhs,
 			lhs[2] & rhs,
@@ -690,9 +670,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator&(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] & rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] & rhs[0])>{
 			lhs[0] & rhs[0],
 			lhs[1] & rhs[1],
 			lhs[2] & rhs[2],
@@ -706,9 +685,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator|(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs | rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs | rhs[0])>{
 			lhs | rhs[0],
 			lhs | rhs[1],
 			lhs | rhs[2],
@@ -719,9 +697,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator|(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] | rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] | rhs)>{
 			lhs[0] | rhs,
 			lhs[1] | rhs,
 			lhs[2] | rhs,
@@ -732,9 +709,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator|(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] | rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] | rhs[0])>{
 			lhs[0] | rhs[0],
 			lhs[1] | rhs[1],
 			lhs[2] | rhs[2],
@@ -748,9 +724,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator^(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs ^ rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs ^ rhs[0])>{
 			lhs ^ rhs[0],
 			lhs ^ rhs[1],
 			lhs ^ rhs[2],
@@ -761,9 +736,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator^(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] ^ rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] ^ rhs)>{
 			lhs[0] ^ rhs,
 			lhs[1] ^ rhs,
 			lhs[2] ^ rhs,
@@ -774,9 +748,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator^(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] ^ rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] ^ rhs[0])>{
 			lhs[0] ^ rhs[0],
 			lhs[1] ^ rhs[1],
 			lhs[2] ^ rhs[2],
@@ -790,9 +763,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator<<(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs << rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs << rhs[0])>{
 			lhs << rhs[0],
 			lhs << rhs[1],
 			lhs << rhs[2],
@@ -803,9 +775,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator<<(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] << rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] << rhs)>{
 			lhs[0] << rhs,
 			lhs[1] << rhs,
 			lhs[2] << rhs,
@@ -816,9 +787,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator<<(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] << rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] << rhs[0])>{
 			lhs[0] << rhs[0],
 			lhs[1] << rhs[1],
 			lhs[2] << rhs[2],
@@ -832,9 +802,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator>>(
 		const T& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs >> rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs >> rhs[0])>{
 			lhs >> rhs[0],
 			lhs >> rhs[1],
 			lhs >> rhs[2],
@@ -845,9 +814,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator>>(
 		const vec3<T>& lhs,
 		const U& rhs)
-		-> vec3<decltype(lhs[0] >> rhs)>
 	{
-		return{
+		return vec3<decltype(lhs[0] >> rhs)>{
 			lhs[0] >> rhs,
 			lhs[1] >> rhs,
 			lhs[2] >> rhs,
@@ -858,9 +826,8 @@ namespace tue
 	inline TUE_CONSTEXPR auto operator>>(
 		const vec3<T>& lhs,
 		const vec3<U>& rhs)
-		-> vec3<decltype(lhs[0] >> rhs[0])>
 	{
-		return{
+		return vec3<decltype(lhs[0] >> rhs[0])>{
 			lhs[0] >> rhs[0],
 			lhs[1] >> rhs[1],
 			lhs[2] >> rhs[2],
@@ -915,9 +882,8 @@ namespace tue
 		// -----
 		template<typename T>
 		inline auto sin(const vec3<T>& v)
-			-> vec3<decltype(math::sin(v[0]))>
 		{
-			return{
+			return vec3<decltype(math::sin(v[0]))>{
 				math::sin(v[0]),
 				math::sin(v[1]),
 				math::sin(v[2]),
@@ -929,9 +895,8 @@ namespace tue
 		// -----
 		template<typename T>
 		inline auto cos(const vec3<T>& v)
-			-> vec3<decltype(math::cos(v[0]))>
 		{
-			return{
+			return vec3<decltype(math::cos(v[0]))>{
 				math::cos(v[0]),
 				math::cos(v[1]),
 				math::cos(v[2]),
@@ -945,9 +910,8 @@ namespace tue
 		inline auto pow(
 			const vec3<T>& base,
 			const U& exponent)
-			-> vec3<decltype(math::pow(base[0], exponent))>
 		{
-			return{
+			return vec3<decltype(math::pow(base[0], exponent))>{
 				math::pow(base[0], exponent),
 				math::pow(base[1], exponent),
 				math::pow(base[2], exponent),
@@ -958,9 +922,8 @@ namespace tue
 		inline auto pow(
 			const vec3<T>& base,
 			const vec3<U>& exponent)
-			-> vec3<decltype(math::pow(base[0], exponent[0]))>
 		{
-			return{
+			return vec3<decltype(math::pow(base[0], exponent[0]))>{
 				math::pow(base[0], exponent[0]),
 				math::pow(base[1], exponent[1]),
 				math::pow(base[2], exponent[2]),
@@ -972,9 +935,8 @@ namespace tue
 		// -----
 		template<typename T>
 		inline auto rcp(const vec3<T>& v)
-			-> vec3<decltype(math::rcp(v[0]))>
 		{
-			return{
+			return vec3<decltype(math::rcp(v[0]))>{
 				math::rcp(v[0]),
 				math::rcp(v[1]),
 				math::rcp(v[2]),
@@ -986,9 +948,8 @@ namespace tue
 		// ------
 		template<typename T>
 		inline auto sqrt(const vec3<T>& v)
-			-> vec3<decltype(math::sqrt(v[0]))>
 		{
-			return{
+			return vec3<decltype(math::sqrt(v[0]))>{
 				math::sqrt(v[0]),
 				math::sqrt(v[1]),
 				math::sqrt(v[2]),
@@ -1000,9 +961,8 @@ namespace tue
 		// -------
 		template<typename T>
 		inline auto rsqrt(const vec3<T>& v)
-			-> vec3<decltype(math::rsqrt(v[0]))>
 		{
-			return{
+			return vec3<decltype(math::rsqrt(v[0]))>{
 				math::rsqrt(v[0]),
 				math::rsqrt(v[1]),
 				math::rsqrt(v[2]),
@@ -1014,9 +974,8 @@ namespace tue
 		// -----
 		template<typename T>
 		inline auto min(const vec3<T>& v1, const vec3<T>& v2)
-			-> vec3<decltype(math::min(v1[0], v2[0]))>
 		{
-			return{
+			return vec3<decltype(math::min(v1[0], v2[0]))>{
 				math::min(v1[0], v2[0]),
 				math::min(v1[1], v2[1]),
 				math::min(v1[2], v2[2]),
@@ -1028,9 +987,8 @@ namespace tue
 		// -----
 		template<typename T>
 		inline auto max(const vec3<T>& v1, const vec3<T>& v2)
-			-> vec3<decltype(math::max(v1[0], v2[0]))>
 		{
-			return{
+			return vec3<decltype(math::max(v1[0], v2[0]))>{
 				math::max(v1[0], v2[0]),
 				math::max(v1[1], v2[1]),
 				math::max(v1[2], v2[2]),
@@ -1042,9 +1000,8 @@ namespace tue
 		// -----
 		template<typename T>
 		inline auto abs(const vec3<T>& v)
-			-> vec3<decltype(math::abs(v[0]))>
 		{
-			return{
+			return vec3<decltype(math::abs(v[0]))>{
 				math::abs(v[0]),
 				math::abs(v[1]),
 				math::abs(v[2]),
@@ -1058,7 +1015,6 @@ namespace tue
 		inline TUE_CONSTEXPR auto dot(
 			const vec3<T>& lhs,
 			const vec3<U>& rhs)
-			-> decltype(lhs[0] * rhs[0])
 		{
 			return lhs[0] * rhs[0]
 				+ lhs[1] * rhs[1]
@@ -1072,9 +1028,8 @@ namespace tue
 		inline TUE_CONSTEXPR auto cross(
 			const vec3<T>& lhs,
 			const vec3<U>& rhs)
-			-> vec3<decltype(lhs[0] * rhs[0])>
 		{
-			return{
+			return vec3<decltype(lhs[1] * rhs[2] - lhs[2] * rhs[1])>{
 				lhs[1] * rhs[2] - lhs[2] * rhs[1],
 				lhs[2] * rhs[0] - lhs[0] * rhs[2],
 				lhs[0] * rhs[1] - lhs[1] * rhs[0],
@@ -1086,7 +1041,6 @@ namespace tue
 		// ---------
 		template<typename T>
 		inline auto length2(const vec3<T>& v)
-			-> decltype(math::length2(v[0]))
 		{
 			return math::length2(v[0])
 				+ math::length2(v[1])
@@ -1098,7 +1052,6 @@ namespace tue
 		// --------
 		template<typename T>
 		inline auto length(const vec3<T>& v)
-			-> decltype(math::sqrt(math::length2(v)))
 		{
 			return math::sqrt(math::length2(v));
 		}
@@ -1108,7 +1061,6 @@ namespace tue
 		// -----------
 		template<typename T>
 		inline auto normalize(const vec3<T>& v)
-			-> vec3<decltype(math::length(v))>
 		{
 			return vec3<decltype(math::length(v))>(v)
 				/ math::length(v);
