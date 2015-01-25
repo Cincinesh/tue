@@ -842,4 +842,24 @@ namespace
 		test_assert(m[2] == fm421[2] * dm422[2]);
 		test_assert(m[3] == fm421[3] * dm422[3]);
 	}
+
+	TEST_CASE(transpose)
+	{
+		constexpr fmat4x4 m44 = {
+			{ 1.1f, 1.2f, 1.3f, 1.4f },
+			{ 2.1f, 2.2f, 2.3f, 2.4f },
+			{ 3.1f, 3.2f, 3.3f, 3.4f },
+			{ 4.1f, 4.2f, 4.3f, 4.4f },
+		};
+
+		CONST_OR_CONSTEXPR fmat4x4 m1 = math::transpose(m44);
+		test_assert(m1[0] == m44.row(0));
+		test_assert(m1[1] == m44.row(1));
+		test_assert(m1[2] == m44.row(2));
+		test_assert(m1[3] == m44.row(3));
+
+		// TODO
+		//constexpr fmat3x4 m34(m44);
+		//constexpr fmat2x4 m24(m44);
+	}
 }

@@ -1083,6 +1083,21 @@ namespace tue
 				lhs[3] * rhs[3],
 			};
 		}
+
+		// -----------
+		// transpose()
+		// -----------
+		template<typename T, int R>
+		inline TUE_CONSTEXPR mat<T, 4, R> transpose(
+			const mat<T, R, 4>& m)
+		{
+			return{
+				m.row(0),
+				m.row(1),
+				m.row(2),
+				m.row(3),
+			};
+		}
 	}
 }
 
