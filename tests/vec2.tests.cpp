@@ -14,7 +14,6 @@ namespace
 	using namespace tue;
 
 	constexpr auto f1 = 1.1f;
-
 	constexpr auto f2 = 2.2f;
 
 	constexpr auto d2 = 2.2;
@@ -24,15 +23,12 @@ namespace
 	constexpr auto u2 = 2U;
 
 	constexpr fvec2 fv21(1.1f, 1.2f);
-
 	constexpr fvec2 fv22(2.2f, 2.4f);
 
 	constexpr dvec2 dv21(1.1, 1.2);
-
 	constexpr dvec2 dv22(2.2, 2.4);
 
 	constexpr ivec2 iv21(111, 222);
-
 	constexpr ivec2 iv22(2, 4);
 
 	constexpr uvec2 uv22(2U, 4U);

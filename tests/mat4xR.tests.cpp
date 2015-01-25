@@ -15,7 +15,6 @@ namespace
 	using namespace tue;
 
 	constexpr auto f1 = 1.1f;
-
 	constexpr auto f2 = 2.2f;
 
 	constexpr auto d2 = 2.2;
