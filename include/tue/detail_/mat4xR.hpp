@@ -43,9 +43,9 @@ namespace tue
 				vec<T, R>(vec<T, 4>(T(0), T(0), T(0), s)),
 			} }) {}
 
-		// ---------------------
-		// component constructor
-		// ---------------------
+		// ------------------
+		// column constructor
+		// ------------------
 		constexpr mat(
 			const vec<T, R>& column0,
 			const vec<T, R>& column1,
@@ -130,7 +130,7 @@ namespace tue
 		}
 
 		template<typename I>
-		constexpr void set_column(
+		void set_column(
 			const I& i,
 			const vec<T, R>& column) const
 		{
@@ -152,7 +152,7 @@ namespace tue
 		}
 
 		template<typename J>
-		constexpr void set_row(
+		void set_row(
 			const J& j,
 			const vec<T, 4>& row) const
 		{
@@ -235,7 +235,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator+=(const mat4<U>& other)
+		mat& operator+=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] += other[0];
 			impl_.columns[1] += other[1];
@@ -258,7 +258,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator-=(const mat4<U>& other)
+		mat& operator-=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] -= other[0];
 			impl_.columns[1] -= other[1];
@@ -281,7 +281,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator*=(const mat4<U>& other)
+		mat& operator*=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] *= other[0];
 			impl_.columns[1] *= other[1];
@@ -304,7 +304,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator/=(const mat4<U>& other)
+		mat& operator/=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] /= other[0];
 			impl_.columns[1] /= other[1];
@@ -327,7 +327,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator%=(const mat4<U>& other)
+		mat& operator%=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] %= other[0];
 			impl_.columns[1] %= other[1];
@@ -350,7 +350,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator&=(const mat4<U>& other)
+		mat& operator&=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] &= other[0];
 			impl_.columns[1] &= other[1];
@@ -373,7 +373,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator|=(const mat4<U>& other)
+		mat& operator|=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] |= other[0];
 			impl_.columns[1] |= other[1];
@@ -396,7 +396,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator^=(const mat4<U>& other)
+		mat& operator^=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] ^= other[0];
 			impl_.columns[1] ^= other[1];
@@ -419,7 +419,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator<<=(const mat4<U>& other)
+		mat& operator<<=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] <<= other[0];
 			impl_.columns[1] <<= other[1];
@@ -442,7 +442,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator>>=(const mat4<U>& other)
+		mat& operator>>=(const mat<U, 4, R>& other)
 		{
 			impl_.columns[0] >>= other[0];
 			impl_.columns[1] >>= other[1];
@@ -952,7 +952,7 @@ namespace tue
 		// sincos()
 		// --------
 		template<typename T, int R>
-		inline moid sincos(
+		inline void sincos(
 			const mat<T, 4, R>& m,
 			mat<decltype(math::sin(m[0][0])), 4, R>& sin_result,
 			mat<decltype(math::cos(m[0][0])), 4, R>& cos_result)

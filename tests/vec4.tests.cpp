@@ -54,17 +54,11 @@ namespace
 
 	TEST_CASE(scalar_component_constructor)
 	{
-		constexpr fvec4 v1(1.1f, 2.2f, 3.3f, 4.4f);
-		test_assert(v1[0] == 1.1f);
-		test_assert(v1[1] == 2.2f);
-		test_assert(v1[2] == 3.3f);
-		test_assert(v1[3] == 4.4f);
-
-		constexpr fvec4 v2 = { 1.1f, 2.2f, 3.3f, 4.4f };
-		test_assert(v2[0] == 1.1f);
-		test_assert(v2[1] == 2.2f);
-		test_assert(v2[2] == 3.3f);
-		test_assert(v2[3] == 4.4f);
+		constexpr fvec4 v = { 1.1f, 2.2f, 3.3f, 4.4f };
+		test_assert(v[0] == 1.1f);
+		test_assert(v[1] == 2.2f);
+		test_assert(v[2] == 3.3f);
+		test_assert(v[3] == 4.4f);
 	}
 
 	TEST_CASE(vec2_component_constructor)
