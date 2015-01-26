@@ -63,7 +63,7 @@ namespace tue
 			impl_({ {
 				vec<T, R>::extend_(other[0], T(0), T(0)),
 				vec<T, R>::extend_(other[1], T(0), T(0)),
-				vec<T, R>(vec<T, 3>(T(0), T(0), T(1), T(0))),
+				vec<T, R>(vec<T, 4>(T(0), T(0), T(1), T(0))),
 			} }) {}
 
 		template<int OtherR>

@@ -397,7 +397,7 @@ namespace tue
 			const T& z,
 			const T&)
 		{
-			return{ v, z };
+			return vec(v, z);
 		}
 
 		static constexpr vec extend_(

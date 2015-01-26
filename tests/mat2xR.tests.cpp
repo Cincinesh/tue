@@ -91,7 +91,120 @@ namespace
 
 	TEST_CASE(extend_and_truncate_constructors)
 	{
-		// TODO
+		constexpr fmat4x4 m1({
+			{ 1.1f, 1.2f, 1.3f, 1.4f },
+			{ 2.1f, 2.2f, 2.3f, 2.4f },
+			{ 3.1f, 3.2f, 3.3f, 3.4f },
+			{ 4.1f, 4.2f, 4.3f, 4.4f },
+		});
+
+		constexpr fmat2x2 m2((fmat2x2(m1)));
+		test_assert(m2[0] == fvec2(1.1f, 1.2f));
+		test_assert(m2[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m3((fmat2x3(m1)));
+		test_assert(m3[0] == fvec2(1.1f, 1.2f));
+		test_assert(m3[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m4((fmat2x4(m1)));
+		test_assert(m4[0] == fvec2(1.1f, 1.2f));
+		test_assert(m4[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m5((fmat3x2(m1)));
+		test_assert(m5[0] == fvec2(1.1f, 1.2f));
+		test_assert(m5[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m6((fmat3x3(m1)));
+		test_assert(m6[0] == fvec2(1.1f, 1.2f));
+		test_assert(m6[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m7((fmat3x4(m1)));
+		test_assert(m7[0] == fvec2(1.1f, 1.2f));
+		test_assert(m7[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m8((fmat4x2(m1)));
+		test_assert(m8[0] == fvec2(1.1f, 1.2f));
+		test_assert(m8[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m9((fmat4x3(m1)));
+		test_assert(m9[0] == fvec2(1.1f, 1.2f));
+		test_assert(m9[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x2 m10((fmat4x4(m1)));
+		test_assert(m10[0] == fvec2(1.1f, 1.2f));
+		test_assert(m10[1] == fvec2(2.1f, 2.2f));
+
+		constexpr fmat2x3 m11((fmat2x2(m1)));
+		test_assert(m11[0] == fvec3(1.1f, 1.2f, 0.0f));
+		test_assert(m11[1] == fvec3(2.1f, 2.2f, 0.0f));
+
+		constexpr fmat2x3 m12((fmat2x3(m1)));
+		test_assert(m12[0] == fvec3(1.1f, 1.2f, 1.3f));
+		test_assert(m12[1] == fvec3(2.1f, 2.2f, 2.3f));
+
+		constexpr fmat2x3 m13((fmat2x4(m1)));
+		test_assert(m13[0] == fvec3(1.1f, 1.2f, 1.3f));
+		test_assert(m13[1] == fvec3(2.1f, 2.2f, 2.3f));
+
+		constexpr fmat2x3 m14((fmat3x2(m1)));
+		test_assert(m14[0] == fvec3(1.1f, 1.2f, 0.0f));
+		test_assert(m14[1] == fvec3(2.1f, 2.2f, 0.0f));
+
+		constexpr fmat2x3 m15((fmat3x3(m1)));
+		test_assert(m15[0] == fvec3(1.1f, 1.2f, 1.3f));
+		test_assert(m15[1] == fvec3(2.1f, 2.2f, 2.3f));
+
+		constexpr fmat2x3 m16((fmat3x4(m1)));
+		test_assert(m16[0] == fvec3(1.1f, 1.2f, 1.3f));
+		test_assert(m16[1] == fvec3(2.1f, 2.2f, 2.3f));
+
+		constexpr fmat2x3 m17((fmat4x2(m1)));
+		test_assert(m17[0] == fvec3(1.1f, 1.2f, 0.0f));
+		test_assert(m17[1] == fvec3(2.1f, 2.2f, 0.0f));
+
+		constexpr fmat2x3 m18((fmat4x3(m1)));
+		test_assert(m18[0] == fvec3(1.1f, 1.2f, 1.3f));
+		test_assert(m18[1] == fvec3(2.1f, 2.2f, 2.3f));
+
+		constexpr fmat2x3 m19((fmat4x4(m1)));
+		test_assert(m19[0] == fvec3(1.1f, 1.2f, 1.3f));
+		test_assert(m19[1] == fvec3(2.1f, 2.2f, 2.3f));
+
+		constexpr fmat2x4 m20((fmat2x2(m1)));
+		test_assert(m20[0] == fvec4(1.1f, 1.2f, 0.0f, 0.0f));
+		test_assert(m20[1] == fvec4(2.1f, 2.2f, 0.0f, 0.0f));
+
+		constexpr fmat2x4 m21((fmat2x3(m1)));
+		test_assert(m21[0] == fvec4(1.1f, 1.2f, 1.3f, 0.0f));
+		test_assert(m21[1] == fvec4(2.1f, 2.2f, 2.3f, 0.0f));
+
+		constexpr fmat2x4 m22((fmat2x4(m1)));
+		test_assert(m22[0] == fvec4(1.1f, 1.2f, 1.3f, 1.4f));
+		test_assert(m22[1] == fvec4(2.1f, 2.2f, 2.3f, 2.4f));
+
+		constexpr fmat2x4 m23((fmat3x2(m1)));
+		test_assert(m23[0] == fvec4(1.1f, 1.2f, 0.0f, 0.0f));
+		test_assert(m23[1] == fvec4(2.1f, 2.2f, 0.0f, 0.0f));
+
+		constexpr fmat2x4 m24((fmat3x3(m1)));
+		test_assert(m24[0] == fvec4(1.1f, 1.2f, 1.3f, 0.0f));
+		test_assert(m24[1] == fvec4(2.1f, 2.2f, 2.3f, 0.0f));
+
+		constexpr fmat2x4 m25((fmat3x4(m1)));
+		test_assert(m25[0] == fvec4(1.1f, 1.2f, 1.3f, 1.4f));
+		test_assert(m25[1] == fvec4(2.1f, 2.2f, 2.3f, 2.4f));
+
+		constexpr fmat2x4 m26((fmat4x2(m1)));
+		test_assert(m26[0] == fvec4(1.1f, 1.2f, 0.0f, 0.0f));
+		test_assert(m26[1] == fvec4(2.1f, 2.2f, 0.0f, 0.0f));
+
+		constexpr fmat2x4 m27((fmat4x3(m1)));
+		test_assert(m27[0] == fvec4(1.1f, 1.2f, 1.3f, 0.0f));
+		test_assert(m27[1] == fvec4(2.1f, 2.2f, 2.3f, 0.0f));
+
+		constexpr fmat2x4 m28((fmat4x4(m1)));
+		test_assert(m28[0] == fvec4(1.1f, 1.2f, 1.3f, 1.4f));
+		test_assert(m28[1] == fvec4(2.1f, 2.2f, 2.3f, 2.4f));
 	}
 
 	TEST_CASE(explicit_conversion_constructor)

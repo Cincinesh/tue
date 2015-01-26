@@ -443,21 +443,21 @@ namespace tue
 			const T& z,
 			const T& w)
 		{
-			return{ v, z, w };
+			return vec(v, z, w);
 		}
 
 		static constexpr vec extend_(
 			const vec3<T>& v,
-			const T& z,
+			const T&,
 			const T& w)
 		{
-			return{ v, w };
+			return vec(v, w);
 		}
 
 		static constexpr vec extend_(
 			const vec4<T>& v,
-			const T& z,
-			const T& w)
+			const T&,
+			const T&)
 		{
 			return v;
 		}
