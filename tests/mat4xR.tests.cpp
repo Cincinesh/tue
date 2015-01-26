@@ -851,6 +851,8 @@ namespace
 			{ 3.1f, 3.2f, 3.3f, 3.4f },
 			{ 4.1f, 4.2f, 4.3f, 4.4f },
 		};
+		constexpr fmat3x4 m34(m44);
+		constexpr fmat2x4 m24(m44);
 
 		CONST_OR_CONSTEXPR fmat4x4 m1 = math::transpose(m44);
 		test_assert(m1[0] == m44.row(0));
@@ -858,8 +860,16 @@ namespace
 		test_assert(m1[2] == m44.row(2));
 		test_assert(m1[3] == m44.row(3));
 
-		// TODO
-		//constexpr fmat3x4 m34(m44);
-		//constexpr fmat2x4 m24(m44);
+		CONST_OR_CONSTEXPR fmat4x3 m2 = math::transpose(m34);
+		test_assert(m2[0] == m34.row(0));
+		test_assert(m2[1] == m34.row(1));
+		test_assert(m2[2] == m34.row(2));
+		test_assert(m2[3] == m34.row(3));
+
+		CONST_OR_CONSTEXPR fmat4x2 m3 = math::transpose(m24);
+		test_assert(m3[0] == m24.row(0));
+		test_assert(m3[1] == m24.row(1));
+		test_assert(m3[2] == m24.row(2));
+		test_assert(m3[3] == m24.row(3));
 	}
 }
