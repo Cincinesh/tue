@@ -163,6 +163,14 @@ namespace
 		test_assert(m[3][1] == math::dot(fm22.row(1), dm42.column(3)));
 	}
 
+	TEST_CASE(mat2x3_times_vec2)
+	{
+		CONST_OR_CONSTEXPR auto v = fm23 * dv2;
+		test_assert(v[0] == math::dot(fm23.row(0), dv2));
+		test_assert(v[1] == math::dot(fm23.row(1), dv2));
+		test_assert(v[2] == math::dot(fm23.row(2), dv2));
+	}
+
 	TEST_CASE(mat2x3_times_mat2x2)
 	{
 		CONST_OR_CONSTEXPR auto m = fm23 * dm22;
@@ -203,5 +211,65 @@ namespace
 		test_assert(m[3][0] == math::dot(fm23.row(0), dm42.column(3)));
 		test_assert(m[3][1] == math::dot(fm23.row(1), dm42.column(3)));
 		test_assert(m[3][2] == math::dot(fm23.row(2), dm42.column(3)));
+	}
+
+	TEST_CASE(mat2x4_times_vec2)
+	{
+		CONST_OR_CONSTEXPR auto v = fm24 * dv2;
+		test_assert(v[0] == math::dot(fm24.row(0), dv2));
+		test_assert(v[1] == math::dot(fm24.row(1), dv2));
+		test_assert(v[2] == math::dot(fm24.row(2), dv2));
+		test_assert(v[3] == math::dot(fm24.row(3), dv2));
+	}
+
+	TEST_CASE(mat2x4_times_mat2x2)
+	{
+		CONST_OR_CONSTEXPR auto m = fm24 * dm22;
+		test_assert(m[0][0] == math::dot(fm24.row(0), dm22.column(0)));
+		test_assert(m[0][1] == math::dot(fm24.row(1), dm22.column(0)));
+		test_assert(m[0][2] == math::dot(fm24.row(2), dm22.column(0)));
+		test_assert(m[0][3] == math::dot(fm24.row(3), dm22.column(0)));
+		test_assert(m[1][0] == math::dot(fm24.row(0), dm22.column(1)));
+		test_assert(m[1][1] == math::dot(fm24.row(1), dm22.column(1)));
+		test_assert(m[1][2] == math::dot(fm24.row(2), dm22.column(1)));
+		test_assert(m[1][3] == math::dot(fm24.row(3), dm22.column(1)));
+	}
+
+	TEST_CASE(mat2x4_times_mat3x2)
+	{
+		CONST_OR_CONSTEXPR auto m = fm24 * dm32;
+		test_assert(m[0][0] == math::dot(fm24.row(0), dm32.column(0)));
+		test_assert(m[0][1] == math::dot(fm24.row(1), dm32.column(0)));
+		test_assert(m[0][2] == math::dot(fm24.row(2), dm32.column(0)));
+		test_assert(m[0][3] == math::dot(fm24.row(3), dm32.column(0)));
+		test_assert(m[1][0] == math::dot(fm24.row(0), dm32.column(1)));
+		test_assert(m[1][1] == math::dot(fm24.row(1), dm32.column(1)));
+		test_assert(m[1][2] == math::dot(fm24.row(2), dm32.column(1)));
+		test_assert(m[1][3] == math::dot(fm24.row(3), dm32.column(1)));
+		test_assert(m[2][0] == math::dot(fm24.row(0), dm32.column(2)));
+		test_assert(m[2][1] == math::dot(fm24.row(1), dm32.column(2)));
+		test_assert(m[2][2] == math::dot(fm24.row(2), dm32.column(2)));
+		test_assert(m[2][3] == math::dot(fm24.row(3), dm32.column(2)));
+	}
+
+	TEST_CASE(mat2x4_times_mat4x2)
+	{
+		CONST_OR_CONSTEXPR auto m = fm24 * dm42;
+		test_assert(m[0][0] == math::dot(fm24.row(0), dm42.column(0)));
+		test_assert(m[0][1] == math::dot(fm24.row(1), dm42.column(0)));
+		test_assert(m[0][2] == math::dot(fm24.row(2), dm42.column(0)));
+		test_assert(m[0][3] == math::dot(fm24.row(3), dm42.column(0)));
+		test_assert(m[1][0] == math::dot(fm24.row(0), dm42.column(1)));
+		test_assert(m[1][1] == math::dot(fm24.row(1), dm42.column(1)));
+		test_assert(m[1][2] == math::dot(fm24.row(2), dm42.column(1)));
+		test_assert(m[1][3] == math::dot(fm24.row(3), dm42.column(1)));
+		test_assert(m[2][0] == math::dot(fm24.row(0), dm42.column(2)));
+		test_assert(m[2][1] == math::dot(fm24.row(1), dm42.column(2)));
+		test_assert(m[2][2] == math::dot(fm24.row(2), dm42.column(2)));
+		test_assert(m[2][3] == math::dot(fm24.row(3), dm42.column(2)));
+		test_assert(m[3][0] == math::dot(fm24.row(0), dm42.column(3)));
+		test_assert(m[3][1] == math::dot(fm24.row(1), dm42.column(3)));
+		test_assert(m[3][2] == math::dot(fm24.row(2), dm42.column(3)));
+		test_assert(m[3][3] == math::dot(fm24.row(3), dm42.column(3)));
 	}
 }

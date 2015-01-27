@@ -239,9 +239,10 @@ namespace tue
 		const mat2x3<T>& lhs,
 		const vec2<U>& rhs)
 	{
-		return vec2<decltype(lhs[0][0] * rhs[0])>{
+		return vec3<decltype(lhs[0][0] * rhs[0])>{
 			math::dot(lhs.row(0), rhs),
 			math::dot(lhs.row(1), rhs),
+			math::dot(lhs.row(2), rhs),
 		};
 	}
 
@@ -316,6 +317,106 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(3)),
 				math::dot(lhs.row(1), rhs.column(3)),
 				math::dot(lhs.row(2), rhs.column(3)),
+			}
+		};
+	}
+
+	// -------------
+	// mat2x4 * vec2
+	// -------------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const mat2x4<T>& lhs,
+		const vec2<U>& rhs)
+	{
+		return vec4<decltype(lhs[0][0] * rhs[0])>{
+			math::dot(lhs.row(0), rhs),
+			math::dot(lhs.row(1), rhs),
+			math::dot(lhs.row(2), rhs),
+			math::dot(lhs.row(3), rhs),
+		};
+	}
+
+	// ---------------
+	// mat2x4 * mat2x2
+	// ---------------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const mat2x4<T>& lhs,
+		const mat2x2<U>& rhs)
+	{
+		return mat2x4<decltype(lhs[0][0] * rhs[0][0])>{
+			{
+				math::dot(lhs.row(0), rhs.column(0)),
+				math::dot(lhs.row(1), rhs.column(0)),
+				math::dot(lhs.row(2), rhs.column(0)),
+				math::dot(lhs.row(3), rhs.column(0)),
+			} , {
+				math::dot(lhs.row(0), rhs.column(1)),
+				math::dot(lhs.row(1), rhs.column(1)),
+				math::dot(lhs.row(2), rhs.column(1)),
+				math::dot(lhs.row(3), rhs.column(1)),
+			}
+		};
+	}
+
+	// ---------------
+	// mat2x4 * mat3x2
+	// ---------------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const mat2x4<T>& lhs,
+		const mat3x2<U>& rhs)
+	{
+		return mat3x4<decltype(lhs[0][0] * rhs[0][0])>{
+			{
+				math::dot(lhs.row(0), rhs.column(0)),
+				math::dot(lhs.row(1), rhs.column(0)),
+				math::dot(lhs.row(2), rhs.column(0)),
+				math::dot(lhs.row(3), rhs.column(0)),
+			} , {
+				math::dot(lhs.row(0), rhs.column(1)),
+				math::dot(lhs.row(1), rhs.column(1)),
+				math::dot(lhs.row(2), rhs.column(1)),
+				math::dot(lhs.row(3), rhs.column(1)),
+			}, {
+				math::dot(lhs.row(0), rhs.column(2)),
+				math::dot(lhs.row(1), rhs.column(2)),
+				math::dot(lhs.row(2), rhs.column(2)),
+				math::dot(lhs.row(3), rhs.column(2)),
+			}
+		};
+	}
+
+	// ---------------
+	// mat2x4 * mat4x2
+	// ---------------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const mat2x4<T>& lhs,
+		const mat4x2<U>& rhs)
+	{
+		return mat4x4<decltype(lhs[0][0] * rhs[0][0])>{
+			{
+				math::dot(lhs.row(0), rhs.column(0)),
+				math::dot(lhs.row(1), rhs.column(0)),
+				math::dot(lhs.row(2), rhs.column(0)),
+				math::dot(lhs.row(3), rhs.column(0)),
+			} , {
+				math::dot(lhs.row(0), rhs.column(1)),
+				math::dot(lhs.row(1), rhs.column(1)),
+				math::dot(lhs.row(2), rhs.column(1)),
+				math::dot(lhs.row(3), rhs.column(1)),
+			}, {
+				math::dot(lhs.row(0), rhs.column(2)),
+				math::dot(lhs.row(1), rhs.column(2)),
+				math::dot(lhs.row(2), rhs.column(2)),
+				math::dot(lhs.row(3), rhs.column(2)),
+			}, {
+				math::dot(lhs.row(0), rhs.column(3)),
+				math::dot(lhs.row(1), rhs.column(3)),
+				math::dot(lhs.row(2), rhs.column(3)),
+				math::dot(lhs.row(3), rhs.column(3)),
 			}
 		};
 	}
