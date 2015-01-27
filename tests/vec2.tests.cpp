@@ -227,44 +227,44 @@ namespace
 	{
 		ivec2 v1 = iv21;
 		test_assert(&(v1 %= u2) == &v1);
-		test_assert(v1 == iv21 % u2);
+		test_assert(v1 == ivec2(iv21 % u2));
 
 		ivec2 v2 = iv21;
 		test_assert(&(v2 %= uv22) == &v2);
-		test_assert(v2 == iv21 % uv22);
+		test_assert(v2 == ivec2(iv21 % uv22));
 	}
 
 	TEST_CASE(bitwise_and_assignment_operator)
 	{
 		ivec2 v1 = iv21;
 		test_assert(&(v1 &= u2) == &v1);
-		test_assert(v1 == (iv21 & u2));
+		test_assert(v1 == ivec2(iv21 & u2));
 
 		ivec2 v2 = iv21;
 		test_assert(&(v2 &= uv22) == &v2);
-		test_assert(v2 == (iv21 & uv22));
+		test_assert(v2 == ivec2(iv21 & uv22));
 	}
 
 	TEST_CASE(bitwise_or_assignment_operator)
 	{
 		ivec2 v1 = iv21;
 		test_assert(&(v1 |= u2) == &v1);
-		test_assert(v1 == (iv21 | u2));
+		test_assert(v1 == ivec2(iv21 | u2));
 
 		ivec2 v2 = iv21;
 		test_assert(&(v2 |= uv22) == &v2);
-		test_assert(v2 == (iv21 | uv22));
+		test_assert(v2 == ivec2(iv21 | uv22));
 	}
 
 	TEST_CASE(bitwise_xor_assignment_operator)
 	{
 		ivec2 v1 = iv21;
 		test_assert(&(v1 ^= u2) == &v1);
-		test_assert(v1 == (iv21 ^ u2));
+		test_assert(v1 == ivec2(iv21 ^ u2));
 
 		ivec2 v2 = iv21;
 		test_assert(&(v2 ^= uv22) == &v2);
-		test_assert(v2 == (iv21 ^ uv22));
+		test_assert(v2 == ivec2(iv21 ^ uv22));
 	}
 
 	TEST_CASE(bitwise_shift_left_assignment_operator)

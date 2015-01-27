@@ -482,44 +482,44 @@ namespace
 	{
 		mat4x2<int> m1 = im421;
 		test_assert(&(m1 %= u2) == &m1);
-		test_assert(m1 == im421 % u2);
+		test_assert(m1 == mat4x2<int>(im421 % u2));
 
 		mat4x2<int> m2 = im421;
 		test_assert(&(m2 %= um422) == &m2);
-		test_assert(m2 == im421 % um422);
+		test_assert(m2 == mat4x2<int>(im421 % um422));
 	}
 
 	TEST_CASE(bitwise_and_assignment_operator)
 	{
 		mat4x2<int> m1 = im421;
 		test_assert(&(m1 &= u2) == &m1);
-		test_assert(m1 == (im421 & u2));
+		test_assert(m1 == mat4x2<int>(im421 & u2));
 
 		mat4x2<int> m2 = im421;
 		test_assert(&(m2 &= um422) == &m2);
-		test_assert(m2 == (im421 & um422));
+		test_assert(m2 == mat4x2<int>(im421 & um422));
 	}
 
 	TEST_CASE(bitwise_or_assignment_operator)
 	{
 		mat4x2<int> m1 = im421;
 		test_assert(&(m1 |= u2) == &m1);
-		test_assert(m1 == (im421 | u2));
+		test_assert(m1 == mat4x2<int>(im421 | u2));
 
 		mat4x2<int> m2 = im421;
 		test_assert(&(m2 |= um422) == &m2);
-		test_assert(m2 == (im421 | um422));
+		test_assert(m2 == mat4x2<int>(im421 | um422));
 	}
 
 	TEST_CASE(bitwise_xor_assignment_operator)
 	{
 		mat4x2<int> m1 = im421;
 		test_assert(&(m1 ^= u2) == &m1);
-		test_assert(m1 == (im421 ^ u2));
+		test_assert(m1 == mat4x2<int>(im421 ^ u2));
 
 		mat4x2<int> m2 = im421;
 		test_assert(&(m2 ^= um422) == &m2);
-		test_assert(m2 == (im421 ^ um422));
+		test_assert(m2 == mat4x2<int>(im421 ^ um422));
 	}
 
 	TEST_CASE(bitwise_shift_left_assignment_operator)

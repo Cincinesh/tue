@@ -429,44 +429,44 @@ namespace
 	{
 		mat3x2<int> m1 = im321;
 		test_assert(&(m1 %= u2) == &m1);
-		test_assert(m1 == im321 % u2);
+		test_assert(m1 == mat3x2<int>(im321 % u2));
 
 		mat3x2<int> m2 = im321;
 		test_assert(&(m2 %= um322) == &m2);
-		test_assert(m2 == im321 % um322);
+		test_assert(m2 == mat3x2<int>(im321 % um322));
 	}
 
 	TEST_CASE(bitwise_and_assignment_operator)
 	{
 		mat3x2<int> m1 = im321;
 		test_assert(&(m1 &= u2) == &m1);
-		test_assert(m1 == (im321 & u2));
+		test_assert(m1 == mat3x2<int>(im321 & u2));
 
 		mat3x2<int> m2 = im321;
 		test_assert(&(m2 &= um322) == &m2);
-		test_assert(m2 == (im321 & um322));
+		test_assert(m2 == mat3x2<int>(im321 & um322));
 	}
 
 	TEST_CASE(bitwise_or_assignment_operator)
 	{
 		mat3x2<int> m1 = im321;
 		test_assert(&(m1 |= u2) == &m1);
-		test_assert(m1 == (im321 | u2));
+		test_assert(m1 == mat3x2<int>(im321 | u2));
 
 		mat3x2<int> m2 = im321;
 		test_assert(&(m2 |= um322) == &m2);
-		test_assert(m2 == (im321 | um322));
+		test_assert(m2 == mat3x2<int>(im321 | um322));
 	}
 
 	TEST_CASE(bitwise_xor_assignment_operator)
 	{
 		mat3x2<int> m1 = im321;
 		test_assert(&(m1 ^= u2) == &m1);
-		test_assert(m1 == (im321 ^ u2));
+		test_assert(m1 == mat3x2<int>(im321 ^ u2));
 
 		mat3x2<int> m2 = im321;
 		test_assert(&(m2 ^= um322) == &m2);
-		test_assert(m2 == (im321 ^ um322));
+		test_assert(m2 == mat3x2<int>(im321 ^ um322));
 	}
 
 	TEST_CASE(bitwise_shift_left_assignment_operator)

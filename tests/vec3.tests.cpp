@@ -288,44 +288,44 @@ namespace
 	{
 		ivec3 v1 = iv31;
 		test_assert(&(v1 %= u2) == &v1);
-		test_assert(v1 == iv31 % u2);
+		test_assert(v1 == ivec3(iv31 % u2));
 
 		ivec3 v2 = iv31;
 		test_assert(&(v2 %= uv32) == &v2);
-		test_assert(v2 == iv31 % uv32);
+		test_assert(v2 == ivec3(iv31 % uv32));
 	}
 
 	TEST_CASE(bitwise_and_assignment_operator)
 	{
 		ivec3 v1 = iv31;
 		test_assert(&(v1 &= u2) == &v1);
-		test_assert(v1 == (iv31 & u2));
+		test_assert(v1 == ivec3(iv31 & u2));
 
 		ivec3 v2 = iv31;
 		test_assert(&(v2 &= uv32) == &v2);
-		test_assert(v2 == (iv31 & uv32));
+		test_assert(v2 == ivec3(iv31 & uv32));
 	}
 
 	TEST_CASE(bitwise_or_assignment_operator)
 	{
 		ivec3 v1 = iv31;
 		test_assert(&(v1 |= u2) == &v1);
-		test_assert(v1 == (iv31 | u2));
+		test_assert(v1 == ivec3(iv31 | u2));
 
 		ivec3 v2 = iv31;
 		test_assert(&(v2 |= uv32) == &v2);
-		test_assert(v2 == (iv31 | uv32));
+		test_assert(v2 == ivec3(iv31 | uv32));
 	}
 
 	TEST_CASE(bitwise_xor_assignment_operator)
 	{
 		ivec3 v1 = iv31;
 		test_assert(&(v1 ^= u2) == &v1);
-		test_assert(v1 == (iv31 ^ u2));
+		test_assert(v1 == ivec3(iv31 ^ u2));
 
 		ivec3 v2 = iv31;
 		test_assert(&(v2 ^= uv32) == &v2);
-		test_assert(v2 == (iv31 ^ uv32));
+		test_assert(v2 == ivec3(iv31 ^ uv32));
 	}
 
 	TEST_CASE(bitwise_shift_left_assignment_operator)

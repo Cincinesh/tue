@@ -357,44 +357,44 @@ namespace
 	{
 		ivec4 v1 = iv41;
 		test_assert(&(v1 %= u2) == &v1);
-		test_assert(v1 == iv41 % u2);
+		test_assert(v1 == ivec4(iv41 % u2));
 
 		ivec4 v2 = iv41;
 		test_assert(&(v2 %= uv42) == &v2);
-		test_assert(v2 == iv41 % uv42);
+		test_assert(v2 == ivec4(iv41 % uv42));
 	}
 
 	TEST_CASE(bitwise_and_assignment_operator)
 	{
 		ivec4 v1 = iv41;
 		test_assert(&(v1 &= u2) == &v1);
-		test_assert(v1 == (iv41 & u2));
+		test_assert(v1 == ivec4(iv41 & u2));
 
 		ivec4 v2 = iv41;
 		test_assert(&(v2 &= uv42) == &v2);
-		test_assert(v2 == (iv41 & uv42));
+		test_assert(v2 == ivec4(iv41 & uv42));
 	}
 
 	TEST_CASE(bitwise_or_assignment_operator)
 	{
 		ivec4 v1 = iv41;
 		test_assert(&(v1 |= u2) == &v1);
-		test_assert(v1 == (iv41 | u2));
+		test_assert(v1 == ivec4(iv41 | u2));
 
 		ivec4 v2 = iv41;
 		test_assert(&(v2 |= uv42) == &v2);
-		test_assert(v2 == (iv41 | uv42));
+		test_assert(v2 == ivec4(iv41 | uv42));
 	}
 
 	TEST_CASE(bitwise_xor_assignment_operator)
 	{
 		ivec4 v1 = iv41;
 		test_assert(&(v1 ^= u2) == &v1);
-		test_assert(v1 == (iv41 ^ u2));
+		test_assert(v1 == ivec4(iv41 ^ u2));
 
 		ivec4 v2 = iv41;
 		test_assert(&(v2 ^= uv42) == &v2);
-		test_assert(v2 == (iv41 ^ uv42));
+		test_assert(v2 == ivec4(iv41 ^ uv42));
 	}
 
 	TEST_CASE(bitwise_shift_left_assignment_operator)
