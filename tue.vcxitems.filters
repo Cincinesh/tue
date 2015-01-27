@@ -31,5 +31,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\matmult.hpp">
       <Filter>detail_</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\quat.hpp" />
   </ItemGroup>
 </Project>
