@@ -209,10 +209,10 @@ namespace tue
 		{
 			const auto l = math::length(q);
 			return quat<decltype(l / l)>{
-				delctype(l)(q[0]) / l,
-					delctype(l)(q[1]) / l,
-					delctype(l)(q[2]) / l,
-					delctype(l)(q[3]) / l,
+				decltype(l)(q[0]) / l,
+					decltype(l)(q[1]) / l,
+					decltype(l)(q[2]) / l,
+					decltype(l)(q[3]) / l,
 			};
 		}
 	}

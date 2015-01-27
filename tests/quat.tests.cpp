@@ -14,9 +14,11 @@ namespace
 {
 	using namespace tue;
 
-	constexpr fquat fq(1.1f, 1.2f, 1.3f, 1.4f);
+	constexpr fquat fq1(1.1f, 1.2f, 1.3f, 1.4f);
 
-	constexpr dquat dq(1.1, 1.2, 1.3, 1.4);
+	constexpr dquat dq1(1.1, 1.2, 1.3, 1.4);
+
+	constexpr quat<int> iq1(111, 222, 333, 444);
 
 	TEST_CASE(default_constructor)
 	{
@@ -44,20 +46,20 @@ namespace
 
 	TEST_CASE(explicit_conversion_constructor)
 	{
-		constexpr fquat q(dq);
-		test_assert(q[0] == static_cast<float>(dq[0]));
-		test_assert(q[1] == static_cast<float>(dq[1]));
-		test_assert(q[2] == static_cast<float>(dq[2]));
-		test_assert(q[3] == static_cast<float>(dq[3]));
+		constexpr fquat q(dq1);
+		test_assert(q[0] == static_cast<float>(dq1[0]));
+		test_assert(q[1] == static_cast<float>(dq1[1]));
+		test_assert(q[2] == static_cast<float>(dq1[2]));
+		test_assert(q[3] == static_cast<float>(dq1[3]));
 	}
 
 	TEST_CASE(implicit_conversion_constructor)
 	{
-		CONST_OR_CONSTEXPR dquat q = fq;
-		test_assert(q[0] == static_cast<double>(fq[0]));
-		test_assert(q[1] == static_cast<double>(fq[1]));
-		test_assert(q[2] == static_cast<double>(fq[2]));
-		test_assert(q[3] == static_cast<double>(fq[3]));
+		CONST_OR_CONSTEXPR dquat q = fq1;
+		test_assert(q[0] == static_cast<double>(fq1[0]));
+		test_assert(q[1] == static_cast<double>(fq1[1]));
+		test_assert(q[2] == static_cast<double>(fq1[2]));
+		test_assert(q[3] == static_cast<double>(fq1[3]));
 	}
 
 	TEST_CASE(identity)
@@ -71,8 +73,8 @@ namespace
 
 	TEST_CASE(x)
 	{
-		CONST_OR_CONSTEXPR float x = fq.x();
-		test_assert(x == fq[0]);
+		CONST_OR_CONSTEXPR float x = fq1.x();
+		test_assert(x == fq1[0]);
 	}
 
 	TEST_CASE(set_x)
@@ -87,8 +89,8 @@ namespace
 
 	TEST_CASE(y)
 	{
-		CONST_OR_CONSTEXPR float y = fq.y();
-		test_assert(y == fq[1]);
+		CONST_OR_CONSTEXPR float y = fq1.y();
+		test_assert(y == fq1[1]);
 	}
 
 	TEST_CASE(set_y)
@@ -103,8 +105,8 @@ namespace
 
 	TEST_CASE(z)
 	{
-		CONST_OR_CONSTEXPR float z = fq.z();
-		test_assert(z == fq[2]);
+		CONST_OR_CONSTEXPR float z = fq1.z();
+		test_assert(z == fq1[2]);
 	}
 
 	TEST_CASE(set_z)
@@ -119,8 +121,8 @@ namespace
 
 	TEST_CASE(w)
 	{
-		CONST_OR_CONSTEXPR float w = fq.w();
-		test_assert(w == fq[3]);
+		CONST_OR_CONSTEXPR float w = fq1.w();
+		test_assert(w == fq1[3]);
 	}
 
 	TEST_CASE(set_w)
@@ -135,8 +137,8 @@ namespace
 
 	TEST_CASE(v)
 	{
-		CONST_OR_CONSTEXPR fvec3 v = fq.v();
-		test_assert(v == fvec3(fq[0], fq[1], fq[2]));
+		CONST_OR_CONSTEXPR fvec3 v = fq1.v();
+		test_assert(v == fvec3(fq1[0], fq1[1], fq1[2]));
 	}
 
 	TEST_CASE(set_v)
@@ -158,8 +160,8 @@ namespace
 
 	TEST_CASE(s)
 	{
-		CONST_OR_CONSTEXPR float s = fq.s();
-		test_assert(s == fq[3]);
+		CONST_OR_CONSTEXPR float s = fq1.s();
+		test_assert(s == fq1[3]);
 	}
 
 	TEST_CASE(set_s)
@@ -203,5 +205,72 @@ namespace
 		test_assert(&cq1 == &q1);
 		test_assert(&cq2 == &q2);
 		test_assert(&cq3 == &q3);
+	}
+
+	TEST_CASE(equality_operator)
+	{
+		constexpr fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
+		constexpr quat<int> q2(1, 2, 3, 4);
+		constexpr quat<int> q3(0, 2, 3, 4);
+		constexpr quat<int> q4(1, 0, 3, 4);
+		constexpr quat<int> q5(1, 2, 0, 4);
+		constexpr quat<int> q6(1, 2, 3, 0);
+		CONST_OR_CONSTEXPR bool result1 = (q1 == q2);
+		CONST_OR_CONSTEXPR bool result2 = (q1 == q3);
+		CONST_OR_CONSTEXPR bool result3 = (q1 == q4);
+		CONST_OR_CONSTEXPR bool result4 = (q1 == q5);
+		CONST_OR_CONSTEXPR bool result5 = (q1 == q6);
+		test_assert(result1 == true);
+		test_assert(result2 == false);
+		test_assert(result3 == false);
+		test_assert(result4 == false);
+		test_assert(result5 == false);
+	}
+
+	TEST_CASE(inequality_operator)
+	{
+		constexpr fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
+		constexpr quat<int> q2(1, 2, 3, 4);
+		constexpr quat<int> q3(0, 2, 3, 4);
+		constexpr quat<int> q4(1, 0, 3, 4);
+		constexpr quat<int> q5(1, 2, 0, 4);
+		constexpr quat<int> q6(1, 2, 3, 0);
+		CONST_OR_CONSTEXPR bool result1 = (q1 != q2);
+		CONST_OR_CONSTEXPR bool result2 = (q1 != q3);
+		CONST_OR_CONSTEXPR bool result3 = (q1 != q4);
+		CONST_OR_CONSTEXPR bool result4 = (q1 != q5);
+		CONST_OR_CONSTEXPR bool result5 = (q1 != q6);
+		test_assert(result1 == false);
+		test_assert(result2 == true);
+		test_assert(result3 == true);
+		test_assert(result4 == true);
+		test_assert(result5 == true);
+	}
+
+	TEST_CASE(length2)
+	{
+		test_assert(math::length2(fq1) ==
+			math::length2(fq1[0])
+			+ math::length2(fq1[1])
+			+ math::length2(fq1[2])
+			+ math::length2(fq1[3]));
+
+		test_assert(math::length2(iq1) == math::length2(dquat(iq1)));
+	}
+
+	TEST_CASE(length)
+	{
+		test_assert(math::length(fq1) == math::sqrt(math::length2(fq1)));
+		test_assert(math::length(iq1) == math::length(dquat(iq1)));
+	}
+
+	TEST_CASE(normalize)
+	{
+		const fquat q = math::normalize(fq1);
+		test_assert(q[0] == fq1[0] / math::length(fq1));
+		test_assert(q[1] == fq1[1] / math::length(fq1));
+		test_assert(q[2] == fq1[2] / math::length(fq1));
+		test_assert(q[3] == fq1[3] / math::length(fq1));
+		test_assert(math::normalize(iq1) == math::normalize(dquat(iq1)));
 	}
 }
