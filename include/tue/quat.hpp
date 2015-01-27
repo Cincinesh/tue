@@ -16,15 +16,15 @@
 
 namespace tue
 {
+	// -------
+	// quat<T>
+	// -------
 	template<typename T>
 	class quat;
 
 	using fquat = quat<float>;
 	using dquat = quat<double>;
 
-	// -------
-	// quat<T>
-	// -------
 	template<typename T>
 	class quat
 	{
