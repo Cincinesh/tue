@@ -20,6 +20,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)mat3xR.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)mat4xR.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)math.tests.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)matmult.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)vec2.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)vec3.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)test_case.cpp" />

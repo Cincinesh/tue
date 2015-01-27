@@ -6,7 +6,6 @@
 #pragma once
 
 #include "../math.hpp"
-#include "../unused.hpp"
 #include "../vec.hpp"
 
 #ifdef _MSC_VER

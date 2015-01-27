@@ -1028,3 +1028,4 @@ namespace tue
 }
 
 #undef TUE_CONSTEXPR
+#include "matmult.hpp"
