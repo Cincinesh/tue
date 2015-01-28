@@ -150,6 +150,21 @@ namespace tue
 		}
 	};
 
+	// ---------
+	// lhs * rhs
+	// ---------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR auto operator*(
+		const quat<T>& lhs,
+		const quat<U>& rhs)
+	{
+		return quat<decltype(lhs[0] * rhs[0])>{
+			lhs.s() * rhs.v() + rhs.s() * lhs.v()
+				+ math::cross(lhs.v(), rhs.v()),
+			lhs.s() * rhs.s() - math::dot(lhs.v(), rhs.v()),
+		};
+	}
+
 	// ----------
 	// lhs == rhs
 	// ----------
@@ -210,10 +225,30 @@ namespace tue
 			const auto l = math::length(q);
 			return quat<decltype(l / l)>{
 				decltype(l)(q[0]) / l,
-					decltype(l)(q[1]) / l,
-					decltype(l)(q[2]) / l,
-					decltype(l)(q[3]) / l,
+				decltype(l)(q[1]) / l,
+				decltype(l)(q[2]) / l,
+				decltype(l)(q[3]) / l,
 			};
+		}
+
+		// -----------
+		// conjugate()
+		// -----------
+		template<typename T>
+		inline TUE_CONSTEXPR quat<T> conjugate(const quat<T>& q)
+		{
+			return{ -q.v(), q.s() };
+		}
+
+		// --------
+		// rotate()
+		// --------
+		template<typename T, typename U>
+		inline TUE_CONSTEXPR auto rotate(
+			const quat<T>& q,
+			const vec3<U>& v)
+		{
+			return (q * quat<U>(v, U(0)) * math::conjugate(q)).v();
 		}
 	}
 }

@@ -14,9 +14,13 @@ namespace
 {
 	using namespace tue;
 
+	constexpr dvec3 dv32(2.2, 2.4, 2.6);
+
 	constexpr fquat fq1(1.1f, 1.2f, 1.3f, 1.4f);
 
 	constexpr dquat dq1(1.1, 1.2, 1.3, 1.4);
+
+	constexpr dquat dq2(2.2, 2.4, 2.6, 2.8);
 
 	constexpr quat<int> iq1(111, 222, 333, 444);
 
@@ -207,6 +211,16 @@ namespace
 		test_assert(&cq3 == &q3);
 	}
 
+	TEST_CASE(multiplication_operator)
+	{
+		CONST_OR_CONSTEXPR auto q = fq1 * dq2;
+		test_assert(q.v() ==
+			fq1.s() * dq2.v() + dq2.s() * fq1.v()
+			+ math::cross(fq1.v(), dq2.v()));
+		test_assert(q.s() ==
+			fq1.s() * dq2.s() - math::dot(fq1.v(), dq2.v()));
+	}
+
 	TEST_CASE(equality_operator)
 	{
 		constexpr fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
@@ -272,5 +286,18 @@ namespace
 		test_assert(q[2] == fq1[2] / math::length(fq1));
 		test_assert(q[3] == fq1[3] / math::length(fq1));
 		test_assert(math::normalize(iq1) == math::normalize(dquat(iq1)));
+	}
+
+	TEST_CASE(conjugate)
+	{
+		CONST_OR_CONSTEXPR fquat q = math::conjugate(fq1);
+		test_assert(q.v() == -fq1.v());
+		test_assert(q.s() == fq1.s());
+	}
+
+	TEST_CASE(rotate)
+	{
+		CONST_OR_CONSTEXPR dvec3 v = math::rotate(fq1, dv32);
+		test_assert(v == (fq1 * dquat(dv32, 0) * math::conjugate(fq1)).v());
 	}
 }
