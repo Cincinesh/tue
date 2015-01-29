@@ -33,5 +33,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\quat.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\size2d.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\rect.hpp" />
   </ItemGroup>
 </Project>

@@ -5,12 +5,6 @@
 
 #pragma once
 
-#ifdef _MSC_VER
-#define TUE_CONSTEXPR
-#else
-#define TUE_CONSTEXPR constexpr
-#endif
-
 namespace tue
 {
 	// ---------
@@ -40,14 +34,18 @@ namespace tue
 		// ---------------------
 		// component constructor
 		// ---------------------
-		explicit constexpr size2d(const T& width, const T& height) :
-			width_(width), height_(height) {}
+		explicit constexpr size2d(
+			const T& width,
+			const T& height) :
+			width_(width),
+			height_(height) {}
 
 		// -------------------------------
 		// explicit conversion constructor
 		// -------------------------------
 		template<typename U>
-		explicit constexpr size2d(const size2d<U>& other) :
+		explicit constexpr size2d(
+			const size2d<U>& other) :
 			width_(T(other.width())),
 			height_(T(other.height())) {}
 
@@ -73,5 +71,3 @@ namespace tue
 		void set_height(const T& height) { height_ = height; }
 	};
 }
-
-#undef TUE_CONSTEXPR
