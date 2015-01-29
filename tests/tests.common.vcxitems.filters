@@ -22,6 +22,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)mat2xR.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)matmult.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)quat.tests.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)size2d.tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)test_case.hpp">

@@ -32,5 +32,6 @@
       <Filter>detail_</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\quat.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\size2d.hpp" />
   </ItemGroup>
 </Project>

@@ -43,7 +43,7 @@ namespace
 
 	TEST_CASE(width)
 	{
-		constexpr fsize2d size(1.1f, 2.2f);
+		CONST_OR_CONSTEXPR fsize2d size(1.1f, 2.2f);
 		CONST_OR_CONSTEXPR float width = size.width();
 		test_assert(width == 1.1f);
 	}
@@ -58,7 +58,7 @@ namespace
 
 	TEST_CASE(height)
 	{
-		constexpr fsize2d size(1.1f, 2.2f);
+		CONST_OR_CONSTEXPR fsize2d size(1.1f, 2.2f);
 		CONST_OR_CONSTEXPR float height = size.height();
 		test_assert(height == 2.2f);
 	}
