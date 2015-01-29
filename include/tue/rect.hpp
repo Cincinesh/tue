@@ -8,6 +8,12 @@
 #include "size2d.hpp"
 #include "vec.hpp"
 
+#ifdef _MSC_VER
+#define TUE_CONSTEXPR
+#else
+#define TUE_CONSTEXPR constexpr
+#endif
+
 namespace tue
 {
 	// ----------
@@ -136,4 +142,29 @@ namespace tue
 		constexpr S height() const { return size_.height(); }
 		void set_height(const S& height) { size_.set_height(height); }
 	};
+
+	// ----------
+	// lhs == rhs
+	// ----------
+	template<typename LP, typename LS, typename RP, typename RS>
+	inline TUE_CONSTEXPR bool operator==(
+		const rect<LP, LS>& lhs,
+		const rect<RP, RS>& rhs)
+	{
+		return lhs.position() == rhs.position()
+			&& lhs.size() == rhs.size();
+	}
+
+	// ----------
+	// lhs != rhs
+	// ----------
+	template<typename LP, typename LS, typename RP, typename RS>
+	inline TUE_CONSTEXPR bool operator!=(
+		const rect<LP, LS>& lhs,
+		const rect<RP, RS>& rhs)
+	{
+		return !(lhs == rhs);
+	}
 }
+
+#undef TUE_CONSTEXPR
