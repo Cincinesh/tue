@@ -961,7 +961,9 @@ namespace tue
 		// min()
 		// -----
 		template<typename T, int R>
-		inline auto min(const mat<T, 3, R>& m1, const mat<T, 3, R>& m2)
+		inline auto min(
+			const mat<T, 3, R>& m1,
+			const mat<T, 3, R>& m2)
 		{
 			return mat<decltype(math::min(m1[0][0], m2[0][0])), 3, R>{
 				math::min(m1[0], m2[0]),
@@ -974,7 +976,9 @@ namespace tue
 		// max()
 		// -----
 		template<typename T, int R>
-		inline auto max(const mat<T, 3, R>& m1, const mat<T, 3, R>& m2)
+		inline auto max(
+			const mat<T, 3, R>& m1,
+			const mat<T, 3, R>& m2)
 		{
 			return mat<decltype(math::max(m1[0][0], m2[0][0])), 3, R>{
 				math::max(m1[0], m2[0]),

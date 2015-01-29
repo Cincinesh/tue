@@ -105,7 +105,10 @@ namespace tue
 		// --
 		// xy
 		// --
-		constexpr vec2<T> xy() const { return vec2<T>(*this); }
+		constexpr vec2<T> xy() const
+		{
+			return vec2<T>(*this);
+		}
 
 		void set_xy(const T& x, const T& y)
 		{
@@ -973,7 +976,9 @@ namespace tue
 		// min()
 		// -----
 		template<typename T>
-		inline auto min(const vec3<T>& v1, const vec3<T>& v2)
+		inline auto min(
+			const vec3<T>& v1,
+			const vec3<T>& v2)
 		{
 			return vec3<decltype(math::min(v1[0], v2[0]))>{
 				math::min(v1[0], v2[0]),
@@ -986,7 +991,9 @@ namespace tue
 		// max()
 		// -----
 		template<typename T>
-		inline auto max(const vec3<T>& v1, const vec3<T>& v2)
+		inline auto max(
+			const vec3<T>& v1,
+			const vec3<T>& v2)
 		{
 			return vec3<decltype(math::max(v1[0], v2[0]))>{
 				math::max(v1[0], v2[0]),
@@ -1062,8 +1069,7 @@ namespace tue
 		template<typename T>
 		inline auto normalize(const vec3<T>& v)
 		{
-			return vec3<decltype(math::length(v))>(v)
-				/ math::length(v);
+			return vec3<decltype(math::length(v))>(v) / math::length(v);
 		}
 	}
 }

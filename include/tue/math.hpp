@@ -18,8 +18,8 @@ namespace tue
 		// sincos()
 		// --------
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, void>::type sincos(
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		void>::type sincos(
 			T x,
 			T& sin_out,
 			T& cos_out) noexcept
@@ -29,8 +29,8 @@ namespace tue
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, void>::type sincos(
+		inline typename std::enable_if<std::is_integral<T>::value,
+		void>::type sincos(
 			T x,
 			double& sin_out,
 			double& cos_out) noexcept
@@ -42,15 +42,15 @@ namespace tue
 		// sin()
 		// -----
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type sin(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type sin(T x) noexcept
 		{
 			return std::sin(x);
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type sin(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type sin(T x) noexcept
 		{
 			return math::sin(static_cast<double>(x));
 		}
@@ -59,15 +59,15 @@ namespace tue
 		// cos()
 		// -----
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type cos(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type cos(T x) noexcept
 		{
 			return std::cos(x);
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type cos(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type cos(T x) noexcept
 		{
 			return math::cos(static_cast<double>(x));
 		}
@@ -76,10 +76,8 @@ namespace tue
 		// pow()
 		// ------
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type pow(
-			T base,
-			T exponent) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type pow(T base, T exponent) noexcept
 		{
 			return std::pow(base, exponent);
 		}
@@ -90,9 +88,7 @@ namespace tue
 			&& std::is_arithmetic<U>::value
 			&& !std::is_same<T, long double>::value
 			&& !std::is_same<U, long double>::value,
-			double>::type pow(
-			T base,
-			U exponent) noexcept
+		double>::type pow(T base, U exponent) noexcept
 		{
 			return math::pow(
 				static_cast<double>(base),
@@ -105,9 +101,7 @@ namespace tue
 			&& std::is_arithmetic<U>::value
 			&& (std::is_same<T, long double>::value
 				^ std::is_same<U, long double>::value),
-			long double>::type pow(
-			T base,
-			U exponent) noexcept
+		long double>::type pow(T base, U exponent) noexcept
 		{
 			return math::pow(
 				static_cast<long double>(base),
@@ -118,15 +112,15 @@ namespace tue
 		// rcp()
 		// -----
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type rcp(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type rcp(T x) noexcept
 		{
 			return 1 / x;
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type rcp(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type rcp(T x) noexcept
 		{
 			return math::rcp(static_cast<double>(x));
 		}
@@ -135,15 +129,15 @@ namespace tue
 		// sqrt()
 		// ------
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type sqrt(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type sqrt(T x) noexcept
 		{
 			return std::sqrt(x);
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type sqrt(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type sqrt(T x) noexcept
 		{
 			return math::sqrt(static_cast<double>(x));
 		}
@@ -152,15 +146,15 @@ namespace tue
 		// rsqrt()
 		// -------
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type rsqrt(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type rsqrt(T x) noexcept
 		{
 			return math::rcp(math::sqrt(x));
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type rsqrt(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type rsqrt(T x) noexcept
 		{
 			return math::rsqrt(static_cast<double>(x));
 		}
@@ -169,8 +163,8 @@ namespace tue
 		// min()
 		// -----
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_arithmetic<T>::value, T>::type min(T x1, T x2)
+		inline typename std::enable_if<std::is_arithmetic<T>::value,
+		T>::type min(T x1, T x2)
 		{
 			return std::min(x1, x2);
 		}
@@ -179,8 +173,8 @@ namespace tue
 		// max()
 		// -----
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_arithmetic<T>::value, T>::type max(T x1, T x2)
+		inline typename std::enable_if<std::is_arithmetic<T>::value,
+		T>::type max(T x1, T x2)
 		{
 			return std::max(x1, x2);
 		}
@@ -190,14 +184,14 @@ namespace tue
 		// -----
 		template<typename T>
 		inline typename std::enable_if<std::is_signed<T>::value,
-			T>::type abs(T x) noexcept
+		T>::type abs(T x) noexcept
 		{
 			return static_cast<T>(std::abs(x));
 		}
 
 		template<typename T>
 		inline typename std::enable_if<std::is_unsigned<T>::value,
-			T>::type abs(T x) noexcept
+		T>::type abs(T x) noexcept
 		{
 			return x;
 		}
@@ -206,11 +200,10 @@ namespace tue
 		// dot()
 		// -----
 		template<typename T, typename U>
-		inline constexpr auto dot(T lhs, U rhs) noexcept
-			-> typename std::enable_if<
+		inline constexpr typename std::enable_if<
 			std::is_arithmetic<T>::value
 			&& std::is_arithmetic<U>::value,
-			decltype(lhs * rhs)>::type
+		decltype(T() * U())>::type dot(T lhs, U rhs) noexcept
 		{
 			return lhs * rhs;
 		}
@@ -219,15 +212,15 @@ namespace tue
 		// length2()
 		// ---------
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type length2(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type length2(T x) noexcept
 		{
 			return x * x;
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type length2(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type length2(T x) noexcept
 		{
 			return math::length2(static_cast<double>(x));
 		}
@@ -236,15 +229,15 @@ namespace tue
 		// length()
 		// --------
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type length(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type length(T x) noexcept
 		{
 			return math::sqrt(math::length2(x));
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type length(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type length(T x) noexcept
 		{
 			return math::length(static_cast<double>(x));
 		}
@@ -253,15 +246,15 @@ namespace tue
 		// normalize()
 		// -----------
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_floating_point<T>::value, T>::type normalize(T x) noexcept
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type normalize(T x) noexcept
 		{
 			return x / math::length(x);
 		}
 
 		template<typename T>
-		inline typename std::enable_if<
-			std::is_integral<T>::value, double>::type normalize(T x) noexcept
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type normalize(T x) noexcept
 		{
 			return math::normalize(static_cast<double>(x));
 		}

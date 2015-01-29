@@ -93,12 +93,17 @@ namespace tue
 		// --------
 		// position
 		// --------
-		constexpr vec2<P> position() const { return position_; }
+		constexpr vec2<P> position() const
+		{
+			return position_;
+		}
+
 		void set_position(const P& x, const P& y)
 		{
 			position_.set_x(x);
 			position_.set_y(y);
 		}
+
 		void set_position(const vec2<P>& position)
 		{
 			position_ = position;
@@ -119,12 +124,17 @@ namespace tue
 		// ----
 		// size
 		// ----
-		constexpr size2d<S> size() const { return size_; }
+		constexpr size2d<S> size() const
+		{
+			return size_;
+		}
+
 		void set_size(const S& width, const S& height)
 		{
 			size_.set_width(width);
 			size_.set_height(height);
 		}
+
 		void set_size(const size2d<S>& size)
 		{
 			size_ = size;
