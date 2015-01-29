@@ -19,7 +19,6 @@ namespace
 	constexpr fquat fq1(1.1f, 1.2f, 1.3f, 1.4f);
 
 	constexpr dquat dq1(1.1, 1.2, 1.3, 1.4);
-
 	constexpr dquat dq2(2.2, 2.4, 2.6, 2.8);
 
 	constexpr quat<int> iq1(111, 222, 333, 444);

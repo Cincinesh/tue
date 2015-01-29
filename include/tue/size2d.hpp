@@ -5,6 +5,12 @@
 
 #pragma once
 
+#ifdef _MSC_VER
+#define TUE_CONSTEXPR
+#else
+#define TUE_CONSTEXPR constexpr
+#endif
+
 namespace tue
 {
 	// ---------
@@ -70,4 +76,29 @@ namespace tue
 		constexpr T height() const { return height_; }
 		void set_height(const T& height) { height_ = height; }
 	};
+
+	// ----------
+	// lhs == rhs
+	// ----------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR bool operator==(
+		const size2d<T>& lhs,
+		const size2d<U>& rhs)
+	{
+		return lhs.width() == rhs.width()
+			&& lhs.height() == rhs.height();
+	}
+
+	// ----------
+	// lhs != rhs
+	// ----------
+	template<typename T, typename U>
+	inline TUE_CONSTEXPR bool operator!=(
+		const size2d<T>& lhs,
+		const size2d<U>& rhs)
+	{
+		return !(lhs == rhs);
+	}
 }
+
+#undef TUE_CONSTEXPR

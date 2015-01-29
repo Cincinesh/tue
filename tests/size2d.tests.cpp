@@ -70,4 +70,32 @@ namespace
 		test_assert(size.width() == 1.1f);
 		test_assert(size.height() == 3.3f);
 	}
+
+	TEST_CASE(equality_operator)
+	{
+		constexpr fsize2d s1(1.0f, 2.0f);
+		constexpr isize2d s2(1, 2);
+		constexpr isize2d s3(0, 2);
+		constexpr isize2d s4(1, 0);
+		CONST_OR_CONSTEXPR bool result1 = (s1 == s2);
+		CONST_OR_CONSTEXPR bool result2 = (s1 == s3);
+		CONST_OR_CONSTEXPR bool result3 = (s1 == s4);
+		test_assert(result1 == true);
+		test_assert(result2 == false);
+		test_assert(result3 == false);
+	}
+
+	TEST_CASE(inequality_operator)
+	{
+		constexpr fsize2d s1(1.0f, 2.0f);
+		constexpr isize2d s2(1, 2);
+		constexpr isize2d s3(0, 2);
+		constexpr isize2d s4(1, 0);
+		CONST_OR_CONSTEXPR bool result1 = (s1 != s2);
+		CONST_OR_CONSTEXPR bool result2 = (s1 != s3);
+		CONST_OR_CONSTEXPR bool result3 = (s1 != s4);
+		test_assert(result1 == false);
+		test_assert(result2 == true);
+		test_assert(result3 == true);
+	}
 }
