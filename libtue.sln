@@ -39,15 +39,15 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\unix.common\unix.common.vcxitems*{3a2c22d5-8365-4eaf-a21c-23eba4df89cc}*SharedItemsImports = 9
-		src\common\common.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
 		tests\tests.common.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
+		src\common\common.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
 		tests\tests.common.vcxitems*{eb016a8e-f7fd-4e20-bf85-a93f9e1424aa}*SharedItemsImports = 9
 		tue.vcxitems*{f35c7e57-08ce-41a4-b7a8-471606299296}*SharedItemsImports = 9
 		src\windows.common\windows.common.vcxitems*{ead6d685-abe1-4ba8-bfc6-ff4393c1422e}*SharedItemsImports = 9
 		src\common\common.vcxitems*{127e9f2c-454f-498b-a8df-a22a688863f2}*SharedItemsImports = 4
 		src\windows.common\windows.common.vcxitems*{127e9f2c-454f-498b-a8df-a22a688863f2}*SharedItemsImports = 4
-		src\common\common.vcxitems*{6471f7ea-fba6-4b69-9245-8bccc7d289b0}*SharedItemsImports = 4
 		tests\tests.common.vcxitems*{6471f7ea-fba6-4b69-9245-8bccc7d289b0}*SharedItemsImports = 4
+		src\common\common.vcxitems*{6471f7ea-fba6-4b69-9245-8bccc7d289b0}*SharedItemsImports = 4
 		src\unix.common\unix.common.vcxitems*{ab764140-c9a4-4070-8a89-7de647c97bfd}*SharedItemsImports = 4
 		src\common\common.vcxitems*{ab764140-c9a4-4070-8a89-7de647c97bfd}*SharedItemsImports = 4
 		src\common\common.vcxitems*{c0d88744-472f-42c4-94a2-a25310ec9cd2}*SharedItemsImports = 9
@@ -69,8 +69,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|ARM.ActiveCfg = Debug|ARM
 		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|ARM.Build.0 = Debug|ARM
-		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
-		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|Mixed Platforms.Build.0 = Debug|ARM
+		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|Win32.ActiveCfg = Debug|x86
 		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|Win32.Build.0 = Debug|x86
 		{AB764140-C9A4-4070-8A89-7DE647C97BFD}.Debug|x64.ActiveCfg = Debug|x86
@@ -103,8 +103,8 @@ Global
 		{D89D5432-3C8B-431D-B468-D57B76D294B3}.Release|x86.Build.0 = Release|Win32
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|ARM.ActiveCfg = Debug|ARM
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|ARM.Build.0 = Debug|ARM
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|Mixed Platforms.Build.0 = Debug|ARM
+		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|Win32.ActiveCfg = Debug|x86
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|Win32.Build.0 = Debug|x86
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|x64.ActiveCfg = Debug|x86

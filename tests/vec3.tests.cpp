@@ -650,17 +650,17 @@ namespace
 		test_assert(ipow2[2] == math::pow(iv31[2], fv32[2]));
 	}
 
-	TEST_CASE(rcp)
+	TEST_CASE(recip)
 	{
-		const auto frcp = math::rcp(fv31);
-		test_assert(frcp[0] == math::rcp(fv31[0]));
-		test_assert(frcp[1] == math::rcp(fv31[1]));
-		test_assert(frcp[2] == math::rcp(fv31[2]));
+		const auto frecip = math::recip(fv31);
+		test_assert(frecip[0] == math::recip(fv31[0]));
+		test_assert(frecip[1] == math::recip(fv31[1]));
+		test_assert(frecip[2] == math::recip(fv31[2]));
 
-		const auto ircp = math::rcp(iv31);
-		test_assert(ircp[0] == math::rcp(iv31[0]));
-		test_assert(ircp[1] == math::rcp(iv31[1]));
-		test_assert(ircp[2] == math::rcp(iv31[2]));
+		const auto irecip = math::recip(iv31);
+		test_assert(irecip[0] == math::recip(iv31[0]));
+		test_assert(irecip[1] == math::recip(iv31[1]));
+		test_assert(irecip[2] == math::recip(iv31[2]));
 	}
 
 	TEST_CASE(sqrt)

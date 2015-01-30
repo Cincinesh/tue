@@ -24,6 +24,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)quat.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)size2d.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)rect.tests.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)float32x4.tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)test_case.hpp">

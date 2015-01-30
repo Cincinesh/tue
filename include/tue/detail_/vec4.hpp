@@ -1017,17 +1017,17 @@ namespace tue
 			};
 		}
 
-		// -----
-		// rcp()
-		// -----
+		// -------
+		// recip()
+		// -------
 		template<typename T>
-		inline auto rcp(const vec4<T>& v)
+		inline auto recip(const vec4<T>& v)
 		{
-			return vec4<decltype(math::rcp(v[0]))>{
-				math::rcp(v[0]),
-				math::rcp(v[1]),
-				math::rcp(v[2]),
-				math::rcp(v[3]),
+			return vec4<decltype(math::recip(v[0]))>{
+				math::recip(v[0]),
+				math::recip(v[1]),
+				math::recip(v[2]),
+				math::recip(v[3]),
 			};
 		}
 

@@ -766,19 +766,19 @@ namespace
 		test_assert(ipow2[3] == math::pow(iv41[3], fv42[3]));
 	}
 
-	TEST_CASE(rcp)
+	TEST_CASE(recip)
 	{
-		const auto frcp = math::rcp(fv41);
-		test_assert(frcp[0] == math::rcp(fv41[0]));
-		test_assert(frcp[1] == math::rcp(fv41[1]));
-		test_assert(frcp[2] == math::rcp(fv41[2]));
-		test_assert(frcp[3] == math::rcp(fv41[3]));
+		const auto frecip = math::recip(fv41);
+		test_assert(frecip[0] == math::recip(fv41[0]));
+		test_assert(frecip[1] == math::recip(fv41[1]));
+		test_assert(frecip[2] == math::recip(fv41[2]));
+		test_assert(frecip[3] == math::recip(fv41[3]));
 
-		const auto ircp = math::rcp(iv41);
-		test_assert(ircp[0] == math::rcp(iv41[0]));
-		test_assert(ircp[1] == math::rcp(iv41[1]));
-		test_assert(ircp[2] == math::rcp(iv41[2]));
-		test_assert(ircp[3] == math::rcp(iv41[3]));
+		const auto irecip = math::recip(iv41);
+		test_assert(irecip[0] == math::recip(iv41[0]));
+		test_assert(irecip[1] == math::recip(iv41[1]));
+		test_assert(irecip[2] == math::recip(iv41[2]));
+		test_assert(irecip[3] == math::recip(iv41[3]));
 	}
 
 	TEST_CASE(sqrt)

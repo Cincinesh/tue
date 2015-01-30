@@ -93,10 +93,10 @@ namespace
 			== math::pow(1.23L, 456.0L));
 	}
 
-	TEST_CASE(rcp)
+	TEST_CASE(recip)
 	{
-		test_assert(math::rcp(1.23f) == 1 / 1.23f);
-		test_assert(math::rcp(123) == math::rcp(123.0));
+		test_assert(math::recip(1.23f) == 1 / 1.23f);
+		test_assert(math::recip(123) == math::recip(123.0));
 	}
 
 	TEST_CASE(sqrt)

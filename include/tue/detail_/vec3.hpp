@@ -933,16 +933,16 @@ namespace tue
 			};
 		}
 
-		// -----
-		// rcp()
-		// -----
+		// -------
+		// recip()
+		// -------
 		template<typename T>
-		inline auto rcp(const vec3<T>& v)
+		inline auto recip(const vec3<T>& v)
 		{
-			return vec3<decltype(math::rcp(v[0]))>{
-				math::rcp(v[0]),
-				math::rcp(v[1]),
-				math::rcp(v[2]),
+			return vec3<decltype(math::recip(v[0]))>{
+				math::recip(v[0]),
+				math::recip(v[1]),
+				math::recip(v[2]),
 			};
 		}
 

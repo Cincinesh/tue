@@ -918,16 +918,16 @@ namespace tue
 			};
 		}
 
-		// -----
-		// rcp()
-		// -----
+		// -------
+		// recip()
+		// -------
 		template<typename T, int R>
-		inline auto rcp(const mat<T, 3, R>& m)
+		inline auto recip(const mat<T, 3, R>& m)
 		{
-			return mat<decltype(math::rcp(m[0][0])), 3, R>{
-				math::rcp(m[0]),
-				math::rcp(m[1]),
-				math::rcp(m[2]),
+			return mat<decltype(math::recip(m[0][0])), 3, R>{
+				math::recip(m[0]),
+				math::recip(m[1]),
+				math::recip(m[2]),
 			};
 		}
 

@@ -108,21 +108,21 @@ namespace tue
 				static_cast<long double>(exponent));
 		}
 
-		// -----
-		// rcp()
-		// -----
+		// -------
+		// recip()
+		// -------
 		template<typename T>
 		inline typename std::enable_if<std::is_floating_point<T>::value,
-		T>::type rcp(T x) noexcept
+		T>::type recip(T x) noexcept
 		{
 			return 1 / x;
 		}
 
 		template<typename T>
 		inline typename std::enable_if<std::is_integral<T>::value,
-		double>::type rcp(T x) noexcept
+		double>::type recip(T x) noexcept
 		{
-			return math::rcp(static_cast<double>(x));
+			return math::recip(static_cast<double>(x));
 		}
 
 		// ------
@@ -149,7 +149,7 @@ namespace tue
 		inline typename std::enable_if<std::is_floating_point<T>::value,
 		T>::type rsqrt(T x) noexcept
 		{
-			return math::rcp(math::sqrt(x));
+			return math::recip(math::sqrt(x));
 		}
 
 		template<typename T>

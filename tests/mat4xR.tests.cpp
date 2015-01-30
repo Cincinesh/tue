@@ -905,19 +905,19 @@ namespace
 		test_assert(ipow2[3] == math::pow(im421[3], fm422[3]));
 	}
 
-	TEST_CASE(rcp)
+	TEST_CASE(recip)
 	{
-		const auto frcp = math::rcp(fm421);
-		test_assert(frcp[0] == math::rcp(fm421[0]));
-		test_assert(frcp[1] == math::rcp(fm421[1]));
-		test_assert(frcp[2] == math::rcp(fm421[2]));
-		test_assert(frcp[3] == math::rcp(fm421[3]));
+		const auto frecip = math::recip(fm421);
+		test_assert(frecip[0] == math::recip(fm421[0]));
+		test_assert(frecip[1] == math::recip(fm421[1]));
+		test_assert(frecip[2] == math::recip(fm421[2]));
+		test_assert(frecip[3] == math::recip(fm421[3]));
 
-		const auto ircp = math::rcp(im421);
-		test_assert(ircp[0] == math::rcp(im421[0]));
-		test_assert(ircp[1] == math::rcp(im421[1]));
-		test_assert(ircp[2] == math::rcp(im421[2]));
-		test_assert(ircp[3] == math::rcp(im421[3]));
+		const auto irecip = math::recip(im421);
+		test_assert(irecip[0] == math::recip(im421[0]));
+		test_assert(irecip[1] == math::recip(im421[1]));
+		test_assert(irecip[2] == math::recip(im421[2]));
+		test_assert(irecip[3] == math::recip(im421[3]));
 	}
 
 	TEST_CASE(sqrt)
