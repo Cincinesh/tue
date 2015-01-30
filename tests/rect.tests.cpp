@@ -69,11 +69,11 @@ namespace
 	TEST_CASE(implicit_conversion_operator)
 	{
 		constexpr iurect iur(1, 2, 3U, 4U);
-		constexpr rect<float, double> fdr = iur;
-		test_assert(fdr.x() == static_cast<float>(1));
-		test_assert(fdr.y() == static_cast<float>(2));
-		test_assert(fdr.width() == static_cast<double>(3U));
-		test_assert(fdr.height() == static_cast<double>(4U));
+		CONST_OR_CONSTEXPR rect<double> dr = iur;
+		test_assert(dr.x() == static_cast<double>(1));
+		test_assert(dr.y() == static_cast<double>(2));
+		test_assert(dr.width() == static_cast<double>(3U));
+		test_assert(dr.height() == static_cast<double>(4U));
 	}
 
 	TEST_CASE(position)
@@ -150,7 +150,7 @@ namespace
 	TEST_CASE(set_size)
 	{
 		rect<int, float> r1(1, 2, 3.3f, 4.4f);
-		r1.set_size(5.5f, 6.6);
+		r1.set_size(5.5f, 6.6f);
 		test_assert(r1.x() == 1);
 		test_assert(r1.y() == 2);
 		test_assert(r1.width() == 5.5f);
