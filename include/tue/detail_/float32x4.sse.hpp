@@ -95,7 +95,7 @@ namespace tue
 		// -------
 		// store()
 		// -------
-		void store(float* destination) noexcept
+		void store(float* destination) const noexcept
 		{
 			_mm_store_ps(destination, underlying_);
 		}
@@ -171,12 +171,12 @@ namespace tue
 	// ---------------------------------
 	inline float32x4& operator++(float32x4& v) noexcept
 	{
-		return v = v + float32x4(1);
+		return v = v + float32x4(1.0f);
 	}
 
 	inline float32x4& operator--(float32x4& v) noexcept
 	{
-		return v = v - float32x4(1);
+		return v = v - float32x4(1.0f);
 	}
 
 	inline float32x4 operator++(float32x4& v, int) noexcept
