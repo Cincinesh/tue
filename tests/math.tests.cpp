@@ -37,6 +37,18 @@ namespace
 		test_assert(math::cos(123) == math::cos(123.0));
 	}
 
+	TEST_CASE(exp)
+	{
+		test_assert(math::exp(1.23f) == std::exp(1.23f));
+		test_assert(math::exp(123) == math::exp(123.0));
+	}
+
+	TEST_CASE(log)
+	{
+		test_assert(math::log(1.23f) == std::log(1.23f));
+		test_assert(math::log(123) == math::log(123.0));
+	}
+
 	TEST_CASE(pow)
 	{
 		test_assert(

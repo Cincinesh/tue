@@ -72,9 +72,43 @@ namespace tue
 			return math::cos(static_cast<double>(x));
 		}
 
-		// ------
+		// -----
+		// exp()
+		// -----
+		template<typename T>
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type exp(T x) noexcept
+		{
+			return std::exp(x);
+		}
+
+		template<typename T>
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type exp(T x) noexcept
+		{
+			return math::exp(static_cast<double>(x));
+		}
+
+		// -----
+		// log()
+		// -----
+		template<typename T>
+		inline typename std::enable_if<std::is_floating_point<T>::value,
+		T>::type log(T x) noexcept
+		{
+			return std::log(x);
+		}
+
+		template<typename T>
+		inline typename std::enable_if<std::is_integral<T>::value,
+		double>::type log(T x) noexcept
+		{
+			return math::log(static_cast<double>(x));
+		}
+
+		// -----
 		// pow()
-		// ------
+		// -----
 		template<typename T>
 		inline typename std::enable_if<std::is_floating_point<T>::value,
 		T>::type pow(T base, T exponent) noexcept
