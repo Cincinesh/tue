@@ -67,14 +67,11 @@ namespace tue
 		explicit float32x4(float s) noexcept :
 			underlying_(_mm_set_ps1(s)) {}
 
-		// ----------------------
-		// component constructors
-		// ----------------------
+		// ---------------------
+		// component constructor
+		// ---------------------
 		float32x4(float x, float y, float z, float w) noexcept :
 			underlying_(_mm_setr_ps(x, y, z, w)) {}
-
-		explicit float32x4(const float* array) noexcept :
-			underlying_(_mm_load_ps(array)) {}
 
 		// ---------------------------------
 		// underlying conversion constructor
@@ -92,12 +89,29 @@ namespace tue
 		// ---------------
 		static float32x4 zero() noexcept { return _mm_setzero_ps(); }
 
+		static float32x4 load(const float* array)
+		{
+			return _mm_load_ps(array);
+		}
+
+		static float32x4 loadu(const float* array)
+		{
+			// unaligned
+			return _mm_loadu_ps(array);
+		}
+
 		// -------
 		// store()
 		// -------
 		void store(float* destination) const noexcept
 		{
 			_mm_store_ps(destination, underlying_);
+		}
+
+		void storeu(float* destination) const noexcept
+		{
+			// unaligned
+			_mm_storeu_ps(destination, underlying_);
 		}
 	};
 
@@ -511,6 +525,15 @@ namespace tue
 		inline float32x4 normalize(float32x4 v) noexcept
 		{
 			return v / math::length(v);
+		}
+
+		inline void transpose(
+			float32x4& v1,
+			float32x4& v2,
+			float32x4& v3,
+			float32x4& v4)
+		{
+			_MM_TRANSPOSE4_PS(v1, v2, v3, v4);
 		}
 
 		// ------------------------------

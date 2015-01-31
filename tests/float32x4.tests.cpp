@@ -107,13 +107,6 @@ namespace
 		test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
 	}
 
-	TEST_CASE(component_array_constructor)
-	{
-		alignas(16) const float array[4] = { 1.1f, 2.2f, 3.3f, 4.4f };
-		const float32x4 v(array);
-		test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
-	}
-
 #ifdef __SSE__
 	TEST_CASE(underlying_converison_constructor)
 	{
@@ -140,6 +133,20 @@ namespace
 		test_assert(equal(v, 0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
+	TEST_CASE(load)
+	{
+		alignas(16) const float array[4] = { 1.1f, 2.2f, 3.3f, 4.4f };
+		const auto v = float32x4::load(array);
+		test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
+	}
+
+	TEST_CASE(loadu)
+	{
+		alignas(16) const float array[5] = { 0.0f, 1.1f, 2.2f, 3.3f, 4.4f };
+		const auto v = float32x4::loadu(array + 1);
+		test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
+	}
+
 	TEST_CASE(store)
 	{
 		const float32x4 v(1.1f, 2.2f, 3.3f, 4.4f);
@@ -149,6 +156,17 @@ namespace
 		test_assert(result[1] == 2.2f);
 		test_assert(result[2] == 3.3f);
 		test_assert(result[3] == 4.4f);
+	}
+
+	TEST_CASE(storeu)
+	{
+		const float32x4 v(1.1f, 2.2f, 3.3f, 4.4f);
+		alignas(16) float result[5];
+		v.storeu(result + 1);
+		test_assert(result[1] == 1.1f);
+		test_assert(result[2] == 2.2f);
+		test_assert(result[3] == 3.3f);
+		test_assert(result[4] == 4.4f);
 	}
 
 	TEST_CASE(unary_plus_operator)
@@ -454,6 +472,19 @@ namespace
 	{
 		test_assert(math::normalize(f42)
 			== f42 / math::length(f42));
+	}
+
+	TEST_CASE(transpose)
+	{
+		float32x4 v1(1.1f, 1.2f, 1.3f, 1.4f);
+		float32x4 v2(2.1f, 2.2f, 2.3f, 2.4f);
+		float32x4 v3(3.1f, 3.2f, 3.3f, 3.4f);
+		float32x4 v4(4.1f, 4.2f, 4.3f, 4.4f);
+		math::transpose(v1, v2, v3, v4);
+		test_assert(equal(v1, 1.1f, 2.1f, 3.1f, 4.1f));
+		test_assert(equal(v2, 1.2f, 2.2f, 3.2f, 4.2f));
+		test_assert(equal(v3, 1.3f, 2.3f, 3.3f, 4.3f));
+		test_assert(equal(v4, 1.4f, 2.4f, 3.4f, 4.4f));
 	}
 
 	TEST_CASE(isless)
