@@ -87,7 +87,10 @@ namespace tue
 		// ---------------
 		// factory methods
 		// ---------------
-		static float32x4 zero() noexcept { return _mm_setzero_ps(); }
+		static float32x4 zero() noexcept
+		{
+			return _mm_setzero_ps();
+		}
 
 		static float32x4 load(const float* array)
 		{
