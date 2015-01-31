@@ -38,7 +38,7 @@ namespace
 
 	bool equal(float32x4 v, float x, float y, float z, float w)
 	{
-		float input[4];
+		alignas(16) float input[4];
 		v.store(input);
 		return input[0] == x
 			&& input[1] == y
@@ -48,7 +48,7 @@ namespace
 
 	bool equal(float32x4 v, int x, int y, int z, int w)
 	{
-		int input[4];
+		alignas(16) int input[4];
 		v.store(reinterpret_cast<float*>(input));
 		return input[0] == x
 			&& input[1] == y
@@ -58,7 +58,7 @@ namespace
 
 	bool bitwise_equal(float32x4 v1, float32x4 v2)
 	{
-		int input1[4], input2[4];
+		alignas(16) int input1[4], input2[4];
 		v1.store(reinterpret_cast<float*>(input1));
 		v2.store(reinterpret_cast<float*>(input2));
 		return input1[0] == input2[0]
@@ -87,7 +87,7 @@ namespace
 
 	TEST_CASE(component_array_constructor)
 	{
-		const float array[4] = { 1.1f, 2.2f, 3.3f, 4.4f };
+		alignas(16) const float array[4] = { 1.1f, 2.2f, 3.3f, 4.4f };
 		const float32x4 v(array);
 		test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
 	}
@@ -103,7 +103,7 @@ namespace
 	TEST_CASE(underlying_converison_operator)
 	{
 		const __m128 underlying = f41;
-		float result[4];
+		alignas(16) float result[4];
 		_mm_store_ps(result, underlying);
 		test_assert(result[0] == f410);
 		test_assert(result[1] == f411);
@@ -121,7 +121,7 @@ namespace
 	TEST_CASE(store)
 	{
 		const float32x4 v(1.1f, 2.2f, 3.3f, 4.4f);
-		float result[4];
+		alignas(16) float result[4];
 		v.store(result);
 		test_assert(result[0] == 1.1f);
 		test_assert(result[1] == 2.2f);
