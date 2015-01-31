@@ -18,10 +18,10 @@ namespace
 	const float f412 = 1.3f;
 	const float f413 = 1.4f;
 
-	const float f420 = 2.2f;
-	const float f421 = 2.4f;
-	const float f422 = 2.6f;
-	const float f423 = 2.8f;
+	const float f420 = -1.1f;
+	const float f421 = 2.2f;
+	const float f422 = 1.3f;
+	const float f423 = 1.4f;
 
 	const int f410i = reinterpret_cast<const int&>(f410);
 	const int f411i = reinterpret_cast<const int&>(f411);
@@ -33,8 +33,8 @@ namespace
 	const int f422i = reinterpret_cast<const int&>(f422);
 	const int f423i = reinterpret_cast<const int&>(f423);
 
-	const float32x4 f41(f410, f411, f412, f413);
-	const float32x4 f42(f420, f421, f422, f423);
+	const auto f41 = float32x4(f410, f411, f412, f413);
+	const auto f42 = float32x4(f420, f421, f422, f423);
 
 	bool equal(float32x4 v, float x, float y, float z, float w)
 	{
@@ -56,15 +56,37 @@ namespace
 			&& input[3] == w;
 	}
 
+	bool equal(float32x4 v, bool x, bool y, bool z, bool w)
+	{
+		alignas(16) int input[4];
+		v.store(reinterpret_cast<float*>(input));
+		return input[0] == (x == true ? ~0 : 0)
+			&& input[1] == (y == true ? ~0 : 0)
+			&& input[2] == (z == true ? ~0 : 0)
+			&& input[3] == (w == true ? ~0 : 0);
+	}
+
 	bool bitwise_equal(float32x4 v1, float32x4 v2)
 	{
 		alignas(16) int input1[4], input2[4];
 		v1.store(reinterpret_cast<float*>(input1));
 		v2.store(reinterpret_cast<float*>(input2));
 		return input1[0] == input2[0]
-				&& input1[1] == input2[1]
-				&& input1[2] == input2[2]
-				&& input1[3] == input2[3];
+			&& input1[1] == input2[1]
+			&& input1[2] == input2[2]
+			&& input1[3] == input2[3];
+	}
+
+	bool nearly_equal(
+		float32x4 v,
+		float x, float y, float z, float w)
+	{
+		alignas(16) float input[4];
+		v.store(input);
+		return math::abs(input[0] - x) <= 0.001f
+			&& math::abs(input[1] - y) <= 0.001f
+			&& math::abs(input[2] - z) <= 0.001f
+			&& math::abs(input[3] - w) <= 0.001f;
 	}
 
 	TEST_CASE(default_constructor)
@@ -292,5 +314,199 @@ namespace
 		float32x4 v = f41;
 		test_assert(&(v ^= f42) == &v);
 		test_assert(bitwise_equal(v, f41 ^ f42));
+	}
+
+	TEST_CASE(equality_operator)
+	{
+		const float32x4 v1(1.1f, 2.2f, 3.3f, 4.4f);
+		const float32x4 v2(1.1f, 2.2f, 3.3f, 4.4f);
+		const float32x4 v3(0.0f, 2.2f, 3.3f, 4.4f);
+		const float32x4 v4(1.1f, 0.0f, 3.3f, 4.4f);
+		const float32x4 v5(1.1f, 2.2f, 0.0f, 4.4f);
+		const float32x4 v6(1.1f, 2.2f, 3.3f, 0.0f);
+		test_assert((v1 == v2) == true);
+		test_assert((v1 == v3) == false);
+		test_assert((v1 == v4) == false);
+		test_assert((v1 == v5) == false);
+		test_assert((v1 == v6) == false);
+	}
+
+	TEST_CASE(inequality_operator)
+	{
+		const float32x4 v1(1.1f, 2.2f, 3.3f, 4.4f);
+		const float32x4 v2(1.1f, 2.2f, 3.3f, 4.4f);
+		const float32x4 v3(0.0f, 2.2f, 3.3f, 4.4f);
+		const float32x4 v4(1.1f, 0.0f, 3.3f, 4.4f);
+		const float32x4 v5(1.1f, 2.2f, 0.0f, 4.4f);
+		const float32x4 v6(1.1f, 2.2f, 3.3f, 0.0f);
+		test_assert((v1 != v2) == false);
+		test_assert((v1 != v3) == true);
+		test_assert((v1 != v4) == true);
+		test_assert((v1 != v5) == true);
+		test_assert((v1 != v6) == true);
+	}
+
+	TEST_CASE(sincos)
+	{
+		float32x4 sin_result, cos_result;
+		math::sincos(f41, sin_result, cos_result);
+		test_assert(nearly_equal(sin_result,
+			math::sin(f410),
+			math::sin(f411),
+			math::sin(f412),
+			math::sin(f413)));
+		test_assert(nearly_equal(cos_result,
+			math::cos(f410),
+			math::cos(f411),
+			math::cos(f412),
+			math::cos(f413)));
+	}
+
+	TEST_CASE(sin)
+	{
+		test_assert(nearly_equal(math::sin(f41),
+			math::sin(f410),
+			math::sin(f411),
+			math::sin(f412),
+			math::sin(f413)));
+	}
+
+	TEST_CASE(cos)
+	{
+		test_assert(nearly_equal(math::cos(f41),
+			math::cos(f410),
+			math::cos(f411),
+			math::cos(f412),
+			math::cos(f413)));
+	}
+
+	TEST_CASE(recip)
+	{
+		test_assert(nearly_equal(math::recip(f41),
+			math::recip(f410),
+			math::recip(f411),
+			math::recip(f412),
+			math::recip(f413)));
+	}
+
+	TEST_CASE(sqrt)
+	{
+		test_assert(nearly_equal(math::sqrt(f41),
+			math::sqrt(f410),
+			math::sqrt(f411),
+			math::sqrt(f412),
+			math::sqrt(f413)));
+	}
+
+	TEST_CASE(rsqrt)
+	{
+		test_assert(nearly_equal(math::rsqrt(f41),
+			math::rsqrt(f410),
+			math::rsqrt(f411),
+			math::rsqrt(f412),
+			math::rsqrt(f413)));
+	}
+
+	TEST_CASE(min)
+	{
+		test_assert(equal(math::min(f41, f42),
+			math::min(f410, f420),
+			math::min(f411, f421),
+			math::min(f412, f422),
+			math::min(f413, f423)));
+	}
+
+	TEST_CASE(max)
+	{
+		test_assert(equal(math::max(f41, f42),
+			math::max(f410, f420),
+			math::max(f411, f421),
+			math::max(f412, f422),
+			math::max(f413, f423)));
+	}
+
+	TEST_CASE(abs)
+	{
+		test_assert(equal(math::abs(f42),
+			math::abs(f420),
+			math::abs(f421),
+			math::abs(f422),
+			math::abs(f423)));
+	}
+
+	TEST_CASE(dot)
+	{
+		test_assert(math::dot(f41, f42) == f41 * f42);
+	}
+
+	TEST_CASE(length2)
+	{
+		test_assert(math::length2(f42) == f42 * f42);
+	}
+
+	TEST_CASE(length)
+	{
+		test_assert(math::length(f42)
+			== math::sqrt(math::length2(f42)));
+	}
+
+	TEST_CASE(normalize)
+	{
+		test_assert(math::normalize(f42)
+			== f42 / math::length(f42));
+	}
+
+	TEST_CASE(isless)
+	{
+		test_assert(equal(math::isless(f41, f42),
+			f410 < f420,
+			f411 < f421,
+			f412 < f422,
+			f413 < f423));
+	}
+
+	TEST_CASE(islessequal)
+	{
+		test_assert(equal(math::islessequal(f41, f42),
+			f410 <= f420,
+			f411 <= f421,
+			f412 <= f422,
+			f413 <= f423));
+	}
+
+	TEST_CASE(isgreater)
+	{
+		test_assert(equal(math::isgreater(f41, f42),
+			f410 > f420,
+			f411 > f421,
+			f412 > f422,
+			f413 > f423));
+	}
+
+	TEST_CASE(isgreaterequal)
+	{
+		test_assert(equal(math::isgreaterequal(f41, f42),
+			f410 >= f420,
+			f411 >= f421,
+			f412 >= f422,
+			f413 >= f423));
+	}
+
+	TEST_CASE(isequal)
+	{
+		test_assert(equal(math::isequal(f41, f42),
+			f410 == f420,
+			f411 == f421,
+			f412 == f422,
+			f413 == f423));
+	}
+
+	TEST_CASE(isnotequal)
+	{
+		test_assert(equal(math::isnotequal(f41, f42),
+			f410 != f420,
+			f411 != f421,
+			f412 != f422,
+			f413 != f423));
 	}
 }
