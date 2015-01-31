@@ -989,6 +989,34 @@ namespace tue
 		}
 
 		// -----
+		// exp()
+		// -----
+		template<typename T>
+		inline auto exp(const vec4<T>& v)
+		{
+			return vec4<decltype(math::exp(v[0]))>{
+				math::exp(v[0]),
+				math::exp(v[1]),
+				math::exp(v[2]),
+				math::exp(v[3]),
+			};
+		}
+
+		// -----
+		// log()
+		// -----
+		template<typename T>
+		inline auto log(const vec4<T>& v)
+		{
+			return vec4<decltype(math::log(v[0]))>{
+				math::log(v[0]),
+				math::log(v[1]),
+				math::log(v[2]),
+				math::log(v[3]),
+			};
+		}
+
+		// -----
 		// pow()
 		// -----
 		template<typename T, typename U>

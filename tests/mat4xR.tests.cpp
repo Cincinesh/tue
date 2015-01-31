@@ -878,6 +878,36 @@ namespace
 		test_assert(icos == math::cos(im421));
 	}
 
+	TEST_CASE(exp)
+	{
+		const auto fexp = math::exp(fm421);
+		test_assert(fexp[0] == math::exp(fm421[0]));
+		test_assert(fexp[1] == math::exp(fm421[1]));
+		test_assert(fexp[2] == math::exp(fm421[2]));
+		test_assert(fexp[3] == math::exp(fm421[3]));
+
+		const auto iexp = math::exp(im421);
+		test_assert(iexp[0] == math::exp(im421[0]));
+		test_assert(iexp[1] == math::exp(im421[1]));
+		test_assert(iexp[2] == math::exp(im421[2]));
+		test_assert(iexp[3] == math::exp(im421[3]));
+	}
+
+	TEST_CASE(log)
+	{
+		const auto flog = math::log(fm421);
+		test_assert(flog[0] == math::log(fm421[0]));
+		test_assert(flog[1] == math::log(fm421[1]));
+		test_assert(flog[2] == math::log(fm421[2]));
+		test_assert(flog[3] == math::log(fm421[3]));
+
+		const auto ilog = math::log(im421);
+		test_assert(ilog[0] == math::log(im421[0]));
+		test_assert(ilog[1] == math::log(im421[1]));
+		test_assert(ilog[2] == math::log(im421[2]));
+		test_assert(ilog[3] == math::log(im421[3]));
+	}
+
 	TEST_CASE(pow)
 	{
 		const auto fpow1 = math::pow(fm421, f2);

@@ -680,6 +680,28 @@ namespace
 		test_assert(icos == math::cos(im221));
 	}
 
+	TEST_CASE(exp)
+	{
+		const auto fexp = math::exp(fm221);
+		test_assert(fexp[0] == math::exp(fm221[0]));
+		test_assert(fexp[1] == math::exp(fm221[1]));
+
+		const auto iexp = math::exp(im221);
+		test_assert(iexp[0] == math::exp(im221[0]));
+		test_assert(iexp[1] == math::exp(im221[1]));
+	}
+
+	TEST_CASE(log)
+	{
+		const auto flog = math::log(fm221);
+		test_assert(flog[0] == math::log(fm221[0]));
+		test_assert(flog[1] == math::log(fm221[1]));
+
+		const auto ilog = math::log(im221);
+		test_assert(ilog[0] == math::log(im221[0]));
+		test_assert(ilog[1] == math::log(im221[1]));
+	}
+
 	TEST_CASE(pow)
 	{
 		const auto fpow1 = math::pow(fm221, f2);

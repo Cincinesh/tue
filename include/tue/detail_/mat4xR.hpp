@@ -956,6 +956,34 @@ namespace tue
 		}
 
 		// -----
+		// exp()
+		// -----
+		template<typename T, int R>
+		inline auto exp(const mat<T, 4, R>& m)
+		{
+			return mat<decltype(math::exp(m[0][0])), 4, R>{
+				math::exp(m[0]),
+				math::exp(m[1]),
+				math::exp(m[2]),
+				math::exp(m[3]),
+			};
+		}
+
+		// -----
+		// log()
+		// -----
+		template<typename T, int R>
+		inline auto log(const mat<T, 4, R>& m)
+		{
+			return mat<decltype(math::log(m[0][0])), 4, R>{
+				math::log(m[0]),
+				math::log(m[1]),
+				math::log(m[2]),
+				math::log(m[3]),
+			};
+		}
+
+		// -----
 		// pow()
 		// -----
 		template<typename T, typename U, int R>
