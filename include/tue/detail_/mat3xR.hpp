@@ -30,12 +30,12 @@ namespace tue
 		// -------------------
 		// default constructor
 		// -------------------
-		mat() = default;
+		mat() noexcept = default;
 
 		// ------------------
 		// scalar constructor
 		// ------------------
-		explicit constexpr mat(const T& s) :
+		explicit constexpr mat(const T& s) noexcept :
 			impl_({ {
 				vec<T, R>(vec<T, 4>(s, T(0), T(0), T(0))),
 				vec<T, R>(vec<T, 4>(T(0), s, T(0), T(0))),
@@ -48,7 +48,7 @@ namespace tue
 		constexpr mat(
 			const vec<T, R>& column0,
 			const vec<T, R>& column1,
-			const vec<T, R>& column2) :
+			const vec<T, R>& column2) noexcept :
 			impl_({ {
 				column0,
 				column1,
@@ -59,7 +59,7 @@ namespace tue
 		// extend and truncate constructors
 		// --------------------------------
 		template<int OtherR>
-		explicit constexpr mat(const mat<T, 2, OtherR>& other) :
+		explicit constexpr mat(const mat<T, 2, OtherR>& other) noexcept :
 			impl_({ {
 				vec<T, R>::extend_(other[0], T(0), T(0)),
 				vec<T, R>::extend_(other[1], T(0), T(0)),
@@ -67,7 +67,7 @@ namespace tue
 			} }) {}
 
 		template<int OtherR>
-		explicit constexpr mat(const mat<T, 3, OtherR>& other) :
+		explicit constexpr mat(const mat<T, 3, OtherR>& other) noexcept :
 			impl_({ {
 				vec<T, R>::extend_(other[0], T(0), T(0)),
 				vec<T, R>::extend_(other[1], T(0), T(0)),
@@ -75,7 +75,7 @@ namespace tue
 			} }) {}
 
 		template<int OtherR>
-		explicit constexpr mat(const mat<T, 4, OtherR>& other) :
+		explicit constexpr mat(const mat<T, 4, OtherR>& other) noexcept :
 			impl_({ {
 				vec<T, R>::extend_(other[0], T(0), T(0)),
 				vec<T, R>::extend_(other[1], T(0), T(0)),
@@ -86,7 +86,7 @@ namespace tue
 		// explicit conversion constructor
 		// -------------------------------
 		template<typename U>
-		explicit constexpr mat(const mat<U, 3, R>& other) :
+		explicit constexpr mat(const mat<U, 3, R>& other) noexcept :
 			impl_({ {
 				vec<T, R>(other[0]),
 				vec<T, R>(other[1]),
@@ -97,7 +97,7 @@ namespace tue
 		// implicit conversion operator
 		// ----------------------------
 		template<typename U>
-		constexpr operator mat<U, 3, R>() const
+		constexpr operator mat<U, 3, R>() const noexcept
 		{
 			return{
 				impl_.columns[0],
@@ -109,14 +109,14 @@ namespace tue
 		// ---------------
 		// factory methods
 		// ---------------
-		static constexpr mat identity() { return mat(T(1)); }
-		static constexpr mat zero() { return mat(T(0)); }
+		static constexpr mat identity() noexcept { return mat(T(1)); }
+		static constexpr mat zero() noexcept { return mat(T(0)); }
 
 		// --------
 		// column()
 		// --------
 		template<typename I>
-		constexpr vec<T, R> column(const I& i) const
+		constexpr vec<T, R> column(const I& i) const noexcept
 		{
 			return impl_.columns[i];
 		}
@@ -124,7 +124,7 @@ namespace tue
 		template<typename I>
 		void set_column(
 			const I& i,
-			const vec<T, R>& column)
+			const vec<T, R>& column) noexcept
 		{
 			impl_.columns[i] = column;
 		}
@@ -133,7 +133,7 @@ namespace tue
 		// row()
 		// --------
 		template<typename J>
-		constexpr vec<T, 3> row(const J& j) const
+		constexpr vec<T, 3> row(const J& j) const noexcept
 		{
 			return{
 				impl_.columns[0][j],
@@ -145,7 +145,7 @@ namespace tue
 		template<typename J>
 		void set_row(
 			const J& j,
-			const vec<T, 3>& row)
+			const vec<T, 3>& row) noexcept
 		{
 			impl_.columns[0][j] = row[0];
 			impl_.columns[1][j] = row[1];
@@ -156,13 +156,13 @@ namespace tue
 		// m[i]
 		// ----
 		template<typename I>
-		vec<T, R>& operator[](const I& i)
+		vec<T, R>& operator[](const I& i) noexcept
 		{
 			return impl_.columns[i];
 		}
 
 		template<typename I>
-		constexpr const vec<T, R>& operator[](const I& i) const
+		constexpr const vec<T, R>& operator[](const I& i) const noexcept
 		{
 			return impl_.columns[i];
 		}
@@ -170,7 +170,7 @@ namespace tue
 		// ---
 		// ++m
 		// ---
-		mat& operator++()
+		mat& operator++() noexcept
 		{
 			++impl_.columns[0];
 			++impl_.columns[1];
@@ -181,7 +181,7 @@ namespace tue
 		// ---
 		// --m
 		// ---
-		mat& operator--()
+		mat& operator--() noexcept
 		{
 			--impl_.columns[0];
 			--impl_.columns[1];
@@ -192,7 +192,7 @@ namespace tue
 		// ---
 		// m++
 		// ---
-		mat operator++(int)
+		mat operator++(int) noexcept
 		{
 			const auto tmp = *this;
 			++*this;
@@ -202,7 +202,7 @@ namespace tue
 		// ---
 		// m--
 		// ---
-		mat operator--(int)
+		mat operator--(int) noexcept
 		{
 			const auto tmp = *this;
 			--*this;
@@ -213,7 +213,7 @@ namespace tue
 		// m += other
 		// ----------
 		template<typename U>
-		mat& operator+=(const U& other)
+		mat& operator+=(const U& other) noexcept
 		{
 			impl_.columns[0] += other;
 			impl_.columns[1] += other;
@@ -222,7 +222,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator+=(const mat<U, 3, R>& other)
+		mat& operator+=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] += other[0];
 			impl_.columns[1] += other[1];
@@ -234,7 +234,7 @@ namespace tue
 		// m -= other
 		// ----------
 		template<typename U>
-		mat& operator-=(const U& other)
+		mat& operator-=(const U& other) noexcept
 		{
 			impl_.columns[0] -= other;
 			impl_.columns[1] -= other;
@@ -243,7 +243,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator-=(const mat<U, 3, R>& other)
+		mat& operator-=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] -= other[0];
 			impl_.columns[1] -= other[1];
@@ -255,7 +255,7 @@ namespace tue
 		// m *= other
 		// ----------
 		template<typename U>
-		mat& operator*=(const U& other)
+		mat& operator*=(const U& other) noexcept
 		{
 			impl_.columns[0] *= other;
 			impl_.columns[1] *= other;
@@ -264,7 +264,7 @@ namespace tue
 		}
 
 		template<typename U, int OtherC, int OtherR>
-		mat& operator*=(const mat<U, OtherC, OtherR>& other)
+		mat& operator*=(const mat<U, OtherC, OtherR>& other) noexcept
 		{
 			return *this = *this * other;
 		}
@@ -273,7 +273,7 @@ namespace tue
 		// m /= other
 		// ----------
 		template<typename U>
-		mat& operator/=(const U& other)
+		mat& operator/=(const U& other) noexcept
 		{
 			impl_.columns[0] /= other;
 			impl_.columns[1] /= other;
@@ -282,7 +282,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator/=(const mat<U, 3, R>& other)
+		mat& operator/=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] /= other[0];
 			impl_.columns[1] /= other[1];
@@ -294,7 +294,7 @@ namespace tue
 		// m %= other
 		// ----------
 		template<typename U>
-		mat& operator%=(const U& other)
+		mat& operator%=(const U& other) noexcept
 		{
 			impl_.columns[0] %= other;
 			impl_.columns[1] %= other;
@@ -303,7 +303,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator%=(const mat<U, 3, R>& other)
+		mat& operator%=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] %= other[0];
 			impl_.columns[1] %= other[1];
@@ -315,7 +315,7 @@ namespace tue
 		// m &= other
 		// ----------
 		template<typename U>
-		mat& operator&=(const U& other)
+		mat& operator&=(const U& other) noexcept
 		{
 			impl_.columns[0] &= other;
 			impl_.columns[1] &= other;
@@ -324,7 +324,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator&=(const mat<U, 3, R>& other)
+		mat& operator&=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] &= other[0];
 			impl_.columns[1] &= other[1];
@@ -336,7 +336,7 @@ namespace tue
 		// m |= other
 		// ----------
 		template<typename U>
-		mat& operator|=(const U& other)
+		mat& operator|=(const U& other) noexcept
 		{
 			impl_.columns[0] |= other;
 			impl_.columns[1] |= other;
@@ -345,7 +345,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator|=(const mat<U, 3, R>& other)
+		mat& operator|=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] |= other[0];
 			impl_.columns[1] |= other[1];
@@ -357,7 +357,7 @@ namespace tue
 		// m ^= other
 		// ----------
 		template<typename U>
-		mat& operator^=(const U& other)
+		mat& operator^=(const U& other) noexcept
 		{
 			impl_.columns[0] ^= other;
 			impl_.columns[1] ^= other;
@@ -366,7 +366,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator^=(const mat<U, 3, R>& other)
+		mat& operator^=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] ^= other[0];
 			impl_.columns[1] ^= other[1];
@@ -378,7 +378,7 @@ namespace tue
 		// m <<= other
 		// -----------
 		template<typename U>
-		mat& operator<<=(const U& other)
+		mat& operator<<=(const U& other) noexcept
 		{
 			impl_.columns[0] <<= other;
 			impl_.columns[1] <<= other;
@@ -387,7 +387,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator<<=(const mat<U, 3, R>& other)
+		mat& operator<<=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] <<= other[0];
 			impl_.columns[1] <<= other[1];
@@ -399,7 +399,7 @@ namespace tue
 		// m >>= other
 		// -----------
 		template<typename U>
-		mat& operator>>=(const U& other)
+		mat& operator>>=(const U& other) noexcept
 		{
 			impl_.columns[0] >>= other;
 			impl_.columns[1] >>= other;
@@ -408,7 +408,7 @@ namespace tue
 		}
 
 		template<typename U>
-		mat& operator>>=(const mat<U, 3, R>& other)
+		mat& operator>>=(const mat<U, 3, R>& other) noexcept
 		{
 			impl_.columns[0] >>= other[0];
 			impl_.columns[1] >>= other[1];
@@ -421,7 +421,7 @@ namespace tue
 	// +m
 	// --
 	template<typename T, int R>
-	inline TUE_CONSTEXPR auto operator+(const mat<T, 3, R>& m)
+	inline TUE_CONSTEXPR auto operator+(const mat<T, 3, R>& m) noexcept
 	{
 		return mat<decltype(+m[0][0]), 3, R>(+m[0], +m[1], +m[2]);
 	}
@@ -430,7 +430,7 @@ namespace tue
 	// -m
 	// --
 	template<typename T, int R>
-	inline TUE_CONSTEXPR auto operator-(const mat<T, 3, R>& m)
+	inline TUE_CONSTEXPR auto operator-(const mat<T, 3, R>& m) noexcept
 	{
 		return mat<decltype(-m[0][0]), 3, R>(-m[0], -m[1], -m[2]);
 	}
@@ -439,7 +439,7 @@ namespace tue
 	// ~m
 	// --
 	template<typename T, int R>
-	inline TUE_CONSTEXPR auto operator~(const mat<T, 3, R>& m)
+	inline TUE_CONSTEXPR auto operator~(const mat<T, 3, R>& m) noexcept
 	{
 		return mat<decltype(~m[0][0]), 3, R>(~m[0], ~m[1], ~m[2]);
 	}
@@ -450,7 +450,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator+(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs + rhs[0][0]), 3, R>{
 			lhs + rhs[0],
@@ -462,7 +462,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator+(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] + rhs), 3, R>{
 			lhs[0] + rhs,
@@ -474,7 +474,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator+(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] + rhs[0][0]), 3, R>{
 			lhs[0] + rhs[0],
@@ -489,7 +489,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator-(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs - rhs[0][0]), 3, R>{
 			lhs - rhs[0],
@@ -501,7 +501,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator-(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] - rhs), 3, R>{
 			lhs[0] - rhs,
@@ -513,7 +513,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator-(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] - rhs[0][0]), 3, R>{
 			lhs[0] - rhs[0],
@@ -528,7 +528,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator*(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs * rhs[0][0]), 3, R>{
 			lhs * rhs[0],
@@ -540,7 +540,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator*(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] * rhs), 3, R>{
 			lhs[0] * rhs,
@@ -555,7 +555,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator/(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs / rhs[0][0]), 3, R>{
 			lhs / rhs[0],
@@ -567,7 +567,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator/(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] / rhs), 3, R>{
 			lhs[0] / rhs,
@@ -579,7 +579,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator/(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] / rhs[0][0]), 3, R>{
 			lhs[0] / rhs[0],
@@ -594,7 +594,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator%(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs % rhs[0][0]), 3, R>{
 			lhs % rhs[0],
@@ -606,7 +606,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator%(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] % rhs), 3, R>{
 			lhs[0] % rhs,
@@ -618,7 +618,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator%(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] % rhs[0][0]), 3, R>{
 			lhs[0] % rhs[0],
@@ -633,7 +633,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator&(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs & rhs[0][0]), 3, R>{
 			lhs & rhs[0],
@@ -645,7 +645,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator&(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] & rhs), 3, R>{
 			lhs[0] & rhs,
@@ -657,7 +657,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator&(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] & rhs[0][0]), 3, R>{
 			lhs[0] & rhs[0],
@@ -672,7 +672,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator|(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs | rhs[0][0]), 3, R>{
 			lhs | rhs[0],
@@ -684,7 +684,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator|(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] | rhs), 3, R>{
 			lhs[0] | rhs,
@@ -696,7 +696,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator|(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] | rhs[0][0]), 3, R>{
 			lhs[0] | rhs[0],
@@ -711,7 +711,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator^(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs ^ rhs[0][0]), 3, R>{
 			lhs ^ rhs[0],
@@ -723,7 +723,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator^(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] ^ rhs), 3, R>{
 			lhs[0] ^ rhs,
@@ -735,7 +735,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator^(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] ^ rhs[0][0]), 3, R>{
 			lhs[0] ^ rhs[0],
@@ -750,7 +750,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator<<(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs << rhs[0][0]), 3, R>{
 			lhs << rhs[0],
@@ -762,7 +762,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator<<(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] << rhs), 3, R>{
 			lhs[0] << rhs,
@@ -774,7 +774,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator<<(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] << rhs[0][0]), 3, R>{
 			lhs[0] << rhs[0],
@@ -789,7 +789,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator>>(
 		const T& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs >> rhs[0][0]), 3, R>{
 			lhs >> rhs[0],
@@ -801,7 +801,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator>>(
 		const mat<T, 3, R>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] >> rhs), 3, R>{
 			lhs[0] >> rhs,
@@ -813,7 +813,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR auto operator>>(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return mat<decltype(lhs[0][0] >> rhs[0][0]), 3, R>{
 			lhs[0] >> rhs[0],
@@ -828,7 +828,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR bool operator==(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return lhs[0] == rhs[0]
 			&& lhs[1] == rhs[1]
@@ -841,7 +841,7 @@ namespace tue
 	template<typename T, typename U, int R>
 	inline TUE_CONSTEXPR bool operator!=(
 		const mat<T, 3, R>& lhs,
-		const mat<U, 3, R>& rhs)
+		const mat<U, 3, R>& rhs) noexcept
 	{
 		return !(lhs == rhs);
 	}
@@ -855,7 +855,7 @@ namespace tue
 		// sin()
 		// -----
 		template<typename T, int R>
-		inline auto sin(const mat<T, 3, R>& m)
+		inline auto sin(const mat<T, 3, R>& m) noexcept
 		{
 			return  mat<decltype(math::sin(m[0][0])), 3, R>{
 				math::sin(m[0]),
@@ -868,7 +868,7 @@ namespace tue
 		// cos()
 		// -----
 		template<typename T, int R>
-		inline auto cos(const mat<T, 3, R>& m)
+		inline auto cos(const mat<T, 3, R>& m) noexcept
 		{
 			return mat<decltype(math::cos(m[0][0])), 3, R>{
 				math::cos(m[0]),
@@ -884,7 +884,7 @@ namespace tue
 		inline void sincos(
 			const mat<T, 3, R>& m,
 			decltype(math::sin(m))& sin_result,
-			decltype(math::cos(m))& cos_result)
+			decltype(math::cos(m))& cos_result) noexcept
 		{
 			math::sincos(m[0], sin_result[0], cos_result[0]);
 			math::sincos(m[1], sin_result[1], cos_result[1]);
@@ -895,7 +895,7 @@ namespace tue
 		// exp()
 		// -----
 		template<typename T, int R>
-		inline auto exp(const mat<T, 3, R>& m)
+		inline auto exp(const mat<T, 3, R>& m) noexcept
 		{
 			return mat<decltype(math::exp(m[0][0])), 3, R>{
 				math::exp(m[0]),
@@ -908,7 +908,7 @@ namespace tue
 		// log()
 		// -----
 		template<typename T, int R>
-		inline auto log(const mat<T, 3, R>& m)
+		inline auto log(const mat<T, 3, R>& m) noexcept
 		{
 			return mat<decltype(math::log(m[0][0])), 3, R>{
 				math::log(m[0]),
@@ -923,7 +923,7 @@ namespace tue
 		template<typename T, typename U, int R>
 		inline auto pow(
 			const mat<T, 3, R>& base,
-			const U& exponent)
+			const U& exponent) noexcept
 		{
 			return mat<decltype(math::pow(base[0][0], exponent)), 3, R>{
 				math::pow(base[0], exponent),
@@ -935,7 +935,7 @@ namespace tue
 		template<typename T, typename U, int R>
 		inline auto pow(
 			const mat<T, 3, R>& base,
-			const mat<U, 3, R>& exponent)
+			const mat<U, 3, R>& exponent) noexcept
 		{
 			return mat<decltype(math::pow(base[0][0], exponent[0][0])), 3, R>{
 				math::pow(base[0], exponent[0]),
@@ -948,7 +948,7 @@ namespace tue
 		// recip()
 		// -------
 		template<typename T, int R>
-		inline auto recip(const mat<T, 3, R>& m)
+		inline auto recip(const mat<T, 3, R>& m) noexcept
 		{
 			return mat<decltype(math::recip(m[0][0])), 3, R>{
 				math::recip(m[0]),
@@ -961,7 +961,7 @@ namespace tue
 		// sqrt()
 		// ------
 		template<typename T, int R>
-		inline auto sqrt(const mat<T, 3, R>& m)
+		inline auto sqrt(const mat<T, 3, R>& m) noexcept
 		{
 			return mat<decltype(math::sqrt(m[0][0])), 3, R>{
 				math::sqrt(m[0]),
@@ -974,7 +974,7 @@ namespace tue
 		// rsqrt()
 		// -------
 		template<typename T, int R>
-		inline auto rsqrt(const mat<T, 3, R>& m)
+		inline auto rsqrt(const mat<T, 3, R>& m) noexcept
 		{
 			return mat<decltype(math::rsqrt(m[0][0])), 3, R>{
 				math::rsqrt(m[0]),
@@ -989,7 +989,7 @@ namespace tue
 		template<typename T, int R>
 		inline auto min(
 			const mat<T, 3, R>& m1,
-			const mat<T, 3, R>& m2)
+			const mat<T, 3, R>& m2) noexcept
 		{
 			return mat<decltype(math::min(m1[0][0], m2[0][0])), 3, R>{
 				math::min(m1[0], m2[0]),
@@ -1004,7 +1004,7 @@ namespace tue
 		template<typename T, int R>
 		inline auto max(
 			const mat<T, 3, R>& m1,
-			const mat<T, 3, R>& m2)
+			const mat<T, 3, R>& m2) noexcept
 		{
 			return mat<decltype(math::max(m1[0][0], m2[0][0])), 3, R>{
 				math::max(m1[0], m2[0]),
@@ -1017,7 +1017,7 @@ namespace tue
 		// abs()
 		// -----
 		template<typename T, int R>
-		inline auto abs(const mat<T, 3, R>& m)
+		inline auto abs(const mat<T, 3, R>& m) noexcept
 		{
 			return mat<decltype(math::abs(m[0][0])), 3, R>{
 				math::abs(m[0]),
@@ -1032,7 +1032,7 @@ namespace tue
 		template<typename T, typename U, int R>
 		inline TUE_CONSTEXPR auto compmult(
 			const mat<T, 3, R>& lhs,
-			const mat<U, 3, R>& rhs)
+			const mat<U, 3, R>& rhs) noexcept
 		{
 			return mat<decltype(lhs[0][0] * rhs[0][0]), 3, R>{
 				lhs[0] * rhs[0],
@@ -1046,7 +1046,7 @@ namespace tue
 		// -----------
 		template<typename T, int R>
 		inline TUE_CONSTEXPR mat<T, 3, R> transpose(
-			const mat<T, R, 3>& m)
+			const mat<T, R, 3>& m) noexcept
 		{
 			return{
 				m.row(0),
