@@ -9,4 +9,6 @@
 
 #ifdef __SSE__
 #include "detail_/float32x4.sse.hpp"
+#else
+#include "detail_/float32x4.fallback.hpp"
 #endif

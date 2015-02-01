@@ -92,6 +92,24 @@ namespace tue
 			return _mm_setzero_ps();
 		}
 
+		static float32x4 binary(unsigned int i) noexcept
+		{
+			return _mm_set_ps1(reinterpret_cast<float&>(i));
+		}
+
+		static float32x4 binary(
+			unsigned int x,
+			unsigned int y,
+			unsigned int z,
+			unsigned int w) noexcept
+		{
+			return _mm_setr_ps(
+				reinterpret_cast<float&>(x),
+				reinterpret_cast<float&>(y),
+				reinterpret_cast<float&>(z),
+				reinterpret_cast<float&>(w));
+		}
+
 		static float32x4 load(const float* array) noexcept
 		{
 			return _mm_load_ps(array);
@@ -128,18 +146,12 @@ namespace tue
 
 	inline float32x4 operator-(const float32x4& v) noexcept
 	{
-		const auto sign_bits_int = 0x80000000;
-		const auto sign_bits = _mm_load_ps1(
-			reinterpret_cast<const float*>(&sign_bits_int));
-		return _mm_xor_ps(v, sign_bits);
+		return _mm_xor_ps(v, float32x4::binary(0x80000000));
 	}
 
 	inline float32x4 operator~(const float32x4& v) noexcept
 	{
-		const auto all_bits_int = 0xFFFFFFFF;
-		const auto all_bits = _mm_load_ps1(
-			reinterpret_cast<const float*>(&all_bits_int));
-		return _mm_xor_ps(v, all_bits);
+		return _mm_xor_ps(v, float32x4::binary(0xFFFFFFFF));
 	}
 
 	// --------------------
@@ -326,13 +338,10 @@ namespace tue
 #endif
 			sign_bit_sin = x;
 			/* take the absolute value */
-			int inv_sign_mask = ~0x80000000;
-			x = _mm_and_ps(x,
-				_mm_load_ps1((float*)(&inv_sign_mask)));
+			x = _mm_and_ps(x, float32x4::binary(~0x80000000));
 			/* extract the sign bit (upper one) */
-			int sign_mask = (int)0x80000000;
 			sign_bit_sin = _mm_and_ps(sign_bit_sin,
-				_mm_load_ps1((float*)(&sign_mask)));
+				float32x4::binary(0x80000000));
 
 			/* scale by 4/Pi */
 			y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516));
@@ -602,9 +611,7 @@ namespace tue
 			__m128 invalid_mask = _mm_cmple_ps(x, _mm_setzero_ps());
 
 			/* cut off denormalized stuff */
-			int min_norm_pos = 0x00800000;
-			x = _mm_max_ps(x,
-				_mm_load_ps1((float*)(&min_norm_pos)));
+			x = _mm_max_ps(x, float32x4::binary(0x00800000));
 
 #ifndef __SSE2__
 			/* part 1: x = frexpf(x, &e); */
@@ -615,8 +622,7 @@ namespace tue
 			emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
 #endif
 			/* keep only the fractional part */
-			int inv_mant_mask = ~0x7f800000;
-			x = _mm_and_ps(x, _mm_load_ps1((float*)(&inv_mant_mask)));
+			x = _mm_and_ps(x, float32x4::binary(~0x7f800000));
 			x = _mm_or_ps(x, _mm_set_ps1(0.5f));
 
 #ifndef __SSE2__
@@ -739,10 +745,7 @@ namespace tue
 		// -----
 		inline float32x4 abs(const float32x4& v) noexcept
 		{
-			const auto non_sign_bits_int = 0x7FFFFFFF;
-			const auto non_sign_bits = _mm_load_ps1(
-				reinterpret_cast<const float*>(&non_sign_bits_int));
-			return _mm_and_ps(v, non_sign_bits);
+			return _mm_and_ps(v, float32x4::binary(0x7FFFFFFF));
 		}
 
 		// -----
@@ -783,12 +786,12 @@ namespace tue
 		// transpose()
 		// -----------
 		inline void transpose(
+			float32x4& v0,
 			float32x4& v1,
 			float32x4& v2,
-			float32x4& v3,
-			float32x4& v4) noexcept
+			float32x4& v3) noexcept
 		{
-			_MM_TRANSPOSE4_PS(v1, v2, v3, v4);
+			_MM_TRANSPOSE4_PS(v0, v1, v2, v3);
 		}
 
 		// ------------------------------

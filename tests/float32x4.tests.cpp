@@ -141,6 +141,15 @@ namespace
 		test_assert(equal(v, 0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
+	TEST_CASE(binary)
+	{
+		const auto v1 = float32x4::binary(12);
+		test_assert(equal(v1, 12, 12, 12, 12));
+
+		const auto v2 = float32x4::binary(12, 34, 56, 78);
+		test_assert(equal(v2, 12, 34, 56, 78));
+	}
+
 	TEST_CASE(load)
 	{
 		alignas(16) const float array[4] = { 1.1f, 2.2f, 3.3f, 4.4f };

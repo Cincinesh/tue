@@ -41,5 +41,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\simd.hpp">
       <Filter>detail_</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\float32x4.fallback.hpp">
+      <Filter>detail_</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
