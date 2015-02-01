@@ -78,8 +78,8 @@ namespace tue
 		template<typename OtherP, typename OtherS>
 		explicit constexpr rect(
 			const rect<OtherP, OtherS>& other) noexcept :
-			position_(vec2<P>(other.position())),
-			size_(size2d<S>(other.size())) {}
+			position_(other.position()),
+			size_(other.size()) {}
 
 		// ----------------------------
 		// implicit conversion operator

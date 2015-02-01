@@ -52,8 +52,8 @@ namespace tue
 		template<typename U>
 		explicit constexpr size2d(
 			const size2d<U>& other) noexcept :
-			width_(T(other.width())),
-			height_(T(other.height())) {}
+			width_(other.width()),
+			height_(other.height()) {}
 
 		// ----------------------------
 		// implicit conversion operator
