@@ -36,7 +36,9 @@ namespace
 	const auto f41 = float32x4(f410, f411, f412, f413);
 	const auto f42 = float32x4(f420, f421, f422, f423);
 
-	bool equal(float32x4 v, float x, float y, float z, float w)
+	bool equal(
+		const float32x4& v,
+		float x, float y, float z, float w)
 	{
 		alignas(16) float input[4];
 		v.store(input);
@@ -46,7 +48,9 @@ namespace
 			&& input[3] == w;
 	}
 
-	bool equal(float32x4 v, int x, int y, int z, int w)
+	bool equal(
+		const float32x4& v,
+		int x, int y, int z, int w)
 	{
 		alignas(16) int input[4];
 		v.store(reinterpret_cast<float*>(input));
@@ -56,7 +60,9 @@ namespace
 			&& input[3] == w;
 	}
 
-	bool equal(float32x4 v, bool x, bool y, bool z, bool w)
+	bool equal(
+		const float32x4& v,
+		bool x, bool y, bool z, bool w)
 	{
 		alignas(16) int input[4];
 		v.store(reinterpret_cast<float*>(input));
@@ -66,7 +72,9 @@ namespace
 			&& input[3] == (w == true ? ~0 : 0);
 	}
 
-	bool bitwise_equal(float32x4 v1, float32x4 v2)
+	bool bitwise_equal(
+		const float32x4& v1,
+		const float32x4& v2)
 	{
 		alignas(16) int input1[4], input2[4];
 		v1.store(reinterpret_cast<float*>(input1));
@@ -78,7 +86,7 @@ namespace
 	}
 
 	bool nearly_equal(
-		float32x4 v,
+		const float32x4& v,
 		float x, float y, float z, float w)
 	{
 		alignas(16) float input[4];
@@ -396,6 +404,24 @@ namespace
 			math::cos(f411),
 			math::cos(f412),
 			math::cos(f413)));
+	}
+
+	TEST_CASE(exp)
+	{
+		test_assert(nearly_equal(math::exp(f41),
+			math::exp(f410),
+			math::exp(f411),
+			math::exp(f412),
+			math::exp(f413)));
+	}
+
+	TEST_CASE(log)
+	{
+		test_assert(nearly_equal(math::log(f41),
+			math::log(f410),
+			math::log(f411),
+			math::log(f412),
+			math::log(f413)));
 	}
 
 	TEST_CASE(recip)

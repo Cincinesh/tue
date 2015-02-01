@@ -121,12 +121,12 @@ namespace tue
 	// ----------------
 	// prefix operators
 	// ----------------
-	inline float32x4 operator+(float32x4 v) noexcept
+	inline float32x4 operator+(const float32x4& v) noexcept
 	{
 		return v;
 	}
 
-	inline float32x4 operator-(float32x4 v) noexcept
+	inline float32x4 operator-(const float32x4& v) noexcept
 	{
 		const auto sign_bits_int = 0x80000000;
 		const auto sign_bits = _mm_load_ps1(
@@ -134,7 +134,7 @@ namespace tue
 		return _mm_xor_ps(v, sign_bits);
 	}
 
-	inline float32x4 operator~(float32x4 v) noexcept
+	inline float32x4 operator~(const float32x4& v) noexcept
 	{
 		const auto all_bits_int = 0xFFFFFFFF;
 		const auto all_bits = _mm_load_ps1(
@@ -145,22 +145,30 @@ namespace tue
 	// --------------------
 	// arithmetic operators
 	// --------------------
-	inline float32x4 operator+(float32x4 lhs, float32x4 rhs) noexcept
+	inline float32x4 operator+(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_add_ps(lhs, rhs);
 	}
 
-	inline float32x4 operator-(float32x4 lhs, float32x4 rhs) noexcept
+	inline float32x4 operator-(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_sub_ps(lhs, rhs);
 	}
 
-	inline float32x4 operator*(float32x4 lhs, float32x4 rhs) noexcept
+	inline float32x4 operator*(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_mul_ps(lhs, rhs);
 	}
 
-	inline float32x4 operator/(float32x4 lhs, float32x4 rhs) noexcept
+	inline float32x4 operator/(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_div_ps(lhs, rhs);
 	}
@@ -168,17 +176,23 @@ namespace tue
 	// -----------------
 	// bitwise operators
 	// -----------------
-	inline float32x4 operator&(float32x4 lhs, float32x4 rhs) noexcept
+	inline float32x4 operator&(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_and_ps(lhs, rhs);
 	}
 
-	inline float32x4 operator|(float32x4 lhs, float32x4 rhs) noexcept
+	inline float32x4 operator|(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_or_ps(lhs, rhs);
 	}
 
-	inline float32x4 operator^(float32x4 lhs, float32x4 rhs) noexcept
+	inline float32x4 operator^(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_xor_ps(lhs, rhs);
 	}
@@ -213,22 +227,30 @@ namespace tue
 	// -------------------------------
 	// arithmetic assignment operators
 	// -------------------------------
-	inline float32x4& operator+=(float32x4& lhs, float32x4 rhs) noexcept
+	inline float32x4& operator+=(
+		float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return lhs = lhs + rhs;
 	}
 
-	inline float32x4& operator-=(float32x4& lhs, float32x4 rhs) noexcept
+	inline float32x4& operator-=(
+		float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return lhs = lhs - rhs;
 	}
 
-	inline float32x4& operator*=(float32x4& lhs, float32x4 rhs) noexcept
+	inline float32x4& operator*=(
+		float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return lhs = lhs * rhs;
 	}
 
-	inline float32x4& operator/=(float32x4& lhs, float32x4 rhs) noexcept
+	inline float32x4& operator/=(
+		float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return lhs = lhs / rhs;
 	}
@@ -236,17 +258,23 @@ namespace tue
 	// ----------------------------
 	// bitwise assignment operators
 	// ----------------------------
-	inline float32x4& operator&=(float32x4& lhs, float32x4 rhs) noexcept
+	inline float32x4& operator&=(
+		float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return lhs = lhs & rhs;
 	}
 
-	inline float32x4& operator|=(float32x4& lhs, float32x4 rhs) noexcept
+	inline float32x4& operator|=(
+		float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return lhs = lhs | rhs;
 	}
 
-	inline float32x4& operator^=(float32x4& lhs, float32x4 rhs) noexcept
+	inline float32x4& operator^=(
+		float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return lhs = lhs ^ rhs;
 	}
@@ -254,12 +282,16 @@ namespace tue
 	// --------------------
 	// comparison operators
 	// --------------------
-	inline bool operator==(float32x4 lhs, float32x4 rhs) noexcept
+	inline bool operator==(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return _mm_movemask_ps(_mm_cmpeq_ps(lhs, rhs)) == 0b1111;
 	}
 
-	inline bool operator!=(float32x4 lhs, float32x4 rhs) noexcept
+	inline bool operator!=(
+		const float32x4& lhs,
+		const float32x4& rhs) noexcept
 	{
 		return !(lhs == rhs);
 	}
@@ -269,11 +301,11 @@ namespace tue
 	// ------
 	namespace math
 	{
-		// -----------------------
-		// trigonometric functions
-		// -----------------------
+		// --------
+		// sincos()
+		// --------
 		inline void sincos(
-			float32x4 v,
+			const float32x4& v,
 			float32x4& sin_result,
 			float32x4& cos_result) noexcept
 		{
@@ -287,24 +319,23 @@ namespace tue
 			__m128i emm0, emm2, emm4;
 #else
 			__m64 mm0, mm1, mm2, mm3, mm4, mm5;
+			union {
+				__m64 mm[2];
+				__m128 xmm;
+			} u;
 #endif
-
 			sign_bit_sin = x;
-
 			/* take the absolute value */
-			const int inv_sign_mask = ~0x80000000;
-			const __m128 ps_inv_sign_mask = _mm_load_ps1(
-				reinterpret_cast<const float*>(&inv_sign_mask));
-			x = _mm_and_ps(x, ps_inv_sign_mask);
-
+			int inv_sign_mask = ~0x80000000;
+			x = _mm_and_ps(x,
+				_mm_load_ps1((float*)(&inv_sign_mask)));
 			/* extract the sign bit (upper one) */
-			const int sign_mask = 0x80000000;
-			const __m128 ps_sign_mask = _mm_load_ps1(
-				reinterpret_cast<const float*>(&sign_mask));
-			sign_bit_sin = _mm_and_ps(sign_bit_sin, ps_sign_mask);
+			int sign_mask = (int)0x80000000;
+			sign_bit_sin = _mm_and_ps(sign_bit_sin,
+				_mm_load_ps1((float*)(&sign_mask)));
 
 			/* scale by 4/Pi */
-			y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516f));
+			y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516));
 
 #ifdef __SSE2__
 			/* store the integer part of y in emm2 */
@@ -348,12 +379,9 @@ namespace tue
 			mm1 = _mm_and_si64(mm3, _mm_set1_pi32(4));
 			mm0 = _mm_slli_pi32(mm0, 29);
 			mm1 = _mm_slli_pi32(mm1, 29);
-			__m128 swap_sign_bit_sin;
-			union {
-				__m128 xmm;
-				__m64 mm[2];
-			}
-			u1; u1.mm[0]=mm0; u1.mm[1]=mm1; swap_sign_bit_sin = u1.xmm;
+			u.mm[0] = mm0;
+			u.mm[1] = mm1;
+			__m128 swap_sign_bit_sin = u.xmm;
 
 			/* get the polynom selection mask for the sine */
 
@@ -361,20 +389,16 @@ namespace tue
 			mm3 = _mm_and_si64(mm3, _mm_set1_pi32(2));
 			mm2 = _mm_cmpeq_pi32(mm2, _mm_setzero_si64());
 			mm3 = _mm_cmpeq_pi32(mm3, _mm_setzero_si64());
-			__m128 poly_mask;
-
-			union {
-				__m128 xmm;
-				__m64 mm[2];
-			}
-			u2; u2.mm[0]=mm2; u2.mm[1]=mm3; poly_mask = u2.xmm;
+			u.mm[0] = mm2;
+			u.mm[1] = mm3;
+			__m128 poly_mask = u.xmm;
 #endif
 
 			/* The magic pass: "Extended precision modular arithmetic"
 			   x = ((x - y * DP1) - y * DP2) - y * DP3; */
-			xmm1 = _mm_set_ps1(-0.78515625f);
-			xmm2 = _mm_set_ps1(-2.4187564849853515625e-4f);
-			xmm3 = _mm_set_ps1(-3.77489497744594108e-8f);
+			xmm1 = _mm_set_ps1(-0.78515625);
+			xmm2 = _mm_set_ps1(-2.4187564849853515625e-4);
+			xmm3 = _mm_set_ps1(-3.77489497744594108e-8);
 			xmm1 = _mm_mul_ps(y, xmm1);
 			xmm2 = _mm_mul_ps(y, xmm2);
 			xmm3 = _mm_mul_ps(y, xmm3);
@@ -395,13 +419,9 @@ namespace tue
 			mm5 = _mm_andnot_si64(mm5, _mm_set1_pi32(4));
 			mm4 = _mm_slli_pi32(mm4, 29);
 			mm5 = _mm_slli_pi32(mm5, 29);
-			__m128 sign_bit_cos;
-
-			union {
-				__m128 xmm;
-				__m64 mm[2];
-			}
-			u3; u3.mm[0]=mm4; u3.mm[1]=mm5; sign_bit_cos = u3.xmm;
+			u.mm[0] = mm4;
+			u.mm[1] = mm5;
+			__m128 sign_bit_cos = u.xmm;
 			_mm_empty(); /* good-bye mmx */
 #endif
 
@@ -409,12 +429,12 @@ namespace tue
 
 			/* Evaluate the first polynom  (0 <= x <= Pi/4) */
 			__m128 z = _mm_mul_ps(x,x);
-			y = _mm_set_ps1(2.443315711809948e-5f);
+			y = _mm_set_ps1(2.443315711809948E-005);
 
 			y = _mm_mul_ps(y, z);
-			y = _mm_add_ps(y, _mm_set_ps1(-1.388731625493765e-3f));
+			y = _mm_add_ps(y, _mm_set_ps1(-1.388731625493765E-003));
 			y = _mm_mul_ps(y, z);
-			y = _mm_add_ps(y, _mm_set_ps1(4.166664568298827e-2f));
+			y = _mm_add_ps(y, _mm_set_ps1(4.166664568298827E-002));
 			y = _mm_mul_ps(y, z);
 			y = _mm_mul_ps(y, z);
 			__m128 tmp = _mm_mul_ps(z, _mm_set_ps1(0.5f));
@@ -422,11 +442,12 @@ namespace tue
 			y = _mm_add_ps(y, _mm_set_ps1(1.0f));
 
 			/* Evaluate the second polynom  (Pi/4 <= x <= 0) */
-			__m128 y2 = _mm_set_ps1(-1.9515295891e-4f);
+
+			__m128 y2 = _mm_set_ps1(-1.9515295891E-4);
 			y2 = _mm_mul_ps(y2, z);
-			y2 = _mm_add_ps(y2, _mm_set_ps1(8.3321608736e-3f));
+			y2 = _mm_add_ps(y2, _mm_set_ps1(8.3321608736E-3));
 			y2 = _mm_mul_ps(y2, z);
-			y2 = _mm_add_ps(y2, _mm_set_ps1(-1.6666654611e-1f));
+			y2 = _mm_add_ps(y2, _mm_set_ps1(-1.6666654611E-1));
 			y2 = _mm_mul_ps(y2, z);
 			y2 = _mm_mul_ps(y2, x);
 			y2 = _mm_add_ps(y2, x);
@@ -446,18 +467,217 @@ namespace tue
 			cos_result = _mm_xor_ps(xmm2, sign_bit_cos);
 		}
 
-		inline float32x4 sin(float32x4 v) noexcept
+		// -----
+		// sin()
+		// -----
+		inline float32x4 sin(const float32x4& v) noexcept
 		{
 			float32x4 sin_result, cos_result;
 			sincos(v, sin_result, cos_result);
 			return sin_result;
 		}
 
-		inline float32x4 cos(float32x4 v) noexcept
+		// -----
+		// cos()
+		// -----
+		inline float32x4 cos(const float32x4& v) noexcept
 		{
 			float32x4 sin_result, cos_result;
 			sincos(v, sin_result, cos_result);
 			return cos_result;
+		}
+
+		// -----
+		// exp()
+		// -----
+		inline float32x4 exp(const float32x4& v) noexcept
+		{
+			/*
+			  This exp() implementation is based on Julien Pommier's exp_ps().
+			  See the top of this file for details.
+			*/
+			__m128 x = v;
+			__m128 tmp = _mm_setzero_ps(), fx;
+#ifdef __SSE2__
+			__m128i emm0;
+#else
+			__m64 mm0, mm1;
+			union {
+				__m64 mm[2];
+				__m128 xmm;
+			} u;
+#endif
+			__m128 one = _mm_set_ps1(1.0f);
+
+			x = _mm_min_ps(x, _mm_set_ps1(88.3762626647949f));
+			x = _mm_max_ps(x, _mm_set_ps1(-88.3762626647949f));
+
+			/* express exp(x) as exp(g + n*log(2)) */
+			fx = _mm_mul_ps(x, _mm_set_ps1(1.44269504088896341));
+			fx = _mm_add_ps(fx, _mm_set_ps1(0.5f));
+
+			/* how to perform a floorf with SSE: just below */
+#ifndef __SSE2__
+			/* step 1 : cast to int */
+			tmp = _mm_movehl_ps(tmp, fx);
+			mm0 = _mm_cvttps_pi32(fx);
+			mm1 = _mm_cvttps_pi32(tmp);
+			/* step 2 : cast back to float */
+			tmp = _mm_cvtpi32x2_ps(mm0, mm1);
+#else
+			emm0 = _mm_cvttps_epi32(fx);
+			tmp  = _mm_cvtepi32_ps(emm0);
+#endif
+			/* if greater, substract 1 */
+			__m128 mask = _mm_cmpgt_ps(tmp, fx);
+			mask = _mm_and_ps(mask, one);
+			fx = _mm_sub_ps(tmp, mask);
+
+			tmp = _mm_mul_ps(fx, _mm_set_ps1(0.693359375));
+			__m128 z = _mm_mul_ps(fx, _mm_set_ps1(-2.12194440e-4));
+			x = _mm_sub_ps(x, tmp);
+			x = _mm_sub_ps(x, z);
+
+			z = _mm_mul_ps(x,x);
+
+			__m128 y = _mm_set_ps1(1.9875691500E-4);
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(1.3981999507E-3));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(8.3334519073E-3));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(4.1665795894E-2));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(1.6666665459E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(5.0000001201E-1));
+			y = _mm_mul_ps(y, z);
+			y = _mm_add_ps(y, x);
+			y = _mm_add_ps(y, one);
+
+			/* build 2^n */
+#ifndef __SSE2__
+			z = _mm_movehl_ps(z, fx);
+			mm0 = _mm_cvttps_pi32(fx);
+			mm1 = _mm_cvttps_pi32(z);
+			mm0 = _mm_add_pi32(mm0, _mm_set1_pi32(0x7f));
+			mm1 = _mm_add_pi32(mm1, _mm_set1_pi32(0x7f));
+			mm0 = _mm_slli_pi32(mm0, 23);
+			mm1 = _mm_slli_pi32(mm1, 23);
+			u.mm[0] = mm0;
+			u.mm[1] = mm1;
+			__m128 pow2n = u.xmm;
+			_mm_empty();
+#else
+			emm0 = _mm_cvttps_epi32(fx);
+			emm0 = _mm_add_epi32(emm0, _mm_set1_epi32(0x7f));
+			emm0 = _mm_slli_epi32(emm0, 23);
+			__m128 pow2n = _mm_castsi128_ps(emm0);
+#endif
+			y = _mm_mul_ps(y, pow2n);
+			return y;
+		}
+
+		// -----
+		// log()
+		// -----
+		inline float32x4 log(const float32x4& v) noexcept
+		{
+			/*
+			  This log() implementation is based on Julien Pommier's log_ps().
+			  See the top of this file for details.
+			*/
+			__m128 x = v;
+#ifdef __SSE2__
+			__m128i emm0;
+#else
+			__m64 mm0, mm1;
+			union {
+				__m64 mm[2];
+				__m128 xmm;
+			} u;
+#endif
+			__m128 one = _mm_set_ps1(1.0f);
+
+			__m128 invalid_mask = _mm_cmple_ps(x, _mm_setzero_ps());
+
+			/* cut off denormalized stuff */
+			int min_norm_pos = 0x00800000;
+			x = _mm_max_ps(x,
+				_mm_load_ps1((float*)(&min_norm_pos)));
+
+#ifndef __SSE2__
+			/* part 1: x = frexpf(x, &e); */
+			u.xmm = x;
+			mm0 = _mm_srli_pi32(u.mm[0], 23);
+			mm1 = _mm_srli_pi32(u.mm[1], 23);
+#else
+			emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
+#endif
+			/* keep only the fractional part */
+			int inv_mant_mask = ~0x7f800000;
+			x = _mm_and_ps(x, _mm_load_ps1((float*)(&inv_mant_mask)));
+			x = _mm_or_ps(x, _mm_set_ps1(0.5f));
+
+#ifndef __SSE2__
+			/* now e=mm0:mm1 contain the really base-2 exponent */
+			mm0 = _mm_sub_pi32(mm0, _mm_set1_pi32(0x7f));
+			mm1 = _mm_sub_pi32(mm1, _mm_set1_pi32(0x7f));
+			__m128 e = _mm_cvtpi32x2_ps(mm0, mm1);
+			_mm_empty(); /* bye bye mmx */
+#else
+			emm0 = _mm_sub_epi32(emm0, _mm_set1_epi32(0x7f));
+			__m128 e = _mm_cvtepi32_ps(emm0);
+#endif
+
+			e = _mm_add_ps(e, one);
+
+			/* part2:
+			   if( x < SQRTHF ) {
+			     e -= 1;
+			     x = x + x - 1.0;
+			   } else { x = x - 1.0; }
+			*/
+			__m128 mask = _mm_cmplt_ps(x, _mm_set_ps1(0.707106781186547524));
+			__m128 tmp = _mm_and_ps(x, mask);
+			x = _mm_sub_ps(x, one);
+			e = _mm_sub_ps(e, _mm_and_ps(one, mask));
+			x = _mm_add_ps(x, tmp);
+
+			__m128 z = _mm_mul_ps(x,x);
+
+			__m128 y = _mm_set_ps1(7.0376836292E-2);
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(- 1.1514610310E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(1.1676998740E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(- 1.2420140846E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(+ 1.4249322787E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(- 1.6668057665E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(+ 2.0000714765E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(- 2.4999993993E-1));
+			y = _mm_mul_ps(y, x);
+			y = _mm_add_ps(y, _mm_set_ps1(+ 3.3333331174E-1));
+			y = _mm_mul_ps(y, x);
+
+			y = _mm_mul_ps(y, z);
+
+			tmp = _mm_mul_ps(e, _mm_set_ps1(-2.12194440e-4));
+			y = _mm_add_ps(y, tmp);
+
+			tmp = _mm_mul_ps(z, _mm_set_ps1(0.5f));
+			y = _mm_sub_ps(y, tmp);
+
+			tmp = _mm_mul_ps(e, _mm_set_ps1(0.693359375));
+			x = _mm_add_ps(x, y);
+			x = _mm_add_ps(x, tmp);
+			x = _mm_or_ps(x, invalid_mask); // negative arg will be NAN
+			return x;
 		}
 		
 		// ---------------
@@ -468,17 +688,17 @@ namespace tue
 		//
 		//}
 
-		inline float32x4 recip(float32x4 v) noexcept
+		inline float32x4 recip(const float32x4& v) noexcept
 		{
 			return _mm_rcp_ps(v);
 		}
 
-		inline float32x4 sqrt(float32x4 v) noexcept
+		inline float32x4 sqrt(const float32x4& v) noexcept
 		{
 			return _mm_sqrt_ps(v);
 		}
 
-		inline float32x4 rsqrt(float32x4 v) noexcept
+		inline float32x4 rsqrt(const float32x4& v) noexcept
 		{
 			return _mm_rsqrt_ps(v);
 		}
@@ -486,12 +706,16 @@ namespace tue
 		// -----------------------------
 		// minimum and maximum functions
 		// -----------------------------
-		inline float32x4 min(float32x4 v1, float32x4 v2) noexcept
+		inline float32x4 min(
+			const float32x4& v1,
+			const float32x4& v2) noexcept
 		{
 			return _mm_min_ps(v1, v2);
 		}
 
-		inline float32x4 max(float32x4 v1, float32x4 v2) noexcept
+		inline float32x4 max(
+			const float32x4& v1,
+			const float32x4& v2) noexcept
 		{
 			return _mm_max_ps(v1, v2);
 		}
@@ -499,7 +723,7 @@ namespace tue
 		// -----------------------
 		// absolute value function
 		// -----------------------
-		inline float32x4 abs(float32x4 v) noexcept
+		inline float32x4 abs(const float32x4& v) noexcept
 		{
 			const auto non_sign_bits_int = 0x7FFFFFFF;
 			const auto non_sign_bits = _mm_load_ps1(
@@ -510,22 +734,24 @@ namespace tue
 		// -------------------
 		// geometric functions
 		// -------------------
-		inline float32x4 dot(float32x4 lhs, float32x4 rhs) noexcept
+		inline float32x4 dot(
+			const float32x4& lhs,
+			const float32x4& rhs) noexcept
 		{
 			return lhs * rhs;
 		}
 
-		inline float32x4 length2(float32x4 v) noexcept
+		inline float32x4 length2(const float32x4& v) noexcept
 		{
 			return v * v;
 		}
 
-		inline float32x4 length(float32x4 v) noexcept
+		inline float32x4 length(const float32x4& v) noexcept
 		{
 			return math::sqrt(math::length2(v));
 		}
 
-		inline float32x4 normalize(float32x4 v) noexcept
+		inline float32x4 normalize(const float32x4& v) noexcept
 		{
 			return v / math::length(v);
 		}
@@ -542,32 +768,44 @@ namespace tue
 		// ------------------------------
 		// piecewise comparison functions
 		// ------------------------------
-		inline float32x4 isless(float32x4 lhs, float32x4 rhs) noexcept
+		inline float32x4 isless(
+			const float32x4& lhs,
+			const float32x4& rhs) noexcept
 		{
 			return _mm_cmplt_ps(lhs, rhs);
 		}
 
-		inline float32x4 islessequal(float32x4 lhs, float32x4 rhs) noexcept
+		inline float32x4 islessequal(
+			const float32x4& lhs,
+			const float32x4& rhs) noexcept
 		{
 			return _mm_cmple_ps(lhs, rhs);
 		}
 
-		inline float32x4 isgreater(float32x4 lhs, float32x4 rhs) noexcept
+		inline float32x4 isgreater(
+			const float32x4& lhs,
+			const float32x4& rhs) noexcept
 		{
 			return _mm_cmpgt_ps(lhs, rhs);
 		}
 
-		inline float32x4 isgreaterequal(float32x4 lhs, float32x4 rhs) noexcept
+		inline float32x4 isgreaterequal(
+			const float32x4& lhs,
+			const float32x4& rhs) noexcept
 		{
 			return _mm_cmpge_ps(lhs, rhs);
 		}
 
-		inline float32x4 isequal(float32x4 lhs, float32x4 rhs) noexcept
+		inline float32x4 isequal(
+			const float32x4& lhs,
+			const float32x4& rhs) noexcept
 		{
 			return _mm_cmpeq_ps(lhs, rhs);
 		}
 
-		inline float32x4 isnotequal(float32x4 lhs, float32x4 rhs) noexcept
+		inline float32x4 isnotequal(
+			const float32x4& lhs,
+			const float32x4& rhs) noexcept
 		{
 			return _mm_cmpneq_ps(lhs, rhs);
 		}
