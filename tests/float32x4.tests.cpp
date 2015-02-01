@@ -115,7 +115,7 @@ namespace
 		test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
 	}
 
-#ifdef __SSE__
+#if defined(__SSE__)
 	TEST_CASE(underlying_converison_constructor)
 	{
 		const __m128 underlying = _mm_setr_ps(1.1f, 2.2f, 3.3f, 4.4f);
@@ -126,6 +126,24 @@ namespace
 	TEST_CASE(underlying_converison_operator)
 	{
 		const __m128 underlying = f41;
+		alignas(16) float result[4];
+		_mm_store_ps(result, underlying);
+		test_assert(result[0] == f410);
+		test_assert(result[1] == f411);
+		test_assert(result[2] == f412);
+		test_assert(result[3] == f413);
+	}
+#elif defined(__ARM_NEON__)
+	TEST_CASE(underlying_converison_constructor)
+	{
+		const float32x4_t underlying = { 1.1f, 2.2f, 3.3f, 4.4f };
+		const float32x4 v(underlying);
+		test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
+	}
+
+	TEST_CASE(underlying_converison_operator)
+	{
+		const float32x4_t underlying = f41;
 		alignas(16) float result[4];
 		_mm_store_ps(result, underlying);
 		test_assert(result[0] == f410);
