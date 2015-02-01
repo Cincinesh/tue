@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\float32x4.fallback.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\float32x4.neon.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\float32x4.sse.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mat2xR.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mat3xR.hpp" />

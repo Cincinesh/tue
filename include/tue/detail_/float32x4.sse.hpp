@@ -23,7 +23,7 @@
 
   1. The origin of this software must not be misrepresented; you must not
      claim that you wrote the original software. If you use this software
-  in a product, an acknowledgment in the product documentation would be
+     in a product, an acknowledgment in the product documentation would be
      appreciated but is not required.
   2. Altered source versions must be plainly marked as such, and must not
      be misrepresented as being the original software.
@@ -117,7 +117,6 @@ namespace tue
 
 		static float32x4 loadu(const float* array) noexcept
 		{
-			// unaligned
 			return _mm_loadu_ps(array);
 		}
 
@@ -131,7 +130,6 @@ namespace tue
 
 		void storeu(float* destination) const noexcept
 		{
-			// unaligned
 			_mm_storeu_ps(destination, underlying_);
 		}
 	};
