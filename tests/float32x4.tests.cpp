@@ -38,7 +38,7 @@ namespace
 
 	bool equal(
 		const float32x4& v,
-		float x, float y, float z, float w)
+		float x, float y, float z, float w) noexcept
 	{
 		alignas(16) float input[4];
 		v.store(input);
@@ -50,7 +50,7 @@ namespace
 
 	bool equal(
 		const float32x4& v,
-		int x, int y, int z, int w)
+		int x, int y, int z, int w) noexcept
 	{
 		alignas(16) int input[4];
 		v.store(reinterpret_cast<float*>(input));
@@ -62,7 +62,7 @@ namespace
 
 	bool equal(
 		const float32x4& v,
-		bool x, bool y, bool z, bool w)
+		bool x, bool y, bool z, bool w) noexcept
 	{
 		alignas(16) int input[4];
 		v.store(reinterpret_cast<float*>(input));
@@ -74,7 +74,7 @@ namespace
 
 	bool bitwise_equal(
 		const float32x4& v1,
-		const float32x4& v2)
+		const float32x4& v2) noexcept
 	{
 		alignas(16) int input1[4], input2[4];
 		v1.store(reinterpret_cast<float*>(input1));
@@ -87,7 +87,7 @@ namespace
 
 	bool nearly_equal(
 		const float32x4& v,
-		float x, float y, float z, float w)
+		float x, float y, float z, float w) noexcept
 	{
 		alignas(16) float input[4];
 		v.store(input);

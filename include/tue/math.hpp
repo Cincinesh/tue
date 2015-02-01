@@ -198,7 +198,7 @@ namespace tue
 		// -----
 		template<typename T>
 		inline typename std::enable_if<std::is_arithmetic<T>::value,
-		T>::type min(T x1, T x2)
+		T>::type min(T x1, T x2) noexcept
 		{
 			return std::min(x1, x2);
 		}
@@ -208,7 +208,7 @@ namespace tue
 		// -----
 		template<typename T>
 		inline typename std::enable_if<std::is_arithmetic<T>::value,
-		T>::type max(T x1, T x2)
+		T>::type max(T x1, T x2) noexcept
 		{
 			return std::max(x1, x2);
 		}

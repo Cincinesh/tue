@@ -29,34 +29,34 @@ namespace tue
 		// -------------------
 		// default constructor
 		// -------------------
-		vec() = default;
+		vec() noexcept = default;
 
 		// ------------------
 		// scalar constructor
 		// ------------------
-		explicit constexpr vec(const T& s) :
+		explicit constexpr vec(const T& s) noexcept :
 			impl_({ { s, s, s } }) {}
 
 		// ----------------------
 		// component constructors
 		// ----------------------
-		constexpr vec(const T& x, const T& y, const T& z) :
+		constexpr vec(const T& x, const T& y, const T& z) noexcept :
 			impl_({ { x, y, z } }) {}
 
-		explicit constexpr vec(const vec2<T>& xy, const T& z) :
+		explicit constexpr vec(const vec2<T>& xy, const T& z) noexcept :
 			impl_({ { xy[0], xy[1], z } }) {}
 
 		// ---------------------
 		// truncate constructors
 		// ---------------------
-		explicit constexpr vec(const vec4<T>& other) :
+		explicit constexpr vec(const vec4<T>& other) noexcept :
 			impl_({ { other[0], other[1], other[2] } }) {}
 
 		// -------------------------------
 		// explicit conversion constructor
 		// -------------------------------
 		template<typename U>
-		explicit constexpr vec(const vec3<U>& other) :
+		explicit constexpr vec(const vec3<U>& other) noexcept :
 			impl_({ {
 				T(other[0]),
 				T(other[1]),
@@ -67,7 +67,7 @@ namespace tue
 		// implicit conversion operator
 		// ----------------------------
 		template<typename U>
-		constexpr operator vec3<U>() const
+		constexpr operator vec3<U>() const noexcept
 		{
 			return{
 				impl_.data[0],
@@ -79,44 +79,44 @@ namespace tue
 		// ---------------
 		// factory methods
 		// ---------------
-		static constexpr vec zero() { return{ T(0), T(0), T(0) }; }
-		static constexpr vec x_axis() { return{ T(1), T(0), T(0) }; }
-		static constexpr vec y_axis() { return{ T(0), T(1), T(0) }; }
-		static constexpr vec z_axis() { return{ T(0), T(0), T(1) }; }
+		static constexpr vec zero() noexcept { return{ T(0), T(0), T(0) }; }
+		static constexpr vec x_axis() noexcept { return{ T(1), T(0), T(0) }; }
+		static constexpr vec y_axis() noexcept { return{ T(0), T(1), T(0) }; }
+		static constexpr vec z_axis() noexcept { return{ T(0), T(0), T(1) }; }
 
 		// -
 		// x
 		// -
-		constexpr T x() const { return impl_.data[0]; }
-		void set_x(const T& x) { impl_.data[0] = x; }
+		constexpr T x() const noexcept { return impl_.data[0]; }
+		void set_x(const T& x) noexcept { impl_.data[0] = x; }
 
 		// -
 		// y
 		// -
-		constexpr T y() const { return impl_.data[1]; }
-		void set_y(const T& y) { impl_.data[1] = y; }
+		constexpr T y() const noexcept { return impl_.data[1]; }
+		void set_y(const T& y) noexcept { impl_.data[1] = y; }
 
 		// -
 		// z
 		// -
-		constexpr T z() const { return impl_.data[2]; }
-		void set_z(const T& z) { impl_.data[2] = z; }
+		constexpr T z() const noexcept { return impl_.data[2]; }
+		void set_z(const T& z) noexcept { impl_.data[2] = z; }
 
 		// --
 		// xy
 		// --
-		constexpr vec2<T> xy() const
+		constexpr vec2<T> xy() const noexcept
 		{
 			return vec2<T>(*this);
 		}
 
-		void set_xy(const T& x, const T& y)
+		void set_xy(const T& x, const T& y) noexcept
 		{
 			impl_.data[0] = x;
 			impl_.data[1] = y;
 		}
 
-		void set_xy(const vec2<T>& xy)
+		void set_xy(const vec2<T>& xy) noexcept
 		{
 			set_xy(xy[0], xy[1]);
 		}
@@ -125,13 +125,13 @@ namespace tue
 		// v[i]
 		// ----
 		template<typename I>
-		T& operator[](const I& i)
+		T& operator[](const I& i) noexcept
 		{
 			return impl_.data[i];
 		}
 
 		template<typename I>
-		constexpr const T& operator[](const I& i) const
+		constexpr const T& operator[](const I& i) const noexcept
 		{
 			return impl_.data[i];
 		}
@@ -139,7 +139,7 @@ namespace tue
 		// ---
 		// ++v
 		// ---
-		vec& operator++()
+		vec& operator++() noexcept
 		{
 			++impl_.data[0];
 			++impl_.data[1];
@@ -150,7 +150,7 @@ namespace tue
 		// ---
 		// --v
 		// ---
-		vec& operator--()
+		vec& operator--() noexcept
 		{
 			--impl_.data[0];
 			--impl_.data[1];
@@ -161,7 +161,7 @@ namespace tue
 		// ---
 		// v++
 		// ---
-		vec operator++(int)
+		vec operator++(int) noexcept
 		{
 			const auto tmp = *this;
 			++*this;
@@ -171,7 +171,7 @@ namespace tue
 		// ---
 		// v--
 		// ---
-		vec operator--(int)
+		vec operator--(int) noexcept
 		{
 			const auto tmp = *this;
 			--*this;
@@ -182,7 +182,7 @@ namespace tue
 		// v += other
 		// ----------
 		template<typename U>
-		vec& operator+=(const U& other)
+		vec& operator+=(const U& other) noexcept
 		{
 			impl_.data[0] += other;
 			impl_.data[1] += other;
@@ -191,7 +191,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator+=(const vec3<U>& other)
+		vec& operator+=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] += other[0];
 			impl_.data[1] += other[1];
@@ -203,7 +203,7 @@ namespace tue
 		// v -= other
 		// ----------
 		template<typename U>
-		vec& operator-=(const U& other)
+		vec& operator-=(const U& other) noexcept
 		{
 			impl_.data[0] -= other;
 			impl_.data[1] -= other;
@@ -212,7 +212,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator-=(const vec3<U>& other)
+		vec& operator-=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] -= other[0];
 			impl_.data[1] -= other[1];
@@ -224,7 +224,7 @@ namespace tue
 		// v *= other
 		// ----------
 		template<typename U>
-		vec& operator*=(const U& other)
+		vec& operator*=(const U& other) noexcept
 		{
 			impl_.data[0] *= other;
 			impl_.data[1] *= other;
@@ -233,7 +233,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator*=(const vec3<U>& other)
+		vec& operator*=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] *= other[0];
 			impl_.data[1] *= other[1];
@@ -245,7 +245,7 @@ namespace tue
 		// v /= other
 		// ----------
 		template<typename U>
-		vec& operator/=(const U& other)
+		vec& operator/=(const U& other) noexcept
 		{
 			impl_.data[0] /= other;
 			impl_.data[1] /= other;
@@ -254,7 +254,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator/=(const vec3<U>& other)
+		vec& operator/=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] /= other[0];
 			impl_.data[1] /= other[1];
@@ -266,7 +266,7 @@ namespace tue
 		// v %= other
 		// ----------
 		template<typename U>
-		vec& operator%=(const U& other)
+		vec& operator%=(const U& other) noexcept
 		{
 			impl_.data[0] %= other;
 			impl_.data[1] %= other;
@@ -275,7 +275,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator%=(const vec3<U>& other)
+		vec& operator%=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] %= other[0];
 			impl_.data[1] %= other[1];
@@ -287,7 +287,7 @@ namespace tue
 		// v &= other
 		// ----------
 		template<typename U>
-		vec& operator&=(const U& other)
+		vec& operator&=(const U& other) noexcept
 		{
 			impl_.data[0] &= other;
 			impl_.data[1] &= other;
@@ -296,7 +296,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator&=(const vec3<U>& other)
+		vec& operator&=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] &= other[0];
 			impl_.data[1] &= other[1];
@@ -308,7 +308,7 @@ namespace tue
 		// v |= other
 		// ----------
 		template<typename U>
-		vec& operator|=(const U& other)
+		vec& operator|=(const U& other) noexcept
 		{
 			impl_.data[0] |= other;
 			impl_.data[1] |= other;
@@ -317,7 +317,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator|=(const vec3<U>& other)
+		vec& operator|=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] |= other[0];
 			impl_.data[1] |= other[1];
@@ -329,7 +329,7 @@ namespace tue
 		// v ^= other
 		// ----------
 		template<typename U>
-		vec& operator^=(const U& other)
+		vec& operator^=(const U& other) noexcept
 		{
 			impl_.data[0] ^= other;
 			impl_.data[1] ^= other;
@@ -338,7 +338,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator^=(const vec3<U>& other)
+		vec& operator^=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] ^= other[0];
 			impl_.data[1] ^= other[1];
@@ -350,7 +350,7 @@ namespace tue
 		// v <<= other
 		// -----------
 		template<typename U>
-		vec& operator<<=(const U& other)
+		vec& operator<<=(const U& other) noexcept
 		{
 			impl_.data[0] <<= other;
 			impl_.data[1] <<= other;
@@ -359,7 +359,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator<<=(const vec3<U>& other)
+		vec& operator<<=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] <<= other[0];
 			impl_.data[1] <<= other[1];
@@ -371,7 +371,7 @@ namespace tue
 		// v >>= other
 		// -----------
 		template<typename U>
-		vec& operator>>=(const U& other)
+		vec& operator>>=(const U& other) noexcept
 		{
 			impl_.data[0] >>= other;
 			impl_.data[1] >>= other;
@@ -380,7 +380,7 @@ namespace tue
 		}
 
 		template<typename U>
-		vec& operator>>=(const vec3<U>& other)
+		vec& operator>>=(const vec3<U>& other) noexcept
 		{
 			impl_.data[0] >>= other[0];
 			impl_.data[1] >>= other[1];
@@ -398,7 +398,7 @@ namespace tue
 		static constexpr vec extend_(
 			const vec2<T>& v,
 			const T& z,
-			const T&)
+			const T&) noexcept
 		{
 			return vec(v, z);
 		}
@@ -406,7 +406,7 @@ namespace tue
 		static constexpr vec extend_(
 			const vec3<T>& v,
 			const T&,
-			const T&)
+			const T&) noexcept
 		{
 			return v;
 		}
@@ -414,7 +414,7 @@ namespace tue
 		static constexpr vec extend_(
 			const vec4<T>& v,
 			const T&,
-			const T&)
+			const T&) noexcept
 		{
 			return vec(v);
 		}
@@ -424,7 +424,7 @@ namespace tue
 	// +v
 	// --
 	template<typename T>
-	inline TUE_CONSTEXPR auto operator+(const vec3<T>& v)
+	inline TUE_CONSTEXPR auto operator+(const vec3<T>& v) noexcept
 	{
 		return vec3<decltype(+v[0])>(+v[0], +v[1], +v[2]);
 	}
@@ -433,7 +433,7 @@ namespace tue
 	// -v
 	// --
 	template<typename T>
-	inline TUE_CONSTEXPR auto operator-(const vec3<T>& v)
+	inline TUE_CONSTEXPR auto operator-(const vec3<T>& v) noexcept
 	{
 		return vec3<decltype(-v[0])>(-v[0], -v[1], -v[2]);
 	}
@@ -442,7 +442,7 @@ namespace tue
 	// ~v
 	// --
 	template<typename T>
-	inline TUE_CONSTEXPR auto operator~(const vec3<T>& v)
+	inline TUE_CONSTEXPR auto operator~(const vec3<T>& v) noexcept
 	{
 		return vec3<decltype(~v[0])>(~v[0], ~v[1], ~v[2]);
 	}
@@ -453,7 +453,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator+(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs + rhs[0])>{
 			lhs + rhs[0],
@@ -465,7 +465,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator+(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] + rhs)>{
 			lhs[0] + rhs,
@@ -477,7 +477,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator+(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] + rhs[0])>{
 			lhs[0] + rhs[0],
@@ -492,7 +492,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator-(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs - rhs[0])>{
 			lhs - rhs[0],
@@ -504,7 +504,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator-(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] - rhs)>{
 			lhs[0] - rhs,
@@ -516,7 +516,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator-(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] - rhs[0])>{
 			lhs[0] - rhs[0],
@@ -531,7 +531,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator*(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs * rhs[0])>{
 			lhs * rhs[0],
@@ -543,7 +543,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator*(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] * rhs)>{
 			lhs[0] * rhs,
@@ -555,7 +555,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator*(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] * rhs[0])>{
 			lhs[0] * rhs[0],
@@ -570,7 +570,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator/(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs / rhs[0])>{
 			lhs / rhs[0],
@@ -582,7 +582,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator/(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] / rhs)>{
 			lhs[0] / rhs,
@@ -594,7 +594,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator/(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] / rhs[0])>{
 			lhs[0] / rhs[0],
@@ -609,7 +609,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator%(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs % rhs[0])>{
 			lhs % rhs[0],
@@ -621,7 +621,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator%(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] % rhs)>{
 			lhs[0] % rhs,
@@ -633,7 +633,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator%(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] % rhs[0])>{
 			lhs[0] % rhs[0],
@@ -648,7 +648,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator&(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs & rhs[0])>{
 			lhs & rhs[0],
@@ -660,7 +660,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator&(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] & rhs)>{
 			lhs[0] & rhs,
@@ -672,7 +672,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator&(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] & rhs[0])>{
 			lhs[0] & rhs[0],
@@ -687,7 +687,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator|(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs | rhs[0])>{
 			lhs | rhs[0],
@@ -699,7 +699,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator|(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] | rhs)>{
 			lhs[0] | rhs,
@@ -711,7 +711,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator|(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] | rhs[0])>{
 			lhs[0] | rhs[0],
@@ -726,7 +726,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator^(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs ^ rhs[0])>{
 			lhs ^ rhs[0],
@@ -738,7 +738,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator^(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] ^ rhs)>{
 			lhs[0] ^ rhs,
@@ -750,7 +750,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator^(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] ^ rhs[0])>{
 			lhs[0] ^ rhs[0],
@@ -765,7 +765,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator<<(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs << rhs[0])>{
 			lhs << rhs[0],
@@ -777,7 +777,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator<<(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] << rhs)>{
 			lhs[0] << rhs,
@@ -789,7 +789,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator<<(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] << rhs[0])>{
 			lhs[0] << rhs[0],
@@ -804,7 +804,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator>>(
 		const T& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs >> rhs[0])>{
 			lhs >> rhs[0],
@@ -816,7 +816,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator>>(
 		const vec3<T>& lhs,
-		const U& rhs)
+		const U& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] >> rhs)>{
 			lhs[0] >> rhs,
@@ -828,7 +828,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator>>(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return vec3<decltype(lhs[0] >> rhs[0])>{
 			lhs[0] >> rhs[0],
@@ -843,7 +843,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator==(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return lhs[0] == rhs[0]
 			&& lhs[1] == rhs[1]
@@ -856,7 +856,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator!=(
 		const vec3<T>& lhs,
-		const vec3<U>& rhs)
+		const vec3<U>& rhs) noexcept
 	{
 		return !(lhs == rhs);
 	}
@@ -870,7 +870,7 @@ namespace tue
 		// sin()
 		// -----
 		template<typename T>
-		inline auto sin(const vec3<T>& v)
+		inline auto sin(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::sin(v[0]))>{
 				math::sin(v[0]),
@@ -883,7 +883,7 @@ namespace tue
 		// cos()
 		// -----
 		template<typename T>
-		inline auto cos(const vec3<T>& v)
+		inline auto cos(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::cos(v[0]))>{
 				math::cos(v[0]),
@@ -899,7 +899,7 @@ namespace tue
 		inline void sincos(
 			const vec3<T>& v,
 			decltype(math::sin(v))& sin_result,
-			decltype(math::cos(v))& cos_result)
+			decltype(math::cos(v))& cos_result) noexcept
 		{
 			math::sincos(v[0], sin_result[0], cos_result[0]);
 			math::sincos(v[1], sin_result[1], cos_result[1]);
@@ -910,7 +910,7 @@ namespace tue
 		// exp()
 		// -----
 		template<typename T>
-		inline auto exp(const vec3<T>& v)
+		inline auto exp(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::exp(v[0]))>{
 				math::exp(v[0]),
@@ -923,7 +923,7 @@ namespace tue
 		// log()
 		// -----
 		template<typename T>
-		inline auto log(const vec3<T>& v)
+		inline auto log(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::log(v[0]))>{
 				math::log(v[0]),
@@ -938,7 +938,7 @@ namespace tue
 		template<typename T, typename U>
 		inline auto pow(
 			const vec3<T>& base,
-			const U& exponent)
+			const U& exponent) noexcept
 		{
 			return vec3<decltype(math::pow(base[0], exponent))>{
 				math::pow(base[0], exponent),
@@ -950,7 +950,7 @@ namespace tue
 		template<typename T, typename U>
 		inline auto pow(
 			const vec3<T>& base,
-			const vec3<U>& exponent)
+			const vec3<U>& exponent) noexcept
 		{
 			return vec3<decltype(math::pow(base[0], exponent[0]))>{
 				math::pow(base[0], exponent[0]),
@@ -963,7 +963,7 @@ namespace tue
 		// recip()
 		// -------
 		template<typename T>
-		inline auto recip(const vec3<T>& v)
+		inline auto recip(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::recip(v[0]))>{
 				math::recip(v[0]),
@@ -976,7 +976,7 @@ namespace tue
 		// sqrt()
 		// ------
 		template<typename T>
-		inline auto sqrt(const vec3<T>& v)
+		inline auto sqrt(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::sqrt(v[0]))>{
 				math::sqrt(v[0]),
@@ -989,7 +989,7 @@ namespace tue
 		// rsqrt()
 		// -------
 		template<typename T>
-		inline auto rsqrt(const vec3<T>& v)
+		inline auto rsqrt(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::rsqrt(v[0]))>{
 				math::rsqrt(v[0]),
@@ -1004,7 +1004,7 @@ namespace tue
 		template<typename T>
 		inline auto min(
 			const vec3<T>& v1,
-			const vec3<T>& v2)
+			const vec3<T>& v2) noexcept
 		{
 			return vec3<decltype(math::min(v1[0], v2[0]))>{
 				math::min(v1[0], v2[0]),
@@ -1019,7 +1019,7 @@ namespace tue
 		template<typename T>
 		inline auto max(
 			const vec3<T>& v1,
-			const vec3<T>& v2)
+			const vec3<T>& v2) noexcept
 		{
 			return vec3<decltype(math::max(v1[0], v2[0]))>{
 				math::max(v1[0], v2[0]),
@@ -1032,7 +1032,7 @@ namespace tue
 		// abs()
 		// -----
 		template<typename T>
-		inline auto abs(const vec3<T>& v)
+		inline auto abs(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::abs(v[0]))>{
 				math::abs(v[0]),
@@ -1047,7 +1047,7 @@ namespace tue
 		template<typename T, typename U>
 		inline TUE_CONSTEXPR auto dot(
 			const vec3<T>& lhs,
-			const vec3<U>& rhs)
+			const vec3<U>& rhs) noexcept
 		{
 			return lhs[0] * rhs[0]
 				+ lhs[1] * rhs[1]
@@ -1060,7 +1060,7 @@ namespace tue
 		template<typename T, typename U>
 		inline TUE_CONSTEXPR auto cross(
 			const vec3<T>& lhs,
-			const vec3<U>& rhs)
+			const vec3<U>& rhs) noexcept
 		{
 			return vec3<decltype(lhs[1] * rhs[2] - lhs[2] * rhs[1])>{
 				lhs[1] * rhs[2] - lhs[2] * rhs[1],
@@ -1073,7 +1073,7 @@ namespace tue
 		// length2()
 		// ---------
 		template<typename T>
-		inline auto length2(const vec3<T>& v)
+		inline auto length2(const vec3<T>& v) noexcept
 		{
 			return math::length2(v[0])
 				+ math::length2(v[1])
@@ -1084,7 +1084,7 @@ namespace tue
 		// length()
 		// --------
 		template<typename T>
-		inline auto length(const vec3<T>& v)
+		inline auto length(const vec3<T>& v) noexcept
 		{
 			return math::sqrt(math::length2(v));
 		}
@@ -1093,7 +1093,7 @@ namespace tue
 		// normalize()
 		// -----------
 		template<typename T>
-		inline auto normalize(const vec3<T>& v)
+		inline auto normalize(const vec3<T>& v) noexcept
 		{
 			return vec3<decltype(math::length(v))>(v) / math::length(v);
 		}

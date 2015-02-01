@@ -11,7 +11,7 @@ namespace tue
 	// unused()
 	// --------
 	template<typename... Args>
-	inline void unused(Args&&...)
+	inline void unused(Args&&...) noexcept
 	{
 	}
 }

@@ -39,7 +39,7 @@ namespace tue
 		// -------------------
 		// default constructor
 		// -------------------
-		rect() = default;
+		rect() noexcept = default;
 
 		// ----------------------
 		// component constructors
@@ -48,27 +48,27 @@ namespace tue
 			const P& x,
 			const P& y,
 			const S& width,
-			const S& height) :
+			const S& height) noexcept :
 			position_(x, y),
 			size_(width, height) {}
 
 		explicit constexpr rect(
 			const P& x,
 			const P& y,
-			const size2d<S>& size) :
+			const size2d<S>& size) noexcept :
 			position_(x, y),
 			size_(size) {}
 
 		explicit constexpr rect(
 			const vec2<P>& position,
 			const S& width,
-			const S& height) :
+			const S& height) noexcept :
 			position_(position),
 			size_(width, height) {}
 
 		explicit constexpr rect(
 			const vec2<P>& position,
-			const size2d<S>& size) :
+			const size2d<S>& size) noexcept :
 			position_(position),
 			size_(size) {}
 
@@ -77,7 +77,7 @@ namespace tue
 		// -------------------------------
 		template<typename OtherP, typename OtherS>
 		explicit constexpr rect(
-			const rect<OtherP, OtherS>& other) :
+			const rect<OtherP, OtherS>& other) noexcept :
 			position_(vec2<P>(other.position())),
 			size_(size2d<S>(other.size())) {}
 
@@ -85,7 +85,7 @@ namespace tue
 		// implicit conversion operator
 		// ----------------------------
 		template<typename OtherP, typename OtherS>
-		constexpr operator rect<OtherP, OtherS>() const
+		constexpr operator rect<OtherP, OtherS>() const noexcept
 		{
 			return rect<OtherP, OtherS>(position_, size_);
 		}
@@ -93,18 +93,18 @@ namespace tue
 		// --------
 		// position
 		// --------
-		constexpr vec2<P> position() const
+		constexpr vec2<P> position() const noexcept
 		{
 			return position_;
 		}
 
-		void set_position(const P& x, const P& y)
+		void set_position(const P& x, const P& y) noexcept
 		{
 			position_.set_x(x);
 			position_.set_y(y);
 		}
 
-		void set_position(const vec2<P>& position)
+		void set_position(const vec2<P>& position) noexcept
 		{
 			position_ = position;
 		}
@@ -112,30 +112,30 @@ namespace tue
 		// -
 		// x
 		// -
-		constexpr P x() const { return position_.x(); }
-		void set_x(const P& x) { position_.set_x(x); }
+		constexpr P x() const noexcept { return position_.x(); }
+		void set_x(const P& x) noexcept { position_.set_x(x); }
 
 		// -
 		// y
 		// -
-		constexpr P y() const { return position_.y(); }
-		void set_y(const P& y) { position_.set_y(y); }
+		constexpr P y() const noexcept { return position_.y(); }
+		void set_y(const P& y) noexcept { position_.set_y(y); }
 
 		// ----
 		// size
 		// ----
-		constexpr size2d<S> size() const
+		constexpr size2d<S> size() const noexcept
 		{
 			return size_;
 		}
 
-		void set_size(const S& width, const S& height)
+		void set_size(const S& width, const S& height) noexcept
 		{
 			size_.set_width(width);
 			size_.set_height(height);
 		}
 
-		void set_size(const size2d<S>& size)
+		void set_size(const size2d<S>& size) noexcept
 		{
 			size_ = size;
 		}
@@ -143,14 +143,14 @@ namespace tue
 		// -----
 		// width
 		// -----
-		constexpr S width() const { return size_.width(); }
-		void set_width(const S& width) { size_.set_width(width); }
+		constexpr S width() const noexcept { return size_.width(); }
+		void set_width(const S& width) noexcept { size_.set_width(width); }
 
 		// ------
 		// height
 		// ------
-		constexpr S height() const { return size_.height(); }
-		void set_height(const S& height) { size_.set_height(height); }
+		constexpr S height() const noexcept { return size_.height(); }
+		void set_height(const S& height) noexcept { size_.set_height(height); }
 	};
 
 	// ----------
@@ -159,7 +159,7 @@ namespace tue
 	template<typename LP, typename LS, typename RP, typename RS>
 	inline TUE_CONSTEXPR bool operator==(
 		const rect<LP, LS>& lhs,
-		const rect<RP, RS>& rhs)
+		const rect<RP, RS>& rhs) noexcept
 	{
 		return lhs.position() == rhs.position()
 			&& lhs.size() == rhs.size();
@@ -171,7 +171,7 @@ namespace tue
 	template<typename LP, typename LS, typename RP, typename RS>
 	inline TUE_CONSTEXPR bool operator!=(
 		const rect<LP, LS>& lhs,
-		const rect<RP, RS>& rhs)
+		const rect<RP, RS>& rhs) noexcept
 	{
 		return !(lhs == rhs);
 	}

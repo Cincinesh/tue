@@ -92,12 +92,12 @@ namespace tue
 			return _mm_setzero_ps();
 		}
 
-		static float32x4 load(const float* array)
+		static float32x4 load(const float* array) noexcept
 		{
 			return _mm_load_ps(array);
 		}
 
-		static float32x4 loadu(const float* array)
+		static float32x4 loadu(const float* array) noexcept
 		{
 			// unaligned
 			return _mm_loadu_ps(array);
@@ -786,7 +786,7 @@ namespace tue
 			float32x4& v1,
 			float32x4& v2,
 			float32x4& v3,
-			float32x4& v4)
+			float32x4& v4) noexcept
 		{
 			_MM_TRANSPOSE4_PS(v1, v2, v3, v4);
 		}

@@ -35,22 +35,26 @@ namespace tue
 		// -------------------
 		// default constructor
 		// -------------------
-		quat() = default;
+		quat() noexcept = default;
 
 		// ----------------------
 		// component constructors
 		// ----------------------
-		constexpr quat(const T& x, const T& y, const T& z, const T& w) :
+		constexpr quat(
+			const T& x,
+			const T& y,
+			const T& z,
+			const T& w) noexcept :
 			impl_({ { x, y, z, w } }) {}
 
-		constexpr quat(const vec3<T>& v, const T& s) :
+		constexpr quat(const vec3<T>& v, const T& s) noexcept :
 			impl_({ { v[0], v[1], v[2], s } }) {}
 
 		// -------------------------------
 		// explicit conversion constructor
 		// -------------------------------
 		template<typename U>
-		explicit constexpr quat(const quat<U>& other) :
+		explicit constexpr quat(const quat<U>& other) noexcept :
 			impl_({ {
 				T(other[0]),
 				T(other[1]),
@@ -62,7 +66,7 @@ namespace tue
 		// implicit conversion operator
 		// ----------------------------
 		template<typename U>
-		constexpr operator quat<U>() const
+		constexpr operator quat<U>() const noexcept
 		{
 			return{
 				impl_.data[0],
@@ -75,7 +79,7 @@ namespace tue
 		// ---------------
 		// factory methods
 		// ---------------
-		static constexpr quat identity()
+		static constexpr quat identity() noexcept
 		{
 			return{ T(0), T(0), T(0), T(1) };
 		}
@@ -83,31 +87,31 @@ namespace tue
 		// -
 		// x
 		// -
-		constexpr T x() const { return impl_.data[0]; }
-		void set_x(const T& x) { impl_.data[0] = x; }
+		constexpr T x() const noexcept { return impl_.data[0]; }
+		void set_x(const T& x) noexcept { impl_.data[0] = x; }
 
 		// -
 		// y
 		// -
-		constexpr T y() const { return impl_.data[1]; }
-		void set_y(const T& y) { impl_.data[1] = y; }
+		constexpr T y() const noexcept { return impl_.data[1]; }
+		void set_y(const T& y) noexcept { impl_.data[1] = y; }
 
 		// -
 		// z
 		// -
-		constexpr T z() const { return impl_.data[2]; }
-		void set_z(const T& z) { impl_.data[2] = z; }
+		constexpr T z() const noexcept { return impl_.data[2]; }
+		void set_z(const T& z) noexcept { impl_.data[2] = z; }
 
 		// -
 		// w
 		// -
-		constexpr T w() const { return impl_.data[3]; }
-		void set_w(const T& w) { impl_.data[3] = w; }
+		constexpr T w() const noexcept { return impl_.data[3]; }
+		void set_w(const T& w) noexcept { impl_.data[3] = w; }
 
 		// -
 		// v
 		// -
-		constexpr vec3<T> v() const
+		constexpr vec3<T> v() const noexcept
 		{
 			return{
 				impl_.data[0],
@@ -116,14 +120,14 @@ namespace tue
 			};
 		}
 		
-		void set_v(const T& x, const T& y, const T& z)
+		void set_v(const T& x, const T& y, const T& z) noexcept
 		{
 			impl_.data[0] = x;
 			impl_.data[1] = y;
 			impl_.data[2] = z;
 		}
 		
-		void set_v(const vec3<T>& v)
+		void set_v(const vec3<T>& v) noexcept
 		{
 			set_v(v[0], v[1], v[2]);
 		}
@@ -131,20 +135,20 @@ namespace tue
 		// -
 		// s
 		// -
-		constexpr T s() const { return impl_.data[3]; }
-		void set_s(const T& s) { impl_.data[3] = s; }
+		constexpr T s() const noexcept { return impl_.data[3]; }
+		void set_s(const T& s) noexcept { impl_.data[3] = s; }
 
 		// ----
 		// q[i]
 		// ----
 		template<typename I>
-		T& operator[](const I& i)
+		T& operator[](const I& i) noexcept
 		{
 			return impl_.data[i];
 		}
 
 		template<typename I>
-		constexpr const T& operator[](const I& i) const
+		constexpr const T& operator[](const I& i) const noexcept
 		{
 			return impl_.data[i];
 		}
@@ -156,7 +160,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR auto operator*(
 		const quat<T>& lhs,
-		const quat<U>& rhs)
+		const quat<U>& rhs) noexcept
 	{
 		return quat<decltype(lhs[0] * rhs[0])>{
 			lhs.s() * rhs.v() + rhs.s() * lhs.v()
@@ -171,7 +175,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator==(
 		const quat<T>& lhs,
-		const quat<U>& rhs)
+		const quat<U>& rhs) noexcept
 	{
 		return lhs[0] == rhs[0]
 			&& lhs[1] == rhs[1]
@@ -185,7 +189,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator!=(
 		const quat<T>& lhs,
-		const quat<U>& rhs)
+		const quat<U>& rhs) noexcept
 	{
 		return !(lhs == rhs);
 	}
@@ -199,7 +203,7 @@ namespace tue
 		// length2()
 		// ---------
 		template<typename T>
-		inline auto length2(const quat<T>& q)
+		inline auto length2(const quat<T>& q) noexcept
 		{
 			return math::length2(q[0])
 				+ math::length2(q[1])
@@ -211,7 +215,7 @@ namespace tue
 		// length()
 		// --------
 		template<typename T>
-		inline auto length(const quat<T>& q)
+		inline auto length(const quat<T>& q) noexcept
 		{
 			return math::sqrt(math::length2(q));
 		}
@@ -220,7 +224,7 @@ namespace tue
 		// normalize()
 		// -----------
 		template<typename T>
-		inline auto normalize(const quat<T>& q)
+		inline auto normalize(const quat<T>& q) noexcept
 		{
 			const auto l = math::length(q);
 			return quat<decltype(l / l)>{
@@ -235,7 +239,7 @@ namespace tue
 		// conjugate()
 		// -----------
 		template<typename T>
-		inline TUE_CONSTEXPR quat<T> conjugate(const quat<T>& q)
+		inline TUE_CONSTEXPR quat<T> conjugate(const quat<T>& q) noexcept
 		{
 			return{ -q.v(), q.s() };
 		}
@@ -246,7 +250,7 @@ namespace tue
 		template<typename T, typename U>
 		inline TUE_CONSTEXPR auto rotate(
 			const quat<T>& q,
-			const vec3<U>& v)
+			const vec3<U>& v) noexcept
 		{
 			return (q * quat<U>(v, U(0)) * math::conjugate(q)).v();
 		}

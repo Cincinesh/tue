@@ -35,14 +35,14 @@ namespace tue
 		// -------------------
 		// default constructor
 		// -------------------
-		size2d() = default;
+		size2d() noexcept = default;
 
 		// ---------------------
 		// component constructor
 		// ---------------------
 		explicit constexpr size2d(
 			const T& width,
-			const T& height) :
+			const T& height) noexcept :
 			width_(width),
 			height_(height) {}
 
@@ -51,7 +51,7 @@ namespace tue
 		// -------------------------------
 		template<typename U>
 		explicit constexpr size2d(
-			const size2d<U>& other) :
+			const size2d<U>& other) noexcept :
 			width_(T(other.width())),
 			height_(T(other.height())) {}
 
@@ -59,7 +59,7 @@ namespace tue
 		// implicit conversion operator
 		// ----------------------------
 		template<typename U>
-		constexpr operator size2d<U>() const
+		constexpr operator size2d<U>() const noexcept
 		{
 			return size2d<U>(width_, height_);
 		}
@@ -67,14 +67,14 @@ namespace tue
 		// -----
 		// width
 		// -----
-		constexpr T width() const { return width_; }
-		void set_width(const T& width) { width_ = width; }
+		constexpr T width() const noexcept { return width_; }
+		void set_width(const T& width) noexcept { width_ = width; }
 
 		// ------
 		// height
 		// ------
-		constexpr T height() const { return height_; }
-		void set_height(const T& height) { height_ = height; }
+		constexpr T height() const noexcept { return height_; }
+		void set_height(const T& height) noexcept { height_ = height; }
 	};
 
 	// ----------
@@ -83,7 +83,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator==(
 		const size2d<T>& lhs,
-		const size2d<U>& rhs)
+		const size2d<U>& rhs) noexcept
 	{
 		return lhs.width() == rhs.width()
 			&& lhs.height() == rhs.height();
@@ -95,7 +95,7 @@ namespace tue
 	template<typename T, typename U>
 	inline TUE_CONSTEXPR bool operator!=(
 		const size2d<T>& lhs,
-		const size2d<U>& rhs)
+		const size2d<U>& rhs) noexcept
 	{
 		return !(lhs == rhs);
 	}
