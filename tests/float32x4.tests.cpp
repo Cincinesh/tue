@@ -145,7 +145,7 @@ namespace
 	{
 		const float32x4_t underlying = f41;
 		alignas(16) float result[4];
-		_mm_store_ps(result, underlying);
+		vst1q_f32(result, underlying);
 		test_assert(result[0] == f410);
 		test_assert(result[1] == f411);
 		test_assert(result[2] == f412);
