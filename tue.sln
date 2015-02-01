@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Public Headers", "1. Public Headers", "{D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tue", "tue.vcxitems", "{F35C7E57-08CE-41A4-B7A8-471606299296}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Private Sources", "2. Private Sources", "{B64B8B7A-2762-4B99-88F0-59D68D1E9185}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Tests", "3. Tests", "{8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcxproj", "{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.android", "tests\tests.android.vcxproj", "{65E4BBD8-9F9A-4EEE-9A18-51183519A826}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.common", "tests\tests.common.vcxitems", "{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA}"
 EndProject
@@ -15,14 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{9C
 		.gitignore = .gitignore
 		LICENSE_1_0.txt = LICENSE_1_0.txt
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Public Headers", "1. Public Headers", "{D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tue", "tue.vcxitems", "{F35C7E57-08CE-41A4-B7A8-471606299296}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcxproj", "{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.android", "tests\tests.android.vcxproj", "{65E4BBD8-9F9A-4EEE-9A18-51183519A826}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
