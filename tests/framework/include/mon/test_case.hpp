@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace tue
+namespace mon
 {
 	class test_case
 	{
@@ -52,10 +52,6 @@ namespace tue
 			int line,
 			const std::string& text);
 	};
-
-	bool operator==(const test_case& lhs, const test_case& rhs);
-
-	bool operator!=(const test_case& lhs, const test_case& rhs);
 }
 
 #ifdef _MSC_VER
@@ -68,16 +64,16 @@ namespace tue
 namespace TEST_CASE_##name \
 { \
   void function_(); \
-  ::tue::test_case TEST_CASE_##name( \
+  ::mon::test_case TEST_CASE_##name( \
       __FILE__, __LINE__, "TEST_CASE("#name")", &function_, true); \
 } \
 void TEST_CASE_##name::function_()
 
 #define test_assert(condition) static_cast<void>( \
 	static_cast<bool>(condition) \
-	|| (::tue::test_case::throw_test_failure( \
+	|| (::mon::test_case::throw_test_failure( \
 		__FILE__, __LINE__, "test_assert("#condition") failed"), 0))
 
 #define test_fail(info) \
-	::tue::test_case::throw_test_failure( \
+	::mon::test_case::throw_test_failure( \
 		__FILE__, __LINE__, "test_fail("#info")")

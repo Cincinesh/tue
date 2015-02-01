@@ -3,16 +3,16 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "test_case.hpp"
+#include <mon/test_case.hpp>
 
 #include <tuple>
 #include <utility>
 
-#include "test_failure.hpp"
+#include <mon/test_failure.hpp>
 
 using namespace std;
 
-namespace tue
+namespace mon
 {
 	map<string, vector<const test_case*>>& test_case::global_collection_()
 	{
@@ -74,18 +74,5 @@ namespace tue
 		const string& text)
 	{
 		throw test_failure(file, line, text);
-	}
-
-	bool operator==(const test_case& lhs, const test_case& rhs)
-	{
-		return lhs.file() == rhs.file()
-			&& lhs.line() == rhs.line()
-			&& lhs.name() == rhs.name()
-			&& lhs.function_ptr() == rhs.function_ptr();
-	}
-
-	bool operator!=(const test_case& lhs, const test_case& rhs)
-	{
-		return !operator==(lhs, rhs);
 	}
 }

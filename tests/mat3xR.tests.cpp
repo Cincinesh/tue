@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include <tue/mat.hpp>
-#include "test_case.hpp"
+#include <mon/test_case.hpp>
 
 #include <tue/math.hpp>
 #include <tue/unused.hpp>

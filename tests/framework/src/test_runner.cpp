@@ -3,18 +3,18 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "test_runner.hpp"
+#include <mon/test_runner.hpp>
 
 #include <cstdlib>
 #include <exception>
 #include <iostream>
 
-#include "test_case.hpp"
-#include "test_failure.hpp"
+#include <mon/test_case.hpp>
+#include <mon/test_failure.hpp>
 
 using namespace std;
 
-namespace tue
+namespace mon
 {
 	int test_runner::run_all()
 	{

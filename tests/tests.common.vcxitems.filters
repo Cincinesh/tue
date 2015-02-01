@@ -2,18 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)vec4.tests.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)test_case.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)test_failure.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)test_runner.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)vec3.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)vec2.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)math.tests.cpp" />
@@ -25,21 +13,42 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)size2d.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)rect.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)float32x4.tests.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)test_case.hpp">
-      <Filter>framework</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)test_failure.hpp">
-      <Filter>framework</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)test_runner.hpp">
-      <Filter>framework</Filter>
-    </ClInclude>
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\main.cpp">
+      <Filter>framework\src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\test_case.cpp">
+      <Filter>framework\src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\test_failure.cpp">
+      <Filter>framework\src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\test_runner.cpp">
+      <Filter>framework\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="framework">
-      <UniqueIdentifier>{0e0a1dfc-9c49-4657-bf7a-f64baaa917cd}</UniqueIdentifier>
+      <UniqueIdentifier>{22549c0f-1648-4828-9798-50c41a6db7e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\src">
+      <UniqueIdentifier>{56c333a7-c52e-4a07-9366-37146ca7e890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\include">
+      <UniqueIdentifier>{ffbbd92e-716a-4bd5-80fb-967c0d25e0a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\include\mon">
+      <UniqueIdentifier>{8ae8ce3a-4a3a-4cd4-97e1-1b04477847a8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)framework\include\mon\test_case.hpp">
+      <Filter>framework\include\mon</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)framework\include\mon\test_runner.hpp">
+      <Filter>framework\include\mon</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)framework\include\mon\test_failure.hpp">
+      <Filter>framework\include\mon</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

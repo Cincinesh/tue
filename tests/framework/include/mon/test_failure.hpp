@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace tue
+namespace mon
 {
 	class test_failure
 	{
@@ -23,12 +23,8 @@ namespace tue
 
 		std::string file() const;
 
-		int line() const noexcept;
+		int line() const;
 
 		std::string text() const;
 	};
-
-	bool operator==(const test_failure& lhs, const test_failure& rhs) noexcept;
-
-	bool operator!=(const test_failure& lhs, const test_failure& rhs) noexcept;
 }

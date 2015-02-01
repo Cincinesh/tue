@@ -16,7 +16,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)float32x4.tests.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\test_case.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\test_failure.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)framework\src\test_runner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)mat2xR.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)mat3xR.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)mat4xR.tests.cpp" />
@@ -27,14 +30,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)size2d.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)vec2.tests.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)vec3.tests.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)test_case.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)test_failure.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)test_runner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)vec4.tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)test_case.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)test_failure.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)test_runner.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)framework\include\mon\test_case.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)framework\include\mon\test_failure.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)framework\include\mon\test_runner.hpp" />
   </ItemGroup>
 </Project>
