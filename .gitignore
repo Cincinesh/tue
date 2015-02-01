@@ -2,7 +2,9 @@ ARM
 Debug
 Generated Files
 Release
+intermediate
 ipch
+output
 x64
 x86
 .DS_Store
