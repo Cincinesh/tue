@@ -112,7 +112,7 @@ namespace tue
 
 		static float32x4 loadu(const float* array) noexcept
 		{
-			return vld1q_f32(array);
+			return load(array);
 		}
 
 		// -------
@@ -125,7 +125,7 @@ namespace tue
 
 		void storeu(float* destination) const noexcept
 		{
-			vst1q_f32(destination, underlying_);
+			store(destination);
 		}
 	};
 
@@ -139,17 +139,15 @@ namespace tue
 
 	inline float32x4 operator-(const float32x4& v) noexcept
 	{
-		const uint32x4_t result = veorq_u32(
-			reinterpret_cast<const uint32x4_t&>(v),
-			vdupq_n_u32(0x80000000));
-		return reinterpret_cast<const float32x4&>(result);
+		return vreinterpretq_f32_u32(veorq_u32(
+			vreinterpretq_u32_f32(v),
+			vdupq_n_u32(0x80000000)));
 	}
 
 	inline float32x4 operator~(const float32x4& v) noexcept
 	{
-		const uint32x4_t result = vmvnq_u32(
-			reinterpret_cast<const uint32x4_t&>(v));
-		return reinterpret_cast<const float32x4&>(result);
+		return vreinterpretq_f32_u32(vmvnq_u32(
+			vreinterpretq_u32_f32(v)));
 	}
 
 	// --------------------
@@ -192,30 +190,27 @@ namespace tue
 		const float32x4& lhs,
 		const float32x4& rhs) noexcept
 	{
-		const uint32x4_t result = vandq_u32(
-			reinterpret_cast<const uint32x4_t&>(lhs),
-			reinterpret_cast<const uint32x4_t&>(rhs));
-		return reinterpret_cast<const float32x4&>(result);
+		return vreinterpretq_f32_u32(vandq_u32(
+			vreinterpretq_u32_f32(lhs),
+			vreinterpretq_u32_f32(rhs)));
 	}
 
 	inline float32x4 operator|(
 		const float32x4& lhs,
 		const float32x4& rhs) noexcept
 	{
-		const uint32x4_t result = vorrq_u32(
-			reinterpret_cast<const uint32x4_t&>(lhs),
-			reinterpret_cast<const uint32x4_t&>(rhs));
-		return reinterpret_cast<const float32x4&>(result);
+		return vreinterpretq_f32_u32(vorrq_u32(
+			vreinterpretq_u32_f32(lhs),
+			vreinterpretq_u32_f32(rhs)));
 	}
 
 	inline float32x4 operator^(
 		const float32x4& lhs,
 		const float32x4& rhs) noexcept
 	{
-		const uint32x4_t result = veorq_u32(
-			reinterpret_cast<const uint32x4_t&>(lhs),
-			reinterpret_cast<const uint32x4_t&>(rhs));
-		return reinterpret_cast<const float32x4&>(result);
+		return vreinterpretq_f32_u32(veorq_u32(
+			vreinterpretq_u32_f32(lhs),
+			vreinterpretq_u32_f32(rhs)));
 	}
 
 	// ---------------------------------
@@ -307,11 +302,11 @@ namespace tue
 		const float32x4& lhs,
 		const float32x4& rhs) noexcept
 	{
-		uint32x4_t i4 = vceqq_f32(lhs, rhs);
-		uint32x2_t i2 = vand_u32(vget_low_u32(i4), vget_high_u32(i4));
-		i2 = vand_u32(i2, vext_u32(i2, i2, 1));
-		i2 = vand_u32(i2, vdup_n_u32(1));
-		return vget_lane_u32(i2, 0) != 0;
+		uint32x4_t u4 = vceqq_f32(lhs, rhs);
+		uint32x2_t u2 = vand_u32(vget_low_u32(u4), vget_high_u32(u4));
+		u2 = vand_u32(u2, vext_u32(u2, u2, 1));
+		u2 = vand_u32(u2, vdup_n_u32(1));
+		return vget_lane_u32(u2, 0) != 0;
 	}
 
 	inline bool operator!=(
@@ -338,8 +333,71 @@ namespace tue
 			  This sincos() implementation is based on Julien Pommier's sincos_ps().
 			  See the top of this file for details.
 			*/
+			float32x4_t x = v;
+			float32x4_t xmm1, xmm2, xmm3, y;
 
-			// TODO
+			uint32x4_t emm2;
+
+			uint32x4_t sign_mask_sin, sign_mask_cos;
+			sign_mask_sin = vcltq_f32(x, vdupq_n_f32(0));
+			x = vabsq_f32(x);
+
+			/* scale by 4/Pi */
+			y = vmulq_f32(x, vdupq_n_f32(1.27323954473516));
+
+			/* store the integer part of y in mm0 */
+			emm2 = vcvtq_u32_f32(y);
+			/* j=(j+1) & (~1) (see the cephes sources) */
+			emm2 = vaddq_u32(emm2, vdupq_n_u32(1));
+			emm2 = vandq_u32(emm2, vdupq_n_u32(~1));
+			y = vcvtq_f32_u32(emm2);
+
+			/* get the polynom selection mask
+			   there is one polynom for 0 <= x <= Pi/4
+			   and another one for Pi/4<x<=Pi/2
+
+			   Both branches will be computed.
+			*/
+			uint32x4_t poly_mask = vtstq_u32(emm2, vdupq_n_u32(2));
+
+			/* The magic pass: "Extended precision modular arithmetic"
+			   x = ((x - y * DP1) - y * DP2) - y * DP3; */
+			xmm1 = vmulq_n_f32(y, -0.78515625);
+			xmm2 = vmulq_n_f32(y, -2.4187564849853515625e-4);
+			xmm3 = vmulq_n_f32(y, -3.77489497744594108e-8);
+			x = vaddq_f32(x, xmm1);
+			x = vaddq_f32(x, xmm2);
+			x = vaddq_f32(x, xmm3);
+
+			sign_mask_sin = veorq_u32(sign_mask_sin, vtstq_u32(emm2, vdupq_n_u32(4)));
+			sign_mask_cos = vtstq_u32(vsubq_u32(emm2, vdupq_n_u32(2)), vdupq_n_u32(4));
+
+			/* Evaluate the first polynom  (0 <= x <= Pi/4) in y1,
+			   and the second polynom      (Pi/4 <= x <= 0) in y2 */
+			float32x4_t z = vmulq_f32(x,x);
+			float32x4_t y1, y2;
+
+			y1 = vmulq_n_f32(z, 2.443315711809948E-005);
+			y2 = vmulq_n_f32(z, -1.9515295891E-4);
+			y1 = vaddq_f32(y1, vdupq_n_f32(-1.388731625493765E-003));
+			y2 = vaddq_f32(y2, vdupq_n_f32(8.3321608736E-3));
+			y1 = vmulq_f32(y1, z);
+			y2 = vmulq_f32(y2, z);
+			y1 = vaddq_f32(y1, vdupq_n_f32(4.166664568298827E-002));
+			y2 = vaddq_f32(y2, vdupq_n_f32(4.166664568298827E-002));
+			y1 = vmulq_f32(y1, z);
+			y2 = vmulq_f32(y2, z);
+			y1 = vmulq_f32(y1, z);
+			y2 = vmulq_f32(y2, x);
+			y1 = vsubq_f32(y1, vmulq_f32(z, vdupq_n_f32(0.5f)));
+			y2 = vaddq_f32(y2, x);
+			y1 = vaddq_f32(y1, vdupq_n_f32(1));
+
+			/* select the correct result from the two polynoms */
+			float32x4_t ys = vbslq_f32(poly_mask, y1, y2);
+			float32x4_t yc = vbslq_f32(poly_mask, y2, y1);
+			sin_result = vbslq_f32(sign_mask_sin, vnegq_f32(ys), ys);
+			cos_result = vbslq_f32(sign_mask_cos, yc, vnegq_f32(yc));
 		}
 
 		// -----
@@ -371,9 +429,70 @@ namespace tue
 			  This exp() implementation is based on Julien Pommier's exp_ps().
 			  See the top of this file for details.
 			*/
+			float32x4_t x = v;
+			float32x4_t tmp, fx;
 
-			// TODO
-			return float32x4(0.0f);
+			float32x4_t one = vdupq_n_f32(1);
+			x = vminq_f32(x, vdupq_n_f32(88.3762626647949f));
+			x = vmaxq_f32(x, vdupq_n_f32(-88.3762626647949f));
+
+			/* express exp(x) as exp(g + n*log(2)) */
+			fx = vmlaq_f32(vdupq_n_f32(0.5f), x, vdupq_n_f32(1.44269504088896341));
+
+			/* perform a floorf */
+			tmp = vcvtq_f32_s32(vcvtq_s32_f32(fx));
+
+			/* if greater, substract 1 */
+			uint32x4_t mask = vcgtq_f32(tmp, fx);
+			mask = vandq_u32(mask, vreinterpretq_u32_f32(one));
+
+			fx = vsubq_f32(tmp, vreinterpretq_f32_u32(mask));
+
+			tmp = vmulq_f32(fx, vdupq_n_f32(0.693359375));
+			float32x4_t z = vmulq_f32(fx, vdupq_n_f32(-2.12194440e-4));
+			x = vsubq_f32(x, tmp);
+			x = vsubq_f32(x, z);
+
+			static const float cephes_exp_p[6] = {
+				1.9875691500E-4,
+				1.3981999507E-3,
+				8.3334519073E-3,
+				4.1665795894E-2,
+				1.6666665459E-1,
+				5.0000001201E-1,
+			};
+			float32x4_t y = vld1q_dup_f32(cephes_exp_p+0);
+			float32x4_t c1 = vld1q_dup_f32(cephes_exp_p+1);
+			float32x4_t c2 = vld1q_dup_f32(cephes_exp_p+2);
+			float32x4_t c3 = vld1q_dup_f32(cephes_exp_p+3);
+			float32x4_t c4 = vld1q_dup_f32(cephes_exp_p+4);
+			float32x4_t c5 = vld1q_dup_f32(cephes_exp_p+5);
+
+			y = vmulq_f32(y, x);
+			z = vmulq_f32(x,x);
+			y = vaddq_f32(y, c1);
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, c2);
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, c3);
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, c4);
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, c5);
+
+			y = vmulq_f32(y, z);
+			y = vaddq_f32(y, x);
+			y = vaddq_f32(y, one);
+
+			/* build 2^n */
+			int32x4_t mm;
+			mm = vcvtq_s32_f32(fx);
+			mm = vaddq_s32(mm, vdupq_n_s32(0x7f));
+			mm = vshlq_n_s32(mm, 23);
+			float32x4_t pow2n = vreinterpretq_f32_s32(mm);
+
+			y = vmulq_f32(y, pow2n);
+			return y;
 		}
 
 		// -----
@@ -385,9 +504,72 @@ namespace tue
 			  This log() implementation is based on Julien Pommier's log_ps().
 			  See the top of this file for details.
 			*/
+			float32x4_t x = v;
+			float32x4_t one = vdupq_n_f32(1);
 
-			// TODO
-			return float32x4(0.0f);
+			x = vmaxq_f32(x, vdupq_n_f32(0)); /* force flush to zero on denormal values */
+			uint32x4_t invalid_mask = vcleq_f32(x, vdupq_n_f32(0));
+
+			int32x4_t ux = vreinterpretq_s32_f32(x);
+
+			int32x4_t emm0 = vshrq_n_s32(ux, 23);
+
+			/* keep only the fractional part */
+			ux = vandq_s32(ux, vdupq_n_s32(~0x7f800000u));
+			ux = vorrq_s32(ux, vreinterpretq_s32_f32(vdupq_n_f32(0.5f)));
+			x = vreinterpretq_f32_s32(ux);
+
+			emm0 = vsubq_s32(emm0, vdupq_n_s32(0x7f));
+			float32x4_t e = vcvtq_f32_s32(emm0);
+
+			e = vaddq_f32(e, one);
+
+			/* part2:
+			   if( x < SQRTHF ) {
+			     e -= 1;
+			     x = x + x - 1.0;
+			   } else { x = x - 1.0; }
+			*/
+			uint32x4_t mask = vcltq_f32(x, vdupq_n_f32(0.707106781186547524));
+			float32x4_t tmp = vreinterpretq_f32_u32(vandq_u32(vreinterpretq_u32_f32(x), mask));
+			x = vsubq_f32(x, one);
+			e = vsubq_f32(e, vreinterpretq_f32_u32(vandq_u32(vreinterpretq_u32_f32(one), mask)));
+			x = vaddq_f32(x, tmp);
+
+			float32x4_t z = vmulq_f32(x,x);
+
+			float32x4_t y = vdupq_n_f32(7.0376836292E-2);
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(- 1.1514610310E-1));
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(1.1676998740E-1));
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(- 1.2420140846E-1));
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(+ 1.4249322787E-1));
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(- 1.6668057665E-1));
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(+ 2.0000714765E-1));
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(- 2.4999993993E-1));
+			y = vmulq_f32(y, x);
+			y = vaddq_f32(y, vdupq_n_f32(+ 3.3333331174E-1));
+			y = vmulq_f32(y, x);
+
+			y = vmulq_f32(y, z);
+
+			tmp = vmulq_f32(e, vdupq_n_f32(-2.12194440e-4));
+			y = vaddq_f32(y, tmp);
+
+			tmp = vmulq_f32(z, vdupq_n_f32(0.5f));
+			y = vsubq_f32(y, tmp);
+
+			tmp = vmulq_f32(e, vdupq_n_f32(0.693359375));
+			x = vaddq_f32(x, y);
+			x = vaddq_f32(x, tmp);
+			x = vreinterpretq_f32_u32(vorrq_u32(vreinterpretq_u32_f32(x), invalid_mask)); // negative arg will be NAN
+			return x;
 		}
 		
 		// -----
@@ -499,12 +681,12 @@ namespace tue
 			float32x4& v3) noexcept
 		{
 			float32x4x2_t tmp1 = vtrnq_f32(v0, v1);
-			v0 = reinterpret_cast<float32x4*>(&tmp1)[0];
-			v1 = reinterpret_cast<float32x4*>(&tmp1)[1];
+			v0 = tmp1.val[0];
+			v1 = tmp1.val[1];
 			
 			tmp1 = vtrnq_f32(v2, v3);
-			v2 = reinterpret_cast<float32x4*>(&tmp1)[0];
-			v3 = reinterpret_cast<float32x4*>(&tmp1)[1];
+			v2 = tmp1.val[0];
+			v3 = tmp1.val[1];
 
 			float32x2_t tmp2 = vget_high_f32(v0);
 			v0 = vcombine_f32(vget_low_f32(v0), vget_low_f32(v2));
@@ -522,40 +704,35 @@ namespace tue
 			const float32x4& lhs,
 			const float32x4& rhs) noexcept
 		{
-			const uint32x4_t result = vcltq_f32(lhs, rhs);
-			return reinterpret_cast<const float32x4&>(result);
+			return vreinterpretq_f32_u32(vcltq_f32(lhs, rhs));
 		}
 
 		inline float32x4 islessequal(
 			const float32x4& lhs,
 			const float32x4& rhs) noexcept
 		{
-			const uint32x4_t result = vcleq_f32(lhs, rhs);
-			return reinterpret_cast<const float32x4&>(result);
+			return vreinterpretq_f32_u32(vcleq_f32(lhs, rhs));
 		}
 
 		inline float32x4 isgreater(
 			const float32x4& lhs,
 			const float32x4& rhs) noexcept
 		{
-			const uint32x4_t result = vcgtq_f32(lhs, rhs);
-			return reinterpret_cast<const float32x4&>(result);
+			return vreinterpretq_f32_u32(vcgtq_f32(lhs, rhs));
 		}
 
 		inline float32x4 isgreaterequal(
 			const float32x4& lhs,
 			const float32x4& rhs) noexcept
 		{
-			const uint32x4_t result = vcgeq_f32(lhs, rhs);
-			return reinterpret_cast<const float32x4&>(result);
+			return vreinterpretq_f32_u32(vcgeq_f32(lhs, rhs));
 		}
 
 		inline float32x4 isequal(
 			const float32x4& lhs,
 			const float32x4& rhs) noexcept
 		{
-			const uint32x4_t result = vceqq_f32(lhs, rhs);
-			return reinterpret_cast<const float32x4&>(result);
+			return vreinterpretq_f32_u32(vceqq_f32(lhs, rhs));
 		}
 
 		inline float32x4 isnotequal(

@@ -24,8 +24,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.android", "tests\tests.android.vcxproj", "{65E4BBD8-9F9A-4EEE-9A18-51183519A826}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.windows", "tests\tests.windows.vcxproj", "{7E2BB965-0506-40C3-95D6-F8313E679A99}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		tests\tests.common.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
@@ -62,16 +60,6 @@ Global
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x64.ActiveCfg = Release|x86
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x86.ActiveCfg = Release|x86
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x86.Build.0 = Release|x86
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Debug|ARM.ActiveCfg = Debug|ARM
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Debug|ARM.Build.0 = Debug|ARM
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Debug|x64.ActiveCfg = Debug|x64
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Debug|x64.Build.0 = Debug|x64
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Debug|x86.ActiveCfg = Debug|Win32
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Debug|x86.Build.0 = Debug|Win32
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Release|ARM.ActiveCfg = Release|Win32
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Release|x64.ActiveCfg = Release|Win32
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Release|x86.ActiveCfg = Release|Win32
-		{7E2BB965-0506-40C3-95D6-F8313E679A99}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +69,5 @@ Global
 		{F35C7E57-08CE-41A4-B7A8-471606299296} = {D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}
 		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
-		{7E2BB965-0506-40C3-95D6-F8313E679A99} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 	EndGlobalSection
 EndGlobal
