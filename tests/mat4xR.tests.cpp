@@ -72,6 +72,13 @@ namespace
 		{ 8U, 9U },
 	};
 
+	constexpr mat4x4<unsigned int> um442 = {
+		{  2U,  3U,  4U,  5U },
+		{  6U,  7U,  8U,  9U },
+		{ 10U, 11U, 12U, 13U },
+		{ 14U, 15U, 16U, 17U },
+	};
+
 	TEST_CASE(default_constructor)
 	{
 		fmat4x2 m;
@@ -461,10 +468,9 @@ namespace
 		test_assert(&(m1 *= u2) == &m1);
 		test_assert(m1 == fm421 * u2);
 
-		// TODO
-		//fmat4x2 m2 = fm421;
-		//test_assert(&(m2 *= um422) == &m2);
-		//test_assert(m2 == fm421 * um422);
+		fmat4x2 m2 = fm421;
+		test_assert(&(m2 *= um442) == &m2);
+		test_assert(m2 == fm421 * um442);
 	}
 
 	TEST_CASE(division_assignment_operator)

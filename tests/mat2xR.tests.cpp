@@ -355,10 +355,9 @@ namespace
 		test_assert(&(m1 *= u2) == &m1);
 		test_assert(m1 == fm221 * u2);
 
-		// TODO
-		//fmat2x2 m2 = fm221;
-		//test_assert(&(m2 *= um222) == &m2);
-		//test_assert(m2 == fm221 * um222);
+		fmat2x2 m2 = fm221;
+		test_assert(&(m2 *= um222) == &m2);
+		test_assert(m2 == fm221 * um222);
 	}
 
 	TEST_CASE(division_assignment_operator)

@@ -65,6 +65,12 @@ namespace
 		{ 6U, 7U },
 	};
 
+	constexpr mat3x3<unsigned int> um332 = {
+		{ 2U, 3U,  4U },
+		{ 5U, 6U,  7U },
+		{ 8U, 9U, 10U },
+	};
+
 	TEST_CASE(default_constructor)
 	{
 		fmat3x2 m;
@@ -408,10 +414,9 @@ namespace
 		test_assert(&(m1 *= u2) == &m1);
 		test_assert(m1 == fm321 * u2);
 
-		// TODO
-		//fmat3x2 m2 = fm321;
-		//test_assert(&(m2 *= um322) == &m2);
-		//test_assert(m2 == fm321 * um322);
+		fmat3x2 m2 = fm321;
+		test_assert(&(m2 *= um332) == &m2);
+		test_assert(m2 == fm321 * um332);
 	}
 
 	TEST_CASE(division_assignment_operator)
