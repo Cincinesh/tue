@@ -680,32 +680,43 @@ namespace tue
 			return x;
 		}
 		
-		// ---------------
-		// power functions
-		// ---------------
-		//inline float32x4 pow(float32x4 base, float32x4 exponent) noexcept
-		//{
-		//
-		//}
+		// -----
+		// pow()
+		// -----
+		inline float32x4 pow(
+			const float32x4& base,
+			const float32x4& exponent) noexcept
+		{
+			return math::exp(exponent * math::log(base));
+		}
 
+		// -------
+		// recip()
+		// -------
 		inline float32x4 recip(const float32x4& v) noexcept
 		{
 			return _mm_rcp_ps(v);
 		}
 
+		// ------
+		// sqrt()
+		// ------
 		inline float32x4 sqrt(const float32x4& v) noexcept
 		{
 			return _mm_sqrt_ps(v);
 		}
 
+		// -------
+		// rsqrt()
+		// -------
 		inline float32x4 rsqrt(const float32x4& v) noexcept
 		{
 			return _mm_rsqrt_ps(v);
 		}
 
-		// -----------------------------
-		// minimum and maximum functions
-		// -----------------------------
+		// -----
+		// min()
+		// -----
 		inline float32x4 min(
 			const float32x4& v1,
 			const float32x4& v2) noexcept
@@ -713,6 +724,9 @@ namespace tue
 			return _mm_min_ps(v1, v2);
 		}
 
+		// -----
+		// max()
+		// -----
 		inline float32x4 max(
 			const float32x4& v1,
 			const float32x4& v2) noexcept
@@ -720,9 +734,9 @@ namespace tue
 			return _mm_max_ps(v1, v2);
 		}
 
-		// -----------------------
-		// absolute value function
-		// -----------------------
+		// -----
+		// abs()
+		// -----
 		inline float32x4 abs(const float32x4& v) noexcept
 		{
 			const auto non_sign_bits_int = 0x7FFFFFFF;
@@ -731,9 +745,9 @@ namespace tue
 			return _mm_and_ps(v, non_sign_bits);
 		}
 
-		// -------------------
-		// geometric functions
-		// -------------------
+		// -----
+		// dot()
+		// -----
 		inline float32x4 dot(
 			const float32x4& lhs,
 			const float32x4& rhs) noexcept
@@ -741,21 +755,33 @@ namespace tue
 			return lhs * rhs;
 		}
 
+		// ---------
+		// length2()
+		// ---------
 		inline float32x4 length2(const float32x4& v) noexcept
 		{
 			return v * v;
 		}
 
+		// --------
+		// length()
+		// --------
 		inline float32x4 length(const float32x4& v) noexcept
 		{
 			return math::sqrt(math::length2(v));
 		}
 
+		// -----------
+		// normalize()
+		// -----------
 		inline float32x4 normalize(const float32x4& v) noexcept
 		{
 			return v / math::length(v);
 		}
 
+		// -----------
+		// transpose()
+		// -----------
 		inline void transpose(
 			float32x4& v1,
 			float32x4& v2,

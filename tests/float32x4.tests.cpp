@@ -424,6 +424,15 @@ namespace
 			math::log(f413)));
 	}
 
+	TEST_CASE(pow)
+	{
+		test_assert(nearly_equal(math::pow(f41, f42),
+			math::pow(f410, f420),
+			math::pow(f411, f421),
+			math::pow(f412, f422),
+			math::pow(f413, f423)));
+	}
+
 	TEST_CASE(recip)
 	{
 		test_assert(nearly_equal(math::recip(f41),
