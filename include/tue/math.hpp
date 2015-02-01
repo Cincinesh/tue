@@ -266,7 +266,7 @@ namespace tue
 		inline typename std::enable_if<std::is_floating_point<T>::value,
 		T>::type length(T x) noexcept
 		{
-			return math::sqrt(math::length2(x));
+			return math::abs(x);
 		}
 
 		template<typename T>
@@ -279,11 +279,19 @@ namespace tue
 		// -----------
 		// normalize()
 		// -----------
-		template<typename T>
-		inline typename std::enable_if<std::is_floating_point<T>::value,
-		T>::type normalize(T x) noexcept
+		inline float normalize(float x) noexcept
 		{
-			return x / math::length(x);
+			return ::copysignf(1.0f, x);
+		}
+
+		inline double normalize(double x) noexcept
+		{
+			return ::copysign(1.0, x);
+		}
+
+		inline long double normalize(long double x) noexcept
+		{
+			return ::copysignl(1.0L, x);
 		}
 
 		template<typename T>

@@ -477,7 +477,7 @@ namespace tue
 		// --------
 		inline float32x4 length(const float32x4& v) noexcept
 		{
-			return math::sqrt(math::length2(v));
+			return math::abs(v);
 		}
 
 		// -----------
@@ -485,7 +485,8 @@ namespace tue
 		// -----------
 		inline float32x4 normalize(const float32x4& v) noexcept
 		{
-			return v * math::rsqrt(math::length2(v));
+			const float32x4 sign_bit = v & float32x4::binary(0x80000000);
+			return sign_bit | float32x4(1.0f);
 		}
 
 		// -----------
