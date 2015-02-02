@@ -68,12 +68,12 @@ namespace
 
 	TEST_CASE(implicit_conversion_operator)
 	{
-		constexpr iurect iur(1, 2, 3U, 4U);
-		CONST_OR_CONSTEXPR rect<double> dr = iur;
-		test_assert(dr.x() == static_cast<double>(1));
-		test_assert(dr.y() == static_cast<double>(2));
-		test_assert(dr.width() == static_cast<double>(3U));
-		test_assert(dr.height() == static_cast<double>(4U));
+		constexpr rect<float, int> fir(1.1f, 2.2f, 3, 4);
+		CONST_OR_CONSTEXPR rect<double, long long> dlr = fir;
+		test_assert(dlr.x() == static_cast<double>(1.1f));
+		test_assert(dlr.y() == static_cast<double>(2.2f));
+		test_assert(dlr.width() == static_cast<long long>(3));
+		test_assert(dlr.height() == static_cast<long long>(4));
 	}
 
 	TEST_CASE(position)
