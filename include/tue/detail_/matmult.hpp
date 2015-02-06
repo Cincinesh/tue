@@ -178,7 +178,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}
@@ -197,7 +197,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}, {
@@ -219,7 +219,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}, {
@@ -260,7 +260,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -281,7 +281,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -306,7 +306,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -352,7 +352,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -375,7 +375,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -403,7 +403,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -448,7 +448,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}
@@ -467,7 +467,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}, {
@@ -489,7 +489,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}, {
@@ -530,7 +530,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -551,7 +551,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -576,7 +576,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -622,7 +622,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -645,7 +645,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -673,7 +673,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -718,7 +718,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}
@@ -737,7 +737,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}, {
@@ -759,7 +759,7 @@ namespace tue
 			{
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 			}, {
@@ -800,7 +800,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -821,7 +821,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -846,7 +846,7 @@ namespace tue
 				math::dot(lhs.row(0), rhs.column(0)),
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -892,7 +892,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -915,7 +915,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
@@ -943,7 +943,7 @@ namespace tue
 				math::dot(lhs.row(1), rhs.column(0)),
 				math::dot(lhs.row(2), rhs.column(0)),
 				math::dot(lhs.row(3), rhs.column(0)),
-			} , {
+			}, {
 				math::dot(lhs.row(0), rhs.column(1)),
 				math::dot(lhs.row(1), rhs.column(1)),
 				math::dot(lhs.row(2), rhs.column(1)),
