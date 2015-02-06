@@ -343,7 +343,7 @@ namespace tue
 			x = vabsq_f32(x);
 
 			/* scale by 4/Pi */
-			y = vmulq_f32(x, vdupq_n_f32(1.27323954473516));
+			y = vmulq_f32(x, vdupq_n_f32(1.27323954473516f));
 
 			/* store the integer part of y in mm0 */
 			emm2 = vcvtq_u32_f32(y);
@@ -362,9 +362,9 @@ namespace tue
 
 			/* The magic pass: "Extended precision modular arithmetic"
 			   x = ((x - y * DP1) - y * DP2) - y * DP3; */
-			xmm1 = vmulq_n_f32(y, -0.78515625);
-			xmm2 = vmulq_n_f32(y, -2.4187564849853515625e-4);
-			xmm3 = vmulq_n_f32(y, -3.77489497744594108e-8);
+			xmm1 = vmulq_n_f32(y, -0.78515625f);
+			xmm2 = vmulq_n_f32(y, -2.4187564849853515625e-4f);
+			xmm3 = vmulq_n_f32(y, -3.77489497744594108e-8f);
 			x = vaddq_f32(x, xmm1);
 			x = vaddq_f32(x, xmm2);
 			x = vaddq_f32(x, xmm3);
@@ -377,14 +377,14 @@ namespace tue
 			float32x4_t z = vmulq_f32(x,x);
 			float32x4_t y1, y2;
 
-			y1 = vmulq_n_f32(z, 2.443315711809948E-005);
-			y2 = vmulq_n_f32(z, -1.9515295891E-4);
-			y1 = vaddq_f32(y1, vdupq_n_f32(-1.388731625493765E-003));
-			y2 = vaddq_f32(y2, vdupq_n_f32(8.3321608736E-3));
+			y1 = vmulq_n_f32(z, 2.443315711809948E-005f);
+			y2 = vmulq_n_f32(z, -1.9515295891E-4f);
+			y1 = vaddq_f32(y1, vdupq_n_f32(-1.388731625493765E-003f));
+			y2 = vaddq_f32(y2, vdupq_n_f32(8.3321608736E-3f));
 			y1 = vmulq_f32(y1, z);
 			y2 = vmulq_f32(y2, z);
-			y1 = vaddq_f32(y1, vdupq_n_f32(4.166664568298827E-002));
-			y2 = vaddq_f32(y2, vdupq_n_f32(4.166664568298827E-002));
+			y1 = vaddq_f32(y1, vdupq_n_f32(4.166664568298827E-002f));
+			y2 = vaddq_f32(y2, vdupq_n_f32(4.166664568298827E-002f));
 			y1 = vmulq_f32(y1, z);
 			y2 = vmulq_f32(y2, z);
 			y1 = vmulq_f32(y1, z);
@@ -437,7 +437,7 @@ namespace tue
 			x = vmaxq_f32(x, vdupq_n_f32(-88.3762626647949f));
 
 			/* express exp(x) as exp(g + n*log(2)) */
-			fx = vmlaq_f32(vdupq_n_f32(0.5f), x, vdupq_n_f32(1.44269504088896341));
+			fx = vmlaq_f32(vdupq_n_f32(0.5f), x, vdupq_n_f32(1.44269504088896341f));
 
 			/* perform a floorf */
 			tmp = vcvtq_f32_s32(vcvtq_s32_f32(fx));
@@ -448,18 +448,18 @@ namespace tue
 
 			fx = vsubq_f32(tmp, vreinterpretq_f32_u32(mask));
 
-			tmp = vmulq_f32(fx, vdupq_n_f32(0.693359375));
-			float32x4_t z = vmulq_f32(fx, vdupq_n_f32(-2.12194440e-4));
+			tmp = vmulq_f32(fx, vdupq_n_f32(0.693359375f));
+			float32x4_t z = vmulq_f32(fx, vdupq_n_f32(-2.12194440e-4f));
 			x = vsubq_f32(x, tmp);
 			x = vsubq_f32(x, z);
 
 			static const float cephes_exp_p[6] = {
-				1.9875691500E-4,
-				1.3981999507E-3,
-				8.3334519073E-3,
-				4.1665795894E-2,
-				1.6666665459E-1,
-				5.0000001201E-1,
+				1.9875691500E-4f,
+				1.3981999507E-3f,
+				8.3334519073E-3f,
+				4.1665795894E-2f,
+				1.6666665459E-1f,
+				5.0000001201E-1f,
 			};
 			float32x4_t y = vld1q_dup_f32(cephes_exp_p+0);
 			float32x4_t c1 = vld1q_dup_f32(cephes_exp_p+1);
@@ -530,7 +530,7 @@ namespace tue
 			     x = x + x - 1.0;
 			   } else { x = x - 1.0; }
 			*/
-			uint32x4_t mask = vcltq_f32(x, vdupq_n_f32(0.707106781186547524));
+			uint32x4_t mask = vcltq_f32(x, vdupq_n_f32(0.707106781186547524f));
 			float32x4_t tmp = vreinterpretq_f32_u32(vandq_u32(vreinterpretq_u32_f32(x), mask));
 			x = vsubq_f32(x, one);
 			e = vsubq_f32(e, vreinterpretq_f32_u32(vandq_u32(vreinterpretq_u32_f32(one), mask)));
@@ -538,34 +538,34 @@ namespace tue
 
 			float32x4_t z = vmulq_f32(x,x);
 
-			float32x4_t y = vdupq_n_f32(7.0376836292E-2);
+			float32x4_t y = vdupq_n_f32(7.0376836292E-2f);
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(- 1.1514610310E-1));
+			y = vaddq_f32(y, vdupq_n_f32(- 1.1514610310E-1f));
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(1.1676998740E-1));
+			y = vaddq_f32(y, vdupq_n_f32(1.1676998740E-1f));
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(- 1.2420140846E-1));
+			y = vaddq_f32(y, vdupq_n_f32(- 1.2420140846E-1f));
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(+ 1.4249322787E-1));
+			y = vaddq_f32(y, vdupq_n_f32(+ 1.4249322787E-1f));
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(- 1.6668057665E-1));
+			y = vaddq_f32(y, vdupq_n_f32(- 1.6668057665E-1f));
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(+ 2.0000714765E-1));
+			y = vaddq_f32(y, vdupq_n_f32(+ 2.0000714765E-1f));
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(- 2.4999993993E-1));
+			y = vaddq_f32(y, vdupq_n_f32(- 2.4999993993E-1f));
 			y = vmulq_f32(y, x);
-			y = vaddq_f32(y, vdupq_n_f32(+ 3.3333331174E-1));
+			y = vaddq_f32(y, vdupq_n_f32(+ 3.3333331174E-1f));
 			y = vmulq_f32(y, x);
 
 			y = vmulq_f32(y, z);
 
-			tmp = vmulq_f32(e, vdupq_n_f32(-2.12194440e-4));
+			tmp = vmulq_f32(e, vdupq_n_f32(-2.12194440e-4f));
 			y = vaddq_f32(y, tmp);
 
 			tmp = vmulq_f32(z, vdupq_n_f32(0.5f));
 			y = vsubq_f32(y, tmp);
 
-			tmp = vmulq_f32(e, vdupq_n_f32(0.693359375));
+			tmp = vmulq_f32(e, vdupq_n_f32(0.693359375f));
 			x = vaddq_f32(x, y);
 			x = vaddq_f32(x, tmp);
 			x = vreinterpretq_f32_u32(vorrq_u32(vreinterpretq_u32_f32(x), invalid_mask)); // negative arg will be NAN

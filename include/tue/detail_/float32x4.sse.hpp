@@ -342,7 +342,7 @@ namespace tue
 				float32x4::binary(0x80000000));
 
 			/* scale by 4/Pi */
-			y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516));
+			y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516f));
 
 #ifdef __SSE2__
 			/* store the integer part of y in emm2 */
@@ -403,9 +403,9 @@ namespace tue
 
 			/* The magic pass: "Extended precision modular arithmetic"
 			   x = ((x - y * DP1) - y * DP2) - y * DP3; */
-			xmm1 = _mm_set_ps1(-0.78515625);
-			xmm2 = _mm_set_ps1(-2.4187564849853515625e-4);
-			xmm3 = _mm_set_ps1(-3.77489497744594108e-8);
+			xmm1 = _mm_set_ps1(-0.78515625f);
+			xmm2 = _mm_set_ps1(-2.4187564849853515625e-4f);
+			xmm3 = _mm_set_ps1(-3.77489497744594108e-8f);
 			xmm1 = _mm_mul_ps(y, xmm1);
 			xmm2 = _mm_mul_ps(y, xmm2);
 			xmm3 = _mm_mul_ps(y, xmm3);
@@ -436,12 +436,12 @@ namespace tue
 
 			/* Evaluate the first polynom  (0 <= x <= Pi/4) */
 			__m128 z = _mm_mul_ps(x,x);
-			y = _mm_set_ps1(2.443315711809948E-005);
+			y = _mm_set_ps1(2.443315711809948E-005f);
 
 			y = _mm_mul_ps(y, z);
-			y = _mm_add_ps(y, _mm_set_ps1(-1.388731625493765E-003));
+			y = _mm_add_ps(y, _mm_set_ps1(-1.388731625493765E-003f));
 			y = _mm_mul_ps(y, z);
-			y = _mm_add_ps(y, _mm_set_ps1(4.166664568298827E-002));
+			y = _mm_add_ps(y, _mm_set_ps1(4.166664568298827E-002f));
 			y = _mm_mul_ps(y, z);
 			y = _mm_mul_ps(y, z);
 			__m128 tmp = _mm_mul_ps(z, _mm_set_ps1(0.5f));
@@ -450,11 +450,11 @@ namespace tue
 
 			/* Evaluate the second polynom  (Pi/4 <= x <= 0) */
 
-			__m128 y2 = _mm_set_ps1(-1.9515295891E-4);
+			__m128 y2 = _mm_set_ps1(-1.9515295891E-4f);
 			y2 = _mm_mul_ps(y2, z);
-			y2 = _mm_add_ps(y2, _mm_set_ps1(8.3321608736E-3));
+			y2 = _mm_add_ps(y2, _mm_set_ps1(8.3321608736E-3f));
 			y2 = _mm_mul_ps(y2, z);
-			y2 = _mm_add_ps(y2, _mm_set_ps1(-1.6666654611E-1));
+			y2 = _mm_add_ps(y2, _mm_set_ps1(-1.6666654611E-1f));
 			y2 = _mm_mul_ps(y2, z);
 			y2 = _mm_mul_ps(y2, x);
 			y2 = _mm_add_ps(y2, x);
@@ -520,7 +520,7 @@ namespace tue
 			x = _mm_max_ps(x, _mm_set_ps1(-88.3762626647949f));
 
 			/* express exp(x) as exp(g + n*log(2)) */
-			fx = _mm_mul_ps(x, _mm_set_ps1(1.44269504088896341));
+			fx = _mm_mul_ps(x, _mm_set_ps1(1.44269504088896341f));
 			fx = _mm_add_ps(fx, _mm_set_ps1(0.5f));
 
 			/* how to perform a floorf with SSE: just below */
@@ -540,24 +540,24 @@ namespace tue
 			mask = _mm_and_ps(mask, one);
 			fx = _mm_sub_ps(tmp, mask);
 
-			tmp = _mm_mul_ps(fx, _mm_set_ps1(0.693359375));
-			__m128 z = _mm_mul_ps(fx, _mm_set_ps1(-2.12194440e-4));
+			tmp = _mm_mul_ps(fx, _mm_set_ps1(0.693359375f));
+			__m128 z = _mm_mul_ps(fx, _mm_set_ps1(-2.12194440e-4f));
 			x = _mm_sub_ps(x, tmp);
 			x = _mm_sub_ps(x, z);
 
 			z = _mm_mul_ps(x,x);
 
-			__m128 y = _mm_set_ps1(1.9875691500E-4);
+			__m128 y = _mm_set_ps1(1.9875691500E-4f);
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(1.3981999507E-3));
+			y = _mm_add_ps(y, _mm_set_ps1(1.3981999507E-3f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(8.3334519073E-3));
+			y = _mm_add_ps(y, _mm_set_ps1(8.3334519073E-3f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(4.1665795894E-2));
+			y = _mm_add_ps(y, _mm_set_ps1(4.1665795894E-2f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(1.6666665459E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(1.6666665459E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(5.0000001201E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(5.0000001201E-1f));
 			y = _mm_mul_ps(y, z);
 			y = _mm_add_ps(y, x);
 			y = _mm_add_ps(y, one);
@@ -642,7 +642,7 @@ namespace tue
 			     x = x + x - 1.0;
 			   } else { x = x - 1.0; }
 			*/
-			__m128 mask = _mm_cmplt_ps(x, _mm_set_ps1(0.707106781186547524));
+			__m128 mask = _mm_cmplt_ps(x, _mm_set_ps1(0.707106781186547524f));
 			__m128 tmp = _mm_and_ps(x, mask);
 			x = _mm_sub_ps(x, one);
 			e = _mm_sub_ps(e, _mm_and_ps(one, mask));
@@ -650,34 +650,34 @@ namespace tue
 
 			__m128 z = _mm_mul_ps(x,x);
 
-			__m128 y = _mm_set_ps1(7.0376836292E-2);
+			__m128 y = _mm_set_ps1(7.0376836292E-2f);
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(- 1.1514610310E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(- 1.1514610310E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(1.1676998740E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(1.1676998740E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(- 1.2420140846E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(- 1.2420140846E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(+ 1.4249322787E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(+ 1.4249322787E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(- 1.6668057665E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(- 1.6668057665E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(+ 2.0000714765E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(+ 2.0000714765E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(- 2.4999993993E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(- 2.4999993993E-1f));
 			y = _mm_mul_ps(y, x);
-			y = _mm_add_ps(y, _mm_set_ps1(+ 3.3333331174E-1));
+			y = _mm_add_ps(y, _mm_set_ps1(+ 3.3333331174E-1f));
 			y = _mm_mul_ps(y, x);
 
 			y = _mm_mul_ps(y, z);
 
-			tmp = _mm_mul_ps(e, _mm_set_ps1(-2.12194440e-4));
+			tmp = _mm_mul_ps(e, _mm_set_ps1(-2.12194440e-4f));
 			y = _mm_add_ps(y, tmp);
 
 			tmp = _mm_mul_ps(z, _mm_set_ps1(0.5f));
 			y = _mm_sub_ps(y, tmp);
 
-			tmp = _mm_mul_ps(e, _mm_set_ps1(0.693359375));
+			tmp = _mm_mul_ps(e, _mm_set_ps1(0.693359375f));
 			x = _mm_add_ps(x, y);
 			x = _mm_add_ps(x, tmp);
 			x = _mm_or_ps(x, invalid_mask); // negative arg will be NAN
