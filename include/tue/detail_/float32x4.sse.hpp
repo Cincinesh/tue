@@ -203,19 +203,20 @@ namespace tue
     return _mm_xor_ps(lhs, rhs);
   }
 
-  // Increments and returns a reference to the given float32x4.
+  // Component-wise increments and returns a reference to the given float32x4.
   inline float32x4& operator++(float32x4& v) noexcept
   {
     return v = v + float32x4(1.0f);
   }
 
-  // Decrements and returns a reference to the given float32x4.
+  // Component-wise decrements and returns a reference to the given float32x4.
   inline float32x4& operator--(float32x4& v) noexcept
   {
     return v = v - float32x4(1.0f);
   }
 
-  // Increments the given float32x4 and returns the original value.
+  // Component-wise increments the given float32x4 and returns the original
+  // value.
   inline float32x4 operator++(float32x4& v, int) noexcept
   {
     const auto orig = v;
@@ -223,7 +224,8 @@ namespace tue
     return orig;
   }
 
-  // Decrements the given float32x4 and returns the original value.
+  // Component-wise decrements the given float32x4 and returns the original
+  // value.
   inline float32x4 operator--(float32x4& v, int) noexcept
   {
     const auto orig = v;
@@ -294,7 +296,7 @@ namespace tue
     return lhs = lhs ^ rhs;
   }
 
-  // Returns true if all the corresponding components of each float32x4 are
+  // Returns true if all the corresponding components of two float32x4's are
   // equal and false otherwise.
   inline bool operator==(
       const float32x4& lhs,
@@ -303,8 +305,8 @@ namespace tue
     return _mm_movemask_ps(_mm_cmpeq_ps(lhs, rhs)) == 0b1111;
   }
 
-  // Returns true if any of the corresponding components of each float32x4 are
-  // not equal and false otherwise.
+  // Returns true if any of the corresponding components of two float32x4's
+  // are not equal and false otherwise.
   inline bool operator!=(
       const float32x4& lhs,
       const float32x4& rhs) noexcept

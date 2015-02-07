@@ -162,7 +162,7 @@ namespace tue
       return impl_.data[i];
     }
 
-    // Increments and returns a reference to this vec.
+    // Component-wise increments and returns a reference to this vec.
     vec& operator++() noexcept
     {
       ++impl_.data[0];
@@ -171,7 +171,7 @@ namespace tue
       return *this;
     }
 
-    // Decrements and returns a reference to this vec.
+    // Component-wise decrements and returns a reference to this vec.
     vec& operator--() noexcept
     {
       --impl_.data[0];
@@ -180,7 +180,7 @@ namespace tue
       return *this;
     }
 
-    // Increments this vec and returns the original value.
+    // Component-wise increments this vec and returns the original value.
     vec operator++(int) noexcept
     {
       const auto orig = *this;
@@ -188,7 +188,7 @@ namespace tue
       return orig;
     }
 
-    // Decrements this vec and returns the original value.
+    // Component-wise decrements this vec and returns the original value.
     vec operator--(int) noexcept
     {
       const auto orig = *this;
@@ -855,8 +855,8 @@ namespace tue
     };
   }
 
-  // Returns true if all the corresponding components of each vec are
-  // equal and false otherwise.
+  // Returns true if all the corresponding components of two vec's are equal
+  // and false otherwise.
   template<typename T, typename U>
   inline TUE_CONSTEXPR bool operator==(
       const vec3<T>& lhs,
@@ -867,8 +867,8 @@ namespace tue
         && lhs[2] == rhs[2];
   }
 
-  // Returns true if any of the corresponding components of each vec are
-  // not equal and false otherwise.
+  // Returns true if any of the corresponding components of two vec's are not
+  // equal and false otherwise.
   template<typename T, typename U>
   inline TUE_CONSTEXPR bool operator!=(
       const vec3<T>& lhs,
