@@ -133,7 +133,7 @@ namespace tue
         impl_.data[2],
       };
     }
-    
+
     // Sets the vector component of this quat.
     void set_v(const T& x, const T& y, const T& z) noexcept
     {
@@ -141,7 +141,7 @@ namespace tue
       impl_.data[1] = y;
       impl_.data[2] = z;
     }
-                
+
     // Sets the vector component of this quat.
     void set_v(const vec3<T>& v) noexcept
     {

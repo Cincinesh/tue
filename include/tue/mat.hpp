@@ -49,55 +49,55 @@ namespace tue
 
   // A 2x2 matrix of float's.
   using fmat2x2 = mat2x2<float>;
-  
+
   // A 2x3 matrix of float's.
   using fmat2x3 = mat2x3<float>;
-  
+
   // A 2x4 matrix of float's.
   using fmat2x4 = mat2x4<float>;
-  
+
   // A 3x2 matrix of float's.
   using fmat3x2 = mat3x2<float>;
-  
+
   // A 3x3 matrix of float's.
   using fmat3x3 = mat3x3<float>;
-  
+
   // A 3x4 matrix of float's.
   using fmat3x4 = mat3x4<float>;
-  
+
   // A 4x2 matrix of float's.
   using fmat4x2 = mat4x2<float>;
-  
+
   // A 4x3 matrix of float's.
   using fmat4x3 = mat4x3<float>;
-  
+
   // A 4x4 matrix of float's.
   using fmat4x4 = mat4x4<float>;
 
   // A 2x2 matrix of double's.
   using dmat2x2 = mat2x2<double>;
-  
+
   // A 2x3 matrix of double's.
   using dmat2x3 = mat2x3<double>;
-  
+
   // A 2x4 matrix of double's.
   using dmat2x4 = mat2x4<double>;
-  
+
   // A 3x2 matrix of double's.
   using dmat3x2 = mat3x2<double>;
-  
+
   // A 3x3 matrix of double's.
   using dmat3x3 = mat3x3<double>;
-  
+
   // A 3x4 matrix of double's.
   using dmat3x4 = mat3x4<double>;
-  
+
   // A 4x2 matrix of double's.
   using dmat4x2 = mat4x2<double>;
-  
+
   // A 4x3 matrix of double's.
   using dmat4x3 = mat4x3<double>;
-  
+
   // A 4x4 matrix of double's.
   using dmat4x4 = mat4x4<double>;
 }

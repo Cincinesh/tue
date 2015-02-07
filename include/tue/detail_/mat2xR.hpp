@@ -54,7 +54,7 @@ namespace tue
           vec<T, R>::extend_(other[0], T(0), T(0)),
           vec<T, R>::extend_(other[1], T(0), T(0)),
         }}) {}
-    
+
     // Constructs a new mat by identity-extending and or truncating another
     // mat.
     template<int OtherR>

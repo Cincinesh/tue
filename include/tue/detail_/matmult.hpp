@@ -206,7 +206,7 @@ namespace tue
       }
     };
   }
-        
+
   // Returns the result of multiplying a mat by a column vec.
   template<typename T, typename U>
   inline TUE_CONSTEXPR auto operator*(

@@ -683,7 +683,7 @@ namespace tue
       x = _mm_or_ps(x, invalid_mask); // Negative arg will be NaN
       return x;
     }
-                
+
     // Returns the result of raising each component of base to the
     // corresponding component in exponent.
     inline float32x4 pow(

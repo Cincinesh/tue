@@ -62,7 +62,7 @@ namespace tue
           vec<T, R>(vec<T, 4>(T(0), T(0), T(1), T(0))),
           vec<T, R>(vec<T, 4>(T(0), T(0), T(0), T(1))),
         }}) {}
-    
+
     // Constructs a new mat by identity-extending and or truncating another
     // mat.
     template<int OtherR>
