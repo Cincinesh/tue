@@ -407,8 +407,8 @@ namespace tue
       };
     }
 
-    // Returns the component-wise result of raising the given bases to the
-    // given exponents.
+    // Returns the result of raising each component of base to the
+    // corresponding component in exponent.
     inline float32x4 pow(
         const float32x4& base,
         const float32x4& exponent) noexcept

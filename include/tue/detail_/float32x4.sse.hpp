@@ -218,17 +218,17 @@ namespace tue
   // Increments the given float32x4 and returns the original value.
   inline float32x4 operator++(float32x4& v, int) noexcept
   {
-    const auto result = v;
+    const auto orig = v;
     ++v;
-    return result;
+    return orig;
   }
 
   // Decrements the given float32x4 and returns the original value.
   inline float32x4 operator--(float32x4& v, int) noexcept
   {
-    const auto result = v;
+    const auto orig = v;
     --v;
-    return result;
+    return orig;
   }
 
   // Adds the right-hand side float32x4 to the left-hand side float32x4 and
@@ -682,8 +682,8 @@ namespace tue
       return x;
     }
                 
-    // Returns the component-wise result of raising the given bases to the
-    // given exponents.
+    // Returns the result of raising each component of base to the
+    // corresponding component in exponent.
     inline float32x4 pow(
         const float32x4& base,
         const float32x4& exponent) noexcept

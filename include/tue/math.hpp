@@ -21,9 +21,9 @@ namespace tue
     template<typename T>
     inline typename std::enable_if<std::is_floating_point<T>::value,
     void>::type sincos(
-	T x,
-	T& sin_out,
-	T& cos_out) noexcept
+        T x,
+        T& sin_out,
+        T& cos_out) noexcept
     {
       sin_out = std::sin(x);
       cos_out = std::cos(x);
@@ -34,9 +34,9 @@ namespace tue
     template<typename T>
     inline typename std::enable_if<std::is_integral<T>::value,
     void>::type sincos(
-	T x,
-	double& sin_out,
-	double& cos_out) noexcept
+        T x,
+        double& sin_out,
+        double& cos_out) noexcept
     {
       math::sincos(static_cast<double>(x), sin_out, cos_out);
     }
@@ -118,15 +118,15 @@ namespace tue
     // given exponent cast to double.
     template<typename T, typename U>
     inline typename std::enable_if<
-	std::is_arithmetic<T>::value
-	&& std::is_arithmetic<U>::value
-	&& !std::is_same<T, long double>::value
-	&& !std::is_same<U, long double>::value,
+        std::is_arithmetic<T>::value
+        && std::is_arithmetic<U>::value
+        && !std::is_same<T, long double>::value
+        && !std::is_same<U, long double>::value,
     double>::type pow(T base, U exponent) noexcept
     {
       return math::pow(
-	  static_cast<double>(base),
-	  static_cast<double>(exponent));
+          static_cast<double>(base),
+          static_cast<double>(exponent));
     }
 
     // Returns the result of raising the given base cast to long double to the
@@ -136,12 +136,12 @@ namespace tue
         std::is_arithmetic<T>::value
         && std::is_arithmetic<U>::value
         && (std::is_same<T, long double>::value
-	    ^ std::is_same<U, long double>::value),
+            ^ std::is_same<U, long double>::value),
     long double>::type pow(T base, U exponent) noexcept
     {
       return math::pow(
-	  static_cast<long double>(base),
-	  static_cast<long double>(exponent));
+          static_cast<long double>(base),
+          static_cast<long double>(exponent));
     }
 
     // Returns the reciprocal of the given number.
@@ -227,8 +227,8 @@ namespace tue
     // Returns the product of two numbers.
     template<typename T, typename U>
     inline constexpr typename std::enable_if<
-	std::is_arithmetic<T>::value
-	&& std::is_arithmetic<U>::value,
+        std::is_arithmetic<T>::value
+        && std::is_arithmetic<U>::value,
     decltype(T() * U())>::type dot(T lhs, U rhs) noexcept
     {
       return lhs * rhs;
