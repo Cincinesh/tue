@@ -9,7 +9,7 @@
 namespace tue
 {
   // A CxR matrix with components of the given type.
-  template<typename T, int C, int R>
+  template<typename T, int C, int R = C>
   class mat;
 
   // A 2x2 matrix with components of the given type.

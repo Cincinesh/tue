@@ -17,6 +17,10 @@
 // The Tuesday C++ math and template library.
 namespace tue
 {
+  // A CxR matrix with components of the given type.
+  template<typename T, int C, int R>
+  class mat;
+
   // A 4-component vector with components of the given type.
   template<typename T>
   class vec<T, 4>
@@ -307,6 +311,14 @@ namespace tue
       impl_.data[2] *= other[2];
       impl_.data[3] *= other[3];
       return *this;
+    }
+
+    // Multiplies this row vec by the given matrix and returns a reference to
+    // this vec.
+    template<typename U>
+    vec& operator*=(const mat<U, 4, 4>& other) noexcept
+    {
+      return *this = *this * other;
     }
 
     // Component-wise divides this vec by a value and returns a reference to

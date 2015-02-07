@@ -78,7 +78,7 @@ namespace
 
   TEST_CASE(position)
   {
-    constexpr iurect r(1, 2, 3U, 4U);
+    constexpr iurect r(1, 2, 3u, 4u);
     CONST_OR_CONSTEXPR ivec2 position = r.position();
     test_assert(position.x() == 1);
     test_assert(position.y() == 2);
@@ -93,17 +93,17 @@ namespace
     test_assert(r1.width() == 3.3f);
     test_assert(r1.height() == 4.4f);
 
-    rect<double, unsigned int> r2(1.1, 2.2, 3U, 4U);
+    rect<double, unsigned int> r2(1.1, 2.2, 3u, 4u);
     r2.set_position(dvec2(5.5, 6.6));
     test_assert(r2.x() == 5.5);
     test_assert(r2.y() == 6.6);
-    test_assert(r2.width() == 3U);
-    test_assert(r2.height() == 4U);
+    test_assert(r2.width() == 3u);
+    test_assert(r2.height() == 4u);
   }
 
   TEST_CASE(x)
   {
-    constexpr iurect r(1, 2, 3U, 4U);
+    constexpr iurect r(1, 2, 3u, 4u);
     CONST_OR_CONSTEXPR int x = r.x();
     test_assert(x == 1);
   }
@@ -120,7 +120,7 @@ namespace
 
   TEST_CASE(y)
   {
-    constexpr iurect r(1, 2, 3U, 4U);
+    constexpr iurect r(1, 2, 3u, 4u);
     CONST_OR_CONSTEXPR int y = r.y();
     test_assert(y == 2);
   }
@@ -137,10 +137,10 @@ namespace
 
   TEST_CASE(size)
   {
-    constexpr iurect r(1, 2, 3U, 4U);
+    constexpr iurect r(1, 2, 3u, 4u);
     CONST_OR_CONSTEXPR usize2d size = r.size();
-    test_assert(size.width() == 3U);
-    test_assert(size.height() == 4U);
+    test_assert(size.width() == 3u);
+    test_assert(size.height() == 4u);
   }
 
   TEST_CASE(set_size)
@@ -152,19 +152,19 @@ namespace
     test_assert(r1.width() == 5.5f);
     test_assert(r1.height() == 6.6f);
 
-    rect<double, unsigned int> r2(1.1, 2.2, 3U, 4U);
-    r2.set_size(usize2d(5U, 6U));
+    rect<double, unsigned int> r2(1.1, 2.2, 3u, 4u);
+    r2.set_size(usize2d(5u, 6u));
     test_assert(r2.x() == 1.1);
     test_assert(r2.y() == 2.2);
-    test_assert(r2.width() == 5U);
-    test_assert(r2.height() == 6U);
+    test_assert(r2.width() == 5u);
+    test_assert(r2.height() == 6u);
   }
 
   TEST_CASE(width)
   {
-    constexpr iurect r(1, 2, 3U, 4U);
+    constexpr iurect r(1, 2, 3u, 4u);
     CONST_OR_CONSTEXPR unsigned int width = r.width();
-    test_assert(width == 3U);
+    test_assert(width == 3u);
   }
 
   TEST_CASE(set_width)
@@ -179,9 +179,9 @@ namespace
 
   TEST_CASE(height)
   {
-    constexpr iurect r(1, 2, 3U, 4U);
+    constexpr iurect r(1, 2, 3u, 4u);
     CONST_OR_CONSTEXPR unsigned int height = r.height();
-    test_assert(height == 4U);
+    test_assert(height == 4u);
   }
 
   TEST_CASE(set_height)
@@ -197,11 +197,11 @@ namespace
   TEST_CASE(equality_operator)
   {
     constexpr rect<float, double> r1(1.0f, 2.0f, 3.0f, 4.0f);
-    constexpr iurect r2(1, 2, 3U, 4U);
-    constexpr iurect r3(0, 2, 3U, 4U);
-    constexpr iurect r4(1, 0, 3U, 4U);
-    constexpr iurect r5(1, 2, 0U, 4U);
-    constexpr iurect r6(1, 2, 3U, 0U);
+    constexpr iurect r2(1, 2, 3u, 4u);
+    constexpr iurect r3(0, 2, 3u, 4u);
+    constexpr iurect r4(1, 0, 3u, 4u);
+    constexpr iurect r5(1, 2, 0u, 4u);
+    constexpr iurect r6(1, 2, 3u, 0u);
     CONST_OR_CONSTEXPR bool result1 = (r1 == r2);
     CONST_OR_CONSTEXPR bool result2 = (r1 == r3);
     CONST_OR_CONSTEXPR bool result3 = (r1 == r4);
@@ -217,11 +217,11 @@ namespace
   TEST_CASE(inequality_operator)
   {
     constexpr rect<float, double> r1(1.0f, 2.0f, 3.0f, 4.0f);
-    constexpr iurect r2(1, 2, 3U, 4U);
-    constexpr iurect r3(0, 2, 3U, 4U);
-    constexpr iurect r4(1, 0, 3U, 4U);
-    constexpr iurect r5(1, 2, 0U, 4U);
-    constexpr iurect r6(1, 2, 3U, 0U);
+    constexpr iurect r2(1, 2, 3u, 4u);
+    constexpr iurect r3(0, 2, 3u, 4u);
+    constexpr iurect r4(1, 0, 3u, 4u);
+    constexpr iurect r5(1, 2, 0u, 4u);
+    constexpr iurect r6(1, 2, 3u, 0u);
     CONST_OR_CONSTEXPR bool result1 = (r1 != r2);
     CONST_OR_CONSTEXPR bool result2 = (r1 != r3);
     CONST_OR_CONSTEXPR bool result3 = (r1 != r4);

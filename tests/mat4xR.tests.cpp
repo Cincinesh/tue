@@ -21,62 +21,62 @@ namespace
 
   constexpr auto i1 = 111;
 
-  constexpr auto u2 = 2U;
+  constexpr auto u2 = 2u;
 
-  constexpr fmat4x2 fm421 = {
+  constexpr fmat4x2 fm421{
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
     { 3.1f, 3.2f },
     { 4.1f, 4.2f },
   };
 
-  constexpr fmat4x2 fm422 = {
+  constexpr fmat4x2 fm422{
     { 2.2f, 2.4f },
     { 4.2f, 4.4f },
     { 6.2f, 6.4f },
     { 8.2f, 8.4f },
   };
 
-  constexpr dmat4x2 dm421 = {
+  constexpr dmat4x2 dm421{
     { 1.1, 1.2 },
     { 2.1, 2.2 },
     { 3.1, 3.2 },
     { 4.1, 4.2 },
   };
 
-  constexpr dmat4x2 dm422 = {
+  constexpr dmat4x2 dm422{
     { 2.2, 2.4 },
     { 4.2, 4.4 },
     { 6.2, 6.4 },
     { 8.2, 8.4 },
   };
 
-  constexpr mat4x2<int> im421 = {
+  constexpr mat4x2<int> im421{
     { 111, 222 },
     { 333, 444 },
     { 555, 666 },
     { 777, 888 },
   };
 
-  constexpr mat4x2<int> im422 = {
+  constexpr mat4x2<int> im422{
     { 2, 3 },
     { 4, 5 },
     { 6, 7 },
     { 8, 9 },
   };
 
-  constexpr mat4x2<unsigned int> um422 = {
-    { 2U, 3U },
-    { 4U, 5U },
-    { 6U, 7U },
-    { 8U, 9U },
+  constexpr mat4x2<unsigned int> um422{
+    { 2u, 3u },
+    { 4u, 5u },
+    { 6u, 7u },
+    { 8u, 9u },
   };
 
-  constexpr mat4x4<unsigned int> um442 = {
-    {  2U,  3U,  4U,  5U },
-    {  6U,  7U,  8U,  9U },
-    { 10U, 11U, 12U, 13U },
-    { 14U, 15U, 16U, 17U },
+  constexpr mat4x4<unsigned int> um442{
+    {  2u,  3u,  4u,  5u },
+    {  6u,  7u,  8u,  9u },
+    { 10u, 11u, 12u, 13u },
+    { 14u, 15u, 16u, 17u },
   };
 
   TEST_CASE(default_constructor)

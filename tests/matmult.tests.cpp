@@ -21,7 +21,7 @@ namespace
   constexpr dvec3 dv3(fv4);
   constexpr dvec2 dv2(fv4);
 
-  constexpr fmat4x4 fm44 = {
+  constexpr fmat4x4 fm44{
     { 1.1f, 1.2f, 1.3f, 1.4f },
     { 2.1f, 2.2f, 2.3f, 2.4f },
     { 3.1f, 3.2f, 3.3f, 3.4f },
@@ -36,7 +36,7 @@ namespace
   constexpr fmat2x3 fm23(fm44);
   constexpr fmat2x2 fm22(fm44);
 
-  constexpr dmat4x4 dm44 = {
+  constexpr dmat4x4 dm44{
     { 2.2, 2.4, 2.6, 2.8 },
     { 4.2, 4.4, 4.6, 4.8 },
     { 6.2, 6.4, 6.6, 6.8 },

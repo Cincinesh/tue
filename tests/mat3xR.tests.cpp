@@ -21,54 +21,54 @@ namespace
 
   constexpr auto i1 = 111;
 
-  constexpr auto u2 = 2U;
+  constexpr auto u2 = 2u;
 
-  constexpr fmat3x2 fm321 = {
+  constexpr fmat3x2 fm321{
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
     { 3.1f, 3.2f },
   };
 
-  constexpr fmat3x2 fm322 = {
+  constexpr fmat3x2 fm322{
     { 2.2f, 2.4f },
     { 4.2f, 4.4f },
     { 6.2f, 6.4f },
   };
 
-  constexpr dmat3x2 dm321 = {
+  constexpr dmat3x2 dm321{
     { 1.1, 1.2 },
     { 2.1, 2.2 },
     { 3.1, 3.2 },
   };
 
-  constexpr dmat3x2 dm322 = {
+  constexpr dmat3x2 dm322{
     { 2.2, 2.4 },
     { 4.2, 4.4 },
     { 6.2, 6.4 },
   };
 
-  constexpr mat3x2<int> im321 = {
+  constexpr mat3x2<int> im321{
     { 111, 222 },
     { 333, 444 },
     { 555, 666 },
   };
 
-  constexpr mat3x2<int> im322 = {
+  constexpr mat3x2<int> im322{
     { 2, 3 },
     { 4, 5 },
     { 6, 7 },
   };
 
-  constexpr mat3x2<unsigned int> um322 = {
-    { 2U, 3U },
-    { 4U, 5U },
-    { 6U, 7U },
+  constexpr mat3x2<unsigned int> um322{
+    { 2u, 3u },
+    { 4u, 5u },
+    { 6u, 7u },
   };
 
-  constexpr mat3x3<unsigned int> um332 = {
-    { 2U, 3U,  4U },
-    { 5U, 6U,  7U },
-    { 8U, 9U, 10U },
+  constexpr mat3x3<unsigned int> um332{
+    { 2u, 3u,  4u },
+    { 5u, 6u,  7u },
+    { 8u, 9u, 10u },
   };
 
   TEST_CASE(default_constructor)

@@ -6,6 +6,7 @@
 #include <tue/vec.hpp>
 #include <mon/test_case.hpp>
 
+#include <tue/mat.hpp>
 #include <tue/math.hpp>
 #include <tue/unused.hpp>
 
@@ -20,7 +21,7 @@ namespace
 
   constexpr auto i1 = 111;
 
-  constexpr auto u2 = 2U;
+  constexpr auto u2 = 2u;
 
   constexpr fvec2 fv21(1.1f, 1.2f);
   constexpr fvec2 fv22(2.2f, 2.4f);
@@ -31,7 +32,12 @@ namespace
   constexpr ivec2 iv21(111, 222);
   constexpr ivec2 iv22(2, 4);
 
-  constexpr uvec2 uv22(2U, 4U);
+  constexpr uvec2 uv22(2u, 4u);
+
+  constexpr mat2x2<unsigned int> um222{
+    { 2u, 4u },
+    { 6u, 8u },
+  };
 
   TEST_CASE(default_constructor)
   {
@@ -210,6 +216,10 @@ namespace
     fvec2 v2 = fv21;
     test_assert(&(v2 *= uv22) == &v2);
     test_assert(v2 == fv21 * uv22);
+
+    fvec2 v3 = fv21;
+    test_assert(&(v3 *= um222) == &v3);
+    test_assert(v3 == fv21 * um222);
   }
 
   TEST_CASE(division_assignment_operator)

@@ -129,7 +129,7 @@ namespace
     test_assert(math::abs(1.23f) == 1.23f);
     test_assert(math::abs(-123) == 123);
     test_assert(math::abs(123) == 123);
-    test_assert(math::abs(123U) == 123U);
+    test_assert(math::abs(123u) == 123u);
   }
 
   TEST_CASE(dot)

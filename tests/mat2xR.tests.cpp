@@ -21,41 +21,41 @@ namespace
 
   constexpr auto i1 = 111;
 
-  constexpr auto u2 = 2U;
+  constexpr auto u2 = 2u;
 
-  constexpr fmat2x2 fm221 = {
+  constexpr fmat2x2 fm221{
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
   };
 
-  constexpr fmat2x2 fm222 = {
+  constexpr fmat2x2 fm222{
     { 2.2f, 2.4f },
     { 4.2f, 4.4f },
   };
 
-  constexpr dmat2x2 dm221 = {
+  constexpr dmat2x2 dm221{
     { 1.1, 1.2 },
     { 2.1, 2.2 },
   };
 
-  constexpr dmat2x2 dm222 = {
+  constexpr dmat2x2 dm222{
     { 2.2, 2.4 },
     { 4.2, 4.4 },
   };
 
-  constexpr mat2x2<int> im221 = {
+  constexpr mat2x2<int> im221{
     { 111, 222 },
     { 333, 444 },
   };
 
-  constexpr mat2x2<int> im222 = {
+  constexpr mat2x2<int> im222{
     { 2, 3 },
     { 4, 5 },
   };
 
-  constexpr mat2x2<unsigned int> um222 = {
-    { 2U, 3U },
-    { 4U, 5U },
+  constexpr mat2x2<unsigned int> um222{
+    { 2u, 3u },
+    { 4u, 5u },
   };
 
   TEST_CASE(default_constructor)
