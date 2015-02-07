@@ -25,7 +25,7 @@ namespace tue
     explicit float32x4(float s) noexcept
       : x(s), y(s), z(s), w(s) {}
 
-    // Constructs a new float32x4 with the given values.
+    // Constructs a new float32x4 with the given components.
     float32x4(float x, float y, float z, float w) noexcept
       : x(x), y(y), z(z), w(w) {}
 

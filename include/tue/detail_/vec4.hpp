@@ -32,15 +32,15 @@ namespace tue
     explicit constexpr vec(const T& s) noexcept
       : impl_({ { s, s, s, s } }) {}
 
-    // Constructs a new vec with the given values.
+    // Constructs a new vec with the given components.
     constexpr vec(const T& x, const T& y, const T& z, const T& w) noexcept
       : impl_({ { x, y, z, w } }) {}
 
-    // Constructs a new vec with the given values.
+    // Constructs a new vec with the given components.
     explicit constexpr vec(const vec2<T>& xy, const T& z, const T& w) noexcept
       : impl_({ { xy[0], xy[1], z, w } }) {}
 
-    // Constructs a new vec with the given values.
+    // Constructs a new vec with the given components.
     explicit constexpr vec(const vec3<T>& xyz, const T& w) noexcept
       : impl_({ { xyz[0], xyz[1], xyz[2], w } }) {}
 
@@ -1172,7 +1172,7 @@ namespace tue
       return math::sqrt(math::length2(v));
     }
 
-    // Returns this vec divided by its length (magnitude).
+    // Returns the given vec divided by its length (magnitude).
     template<typename T>
     inline auto normalize(const vec4<T>& v) noexcept
     {

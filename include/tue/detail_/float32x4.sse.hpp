@@ -56,7 +56,7 @@ namespace tue
     explicit float32x4(float s) noexcept
       : underlying_(_mm_set_ps1(s)) {}
 
-    // Constructs a new float32x4 with the given values.
+    // Constructs a new float32x4 with the given components.
     float32x4(float x, float y, float z, float w) noexcept
       : underlying_(_mm_setr_ps(x, y, z, w)) {}
 

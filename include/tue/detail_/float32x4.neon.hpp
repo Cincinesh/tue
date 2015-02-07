@@ -50,7 +50,7 @@ namespace tue
     explicit float32x4(float s) noexcept
       : underlying_{ s, s, s, s } {}
 
-    // Constructs a new float32x4 with the given values.
+    // Constructs a new float32x4 with the given components.
     float32x4(float x, float y, float z, float w) noexcept
       : underlying_{ x, y, z, w } {}
 
