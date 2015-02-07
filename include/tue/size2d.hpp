@@ -11,94 +11,107 @@
 #define TUE_CONSTEXPR constexpr
 #endif
 
+// The Tuesday C++ math and template library.
 namespace tue
 {
-        // ---------
-        // size2d<T>
-        // ---------
-        template<typename T>
-        class size2d;
+  // A 2-dimensional size (width and height) with components of the given
+  // type.
+  template<typename T>
+  class size2d;
 
-        using fsize2d = size2d<float>;
-        using dsize2d = size2d<double>;
-        using isize2d = size2d<int>;
-        using usize2d = size2d<unsigned int>;
+  // A 2-dimensional size (width and height) with float components.
+  using fsize2d = size2d<float>;
 
-        template<typename T>
-        class size2d
-        {
-        private:
-                T width_;
-                T height_;
+  // A 2-dimensional size (width and height) with double components.
+  using dsize2d = size2d<double>;
 
-        public:
-                // -------------------
-                // default constructor
-                // -------------------
-                size2d() noexcept = default;
+  // A 2-dimensional size (width and height) with int components.
+  using isize2d = size2d<int>;
 
-                // ---------------------
-                // component constructor
-                // ---------------------
-                explicit constexpr size2d(
-                        const T& width,
-                        const T& height) noexcept :
-                        width_(width),
-                        height_(height) {}
+  // A 2-dimensional size (width and height) with unsigned int components.
+  using usize2d = size2d<unsigned int>;
 
-                // -------------------------------
-                // explicit conversion constructor
-                // -------------------------------
-                template<typename U>
-                explicit constexpr size2d(
-                        const size2d<U>& other) noexcept :
-                        width_(T(other.width())),
-                        height_(T(other.height())) {}
+  // A 2-dimensional size (width and height) with components of the given
+  // type.
+  template<typename T>
+  class size2d
+  {
+  private:
+    T width_;
+    T height_;
 
-                // ----------------------------
-                // implicit conversion operator
-                // ----------------------------
-                template<typename U>
-                constexpr operator size2d<U>() const noexcept
-                {
-                        return size2d<U>(width_, height_);
-                }
+  public:
+    // Constructs a new size2d without a specific value.
+    size2d() noexcept = default;
 
-                // -----
-                // width
-                // -----
-                constexpr T width() const noexcept { return width_; }
-                void set_width(const T& width) noexcept { width_ = width; }
+    // Constructs a new size2d with the given components.
+    explicit constexpr size2d(
+        const T& width,
+        const T& height) noexcept
+      : width_(width),
+        height_(height) {}
 
-                // ------
-                // height
-                // ------
-                constexpr T height() const noexcept { return height_; }
-                void set_height(const T& height) noexcept { height_ = height; }
-        };
+    // Constructs a new size2d that is the result of explicitly casting the
+    // components of another size2d to to the new component type.
+    template<typename U>
+    explicit constexpr size2d(
+        const size2d<U>& other) noexcept
+      : width_(T(other.width())),
+        height_(T(other.height())) {}
 
-        // ----------
-        // lhs == rhs
-        // ----------
-        template<typename T, typename U>
-        inline TUE_CONSTEXPR bool operator==(
-                const size2d<T>& lhs,
-                const size2d<U>& rhs) noexcept
-        {
-                return lhs.width() == rhs.width()
-                        && lhs.height() == rhs.height();
-        }
+    // Returns a new size2d that is the result of implicitly casting the
+    // components of this size2d to another type.
+    template<typename U>
+    constexpr operator size2d<U>() const noexcept
+    {
+      return size2d<U>(width_, height_);
+    }
 
-        // ----------
-        // lhs != rhs
-        // ----------
-        template<typename T, typename U>
-        inline TUE_CONSTEXPR bool operator!=(
-                const size2d<T>& lhs,
-                const size2d<U>& rhs) noexcept
-        {
-                return !(lhs == rhs);
-        }
+    // Returns the width component of this size2d.
+    constexpr T width() const noexcept
+    {
+      return width_;
+    }
+
+    // Sets the width component of this size2d.
+    void set_width(const T& width) noexcept
+    {
+      width_ = width;
+    }
+
+    // Returns the height component of this size2d.
+    constexpr T height() const noexcept
+    {
+      return height_;
+    }
+
+    // Sets the height component of this size2d.
+    void set_height(const T& height) noexcept
+    {
+      height_ = height;
+    }
+  };
+
+  // Returns true if all the corresponding components of two size2d's are
+  // equal and false otherwise.
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR bool operator==(
+      const size2d<T>& lhs,
+      const size2d<U>& rhs) noexcept
+  {
+    return lhs.width() == rhs.width()
+        && lhs.height() == rhs.height();
+  }
+
+  // Returns true if any of the corresponding components of two size2d's are
+  // not equal and false otherwise.
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR bool operator!=(
+      const size2d<T>& lhs,
+      const size2d<U>& rhs) noexcept
+  {
+    return !(lhs == rhs);
+  }
 }
 
 #undef TUE_CONSTEXPR

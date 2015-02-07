@@ -30,19 +30,19 @@ namespace tue
 
     // Constructs a new vec with each component set to the given value.
     explicit constexpr vec(const T& s) noexcept
-      : impl_({ { s, s, s, s } }) {}
+      : impl_({{ s, s, s, s }}) {}
 
     // Constructs a new vec with the given components.
     constexpr vec(const T& x, const T& y, const T& z, const T& w) noexcept
-      : impl_({ { x, y, z, w } }) {}
+      : impl_({{ x, y, z, w }}) {}
 
     // Constructs a new vec with the given components.
     explicit constexpr vec(const vec2<T>& xy, const T& z, const T& w) noexcept
-      : impl_({ { xy[0], xy[1], z, w } }) {}
+      : impl_({{ xy[0], xy[1], z, w }}) {}
 
     // Constructs a new vec with the given components.
     explicit constexpr vec(const vec3<T>& xyz, const T& w) noexcept
-      : impl_({ { xyz[0], xyz[1], xyz[2], w } }) {}
+      : impl_({{ xyz[0], xyz[1], xyz[2], w }}) {}
 
     // Constructs a new vec that is the result of explicitly casting the
     // components of another vec to to the new component type.
