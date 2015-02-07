@@ -13,92 +13,92 @@
 
 namespace tue
 {
-	// ---------
-	// size2d<T>
-	// ---------
-	template<typename T>
-	class size2d;
+        // ---------
+        // size2d<T>
+        // ---------
+        template<typename T>
+        class size2d;
 
-	using fsize2d = size2d<float>;
-	using dsize2d = size2d<double>;
-	using isize2d = size2d<int>;
-	using usize2d = size2d<unsigned int>;
+        using fsize2d = size2d<float>;
+        using dsize2d = size2d<double>;
+        using isize2d = size2d<int>;
+        using usize2d = size2d<unsigned int>;
 
-	template<typename T>
-	class size2d
-	{
-	private:
-		T width_;
-		T height_;
+        template<typename T>
+        class size2d
+        {
+        private:
+                T width_;
+                T height_;
 
-	public:
-		// -------------------
-		// default constructor
-		// -------------------
-		size2d() noexcept = default;
+        public:
+                // -------------------
+                // default constructor
+                // -------------------
+                size2d() noexcept = default;
 
-		// ---------------------
-		// component constructor
-		// ---------------------
-		explicit constexpr size2d(
-			const T& width,
-			const T& height) noexcept :
-			width_(width),
-			height_(height) {}
+                // ---------------------
+                // component constructor
+                // ---------------------
+                explicit constexpr size2d(
+                        const T& width,
+                        const T& height) noexcept :
+                        width_(width),
+                        height_(height) {}
 
-		// -------------------------------
-		// explicit conversion constructor
-		// -------------------------------
-		template<typename U>
-		explicit constexpr size2d(
-			const size2d<U>& other) noexcept :
-			width_(T(other.width())),
-			height_(T(other.height())) {}
+                // -------------------------------
+                // explicit conversion constructor
+                // -------------------------------
+                template<typename U>
+                explicit constexpr size2d(
+                        const size2d<U>& other) noexcept :
+                        width_(T(other.width())),
+                        height_(T(other.height())) {}
 
-		// ----------------------------
-		// implicit conversion operator
-		// ----------------------------
-		template<typename U>
-		constexpr operator size2d<U>() const noexcept
-		{
-			return size2d<U>(width_, height_);
-		}
+                // ----------------------------
+                // implicit conversion operator
+                // ----------------------------
+                template<typename U>
+                constexpr operator size2d<U>() const noexcept
+                {
+                        return size2d<U>(width_, height_);
+                }
 
-		// -----
-		// width
-		// -----
-		constexpr T width() const noexcept { return width_; }
-		void set_width(const T& width) noexcept { width_ = width; }
+                // -----
+                // width
+                // -----
+                constexpr T width() const noexcept { return width_; }
+                void set_width(const T& width) noexcept { width_ = width; }
 
-		// ------
-		// height
-		// ------
-		constexpr T height() const noexcept { return height_; }
-		void set_height(const T& height) noexcept { height_ = height; }
-	};
+                // ------
+                // height
+                // ------
+                constexpr T height() const noexcept { return height_; }
+                void set_height(const T& height) noexcept { height_ = height; }
+        };
 
-	// ----------
-	// lhs == rhs
-	// ----------
-	template<typename T, typename U>
-	inline TUE_CONSTEXPR bool operator==(
-		const size2d<T>& lhs,
-		const size2d<U>& rhs) noexcept
-	{
-		return lhs.width() == rhs.width()
-			&& lhs.height() == rhs.height();
-	}
+        // ----------
+        // lhs == rhs
+        // ----------
+        template<typename T, typename U>
+        inline TUE_CONSTEXPR bool operator==(
+                const size2d<T>& lhs,
+                const size2d<U>& rhs) noexcept
+        {
+                return lhs.width() == rhs.width()
+                        && lhs.height() == rhs.height();
+        }
 
-	// ----------
-	// lhs != rhs
-	// ----------
-	template<typename T, typename U>
-	inline TUE_CONSTEXPR bool operator!=(
-		const size2d<T>& lhs,
-		const size2d<U>& rhs) noexcept
-	{
-		return !(lhs == rhs);
-	}
+        // ----------
+        // lhs != rhs
+        // ----------
+        template<typename T, typename U>
+        inline TUE_CONSTEXPR bool operator!=(
+                const size2d<T>& lhs,
+                const size2d<U>& rhs) noexcept
+        {
+                return !(lhs == rhs);
+        }
 }
 
 #undef TUE_CONSTEXPR

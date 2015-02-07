@@ -14,6 +14,7 @@
 #define TUE_CONSTEXPR constexpr
 #endif
 
+// The Tuesday C++ math and template library.
 namespace tue
 {
   // A quaternion with components of the given type.
@@ -50,10 +51,10 @@ namespace tue
     template<typename U>
     explicit constexpr quat(const quat<U>& other) noexcept
     : impl_({{
-	T(other[0]),
-	T(other[1]),
-	T(other[2]),
-	T(other[3]),
+        T(other[0]),
+        T(other[1]),
+        T(other[2]),
+        T(other[3]),
       }}) {}
 
     // Returns a new vec that is the result of implicitly casting the
@@ -62,10 +63,10 @@ namespace tue
     constexpr operator quat<U>() const noexcept
     {
       return {
-	impl_.data[0],
-	impl_.data[1],
-	impl_.data[2],
-	impl_.data[3],
+        impl_.data[0],
+        impl_.data[1],
+        impl_.data[2],
+        impl_.data[3],
       };
     }
 
@@ -127,9 +128,9 @@ namespace tue
     constexpr vec3<T> v() const noexcept
     {
       return {
-	impl_.data[0],
-	impl_.data[1],
-	impl_.data[2],
+        impl_.data[0],
+        impl_.data[1],
+        impl_.data[2],
       };
     }
     
@@ -140,7 +141,7 @@ namespace tue
       impl_.data[1] = y;
       impl_.data[2] = z;
     }
-		
+                
     // Sets the vector component of this quat.
     void set_v(const vec3<T>& v) noexcept
     {
@@ -194,9 +195,9 @@ namespace tue
       const quat<U>& rhs) noexcept
   {
     return lhs[0] == rhs[0]
-	&& lhs[1] == rhs[1]
-	&& lhs[2] == rhs[2]
-	&& lhs[3] == rhs[3];
+        && lhs[1] == rhs[1]
+        && lhs[2] == rhs[2]
+        && lhs[3] == rhs[3];
   }
 
   // Returns true if any of the corresponding components of two quat's are not
@@ -217,9 +218,9 @@ namespace tue
     inline auto length2(const quat<T>& q) noexcept
     {
       return math::length2(q[0])
-	  + math::length2(q[1])
-	  + math::length2(q[2])
-	  + math::length2(q[3]);
+          + math::length2(q[1])
+          + math::length2(q[2])
+          + math::length2(q[3]);
     }
 
     // Returns the length (magnitude) of the given quat.
@@ -235,10 +236,10 @@ namespace tue
     {
       const auto l = math::length(q);
       return quat<decltype(l / l)>{
-	decltype(l)(q[0]) / l,
-	decltype(l)(q[1]) / l,
-	decltype(l)(q[2]) / l,
-	decltype(l)(q[3]) / l,
+        decltype(l)(q[0]) / l,
+        decltype(l)(q[1]) / l,
+        decltype(l)(q[2]) / l,
+        decltype(l)(q[3]) / l,
       };
     }
 
@@ -252,8 +253,8 @@ namespace tue
     // Returns the result of using the given quat to rotate the given vec.
     template<typename T, typename U>
     inline TUE_CONSTEXPR auto rotate(
-	const quat<T>& q,
-	const vec3<U>& v) noexcept
+        const quat<T>& q,
+        const vec3<U>& v) noexcept
     {
       return (q * quat<U>(v, U(0)) * math::conjugate(q)).v();
     }

@@ -14,167 +14,198 @@
 #define TUE_CONSTEXPR constexpr
 #endif
 
+// The Tuesday C++ math and template library.
 namespace tue
 {
-	// ----------
-	// rect<P, S>
-	// ----------
-	template<typename P, typename S = P>
-	class rect;
+  // A rectangle defined by two position coordinates of type P and two size
+  // dimensions of type S.
+  template<typename P, typename S = P>
+  class rect;
 
-	using frect = rect<float>;
-	using drect = rect<double>;
-	using irect = rect<int>;
-	using urect = rect<unsigned int>;
-	using iurect = rect<int, unsigned int>;
+  // A rectangle defined by float position coordinates and size dimesions.
+  using frect = rect<float>;
 
-	template<typename P, typename S>
-	class rect
-	{
-	private:
-		vec2<P> position_;
-		size2d<S> size_;
+  // A rectangle defined by double position coordinates and size dimesions.
+  using drect = rect<double>;
 
-	public:
-		// -------------------
-		// default constructor
-		// -------------------
-		rect() noexcept = default;
+  // A rectangle defined by int position coordinates and size dimesions.
+  using irect = rect<int>;
 
-		// ----------------------
-		// component constructors
-		// ----------------------
-		explicit constexpr rect(
-			const P& x,
-			const P& y,
-			const S& width,
-			const S& height) noexcept :
-			position_(x, y),
-			size_(width, height) {}
+  // A rectangle defined by unsigned int position coordinates and size
+  // dimesions.
+  using urect = rect<unsigned int>;
 
-		explicit constexpr rect(
-			const P& x,
-			const P& y,
-			const size2d<S>& size) noexcept :
-			position_(x, y),
-			size_(size) {}
+  // A rectangle defined by unsigned int position coordinates and unsigned int
+  // size dimensions.
+  using iurect = rect<int, unsigned int>;
 
-		explicit constexpr rect(
-			const vec2<P>& position,
-			const S& width,
-			const S& height) noexcept :
-			position_(position),
-			size_(width, height) {}
+  // A rectangle defined by two position coordinates of type P and two size
+  // dimensions of type S.
+  template<typename P, typename S>
+  class rect
+  {
+  private:
+    vec2<P> position_;
+    size2d<S> size_;
 
-		explicit constexpr rect(
-			const vec2<P>& position,
-			const size2d<S>& size) noexcept :
-			position_(position),
-			size_(size) {}
+  public:
+    // Constructs a new rect without a specific value.
+    rect() noexcept = default;
 
-		// -------------------------------
-		// explicit conversion constructor
-		// -------------------------------
-		template<typename OtherP, typename OtherS>
-		explicit constexpr rect(
-			const rect<OtherP, OtherS>& other) noexcept :
-			position_(other.position()),
-			size_(other.size()) {}
+    // Constructs a new rect with the given components.
+    explicit constexpr rect(
+        const P& x,
+        const P& y,
+        const S& width,
+        const S& height) noexcept
+      : position_(x, y),
+        size_(width, height) {}
 
-		// ----------------------------
-		// implicit conversion operator
-		// ----------------------------
-		template<typename OtherP, typename OtherS>
-		constexpr operator rect<OtherP, OtherS>() const noexcept
-		{
-			return rect<OtherP, OtherS>(position_, size_);
-		}
+    // Constructs a new rect with the given components.
+    explicit constexpr rect(
+        const P& x,
+        const P& y,
+        const size2d<S>& size) noexcept
+      : position_(x, y),
+        size_(size) {}
 
-		// --------
-		// position
-		// --------
-		constexpr vec2<P> position() const noexcept
-		{
-			return position_;
-		}
+    // Constructs a new rect with the given components.
+    explicit constexpr rect(
+        const vec2<P>& position,
+        const S& width,
+        const S& height) noexcept
+      : position_(position),
+        size_(width, height) {}
 
-		void set_position(const P& x, const P& y) noexcept
-		{
-			position_.set_x(x);
-			position_.set_y(y);
-		}
+    // Constructs a new rect with the given components.
+    explicit constexpr rect(
+        const vec2<P>& position,
+        const size2d<S>& size) noexcept
+      : position_(position),
+        size_(size) {}
 
-		void set_position(const vec2<P>& position) noexcept
-		{
-			position_ = position;
-		}
+    // Constructs a new rect that is the result of explicitly casting the
+    // components of another rect to to the new component types.
+    template<typename OtherP, typename OtherS>
+    explicit constexpr rect(const rect<OtherP, OtherS>& other) noexcept
+      : position_(other.position()),
+        size_(other.size()) {}
 
-		// -
-		// x
-		// -
-		constexpr P x() const noexcept { return position_.x(); }
-		void set_x(const P& x) noexcept { position_.set_x(x); }
+    // Returns a new rect that is the result of implicitly casting the
+    // components of this rect to other types.
+    template<typename OtherP, typename OtherS>
+    constexpr operator rect<OtherP, OtherS>() const noexcept
+    {
+      return rect<OtherP, OtherS>(position_, size_);
+    }
 
-		// -
-		// y
-		// -
-		constexpr P y() const noexcept { return position_.y(); }
-		void set_y(const P& y) noexcept { position_.set_y(y); }
+    // Returns the position (coordinates) of this rect.
+    constexpr vec2<P> position() const noexcept
+    {
+      return position_;
+    }
 
-		// ----
-		// size
-		// ----
-		constexpr size2d<S> size() const noexcept
-		{
-			return size_;
-		}
+    // Sets the position (coordinates) of this rect.
+    void set_position(const P& x, const P& y) noexcept
+    {
+      position_.set_x(x);
+      position_.set_y(y);
+    }
 
-		void set_size(const S& width, const S& height) noexcept
-		{
-			size_.set_width(width);
-			size_.set_height(height);
-		}
+    // Sets the position (coordinates) of this rect.
+    void set_position(const vec2<P>& position) noexcept
+    {
+      position_ = position;
+    }
 
-		void set_size(const size2d<S>& size) noexcept
-		{
-			size_ = size;
-		}
+    // Returns the x-component of this rect's position.
+    constexpr P x() const noexcept
+    {
+      return position_.x();
+    }
 
-		// -----
-		// width
-		// -----
-		constexpr S width() const noexcept { return size_.width(); }
-		void set_width(const S& width) noexcept { size_.set_width(width); }
+    // Sets the x-component of this rect's position.
+    void set_x(const P& x) noexcept
+    {
+      position_.set_x(x);
+    }
 
-		// ------
-		// height
-		// ------
-		constexpr S height() const noexcept { return size_.height(); }
-		void set_height(const S& height) noexcept { size_.set_height(height); }
-	};
+    // Returns the y-component of this rect's position.
+    constexpr P y() const noexcept
+    {
+      return position_.y();
+    }
 
-	// ----------
-	// lhs == rhs
-	// ----------
-	template<typename LP, typename LS, typename RP, typename RS>
-	inline TUE_CONSTEXPR bool operator==(
-		const rect<LP, LS>& lhs,
-		const rect<RP, RS>& rhs) noexcept
-	{
-		return lhs.position() == rhs.position()
-			&& lhs.size() == rhs.size();
-	}
+    // Sets the y-component of this rect's position.
+    void set_y(const P& y) noexcept
+    {
+      position_.set_y(y);
+    }
 
-	// ----------
-	// lhs != rhs
-	// ----------
-	template<typename LP, typename LS, typename RP, typename RS>
-	inline TUE_CONSTEXPR bool operator!=(
-		const rect<LP, LS>& lhs,
-		const rect<RP, RS>& rhs) noexcept
-	{
-		return !(lhs == rhs);
-	}
+    // Returns the size (dimensions) of this rect.
+    constexpr size2d<S> size() const noexcept
+    {
+      return size_;
+    }
+
+    // Sets the size (dimensions) of this rect.
+    void set_size(const S& width, const S& height) noexcept
+    {
+      size_.set_width(width);
+      size_.set_height(height);
+    }
+
+    // Sets the size (dimensions) of this rect.
+    void set_size(const size2d<S>& size) noexcept
+    {
+      size_ = size;
+    }
+
+    // Returns the width of this rect.
+    constexpr S width() const noexcept
+    {
+      return size_.width();
+    }
+
+    // Sets the width of this rect.
+    void set_width(const S& width) noexcept
+    {
+      size_.set_width(width);
+    }
+
+    // Returns the height of this rect.
+    constexpr S height() const noexcept
+    {
+      return size_.height();
+    }
+
+    // Sets the height of this rect.
+    void set_height(const S& height) noexcept
+    {
+      size_.set_height(height);
+    }
+  };
+
+  // Returns true if all the corresponding components of two rect's are equal
+  // and false otherwise.
+  template<typename LP, typename LS, typename RP, typename RS>
+  inline TUE_CONSTEXPR bool operator==(
+      const rect<LP, LS>& lhs,
+      const rect<RP, RS>& rhs) noexcept
+  {
+    return lhs.position() == rhs.position()
+        && lhs.size() == rhs.size();
+  }
+
+  // Returns true if any of the corresponding components of two rect's are not
+  // equal and false otherwise.
+  template<typename LP, typename LS, typename RP, typename RS>
+  inline TUE_CONSTEXPR bool operator!=(
+      const rect<LP, LS>& lhs,
+      const rect<RP, RS>& rhs) noexcept
+  {
+    return !(lhs == rhs);
+  }
 }
 
 #undef TUE_CONSTEXPR

@@ -155,11 +155,11 @@ namespace tue
   {
     return mat2x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }
     };
   }
@@ -172,14 +172,14 @@ namespace tue
   {
     return mat3x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
       }
     };
   }
@@ -192,21 +192,21 @@ namespace tue
   {
     return mat4x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
       }
     };
   }
-	
+        
   // Returns the result of multiplying a mat by a column vec.
   template<typename T, typename U>
   inline TUE_CONSTEXPR auto operator*(
@@ -228,13 +228,13 @@ namespace tue
   {
     return mat2x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }
     };
   }
@@ -247,17 +247,17 @@ namespace tue
   {
     return mat3x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
       }
     };
   }
@@ -270,21 +270,21 @@ namespace tue
   {
     return mat4x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
-	math::dot(lhs.row(2), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(2), rhs.column(3)),
       }
     };
   }
@@ -311,15 +311,15 @@ namespace tue
   {
     return mat2x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }
     };
   }
@@ -332,20 +332,20 @@ namespace tue
   {
     return mat3x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
-	math::dot(lhs.row(3), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(3), rhs.column(2)),
       }
     };
   }
@@ -358,25 +358,25 @@ namespace tue
   {
     return mat4x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
-	math::dot(lhs.row(3), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(3), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
-	math::dot(lhs.row(2), rhs.column(3)),
-	math::dot(lhs.row(3), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(2), rhs.column(3)),
+        math::dot(lhs.row(3), rhs.column(3)),
       }
     };
   }
@@ -401,8 +401,8 @@ namespace tue
   {
     return mat2x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
         math::dot(lhs.row(0), rhs.column(1)),
         math::dot(lhs.row(1), rhs.column(1)),
@@ -418,14 +418,14 @@ namespace tue
   {
     return mat3x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
       }
     };
   }
@@ -438,17 +438,17 @@ namespace tue
   {
     return mat4x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
       }
     };
   }
@@ -474,13 +474,13 @@ namespace tue
   {
     return mat2x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }
     };
   }
@@ -493,17 +493,17 @@ namespace tue
   {
     return mat3x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
       }
     };
   }
@@ -516,21 +516,21 @@ namespace tue
   {
     return mat4x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
-	math::dot(lhs.row(2), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(2), rhs.column(3)),
       }
     };
   }
@@ -557,15 +557,15 @@ namespace tue
   {
     return mat2x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }
     };
   }
@@ -578,20 +578,20 @@ namespace tue
   {
     return mat3x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
-	math::dot(lhs.row(3), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(3), rhs.column(2)),
       }
     };
   }
@@ -604,25 +604,25 @@ namespace tue
   {
     return mat4x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
-	math::dot(lhs.row(3), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(3), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
-	math::dot(lhs.row(2), rhs.column(3)),
-	math::dot(lhs.row(3), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(2), rhs.column(3)),
+        math::dot(lhs.row(3), rhs.column(3)),
       }
     };
   }
@@ -647,11 +647,11 @@ namespace tue
   {
     return mat2x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }
     };
   }
@@ -664,14 +664,14 @@ namespace tue
   {
     return mat3x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
       }
     };
   }
@@ -684,17 +684,17 @@ namespace tue
   {
     return mat4x2<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
       }
     };
   }
@@ -720,13 +720,13 @@ namespace tue
   {
     return mat2x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }
     };
   }
@@ -739,17 +739,17 @@ namespace tue
   {
     return mat3x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
       }
     };
   }
@@ -762,21 +762,21 @@ namespace tue
   {
     return mat4x3<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
-	math::dot(lhs.row(2), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(2), rhs.column(3)),
       }
     };
   }
@@ -803,15 +803,15 @@ namespace tue
   {
     return mat2x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }
     };
   }
@@ -824,20 +824,20 @@ namespace tue
   {
     return mat3x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
-	math::dot(lhs.row(3), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(3), rhs.column(2)),
       }
     };
   }
@@ -850,25 +850,25 @@ namespace tue
   {
     return mat4x4<decltype(lhs[0][0] * rhs[0][0])>{
       {
-	math::dot(lhs.row(0), rhs.column(0)),
-	math::dot(lhs.row(1), rhs.column(0)),
-	math::dot(lhs.row(2), rhs.column(0)),
-	math::dot(lhs.row(3), rhs.column(0)),
+        math::dot(lhs.row(0), rhs.column(0)),
+        math::dot(lhs.row(1), rhs.column(0)),
+        math::dot(lhs.row(2), rhs.column(0)),
+        math::dot(lhs.row(3), rhs.column(0)),
       }, {
-	math::dot(lhs.row(0), rhs.column(1)),
-	math::dot(lhs.row(1), rhs.column(1)),
-	math::dot(lhs.row(2), rhs.column(1)),
-	math::dot(lhs.row(3), rhs.column(1)),
+        math::dot(lhs.row(0), rhs.column(1)),
+        math::dot(lhs.row(1), rhs.column(1)),
+        math::dot(lhs.row(2), rhs.column(1)),
+        math::dot(lhs.row(3), rhs.column(1)),
       }, {
-	math::dot(lhs.row(0), rhs.column(2)),
-	math::dot(lhs.row(1), rhs.column(2)),
-	math::dot(lhs.row(2), rhs.column(2)),
-	math::dot(lhs.row(3), rhs.column(2)),
+        math::dot(lhs.row(0), rhs.column(2)),
+        math::dot(lhs.row(1), rhs.column(2)),
+        math::dot(lhs.row(2), rhs.column(2)),
+        math::dot(lhs.row(3), rhs.column(2)),
       }, {
-	math::dot(lhs.row(0), rhs.column(3)),
-	math::dot(lhs.row(1), rhs.column(3)),
-	math::dot(lhs.row(2), rhs.column(3)),
-	math::dot(lhs.row(3), rhs.column(3)),
+        math::dot(lhs.row(0), rhs.column(3)),
+        math::dot(lhs.row(1), rhs.column(3)),
+        math::dot(lhs.row(2), rhs.column(3)),
+        math::dot(lhs.row(3), rhs.column(3)),
       }
     };
   }
