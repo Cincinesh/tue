@@ -10,7 +10,7 @@
 #if defined(__SSE__)
 #include "detail_/float32x4.sse.hpp"
 #elif defined(__ARM_NEON__)
-#include "detail_\float32x4.neon.hpp"
+#include "detail_/float32x4.neon.hpp"
 #else
 #include "detail_/float32x4.fallback.hpp"
 #endif
