@@ -537,8 +537,8 @@ namespace tue
       return sign_bit | float32x4(1.0f);
     }
 
-    // Treat the 4 given float32x4's as the columns of a 4x4 matrix, and
-    // transpose the matrix.
+    // Treats the 4 given float32x4's as the columns of a 4x4 matrix and
+    // transposes the matrix.
     inline void transpose(
         float32x4& v0,
         float32x4& v1,

@@ -59,7 +59,10 @@ namespace tue
       : underlying_(underlying) {}
 
     // Returns the NEON float32x4_t corresponding to this float32x4.
-    operator float32x4_t() const noexcept { return underlying_; }
+    operator float32x4_t() const noexcept
+    {
+      return underlying_;
+    }
 
     // Returns a float32x4 with each component set to 0.0f.
     static float32x4 zero() noexcept
@@ -132,7 +135,7 @@ namespace tue
   {
     return vreinterpretq_f32_u32(veorq_u32(
         vreinterpretq_u32_f32(v),
-        vdupq_n_u32(0x80000000)));
+        vdupq_n_u32(0x80000000u)));
   }
 
   // Returns the bitwise not of the given float32x4.
@@ -505,23 +508,20 @@ namespace tue
       int32x4_t emm0 = vshrq_n_s32(ux, 23);
 
       // Keep only the fractional part
-      ux = vandq_s32(ux, vdupq_n_s32(~0x7f800000u));
+      ux = vandq_s32(ux, vdupq_n_s32(~0x7F800000));
       ux = vorrq_s32(ux, vreinterpretq_s32_f32(vdupq_n_f32(0.5f)));
       x = vreinterpretq_f32_s32(ux);
 
-      emm0 = vsubq_s32(emm0, vdupq_n_s32(0x7f));
+      emm0 = vsubq_s32(emm0, vdupq_n_s32(0x7F));
       float32x4_t e = vcvtq_f32_s32(emm0);
 
       e = vaddq_f32(e, one);
 
       // Part 2:
-      // if (x < SQRTHF)
-      // {
+      // if (x < SQRTHF) {
       //   e -= 1;
       //   x = x + x - 1.0;
-      // }
-      // else
-      // {
+      // } else {
       //   x = x - 1.0;
       // }
       uint32x4_t mask = vcltq_f32(x, vdupq_n_f32(0.707106781186547524f));
@@ -620,7 +620,7 @@ namespace tue
     // Returns the component-wise absolute value of the given float32x4.
     inline float32x4 abs(const float32x4& v) noexcept
     {
-      return v & float32x4::binary(0x7FFFFFFF);
+      return v & float32x4::binary(0x7FFFFFFFu);
     }
 
     // Returns the component-wise product of two float32x4's.
@@ -647,12 +647,12 @@ namespace tue
     // its absolute value.
     inline float32x4 normalize(const float32x4& v) noexcept
     {
-      const float32x4 sign_bit = v & float32x4::binary(0x80000000);
+      const float32x4 sign_bit = v & float32x4::binary(0x80000000u);
       return sign_bit | float32x4(1.0f);
     }
 
-    // Treat the 4 given float32x4's as the columns of a 4x4 matrix, and
-    // transpose the matrix.
+    // Treats the 4 given float32x4's as the columns of a 4x4 matrix and
+    // transposes the matrix.
     inline void transpose(
         float32x4& v0,
         float32x4& v1,
