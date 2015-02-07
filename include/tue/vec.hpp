@@ -5,6 +5,7 @@
 
 #pragma once
 
+// The Tuesday C++ math and template library.
 namespace tue
 {
   // An N-component vector with components of the given type.

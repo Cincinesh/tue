@@ -5,6 +5,7 @@
 
 #pragma once
 
+// The Tuesday C++ math and template library.
 namespace tue
 {
   // A CxR matrix with components of the given type.
