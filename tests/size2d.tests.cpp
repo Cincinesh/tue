@@ -8,10 +8,10 @@
 
 #include <tue/unused.hpp>
 
+using namespace tue;
+
 namespace
 {
-  using namespace tue;
-
   TEST_CASE(default_constructor)
   {
     fsize2d size;

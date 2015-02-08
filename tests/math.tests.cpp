@@ -8,10 +8,10 @@
 
 #include <cmath>
 
+using namespace tue;
+
 namespace
 {
-  using namespace tue;
-
   TEST_CASE(sincos)
   {
     float fsin, fcos;

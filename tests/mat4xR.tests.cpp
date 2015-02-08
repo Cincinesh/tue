@@ -10,10 +10,10 @@
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
 
+using namespace tue;
+
 namespace
 {
-  using namespace tue;
-
   constexpr auto f1 = 1.1f;
   constexpr auto f2 = 2.2f;
 

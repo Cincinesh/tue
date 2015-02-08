@@ -9,10 +9,10 @@
 #include <tue/math.hpp>
 #include <tue/vec.hpp>
 
+using namespace tue;
+
 namespace
 {
-  using namespace tue;
-
   constexpr fvec4 fv4(1.1f, 1.2f, 1.3f, 1.4f);
   constexpr fvec3 fv3(fv4);
   constexpr fvec2 fv2(fv4);

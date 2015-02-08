@@ -30,7 +30,6 @@
 #pragma once
 
 #include "simd.hpp"
-
 #include <xmmintrin.h>
 
 #ifdef __SSE2__

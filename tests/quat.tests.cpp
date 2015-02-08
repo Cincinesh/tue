@@ -10,10 +10,10 @@
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
 
+using namespace tue;
+
 namespace
 {
-  using namespace tue;
-
   constexpr dvec3 dv32(2.2, 2.4, 2.6);
 
   constexpr fquat fq1(1.1f, 1.2f, 1.3f, 1.4f);

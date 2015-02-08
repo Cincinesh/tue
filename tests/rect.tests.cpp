@@ -10,10 +10,10 @@
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
 
+using namespace tue;
+
 namespace
 {
-  using namespace tue;
-
   TEST_CASE(default_constructor)
   {
     frect r;

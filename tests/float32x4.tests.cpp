@@ -9,10 +9,10 @@
 #include <tue/math.hpp>
 #include <tue/unused.hpp>
 
+using namespace tue;
+
 namespace
 {
-  using namespace tue;
-
   const float f410 = 1.1f;
   const float f411 = 1.2f;
   const float f412 = 1.3f;
