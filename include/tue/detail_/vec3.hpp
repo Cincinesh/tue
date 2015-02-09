@@ -152,6 +152,18 @@ namespace tue
       set_xy(xy[0], xy[1]);
     }
 
+    // Returns a pointer to this vec's underlying component array.
+    T* data() noexcept
+    {
+      return impl_.data;
+    }
+
+    // Returns a pointer to this vec's underlying component array.
+    const T* data() const noexcept
+    {
+      return impl_.data;
+    }
+
     // Returns a reference to the component of this vec with the given index.
     template<typename I>
     T& operator[](const I& i) noexcept

@@ -136,6 +136,17 @@ namespace
     test_assert(v[1] == 2.2f);
   }
 
+  TEST_CASE(data)
+  {
+    fvec2 v = fv21;
+    float* data = v.data();
+    test_assert(static_cast<void*>(data) == static_cast<void*>(&v));
+
+    const fvec2& cv = v;
+    const float* cdata = cv.data();
+    test_assert(cdata == data);
+  }
+
   TEST_CASE(subscript_operator)
   {
     constexpr fvec2 cev(1.1f, 2.2f);

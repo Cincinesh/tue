@@ -275,6 +275,17 @@ namespace
     test_assert(m[1] == fvec2(2.1f, 2.2f));
   }
 
+  TEST_CASE(data)
+  {
+    fmat2x2 m = fm221;
+    float* data = m.data();
+    test_assert(static_cast<void*>(data) == static_cast<void*>(&m));
+
+    const fmat2x2& cm = m;
+    const float* cdata = cm.data();
+    test_assert(cdata == data);
+  }
+
   TEST_CASE(subscript_operator)
   {
     constexpr fmat2x2 cem = {

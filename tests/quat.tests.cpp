@@ -177,6 +177,17 @@ namespace
     test_assert(q[3] == 2.4f);
   }
 
+  TEST_CASE(data)
+  {
+    fquat q = fq1;
+    float* data = q.data();
+    test_assert(static_cast<void*>(data) == static_cast<void*>(&q));
+
+    const fquat& cq = q;
+    const float* cdata = cq.data();
+    test_assert(cdata == data);
+  }
+
   TEST_CASE(subscript_operator)
   {
     constexpr fquat ceq(1.1f, 2.2f, 3.3f, 4.4f);
