@@ -338,6 +338,17 @@ namespace
     test_assert(cdata == data);
   }
 
+  TEST_CASE(columns)
+  {
+    fmat3x2 m = fm321;
+    fvec2* columns = m.columns();
+    test_assert(static_cast<void*>(columns) == static_cast<void*>(&m));
+
+    const fmat3x2& cm = m;
+    const fvec2* ccolumns = cm.columns();
+    test_assert(ccolumns == columns);
+  }
+
   TEST_CASE(subscript_operator)
   {
     constexpr fmat3x2 cem = {

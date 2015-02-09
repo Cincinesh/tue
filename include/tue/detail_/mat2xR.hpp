@@ -154,6 +154,18 @@ namespace tue
       return impl_.columns[0].data();
     }
 
+    // Returns a pointer to this mat's underlying column array.
+    vec<T, R>* columns() noexcept
+    {
+      return impl_.columns;
+    }
+
+    // Returns a pointer to this mat's underlying column array.
+    const vec<T, R>* columns() const noexcept
+    {
+      return impl_.columns;
+    }
+
     // Returns a reference to the column with the given index.
     template<typename I>
     vec<T, R>& operator[](const I& i) noexcept
