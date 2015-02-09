@@ -29,7 +29,7 @@ namespace tue
     float32x4(float x, float y, float z, float w) noexcept
       : x(x), y(y), z(z), w(w) {}
 
-    // Returns a float32x4 with each component set to 0.0f.
+    // Returns a new float32x4 with each component set to 0.0f.
     static float32x4 zero() noexcept
     {
       return float32x4(0.0f);
@@ -42,8 +42,8 @@ namespace tue
       return float32x4(reinterpret_cast<float&>(i));
     }
 
-    // Returns a new float32x4 with the given binary representations of the
-    // values.
+    // Returns a new float32x4 with the given binary representations for each
+    // component.
     static float32x4 binary(
         unsigned int x,
         unsigned int y,
@@ -148,7 +148,7 @@ namespace tue
     };
   }
 
-  // Returns the component-wise product of two float32's.
+  // Returns the component-wise product of two float32x4's.
   inline float32x4 operator*(
       const float32x4& lhs,
       const float32x4& rhs) noexcept
