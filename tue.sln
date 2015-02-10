@@ -11,12 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Private Sources", "2. Pr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Tests", "3. Tests", "{8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcxproj", "{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.android", "tests\tests.android.vcxproj", "{65E4BBD8-9F9A-4EEE-9A18-51183519A826}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.common", "tests\tests.common.vcxitems", "{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{9C85EF65-81B9-4F98-8DEC-57FC07AB97ED}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
@@ -24,12 +18,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{9C
 		LICENSE_1_0.txt = LICENSE_1_0.txt
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "test\tests.vcxitems", "{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "android.tests", "test\android.tests.vcxproj", "{65E4BBD8-9F9A-4EEE-9A18-51183519A826}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windows.desktop.tests", "test\windows.desktop.tests.vcxproj", "{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		tests\tests.common.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
-		tests\tests.common.vcxitems*{eb016a8e-f7fd-4e20-bf85-a93f9e1424aa}*SharedItemsImports = 9
+		test\tests.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
+		test\tests.vcxitems*{eb016a8e-f7fd-4e20-bf85-a93f9e1424aa}*SharedItemsImports = 9
 		tue.vcxitems*{f35c7e57-08ce-41a4-b7a8-471606299296}*SharedItemsImports = 9
-		tests\tests.common.vcxitems*{6471f7ea-fba6-4b69-9245-8bccc7d289b0}*SharedItemsImports = 4
+		test\tests.vcxitems*{6471f7ea-fba6-4b69-9245-8bccc7d289b0}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -40,16 +40,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|ARM.ActiveCfg = Debug|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x64.ActiveCfg = Debug|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x64.Build.0 = Debug|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x86.ActiveCfg = Debug|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x86.Build.0 = Debug|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|ARM.ActiveCfg = Release|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x64.ActiveCfg = Release|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x64.Build.0 = Release|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x86.ActiveCfg = Release|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x86.Build.0 = Release|Win32
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|ARM.ActiveCfg = Debug|ARM
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|ARM.Build.0 = Debug|ARM
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|x64.ActiveCfg = Debug|x86
@@ -60,14 +50,24 @@ Global
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x64.ActiveCfg = Release|x86
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x86.ActiveCfg = Release|x86
 		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x86.Build.0 = Release|x86
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|ARM.ActiveCfg = Debug|Win32
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x64.ActiveCfg = Debug|x64
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x64.Build.0 = Debug|x64
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x86.ActiveCfg = Debug|Win32
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x86.Build.0 = Debug|Win32
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|ARM.ActiveCfg = Release|Win32
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x64.ActiveCfg = Release|x64
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x64.Build.0 = Release|x64
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x86.ActiveCfg = Release|Win32
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F35C7E57-08CE-41A4-B7A8-471606299296} = {D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 		{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
+		{65E4BBD8-9F9A-4EEE-9A18-51183519A826} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
+		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
 	EndGlobalSection
 EndGlobal

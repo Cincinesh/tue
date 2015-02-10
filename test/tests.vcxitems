@@ -4,7 +4,7 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <ItemsProjectGuid>{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA}</ItemsProjectGuid>
-    <ItemsProjectName>tests.common</ItemsProjectName>
+    <ItemsProjectName>tests</ItemsProjectName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
