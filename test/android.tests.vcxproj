@@ -54,19 +54,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <OutDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(TargetName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <OutDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(TargetName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <OutDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(TargetName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <OutDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)build\android-$(Platform)-$(Configuration)\$(TargetName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile />
