@@ -31,7 +31,7 @@ namespace tue
     inline mat<T, 3, 2> translation_mat(
         const vec2<T>& xy) noexcept
     {
-      return translation_mat(xy.x, xy.y);
+      return translation_mat(xy.x(), xy.y());
     }
 
     template<typename T>
@@ -50,7 +50,7 @@ namespace tue
     inline mat<T, 4, 3> translation_mat(
         const vec3<T>& xyz) noexcept
     {
-      return translation_mat(xyz.x, xyz.y, xyz.z);
+      return translation_mat(xyz.x(), xyz.y(), xyz.z());
     }
 
     template<typename T>
@@ -132,6 +132,84 @@ namespace tue
         { 1 - yy2 - zz2, xy2 - zw2, xz2 + yw2 },
         { xy2 + zw2, 1 - xx2 - zz2, yz2 - xw2 },
         { xz2 - yw2, yz2 + xw2, 1 - xx2 - yy2 },
+      };
+    }
+
+    template<typename T>
+    inline mat<T, 2, 2> scale_mat(
+        const T& x, const T& y) noexcept
+    {
+      return {
+        { x, 0 },
+        { 0, y },
+      };
+    }
+
+    template<typename T>
+    inline mat<T, 2, 2> scale_mat(
+        const vec2<T>& xy) noexcept
+    {
+      return scale_mat(xy.x(), xy.y());
+    }
+
+    template<typename T>
+    inline mat<T, 3, 3> scale_mat(
+        const T& x, const T& y, const T& z) noexcept
+    {
+      return {
+        { x, 0, 0 },
+        { 0, y, 0 },
+        { 0, 0, z },
+      };
+    }
+
+    template<typename T>
+    inline mat<T, 3, 3> scale_mat(
+        const vec3<T>& xyz) noexcept
+    {
+      return scale_mat(xyz.x(), xyz.y(), xyz.z());
+    }
+
+    template<typename T>
+    inline mat<T, 3, 2> camera_mat(
+        const vec2<T>& translation,
+        const T& rotation,
+        const vec2<T>& scale = vec2<T>(T(1))) noexcept
+    {
+      return scale_mat(1 / scale)
+          * rotation_mat(-rotation)
+          * translation_mat(-translation);
+    }
+
+    template<typename T>
+    inline mat<T, 4, 3> camera_mat(
+        const vec3<T>& translation,
+        const quat<T>& rotation,
+        const vec3<T>& scale = vec3<T>(T(1))) noexcept
+    {
+      return scale_mat(1 / scale)
+          * rotation_mat(math::conjugate(rotation))
+          * translation_mat(-translation);
+    }
+
+    template<typename T>
+    inline auto perspective_mat(
+        const T& fovy,
+        const T& aspect,
+        const T& near,
+        const T& far)
+    {
+      using U = decltype(math::sin(fovy));
+      U s, c;
+      math::sincos(fovy/2, s, c);
+      const U f = c / s;
+      const U nmf = static_cast<U>(near - far);
+
+      return mat<U, 4, 4>{
+        { f / aspect, 0,             0,  0 },
+        { 0,          f,             0,  0 },
+        { 0, 0,     (near + far) / nmf, -1 },
+        { 0, 0, (2 * near * far) / nmf,  0 },
       };
     }
   }
