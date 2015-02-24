@@ -16,6 +16,7 @@ namespace tue
   // Non-member math functions.
   namespace math
   {
+    // Returns a 2-dimensional translation matrix.
     template<typename T>
     inline mat<T, 3, 2> translation_mat(
         const T& x, const T& y) noexcept
@@ -27,6 +28,7 @@ namespace tue
       };
     }
 
+    // Returns a 2-dimensional translation matrix.
     template<typename T>
     inline mat<T, 3, 2> translation_mat(
         const vec2<T>& xy) noexcept
@@ -34,6 +36,7 @@ namespace tue
       return translation_mat(xy.x(), xy.y());
     }
 
+    // Returns a 3-dimensional translation matrix.
     template<typename T>
     inline mat<T, 4, 3> translation_mat(
         const T& x, const T& y, const T& z) noexcept
@@ -46,6 +49,7 @@ namespace tue
       };
     }
 
+    // Returns a 3-dimensional translation matrix.
     template<typename T>
     inline mat<T, 4, 3> translation_mat(
         const vec3<T>& xyz) noexcept
@@ -53,6 +57,7 @@ namespace tue
       return translation_mat(xyz.x(), xyz.y(), xyz.z());
     }
 
+    // Returns a 2-dimensional rotation matrix.
     template<typename T>
     inline auto rotation_mat(const T& radians) noexcept
     {
@@ -66,6 +71,7 @@ namespace tue
       };
     }
 
+    // Returns a 3-dimensional rotation matrix around the given axis.
     template<typename T>
     inline auto rotation_mat(
         const T& axis_x,
@@ -105,6 +111,7 @@ namespace tue
       };
     }
 
+    // Returns a 3-dimensional rotation matrix around the given axis.
     template<typename T>
     inline auto rotation_mat(
         const vec3<T>& axis,
@@ -113,6 +120,7 @@ namespace tue
       return rotation_mat(axis.x(), axis.y(), axis.z(), radians);
     }
 
+    // Returns a 3-dimensional rotation matrix.
     template<typename T>
     inline mat<T, 3, 3> rotation_mat(const quat<T>& q) noexcept
     {
@@ -136,6 +144,7 @@ namespace tue
       };
     }
 
+    // Returns a 2-dimensional scale matrix.
     template<typename T>
     inline mat<T, 2, 2> scale_mat(
         const T& x, const T& y) noexcept
@@ -146,6 +155,7 @@ namespace tue
       };
     }
 
+    // Returns a 2-dimensional scale matrix.
     template<typename T>
     inline mat<T, 2, 2> scale_mat(
         const vec2<T>& xy) noexcept
@@ -153,6 +163,7 @@ namespace tue
       return scale_mat(xy.x(), xy.y());
     }
 
+    // Returns a 3-dimensional scale matrix.
     template<typename T>
     inline mat<T, 3, 3> scale_mat(
         const T& x, const T& y, const T& z) noexcept
@@ -164,6 +175,7 @@ namespace tue
       };
     }
 
+    // Returns a 3-dimensional scale matrix.
     template<typename T>
     inline mat<T, 3, 3> scale_mat(
         const vec3<T>& xyz) noexcept
@@ -171,8 +183,9 @@ namespace tue
       return scale_mat(xyz.x(), xyz.y(), xyz.z());
     }
 
+    // Returns a 2-dimensional view matrix.
     template<typename T>
-    inline mat<T, 3, 2> camera_mat(
+    inline mat<T, 3, 2> view_mat(
         const vec2<T>& translation,
         const T& rotation) noexcept
     {
@@ -180,8 +193,9 @@ namespace tue
           * translation_mat(-translation);
     }
 
+    // Returns a 3-dimensional view matrix.
     template<typename T>
-    inline mat<T, 4, 3> camera_mat(
+    inline mat<T, 4, 3> view_mat(
         const vec3<T>& translation,
         const quat<T>& rotation) noexcept
     {
@@ -189,6 +203,7 @@ namespace tue
           * translation_mat(-translation);
     }
 
+    // Returns a perspective projection matrix.
     template<typename T>
     inline auto perspective_mat(
         const T& fovy,
@@ -210,6 +225,7 @@ namespace tue
       };
     }
 
+    // Returns an orthographic projection matrix.
     template<typename T>
     inline auto ortho_mat(
         const T& width,
