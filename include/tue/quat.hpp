@@ -57,7 +57,7 @@ namespace tue
         T(other[3]),
       }}) {}
 
-    // Returns a new vec that is the result of implicitly casting the
+    // Returns a new quat that is the result of implicitly casting the
     // components of this quat to another type.
     template<typename U>
     constexpr operator quat<U>() const noexcept
@@ -70,7 +70,8 @@ namespace tue
       };
     }
 
-    // Returns a vec the vector part set to 0 and the scalar part set to 1.
+    // Returns a new quat with the vector part set to 0 and the scalar part set
+    // to 1.
     static constexpr quat identity() noexcept
     {
       return { T(0), T(0), T(0), T(1) };
@@ -269,6 +270,48 @@ namespace tue
         const vec3<U>& v) noexcept
     {
       return (q * quat<U>(v, U(0)) * math::conjugate(q)).v();
+    }
+
+    // Returns a new quat that represents a rotation around the given axis by
+    // the given angle.
+    template<typename T>
+    inline auto rotation_quat(const vec3<T>& axis, const T& radians) noexcept
+    {
+      using U = decltype(sin(radians));
+      U s, c;
+      math::sincos(U(radians) / U(2), s, c);
+      return quat<U>(vec3<U>(axis) * s, c);
+    }
+
+    // Returns a new quat that represents a rotation around the given axis by
+    // the given angle.
+    template<typename T>
+    inline auto rotation_quat(
+        const T& axis_x,
+        const T& axis_y,
+        const T& axis_z,
+        const T& radians) noexcept
+    {
+      return rotation_quat(vec3<T>(axis_x, axis_y, axis_z), radians);
+    }
+
+    // Returns a new quat that represents the same rotation as the given
+    // rotation vector.
+    template<typename T>
+    inline auto rotation_quat(const vec3<T>& v) noexcept
+    {
+      using U = decltype(math::length(v));
+      const U radians = math::length(v);
+      const vec3<U> axis = vec3<U>(v) / radians;
+      return rotation_quat(axis, radians);
+    }
+
+    // Returns a new quat that represents the same rotation as the given
+    // rotation vector.
+    template<typename T>
+    inline auto rotation_quat(const T& x, const T& y, const T& z) noexcept
+    {
+      return rotation_quat(vec3<T>(x, y, z));
     }
   }
 }

@@ -308,4 +308,32 @@ namespace
     CONST_OR_CONSTEXPR dvec3 v = math::rotate(fq1, dv32);
     test_assert(v == (fq1 * dquat(dv32, 0) * math::conjugate(fq1)).v());
   }
+
+  TEST_CASE(rotation_quat_from_axis_angle)
+  {
+    const float x = 1.1f;
+    const float y = 2.2f;
+    const float z = 3.3f;
+    const float w = 4.4f;
+    const fvec3 v(x, y, z);
+    const fquat q1 = math::rotation_quat(v, w);
+    test_assert(q1.v() == v * math::sin(w / 2));
+    test_assert(q1.s() == math::cos(w / 2));
+
+    const fquat q2 = math::rotation_quat(x, y, z, w);
+    test_assert(q2 == q1);
+  }
+
+  TEST_CASE(rotation_quat_from_rotation_vec)
+  {
+    const float x = 1.1f;
+    const float y = 2.2f;
+    const float z = 3.3f;
+    const fvec3 v(x, y, z);
+    const fquat q1 = math::rotation_quat(v);
+    test_assert(q1 == math::rotation_quat(math::normalize(v), math::length(v)));
+
+    const fquat q2 = math::rotation_quat(x, y, z);
+    test_assert(q2 == q1);
+  }
 }

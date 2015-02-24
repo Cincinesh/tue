@@ -40,7 +40,7 @@ namespace
     test_assert(m[1] == fvec2(-math::sin(1.23f), math::cos(1.23f)));
   }
 
-  TEST_CASE(rotation_mat_3d)
+  TEST_CASE(rotation_mat_from_axis_angle)
   {
     const float x = 1.1f;
     const float y = 2.2f;
@@ -63,7 +63,7 @@ namespace
     test_assert(m2 == m1);
   }
 
-  TEST_CASE(rotation_mat_quat)
+  TEST_CASE(rotation_mat_from_quat)
   {
     const float x = 1.1f;
     const float y = 2.2f;
