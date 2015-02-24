@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "simd.hpp"
+#include "../simd.hpp"
 #include <xmmintrin.h>
 
-#ifdef __SSE2__
+#ifdef TUE_SSE2
 #include <emmintrin.h>
 #else
 #include <mmintrin.h>
@@ -328,7 +328,7 @@ namespace tue
       __m128 x = v;
 
       __m128 xmm1, xmm2, xmm3 = _mm_setzero_ps(), sign_bit_sin, y;
-#ifdef __SSE2__
+#ifdef TUE_SSE2
       __m128i emm0, emm2, emm4;
 #else
       __m64 mm0, mm1, mm2, mm3, mm4, mm5;
@@ -349,7 +349,7 @@ namespace tue
       // Scale by 4/Pi
       y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516f));
 
-#ifdef __SSE2__
+#ifdef TUE_SSE2
       // Store the integer part of y in emm2
       emm2 = _mm_cvttps_epi32(y);
 
@@ -417,7 +417,7 @@ namespace tue
       x = _mm_add_ps(x, xmm2);
       x = _mm_add_ps(x, xmm3);
 
-#ifdef __SSE2__
+#ifdef TUE_SSE2
       emm4 = _mm_sub_epi32(emm4, _mm_set1_epi32(2));
       emm4 = _mm_andnot_si128(emm4, _mm_set1_epi32(4));
       emm4 = _mm_slli_epi32(emm4, 29);
@@ -502,7 +502,7 @@ namespace tue
       __m128 x = v;
 
       __m128 tmp = _mm_setzero_ps(), fx;
-#ifdef __SSE2__
+#ifdef TUE_SSE2
       __m128i emm0;
 #else
       __m64 mm0, mm1;
@@ -522,7 +522,7 @@ namespace tue
       fx = _mm_add_ps(fx, _mm_set_ps1(0.5f));
 
       // How to perform a floorf with SSE: just below
-#ifndef __SSE2__
+#ifndef TUE_SSE2
       // Step 1: Cast to int
       tmp = _mm_movehl_ps(tmp, fx);
       mm0 = _mm_cvttps_pi32(fx);
@@ -562,7 +562,7 @@ namespace tue
       y = _mm_add_ps(y, one);
 
       // Build 2^n
-#ifndef __SSE2__
+#ifndef TUE_SSE2
       z = _mm_movehl_ps(z, fx);
       mm0 = _mm_cvttps_pi32(fx);
       mm1 = _mm_cvttps_pi32(z);
@@ -592,7 +592,7 @@ namespace tue
       // the top of this file for details.
       __m128 x = v;
 
-#ifdef __SSE2__
+#ifdef TUE_SSE2
       __m128i emm0;
 #else
       __m64 mm0, mm1;
@@ -609,7 +609,7 @@ namespace tue
       // Cut off denormalized stuff
       x = _mm_max_ps(x, float32x4::binary(0x00800000u));
 
-#ifndef __SSE2__
+#ifndef TUE_SSE2
       // Part 1: x = frexpf(x, &e);
       u.xmm = x;
       mm0 = _mm_srli_pi32(u.mm[0], 23);
@@ -621,7 +621,7 @@ namespace tue
       x = _mm_and_ps(x, float32x4::binary(~0x7F800000u));
       x = _mm_or_ps(x, _mm_set_ps1(0.5f));
 
-#ifndef __SSE2__
+#ifndef TUE_SSE2
       // Now e=mm0:mm1 contain the really base-2 exponent
       mm0 = _mm_sub_pi32(mm0, _mm_set1_pi32(0x7F));
       mm1 = _mm_sub_pi32(mm1, _mm_set1_pi32(0x7F));

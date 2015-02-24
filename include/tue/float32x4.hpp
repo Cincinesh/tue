@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "detail_/simd.hpp"
+#include "simd.hpp"
 
-#if defined(__SSE__)
+#if defined(TUE_SSE)
 #include "detail_/float32x4.sse.hpp"
-#elif defined(__ARM_NEON__)
+#elif defined(TUE_NEON)
 #include "detail_/float32x4.neon.hpp"
 #else
 #include "detail_/float32x4.fallback.hpp"

@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include "simd.hpp"
 #include <arm_neon.h>
 
 // The Tuesday C++ math and template library.

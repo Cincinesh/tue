@@ -102,21 +102,21 @@ namespace
     test_assert(m2 == m1);
   }
 
-  TEST_CASE(camera_mat_2d)
+  TEST_CASE(view_mat_2d)
   {
     const fvec2 translation(1.1f, 2.2f);
     const float rotation = 3.3f;
-    const fmat3x2 m = math::camera_mat(translation, rotation);
+    const fmat3x2 m = math::view_mat(translation, rotation);
     test_assert(m
         == math::rotation_mat(-rotation)
         * math::translation_mat(-translation));
   }
 
-  TEST_CASE(camera_mat_3d)
+  TEST_CASE(view_mat_3d)
   {
     const fvec3 translation(1.1f, 2.2f, 3.3f);
     const fquat rotation(4.4f, 5.5f, 6.6f, 7.7f);
-    const fmat4x3 m = math::camera_mat(translation, rotation);
+    const fmat4x3 m = math::view_mat(translation, rotation);
     test_assert(m
         == math::rotation_mat(math::conjugate(rotation))
         * math::translation_mat(-translation));
