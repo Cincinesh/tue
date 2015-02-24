@@ -21,9 +21,9 @@ namespace tue
         const T& x, const T& y) noexcept
     {
       return {
-        { 1, 0 },
-        { 0, 1 },
-        { x, y },
+        { T(1), T(0) },
+        { T(0), T(1) },
+        {    x,    y },
       };
     }
 
@@ -39,10 +39,10 @@ namespace tue
         const T& x, const T& y, const T& z) noexcept
     {
       return {
-        { 1, 0, 0 },
-        { 0, 1, 0 },
-        { 0, 0, 1 },
-        { x, y, z },
+        { T(1), T(0), T(0) },
+        { T(0), T(1), T(0) },
+        { T(0), T(0), T(1) },
+        {    x,    y,    z },
       };
     }
 
@@ -59,8 +59,9 @@ namespace tue
       using U = decltype(math::sin(radians));
       U s, c;
       math::sincos(radians, s, c);
+
       return mat<U, 2, 2>{
-        { c, s },
+        {  c, s },
         { -s, c },
       };
     }
@@ -79,7 +80,7 @@ namespace tue
 
       U s, c;
       math::sincos(radians, s, c);
-      const U omc = 1 - c;
+      const U omc = U(1) - c;
 
       const U xx = x * x;
       const U xy = x * y;
@@ -119,19 +120,19 @@ namespace tue
       const T y = q.y();
       const T z = q.z();
       const T w = q.w();
-      const T xx2 = x * x * 2;
-      const T xy2 = x * y * 2;
-      const T xz2 = x * z * 2;
-      const T xw2 = x * w * 2;
-      const T yy2 = y * y * 2;
-      const T yz2 = y * z * 2;
-      const T yw2 = y * w * 2;
-      const T zz2 = z * z * 2;
-      const T zw2 = z * w * 2;
+      const T xx2 = x * x * T(2);
+      const T xy2 = x * y * T(2);
+      const T xz2 = x * z * T(2);
+      const T xw2 = x * w * T(2);
+      const T yy2 = y * y * T(2);
+      const T yz2 = y * z * T(2);
+      const T yw2 = y * w * T(2);
+      const T zz2 = z * z * T(2);
+      const T zw2 = z * w * T(2);
       return {
-        { 1 - yy2 - zz2, xy2 - zw2, xz2 + yw2 },
-        { xy2 + zw2, 1 - xx2 - zz2, yz2 - xw2 },
-        { xz2 - yw2, yz2 + xw2, 1 - xx2 - yy2 },
+        { T(1) - yy2 - zz2, xy2 - zw2, xz2 + yw2 },
+        { xy2 + zw2, T(1) - xx2 - zz2, yz2 - xw2 },
+        { xz2 - yw2, yz2 + xw2, T(1) - xx2 - yy2 },
       };
     }
 
@@ -140,8 +141,8 @@ namespace tue
         const T& x, const T& y) noexcept
     {
       return {
-        { x, 0 },
-        { 0, y },
+        { x, T(0) },
+        { T(0), y },
       };
     }
 
@@ -157,9 +158,9 @@ namespace tue
         const T& x, const T& y, const T& z) noexcept
     {
       return {
-        { x, 0, 0 },
-        { 0, y, 0 },
-        { 0, 0, z },
+        { x, T(0), T(0) },
+        { T(0), y, T(0) },
+        { T(0), T(0), z },
       };
     }
 
@@ -173,22 +174,18 @@ namespace tue
     template<typename T>
     inline mat<T, 3, 2> camera_mat(
         const vec2<T>& translation,
-        const T& rotation,
-        const vec2<T>& scale = vec2<T>(T(1))) noexcept
+        const T& rotation) noexcept
     {
-      return scale_mat(1 / scale)
-          * rotation_mat(-rotation)
+      return rotation_mat(-rotation)
           * translation_mat(-translation);
     }
 
     template<typename T>
     inline mat<T, 4, 3> camera_mat(
         const vec3<T>& translation,
-        const quat<T>& rotation,
-        const vec3<T>& scale = vec3<T>(T(1))) noexcept
+        const quat<T>& rotation) noexcept
     {
-      return scale_mat(1 / scale)
-          * rotation_mat(math::conjugate(rotation))
+      return rotation_mat(math::conjugate(rotation))
           * translation_mat(-translation);
     }
 
@@ -201,15 +198,31 @@ namespace tue
     {
       using U = decltype(math::sin(fovy));
       U s, c;
-      math::sincos(fovy/2, s, c);
+      math::sincos(U(fovy) / U(2), s, c);
       const U f = c / s;
       const U nmf = static_cast<U>(near - far);
 
       return mat<U, 4, 4>{
-        { f / aspect, 0,             0,  0 },
-        { 0,          f,             0,  0 },
-        { 0, 0,     (near + far) / nmf, -1 },
-        { 0, 0, (2 * near * far) / nmf,  0 },
+        { f / U(aspect),              U(0), U(0), U( 0) },
+        { U(0),                          f, U(0), U( 0) },
+        { U(0), U(0),        U(near + far) / nmf, U(-1) },
+        { U(0), U(0), U(2) * U(near * far) / nmf, U( 0) },
+      };
+    }
+
+    template<typename T>
+    inline auto ortho_mat(
+        const T& width,
+        const T& height,
+        const T& near,
+        const T& far)
+    {
+      using U = decltype(math::sin(width));
+
+      return mat<U, 3, 3>{
+        { U(2) / U(width),      U(0), U(0) },
+        { U(0), U(2) / U(height),     U(0) },
+        { U(0), U(0), U(2) / U(near - far) },
       };
     }
   }

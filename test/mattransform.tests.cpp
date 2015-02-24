@@ -106,16 +106,9 @@ namespace
   {
     const fvec2 translation(1.1f, 2.2f);
     const float rotation = 3.3f;
-    const fmat3x2 m1 = math::camera_mat(translation, rotation);
-    test_assert(m1
+    const fmat3x2 m = math::camera_mat(translation, rotation);
+    test_assert(m
         == math::rotation_mat(-rotation)
-        * math::translation_mat(-translation));
-
-    const fvec2 scale(4.4f, 5.5f);
-    const fmat3x2 m2 = math::camera_mat(translation, rotation, scale);
-    test_assert(m2
-        == math::scale_mat(1 / scale)
-        * math::rotation_mat(-rotation)
         * math::translation_mat(-translation));
   }
 
@@ -123,16 +116,9 @@ namespace
   {
     const fvec3 translation(1.1f, 2.2f, 3.3f);
     const fquat rotation(4.4f, 5.5f, 6.6f, 7.7f);
-    const fmat4x3 m1 = math::camera_mat(translation, rotation);
-    test_assert(m1
+    const fmat4x3 m = math::camera_mat(translation, rotation);
+    test_assert(m
         == math::rotation_mat(math::conjugate(rotation))
-        * math::translation_mat(-translation));
-
-    const fvec3 scale(8.8f, 9.9f, 10.11f);
-    const fmat4x3 m2 = math::camera_mat(translation, rotation, scale);
-    test_assert(m2
-        == math::scale_mat(1 / scale)
-        * math::rotation_mat(math::conjugate(rotation))
         * math::translation_mat(-translation));
   }
 
@@ -144,7 +130,7 @@ namespace
     const float far = 4.4f;
     const float f = math::cos(fovy/2) / math::sin(fovy/2);
     const fmat4x4 m = math::perspective_mat(fovy, aspect, near, far);
-    test_assert(m[0][0] == f/aspect);
+    test_assert(m[0][0] == f / aspect);
     test_assert(m[0][1] == 0.0f);
     test_assert(m[0][2] == 0.0f);
     test_assert(m[0][3] == 0.0f);
@@ -160,5 +146,23 @@ namespace
     test_assert(m[3][1] == 0.0f);
     test_assert(m[3][2] == (2*near*far) / (near-far));
     test_assert(m[3][3] == 0.0f);
+  }
+
+  TEST_CASE(ortho_mat)
+  {
+    const float width = 1.1f;
+    const float height = 2.2f;
+    const float near = 3.3f;
+    const float far = 4.4f;
+    const fmat3x3 m = math::ortho_mat(width, height, near, far);
+    test_assert(m[0][0] == 2 / width);
+    test_assert(m[0][1] == 0.0f);
+    test_assert(m[0][2] == 0.0f);
+    test_assert(m[1][0] == 0.0f);
+    test_assert(m[1][1] == 2 / height);
+    test_assert(m[1][2] == 0.0f);
+    test_assert(m[2][0] == 0.0f);
+    test_assert(m[2][1] == 0.0f);
+    test_assert(m[2][2] == 2 / (near - far));
   }
 }
