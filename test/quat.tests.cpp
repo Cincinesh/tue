@@ -322,6 +322,9 @@ namespace
 
     const fquat q2 = math::rotation_quat(x, y, z, w);
     test_assert(q2 == q1);
+
+    const fquat q3 = math::rotation_quat(fvec4(x, y, z, w));
+    test_assert(q3 == q1);
   }
 
   TEST_CASE(rotation_quat_from_rotation_vec)

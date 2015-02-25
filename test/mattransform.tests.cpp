@@ -61,6 +61,9 @@ namespace
 
     const fmat3x3 m2 = math::rotation_mat(fvec3(x, y, z), w);
     test_assert(m2 == m1);
+
+    const fmat3x3 m3 = math::rotation_mat(fvec4(x, y, z, w));
+    test_assert(m3 == m1);
   }
 
   TEST_CASE(rotation_mat_from_quat)

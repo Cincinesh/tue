@@ -120,6 +120,14 @@ namespace tue
       return rotation_mat(axis.x(), axis.y(), axis.z(), radians);
     }
 
+    // Returns a 3-dimensional rotation matrix around the given axis-angle
+    // vector.
+    template<typename T>
+    inline auto rotation_mat(const vec4<T>& v) noexcept
+    {
+      return rotation_mat(v.x(), v.y(), v.z(), v.w());
+    }
+
     // Returns a 3-dimensional rotation matrix.
     template<typename T>
     inline mat<T, 3, 3> rotation_mat(const quat<T>& q) noexcept

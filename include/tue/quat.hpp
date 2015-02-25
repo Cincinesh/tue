@@ -272,8 +272,7 @@ namespace tue
       return (q * quat<U>(v, U(0)) * math::conjugate(q)).v();
     }
 
-    // Returns a new quat that represents a rotation around the given axis by
-    // the given angle.
+    // Returns a new rotation quat around the given axis.
     template<typename T>
     inline auto rotation_quat(const vec3<T>& axis, const T& radians) noexcept
     {
@@ -283,8 +282,7 @@ namespace tue
       return quat<U>(vec3<U>(axis) * s, c);
     }
 
-    // Returns a new quat that represents a rotation around the given axis by
-    // the given angle.
+    // Returns a new rotation quat around the given axis.
     template<typename T>
     inline auto rotation_quat(
         const T& axis_x,
@@ -293,6 +291,13 @@ namespace tue
         const T& radians) noexcept
     {
       return rotation_quat(vec3<T>(axis_x, axis_y, axis_z), radians);
+    }
+
+    // Returns a new rotation quat around the given axis-angle vector.
+    template<typename T>
+    inline auto rotation_quat(const vec4<T>& v) noexcept
+    {
+      return rotation_quat(v.xyz(), v.w());
     }
 
     // Returns a new quat that represents the same rotation as the given
