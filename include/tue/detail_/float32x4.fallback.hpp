@@ -14,6 +14,11 @@ namespace tue
   // 4 parallel floats accelerated by SIMD intrinsics if possible.
   class float32x4
   {
+  public:
+    using component_type = float;
+
+    static constexpr int component_count = 4;
+
   private:
     float x, y, z, w;
 

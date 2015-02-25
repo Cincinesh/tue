@@ -22,6 +22,19 @@ namespace tue
   template<typename T, int R>
   class mat<T, 2, R>
   {
+  public:
+    using component_type = T;
+
+    using column_type = vec<T, R>;
+
+    using row_type = vec<T, 2>;
+
+    static constexpr int component_count = 2 * R;
+
+    static constexpr int column_count = 2;
+
+    static constexpr int row_count = R;
+
   private:
     struct { vec<T, R> columns[2]; } impl_;
 

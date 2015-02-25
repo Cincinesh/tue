@@ -44,8 +44,18 @@ namespace tue
   template<typename P, typename S>
   class rect
   {
+  public:
+    using position_type = vec2<P>;
+
+    using position_component_type = P;
+
+    using size_type = size2d<S>;
+
+    using size_component_type = S;
+
   private:
     vec2<P> position_;
+
     size2d<S> size_;
 
   public:

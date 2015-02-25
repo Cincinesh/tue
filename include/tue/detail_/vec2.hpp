@@ -25,6 +25,11 @@ namespace tue
   template<typename T>
   class vec<T, 2>
   {
+  public:
+    using component_type = T;
+
+    static constexpr int component_count = 2;
+
   private:
     struct { T data[2]; } impl_;
 

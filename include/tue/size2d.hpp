@@ -36,8 +36,12 @@ namespace tue
   template<typename T>
   class size2d
   {
+  public:
+    using component_type = T;
+
   private:
     T width_;
+
     T height_;
 
   public:

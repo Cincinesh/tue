@@ -31,6 +31,9 @@ namespace tue
   template<typename T>
   class quat
   {
+  public:
+    using component_type = T;
+
   private:
     struct { T data[4]; } impl_;
 
