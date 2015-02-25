@@ -66,6 +66,18 @@ namespace
     test_assert(m3 == m1);
   }
 
+  TEST_CASE(rotation_mat_from_rotation_vec)
+  {
+    const float x = 1.1f;
+    const float y = 2.2f;
+    const float z = 3.3f;
+    const fmat3x3 m1 = math::rotation_mat(x, y, z);
+    test_assert(m1 == math::rotation_mat(math::axis_angle(x, y, z)));
+
+    const fmat3x3 m2 = math::rotation_mat(fvec3(x, y, z));
+    test_assert(m2 == m1);
+  }
+
   TEST_CASE(rotation_mat_from_quat)
   {
     const float x = 1.1f;
