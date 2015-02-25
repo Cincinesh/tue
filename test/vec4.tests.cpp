@@ -210,6 +210,70 @@ namespace
     test_assert(v[3] == 2.4f);
   }
 
+  TEST_CASE(r)
+  {
+    CONST_OR_CONSTEXPR float r = fv41.r();
+    test_assert(r == fv41[0]);
+  }
+
+  TEST_CASE(set_r)
+  {
+    fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
+    v.set_r(2.1f);
+    test_assert(v[0] == 2.1f);
+    test_assert(v[1] == 1.2f);
+    test_assert(v[2] == 1.3f);
+    test_assert(v[3] == 1.4f);
+  }
+
+  TEST_CASE(g)
+  {
+    CONST_OR_CONSTEXPR float g = fv41.g();
+    test_assert(g == fv41[1]);
+  }
+
+  TEST_CASE(set_g)
+  {
+    fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
+    v.set_g(2.2f);
+    test_assert(v[0] == 1.1f);
+    test_assert(v[1] == 2.2f);
+    test_assert(v[2] == 1.3f);
+    test_assert(v[3] == 1.4f);
+  }
+
+  TEST_CASE(b)
+  {
+    CONST_OR_CONSTEXPR float b = fv41.b();
+    test_assert(b == fv41[2]);
+  }
+
+  TEST_CASE(set_b)
+  {
+    fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
+    v.set_b(2.3f);
+    test_assert(v[0] == 1.1f);
+    test_assert(v[1] == 1.2f);
+    test_assert(v[2] == 2.3f);
+    test_assert(v[3] == 1.4f);
+  }
+
+  TEST_CASE(a)
+  {
+    CONST_OR_CONSTEXPR float a = fv41.a();
+    test_assert(a == fv41[3]);
+  }
+
+  TEST_CASE(set_a)
+  {
+    fvec4 v(1.1f, 1.2f, 1.3f, 1.4f);
+    v.set_a(2.4f);
+    test_assert(v[0] == 1.1f);
+    test_assert(v[1] == 1.2f);
+    test_assert(v[2] == 1.3f);
+    test_assert(v[3] == 2.4f);
+  }
+
   TEST_CASE(xy)
   {
     CONST_OR_CONSTEXPR fvec2 xy = fv41.xy();
@@ -250,6 +314,29 @@ namespace
 
     fvec4 v2(1.1f, 1.2f, 1.3f, 1.4f);
     v2.set_xyz(fvec3(2.1f, 2.2f, 2.3f));
+    test_assert(v2[0] == 2.1f);
+    test_assert(v2[1] == 2.2f);
+    test_assert(v2[2] == 2.3f);
+    test_assert(v2[3] == 1.4f);
+  }
+
+  TEST_CASE(rgb)
+  {
+    CONST_OR_CONSTEXPR fvec3 rgb = fv41.rgb();
+    test_assert(rgb == fvec3(fv41));
+  }
+
+  TEST_CASE(set_rgb)
+  {
+    fvec4 v1(1.1f, 1.2f, 1.3f, 1.4f);
+    v1.set_rgb(2.1f, 2.2f, 2.3f);
+    test_assert(v1[0] == 2.1f);
+    test_assert(v1[1] == 2.2f);
+    test_assert(v1[2] == 2.3f);
+    test_assert(v1[3] == 1.4f);
+
+    fvec4 v2(1.1f, 1.2f, 1.3f, 1.4f);
+    v2.set_rgb(fvec3(2.1f, 2.2f, 2.3f));
     test_assert(v2[0] == 2.1f);
     test_assert(v2[1] == 2.2f);
     test_assert(v2[2] == 2.3f);

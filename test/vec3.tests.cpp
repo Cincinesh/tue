@@ -171,6 +171,51 @@ namespace
     test_assert(v[2] == 2.3f);
   }
 
+  TEST_CASE(r)
+  {
+    CONST_OR_CONSTEXPR float r = fv31.r();
+    test_assert(r == fv31[0]);
+  }
+
+  TEST_CASE(set_r)
+  {
+    fvec3 v(1.1f, 1.2f, 1.3f);
+    v.set_r(2.1f);
+    test_assert(v[0] == 2.1f);
+    test_assert(v[1] == 1.2f);
+    test_assert(v[2] == 1.3f);
+  }
+
+  TEST_CASE(g)
+  {
+    CONST_OR_CONSTEXPR float g = fv31.g();
+    test_assert(g == fv31[1]);
+  }
+
+  TEST_CASE(set_g)
+  {
+    fvec3 v(1.1f, 1.2f, 1.3f);
+    v.set_g(2.2f);
+    test_assert(v[0] == 1.1f);
+    test_assert(v[1] == 2.2f);
+    test_assert(v[2] == 1.3f);
+  }
+
+  TEST_CASE(b)
+  {
+    CONST_OR_CONSTEXPR float b = fv31.b();
+    test_assert(b == fv31[2]);
+  }
+
+  TEST_CASE(set_b)
+  {
+    fvec3 v(1.1f, 1.2f, 1.3f);
+    v.set_b(2.3f);
+    test_assert(v[0] == 1.1f);
+    test_assert(v[1] == 1.2f);
+    test_assert(v[2] == 2.3f);
+  }
+
   TEST_CASE(xy)
   {
     CONST_OR_CONSTEXPR fvec2 xy = fv31.xy();

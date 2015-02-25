@@ -159,6 +159,54 @@ namespace tue
       impl_.data[3] = w;
     }
 
+    // Returns the first component of this vec.
+    constexpr T r() const noexcept
+    {
+      return impl_.data[0];
+    }
+
+    // Sets the first component of this vec.
+    void set_r(const T& r) noexcept
+    {
+      impl_.data[0] = r;
+    }
+
+    // Returns the second component of this vec.
+    constexpr T g() const noexcept
+    {
+      return impl_.data[1];
+    }
+
+    // Sets the second component of this vec.
+    void set_g(const T& g) noexcept
+    {
+      impl_.data[1] = g;
+    }
+
+    // Returns the third component of this vec.
+    constexpr T b() const noexcept
+    {
+      return impl_.data[2];
+    }
+
+    // Sets the third component of this vec.
+    void set_b(const T& b) noexcept
+    {
+      impl_.data[2] = b;
+    }
+
+    // Returns the fourth component of this vec.
+    constexpr T a() const noexcept
+    {
+      return impl_.data[3];
+    }
+
+    // Sets the fourth component of this vec.
+    void set_a(const T& a) noexcept
+    {
+      impl_.data[3] = a;
+    }
+
     // Returns the first two components of this vec.
     constexpr vec2<T> xy() const noexcept
     {
@@ -196,6 +244,26 @@ namespace tue
     void set_xyz(const vec3<T>& xyz) noexcept
     {
       set_xyz(xyz[0], xyz[1], xyz[2]);
+    }
+
+    // Returns the first three components of this vec.
+    constexpr vec3<T> rgb() const noexcept
+    {
+      return vec3<T>(*this);
+    }
+
+    // Sets the first three components of this vec.
+    void set_rgb(const T& r, const T& g, const T& b) noexcept
+    {
+      impl_.data[0] = r;
+      impl_.data[1] = g;
+      impl_.data[2] = b;
+    }
+
+    // Sets the first three components of this vec.
+    void set_rgb(const vec3<T>& rgb) noexcept
+    {
+      set_rgb(rgb[0], rgb[1], rgb[2]);
     }
 
     // Returns a pointer to this vec's underlying component array.

@@ -138,6 +138,42 @@ namespace tue
       impl_.data[2] = z;
     }
 
+    // Returns the first component of this vec.
+    constexpr T r() const noexcept
+    {
+      return impl_.data[0];
+    }
+
+    // Sets the first component of this vec.
+    void set_r(const T& r) noexcept
+    {
+      impl_.data[0] = r;
+    }
+
+    // Returns the second component of this vec.
+    constexpr T g() const noexcept
+    {
+      return impl_.data[1];
+    }
+
+    // Sets the second component of this vec.
+    void set_g(const T& g) noexcept
+    {
+      impl_.data[1] = g;
+    }
+
+    // Returns the third component of this vec.
+    constexpr T b() const noexcept
+    {
+      return impl_.data[2];
+    }
+
+    // Sets the third component of this vec.
+    void set_b(const T& b) noexcept
+    {
+      impl_.data[2] = b;
+    }
+
     // Returns the first two components of this vec.
     constexpr vec2<T> xy() const noexcept
     {
