@@ -1202,6 +1202,22 @@ namespace tue
     {
       return vec4<decltype(math::length(v))>(v) / math::length(v);
     }
+
+    // Returns the axis-angle representation of the given rotation vector.
+    template<typename T>
+    inline auto axis_angle(const vec3<T>& v) noexcept
+    {
+      using U = decltype(math::length(v));
+      const U angle = math::length(v);
+      return vec4<U>(vec3<U>(v) / angle, angle);
+    }
+
+    // Returns the axis-angle representation of the given rotation vector.
+    template<typename T>
+    inline auto axis_angle(const T& x, const T& y, const T& z) noexcept
+    {
+      return math::axis_angle(vec3<T>(x, y, z));
+    }
   }
 }
 

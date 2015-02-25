@@ -954,4 +954,18 @@ namespace
     test_assert(math::normalize(fv41) == fv41 / math::length(fv41));
     test_assert(math::normalize(iv41) == math::normalize(dvec4(iv41)));
   }
+
+  TEST_CASE(axis_angle)
+  {
+    const float x = 1.1f;
+    const float y = 2.2f;
+    const float z = 3.3f;
+    const fvec3 rv(x, y, z);
+    const fvec4 aa1 = math::axis_angle(rv);
+    test_assert(aa1.xyz() == math::normalize(rv));
+    test_assert(aa1.w() == math::length(rv));
+
+    const fvec4 aa2 = math::axis_angle(x, y, z);
+    test_assert(aa2 == aa1);
+  }
 }

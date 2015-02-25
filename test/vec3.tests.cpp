@@ -834,4 +834,20 @@ namespace
     test_assert(math::normalize(fv31) == fv31 / math::length(fv31));
     test_assert(math::normalize(iv31) == math::normalize(dvec3(iv31)));
   }
+
+  TEST_CASE(rotation_vec)
+  {
+    const float x = 1.1f;
+    const float y = 2.2f;
+    const float z = 3.3f;
+    const float w = 4.4f;
+    const fvec3 v1 = math::rotation_vec(fvec3(x, y, z), w);
+    test_assert(v1 == fvec3(x, y, z) * w);
+
+    const fvec3 v2 = math::rotation_vec(x, y, z, w);
+    test_assert(v2 == v1);
+
+    const fvec3 v3 = math::rotation_vec(fvec4(x, y, z, w));
+    test_assert(v3 == v1);
+  }
 }

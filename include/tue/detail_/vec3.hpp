@@ -1106,6 +1106,32 @@ namespace tue
     {
       return vec3<decltype(math::length(v))>(v) / math::length(v);
     }
+
+    // Returns a rotation vector around the given axis.
+    template<typename T>
+    inline auto rotation_vec(const vec3<T>& axis, const T& radians) noexcept
+    {
+      return axis * radians;
+    }
+
+    // Returns a rotation vector around the given axis.
+    template<typename T>
+    inline auto rotation_vec(
+        const T& axis_x,
+        const T& axis_y,
+        const T& axis_z,
+        const T& radians) noexcept
+    {
+      return math::rotation_vec(vec3<T>(axis_x, axis_y, axis_z), radians);
+    }
+
+    // Returns the rotation vector representaiton of the given axis-angle
+    // vector.
+    template<typename T>
+    inline auto rotation_vec(const vec4<T>& v) noexcept
+    {
+      return math::rotation_vec(v.xyz(), v.w());
+    }
   }
 }
 

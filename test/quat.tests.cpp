@@ -334,7 +334,7 @@ namespace
     const float z = 3.3f;
     const fvec3 v(x, y, z);
     const fquat q1 = math::rotation_quat(v);
-    test_assert(q1 == math::rotation_quat(math::normalize(v), math::length(v)));
+    test_assert(q1 == math::rotation_quat(math::axis_angle(v)));
 
     const fquat q2 = math::rotation_quat(x, y, z);
     test_assert(q2 == q1);
@@ -359,8 +359,7 @@ namespace
     const float z = 3.3f;
     const float w = 4.4f;
     const fquat q = math::normalize(fquat(x, y, z, w));
-    const fvec4 aa = math::axis_angle(q);
-    const fvec3 rv = math::rotation_vec(q);
-    test_assert(rv == aa.xyz() * aa.w());
+    const fvec3 v = math::rotation_vec(q);
+    test_assert(v == math::rotation_vec(math::axis_angle(q)));
   }
 }

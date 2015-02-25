@@ -307,10 +307,7 @@ namespace tue
     template<typename T>
     inline auto rotation_quat(const vec3<T>& v) noexcept
     {
-      using U = decltype(math::length(v));
-      const U radians = math::length(v);
-      const vec3<U> axis = vec3<U>(v) / radians;
-      return math::rotation_quat(axis, radians);
+      return math::rotation_quat(math::axis_angle(v));
     }
 
     // Returns a new quat that represents the same rotation as the given
@@ -334,8 +331,7 @@ namespace tue
     template<typename T>
     inline auto rotation_vec(const quat<T>& q) noexcept
     {
-      const auto v = math::axis_angle(q);
-      return v.xyz() * v.w();
+      return math::rotation_vec(math::axis_angle(q));
     }
   }
 }
