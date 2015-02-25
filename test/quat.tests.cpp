@@ -339,4 +339,28 @@ namespace
     const fquat q2 = math::rotation_quat(x, y, z);
     test_assert(q2 == q1);
   }
+
+  TEST_CASE(axis_angle)
+  {
+    const float x = 1.1f;
+    const float y = 2.2f;
+    const float z = 3.3f;
+    const float w = 4.4f;
+    const fquat q = math::normalize(fquat(x, y, z, w));
+    const fvec4 v = math::axis_angle(q);
+    test_assert(v.xyz() == math::normalize(q.v()));
+    test_assert(v.w() == 2 * std::acos(q.s()));
+  }
+
+  TEST_CASE(rotation_vec)
+  {
+    const float x = 1.1f;
+    const float y = 2.2f;
+    const float z = 3.3f;
+    const float w = 4.4f;
+    const fquat q = math::normalize(fquat(x, y, z, w));
+    const fvec4 aa = math::axis_angle(q);
+    const fvec3 rv = math::rotation_vec(q);
+    test_assert(rv == aa.xyz() * aa.w());
+  }
 }

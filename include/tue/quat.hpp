@@ -274,7 +274,9 @@ namespace tue
 
     // Returns a new rotation quat around the given axis.
     template<typename T>
-    inline auto rotation_quat(const vec3<T>& axis, const T& radians) noexcept
+    inline auto rotation_quat(
+        const vec3<T>& axis,
+        const T& radians) noexcept
     {
       using U = decltype(sin(radians));
       U s, c;
@@ -290,14 +292,14 @@ namespace tue
         const T& axis_z,
         const T& radians) noexcept
     {
-      return rotation_quat(vec3<T>(axis_x, axis_y, axis_z), radians);
+      return math::rotation_quat(vec3<T>(axis_x, axis_y, axis_z), radians);
     }
 
     // Returns a new rotation quat around the given axis-angle vector.
     template<typename T>
     inline auto rotation_quat(const vec4<T>& v) noexcept
     {
-      return rotation_quat(v.xyz(), v.w());
+      return math::rotation_quat(v.xyz(), v.w());
     }
 
     // Returns a new quat that represents the same rotation as the given
@@ -308,7 +310,7 @@ namespace tue
       using U = decltype(math::length(v));
       const U radians = math::length(v);
       const vec3<U> axis = vec3<U>(v) / radians;
-      return rotation_quat(axis, radians);
+      return math::rotation_quat(axis, radians);
     }
 
     // Returns a new quat that represents the same rotation as the given
@@ -316,7 +318,24 @@ namespace tue
     template<typename T>
     inline auto rotation_quat(const T& x, const T& y, const T& z) noexcept
     {
-      return rotation_quat(vec3<T>(x, y, z));
+      return math::rotation_quat(vec3<T>(x, y, z));
+    }
+
+    // Returns the axis-angle vector representation of the given quat.
+    template<typename T>
+    inline auto axis_angle(const quat<T>& q) noexcept
+    {
+      using U = decltype(std::acos(q.s()));
+      const U angle = U(2) * std::acos(q.s());
+      return vec4<U>(math::normalize(q.v()), angle);
+    }
+
+    // Returns the rotation vector representation of the given quat.
+    template<typename T>
+    inline auto rotation_vec(const quat<T>& q) noexcept
+    {
+      const auto v = math::axis_angle(q);
+      return v.xyz() * v.w();
     }
   }
 }
