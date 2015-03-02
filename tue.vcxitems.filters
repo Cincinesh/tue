@@ -34,7 +34,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\quat.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\size2d.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\rect.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\float32x4.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\float32x4.sse.hpp">
       <Filter>detail_</Filter>
     </ClInclude>

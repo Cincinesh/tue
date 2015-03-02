@@ -3,7 +3,7 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include <tue/float32x4.hpp>
+#include <tue/simd.hpp>
 #include <mon/test_case.hpp>
 
 #include <tue/math.hpp>
@@ -115,7 +115,7 @@ namespace
     test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
   }
 
-#if defined(__SSE__)
+#if defined(TUE_SSE)
   TEST_CASE(underlying_converison_constructor)
   {
     const __m128 underlying = _mm_setr_ps(1.1f, 2.2f, 3.3f, 4.4f);
@@ -133,7 +133,7 @@ namespace
     test_assert(result[2] == f412);
     test_assert(result[3] == f413);
   }
-#elif defined(__ARM_NEON__)
+#elif defined(TUE_NEON)
   TEST_CASE(underlying_converison_constructor)
   {
     const float32x4_t underlying = { 1.1f, 2.2f, 3.3f, 4.4f };
