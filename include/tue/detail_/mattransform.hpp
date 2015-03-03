@@ -18,19 +18,18 @@ namespace tue
   {
     // Returns a 2-dimensional translation matrix.
     template<typename T>
-    inline mat<T, 3, 2> translation_mat(
+    inline mat<T, 2, 3> translation_mat(
         const T& x, const T& y) noexcept
     {
       return {
-        { T(1), T(0) },
-        { T(0), T(1) },
-        {    x,    y },
+        { T(1), T(0), x },
+        { T(0), T(1), y },
       };
     }
 
     // Returns a 2-dimensional translation matrix.
     template<typename T>
-    inline mat<T, 3, 2> translation_mat(
+    inline mat<T, 2, 3> translation_mat(
         const vec2<T>& xy) noexcept
     {
       return translation_mat(xy.x(), xy.y());
@@ -38,20 +37,19 @@ namespace tue
 
     // Returns a 3-dimensional translation matrix.
     template<typename T>
-    inline mat<T, 4, 3> translation_mat(
+    inline mat<T, 3, 4> translation_mat(
         const T& x, const T& y, const T& z) noexcept
     {
       return {
-        { T(1), T(0), T(0) },
-        { T(0), T(1), T(0) },
-        { T(0), T(0), T(1) },
-        {    x,    y,    z },
+        { T(1), T(0), T(0), x },
+        { T(0), T(1), T(0), y },
+        { T(0), T(0), T(1), z },
       };
     }
 
     // Returns a 3-dimensional translation matrix.
     template<typename T>
-    inline mat<T, 4, 3> translation_mat(
+    inline mat<T, 3, 4> translation_mat(
         const vec3<T>& xyz) noexcept
     {
       return translation_mat(xyz.x(), xyz.y(), xyz.z());
@@ -66,8 +64,8 @@ namespace tue
       math::sincos(radians, s, c);
 
       return mat<U, 2, 2>{
-        {  c, s },
-        { -s, c },
+        { c, -s },
+        { s,  c },
       };
     }
 
@@ -105,9 +103,9 @@ namespace tue
       const U zzomc = zz * omc;
 
       return mat<U, 3, 3>{
-        { xxomc + c, xyomc + zs, xzomc - ys },
-        { xyomc - zs, yyomc + c, yzomc + xs },
-        { xzomc + ys, yzomc - xs, zzomc + c },
+        { xxomc + c, xyomc - zs, xzomc + ys },
+        { xyomc + zs, yyomc + c, yzomc - xs },
+        { xzomc - ys, yzomc + xs, zzomc + c },
       };
     }
 
@@ -160,9 +158,9 @@ namespace tue
       const T zz2 = z * z * T(2);
       const T zw2 = z * w * T(2);
       return {
-        { T(1) - yy2 - zz2, xy2 - zw2, xz2 + yw2 },
-        { xy2 + zw2, T(1) - xx2 - zz2, yz2 - xw2 },
-        { xz2 - yw2, yz2 + xw2, T(1) - xx2 - yy2 },
+        { T(1) - yy2 - zz2, xy2 + zw2, xz2 - yw2 },
+        { xy2 - zw2, T(1) - xx2 - zz2, yz2 + xw2 },
+        { xz2 + yw2, yz2 - xw2, T(1) - xx2 - yy2 },
       };
     }
 
@@ -207,22 +205,22 @@ namespace tue
 
     // Returns a 2-dimensional view matrix.
     template<typename T>
-    inline mat<T, 3, 2> view_mat(
+    inline mat<T, 2, 3> view_mat(
         const vec2<T>& translation,
         const T& rotation) noexcept
     {
-      return rotation_mat(-rotation)
-          * translation_mat(-translation);
+      return translation_mat(-translation)
+          * rotation_mat(-rotation);
     }
 
     // Returns a 3-dimensional view matrix.
     template<typename T>
-    inline mat<T, 4, 3> view_mat(
+    inline mat<T, 3, 4> view_mat(
         const vec3<T>& translation,
         const quat<T>& rotation) noexcept
     {
-      return rotation_mat(math::conjugate(rotation))
-          * translation_mat(-translation);
+      return translation_mat(-translation)
+          * rotation_mat(math::conjugate(rotation));
     }
 
     // Returns a perspective projection matrix.
@@ -240,10 +238,10 @@ namespace tue
       const U nmf = static_cast<U>(near - far);
 
       return mat<U, 4, 4>{
-        { f / U(aspect),              U(0), U(0), U( 0) },
-        { U(0),                          f, U(0), U( 0) },
-        { U(0), U(0),        U(near + far) / nmf, U(-1) },
-        { U(0), U(0), U(2) * U(near * far) / nmf, U( 0) },
+        { f / U(aspect), U(0),       U(0),                       U(0) },
+        { U(0),    f,                U(0),                       U(0) },
+        { U(0), U(0), U(near + far) / nmf, U(2) * U(near * far) / nmf },
+        { U(0), U(0),               U(-1),                       U(0) },
       };
     }
 
