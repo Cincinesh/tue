@@ -158,9 +158,9 @@ namespace tue
       const T zz2 = z * z * T(2);
       const T zw2 = z * w * T(2);
       return {
-        { T(1) - yy2 - zz2, xy2 + zw2, xz2 - yw2 },
-        { xy2 - zw2, T(1) - xx2 - zz2, yz2 + xw2 },
-        { xz2 + yw2, yz2 - xw2, T(1) - xx2 - yy2 },
+        { T(1) - yy2 - zz2, xy2 - zw2, xz2 + yw2 },
+        { xy2 + zw2, T(1) - xx2 - zz2, yz2 - xw2 },
+        { xz2 - yw2, yz2 + xw2, T(1) - xx2 - yy2 },
       };
     }
 

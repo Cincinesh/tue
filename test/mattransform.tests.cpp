@@ -84,13 +84,13 @@ namespace
     const float w = 4.4f;
     const fmat3x3 m = math::rotation_mat(fquat(x, y, z, w));
     test_assert(m[0][0] == 1 - 2*y*y -2*z*z);
-    test_assert(m[0][1] == 2*x*y + 2*z*w);
-    test_assert(m[0][2] == 2*x*z - 2*y*w);
-    test_assert(m[1][0] == 2*x*y - 2*z*w);
+    test_assert(m[0][1] == 2*x*y - 2*z*w);
+    test_assert(m[0][2] == 2*x*z + 2*y*w);
+    test_assert(m[1][0] == 2*x*y + 2*z*w);
     test_assert(m[1][1] == 1 - 2*x*x - 2*z*z);
-    test_assert(m[1][2] == 2*y*z + 2*x*w);
-    test_assert(m[2][0] == 2*x*z + 2*y*w);
-    test_assert(m[2][1] == 2*y*z - 2*x*w);
+    test_assert(m[1][2] == 2*y*z - 2*x*w);
+    test_assert(m[2][0] == 2*x*z - 2*y*w);
+    test_assert(m[2][1] == 2*y*z + 2*x*w);
     test_assert(m[2][2] == 1 - 2*x*x - 2*y*y);
   }
 

@@ -22,6 +22,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mat3xR.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mat4xR.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\matmult.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mattransform.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec2.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec3.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\vec4.hpp" />
