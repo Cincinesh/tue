@@ -152,11 +152,6 @@ namespace
     test_assert(m1
         == math::translation_mat(-translation)
             * math::rotation_mat(-rotation));
-
-    const fmat3x4 m2 = math::view_mat(
-        translation,
-        fvec4(rotation_axis, rotation_angle));
-    test_assert(m2 == m1);
   }
 
   TEST_CASE(view_mat_from_quat)

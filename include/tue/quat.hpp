@@ -269,10 +269,19 @@ namespace tue
     // Returns the result of using the given quat to rotate the given vec.
     template<typename T, typename U>
     inline TUE_CONSTEXPR auto rotate(
-        const quat<T>& q,
-        const vec3<U>& v) noexcept
+        const vec3<T>& v,
+        const quat<U>& q) noexcept
     {
-      return (q * quat<U>(v, U(0)) * math::conjugate(q)).v();
+      return (q * quat<T>(v, T(0)) * math::conjugate(q)).v();
+    }
+
+    // Returns the result of using the given quat q to rotate the given quat p.
+    template<typename T, typename U>
+    inline TUE_CONSTEXPR auto rotate(
+        const quat<T>& p,
+        const quat<U>& q) noexcept
+    {
+      return q * p;
     }
 
     // Returns a new rotation quat around the given axis.
