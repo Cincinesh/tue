@@ -217,6 +217,36 @@ namespace tue
     template<typename T>
     inline mat<T, 3, 4> view_mat(
         const vec3<T>& translation,
+        const vec3<T>& rotation_axis,
+        const T& rotation_radians) noexcept
+    {
+      return translation_mat(-translation)
+          * rotation_mat(rotation_axis, -rotation_radians);
+    }
+
+    // Returns a 3-dimensional view matrix.
+    template<typename T>
+    inline mat<T, 3, 4> view_mat(
+        const vec3<T>& translation,
+        const vec4<T>& rotation) noexcept
+    {
+      return view_mat(translation, rotation.xyz(), rotation.w());
+    }
+
+    // Returns a 3-dimensional view matrix.
+    template<typename T>
+    inline mat<T, 3, 4> view_mat(
+        const vec3<T>& translation,
+        const vec3<T>& rotation) noexcept
+    {
+      return translation_mat(-translation)
+          * rotation_mat(-rotation);
+    }
+
+    // Returns a 3-dimensional view matrix.
+    template<typename T>
+    inline mat<T, 3, 4> view_mat(
+        const vec3<T>& translation,
         const quat<T>& rotation) noexcept
     {
       return translation_mat(-translation)

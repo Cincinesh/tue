@@ -125,7 +125,41 @@ namespace
             * math::rotation_mat(-rotation));
   }
 
-  TEST_CASE(view_mat_3d)
+  TEST_CASE(view_mat_from_axis_angle)
+  {
+    const fvec3 translation(1.1f, 2.2f, 3.3f);
+    const fvec3 rotation_axis(4.4f, 5.5f, 6.6f);
+    const float rotation_angle = 7.7f;
+    const fmat3x4 m1 = math::view_mat(
+        translation,
+        rotation_axis,
+        rotation_angle);
+    test_assert(m1
+        == math::translation_mat(-translation)
+            * math::rotation_mat(rotation_axis, -rotation_angle));
+
+    const fmat3x4 m2 = math::view_mat(
+        translation,
+        fvec4(rotation_axis, rotation_angle));
+    test_assert(m2 == m1);
+  }
+
+  TEST_CASE(view_mat_from_rotation_vec)
+  {
+    const fvec3 translation(1.1f, 2.2f, 3.3f);
+    const fvec3 rotation(4.4f, 5.5f, 6.6f);
+    const fmat3x4 m1 = math::view_mat(translation, rotation);
+    test_assert(m1
+        == math::translation_mat(-translation)
+            * math::rotation_mat(-rotation));
+
+    const fmat3x4 m2 = math::view_mat(
+        translation,
+        fvec4(rotation_axis, rotation_angle));
+    test_assert(m2 == m1);
+  }
+
+  TEST_CASE(view_mat_from_quat)
   {
     const fvec3 translation(1.1f, 2.2f, 3.3f);
     const fquat rotation(4.4f, 5.5f, 6.6f, 7.7f);
