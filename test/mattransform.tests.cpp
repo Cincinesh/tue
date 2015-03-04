@@ -48,13 +48,13 @@ namespace
     const float c = math::cos(w);
     const fmat3x3 m1 = math::rotation_mat(x, y, z, w);
     test_assert(m1[0][0] == x*x*(1-c) + c);
-    test_assert(m1[0][1] == y*x*(1-c) + z*s);
-    test_assert(m1[0][2] == x*z*(1-c) - y*s);
-    test_assert(m1[1][0] == x*y*(1-c) - z*s);
+    test_assert(m1[0][1] == y*x*(1-c) - z*s);
+    test_assert(m1[0][2] == x*z*(1-c) + y*s);
+    test_assert(m1[1][0] == x*y*(1-c) + z*s);
     test_assert(m1[1][1] == y*y*(1-c) + c);
-    test_assert(m1[1][2] == y*z*(1-c) + x*s);
-    test_assert(m1[2][0] == x*z*(1-c) + y*s);
-    test_assert(m1[2][1] == y*z*(1-c) - x*s);
+    test_assert(m1[1][2] == y*z*(1-c) - x*s);
+    test_assert(m1[2][0] == x*z*(1-c) - y*s);
+    test_assert(m1[2][1] == y*z*(1-c) + x*s);
     test_assert(m1[2][2] == z*z*(1-c) + c);
 
     const fmat3x3 m2 = math::rotation_mat(fvec3(x, y, z), w);

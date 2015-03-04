@@ -44,8 +44,5 @@
       <Filter>detail_</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\simd.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)include\tue\detail_\mattransform.hpp">
-      <Filter>detail_</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

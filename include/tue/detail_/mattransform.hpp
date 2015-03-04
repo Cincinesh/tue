@@ -103,9 +103,9 @@ namespace tue
       const U zzomc = zz * omc;
 
       return mat<U, 3, 3>{
-        { xxomc + c, xyomc + zs, xzomc - ys },
-        { xyomc - zs, yyomc + c, yzomc + xs },
-        { xzomc + ys, yzomc - xs, zzomc + c },
+        { xxomc + c, xyomc - zs, xzomc + ys },
+        { xyomc + zs, yyomc + c, yzomc - xs },
+        { xzomc - ys, yzomc + xs, zzomc + c },
       };
     }
 
