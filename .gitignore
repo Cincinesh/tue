@@ -1,14 +1,6 @@
-ARM
-Debug
-Generated Files
-Release
-Win32
-ipch
-build
-x64
-x86
 .DS_Store
 *.opensdf
 *.sdf
 *.suo
 *.user
+/build
