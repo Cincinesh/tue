@@ -3,73 +3,91 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Public Headers", "2. Public Headers", "{D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Main", "1. Main", "{B31035BF-A30B-4548-93E3-31FC4CFF6931}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tue", "tue.vcxitems", "{F35C7E57-08CE-41A4-B7A8-471606299296}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Tests", "2. Tests", "{0DA6439D-B603-4B41-8EBE-0517E4ADEDFA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Private Sources", "3. Private Sources", "{B64B8B7A-2762-4B99-88F0-59D68D1E9185}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Dependencies", "3. Dependencies", "{BC12C7A7-49FE-405B-BAE6-81731920DCAF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tests", "4. Tests", "{8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmon.win32", "lib\mon\libmon.win32.vcxproj", "{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Other", "5. Other", "{9C85EF65-81B9-4F98-8DEC-57FC07AB97ED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "include", "include", "{D21D4F75-F1DB-4F9D-A95F-E714F0C048A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tue", "tue", "{3D9ED43B-35FF-4C6F-AD95-94F10BF4FDF5}"
 	ProjectSection(SolutionItems) = preProject
-		.gitattributes = .gitattributes
-		.gitignore = .gitignore
-		LICENSE_1_0.txt = LICENSE_1_0.txt
+		include\tue\mat.hpp = include\tue\mat.hpp
+		include\tue\math.hpp = include\tue\math.hpp
+		include\tue\quat.hpp = include\tue\quat.hpp
+		include\tue\rect.hpp = include\tue\rect.hpp
+		include\tue\simd.hpp = include\tue\simd.hpp
+		include\tue\size2d.hpp = include\tue\size2d.hpp
+		include\tue\unused.hpp = include\tue\unused.hpp
+		include\tue\vec.hpp = include\tue\vec.hpp
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "test\tests.vcxitems", "{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "detail_", "detail_", "{B4672C06-73F8-4EF1-AEBE-EADDCE570E24}"
+	ProjectSection(SolutionItems) = preProject
+		include\tue\detail_\float32x4.fallback.hpp = include\tue\detail_\float32x4.fallback.hpp
+		include\tue\detail_\float32x4.neon.hpp = include\tue\detail_\float32x4.neon.hpp
+		include\tue\detail_\float32x4.sse.hpp = include\tue\detail_\float32x4.sse.hpp
+		include\tue\detail_\mat2xR.hpp = include\tue\detail_\mat2xR.hpp
+		include\tue\detail_\mat3xR.hpp = include\tue\detail_\mat3xR.hpp
+		include\tue\detail_\mat4xR.hpp = include\tue\detail_\mat4xR.hpp
+		include\tue\detail_\matmult.hpp = include\tue\detail_\matmult.hpp
+		include\tue\detail_\mattransform.hpp = include\tue\detail_\mattransform.hpp
+		include\tue\detail_\vec2.hpp = include\tue\detail_\vec2.hpp
+		include\tue\detail_\vec3.hpp = include\tue\detail_\vec3.hpp
+		include\tue\detail_\vec4.hpp = include\tue\detail_\vec4.hpp
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "android.tests", "test\android.tests.vcxproj", "{65E4BBD8-9F9A-4EEE-9A18-51183519A826}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windows.desktop.tests", "test\windows.desktop.tests.vcxproj", "{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Third-Party Libraries", "1. Third-Party Libraries", "{996BB9EA-98C4-4F13-A2A8-5FE9D3B30EDC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests.vcxproj", "{2590E09E-85E4-4B7B-8322-1827A4698EB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D} = {C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		test\tests.vcxitems*{65e4bbd8-9f9a-4eee-9a18-51183519a826}*SharedItemsImports = 4
-		test\tests.vcxitems*{eb016a8e-f7fd-4e20-bf85-a93f9e1424aa}*SharedItemsImports = 9
-		tue.vcxitems*{f35c7e57-08ce-41a4-b7a8-471606299296}*SharedItemsImports = 9
-		test\tests.vcxitems*{6471f7ea-fba6-4b69-9245-8bccc7d289b0}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|ARM = Debug|ARM
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|ARM = Release|ARM
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|ARM.ActiveCfg = Debug|ARM
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|ARM.Build.0 = Debug|ARM
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|x64.ActiveCfg = Debug|x86
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|x86.ActiveCfg = Debug|x86
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Debug|x86.Build.0 = Debug|x86
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|ARM.ActiveCfg = Release|ARM
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|ARM.Build.0 = Release|ARM
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x64.ActiveCfg = Release|x86
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x86.ActiveCfg = Release|x86
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826}.Release|x86.Build.0 = Release|x86
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|ARM.ActiveCfg = Debug|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x64.ActiveCfg = Debug|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x64.Build.0 = Debug|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x86.ActiveCfg = Debug|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Debug|x86.Build.0 = Debug|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|ARM.ActiveCfg = Release|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x64.ActiveCfg = Release|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x64.Build.0 = Release|x64
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x86.ActiveCfg = Release|Win32
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0}.Release|x86.Build.0 = Release|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Debug|Win32.Build.0 = Debug|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Debug|x64.ActiveCfg = Debug|x64
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Debug|x64.Build.0 = Debug|x64
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Release|Win32.ActiveCfg = Release|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Release|Win32.Build.0 = Release|Win32
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Release|x64.ActiveCfg = Release|x64
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}.Release|x64.Build.0 = Release|x64
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Debug|Win32.Build.0 = Debug|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Debug|x64.ActiveCfg = Debug|x64
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Debug|x64.Build.0 = Debug|x64
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Release|Win32.ActiveCfg = Release|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Release|Win32.Build.0 = Release|Win32
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Release|x64.ActiveCfg = Release|x64
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F35C7E57-08CE-41A4-B7A8-471606299296} = {D2CBCC7F-A66C-459B-887E-F2A3FAFEA1B5}
-		{EB016A8E-F7FD-4E20-BF85-A93F9E1424AA} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
-		{65E4BBD8-9F9A-4EEE-9A18-51183519A826} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
-		{6471F7EA-FBA6-4B69-9245-8BCCC7D289B0} = {8BACC6AE-4BF5-478A-ADA8-CFB1DB86F4E1}
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D} = {BC12C7A7-49FE-405B-BAE6-81731920DCAF}
+		{D21D4F75-F1DB-4F9D-A95F-E714F0C048A6} = {B31035BF-A30B-4548-93E3-31FC4CFF6931}
+		{3D9ED43B-35FF-4C6F-AD95-94F10BF4FDF5} = {D21D4F75-F1DB-4F9D-A95F-E714F0C048A6}
+		{B4672C06-73F8-4EF1-AEBE-EADDCE570E24} = {3D9ED43B-35FF-4C6F-AD95-94F10BF4FDF5}
+		{2590E09E-85E4-4B7B-8322-1827A4698EB9} = {0DA6439D-B603-4B41-8EBE-0517E4ADEDFA}
 	EndGlobalSection
 EndGlobal
