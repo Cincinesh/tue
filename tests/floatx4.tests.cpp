@@ -6,6 +6,8 @@
 #include <tue/simd.hpp>
 #include <mon/test_case.hpp>
 
+#include <cstdint>
+#include <cstring>
 #include <tue/math.hpp>
 #include <tue/unused.hpp>
 
@@ -22,66 +24,11 @@ const float f421 = 2.2f;
 const float f422 = 1.3f;
 const float f423 = 1.4f;
 
-const int f410i = reinterpret_cast<const int&>(f410);
-const int f411i = reinterpret_cast<const int&>(f411);
-const int f412i = reinterpret_cast<const int&>(f412);
-const int f413i = reinterpret_cast<const int&>(f413);
-
-const int f420i = reinterpret_cast<const int&>(f420);
-const int f421i = reinterpret_cast<const int&>(f421);
-const int f422i = reinterpret_cast<const int&>(f422);
-const int f423i = reinterpret_cast<const int&>(f423);
-
-const auto f41 = float32x4(f410, f411, f412, f413);
-const auto f42 = float32x4(f420, f421, f422, f423);
-
-bool equal(
-    const float32x4& v,
-    float x, float y, float z, float w) noexcept {
-  alignas(16) float input[4];
-  v.store(input);
-  return input[0] == x
-      && input[1] == y
-      && input[2] == z
-      && input[3] == w;
-}
-
-bool equal(
-    const float32x4& v,
-    int x, int y, int z, int w) noexcept {
-  alignas(16) int input[4];
-  v.store(reinterpret_cast<float*>(input));
-  return input[0] == x
-      && input[1] == y
-      && input[2] == z
-      && input[3] == w;
-}
-
-bool equal(
-    const float32x4& v,
-    bool x, bool y, bool z, bool w) noexcept {
-  alignas(16) int input[4];
-  v.store(reinterpret_cast<float*>(input));
-  return input[0] == (x == true ? ~0 : 0)
-      && input[1] == (y == true ? ~0 : 0)
-      && input[2] == (z == true ? ~0 : 0)
-      && input[3] == (w == true ? ~0 : 0);
-}
-
-bool bitwise_equal(
-    const float32x4& v1,
-    const float32x4& v2) noexcept {
-  alignas(16) int input1[4], input2[4];
-  v1.store(reinterpret_cast<float*>(input1));
-  v2.store(reinterpret_cast<float*>(input2));
-  return input1[0] == input2[0]
-      && input1[1] == input2[1]
-      && input1[2] == input2[2]
-      && input1[3] == input2[3];
-}
+const auto f41 = floatx4(f410, f411, f412, f413);
+const auto f42 = floatx4(f420, f421, f422, f423);
 
 bool nearly_equal(
-    const float32x4& v,
+    const floatx4& v,
     float x, float y, float z, float w) noexcept {
   alignas(16) float input[4];
   v.store(input);
@@ -91,32 +38,43 @@ bool nearly_equal(
       && math::abs(input[3] - w) <= 0.001f;
 }
 
+bool bitwise_equal(
+    const boolx4& v1,
+    const boolx4& v2) noexcept {
+  return memcmp(&v1, &v2, sizeof(boolx4)) == 0;
+}
+
 TEST_CASE(default_constructor) {
-  float32x4 v;
+  floatx4 v;
   unused(v);
 }
 
 TEST_CASE(scalar_constructor) {
-  const float32x4 v(1.1f);
-  test_assert(equal(v, 1.1f, 1.1f, 1.1f, 1.1f));
+  const floatx4 v(1.1f);
+  test_assert(v == floatx4(1.1f, 1.1f, 1.1f, 1.1f));
 }
 
 TEST_CASE(component_constructor) {
-  const float32x4 v = { 1.1f, 2.2f, 3.3f, 4.4f };
-  test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
+  const floatx4 v = { 1.1f, 2.2f, 3.3f, 4.4f };
+  float f[4];
+  v.storeu(f);
+  test_assert(f[0] == 1.1f);
+  test_assert(f[1] == 2.2f);
+  test_assert(f[2] == 3.3f);
+  test_assert(f[3] == 4.4f);
 }
 
 #if defined(TUE_SSE)
 TEST_CASE(underlying_converison_constructor) {
   const __m128 underlying = _mm_setr_ps(1.1f, 2.2f, 3.3f, 4.4f);
-  const float32x4 v(underlying);
-  test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
+  const floatx4 v(underlying);
+  test_assert(v == floatx4(1.1f, 2.2f, 3.3f, 4.4f));
 }
 
 TEST_CASE(underlying_converison_operator) {
   const __m128 underlying = f41;
-  alignas(16) float result[4];
-  _mm_store_ps(result, underlying);
+  float result[4];
+  _mm_storeu_ps(result, underlying);
   test_assert(result[0] == f410);
   test_assert(result[1] == f411);
   test_assert(result[2] == f412);
@@ -124,13 +82,13 @@ TEST_CASE(underlying_converison_operator) {
 }
 #elif defined(TUE_NEON)
 TEST_CASE(underlying_converison_constructor) {
-  const float32x4_t underlying = { 1.1f, 2.2f, 3.3f, 4.4f };
-  const float32x4 v(underlying);
+  const floatx4_t underlying = { 1.1f, 2.2f, 3.3f, 4.4f };
+  const floatx4 v(underlying);
   test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
 }
 
 TEST_CASE(underlying_converison_operator) {
-  const float32x4_t underlying = f41;
+  const floatx4_t underlying = f41;
   alignas(16) float result[4];
   vst1q_f32(result, underlying);
   test_assert(result[0] == f410);
@@ -141,32 +99,24 @@ TEST_CASE(underlying_converison_operator) {
 #endif
 
 TEST_CASE(zero) {
-  const auto v = float32x4::zero();
-  test_assert(equal(v, 0.0f, 0.0f, 0.0f, 0.0f));
-}
-
-TEST_CASE(binary) {
-  const auto v1 = float32x4::binary(12);
-  test_assert(equal(v1, 12, 12, 12, 12));
-
-  const auto v2 = float32x4::binary(12, 34, 56, 78);
-  test_assert(equal(v2, 12, 34, 56, 78));
+  const auto v = floatx4::zero();
+  test_assert(v == floatx4(0.0f));
 }
 
 TEST_CASE(load) {
   alignas(16) const float array[4] = { 1.1f, 2.2f, 3.3f, 4.4f };
-  const auto v = float32x4::load(array);
-  test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
+  const auto v = floatx4::load(array);
+  test_assert(v == floatx4(1.1f, 2.2f, 3.3f, 4.4f));
 }
 
 TEST_CASE(loadu) {
   alignas(16) const float array[5] = { 0.0f, 1.1f, 2.2f, 3.3f, 4.4f };
-  const auto v = float32x4::loadu(array + 1);
-  test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
+  const auto v = floatx4::loadu(array + 1);
+  test_assert(v == floatx4(1.1f, 2.2f, 3.3f, 4.4f));
 }
 
 TEST_CASE(store) {
-  const float32x4 v(1.1f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v(1.1f, 2.2f, 3.3f, 4.4f);
   alignas(16) float result[4];
   v.store(result);
   test_assert(result[0] == 1.1f);
@@ -176,7 +126,7 @@ TEST_CASE(store) {
 }
 
 TEST_CASE(storeu) {
-  const float32x4 v(1.1f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v(1.1f, 2.2f, 3.3f, 4.4f);
   alignas(16) float result[5];
   v.storeu(result + 1);
   test_assert(result[1] == 1.1f);
@@ -186,23 +136,18 @@ TEST_CASE(storeu) {
 }
 
 TEST_CASE(unary_plus_operator) {
-  const float32x4 v = +f41;
-  test_assert(equal(v, +f410, +f411, +f412, +f413));
+  const floatx4 v = +f41;
+  test_assert(v == floatx4(+f410, +f411, +f412, +f413));
 }
 
 TEST_CASE(unary_minus_operator) {
-  const float32x4 v = -f41;
-  test_assert(equal(v, -f410, -f411, -f412, -f413));
-}
-
-TEST_CASE(bitwise_not_operator) {
-  const float32x4 v = ~f41;
-  test_assert(equal(v, ~f410i, ~f411i, ~f412i, ~f413i));
+  const floatx4 v = -f41;
+  test_assert(v == floatx4(-f410, -f411, -f412, -f413));
 }
 
 TEST_CASE(addition_operator) {
-  const float32x4 v = f41 + f42;
-  test_assert(equal(v,
+  const floatx4 v = f41 + f42;
+  test_assert(v == floatx4(
       f410 + f420,
       f411 + f421,
       f412 + f422,
@@ -210,8 +155,8 @@ TEST_CASE(addition_operator) {
 }
 
 TEST_CASE(subtraction_operator) {
-  const float32x4 v = f41 - f42;
-  test_assert(equal(v,
+  const floatx4 v = f41 - f42;
+  test_assert(v == floatx4(
       f410 - f420,
       f411 - f421,
       f412 - f422,
@@ -219,8 +164,8 @@ TEST_CASE(subtraction_operator) {
 }
 
 TEST_CASE(multiplication_operator) {
-  const float32x4 v = f41 * f42;
-  test_assert(equal(v,
+  const floatx4 v = f41 * f42;
+  test_assert(v == floatx4(
       f410 * f420,
       f411 * f421,
       f412 * f422,
@@ -228,114 +173,69 @@ TEST_CASE(multiplication_operator) {
 }
 
 TEST_CASE(division_operator) {
-  const float32x4 v = f41 / f42;
-  test_assert(equal(v,
+  const floatx4 v = f41 / f42;
+  test_assert(v == floatx4(
       f410 / f420,
       f411 / f421,
       f412 / f422,
       f413 / f423));
 }
 
-TEST_CASE(bitwise_and_operator) {
-  const float32x4 v = f41 & f42;
-  test_assert(equal(v,
-      f410i & f420i,
-      f411i & f421i,
-      f412i & f422i,
-      f413i & f423i));
-}
-
-TEST_CASE(bitwise_or_operator) {
-  const float32x4 v = f41 | f42;
-  test_assert(equal(v,
-      f410i | f420i,
-      f411i | f421i,
-      f412i | f422i,
-      f413i | f423i));
-}
-
-TEST_CASE(bitwise_xor_operator) {
-  const float32x4 v = f41 ^ f42;
-  test_assert(equal(v,
-      f410i ^ f420i,
-      f411i ^ f421i,
-      f412i ^ f422i,
-      f413i ^ f423i));
-}
-
 TEST_CASE(pre_increment_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(&(++v) == &v);
-  test_assert(v == f41 + float32x4(1.0f));
+  test_assert(v == f41 + floatx4(1.0f));
 }
 
 TEST_CASE(pre_decrement_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(&(--v) == &v);
-  test_assert(v == f41 - float32x4(1.0f));
+  test_assert(v == f41 - floatx4(1.0f));
 }
 
 TEST_CASE(post_increment_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(v++ == f41);
-  test_assert(v == f41 + float32x4(1.0f));
+  test_assert(v == f41 + floatx4(1.0f));
 }
 
 TEST_CASE(post_decrement_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(v-- == f41);
-  test_assert(v == f41 - float32x4(1.0f));
+  test_assert(v == f41 - floatx4(1.0f));
 }
 
 TEST_CASE(addition_assignment_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(&(v += f42) == &v);
   test_assert(v == f41 + f42);
 }
 
 TEST_CASE(subtraction_assignment_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(&(v -= f42) == &v);
   test_assert(v == f41 - f42);
 }
 
 TEST_CASE(multiplication_assignment_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(&(v *= f42) == &v);
   test_assert(v == f41 * f42);
 }
 
 TEST_CASE(division_assignment_operator) {
-  float32x4 v = f41;
+  floatx4 v = f41;
   test_assert(&(v /= f42) == &v);
   test_assert(v == f41 / f42);
 }
 
-TEST_CASE(bitwise_and_assignment_operator) {
-  float32x4 v = f41;
-  test_assert(&(v &= f42) == &v);
-  test_assert(bitwise_equal(v, f41 & f42));
-}
-
-TEST_CASE(bitwise_or_assignment_operator) {
-  float32x4 v = f41;
-  test_assert(&(v ^= f42) == &v);
-  test_assert(bitwise_equal(v, f41 ^ f42));
-}
-
-TEST_CASE(bitwise_xor_assignment_operator) {
-  float32x4 v = f41;
-  test_assert(&(v ^= f42) == &v);
-  test_assert(bitwise_equal(v, f41 ^ f42));
-}
-
 TEST_CASE(equality_operator) {
-  const float32x4 v1(1.1f, 2.2f, 3.3f, 4.4f);
-  const float32x4 v2(1.1f, 2.2f, 3.3f, 4.4f);
-  const float32x4 v3(0.0f, 2.2f, 3.3f, 4.4f);
-  const float32x4 v4(1.1f, 0.0f, 3.3f, 4.4f);
-  const float32x4 v5(1.1f, 2.2f, 0.0f, 4.4f);
-  const float32x4 v6(1.1f, 2.2f, 3.3f, 0.0f);
+  const floatx4 v1(1.1f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v2(1.1f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v3(0.0f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v4(1.1f, 0.0f, 3.3f, 4.4f);
+  const floatx4 v5(1.1f, 2.2f, 0.0f, 4.4f);
+  const floatx4 v6(1.1f, 2.2f, 3.3f, 0.0f);
   test_assert((v1 == v2) == true);
   test_assert((v1 == v3) == false);
   test_assert((v1 == v4) == false);
@@ -344,12 +244,12 @@ TEST_CASE(equality_operator) {
 }
 
 TEST_CASE(inequality_operator) {
-  const float32x4 v1(1.1f, 2.2f, 3.3f, 4.4f);
-  const float32x4 v2(1.1f, 2.2f, 3.3f, 4.4f);
-  const float32x4 v3(0.0f, 2.2f, 3.3f, 4.4f);
-  const float32x4 v4(1.1f, 0.0f, 3.3f, 4.4f);
-  const float32x4 v5(1.1f, 2.2f, 0.0f, 4.4f);
-  const float32x4 v6(1.1f, 2.2f, 3.3f, 0.0f);
+  const floatx4 v1(1.1f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v2(1.1f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v3(0.0f, 2.2f, 3.3f, 4.4f);
+  const floatx4 v4(1.1f, 0.0f, 3.3f, 4.4f);
+  const floatx4 v5(1.1f, 2.2f, 0.0f, 4.4f);
+  const floatx4 v6(1.1f, 2.2f, 3.3f, 0.0f);
   test_assert((v1 != v2) == false);
   test_assert((v1 != v3) == true);
   test_assert((v1 != v4) == true);
@@ -358,7 +258,7 @@ TEST_CASE(inequality_operator) {
 }
 
 TEST_CASE(sincos) {
-  float32x4 sin_result, cos_result;
+  floatx4 sin_result, cos_result;
   math::sincos(f41, sin_result, cos_result);
   test_assert(nearly_equal(sin_result,
       math::sin(f410),
@@ -437,7 +337,7 @@ TEST_CASE(rsqrt) {
 }
 
 TEST_CASE(min) {
-  test_assert(equal(math::min(f41, f42),
+  test_assert(math::min(f41, f42) == floatx4(
       math::min(f410, f420),
       math::min(f411, f421),
       math::min(f412, f422),
@@ -445,7 +345,7 @@ TEST_CASE(min) {
 }
 
 TEST_CASE(max) {
-  test_assert(equal(math::max(f41, f42),
+  test_assert(math::max(f41, f42) == floatx4(
       math::max(f410, f420),
       math::max(f411, f421),
       math::max(f412, f422),
@@ -453,7 +353,7 @@ TEST_CASE(max) {
 }
 
 TEST_CASE(abs) {
-  test_assert(equal(math::abs(f42),
+  test_assert(math::abs(f42) == floatx4(
       math::abs(f420),
       math::abs(f421),
       math::abs(f422),
@@ -477,63 +377,63 @@ TEST_CASE(normalize) {
 }
 
 TEST_CASE(transpose) {
-  float32x4 v1(1.1f, 1.2f, 1.3f, 1.4f);
-  float32x4 v2(2.1f, 2.2f, 2.3f, 2.4f);
-  float32x4 v3(3.1f, 3.2f, 3.3f, 3.4f);
-  float32x4 v4(4.1f, 4.2f, 4.3f, 4.4f);
+  floatx4 v1(1.1f, 1.2f, 1.3f, 1.4f);
+  floatx4 v2(2.1f, 2.2f, 2.3f, 2.4f);
+  floatx4 v3(3.1f, 3.2f, 3.3f, 3.4f);
+  floatx4 v4(4.1f, 4.2f, 4.3f, 4.4f);
   math::transpose(v1, v2, v3, v4);
-  test_assert(equal(v1, 1.1f, 2.1f, 3.1f, 4.1f));
-  test_assert(equal(v2, 1.2f, 2.2f, 3.2f, 4.2f));
-  test_assert(equal(v3, 1.3f, 2.3f, 3.3f, 4.3f));
-  test_assert(equal(v4, 1.4f, 2.4f, 3.4f, 4.4f));
+  test_assert(v1 == floatx4(1.1f, 2.1f, 3.1f, 4.1f));
+  test_assert(v2 == floatx4(1.2f, 2.2f, 3.2f, 4.2f));
+  test_assert(v3 == floatx4(1.3f, 2.3f, 3.3f, 4.3f));
+  test_assert(v4 == floatx4(1.4f, 2.4f, 3.4f, 4.4f));
 }
 
-TEST_CASE(isless) {
-  test_assert(equal(math::isless(f41, f42),
+TEST_CASE(less) {
+  test_assert(bitwise_equal(math::less(f41, f42), boolx4(
       f410 < f420,
       f411 < f421,
       f412 < f422,
-      f413 < f423));
+      f413 < f423)));
 }
 
-TEST_CASE(islessequal) {
-  test_assert(equal(math::islessequal(f41, f42),
+TEST_CASE(less_equal) {
+  test_assert(bitwise_equal(math::less_equal(f41, f42), boolx4(
       f410 <= f420,
       f411 <= f421,
       f412 <= f422,
-      f413 <= f423));
+      f413 <= f423)));
 }
 
-TEST_CASE(isgreater) {
-  test_assert(equal(math::isgreater(f41, f42),
+TEST_CASE(greater) {
+  test_assert(bitwise_equal(math::greater(f41, f42), boolx4(
       f410 > f420,
       f411 > f421,
       f412 > f422,
-      f413 > f423));
+      f413 > f423)));
 }
 
-TEST_CASE(isgreaterequal) {
-  test_assert(equal(math::isgreaterequal(f41, f42),
+TEST_CASE(greater_equal) {
+  test_assert(bitwise_equal(math::greater_equal(f41, f42), boolx4(
       f410 >= f420,
       f411 >= f421,
       f412 >= f422,
-      f413 >= f423));
+      f413 >= f423)));
 }
 
-TEST_CASE(isequal) {
-  test_assert(equal(math::isequal(f41, f42),
+TEST_CASE(equal) {
+  test_assert(bitwise_equal(math::equal(f41, f42), boolx4(
       f410 == f420,
       f411 == f421,
       f412 == f422,
-      f413 == f423));
+      f413 == f423)));
 }
 
-TEST_CASE(isnotequal) {
-  test_assert(equal(math::isnotequal(f41, f42),
+TEST_CASE(not_equal) {
+  test_assert(bitwise_equal(math::not_equal(f41, f42), boolx4(
       f410 != f420,
       f411 != f421,
       f412 != f422,
-      f413 != f423));
+      f413 != f423)));
 }
 
 }

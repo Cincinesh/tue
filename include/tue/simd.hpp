@@ -22,7 +22,8 @@
 #endif
 
 #if defined(TUE_SSE)
-#include "detail_/float32x4.sse.hpp"
+#include "detail_/boolx4.sse.hpp"
+#include "detail_/floatx4.sse.hpp"
 #elif defined(TUE_NEON)
 #include "detail_/float32x4.neon.hpp"
 #else

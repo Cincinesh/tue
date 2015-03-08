@@ -29,8 +29,9 @@
 
 #pragma once
 
-#include "../simd.hpp"
+#include <cstdint>
 #include <xmmintrin.h>
+#include "../simd.hpp"
 
 #ifdef TUE_SSE2
 #include <emmintrin.h>
@@ -40,7 +41,7 @@
 
 namespace tue {
 
-class float32x4
+class floatx4
 {
 public:
   using component_type = float;
@@ -51,17 +52,17 @@ private:
   __m128 underlying_;
 
 public:
-  float32x4() noexcept = default;
+  floatx4() noexcept = default;
 
-  explicit float32x4(float s) noexcept
+  explicit floatx4(float s) noexcept
     : underlying_(_mm_set_ps1(s)) {
   }
 
-  float32x4(float x, float y, float z, float w) noexcept
+  floatx4(float x, float y, float z, float w) noexcept
     : underlying_(_mm_setr_ps(x, y, z, w)) {
   }
 
-  float32x4(__m128 underlying) noexcept
+  floatx4(__m128 underlying) noexcept
     : underlying_(underlying) {
   }
 
@@ -69,32 +70,15 @@ public:
     return underlying_;
   }
 
-  static float32x4 zero() noexcept {
+  static floatx4 zero() noexcept {
     return _mm_setzero_ps();
   }
 
-  static float32x4 binary(unsigned int i) noexcept {
-    return _mm_set_ps1(reinterpret_cast<float&>(i));
-  }
-
-  static float32x4 binary(
-      unsigned int x,
-      unsigned int y,
-      unsigned int z,
-      unsigned int w) noexcept
-  {
-    return _mm_setr_ps(
-        reinterpret_cast<float&>(x),
-        reinterpret_cast<float&>(y),
-        reinterpret_cast<float&>(z),
-        reinterpret_cast<float&>(w));
-  }
-
-  static float32x4 load(const float* array) noexcept {
+  static floatx4 load(const float* array) noexcept {
     return _mm_load_ps(array);
   }
 
-  static float32x4 loadu(const float* array) noexcept {
+  static floatx4 loadu(const float* array) noexcept {
     return _mm_loadu_ps(array);
   }
 
@@ -107,122 +91,88 @@ public:
   }
 };
 
-inline float32x4 operator+(const float32x4& v) noexcept {
+inline floatx4 operator+(const floatx4& v) noexcept {
   return v;
 }
 
-inline float32x4 operator-(const float32x4& v) noexcept {
-  return _mm_xor_ps(v, float32x4::binary(0x80000000u));
+inline floatx4 operator-(const floatx4& v) noexcept {
+  return _mm_xor_ps(v, detail_::binary_m128(0x80000000u));
 }
 
-inline float32x4 operator~(const float32x4& v) noexcept {
-  return _mm_xor_ps(v, float32x4::binary(0xFFFFFFFFu));
-}
-
-inline float32x4 operator+(
-    const float32x4& lhs,
-    const float32x4& rhs) noexcept {
+inline floatx4 operator+(
+    const floatx4& lhs,
+    const floatx4& rhs) noexcept {
   return _mm_add_ps(lhs, rhs);
 }
 
-inline float32x4 operator-(
-    const float32x4& lhs,
-    const float32x4& rhs) noexcept {
+inline floatx4 operator-(
+    const floatx4& lhs,
+    const floatx4& rhs) noexcept {
   return _mm_sub_ps(lhs, rhs);
 }
 
-inline float32x4 operator*(
-    const float32x4& lhs,
-    const float32x4& rhs) noexcept {
+inline floatx4 operator*(
+    const floatx4& lhs,
+    const floatx4& rhs) noexcept {
   return _mm_mul_ps(lhs, rhs);
 }
 
-inline float32x4 operator/(
-    const float32x4& lhs,
-    const float32x4& rhs) noexcept {
+inline floatx4 operator/(
+    const floatx4& lhs,
+    const floatx4& rhs) noexcept {
   return _mm_div_ps(lhs, rhs);
 }
 
-inline float32x4 operator&(
-    const float32x4& lhs,
-    const float32x4& rhs) noexcept {
-  return _mm_and_ps(lhs, rhs);
+inline floatx4& operator++(floatx4& v) noexcept {
+  return v = v + floatx4(1.0f);
 }
 
-inline float32x4 operator|(
-    const float32x4& lhs,
-    const float32x4& rhs) noexcept {
-  return _mm_or_ps(lhs, rhs);
+inline floatx4& operator--(floatx4& v) noexcept {
+  return v = v - floatx4(1.0f);
 }
 
-inline float32x4 operator^(
-    const float32x4& lhs,
-    const float32x4& rhs) noexcept {
-  return _mm_xor_ps(lhs, rhs);
-}
-
-inline float32x4& operator++(float32x4& v) noexcept {
-  return v = v + float32x4(1.0f);
-}
-
-inline float32x4& operator--(float32x4& v) noexcept {
-  return v = v - float32x4(1.0f);
-}
-
-inline float32x4 operator++(float32x4& v, int) noexcept {
+inline floatx4 operator++(floatx4& v, int) noexcept {
   const auto orig = v;
   ++v;
   return orig;
 }
 
-inline float32x4 operator--(float32x4& v, int) noexcept {
+inline floatx4 operator--(floatx4& v, int) noexcept {
   const auto orig = v;
   --v;
   return orig;
 }
 
-inline float32x4& operator+=(float32x4& lhs, const float32x4& rhs) noexcept {
+inline floatx4& operator+=(floatx4& lhs, const floatx4& rhs) noexcept {
   return lhs = lhs + rhs;
 }
 
-inline float32x4& operator-=(float32x4& lhs, const float32x4& rhs) noexcept {
+inline floatx4& operator-=(floatx4& lhs, const floatx4& rhs) noexcept {
   return lhs = lhs - rhs;
 }
 
-inline float32x4& operator*=(float32x4& lhs, const float32x4& rhs) noexcept {
+inline floatx4& operator*=(floatx4& lhs, const floatx4& rhs) noexcept {
   return lhs = lhs * rhs;
 }
 
-inline float32x4& operator/=(float32x4& lhs, const float32x4& rhs) noexcept {
+inline floatx4& operator/=(floatx4& lhs, const floatx4& rhs) noexcept {
   return lhs = lhs / rhs;
 }
 
-inline float32x4& operator&=(float32x4& lhs, const float32x4& rhs) noexcept {
-  return lhs = lhs & rhs;
-}
-
-inline float32x4& operator|=(float32x4& lhs, const float32x4& rhs) noexcept {
-  return lhs = lhs | rhs;
-}
-
-inline float32x4& operator^=(float32x4& lhs, const float32x4& rhs) noexcept {
-  return lhs = lhs ^ rhs;
-}
-
-inline bool operator==(const float32x4& lhs, const float32x4& rhs) noexcept {
+inline bool operator==(const floatx4& lhs, const floatx4& rhs) noexcept {
   return _mm_movemask_ps(_mm_cmpeq_ps(lhs, rhs)) == 0b1111;
 }
 
-inline bool operator!=(const float32x4& lhs, const float32x4& rhs) noexcept {
+inline bool operator!=(const floatx4& lhs, const floatx4& rhs) noexcept {
   return !(lhs == rhs);
 }
 
 namespace math
 {
   inline void sincos(
-      const float32x4& v,
-      float32x4& sin_result,
-      float32x4& cos_result) noexcept {
+      const floatx4& v,
+      floatx4& sin_result,
+      floatx4& cos_result) noexcept {
     // This sincos() implementation is based on Julien Pommier's
     // sincos_ps(). See the top of this file for details.
     __m128 x = v;
@@ -241,10 +191,10 @@ namespace math
     sign_bit_sin = x;
 
     // Take the absolute value
-    x = _mm_and_ps(x, float32x4::binary(~0x80000000u));
+    x = _mm_and_ps(x, detail_::binary_m128(~0x80000000u));
 
     // Extract the sign bit (upper one)
-    sign_bit_sin = _mm_and_ps(sign_bit_sin, float32x4::binary(0x80000000u));
+    sign_bit_sin = _mm_and_ps(sign_bit_sin, detail_::binary_m128(0x80000000u));
 
     // Scale by 4/Pi
     y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516f));
@@ -377,19 +327,19 @@ namespace math
     cos_result = _mm_xor_ps(xmm2, sign_bit_cos);
   }
 
-  inline float32x4 sin(const float32x4& v) noexcept {
-    float32x4 sin_result, cos_result;
+  inline floatx4 sin(const floatx4& v) noexcept {
+    floatx4 sin_result, cos_result;
     sincos(v, sin_result, cos_result);
     return sin_result;
   }
 
-  inline float32x4 cos(const float32x4& v) noexcept {
-    float32x4 sin_result, cos_result;
+  inline floatx4 cos(const floatx4& v) noexcept {
+    floatx4 sin_result, cos_result;
     sincos(v, sin_result, cos_result);
     return cos_result;
   }
 
-  inline float32x4 exp(const float32x4& v) noexcept {
+  inline floatx4 exp(const floatx4& v) noexcept {
     // This exp() implementation is based on Julien Pommier's exp_ps(). See
     // the top of this file for details.
     __m128 x = v;
@@ -478,7 +428,7 @@ namespace math
     return y;
   }
 
-  inline float32x4 log(const float32x4& v) noexcept {
+  inline floatx4 log(const floatx4& v) noexcept {
     // This log() implementation is based on Julien Pommier's log_ps(). See
     // the top of this file for details.
     __m128 x = v;
@@ -498,7 +448,7 @@ namespace math
     __m128 invalid_mask = _mm_cmple_ps(x, _mm_setzero_ps());
 
     // Cut off denormalized stuff
-    x = _mm_max_ps(x, float32x4::binary(0x00800000u));
+    x = _mm_max_ps(x, detail_::binary_m128(0x00800000u));
 
 #ifndef TUE_SSE2
     // Part 1: x = frexpf(x, &e);
@@ -509,7 +459,7 @@ namespace math
     emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
 #endif
     // Keep only the fractional part
-    x = _mm_and_ps(x, float32x4::binary(~0x7F800000u));
+    x = _mm_and_ps(x, detail_::binary_m128(~0x7F800000u));
     x = _mm_or_ps(x, _mm_set_ps1(0.5f));
 
 #ifndef TUE_SSE2
@@ -574,94 +524,86 @@ namespace math
     return x;
   }
 
-  inline float32x4 pow(
-      const float32x4& base,
-      const float32x4& exponent) noexcept {
+  inline floatx4 pow(
+      const floatx4& base,
+      const floatx4& exponent) noexcept {
     return math::exp(exponent * math::log(base));
   }
 
-  inline float32x4 recip(const float32x4& v) noexcept {
+  inline floatx4 recip(const floatx4& v) noexcept {
     return _mm_rcp_ps(v);
   }
 
-  inline float32x4 sqrt(const float32x4& v) noexcept {
+  inline floatx4 sqrt(const floatx4& v) noexcept {
     return _mm_sqrt_ps(v);
   }
 
-  inline float32x4 rsqrt(const float32x4& v) noexcept {
+  inline floatx4 rsqrt(const floatx4& v) noexcept {
     return _mm_rsqrt_ps(v);
   }
 
-  inline float32x4 min(const float32x4& v1, const float32x4& v2) noexcept {
+  inline floatx4 min(const floatx4& v1, const floatx4& v2) noexcept {
     return _mm_min_ps(v1, v2);
   }
 
-  inline float32x4 max(const float32x4& v1, const float32x4& v2) noexcept {
+  inline floatx4 max(const floatx4& v1, const floatx4& v2) noexcept {
     return _mm_max_ps(v1, v2);
   }
 
-  inline float32x4 abs(const float32x4& v) noexcept {
-    return _mm_and_ps(v, float32x4::binary(0x7FFFFFFFu));
+  inline floatx4 abs(const floatx4& v) noexcept {
+    return _mm_and_ps(v, detail_::binary_m128(0x7FFFFFFFu));
   }
 
-  inline float32x4 dot(const float32x4& lhs, const float32x4& rhs) noexcept {
+  inline floatx4 dot(const floatx4& lhs, const floatx4& rhs) noexcept {
     return lhs * rhs;
   }
 
-  inline float32x4 length2(const float32x4& v) noexcept {
+  inline floatx4 length2(const floatx4& v) noexcept {
     return v * v;
   }
 
-  inline float32x4 length(const float32x4& v) noexcept {
+  inline floatx4 length(const floatx4& v) noexcept {
     return math::abs(v);
   }
 
-  inline float32x4 normalize(const float32x4& v) noexcept {
-    const float32x4 sign_bit = v & float32x4::binary(0x80000000u);
-    return sign_bit | float32x4(1.0f);
+  inline floatx4 normalize(const floatx4& v) noexcept {
+    const auto sign_bit = _mm_and_ps(v, detail_::binary_m128(0x80000000u));
+    return _mm_xor_ps(sign_bit, floatx4(1.0f));
   }
 
   inline void transpose(
-      float32x4& v0,
-      float32x4& v1,
-      float32x4& v2,
-      float32x4& v3) noexcept {
+      floatx4& v0,
+      floatx4& v1,
+      floatx4& v2,
+      floatx4& v3) noexcept {
     _MM_TRANSPOSE4_PS(v0, v1, v2, v3);
   }
 
-  inline float32x4 isless(
-      const float32x4& lhs,
-      const float32x4& rhs) noexcept {
+  inline floatx4 select(const floatx4& v, const boolx4& mask) noexcept {
+    return _mm_and_ps(v, mask);
+  }
+
+  inline boolx4 less(const floatx4& lhs, const floatx4& rhs) noexcept {
     return _mm_cmplt_ps(lhs, rhs);
   }
 
-  inline float32x4 islessequal(
-      const float32x4& lhs,
-      const float32x4& rhs) noexcept {
+  inline boolx4 less_equal(const floatx4& lhs, const floatx4& rhs) noexcept {
     return _mm_cmple_ps(lhs, rhs);
   }
 
-  inline float32x4 isgreater(
-      const float32x4& lhs,
-      const float32x4& rhs) noexcept {
+  inline boolx4 greater(const floatx4& lhs, const floatx4& rhs) noexcept {
     return _mm_cmpgt_ps(lhs, rhs);
   }
 
-  inline float32x4 isgreaterequal(
-      const float32x4& lhs,
-      const float32x4& rhs) noexcept {
+  inline boolx4 greater_equal(const floatx4& lhs, const floatx4& rhs) noexcept {
     return _mm_cmpge_ps(lhs, rhs);
   }
 
-  inline float32x4 isequal(
-      const float32x4& lhs,
-      const float32x4& rhs) noexcept {
+  inline boolx4 equal(const floatx4& lhs, const floatx4& rhs) noexcept {
     return _mm_cmpeq_ps(lhs, rhs);
   }
 
-  inline float32x4 isnotequal(
-      const float32x4& lhs,
-      const float32x4& rhs) noexcept {
+  inline boolx4 not_equal(const floatx4& lhs, const floatx4& rhs) noexcept {
     return _mm_cmpneq_ps(lhs, rhs);
   }
 }
