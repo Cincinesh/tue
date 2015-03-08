@@ -6,7 +6,6 @@
 #include <tue/simd.hpp>
 #include <mon/test_case.hpp>
 
-#include <cstdint>
 #include <cstring>
 #include <tue/math.hpp>
 #include <tue/unused.hpp>
@@ -36,12 +35,6 @@ bool nearly_equal(
       && math::abs(input[1] - y) <= 0.001f
       && math::abs(input[2] - z) <= 0.001f
       && math::abs(input[3] - w) <= 0.001f;
-}
-
-bool bitwise_equal(
-    const boolx4& v1,
-    const boolx4& v2) noexcept {
-  return memcmp(&v1, &v2, sizeof(boolx4)) == 0;
 }
 
 TEST_CASE(default_constructor) {
@@ -388,52 +381,57 @@ TEST_CASE(transpose) {
   test_assert(v4 == floatx4(1.4f, 2.4f, 3.4f, 4.4f));
 }
 
+TEST_CASE(select) {
+  test_assert(math::select(f41, boolx4(true, false, true, false))
+      == floatx4(f410, 0.0f, f412, 0.0f));
+}
+
 TEST_CASE(less) {
-  test_assert(bitwise_equal(math::less(f41, f42), boolx4(
+  test_assert(math::less(f41, f42) == boolx4(
       f410 < f420,
       f411 < f421,
       f412 < f422,
-      f413 < f423)));
+      f413 < f423));
 }
 
 TEST_CASE(less_equal) {
-  test_assert(bitwise_equal(math::less_equal(f41, f42), boolx4(
+  test_assert(math::less_equal(f41, f42) == boolx4(
       f410 <= f420,
       f411 <= f421,
       f412 <= f422,
-      f413 <= f423)));
+      f413 <= f423));
 }
 
 TEST_CASE(greater) {
-  test_assert(bitwise_equal(math::greater(f41, f42), boolx4(
+  test_assert(math::greater(f41, f42) == boolx4(
       f410 > f420,
       f411 > f421,
       f412 > f422,
-      f413 > f423)));
+      f413 > f423));
 }
 
 TEST_CASE(greater_equal) {
-  test_assert(bitwise_equal(math::greater_equal(f41, f42), boolx4(
+  test_assert(math::greater_equal(f41, f42) == boolx4(
       f410 >= f420,
       f411 >= f421,
       f412 >= f422,
-      f413 >= f423)));
+      f413 >= f423));
 }
 
 TEST_CASE(equal) {
-  test_assert(bitwise_equal(math::equal(f41, f42), boolx4(
+  test_assert(math::equal(f41, f42) == boolx4(
       f410 == f420,
       f411 == f421,
       f412 == f422,
-      f413 == f423)));
+      f413 == f423));
 }
 
 TEST_CASE(not_equal) {
-  test_assert(bitwise_equal(math::not_equal(f41, f42), boolx4(
+  test_assert(math::not_equal(f41, f42) == boolx4(
       f410 != f420,
       f411 != f421,
       f412 != f422,
-      f413 != f423)));
+      f413 != f423));
 }
 
 }

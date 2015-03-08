@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include <cstdint>
 #include <xmmintrin.h>
 #include "../simd.hpp"
 

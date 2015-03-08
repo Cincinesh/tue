@@ -10,13 +10,6 @@
 
 namespace tue {
 
-namespace detail_
-{
-  inline __m128 binary_m128(std::uint32_t value) noexcept {
-    return _mm_load1_ps(reinterpret_cast<const float*>(&value));
-  }
-}
-
 class boolx4
 {
 public:
@@ -28,7 +21,7 @@ private:
   __m128 underlying_;
 
   static float bool_to_float_(bool b) noexcept {
-    const unsigned int value = b ? ~0u : 0u;
+    const std::uint32_t value = b ? ~0u : 0u;
     return reinterpret_cast<const float&>(value);
   }
 
@@ -56,6 +49,10 @@ public:
   }
 };
 
+inline boolx4 operator!(const boolx4& v) noexcept {
+  return _mm_xor_ps(v, detail_::binary_m128(0xFFFFFFFFu));
+}
+
 inline boolx4 operator&(const boolx4& lhs, const boolx4& rhs) noexcept {
   return _mm_and_ps(lhs, rhs);
 }
@@ -68,8 +65,12 @@ inline boolx4 operator^(const boolx4& lhs, const boolx4& rhs) noexcept {
   return _mm_xor_ps(lhs, rhs);
 }
 
-inline boolx4 operator~(const boolx4& v) noexcept {
-  return _mm_xor_ps(v, detail_::binary_m128(0xFFFFFFFFu));
+inline bool operator!=(const boolx4& lhs, const boolx4& rhs) noexcept {
+  return _mm_movemask_ps(_mm_xor_ps(lhs, rhs)) != 0;
+}
+
+inline bool operator==(const boolx4& lhs, const boolx4& rhs) noexcept {
+  return !(lhs != rhs);
 }
 
 }
