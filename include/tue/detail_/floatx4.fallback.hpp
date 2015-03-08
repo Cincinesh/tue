@@ -169,8 +169,7 @@ public:
 namespace math
 {
   inline floatx4 sin(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
       math::sin(f[0]),
       math::sin(f[1]),
@@ -180,8 +179,7 @@ namespace math
   }
 
   inline floatx4 cos(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
       math::cos(f[0]),
       math::cos(f[1]),
@@ -199,8 +197,7 @@ namespace math
   }
 
   inline floatx4 exp(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
       math::exp(f[0]),
       math::exp(f[1]),
@@ -210,8 +207,7 @@ namespace math
   }
 
   inline floatx4 log(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
       math::log(f[0]),
       math::log(f[1]),
@@ -220,12 +216,9 @@ namespace math
     };
   }
 
-  inline floatx4 pow(
-      const floatx4& base,
-      const floatx4& exponent) noexcept {
-    float bf[4], ef[4];
-    base.store(bf);
-    exponent.store(ef);
+  inline floatx4 pow(const floatx4& base, const floatx4& exponent) noexcept {
+    const auto bf = reinterpret_cast<const float*>(&base);
+    const auto ef = reinterpret_cast<const float*>(&exponent);
     return {
       math::pow(bf[0], ef[0]),
       math::pow(bf[1], ef[1]),
@@ -235,19 +228,17 @@ namespace math
   }
 
   inline floatx4 recip(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
-      1.0f / f[0],
-      1.0f / f[1],
-      1.0f / f[2],
-      1.0f / f[3],
+      math::recip(f[0]),
+      math::recip(f[1]),
+      math::recip(f[2]),
+      math::recip(f[3]),
     };
   }
 
   inline floatx4 sqrt(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
       math::sqrt(f[0]),
       math::sqrt(f[1]),
@@ -257,20 +248,18 @@ namespace math
   }
 
   inline floatx4 rsqrt(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
-      1.0f / math::sqrt(f[0]),
-      1.0f / math::sqrt(f[1]),
-      1.0f / math::sqrt(f[2]),
-      1.0f / math::sqrt(f[3]),
+      math::rsqrt(f[0]),
+      math::rsqrt(f[1]),
+      math::rsqrt(f[2]),
+      math::rsqrt(f[3]),
     };
   }
 
   inline floatx4 min(const floatx4& v1, const floatx4& v2) noexcept {
-    float f1[4], f2[4];
-    v1.store(f1);
-    v2.store(f2);
+    const auto f1 = reinterpret_cast<const float*>(&v1);
+    const auto f2 = reinterpret_cast<const float*>(&v2);
     return {
       math::min(f1[0], f2[0]),
       math::min(f1[1], f2[1]),
@@ -280,9 +269,8 @@ namespace math
   }
 
   inline floatx4 max(const floatx4& v1, const floatx4& v2) noexcept {
-    float f1[4], f2[4];
-    v1.store(f1);
-    v2.store(f2);
+    const auto f1 = reinterpret_cast<const float*>(&v1);
+    const auto f2 = reinterpret_cast<const float*>(&v2);
     return {
       math::max(f1[0], f2[0]),
       math::max(f1[1], f2[1]),
@@ -292,8 +280,7 @@ namespace math
   }
 
   inline floatx4 abs(const floatx4& v) noexcept {
-    float f[4];
-    v.store(f);
+    const auto f = reinterpret_cast<const float*>(&v);
     return {
       math::abs(f[0]),
       math::abs(f[1]),
@@ -330,10 +317,10 @@ namespace math
       floatx4& v2,
       floatx4& v3) noexcept {
     float f0[4], f1[4], f2[4], f3[4];
-    v0.store(f0);
-    v1.store(f1);
-    v2.store(f2);
-    v3.store(f3);
+    v0.storeu(f0);
+    v1.storeu(f1);
+    v2.storeu(f2);
+    v3.storeu(f3);
     v0 = { f0[0], f1[0], f2[0], f3[0] };
     v1 = { f0[1], f1[1], f2[1], f3[1] };
     v2 = { f0[2], f1[2], f2[2], f3[2] };
@@ -351,12 +338,9 @@ namespace math
     };
   }
 
-  inline boolx4 less(
-      const floatx4& lhs,
-      const floatx4& rhs) noexcept {
-    float lf[4], rf[4];
-    lhs.store(lf);
-    rhs.store(rf);
+  inline boolx4 less(const floatx4& lhs, const floatx4& rhs) noexcept {
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
       lf[0] < rf[0],
       lf[1] < rf[1],
@@ -365,12 +349,9 @@ namespace math
     };
   }
 
-  inline boolx4 less_equal(
-      const floatx4& lhs,
-      const floatx4& rhs) noexcept {
-    float lf[4], rf[4];
-    lhs.store(lf);
-    rhs.store(rf);
+  inline boolx4 less_equal(const floatx4& lhs, const floatx4& rhs) noexcept {
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
       lf[0] <= rf[0],
       lf[1] <= rf[1],
@@ -379,12 +360,9 @@ namespace math
     };
   }
 
-  inline boolx4 greater(
-      const floatx4& lhs,
-      const floatx4& rhs) noexcept {
-    float lf[4], rf[4];
-    lhs.store(lf);
-    rhs.store(rf);
+  inline boolx4 greater(const floatx4& lhs, const floatx4& rhs) noexcept {
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
       lf[0] > rf[0],
       lf[1] > rf[1],
@@ -393,12 +371,9 @@ namespace math
     };
   }
 
-  inline boolx4 greater_equal(
-      const floatx4& lhs,
-      const floatx4& rhs) noexcept {
-    float lf[4], rf[4];
-    lhs.store(lf);
-    rhs.store(rf);
+  inline boolx4 greater_equal(const floatx4& lhs, const floatx4& rhs) noexcept {
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
       lf[0] >= rf[0],
       lf[1] >= rf[1],
@@ -407,12 +382,9 @@ namespace math
     };
   }
 
-  inline boolx4 equal(
-      const floatx4& lhs,
-      const floatx4& rhs) noexcept {
-    float lf[4], rf[4];
-    lhs.store(lf);
-    rhs.store(rf);
+  inline boolx4 equal(const floatx4& lhs, const floatx4& rhs) noexcept {
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
       lf[0] == rf[0],
       lf[1] == rf[1],
@@ -421,12 +393,9 @@ namespace math
     };
   }
 
-  inline boolx4 not_equal(
-      const floatx4& lhs,
-      const floatx4& rhs) noexcept {
-    float lf[4], rf[4];
-    lhs.store(lf);
-    rhs.store(rf);
+  inline boolx4 not_equal(const floatx4& lhs, const floatx4& rhs) noexcept {
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
       lf[0] != rf[0],
       lf[1] != rf[1],

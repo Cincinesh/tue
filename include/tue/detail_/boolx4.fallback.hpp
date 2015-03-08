@@ -5,10 +5,6 @@
 
 #pragma once
 
-#include <algorithm>
-#include <cmath>
-#include "../simd.hpp"
-
 namespace tue {
 
 class boolx4

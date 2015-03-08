@@ -5,7 +5,7 @@
 
 #pragma once
 
-/*#if defined(__SSE__) \
+#if defined(__SSE__) \
     || (defined(_M_IX86_FP) && _M_IX86_FP >= 1) \
     || defined(_M_X64)
 #define TUE_SSE
@@ -15,15 +15,14 @@
     || (defined(_M_IX86_FP) && _M_IX86_FP >= 2) \
     || defined(_M_X64)
 #define TUE_SSE2
-#endif*/
+#endif
 
 #if defined(TUE_SSE)
-#include <cstdint>
 #include <xmmintrin.h>
 
 namespace tue {
   namespace detail_ {
-    inline __m128 binary_m128(std::uint32_t value) noexcept {
+    inline __m128 binary_m128(unsigned int value) noexcept {
       return _mm_load1_ps(reinterpret_cast<const float*>(&value));
     }
   }

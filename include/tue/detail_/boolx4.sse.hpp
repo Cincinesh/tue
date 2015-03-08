@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include <cstdint>
 #include <xmmintrin.h>
 
 namespace tue {
@@ -21,7 +20,7 @@ private:
   __m128 underlying_;
 
   static float bool_to_float_(bool b) noexcept {
-    const std::uint32_t value = b ? ~0u : 0u;
+    const unsigned int value = b ? ~0u : 0u;
     return reinterpret_cast<const float&>(value);
   }
 
@@ -47,30 +46,30 @@ public:
   operator __m128() const noexcept {
     return underlying_;
   }
+
+  boolx4 operator!() const noexcept {
+    return _mm_xor_ps(underlying_, detail_::binary_m128(0xFFFFFFFFu));
+  }
+
+  boolx4 operator&(const boolx4& other) const noexcept {
+    return _mm_and_ps(underlying_, other);
+  }
+
+  boolx4 operator|(const boolx4& other) const noexcept {
+    return _mm_or_ps(underlying_, other);
+  }
+
+  boolx4 operator^(const boolx4& other) const noexcept {
+    return _mm_xor_ps(underlying_, other);
+  }
+
+  bool operator!=(const boolx4& other) const noexcept {
+    return _mm_movemask_ps(_mm_xor_ps(underlying_, other)) != 0;
+  }
+
+  bool operator==(const boolx4& other) const noexcept {
+    return !(*this != other);
+  }
 };
-
-inline boolx4 operator!(const boolx4& v) noexcept {
-  return _mm_xor_ps(v, detail_::binary_m128(0xFFFFFFFFu));
-}
-
-inline boolx4 operator&(const boolx4& lhs, const boolx4& rhs) noexcept {
-  return _mm_and_ps(lhs, rhs);
-}
-
-inline boolx4 operator|(const boolx4& lhs, const boolx4& rhs) noexcept {
-  return _mm_or_ps(lhs, rhs);
-}
-
-inline boolx4 operator^(const boolx4& lhs, const boolx4& rhs) noexcept {
-  return _mm_xor_ps(lhs, rhs);
-}
-
-inline bool operator!=(const boolx4& lhs, const boolx4& rhs) noexcept {
-  return _mm_movemask_ps(_mm_xor_ps(lhs, rhs)) != 0;
-}
-
-inline bool operator==(const boolx4& lhs, const boolx4& rhs) noexcept {
-  return !(lhs != rhs);
-}
 
 }

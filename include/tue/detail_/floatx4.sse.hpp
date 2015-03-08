@@ -88,83 +88,75 @@ public:
   void storeu(float* destination) const noexcept {
     _mm_storeu_ps(destination, underlying_);
   }
+
+  floatx4 operator+() const noexcept {
+    return underlying_;
+  }
+
+  floatx4 operator-() const noexcept {
+    return _mm_xor_ps(underlying_, detail_::binary_m128(0x80000000u));
+  }
+
+  floatx4 operator+(const floatx4& other) const noexcept {
+    return _mm_add_ps(underlying_, other);
+  }
+
+  floatx4 operator-(const floatx4& other) const noexcept {
+    return _mm_sub_ps(underlying_, other);
+  }
+
+  floatx4 operator*(const floatx4& other) const noexcept {
+    return _mm_mul_ps(underlying_, other);
+  }
+
+  floatx4 operator/(const floatx4& other) const noexcept {
+    return _mm_div_ps(underlying_, other);
+  }
+
+  floatx4& operator++() noexcept {
+    return *this = *this + floatx4(1.0f);
+  }
+
+  floatx4& operator--() noexcept {
+    return *this = *this - floatx4(1.0f);
+  }
+
+  floatx4 operator++(int) noexcept {
+    const auto result = *this;
+    ++(*this);
+    return result;
+  }
+
+  floatx4 operator--(int) noexcept {
+    const auto result = *this;
+    --(*this);
+    return result;
+  }
+
+  floatx4& operator+=(const floatx4& other) noexcept {
+    return *this = *this + other;
+  }
+
+  floatx4& operator-=(const floatx4& other) noexcept {
+    return *this = *this - other;
+  }
+
+  floatx4& operator*=(const floatx4& other) noexcept {
+    return *this = *this * other;
+  }
+
+  floatx4& operator/=(const floatx4& other) noexcept {
+    return *this = *this / other;
+  }
+
+  bool operator==(const floatx4& other) const noexcept {
+    return _mm_movemask_ps(_mm_cmpneq_ps(underlying_, other)) == 0;
+  }
+
+  bool operator!=(const floatx4& other) const noexcept {
+    return !(*this == other);
+  }
 };
-
-inline floatx4 operator+(const floatx4& v) noexcept {
-  return v;
-}
-
-inline floatx4 operator-(const floatx4& v) noexcept {
-  return _mm_xor_ps(v, detail_::binary_m128(0x80000000u));
-}
-
-inline floatx4 operator+(
-    const floatx4& lhs,
-    const floatx4& rhs) noexcept {
-  return _mm_add_ps(lhs, rhs);
-}
-
-inline floatx4 operator-(
-    const floatx4& lhs,
-    const floatx4& rhs) noexcept {
-  return _mm_sub_ps(lhs, rhs);
-}
-
-inline floatx4 operator*(
-    const floatx4& lhs,
-    const floatx4& rhs) noexcept {
-  return _mm_mul_ps(lhs, rhs);
-}
-
-inline floatx4 operator/(
-    const floatx4& lhs,
-    const floatx4& rhs) noexcept {
-  return _mm_div_ps(lhs, rhs);
-}
-
-inline floatx4& operator++(floatx4& v) noexcept {
-  return v = v + floatx4(1.0f);
-}
-
-inline floatx4& operator--(floatx4& v) noexcept {
-  return v = v - floatx4(1.0f);
-}
-
-inline floatx4 operator++(floatx4& v, int) noexcept {
-  const auto orig = v;
-  ++v;
-  return orig;
-}
-
-inline floatx4 operator--(floatx4& v, int) noexcept {
-  const auto orig = v;
-  --v;
-  return orig;
-}
-
-inline floatx4& operator+=(floatx4& lhs, const floatx4& rhs) noexcept {
-  return lhs = lhs + rhs;
-}
-
-inline floatx4& operator-=(floatx4& lhs, const floatx4& rhs) noexcept {
-  return lhs = lhs - rhs;
-}
-
-inline floatx4& operator*=(floatx4& lhs, const floatx4& rhs) noexcept {
-  return lhs = lhs * rhs;
-}
-
-inline floatx4& operator/=(floatx4& lhs, const floatx4& rhs) noexcept {
-  return lhs = lhs / rhs;
-}
-
-inline bool operator==(const floatx4& lhs, const floatx4& rhs) noexcept {
-  return _mm_movemask_ps(_mm_cmpeq_ps(lhs, rhs)) == 0b1111;
-}
-
-inline bool operator!=(const floatx4& lhs, const floatx4& rhs) noexcept {
-  return !(lhs == rhs);
-}
 
 namespace math
 {
@@ -437,8 +429,8 @@ namespace math
 #else
     __m64 mm0, mm1;
     union {
-            __m64 mm[2];
-            __m128 xmm;
+      __m64 mm[2];
+      __m128 xmm;
     } u;
 #endif
 
@@ -523,9 +515,7 @@ namespace math
     return x;
   }
 
-  inline floatx4 pow(
-      const floatx4& base,
-      const floatx4& exponent) noexcept {
+  inline floatx4 pow(const floatx4& base, const floatx4& exponent) noexcept {
     return math::exp(exponent * math::log(base));
   }
 
