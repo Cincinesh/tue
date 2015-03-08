@@ -8,17 +8,17 @@
 #if defined(__SSE__) \
     || (defined(_M_IX86_FP) && _M_IX86_FP >= 1) \
     || defined(_M_X64)
-  #define TUE_SSE
+#define TUE_SSE
 #endif
 
 #if defined(__SSE2__) \
     || (defined(_M_IX86_FP) && _M_IX86_FP >= 2) \
     || defined(_M_X64)
-  #define TUE_SSE2
+#define TUE_SSE2
 #endif
 
 #if defined(__ARM_NEON__)
-  #define TUE_NEON
+#define TUE_NEON
 #endif
 
 #if defined(TUE_SSE)

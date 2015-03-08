@@ -5,11 +5,10 @@
 
 #pragma once
 
-// The Tuesday C++ math and template library.
-namespace tue
-{
-  // Does absolutely nothing with the given arguments. This function is meant
-  // to get rid of "unused variable" compiler and IDE warnings.
-  template<typename... Args>
-  inline void unused(Args&&...) noexcept {}
+namespace tue {
+
+template<typename... Args>
+inline void unused(Args&&...) noexcept {
+}
+
 }

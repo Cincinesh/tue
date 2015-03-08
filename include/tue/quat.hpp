@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <cmath>
 #include "math.hpp"
 #include "vec.hpp"
 
@@ -216,9 +217,7 @@ namespace math
   }
 
   template<typename T>
-  inline auto rotation_quat(
-      const vec3<T>& axis,
-      const T& radians) noexcept {
+  inline auto rotation_quat(const vec3<T>& axis, const T& radians) noexcept {
     using U = decltype(sin(radians));
     U s, c;
     math::sincos(U(radians) / U(2), s, c);
