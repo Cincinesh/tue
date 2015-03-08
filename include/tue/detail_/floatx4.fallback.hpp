@@ -290,15 +290,34 @@ namespace math
   }
 
   inline floatx4 dot(const floatx4& lhs, const floatx4& rhs) noexcept {
-    return lhs * rhs;
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
+    return {
+      math::dot(lf[0], rf[0]),
+      math::dot(lf[1], rf[1]),
+      math::dot(lf[2], rf[2]),
+      math::dot(lf[3], rf[3]),
+    };
   }
 
   inline floatx4 length2(const floatx4& v) noexcept {
-    return v * v;
+    const auto f = reinterpret_cast<const float*>(&v);
+    return {
+      math::length2(f[0]),
+      math::length2(f[1]),
+      math::length2(f[2]),
+      math::length2(f[3]),
+    };
   }
 
   inline floatx4 length(const floatx4& v) noexcept {
-    return math::abs(v);
+    const auto f = reinterpret_cast<const float*>(&v);
+    return {
+      math::length(f[0]),
+      math::length(f[1]),
+      math::length(f[2]),
+      math::length(f[3]),
+    };
   }
 
   inline floatx4 normalize(const floatx4& v) noexcept {
@@ -331,10 +350,10 @@ namespace math
     const auto f = reinterpret_cast<const float*>(&v);
     const auto b = reinterpret_cast<const bool*>(&mask);
     return {
-      b[0] ? f[0] : 0.0f,
-      b[1] ? f[1] : 0.0f,
-      b[2] ? f[2] : 0.0f,
-      b[3] ? f[3] : 0.0f,
+      math::select(f[0], b[0]),
+      math::select(f[1], b[1]),
+      math::select(f[2], b[2]),
+      math::select(f[3], b[3]),
     };
   }
 
@@ -342,10 +361,10 @@ namespace math
     const auto lf = reinterpret_cast<const float*>(&lhs);
     const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
-      lf[0] < rf[0],
-      lf[1] < rf[1],
-      lf[2] < rf[2],
-      lf[3] < rf[3],
+      math::less(lf[0], rf[0]),
+      math::less(lf[1], rf[1]),
+      math::less(lf[2], rf[2]),
+      math::less(lf[3], rf[3]),
     };
   }
 
@@ -353,10 +372,10 @@ namespace math
     const auto lf = reinterpret_cast<const float*>(&lhs);
     const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
-      lf[0] <= rf[0],
-      lf[1] <= rf[1],
-      lf[2] <= rf[2],
-      lf[3] <= rf[3],
+      math::less_equal(lf[0], rf[0]),
+      math::less_equal(lf[1], rf[1]),
+      math::less_equal(lf[2], rf[2]),
+      math::less_equal(lf[3], rf[3]),
     };
   }
 
@@ -364,10 +383,10 @@ namespace math
     const auto lf = reinterpret_cast<const float*>(&lhs);
     const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
-      lf[0] > rf[0],
-      lf[1] > rf[1],
-      lf[2] > rf[2],
-      lf[3] > rf[3],
+      math::greater(lf[0], rf[0]),
+      math::greater(lf[1], rf[1]),
+      math::greater(lf[2], rf[2]),
+      math::greater(lf[3], rf[3]),
     };
   }
 
@@ -375,10 +394,10 @@ namespace math
     const auto lf = reinterpret_cast<const float*>(&lhs);
     const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
-      lf[0] >= rf[0],
-      lf[1] >= rf[1],
-      lf[2] >= rf[2],
-      lf[3] >= rf[3],
+      math::greater_equal(lf[0], rf[0]),
+      math::greater_equal(lf[1], rf[1]),
+      math::greater_equal(lf[2], rf[2]),
+      math::greater_equal(lf[3], rf[3]),
     };
   }
 
@@ -386,10 +405,10 @@ namespace math
     const auto lf = reinterpret_cast<const float*>(&lhs);
     const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
-      lf[0] == rf[0],
-      lf[1] == rf[1],
-      lf[2] == rf[2],
-      lf[3] == rf[3],
+      math::equal(lf[0], rf[0]),
+      math::equal(lf[1], rf[1]),
+      math::equal(lf[2], rf[2]),
+      math::equal(lf[3], rf[3]),
     };
   }
 
@@ -397,10 +416,10 @@ namespace math
     const auto lf = reinterpret_cast<const float*>(&lhs);
     const auto rf = reinterpret_cast<const float*>(&rhs);
     return {
-      lf[0] != rf[0],
-      lf[1] != rf[1],
-      lf[2] != rf[2],
-      lf[3] != rf[3],
+      math::not_equal(lf[0], rf[0]),
+      math::not_equal(lf[1], rf[1]),
+      math::not_equal(lf[2], rf[2]),
+      math::not_equal(lf[3], rf[3]),
     };
   }
 }

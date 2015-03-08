@@ -123,13 +123,13 @@ public:
 
   floatx4 operator++(int) noexcept {
     const auto result = *this;
-    ++(*this);
+    ++*this;
     return result;
   }
 
   floatx4 operator--(int) noexcept {
     const auto result = *this;
-    --(*this);
+    --*this;
     return result;
   }
 

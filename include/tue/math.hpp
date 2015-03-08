@@ -16,20 +16,14 @@ namespace math
 {
   template<typename T>
   inline typename std::enable_if<std::is_floating_point<T>::value,
-  void>::type sincos(
-      T x,
-      T& sin_out,
-      T& cos_out) noexcept {
+  void>::type sincos(T x, T& sin_out, T& cos_out) noexcept {
     sin_out = std::sin(x);
     cos_out = std::cos(x);
   }
 
   template<typename T>
   inline typename std::enable_if<std::is_integral<T>::value,
-  void>::type sincos(
-      T x,
-      double& sin_out,
-      double& cos_out) noexcept {
+  void>::type sincos(T x, double& sin_out, double& cos_out) noexcept {
     math::sincos(static_cast<double>(x), sin_out, cos_out);
   }
 
@@ -219,6 +213,59 @@ namespace math
   inline typename std::enable_if<std::is_integral<T>::value,
   double>::type normalize(T x) noexcept {
     return math::normalize(static_cast<double>(x));
+  }
+
+  template<typename T>
+  T select(const T& x, bool mask) noexcept {
+    return mask ? x : T(0);
+  }
+
+  template<typename T, typename U>
+  inline typename std::enable_if<
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value,
+  bool>::type less(T lhs, U rhs) noexcept {
+    return lhs < rhs;
+  }
+
+  template<typename T, typename U>
+  inline typename std::enable_if<
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value,
+  bool>::type less_equal(T lhs, U rhs) noexcept {
+    return lhs <= rhs;
+  }
+
+  template<typename T, typename U>
+  inline typename std::enable_if<
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value,
+  bool>::type greater(T lhs, U rhs) noexcept {
+    return lhs > rhs;
+  }
+
+  template<typename T, typename U>
+  inline typename std::enable_if<
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value,
+  bool>::type greater_equal(T lhs, U rhs) noexcept {
+    return lhs >= rhs;
+  }
+
+  template<typename T, typename U>
+  inline typename std::enable_if<
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value,
+  bool>::type equal(T lhs, U rhs) noexcept {
+    return lhs == rhs;
+  }
+
+  template<typename T, typename U>
+  inline typename std::enable_if<
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value,
+  bool>::type not_equal(T lhs, U rhs) noexcept {
+    return lhs != rhs;
   }
 }
 

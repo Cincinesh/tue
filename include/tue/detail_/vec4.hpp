@@ -1015,8 +1015,10 @@ namespace math
   template<typename T>
   inline auto axis_angle(const vec3<T>& v) noexcept {
     using U = decltype(math::length(v));
-    const U angle = math::length(v);
-    return vec4<U>(vec3<U>(v) / angle, angle);
+    const auto angle = math::length(v);
+    const auto mask = math::not_equal(angle, U(0));
+    const auto axis = math::select(vec3<U>(v) / angle, mask);
+    return vec4<U>(axis, angle);
   }
 
   template<typename T>

@@ -142,4 +142,45 @@ TEST_CASE(normalize) {
   test_assert(math::normalize(-123) == math::normalize(-123.0));
 }
 
+TEST_CASE(select) {
+  test_assert(math::select(1.23f, true) == 1.23f);
+  test_assert(math::select(1.23f, false) == 0.0f);
+}
+
+TEST_CASE(less) {
+  test_assert(math::less(1.23f, -4.56f) == false);
+  test_assert(math::less(1.23f, 1.23f) == false);
+  test_assert(math::less(1.23f, 4.56f) == true);
+}
+
+TEST_CASE(less_equal) {
+  test_assert(math::less_equal(1.23f, -4.56f) == false);
+  test_assert(math::less_equal(1.23f, 1.23f) == true);
+  test_assert(math::less_equal(1.23f, 4.56f) == true);
+}
+
+TEST_CASE(greater) {
+  test_assert(math::greater(1.23f, -4.56f) == true);
+  test_assert(math::greater(1.23f, 1.23f) == false);
+  test_assert(math::greater(1.23f, 4.56f) == false);
+}
+
+TEST_CASE(greater_equal) {
+  test_assert(math::greater_equal(1.23f, -4.56f) == true);
+  test_assert(math::greater_equal(1.23f, 1.23f) == true);
+  test_assert(math::greater_equal(1.23f, 4.56f) == false);
+}
+
+TEST_CASE(equal) {
+  test_assert(math::equal(1.23f, -4.56f) == false);
+  test_assert(math::equal(1.23f, 1.23f) == true);
+  test_assert(math::equal(1.23f, 4.56f) == false);
+}
+
+TEST_CASE(not_equal) {
+  test_assert(math::not_equal(1.23f, -4.56f) == true);
+  test_assert(math::not_equal(1.23f, 1.23f) == false);
+  test_assert(math::not_equal(1.23f, 4.56f) == true);
+}
+
 }

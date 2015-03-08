@@ -43,10 +43,10 @@ namespace math
   }
 
   template<typename T>
-  inline auto rotation_mat(const T& radians) noexcept {
-    using U = decltype(math::sin(radians));
+  inline auto rotation_mat(const T& angle) noexcept {
+    using U = decltype(math::sin(angle));
     U s, c;
-    math::sincos(radians, s, c);
+    math::sincos(angle, s, c);
     return mat<U, 2, 2>{
       { c, -s },
       { s,  c },
@@ -58,14 +58,14 @@ namespace math
       const T& axis_x,
       const T& axis_y,
       const T& axis_z,
-      const T& radians) noexcept {
-    using U = decltype(math::sin(radians));
+      const T& angle) noexcept {
+    using U = decltype(math::sin(angle));
     const U x = static_cast<U>(axis_x);
     const U y = static_cast<U>(axis_y);
     const U z = static_cast<U>(axis_z);
 
     U s, c;
-    math::sincos(radians, s, c);
+    math::sincos(angle, s, c);
     const U omc = U(1) - c;
 
     const U xx = x * x;
@@ -92,8 +92,8 @@ namespace math
   }
 
   template<typename T>
-  inline auto rotation_mat(const vec3<T>& axis, const T& radians) noexcept {
-    return rotation_mat(axis.x(), axis.y(), axis.z(), radians);
+  inline auto rotation_mat(const vec3<T>& axis, const T& angle) noexcept {
+    return rotation_mat(axis.x(), axis.y(), axis.z(), angle);
   }
 
   template<typename T>
@@ -171,9 +171,9 @@ namespace math
   inline mat<T, 3, 4> view_mat(
       const vec3<T>& translation,
       const vec3<T>& rotation_axis,
-      const T& rotation_radians) noexcept {
+      const T& rotation_angle) noexcept {
     return translation_mat(-translation)
-        * rotation_mat(rotation_axis, -rotation_radians);
+        * rotation_mat(rotation_axis, -rotation_angle);
   }
 
   template<typename T>
