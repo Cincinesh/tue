@@ -73,22 +73,6 @@ TEST_CASE(underlying_converison_operator) {
   test_assert(result[2] == f412);
   test_assert(result[3] == f413);
 }
-#elif defined(TUE_NEON)
-TEST_CASE(underlying_converison_constructor) {
-  const floatx4_t underlying = { 1.1f, 2.2f, 3.3f, 4.4f };
-  const floatx4 v(underlying);
-  test_assert(equal(v, 1.1f, 2.2f, 3.3f, 4.4f));
-}
-
-TEST_CASE(underlying_converison_operator) {
-  const floatx4_t underlying = f41;
-  alignas(16) float result[4];
-  vst1q_f32(result, underlying);
-  test_assert(result[0] == f410);
-  test_assert(result[1] == f411);
-  test_assert(result[2] == f412);
-  test_assert(result[3] == f413);
-}
 #endif
 
 TEST_CASE(zero) {

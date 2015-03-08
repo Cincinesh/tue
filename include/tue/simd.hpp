@@ -17,10 +17,6 @@
 #define TUE_SSE2
 #endif*/
 
-#if defined(__ARM_NEON__)
-#define TUE_NEON
-#endif
-
 #if defined(TUE_SSE)
 #include <cstdint>
 #include <xmmintrin.h>
@@ -35,8 +31,6 @@ namespace tue {
 
 #include "detail_/boolx4.sse.hpp"
 #include "detail_/floatx4.sse.hpp"
-#elif defined(TUE_NEON)
-#include "detail_/float32x4.neon.hpp"
 #else
 #include "detail_/boolx4.fallback.hpp"
 #include "detail_/floatx4.fallback.hpp"
