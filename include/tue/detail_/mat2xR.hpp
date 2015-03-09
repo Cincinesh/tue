@@ -776,6 +776,66 @@ namespace math
       math::select(m[1], mask[1]),
     };
   }
+
+  template<typename T, typename U, int R>
+  inline TUE_CONSTEXPR auto less(
+      const mat<T, 2, R>& lhs,
+      const mat<U, 2, R>& rhs) noexcept {
+    return mat<decltype(math::less(lhs[0][0], rhs[0][0])), 2, R>{
+      math::less(lhs[0], rhs[0]),
+      math::less(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U, int R>
+  inline TUE_CONSTEXPR auto less_equal(
+      const mat<T, 2, R>& lhs,
+      const mat<U, 2, R>& rhs) noexcept {
+    return mat<decltype(math::less_equal(lhs[0][0], rhs[0][0])), 2, R>{
+      math::less_equal(lhs[0], rhs[0]),
+      math::less_equal(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U, int R>
+  inline TUE_CONSTEXPR auto greater(
+      const mat<T, 2, R>& lhs,
+      const mat<U, 2, R>& rhs) noexcept {
+    return mat<decltype(math::greater(lhs[0][0], rhs[0][0])), 2, R>{
+      math::greater(lhs[0], rhs[0]),
+      math::greater(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U, int R>
+  inline TUE_CONSTEXPR auto greater_equal(
+      const mat<T, 2, R>& lhs,
+      const mat<U, 2, R>& rhs) noexcept {
+    return mat<decltype(math::greater_equal(lhs[0][0], rhs[0][0])), 2, R>{
+      math::greater_equal(lhs[0], rhs[0]),
+      math::greater_equal(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U, int R>
+  inline TUE_CONSTEXPR auto equal(
+      const mat<T, 2, R>& lhs,
+      const mat<U, 2, R>& rhs) noexcept {
+    return mat<decltype(math::equal(lhs[0][0], rhs[0][0])), 2, R>{
+      math::equal(lhs[0], rhs[0]),
+      math::equal(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U, int R>
+  inline TUE_CONSTEXPR auto not_equal(
+      const mat<T, 2, R>& lhs,
+      const mat<U, 2, R>& rhs) noexcept {
+    return mat<decltype(math::not_equal(lhs[0][0], rhs[0][0])), 2, R>{
+      math::not_equal(lhs[0], rhs[0]),
+      math::not_equal(lhs[1], rhs[1]),
+    };
+  }
 }
 
 }
