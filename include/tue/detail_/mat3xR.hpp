@@ -843,11 +843,11 @@ namespace math
     };
   }
 
-  template<typename T, int R>
-  inline TUE_CONSTEXPR mat<T, 3, R> select(
+  template<typename T, typename U, int R>
+  inline TUE_CONSTEXPR auto select(
       const mat<T, 3, R>& m,
-      const mat<bool, 3, R>& mask) noexcept {
-    return {
+      const mat<U, 3, R>& mask) noexcept {
+    return mat<decltype(math::select(m[0][0], mask[0][0])), 3, R>{
       math::select(m[0], mask[0]),
       math::select(m[1], mask[1]),
       math::select(m[2], mask[2]),
