@@ -626,4 +626,11 @@ TEST_CASE(normalize) {
   test_assert(math::normalize(iv21) == math::normalize(dvec2(iv21)));
 }
 
+TEST_CASE(select) {
+  test_assert(math::select(fv21, bvec2(true, false))
+      == fvec2(fv21[0], 0.0f));
+  test_assert(math::select(fv21, bvec2(false, true))
+      == fvec2(0.0f, fv21[1]));
+}
+
 }

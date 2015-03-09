@@ -164,7 +164,8 @@ namespace math
   inline mat<T, 2, 3> view_mat(
       const vec2<T>& translation,
       const T& rotation) noexcept {
-    return translation_mat(-translation) * rotation_mat(-rotation);
+    return translation_mat(-translation)
+        * rotation_mat(-rotation);
   }
 
   template<typename T>
@@ -187,7 +188,8 @@ namespace math
   inline mat<T, 3, 4> view_mat(
       const vec3<T>& translation,
       const vec3<T>& rotation) noexcept {
-    return translation_mat(-translation) * rotation_mat(-rotation);
+    return translation_mat(-translation)
+        * rotation_mat(-rotation);
   }
 
   template<typename T>

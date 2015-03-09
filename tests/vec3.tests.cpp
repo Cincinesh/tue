@@ -806,6 +806,13 @@ TEST_CASE(normalize) {
   test_assert(math::normalize(iv31) == math::normalize(dvec3(iv31)));
 }
 
+TEST_CASE(select) {
+  test_assert(math::select(fv31, bvec3(true, false, true))
+      == fvec3(fv31[0], 0.0f, fv31[2]));
+  test_assert(math::select(fv31, bvec3(false, true, false))
+      == fvec3(0.0f, fv31[1], 0.0f));
+}
+
 TEST_CASE(rotation_vec) {
   const float x = 1.1f;
   const float y = 2.2f;

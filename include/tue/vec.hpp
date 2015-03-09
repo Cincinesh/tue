@@ -31,6 +31,9 @@ using ivec4 = vec4<int>;
 using uvec2 = vec2<unsigned int>;
 using uvec3 = vec3<unsigned int>;
 using uvec4 = vec4<unsigned int>;
+using bvec2 = vec2<bool>;
+using bvec3 = vec3<bool>;
+using bvec4 = vec4<bool>;
 
 }
 

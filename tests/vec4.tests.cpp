@@ -960,6 +960,13 @@ TEST_CASE(normalize) {
   test_assert(math::normalize(iv41) == math::normalize(dvec4(iv41)));
 }
 
+TEST_CASE(select) {
+  test_assert(math::select(fv41, bvec4(true, false, true, false))
+      == fvec4(fv41[0], 0.0f, fv41[2], 0.0f));
+  test_assert(math::select(fv41, bvec4(false, true, false, true))
+      == fvec4(0.0f, fv41[1], 0.0f, fv41[3]));
+}
+
 TEST_CASE(axis_angle) {
   const float x = 1.1f;
   const float y = 2.2f;

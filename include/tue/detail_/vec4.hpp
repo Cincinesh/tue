@@ -1013,6 +1013,16 @@ namespace math
   }
 
   template<typename T>
+  inline vec4<T> select(const vec4<T>& v, const vec4<bool>& mask) noexcept {
+    return {
+      math::select(v[0], mask[0]),
+      math::select(v[1], mask[1]),
+      math::select(v[2], mask[2]),
+      math::select(v[3], mask[3]),
+    };
+  }
+
+  template<typename T>
   inline auto axis_angle(const vec3<T>& v) noexcept {
     using U = decltype(math::length(v));
     const auto angle = math::length(v);

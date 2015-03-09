@@ -906,6 +906,15 @@ namespace math
   }
 
   template<typename T>
+  inline vec3<T> select(const vec3<T>& v, const vec3<bool>& mask) noexcept {
+    return {
+      math::select(v[0], mask[0]),
+      math::select(v[1], mask[1]),
+      math::select(v[2], mask[2]),
+    };
+  }
+
+  template<typename T>
   inline auto rotation_vec(const vec3<T>& axis, const T& angle) noexcept {
     return axis * angle;
   }

@@ -774,6 +774,14 @@ namespace math
   inline auto normalize(const vec2<T>& v) noexcept {
     return vec2<decltype(math::length(v))>(v) / math::length(v);
   }
+
+  template<typename T>
+  inline vec2<T> select(const vec2<T>& v, const vec2<bool>& mask) noexcept {
+    return {
+      math::select(v[0], mask[0]),
+      math::select(v[1], mask[1]),
+    };
+  }
 }
 
 }
