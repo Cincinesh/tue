@@ -1039,4 +1039,18 @@ TEST_CASE(transpose) {
   test_assert(m3[3] == m24.row(3));
 }
 
+TEST_CASE() {
+  constexpr mat4x2<bool> mask = {
+    {  true, false },
+    { false,  true },
+    {  true,  true },
+    { false, false },
+  };
+  CONST_OR_CONSTEXPR fmat4x2 m = math::select(fm421, mask);
+  test_assert(m[0] == math::select(fm421[0], mask[0]));
+  test_assert(m[1] == math::select(fm421[1], mask[1]));
+  test_assert(m[2] == math::select(fm421[2], mask[2]));
+  test_assert(m[3] == math::select(fm421[3], mask[3]));
+}
+
 }

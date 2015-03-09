@@ -1013,7 +1013,9 @@ namespace math
   }
 
   template<typename T>
-  inline vec4<T> select(const vec4<T>& v, const vec4<bool>& mask) noexcept {
+  inline constexpr vec4<T> select(
+      const vec4<T>& v,
+      const bvec4& mask) noexcept {
     return {
       math::select(v[0], mask[0]),
       math::select(v[1], mask[1]),

@@ -961,10 +961,12 @@ TEST_CASE(normalize) {
 }
 
 TEST_CASE(select) {
-  test_assert(math::select(fv41, bvec4(true, false, true, false))
-      == fvec4(fv41[0], 0.0f, fv41[2], 0.0f));
-  test_assert(math::select(fv41, bvec4(false, true, false, true))
-      == fvec4(0.0f, fv41[1], 0.0f, fv41[3]));
+  CONST_OR_CONSTEXPR fvec4 v1 =
+      math::select(fv41, bvec4(true, false, true, false));
+  CONST_OR_CONSTEXPR fvec4 v2 =
+      math::select(fv41, bvec4(false, true, false, true));
+  test_assert(v1 == fvec4(fv41[0], 0.0f, fv41[2], 0.0f));
+  test_assert(v2 == fvec4(0.0f, fv41[1], 0.0f, fv41[3]));
 }
 
 TEST_CASE(axis_angle) {

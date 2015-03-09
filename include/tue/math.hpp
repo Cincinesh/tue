@@ -216,12 +216,12 @@ namespace math
   }
 
   template<typename T>
-  T select(const T& x, bool mask) noexcept {
+  inline constexpr T select(const T& x, bool mask) noexcept {
     return mask ? x : T(0);
   }
 
   template<typename T, typename U>
-  inline typename std::enable_if<
+  inline constexpr typename std::enable_if<
       std::is_arithmetic<T>::value
       && std::is_arithmetic<U>::value,
   bool>::type less(T lhs, U rhs) noexcept {
@@ -229,7 +229,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline typename std::enable_if<
+  inline constexpr typename std::enable_if<
       std::is_arithmetic<T>::value
       && std::is_arithmetic<U>::value,
   bool>::type less_equal(T lhs, U rhs) noexcept {
@@ -237,7 +237,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline typename std::enable_if<
+  inline constexpr typename std::enable_if<
       std::is_arithmetic<T>::value
       && std::is_arithmetic<U>::value,
   bool>::type greater(T lhs, U rhs) noexcept {
@@ -245,7 +245,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline typename std::enable_if<
+  inline constexpr typename std::enable_if<
       std::is_arithmetic<T>::value
       && std::is_arithmetic<U>::value,
   bool>::type greater_equal(T lhs, U rhs) noexcept {
@@ -253,7 +253,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline typename std::enable_if<
+  inline constexpr typename std::enable_if<
       std::is_arithmetic<T>::value
       && std::is_arithmetic<U>::value,
   bool>::type equal(T lhs, U rhs) noexcept {
@@ -261,7 +261,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline typename std::enable_if<
+  inline constexpr typename std::enable_if<
       std::is_arithmetic<T>::value
       && std::is_arithmetic<U>::value,
   bool>::type not_equal(T lhs, U rhs) noexcept {

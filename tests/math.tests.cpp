@@ -143,44 +143,64 @@ TEST_CASE(normalize) {
 }
 
 TEST_CASE(select) {
-  test_assert(math::select(1.23f, true) == 1.23f);
-  test_assert(math::select(1.23f, false) == 0.0f);
+  CONST_OR_CONSTEXPR float f1 = math::select(1.23f, true);
+  CONST_OR_CONSTEXPR float f2 = math::select(1.23f, false);
+  test_assert(f1 == 1.23f);
+  test_assert(f2 == 0.0f);
 }
 
 TEST_CASE(less) {
-  test_assert(math::less(1.23f, -4.56f) == false);
-  test_assert(math::less(1.23f, 1.23f) == false);
-  test_assert(math::less(1.23f, 4.56f) == true);
+  CONST_OR_CONSTEXPR bool b1 = math::less(1.23f, -4.56f);
+  CONST_OR_CONSTEXPR bool b2 = math::less(1.23f, 1.23f);
+  CONST_OR_CONSTEXPR bool b3 = math::less(1.23f, 4.56f);
+  test_assert(b1 == false);
+  test_assert(b2 == false);
+  test_assert(b3 == true);
 }
 
 TEST_CASE(less_equal) {
-  test_assert(math::less_equal(1.23f, -4.56f) == false);
-  test_assert(math::less_equal(1.23f, 1.23f) == true);
-  test_assert(math::less_equal(1.23f, 4.56f) == true);
+  CONST_OR_CONSTEXPR bool b1 = math::less_equal(1.23f, -4.56f);
+  CONST_OR_CONSTEXPR bool b2 = math::less_equal(1.23f, 1.23f);
+  CONST_OR_CONSTEXPR bool b3 = math::less_equal(1.23f, 4.56f);
+  test_assert(b1 == false);
+  test_assert(b2 == true);
+  test_assert(b3 == true);
 }
 
 TEST_CASE(greater) {
-  test_assert(math::greater(1.23f, -4.56f) == true);
-  test_assert(math::greater(1.23f, 1.23f) == false);
-  test_assert(math::greater(1.23f, 4.56f) == false);
+  CONST_OR_CONSTEXPR bool b1 = math::greater(1.23f, -4.56f);
+  CONST_OR_CONSTEXPR bool b2 = math::greater(1.23f, 1.23f);
+  CONST_OR_CONSTEXPR bool b3 = math::greater(1.23f, 4.56f);
+  test_assert(b1 == true);
+  test_assert(b2 == false);
+  test_assert(b3 == false);
 }
 
 TEST_CASE(greater_equal) {
-  test_assert(math::greater_equal(1.23f, -4.56f) == true);
-  test_assert(math::greater_equal(1.23f, 1.23f) == true);
-  test_assert(math::greater_equal(1.23f, 4.56f) == false);
+  CONST_OR_CONSTEXPR bool b1 = math::greater_equal(1.23f, -4.56f);
+  CONST_OR_CONSTEXPR bool b2 = math::greater_equal(1.23f, 1.23f);
+  CONST_OR_CONSTEXPR bool b3 = math::greater_equal(1.23f, 4.56f);
+  test_assert(b1 == true);
+  test_assert(b2 == true);
+  test_assert(b3 == false);
 }
 
 TEST_CASE(equal) {
-  test_assert(math::equal(1.23f, -4.56f) == false);
-  test_assert(math::equal(1.23f, 1.23f) == true);
-  test_assert(math::equal(1.23f, 4.56f) == false);
+  CONST_OR_CONSTEXPR bool b1 = math::equal(1.23f, -4.56f);
+  CONST_OR_CONSTEXPR bool b2 = math::equal(1.23f, 1.23f);
+  CONST_OR_CONSTEXPR bool b3 = math::equal(1.23f, 4.56f);
+  test_assert(b1 == false);
+  test_assert(b2 == true);
+  test_assert(b3 == false);
 }
 
 TEST_CASE(not_equal) {
-  test_assert(math::not_equal(1.23f, -4.56f) == true);
-  test_assert(math::not_equal(1.23f, 1.23f) == false);
-  test_assert(math::not_equal(1.23f, 4.56f) == true);
+  CONST_OR_CONSTEXPR bool b1 = math::not_equal(1.23f, -4.56f);
+  CONST_OR_CONSTEXPR bool b2 = math::not_equal(1.23f, 1.23f);
+  CONST_OR_CONSTEXPR bool b3 = math::not_equal(1.23f, 4.56f);
+  test_assert(b1 == true);
+  test_assert(b2 == false);
+  test_assert(b3 == true);
 }
 
 }

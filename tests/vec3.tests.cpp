@@ -807,10 +807,10 @@ TEST_CASE(normalize) {
 }
 
 TEST_CASE(select) {
-  test_assert(math::select(fv31, bvec3(true, false, true))
-      == fvec3(fv31[0], 0.0f, fv31[2]));
-  test_assert(math::select(fv31, bvec3(false, true, false))
-      == fvec3(0.0f, fv31[1], 0.0f));
+  CONST_OR_CONSTEXPR fvec3 v1 = math::select(fv31, bvec3(true, false, true));
+  CONST_OR_CONSTEXPR fvec3 v2 = math::select(fv31, bvec3(false, true, false));
+  test_assert(v1 == fvec3(fv31[0], 0.0f, fv31[2]));
+  test_assert(v2 == fvec3(0.0f, fv31[1], 0.0f));
 }
 
 TEST_CASE(rotation_vec) {

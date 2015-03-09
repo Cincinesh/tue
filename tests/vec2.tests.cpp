@@ -627,10 +627,10 @@ TEST_CASE(normalize) {
 }
 
 TEST_CASE(select) {
-  test_assert(math::select(fv21, bvec2(true, false))
-      == fvec2(fv21[0], 0.0f));
-  test_assert(math::select(fv21, bvec2(false, true))
-      == fvec2(0.0f, fv21[1]));
+  CONST_OR_CONSTEXPR fvec2 v1 = math::select(fv21, bvec2(true, false));
+  CONST_OR_CONSTEXPR fvec2 v2 = math::select(fv21, bvec2(false, true));
+  test_assert(v1 == fvec2(fv21[0], 0.0f));
+  test_assert(v2 == fvec2(0.0f, fv21[1]));
 }
 
 }

@@ -766,6 +766,16 @@ namespace math
       m.row(1),
     };
   }
+
+  template<typename T, int R>
+  inline constexpr mat<T, 2, R> select(
+      const mat<T, 2, R>& m,
+      const mat<bool, 2, R>& mask) noexcept {
+    return {
+      math::select(m[0], mask[0]),
+      math::select(m[1], mask[1]),
+    };
+  }
 }
 
 }
