@@ -969,6 +969,48 @@ TEST_CASE(select) {
   test_assert(v2 == fvec4(0.0f, fv41[1], 0.0f, fv41[3]));
 }
 
+TEST_CASE(less) {
+  CONST_OR_CONSTEXPR fvec4 f1(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 f2(0.0f, 2.2f, 3.4f, 5.6f);
+  CONST_OR_CONSTEXPR bvec4 b = math::less(f1, f2);
+  test_assert(b == bvec4(false, false, true, true));
+}
+
+TEST_CASE(less_equal) {
+  CONST_OR_CONSTEXPR fvec4 f1(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 f2(0.0f, 2.2f, 3.4f, 5.6f);
+  CONST_OR_CONSTEXPR bvec4 b = math::less_equal(f1, f2);
+  test_assert(b == bvec4(false, true, true, true));
+}
+
+TEST_CASE(greater) {
+  CONST_OR_CONSTEXPR fvec4 f1(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 f2(0.0f, 2.2f, 3.4f, 5.6f);
+  CONST_OR_CONSTEXPR bvec4 b = math::greater(f1, f2);
+  test_assert(b == bvec4(true, false, false, false));
+}
+
+TEST_CASE(greater_equal) {
+  CONST_OR_CONSTEXPR fvec4 f1(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 f2(0.0f, 2.2f, 3.4f, 5.6f);
+  CONST_OR_CONSTEXPR bvec4 b = math::greater_equal(f1, f2);
+  test_assert(b == bvec4(true, true, false, false));
+}
+
+TEST_CASE(equal) {
+  CONST_OR_CONSTEXPR fvec4 f1(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 f2(0.0f, 2.2f, 3.4f, 5.6f);
+  CONST_OR_CONSTEXPR bvec4 b = math::equal(f1, f2);
+  test_assert(b == bvec4(false, true, false, false));
+}
+
+TEST_CASE(not_equal) {
+  CONST_OR_CONSTEXPR fvec4 f1(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 f2(0.0f, 2.2f, 3.4f, 5.6f);
+  CONST_OR_CONSTEXPR bvec4 b = math::not_equal(f1, f2);
+  test_assert(b == bvec4(true, false, true, true));
+}
+
 TEST_CASE(axis_angle) {
   const float x = 1.1f;
   const float y = 2.2f;

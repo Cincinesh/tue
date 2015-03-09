@@ -775,13 +775,73 @@ namespace math
     return vec2<decltype(math::length(v))>(v) / math::length(v);
   }
 
-  template<typename T>
-  inline constexpr vec2<T> select(
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto select(
       const vec2<T>& v,
-      const bvec2& mask) noexcept {
-    return {
+      const vec2<U>& mask) noexcept {
+    return vec2<decltype(math::select(v[0], mask[0]))>{
       math::select(v[0], mask[0]),
       math::select(v[1], mask[1]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto less(
+      const vec2<T>& lhs,
+      const vec2<U>& rhs) noexcept {
+    return vec2<decltype(math::less(lhs[0], rhs[0]))>{
+      math::less(lhs[0], rhs[0]),
+      math::less(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto less_equal(
+      const vec2<T>& lhs,
+      const vec2<U>& rhs) noexcept {
+    return vec2<decltype(math::less_equal(lhs[0], rhs[0]))>{
+      math::less_equal(lhs[0], rhs[0]),
+      math::less_equal(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto greater(
+      const vec2<T>& lhs,
+      const vec2<U>& rhs) noexcept {
+    return vec2<decltype(math::greater(lhs[0], rhs[0]))>{
+      math::greater(lhs[0], rhs[0]),
+      math::greater(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto greater_equal(
+      const vec2<T>& lhs,
+      const vec2<U>& rhs) noexcept {
+    return vec2<decltype(math::greater_equal(lhs[0], rhs[0]))>{
+      math::greater_equal(lhs[0], rhs[0]),
+      math::greater_equal(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto equal(
+      const vec2<T>& lhs,
+      const vec2<U>& rhs) noexcept {
+    return vec2<decltype(math::equal(lhs[0], rhs[0]))>{
+      math::equal(lhs[0], rhs[0]),
+      math::equal(lhs[1], rhs[1]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto not_equal(
+      const vec2<T>& lhs,
+      const vec2<U>& rhs) noexcept {
+    return vec2<decltype(math::not_equal(lhs[0], rhs[0]))>{
+      math::not_equal(lhs[0], rhs[0]),
+      math::not_equal(lhs[1], rhs[1]),
     };
   }
 }

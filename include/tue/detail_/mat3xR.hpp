@@ -844,7 +844,7 @@ namespace math
   }
 
   template<typename T, int R>
-  inline constexpr mat<T, 3, R> select(
+  inline TUE_CONSTEXPR mat<T, 3, R> select(
       const mat<T, 3, R>& m,
       const mat<bool, 3, R>& mask) noexcept {
     return {

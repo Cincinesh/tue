@@ -905,14 +905,80 @@ namespace math
     return vec3<decltype(math::length(v))>(v) / math::length(v);
   }
 
-  template<typename T>
-  inline constexpr vec3<T> select(
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto select(
       const vec3<T>& v,
-      const bvec3& mask) noexcept {
-    return {
+      const vec3<U>& mask) noexcept {
+    return vec3<decltype(math::select(v[0], mask[0]))>{
       math::select(v[0], mask[0]),
       math::select(v[1], mask[1]),
       math::select(v[2], mask[2]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto less(
+      const vec3<T>& lhs,
+      const vec3<U>& rhs) noexcept {
+    return vec3<decltype(math::less(lhs[0], rhs[0]))>{
+      math::less(lhs[0], rhs[0]),
+      math::less(lhs[1], rhs[1]),
+      math::less(lhs[2], rhs[2]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto less_equal(
+      const vec3<T>& lhs,
+      const vec3<U>& rhs) noexcept {
+    return vec3<decltype(math::less_equal(lhs[0], rhs[0]))>{
+      math::less_equal(lhs[0], rhs[0]),
+      math::less_equal(lhs[1], rhs[1]),
+      math::less_equal(lhs[2], rhs[2]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto greater(
+      const vec3<T>& lhs,
+      const vec3<U>& rhs) noexcept {
+    return vec3<decltype(math::greater(lhs[0], rhs[0]))>{
+      math::greater(lhs[0], rhs[0]),
+      math::greater(lhs[1], rhs[1]),
+      math::greater(lhs[2], rhs[2]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto greater_equal(
+      const vec3<T>& lhs,
+      const vec3<U>& rhs) noexcept {
+    return vec3<decltype(math::greater_equal(lhs[0], rhs[0]))>{
+      math::greater_equal(lhs[0], rhs[0]),
+      math::greater_equal(lhs[1], rhs[1]),
+      math::greater_equal(lhs[2], rhs[2]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto equal(
+      const vec3<T>& lhs,
+      const vec3<U>& rhs) noexcept {
+    return vec3<decltype(math::equal(lhs[0], rhs[0]))>{
+      math::equal(lhs[0], rhs[0]),
+      math::equal(lhs[1], rhs[1]),
+      math::equal(lhs[2], rhs[2]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline TUE_CONSTEXPR auto not_equal(
+      const vec3<T>& lhs,
+      const vec3<U>& rhs) noexcept {
+    return vec3<decltype(math::not_equal(lhs[0], rhs[0]))>{
+      math::not_equal(lhs[0], rhs[0]),
+      math::not_equal(lhs[1], rhs[1]),
+      math::not_equal(lhs[2], rhs[2]),
     };
   }
 
