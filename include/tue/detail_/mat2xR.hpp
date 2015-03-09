@@ -749,7 +749,7 @@ namespace math
   }
 
   template<typename T, typename U, int R>
-  inline TUE_CONSTEXPR auto compmult(
+  inline TUE_CONSTEXPR auto comp_mult(
       const mat<T, 2, R>& lhs,
       const mat<U, 2, R>& rhs) noexcept {
     return mat<decltype(lhs[0][0] * rhs[0][0]), 2, R>{

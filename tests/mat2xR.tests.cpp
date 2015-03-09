@@ -755,8 +755,8 @@ TEST_CASE(abs) {
   test_assert(uabs[1] == math::abs(um222[1]));
 }
 
-TEST_CASE(compmult) {
-  CONST_OR_CONSTEXPR auto m = math::compmult(fm221, dm222);
+TEST_CASE(comp_mult) {
+  CONST_OR_CONSTEXPR auto m = math::comp_mult(fm221, dm222);
   test_assert(m[0] == fm221[0] * dm222[0]);
   test_assert(m[1] == fm221[1] * dm222[1]);
 }
