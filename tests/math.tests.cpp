@@ -142,6 +142,14 @@ TEST_CASE(normalize) {
   test_assert(math::normalize(-123) == math::normalize(-123.0));
 }
 
+TEST_CASE(comp_mult) {
+  constexpr auto f = math::comp_mult(1.23f, 4.56);
+  test_assert(f == 1.23f * 4.56);
+
+  constexpr auto i = math::comp_mult(123, 456);
+  test_assert(i == 123 * 456);
+}
+
 TEST_CASE(select) {
   CONST_OR_CONSTEXPR float f1 = math::select(1.23f, true);
   CONST_OR_CONSTEXPR float f2 = math::select(1.23f, false);

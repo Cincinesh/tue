@@ -353,6 +353,10 @@ TEST_CASE(normalize) {
   test_assert(math::normalize(f42) == f42 / math::length(f42));
 }
 
+TEST_CASE(comp_mult) {
+  test_assert(math::comp_mult(f41, f42) == f41 * f42);
+}
+
 TEST_CASE(transpose) {
   floatx4 v1(1.1f, 1.2f, 1.3f, 1.4f);
   floatx4 v2(2.1f, 2.2f, 2.3f, 2.4f);

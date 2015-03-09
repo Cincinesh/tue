@@ -215,6 +215,14 @@ namespace math
     return math::normalize(static_cast<double>(x));
   }
 
+  template<typename T, typename U>
+  inline constexpr typename std::enable_if<
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value,
+  decltype(T() * U())>::type comp_mult(T lhs, U rhs) noexcept {
+    return lhs * rhs;
+  }
+
   template<typename T>
   inline constexpr T select(const T& x, bool mask) noexcept {
     return mask ? x : T(0);

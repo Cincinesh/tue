@@ -330,6 +330,10 @@ namespace math
     };
   }
 
+  inline floatx4 comp_mult(const floatx4& lhs, const floatx4& rhs) noexcept {
+    return lhs * rhs;
+  }
+
   inline void transpose(
       floatx4& v0,
       floatx4& v1,

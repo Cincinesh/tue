@@ -560,6 +560,10 @@ namespace math
     return _mm_xor_ps(sign_bit, floatx4(1.0f));
   }
 
+  inline floatx4 comp_mult(const floatx4& lhs, const floatx4& rhs) noexcept {
+    return lhs * rhs;
+  }
+
   inline void transpose(
       floatx4& v0,
       floatx4& v1,

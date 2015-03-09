@@ -906,6 +906,17 @@ namespace math
   }
 
   template<typename T, typename U>
+  inline TUE_CONSTEXPR auto comp_mult(
+      const vec3<T>& lhs,
+      const vec3<U>& rhs) noexcept {
+    return vec3<decltype(math::comp_mult(lhs[0], rhs[0]))>{
+      math::comp_mult(lhs[0], rhs[0]),
+      math::comp_mult(lhs[1], rhs[1]),
+      math::comp_mult(lhs[2], rhs[2]),
+    };
+  }
+
+  template<typename T, typename U>
   inline TUE_CONSTEXPR auto select(
       const vec3<T>& v,
       const vec3<U>& mask) noexcept {

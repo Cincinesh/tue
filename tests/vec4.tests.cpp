@@ -960,6 +960,11 @@ TEST_CASE(normalize) {
   test_assert(math::normalize(iv41) == math::normalize(dvec4(iv41)));
 }
 
+TEST_CASE(comp_mult) {
+  CONST_OR_CONSTEXPR auto v = math::comp_mult(fv41, dv42);
+  test_assert(v == fv41 * dv42);
+}
+
 TEST_CASE(select) {
   CONST_OR_CONSTEXPR fvec4 v1 =
       math::select(fv41, bvec4(true, false, true, false));
