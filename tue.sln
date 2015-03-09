@@ -41,16 +41,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "detail_", "detail_", "{B467
 		include\tue\detail_\vec4.hpp = include\tue\detail_\vec4.hpp
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests.vcxproj", "{2590E09E-85E4-4B7B-8322-1827A4698EB9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D} = {C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{F2A9CF2E-1859-4F9F-88A4-1C9E35220A7E}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		LICENSE_1_0.txt = LICENSE_1_0.txt
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.win32", "tests.win32.vcxproj", "{2590E09E-85E4-4B7B-8322-1827A4698EB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D} = {C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}
 	EndProjectSection
 EndProject
 Global
