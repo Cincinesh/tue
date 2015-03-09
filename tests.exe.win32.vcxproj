@@ -22,7 +22,7 @@
     <ProjectGuid>{2590E09E-85E4-4B7B-8322-1827A4698EB9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>tests</RootNamespace>
-    <ProjectName>tests.win32</ProjectName>
+    <ProjectName>tests.exe.win32</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -70,25 +70,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\tests\</IntDir>
+    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\intermediate\tests.exe\</IntDir>
     <TargetName>tests</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\tests\</IntDir>
+    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\intermediate\tests.exe\</IntDir>
     <TargetName>tests</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\tests\</IntDir>
+    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\intermediate\tests.exe\</IntDir>
     <TargetName>tests</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\tests\</IntDir>
+    <IntDir>$(SolutionDir)build\win32-$(Platform)-$(Configuration)\intermediate\tests.exe\</IntDir>
     <TargetName>tests</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -105,7 +105,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mon.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>"$(TargetPath)"</Command>
@@ -125,7 +125,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mon.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>"$(TargetPath)"</Command>
@@ -149,7 +149,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mon.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>"$(TargetPath)"</Command>
@@ -173,7 +173,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mon.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>"$(TargetPath)"</Command>
