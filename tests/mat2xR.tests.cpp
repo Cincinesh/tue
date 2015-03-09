@@ -795,85 +795,85 @@ TEST_CASE(select) {
 }
 
 TEST_CASE(less) {
-  CONST_OR_CONSTEXPR fmat2x2 f1 = {
+  CONST_OR_CONSTEXPR fmat2x2 m1 = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
   };
-  CONST_OR_CONSTEXPR fmat2x2 f2 = {
+  CONST_OR_CONSTEXPR fmat2x2 m2 = {
     { 1.3f, 1.2f },
     { 2.1f, 2.3f },
   };
-  CONST_OR_CONSTEXPR mat2x2<bool> b = math::less(f1, f2);
+  CONST_OR_CONSTEXPR mat2x2<bool> b = math::less(m1, m2);
   test_assert(b[0] == bvec2(true, false));
   test_assert(b[1] == bvec2(false, true));
 }
 
 TEST_CASE(less_equal) {
-  CONST_OR_CONSTEXPR fmat2x2 f1 = {
+  CONST_OR_CONSTEXPR fmat2x2 m1 = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
   };
-  CONST_OR_CONSTEXPR fmat2x2 f2 = {
+  CONST_OR_CONSTEXPR fmat2x2 m2 = {
     { 1.3f, 1.0f },
     { 2.0f, 2.2f },
   };
-  CONST_OR_CONSTEXPR mat2x2<bool> b = math::less_equal(f1, f2);
+  CONST_OR_CONSTEXPR mat2x2<bool> b = math::less_equal(m1, m2);
   test_assert(b[0] == bvec2(true, false));
   test_assert(b[1] == bvec2(false, true));
 }
 
 TEST_CASE(greater) {
-  CONST_OR_CONSTEXPR fmat2x2 f1 = {
+  CONST_OR_CONSTEXPR fmat2x2 m1 = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
   };
-  CONST_OR_CONSTEXPR fmat2x2 f2 = {
+  CONST_OR_CONSTEXPR fmat2x2 m2 = {
     { 1.3f, 1.0f },
     { 2.0f, 2.2f },
   };
-  CONST_OR_CONSTEXPR mat2x2<bool> b = math::greater(f1, f2);
+  CONST_OR_CONSTEXPR mat2x2<bool> b = math::greater(m1, m2);
   test_assert(b[0] == bvec2(false, true));
   test_assert(b[1] == bvec2(true, false));
 }
 
 TEST_CASE(greater_equal) {
-  CONST_OR_CONSTEXPR fmat2x2 f1 = {
+  CONST_OR_CONSTEXPR fmat2x2 m1 = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
   };
-  CONST_OR_CONSTEXPR fmat2x2 f2 = {
+  CONST_OR_CONSTEXPR fmat2x2 m2 = {
     { 1.3f, 1.2f },
     { 2.1f, 2.3f },
   };
-  CONST_OR_CONSTEXPR mat2x2<bool> b = math::greater_equal(f1, f2);
+  CONST_OR_CONSTEXPR mat2x2<bool> b = math::greater_equal(m1, m2);
   test_assert(b[0] == bvec2(false, true));
   test_assert(b[1] == bvec2(true, false));
 }
 
 TEST_CASE(equal) {
-  CONST_OR_CONSTEXPR fmat2x2 f1 = {
+  CONST_OR_CONSTEXPR fmat2x2 m1 = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
   };
-  CONST_OR_CONSTEXPR fmat2x2 f2 = {
+  CONST_OR_CONSTEXPR fmat2x2 m2 = {
     { 1.1f, 1.3f },
     { 2.0f, 2.2f },
   };
-  CONST_OR_CONSTEXPR mat2x2<bool> b = math::equal(f1, f2);
+  CONST_OR_CONSTEXPR mat2x2<bool> b = math::equal(m1, m2);
   test_assert(b[0] == bvec2(true, false));
   test_assert(b[1] == bvec2(false, true));
 }
 
 TEST_CASE(not_equal) {
-  CONST_OR_CONSTEXPR fmat2x2 f1 = {
+  CONST_OR_CONSTEXPR fmat2x2 m1 = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
   };
-  CONST_OR_CONSTEXPR fmat2x2 f2 = {
+  CONST_OR_CONSTEXPR fmat2x2 m2 = {
     { 1.1f, 1.3f },
     { 2.0f, 2.2f },
   };
-  CONST_OR_CONSTEXPR mat2x2<bool> b = math::not_equal(f1, f2);
+  CONST_OR_CONSTEXPR mat2x2<bool> b = math::not_equal(m1, m2);
   test_assert(b[0] == bvec2(false, true));
   test_assert(b[1] == bvec2(true, false));
 }

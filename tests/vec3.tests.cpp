@@ -819,44 +819,44 @@ TEST_CASE(select) {
 }
 
 TEST_CASE(less) {
-  CONST_OR_CONSTEXPR fvec3 f1(1.1f, 2.2f, 3.3f);
-  CONST_OR_CONSTEXPR fvec3 f2(0.0f, 2.2f, 3.4f);
-  CONST_OR_CONSTEXPR bvec3 b = math::less(f1, f2);
+  CONST_OR_CONSTEXPR fvec3 v1(1.1f, 2.2f, 3.3f);
+  CONST_OR_CONSTEXPR fvec3 v2(0.0f, 2.2f, 3.4f);
+  CONST_OR_CONSTEXPR bvec3 b = math::less(v1, v2);
   test_assert(b == bvec3(false, false, true));
 }
 
 TEST_CASE(less_equal) {
-  CONST_OR_CONSTEXPR fvec3 f1(1.1f, 2.2f, 3.3f);
-  CONST_OR_CONSTEXPR fvec3 f2(0.0f, 2.2f, 3.4f);
-  CONST_OR_CONSTEXPR bvec3 b = math::less_equal(f1, f2);
+  CONST_OR_CONSTEXPR fvec3 v1(1.1f, 2.2f, 3.3f);
+  CONST_OR_CONSTEXPR fvec3 v2(0.0f, 2.2f, 3.4f);
+  CONST_OR_CONSTEXPR bvec3 b = math::less_equal(v1, v2);
   test_assert(b == bvec3(false, true, true));
 }
 
 TEST_CASE(greater) {
-  CONST_OR_CONSTEXPR fvec3 f1(1.1f, 2.2f, 3.3f);
-  CONST_OR_CONSTEXPR fvec3 f2(0.0f, 2.2f, 3.4f);
-  CONST_OR_CONSTEXPR bvec3 b = math::greater(f1, f2);
+  CONST_OR_CONSTEXPR fvec3 v1(1.1f, 2.2f, 3.3f);
+  CONST_OR_CONSTEXPR fvec3 v2(0.0f, 2.2f, 3.4f);
+  CONST_OR_CONSTEXPR bvec3 b = math::greater(v1, v2);
   test_assert(b == bvec3(true, false, false));
 }
 
 TEST_CASE(greater_equal) {
-  CONST_OR_CONSTEXPR fvec3 f1(1.1f, 2.2f, 3.3f);
-  CONST_OR_CONSTEXPR fvec3 f2(0.0f, 2.2f, 3.4f);
-  CONST_OR_CONSTEXPR bvec3 b = math::greater_equal(f1, f2);
+  CONST_OR_CONSTEXPR fvec3 v1(1.1f, 2.2f, 3.3f);
+  CONST_OR_CONSTEXPR fvec3 v2(0.0f, 2.2f, 3.4f);
+  CONST_OR_CONSTEXPR bvec3 b = math::greater_equal(v1, v2);
   test_assert(b == bvec3(true, true, false));
 }
 
 TEST_CASE(equal) {
-  CONST_OR_CONSTEXPR fvec3 f1(1.1f, 2.2f, 3.3f);
-  CONST_OR_CONSTEXPR fvec3 f2(0.0f, 2.2f, 3.4f);
-  CONST_OR_CONSTEXPR bvec3 b = math::equal(f1, f2);
+  CONST_OR_CONSTEXPR fvec3 v1(1.1f, 2.2f, 3.3f);
+  CONST_OR_CONSTEXPR fvec3 v2(0.0f, 2.2f, 3.4f);
+  CONST_OR_CONSTEXPR bvec3 b = math::equal(v1, v2);
   test_assert(b == bvec3(false, true, false));
 }
 
 TEST_CASE(not_equal) {
-  CONST_OR_CONSTEXPR fvec3 f1(1.1f, 2.2f, 3.3f);
-  CONST_OR_CONSTEXPR fvec3 f2(0.0f, 2.2f, 3.4f);
-  CONST_OR_CONSTEXPR bvec3 b = math::not_equal(f1, f2);
+  CONST_OR_CONSTEXPR fvec3 v1(1.1f, 2.2f, 3.3f);
+  CONST_OR_CONSTEXPR fvec3 v2(0.0f, 2.2f, 3.4f);
+  CONST_OR_CONSTEXPR bvec3 b = math::not_equal(v1, v2);
   test_assert(b == bvec3(true, false, true));
 }
 

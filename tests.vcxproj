@@ -179,7 +179,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="tests\float32x4.tests.cpp" />
+    <ClCompile Include="tests\boolx4.tests.cpp" />
+    <ClCompile Include="tests\floatx4.tests.cpp" />
     <ClCompile Include="tests\mat2xR.tests.cpp" />
     <ClCompile Include="tests\mat3xR.tests.cpp" />
     <ClCompile Include="tests\mat4xR.tests.cpp" />
