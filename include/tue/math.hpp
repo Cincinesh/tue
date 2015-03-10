@@ -14,6 +14,8 @@ namespace tue {
 
 namespace math
 {
+  constexpr float pi = 3.14159265358979323846264338327950288f;
+
   template<typename T>
   inline typename std::enable_if<std::is_floating_point<T>::value,
   void>::type sincos(T x, T& sin_out, T& cos_out) noexcept {
