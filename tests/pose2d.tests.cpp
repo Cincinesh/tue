@@ -12,12 +12,12 @@
 namespace {
 using namespace tue;
 
-constexpr float f1(1.1f);
-constexpr float f2(2.1f);
+constexpr fvec2 fv21(1.1f, 1.2f);
+constexpr fvec2 fv22(2.1f, 2.2f);
+constexpr fvec2 fv23(3.1f, 3.2f);
 
-constexpr fvec2 fv21(3.1f, 3.2f);
-constexpr fvec2 fv22(4.1f, 4.2f);
-constexpr fvec2 fv23(5.1f, 5.2f);
+constexpr float f1(4.1f);
+constexpr float f2(5.1f);
 
 TEST_CASE(default_constructor) {
   fpose2d pose;
