@@ -188,6 +188,8 @@
     <ClCompile Include="tests\math.tests.cpp" />
     <ClCompile Include="tests\matmult.tests.cpp" />
     <ClCompile Include="tests\mattransform.tests.cpp" />
+    <ClCompile Include="tests\pose2d.tests.cpp" />
+    <ClCompile Include="tests\pose3d.tests.cpp" />
     <ClCompile Include="tests\quat.tests.cpp" />
     <ClCompile Include="tests\rect.tests.cpp" />
     <ClCompile Include="tests\size2d.tests.cpp" />
