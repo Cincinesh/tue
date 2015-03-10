@@ -6,6 +6,12 @@
 #include <tue/mat.hpp>
 #include <mon/test_case.hpp>
 
+#include <tue/math.hpp>
+#include <tue/pose2d.hpp>
+#include <tue/pose3d.hpp>
+#include <tue/quat.hpp>
+#include <tue/vec.hpp>
+
 namespace {
 using namespace tue;
 
@@ -106,13 +112,67 @@ TEST_CASE(scale_mat_3d) {
   test_assert(m2 == m1);
 }
 
+TEST_CASE(pose_mat_2d) {
+  const fvec2 translation(1.1f, 2.2f);
+  const float rotation = 3.3f;
+  const fmat2x3 m1 = math::pose_mat(translation, rotation);
+  test_assert(m1
+      == fmat3x3(math::rotation_mat(rotation))
+          * math::translation_mat(translation));
+
+  const fmat2x3 m2 = math::pose_mat(fpose2d(translation, rotation));
+  test_assert(m2 == m1);
+}
+
+TEST_CASE(pose_mat_from_axis_angle) {
+  const fvec3 translation(1.1f, 2.2f, 3.3f);
+  const fvec3 rotation_axis(4.4f, 5.5f, 6.6f);
+  const float rotation_angle = 7.7f;
+  const fmat3x4 m1 = math::pose_mat(
+      translation,
+      rotation_axis,
+      rotation_angle);
+  test_assert(m1
+      == fmat4x4(math::rotation_mat(rotation_axis, rotation_angle))
+          * math::translation_mat(translation));
+
+  const fmat3x4 m2 = math::pose_mat(
+      translation,
+      fvec4(rotation_axis, rotation_angle));
+  test_assert(m2 == m1);
+}
+
+TEST_CASE(pose_mat_from_rotation_vec) {
+  const fvec3 translation(1.1f, 2.2f, 3.3f);
+  const fvec3 rotation(4.4f, 5.5f, 6.6f);
+  const fmat3x4 m1 = math::pose_mat(translation, rotation);
+  test_assert(m1
+      == fmat4x4(math::rotation_mat(rotation))
+          * math::translation_mat(translation));
+}
+
+TEST_CASE(pose_mat_from_quat) {
+  const fvec3 translation(1.1f, 2.2f, 3.3f);
+  const fquat rotation(4.4f, 5.5f, 6.6f, 7.7f);
+  const fmat3x4 m1 = math::pose_mat(translation, rotation);
+  test_assert(m1
+      == fmat4x4(math::rotation_mat(rotation))
+          * math::translation_mat(translation));
+
+  const fmat3x4 m2 = math::pose_mat(fpose3d(translation, rotation));
+  test_assert(m2 == m1);
+}
+
 TEST_CASE(view_mat_2d) {
   const fvec2 translation(1.1f, 2.2f);
   const float rotation = 3.3f;
-  const fmat2x3 m = math::view_mat(translation, rotation);
-  test_assert(m
+  const fmat2x3 m1 = math::view_mat(translation, rotation);
+  test_assert(m1
       == math::translation_mat(-translation)
           * math::rotation_mat(-rotation));
+
+  const fmat2x3 m2 = math::view_mat(fpose2d(translation, rotation));
+  test_assert(m2 == m1);
 }
 
 TEST_CASE(view_mat_from_axis_angle) {
@@ -145,10 +205,13 @@ TEST_CASE(view_mat_from_rotation_vec) {
 TEST_CASE(view_mat_from_quat) {
   const fvec3 translation(1.1f, 2.2f, 3.3f);
   const fquat rotation(4.4f, 5.5f, 6.6f, 7.7f);
-  const fmat3x4 m = math::view_mat(translation, rotation);
-  test_assert(m
+  const fmat3x4 m1 = math::view_mat(translation, rotation);
+  test_assert(m1
       == math::translation_mat(-translation)
           * math::rotation_mat(math::conjugate(rotation)));
+
+  const fmat3x4 m2 = math::view_mat(fpose3d(translation, rotation));
+  test_assert(m2 == m1);
 }
 
 TEST_CASE(perspective_mat) {
@@ -181,16 +244,23 @@ TEST_CASE(ortho_mat) {
   const float height = 2.2f;
   const float near = 3.3f;
   const float far = 4.4f;
-  const fmat3x3 m = math::ortho_mat(width, height, near, far);
+  const fmat4x4 m = math::ortho_mat(width, height, near, far);
   test_assert(m[0][0] == 2 / width);
   test_assert(m[0][1] == 0.0f);
   test_assert(m[0][2] == 0.0f);
+  test_assert(m[0][3] == 0.0f);
   test_assert(m[1][0] == 0.0f);
   test_assert(m[1][1] == 2 / height);
   test_assert(m[1][2] == 0.0f);
+  test_assert(m[1][3] == 0.0f);
   test_assert(m[2][0] == 0.0f);
   test_assert(m[2][1] == 0.0f);
-  test_assert(m[2][2] == 2 / (near - far));
+  test_assert(m[2][2] == 2 / (far - near));
+  test_assert(m[2][3] == (far + near) / (far - near));
+  test_assert(m[3][0] == 0.0f);
+  test_assert(m[3][1] == 0.0f);
+  test_assert(m[3][2] == 0.0f);
+  test_assert(m[3][3] == 1.0f);
 }
 
 }

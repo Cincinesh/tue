@@ -7,6 +7,8 @@
 
 #include "../mat.hpp"
 #include "../math.hpp"
+#include "../pose2d.hpp"
+#include "../pose3d.hpp"
 #include "../quat.hpp"
 #include "../vec.hpp"
 
@@ -161,7 +163,61 @@ namespace math
   }
 
   template<typename T>
-  inline mat<T, 2, 3> view_mat(
+  inline auto pose_mat(
+      const vec2<T>& translation,
+      const T& rotation) noexcept {
+    const auto r = rotation_mat(rotation);
+    return mat3x3<typename decltype(r)::component_type>(r)
+        * translation_mat(translation);
+  }
+
+  template<typename T>
+  inline auto pose_mat(const pose2d<T>& pose) noexcept {
+    return pose_mat(pose.translation(), pose.rotation());
+  }
+
+  template<typename T>
+  inline auto pose_mat(
+      const vec3<T>& translation,
+      const vec3<T>& rotation_axis,
+      const T& rotation_angle) noexcept {
+    const auto r = rotation_mat(rotation_axis, rotation_angle);
+    return mat4x4<typename decltype(r)::component_type>(r)
+        * translation_mat(translation);
+  }
+
+  template<typename T>
+  inline auto pose_mat(
+      const vec3<T>& translation,
+      const vec4<T>& rotation) noexcept {
+    return pose_mat(translation, rotation.xyz(), rotation.w());
+  }
+
+  template<typename T>
+  inline auto pose_mat(
+      const vec3<T>& translation,
+      const vec3<T>& rotation) noexcept {
+    const auto r = rotation_mat(rotation);
+    return mat4x4<typename decltype(r)::component_type>(r)
+        * translation_mat(translation);
+  }
+
+  template<typename T>
+  inline auto pose_mat(
+      const vec3<T>& translation,
+      const quat<T>& rotation) noexcept {
+    const auto r = rotation_mat(rotation);
+    return mat4x4<typename decltype(r)::component_type>(r)
+        * translation_mat(translation);
+  }
+
+  template<typename T>
+  inline auto pose_mat(const pose3d<T>& pose) noexcept {
+    return pose_mat(pose.translation(), pose.rotation());
+  }
+
+  template<typename T>
+  inline auto view_mat(
       const vec2<T>& translation,
       const T& rotation) noexcept {
     return translation_mat(-translation)
@@ -169,7 +225,12 @@ namespace math
   }
 
   template<typename T>
-  inline mat<T, 3, 4> view_mat(
+  inline auto view_mat(const pose2d<T>& pose) noexcept {
+    return view_mat(pose.translation(), pose.rotation());
+  }
+
+  template<typename T>
+  inline auto view_mat(
       const vec3<T>& translation,
       const vec3<T>& rotation_axis,
       const T& rotation_angle) noexcept {
@@ -178,14 +239,14 @@ namespace math
   }
 
   template<typename T>
-  inline mat<T, 3, 4> view_mat(
+  inline auto view_mat(
       const vec3<T>& translation,
       const vec4<T>& rotation) noexcept {
     return view_mat(translation, rotation.xyz(), rotation.w());
   }
 
   template<typename T>
-  inline mat<T, 3, 4> view_mat(
+  inline auto view_mat(
       const vec3<T>& translation,
       const vec3<T>& rotation) noexcept {
     return translation_mat(-translation)
@@ -193,11 +254,16 @@ namespace math
   }
 
   template<typename T>
-  inline mat<T, 3, 4> view_mat(
+  inline auto view_mat(
       const vec3<T>& translation,
       const quat<T>& rotation) noexcept {
     return translation_mat(-translation)
         * rotation_mat(math::conjugate(rotation));
+  }
+
+  template<typename T>
+  inline auto view_mat(const pose3d<T>& pose) noexcept {
+    return view_mat(pose.translation(), pose.rotation());
   }
 
   template<typename T>
@@ -210,7 +276,7 @@ namespace math
     U s, c;
     math::sincos(U(fovy) / U(2), s, c);
     const U f = c / s;
-    const U nmf = static_cast<U>(near - far);
+    const U nmf = U(near - far);
     return mat<U, 4, 4>{
       { f / U(aspect),                             U(0), U(0), U(0) },
       { U(0), f,                                         U(0), U(0) },
@@ -226,10 +292,12 @@ namespace math
       const T& near,
       const T& far) {
     using U = decltype(math::sin(width));
-    return mat<U, 3, 3>{
-      { U(2) / U(width),      U(0), U(0) },
-      { U(0), U(2) / U(height),     U(0) },
-      { U(0), U(0), U(2) / U(near - far) },
+    const U fmn = U(far - near);
+    return mat<U, 4, 4>{
+      { U(2) / U(width),           U(0), U(0), U(0) },
+      { U(0), U(2) / U(height),          U(0), U(0) },
+      { U(0), U(0), U(2) / fmn, (far + near) / fmn  },
+      { U(0), U(0), U(0),                      U(1) },
     };
   }
 }
