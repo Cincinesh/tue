@@ -17,30 +17,33 @@ namespace tue {
 namespace math
 {
   template<typename T>
-  inline mat<T, 2, 3> translation_mat(const T& x, const T& y) noexcept {
+  inline mat<T, 4, 4> translation_mat(const T& x, const T& y) noexcept {
     return {
-      { T(1), T(0), x },
-      { T(0), T(1), y },
+      { T(1), T(0),    x, T(0) },
+      { T(0), T(1),    y, T(0) },
+      { T(0), T(0), T(1), T(0) },
+      { T(0), T(0), T(0), T(1) },
     };
   }
 
   template<typename T>
-  inline mat<T, 2, 3> translation_mat(const vec2<T>& xy) noexcept {
+  inline mat<T, 4, 4> translation_mat(const vec2<T>& xy) noexcept {
     return translation_mat(xy.x(), xy.y());
   }
 
   template<typename T>
-  inline mat<T, 3, 4> translation_mat(
+  inline mat<T, 4, 4> translation_mat(
       const T& x, const T& y, const T& z) noexcept {
     return {
-      { T(1), T(0), T(0), x },
-      { T(0), T(1), T(0), y },
-      { T(0), T(0), T(1), z },
+      { T(1), T(0), T(0),    x },
+      { T(0), T(1), T(0),    y },
+      { T(0), T(0), T(1),    z },
+      { T(0), T(0), T(0), T(1) },
     };
   }
 
   template<typename T>
-  inline mat<T, 3, 4> translation_mat(const vec3<T>& xyz) noexcept {
+  inline mat<T, 4, 4> translation_mat(const vec3<T>& xyz) noexcept {
     return translation_mat(xyz.x(), xyz.y(), xyz.z());
   }
 
@@ -49,9 +52,11 @@ namespace math
     using U = decltype(math::sin(angle));
     U s, c;
     math::sincos(angle, s, c);
-    return mat<U, 2, 2>{
-      { c, -s },
-      { s,  c },
+    return mat<U, 4, 4>{
+      {    c,   -s, U(0), U(0) },
+      {    s,    c, U(0), U(0) },
+      { U(0), U(0), U(1), U(0) },
+      { U(0), U(0), U(0), U(1) },
     };
   }
 
@@ -86,10 +91,11 @@ namespace math
     const U yzomc = yz * omc;
     const U zzomc = zz * omc;
 
-    return mat<U, 3, 3>{
-      { xxomc + c, xyomc - zs, xzomc + ys },
-      { xyomc + zs, yyomc + c, yzomc - xs },
-      { xzomc - ys, yzomc + xs, zzomc + c },
+    return mat<U, 4, 4>{
+      { xxomc + c, xyomc - zs, xzomc + ys, U(0) },
+      { xyomc + zs, yyomc + c, yzomc - xs, U(0) },
+      { xzomc - ys, yzomc + xs, zzomc + c, U(0) },
+      {                  U(0), U(0), U(0), U(1) },
     };
   }
 
@@ -114,7 +120,7 @@ namespace math
   }
 
   template<typename T>
-  inline mat<T, 3, 3> rotation_mat(const quat<T>& q) noexcept {
+  inline mat<T, 4, 4> rotation_mat(const quat<T>& q) noexcept {
     const T x = q.x();
     const T y = q.y();
     const T z = q.z();
@@ -129,36 +135,40 @@ namespace math
     const T zz2 = z * z * T(2);
     const T zw2 = z * w * T(2);
     return {
-      { T(1) - yy2 - zz2, xy2 - zw2, xz2 + yw2 },
-      { xy2 + zw2, T(1) - xx2 - zz2, yz2 - xw2 },
-      { xz2 - yw2, yz2 + xw2, T(1) - xx2 - yy2 },
+      { T(1) - yy2 - zz2, xy2 - zw2, xz2 + yw2, T(0) },
+      { xy2 + zw2, T(1) - xx2 - zz2, yz2 - xw2, T(0) },
+      { xz2 - yw2, yz2 + xw2, T(1) - xx2 - yy2, T(0) },
+      {                       T(0), T(0), T(0), T(1) },
     };
   }
 
   template<typename T>
-  inline mat<T, 2, 2> scale_mat(const T& x, const T& y) noexcept {
+  inline mat<T, 4, 4> scale_mat(const T& x, const T& y) noexcept {
     return {
-      { x, T(0) },
-      { T(0), y },
+      {    x, T(0), T(0), T(0) },
+      { T(0),    y, T(0), T(0) },
+      { T(0), T(0), T(1), T(0) },
+      { T(0), T(0), T(0), T(1) },
     };
   }
 
   template<typename T>
-  inline mat<T, 2, 2> scale_mat(const vec2<T>& xy) noexcept {
+  inline mat<T, 4, 4> scale_mat(const vec2<T>& xy) noexcept {
     return scale_mat(xy.x(), xy.y());
   }
 
   template<typename T>
-  inline mat<T, 3, 3> scale_mat(const T& x, const T& y, const T& z) noexcept {
+  inline mat<T, 4, 4> scale_mat(const T& x, const T& y, const T& z) noexcept {
     return {
-      { x, T(0), T(0) },
-      { T(0), y, T(0) },
-      { T(0), T(0), z },
+      {    x, T(0), T(0), T(0) },
+      { T(0),    y, T(0), T(0) },
+      { T(0), T(0),    z, T(0) },
+      { T(0), T(0), T(0), T(1) },
     };
   }
 
   template<typename T>
-  inline mat<T, 3, 3> scale_mat(const vec3<T>& xyz) noexcept {
+  inline mat<T, 4, 4> scale_mat(const vec3<T>& xyz) noexcept {
     return scale_mat(xyz.x(), xyz.y(), xyz.z());
   }
 
@@ -166,8 +176,7 @@ namespace math
   inline auto pose_mat(
       const vec2<T>& translation,
       const T& rotation) noexcept {
-    const auto r = rotation_mat(rotation);
-    return mat3x3<typename decltype(r)::component_type>(r)
+    return rotation_mat(rotation)
         * translation_mat(translation);
   }
 
@@ -181,8 +190,7 @@ namespace math
       const vec3<T>& translation,
       const vec3<T>& rotation_axis,
       const T& rotation_angle) noexcept {
-    const auto r = rotation_mat(rotation_axis, rotation_angle);
-    return mat4x4<typename decltype(r)::component_type>(r)
+    return rotation_mat(rotation_axis, rotation_angle)
         * translation_mat(translation);
   }
 
@@ -197,8 +205,7 @@ namespace math
   inline auto pose_mat(
       const vec3<T>& translation,
       const vec3<T>& rotation) noexcept {
-    const auto r = rotation_mat(rotation);
-    return mat4x4<typename decltype(r)::component_type>(r)
+    return rotation_mat(rotation)
         * translation_mat(translation);
   }
 
@@ -206,8 +213,7 @@ namespace math
   inline auto pose_mat(
       const vec3<T>& translation,
       const quat<T>& rotation) noexcept {
-    const auto r = rotation_mat(rotation);
-    return mat4x4<typename decltype(r)::component_type>(r)
+    return rotation_mat(rotation)
         * translation_mat(translation);
   }
 
