@@ -7,12 +7,6 @@
 
 #include "vec.hpp"
 
-#ifdef _MSC_VER
-#define TUE_CONSTEXPR
-#else
-#define TUE_CONSTEXPR constexpr
-#endif
-
 namespace tue {
 
 template<typename T>
@@ -74,7 +68,7 @@ public:
 };
 
 template<typename L, typename R>
-inline TUE_CONSTEXPR bool operator==(
+inline constexpr bool operator==(
     const pose2d<L>& lhs,
     const pose2d<R>& rhs) noexcept {
   return lhs.translation() == rhs.translation()
@@ -82,12 +76,10 @@ inline TUE_CONSTEXPR bool operator==(
 }
 
 template<typename L, typename R>
-inline TUE_CONSTEXPR bool operator!=(
+inline constexpr bool operator!=(
     const pose2d<L>& lhs,
     const pose2d<R>& rhs) noexcept {
   return !(lhs == rhs);
 }
 
 }
-
-#undef TUE_CONSTEXPR

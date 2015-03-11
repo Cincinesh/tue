@@ -13,12 +13,12 @@
 namespace {
 using namespace tue;
 
-constexpr fvec3 fv31(1.1f, 1.2f, 1.3f);
-constexpr fvec3 fv32(2.1f, 2.2f, 2.3f);
-constexpr fvec3 fv33(3.1f, 3.2f, 3.3f);
+CONST_OR_CONSTEXPR fvec3 fv31(1.1f, 1.2f, 1.3f);
+CONST_OR_CONSTEXPR fvec3 fv32(2.1f, 2.2f, 2.3f);
+CONST_OR_CONSTEXPR fvec3 fv33(3.1f, 3.2f, 3.3f);
 
-constexpr fquat fq1(4.1f, 4.2f, 4.3f, 4.4f);
-constexpr fquat fq2(5.1f, 5.2f, 5.3f, 5.4f);
+CONST_OR_CONSTEXPR fquat fq1(4.1f, 4.2f, 4.3f, 4.4f);
+CONST_OR_CONSTEXPR fquat fq2(5.1f, 5.2f, 5.3f, 5.4f);
 
 TEST_CASE(default_constructor) {
   fpose3d pose;
@@ -26,20 +26,20 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(component_constructor) {
-  constexpr fpose3d pose(fv31, fq1);
+  CONST_OR_CONSTEXPR fpose3d pose(fv31, fq1);
   test_assert(pose.translation() == fv31);
   test_assert(pose.rotation() == fq1);
 }
 
 TEST_CASE(explicit_conversion_constructor) {
-  constexpr dpose3d dpose(dvec3(1.1, 2.2, 3.3), dquat(4.4, 5.5, 6.6, 7.7));
+  CONST_OR_CONSTEXPR dpose3d dpose(dvec3(1.1, 2.2, 3.3), dquat(4.4, 5.5, 6.6, 7.7));
   CONST_OR_CONSTEXPR fpose3d fpose(dpose);
   test_assert(fpose.translation() == fvec3(dpose.translation()));
   test_assert(fpose.rotation() == fquat(dpose.rotation()));
 }
 
 TEST_CASE(implicit_conversion_operator) {
-  constexpr fpose3d fpose(
+  CONST_OR_CONSTEXPR fpose3d fpose(
       fvec3(1.1f, 2.2f, 3.3f),
       fquat(4.4f, 5.5f, 6.6f, 7.7f));
   CONST_OR_CONSTEXPR dpose3d dpose = fpose;
@@ -75,10 +75,10 @@ TEST_CASE(set_rotation) {
 }
 
 TEST_CASE(equality_operator) {
-  constexpr fpose3d p1(fvec3(1), fquat(2, 2, 2, 2));
-  constexpr fpose3d p2(fvec3(1), fquat(2, 2, 2, 2));
-  constexpr fpose3d p3(fvec3(0), fquat(2, 2, 2, 2));
-  constexpr fpose3d p4(fvec3(1), fquat(0, 0, 0, 0));
+  CONST_OR_CONSTEXPR fpose3d p1(fvec3(1), fquat(2, 2, 2, 2));
+  CONST_OR_CONSTEXPR fpose3d p2(fvec3(1), fquat(2, 2, 2, 2));
+  CONST_OR_CONSTEXPR fpose3d p3(fvec3(0), fquat(2, 2, 2, 2));
+  CONST_OR_CONSTEXPR fpose3d p4(fvec3(1), fquat(0, 0, 0, 0));
   CONST_OR_CONSTEXPR bool result1 = (p1 == p2);
   CONST_OR_CONSTEXPR bool result2 = (p1 == p3);
   CONST_OR_CONSTEXPR bool result3 = (p1 == p4);
@@ -88,10 +88,10 @@ TEST_CASE(equality_operator) {
 }
 
 TEST_CASE(inequality_operator) {
-  constexpr fpose3d p1(fvec3(1), fquat(2, 2, 2, 2));
-  constexpr fpose3d p2(fvec3(1), fquat(2, 2, 2, 2));
-  constexpr fpose3d p3(fvec3(0), fquat(2, 2, 2, 2));
-  constexpr fpose3d p4(fvec3(1), fquat(0, 0, 0, 0));
+  CONST_OR_CONSTEXPR fpose3d p1(fvec3(1), fquat(2, 2, 2, 2));
+  CONST_OR_CONSTEXPR fpose3d p2(fvec3(1), fquat(2, 2, 2, 2));
+  CONST_OR_CONSTEXPR fpose3d p3(fvec3(0), fquat(2, 2, 2, 2));
+  CONST_OR_CONSTEXPR fpose3d p4(fvec3(1), fquat(0, 0, 0, 0));
   CONST_OR_CONSTEXPR bool result1 = (p1 != p2);
   CONST_OR_CONSTEXPR bool result2 = (p1 != p3);
   CONST_OR_CONSTEXPR bool result3 = (p1 != p4);

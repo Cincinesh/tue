@@ -120,10 +120,10 @@ TEST_CASE(abs) {
 }
 
 TEST_CASE(dot) {
-  constexpr auto f = math::dot(1.23f, 4.56);
+  CONST_OR_CONSTEXPR auto f = math::dot(1.23f, 4.56);
   test_assert(f == 1.23f * 4.56);
 
-  constexpr auto i = math::dot(123, 456);
+  CONST_OR_CONSTEXPR auto i = math::dot(123, 456);
   test_assert(i == 123 * 456);
 }
 
@@ -143,10 +143,10 @@ TEST_CASE(normalize) {
 }
 
 TEST_CASE(comp_mult) {
-  constexpr auto f = math::comp_mult(1.23f, 4.56);
+  CONST_OR_CONSTEXPR auto f = math::comp_mult(1.23f, 4.56);
   test_assert(f == 1.23f * 4.56);
 
-  constexpr auto i = math::comp_mult(123, 456);
+  CONST_OR_CONSTEXPR auto i = math::comp_mult(123, 456);
   test_assert(i == 123 * 456);
 }
 

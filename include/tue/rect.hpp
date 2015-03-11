@@ -8,12 +8,6 @@
 #include "size2d.hpp"
 #include "vec.hpp"
 
-#ifdef _MSC_VER
-#define TUE_CONSTEXPR
-#else
-#define TUE_CONSTEXPR constexpr
-#endif
-
 namespace tue {
 
 template<typename P, typename S = P>
@@ -140,7 +134,7 @@ public:
 };
 
 template<typename LP, typename LS, typename RP, typename RS>
-inline TUE_CONSTEXPR bool operator==(
+inline constexpr bool operator==(
     const rect<LP, LS>& lhs,
     const rect<RP, RS>& rhs) noexcept {
   return lhs.position() == rhs.position()
@@ -148,12 +142,10 @@ inline TUE_CONSTEXPR bool operator==(
 }
 
 template<typename LP, typename LS, typename RP, typename RS>
-inline TUE_CONSTEXPR bool operator!=(
+inline constexpr bool operator!=(
     const rect<LP, LS>& lhs,
     const rect<RP, RS>& rhs) noexcept {
   return !(lhs == rhs);
 }
 
 }
-
-#undef TUE_CONSTEXPR

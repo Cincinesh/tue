@@ -22,18 +22,18 @@ constexpr auto i1 = 111;
 
 constexpr auto u2 = 2u;
 
-constexpr fvec4 fv41(1.1f, 1.2f, 1.3f, 1.4f);
-constexpr fvec4 fv42(2.2f, -2.4f, 2.6f, -2.8f);
+CONST_OR_CONSTEXPR fvec4 fv41(1.1f, 1.2f, 1.3f, 1.4f);
+CONST_OR_CONSTEXPR fvec4 fv42(2.2f, -2.4f, 2.6f, -2.8f);
 
-constexpr dvec4 dv41(1.1, 1.2, 1.3, 1.4);
-constexpr dvec4 dv42(2.2, 2.4, 2.6, 2.8);
+CONST_OR_CONSTEXPR dvec4 dv41(1.1, 1.2, 1.3, 1.4);
+CONST_OR_CONSTEXPR dvec4 dv42(2.2, 2.4, 2.6, 2.8);
 
-constexpr ivec4 iv41(111, 222, 333, 444);
-constexpr ivec4 iv42(2, -4, 6, -8);
+CONST_OR_CONSTEXPR ivec4 iv41(111, 222, 333, 444);
+CONST_OR_CONSTEXPR ivec4 iv42(2, -4, 6, -8);
 
-constexpr uvec4 uv42(2u, 4u, 6u, 8u);
+CONST_OR_CONSTEXPR uvec4 uv42(2u, 4u, 6u, 8u);
 
-constexpr mat4x4<unsigned int> um442{
+CONST_OR_CONSTEXPR mat4x4<unsigned int> um442{
   {  2u,  4u,  6u,  8u },
   { 10u, 12u, 14u, 16u },
   { 18u, 20u, 22u, 24u },
@@ -46,7 +46,7 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(scalar_constructor) {
-  constexpr fvec4 v(1.1f);
+  CONST_OR_CONSTEXPR fvec4 v(1.1f);
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 1.1f);
   test_assert(v[2] == 1.1f);
@@ -54,7 +54,7 @@ TEST_CASE(scalar_constructor) {
 }
 
 TEST_CASE(scalar_component_constructor) {
-  constexpr fvec4 v = { 1.1f, 2.2f, 3.3f, 4.4f };
+  CONST_OR_CONSTEXPR fvec4 v = { 1.1f, 2.2f, 3.3f, 4.4f };
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
   test_assert(v[2] == 3.3f);
@@ -62,7 +62,7 @@ TEST_CASE(scalar_component_constructor) {
 }
 
 TEST_CASE(vec2_component_constructor) {
-  constexpr fvec4 v(fvec2(1.1f, 2.2f), 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 v(fvec2(1.1f, 2.2f), 3.3f, 4.4f);
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
   test_assert(v[2] == 3.3f);
@@ -70,7 +70,7 @@ TEST_CASE(vec2_component_constructor) {
 }
 
 TEST_CASE(vec3_component_constructor) {
-  constexpr fvec4 v(fvec3(1.1f, 2.2f, 3.3f), 4.4f);
+  CONST_OR_CONSTEXPR fvec4 v(fvec3(1.1f, 2.2f, 3.3f), 4.4f);
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
   test_assert(v[2] == 3.3f);
@@ -78,7 +78,7 @@ TEST_CASE(vec3_component_constructor) {
 }
 
 TEST_CASE(explicit_conversion_constructor) {
-  constexpr fvec4 v(dv41);
+  CONST_OR_CONSTEXPR fvec4 v(dv41);
   test_assert(v[0] == static_cast<float>(dv41[0]));
   test_assert(v[1] == static_cast<float>(dv41[1]));
   test_assert(v[2] == static_cast<float>(dv41[2]));
@@ -319,7 +319,7 @@ TEST_CASE(data) {
 }
 
 TEST_CASE(subscript_operator) {
-  constexpr fvec4 cev(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 cev(1.1f, 2.2f, 3.3f, 4.4f);
   CONST_OR_CONSTEXPR float cev0 = cev[0];
   CONST_OR_CONSTEXPR float cev1 = cev[1];
   CONST_OR_CONSTEXPR float cev2 = cev[2];
@@ -703,12 +703,12 @@ TEST_CASE(bitwise_shift_right_operator) {
 }
 
 TEST_CASE(equality_operator) {
-  constexpr fvec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
-  constexpr ivec4 v2(1, 2, 3, 4);
-  constexpr ivec4 v3(0, 2, 3, 4);
-  constexpr ivec4 v4(1, 0, 3, 4);
-  constexpr ivec4 v5(1, 2, 0, 4);
-  constexpr ivec4 v6(1, 2, 3, 0);
+  CONST_OR_CONSTEXPR fvec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+  CONST_OR_CONSTEXPR ivec4 v2(1, 2, 3, 4);
+  CONST_OR_CONSTEXPR ivec4 v3(0, 2, 3, 4);
+  CONST_OR_CONSTEXPR ivec4 v4(1, 0, 3, 4);
+  CONST_OR_CONSTEXPR ivec4 v5(1, 2, 0, 4);
+  CONST_OR_CONSTEXPR ivec4 v6(1, 2, 3, 0);
   CONST_OR_CONSTEXPR bool result1 = (v1 == v2);
   CONST_OR_CONSTEXPR bool result2 = (v1 == v3);
   CONST_OR_CONSTEXPR bool result3 = (v1 == v4);
@@ -722,12 +722,12 @@ TEST_CASE(equality_operator) {
 }
 
 TEST_CASE(inequality_operator) {
-  constexpr fvec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
-  constexpr ivec4 v2(1, 2, 3, 4);
-  constexpr ivec4 v3(0, 2, 3, 4);
-  constexpr ivec4 v4(1, 0, 3, 4);
-  constexpr ivec4 v5(1, 2, 0, 4);
-  constexpr ivec4 v6(1, 2, 3, 0);
+  CONST_OR_CONSTEXPR fvec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+  CONST_OR_CONSTEXPR ivec4 v2(1, 2, 3, 4);
+  CONST_OR_CONSTEXPR ivec4 v3(0, 2, 3, 4);
+  CONST_OR_CONSTEXPR ivec4 v4(1, 0, 3, 4);
+  CONST_OR_CONSTEXPR ivec4 v5(1, 2, 0, 4);
+  CONST_OR_CONSTEXPR ivec4 v6(1, 2, 3, 0);
   CONST_OR_CONSTEXPR bool result1 = (v1 != v2);
   CONST_OR_CONSTEXPR bool result2 = (v1 != v3);
   CONST_OR_CONSTEXPR bool result3 = (v1 != v4);

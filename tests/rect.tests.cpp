@@ -19,7 +19,7 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(x_y_width_height_component_constructor) {
-  constexpr rect<float, int> r(1.1f, 2.2f, 3, 4);
+  CONST_OR_CONSTEXPR rect<float, int> r(1.1f, 2.2f, 3, 4);
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
@@ -27,7 +27,7 @@ TEST_CASE(x_y_width_height_component_constructor) {
 }
 
 TEST_CASE(x_y_size_component_constructor) {
-  constexpr rect<float, int> r(1.1f, 2.2f, isize2d(3, 4));
+  CONST_OR_CONSTEXPR rect<float, int> r(1.1f, 2.2f, isize2d(3, 4));
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
@@ -35,7 +35,7 @@ TEST_CASE(x_y_size_component_constructor) {
 }
 
 TEST_CASE(position_width_height_component_constructor) {
-  constexpr rect<float, int> r(fvec2(1.1f, 2.2f), 3, 4);
+  CONST_OR_CONSTEXPR rect<float, int> r(fvec2(1.1f, 2.2f), 3, 4);
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
@@ -43,7 +43,7 @@ TEST_CASE(position_width_height_component_constructor) {
 }
 
 TEST_CASE(position_size_component_constructor) {
-  constexpr rect<float, int> r(fvec2(1.1f, 2.2f), isize2d(3, 4));
+  CONST_OR_CONSTEXPR rect<float, int> r(fvec2(1.1f, 2.2f), isize2d(3, 4));
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
@@ -51,7 +51,7 @@ TEST_CASE(position_size_component_constructor) {
 }
 
 TEST_CASE(explicit_conversion_constructor) {
-  constexpr rect<float, double> fdr(1.1f, 2.2f, 3.3, 4.4);
+  CONST_OR_CONSTEXPR rect<float, double> fdr(1.1f, 2.2f, 3.3, 4.4);
   CONST_OR_CONSTEXPR iurect iur(fdr);
   test_assert(iur.x() == static_cast<int>(1.1f));
   test_assert(iur.y() == static_cast<int>(2.2f));
@@ -60,7 +60,7 @@ TEST_CASE(explicit_conversion_constructor) {
 }
 
 TEST_CASE(implicit_conversion_operator) {
-  constexpr rect<float, int> fir(1.1f, 2.2f, 3, 4);
+  CONST_OR_CONSTEXPR rect<float, int> fir(1.1f, 2.2f, 3, 4);
   CONST_OR_CONSTEXPR rect<double, long long> dlr = fir;
   test_assert(dlr.x() == static_cast<double>(1.1f));
   test_assert(dlr.y() == static_cast<double>(2.2f));
@@ -69,7 +69,7 @@ TEST_CASE(implicit_conversion_operator) {
 }
 
 TEST_CASE(position) {
-  constexpr iurect r(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r(1, 2, 3u, 4u);
   CONST_OR_CONSTEXPR ivec2 position = r.position();
   test_assert(position.x() == 1);
   test_assert(position.y() == 2);
@@ -92,7 +92,7 @@ TEST_CASE(set_position) {
 }
 
 TEST_CASE(x) {
-  constexpr iurect r(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r(1, 2, 3u, 4u);
   CONST_OR_CONSTEXPR int x = r.x();
   test_assert(x == 1);
 }
@@ -107,7 +107,7 @@ TEST_CASE(set_x) {
 }
 
 TEST_CASE(y) {
-  constexpr iurect r(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r(1, 2, 3u, 4u);
   CONST_OR_CONSTEXPR int y = r.y();
   test_assert(y == 2);
 }
@@ -122,7 +122,7 @@ TEST_CASE(set_y) {
 }
 
 TEST_CASE(size) {
-  constexpr iurect r(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r(1, 2, 3u, 4u);
   CONST_OR_CONSTEXPR usize2d size = r.size();
   test_assert(size.width() == 3u);
   test_assert(size.height() == 4u);
@@ -145,7 +145,7 @@ TEST_CASE(set_size) {
 }
 
 TEST_CASE(width) {
-  constexpr iurect r(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r(1, 2, 3u, 4u);
   CONST_OR_CONSTEXPR unsigned int width = r.width();
   test_assert(width == 3u);
 }
@@ -160,7 +160,7 @@ TEST_CASE(set_width) {
 }
 
 TEST_CASE(height) {
-  constexpr iurect r(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r(1, 2, 3u, 4u);
   CONST_OR_CONSTEXPR unsigned int height = r.height();
   test_assert(height == 4u);
 }
@@ -175,12 +175,12 @@ TEST_CASE(set_height) {
 }
 
 TEST_CASE(equality_operator) {
-  constexpr rect<float, double> r1(1.0f, 2.0f, 3.0f, 4.0f);
-  constexpr iurect r2(1, 2, 3u, 4u);
-  constexpr iurect r3(0, 2, 3u, 4u);
-  constexpr iurect r4(1, 0, 3u, 4u);
-  constexpr iurect r5(1, 2, 0u, 4u);
-  constexpr iurect r6(1, 2, 3u, 0u);
+  CONST_OR_CONSTEXPR rect<float, double> r1(1.0f, 2.0f, 3.0f, 4.0f);
+  CONST_OR_CONSTEXPR iurect r2(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r3(0, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r4(1, 0, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r5(1, 2, 0u, 4u);
+  CONST_OR_CONSTEXPR iurect r6(1, 2, 3u, 0u);
   CONST_OR_CONSTEXPR bool result1 = (r1 == r2);
   CONST_OR_CONSTEXPR bool result2 = (r1 == r3);
   CONST_OR_CONSTEXPR bool result3 = (r1 == r4);
@@ -194,12 +194,12 @@ TEST_CASE(equality_operator) {
 }
 
 TEST_CASE(inequality_operator) {
-  constexpr rect<float, double> r1(1.0f, 2.0f, 3.0f, 4.0f);
-  constexpr iurect r2(1, 2, 3u, 4u);
-  constexpr iurect r3(0, 2, 3u, 4u);
-  constexpr iurect r4(1, 0, 3u, 4u);
-  constexpr iurect r5(1, 2, 0u, 4u);
-  constexpr iurect r6(1, 2, 3u, 0u);
+  CONST_OR_CONSTEXPR rect<float, double> r1(1.0f, 2.0f, 3.0f, 4.0f);
+  CONST_OR_CONSTEXPR iurect r2(1, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r3(0, 2, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r4(1, 0, 3u, 4u);
+  CONST_OR_CONSTEXPR iurect r5(1, 2, 0u, 4u);
+  CONST_OR_CONSTEXPR iurect r6(1, 2, 3u, 0u);
   CONST_OR_CONSTEXPR bool result1 = (r1 != r2);
   CONST_OR_CONSTEXPR bool result2 = (r1 != r3);
   CONST_OR_CONSTEXPR bool result3 = (r1 != r4);

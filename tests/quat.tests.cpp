@@ -14,14 +14,14 @@
 namespace {
 using namespace tue;
 
-constexpr dvec3 dv32(2.2, 2.4, 2.6);
+CONST_OR_CONSTEXPR dvec3 dv32(2.2, 2.4, 2.6);
 
-constexpr fquat fq1(1.1f, 1.2f, 1.3f, 1.4f);
+CONST_OR_CONSTEXPR fquat fq1(1.1f, 1.2f, 1.3f, 1.4f);
 
-constexpr dquat dq1(1.1, 1.2, 1.3, 1.4);
-constexpr dquat dq2(2.2, 2.4, 2.6, 2.8);
+CONST_OR_CONSTEXPR dquat dq1(1.1, 1.2, 1.3, 1.4);
+CONST_OR_CONSTEXPR dquat dq2(2.2, 2.4, 2.6, 2.8);
 
-constexpr quat<int> iq1(111, 222, 333, 444);
+CONST_OR_CONSTEXPR quat<int> iq1(111, 222, 333, 444);
 
 TEST_CASE(default_constructor) {
   fquat q;
@@ -29,7 +29,7 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(scalar_component_constructor) {
-  constexpr fquat q(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fquat q(1.1f, 2.2f, 3.3f, 4.4f);
   test_assert(q[0] == 1.1f);
   test_assert(q[1] == 2.2f);
   test_assert(q[2] == 3.3f);
@@ -37,7 +37,7 @@ TEST_CASE(scalar_component_constructor) {
 }
 
 TEST_CASE(vector_component_constructor) {
-  constexpr fquat q(fvec3(1.1f, 2.2f, 3.3f), 4.4f);
+  CONST_OR_CONSTEXPR fquat q(fvec3(1.1f, 2.2f, 3.3f), 4.4f);
   test_assert(q[0] == 1.1f);
   test_assert(q[1] == 2.2f);
   test_assert(q[2] == 3.3f);
@@ -45,7 +45,7 @@ TEST_CASE(vector_component_constructor) {
 }
 
 TEST_CASE(explicit_conversion_constructor) {
-  constexpr fquat q(dq1);
+  CONST_OR_CONSTEXPR fquat q(dq1);
   test_assert(q[0] == static_cast<float>(dq1[0]));
   test_assert(q[1] == static_cast<float>(dq1[1]));
   test_assert(q[2] == static_cast<float>(dq1[2]));
@@ -170,7 +170,7 @@ TEST_CASE(data) {
 }
 
 TEST_CASE(subscript_operator) {
-  constexpr fquat ceq(1.1f, 2.2f, 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fquat ceq(1.1f, 2.2f, 3.3f, 4.4f);
   CONST_OR_CONSTEXPR float ceq0 = ceq[0];
   CONST_OR_CONSTEXPR float ceq1 = ceq[1];
   CONST_OR_CONSTEXPR float ceq2 = ceq[2];
@@ -209,12 +209,12 @@ TEST_CASE(multiplication_operator) {
 }
 
 TEST_CASE(equality_operator) {
-  constexpr fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
-  constexpr quat<int> q2(1, 2, 3, 4);
-  constexpr quat<int> q3(0, 2, 3, 4);
-  constexpr quat<int> q4(1, 0, 3, 4);
-  constexpr quat<int> q5(1, 2, 0, 4);
-  constexpr quat<int> q6(1, 2, 3, 0);
+  CONST_OR_CONSTEXPR fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
+  CONST_OR_CONSTEXPR quat<int> q2(1, 2, 3, 4);
+  CONST_OR_CONSTEXPR quat<int> q3(0, 2, 3, 4);
+  CONST_OR_CONSTEXPR quat<int> q4(1, 0, 3, 4);
+  CONST_OR_CONSTEXPR quat<int> q5(1, 2, 0, 4);
+  CONST_OR_CONSTEXPR quat<int> q6(1, 2, 3, 0);
   CONST_OR_CONSTEXPR bool result1 = (q1 == q2);
   CONST_OR_CONSTEXPR bool result2 = (q1 == q3);
   CONST_OR_CONSTEXPR bool result3 = (q1 == q4);
@@ -228,12 +228,12 @@ TEST_CASE(equality_operator) {
 }
 
 TEST_CASE(inequality_operator) {
-  constexpr fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
-  constexpr quat<int> q2(1, 2, 3, 4);
-  constexpr quat<int> q3(0, 2, 3, 4);
-  constexpr quat<int> q4(1, 0, 3, 4);
-  constexpr quat<int> q5(1, 2, 0, 4);
-  constexpr quat<int> q6(1, 2, 3, 0);
+  CONST_OR_CONSTEXPR fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
+  CONST_OR_CONSTEXPR quat<int> q2(1, 2, 3, 4);
+  CONST_OR_CONSTEXPR quat<int> q3(0, 2, 3, 4);
+  CONST_OR_CONSTEXPR quat<int> q4(1, 0, 3, 4);
+  CONST_OR_CONSTEXPR quat<int> q5(1, 2, 0, 4);
+  CONST_OR_CONSTEXPR quat<int> q6(1, 2, 3, 0);
   CONST_OR_CONSTEXPR bool result1 = (q1 != q2);
   CONST_OR_CONSTEXPR bool result2 = (q1 != q3);
   CONST_OR_CONSTEXPR bool result3 = (q1 != q4);

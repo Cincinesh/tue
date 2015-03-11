@@ -22,56 +22,56 @@ constexpr auto i1 = 111;
 
 constexpr auto u2 = 2u;
 
-constexpr fmat4x2 fm421{
+CONST_OR_CONSTEXPR fmat4x2 fm421{
   { 1.1f, 1.2f },
   { 2.1f, 2.2f },
   { 3.1f, 3.2f },
   { 4.1f, 4.2f },
 };
 
-constexpr fmat4x2 fm422{
+CONST_OR_CONSTEXPR fmat4x2 fm422{
   { 2.2f, 2.4f },
   { 4.2f, 4.4f },
   { 6.2f, 6.4f },
   { 8.2f, 8.4f },
 };
 
-constexpr dmat4x2 dm421{
+CONST_OR_CONSTEXPR dmat4x2 dm421{
   { 1.1, 1.2 },
   { 2.1, 2.2 },
   { 3.1, 3.2 },
   { 4.1, 4.2 },
 };
 
-constexpr dmat4x2 dm422{
+CONST_OR_CONSTEXPR dmat4x2 dm422{
   { 2.2, 2.4 },
   { 4.2, 4.4 },
   { 6.2, 6.4 },
   { 8.2, 8.4 },
 };
 
-constexpr mat4x2<int> im421{
+CONST_OR_CONSTEXPR mat4x2<int> im421{
   { 111, 222 },
   { 333, 444 },
   { 555, 666 },
   { 777, 888 },
 };
 
-constexpr mat4x2<int> im422{
+CONST_OR_CONSTEXPR mat4x2<int> im422{
   { 2, 3 },
   { 4, 5 },
   { 6, 7 },
   { 8, 9 },
 };
 
-constexpr mat4x2<unsigned int> um422{
+CONST_OR_CONSTEXPR mat4x2<unsigned int> um422{
   { 2u, 3u },
   { 4u, 5u },
   { 6u, 7u },
   { 8u, 9u },
 };
 
-constexpr mat4x4<unsigned int> um442{
+CONST_OR_CONSTEXPR mat4x4<unsigned int> um442{
   {  2u,  3u,  4u,  5u },
   {  6u,  7u,  8u,  9u },
   { 10u, 11u, 12u, 13u },
@@ -84,19 +84,19 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(scalar_constructor) {
-  constexpr fmat4x2 m1(1.1f);
+  CONST_OR_CONSTEXPR fmat4x2 m1(1.1f);
   test_assert(m1[0] == fvec2(1.1f, 0.0f));
   test_assert(m1[1] == fvec2(0.0f, 1.1f));
   test_assert(m1[2] == fvec2(0.0f, 0.0f));
   test_assert(m1[3] == fvec2(0.0f, 0.0f));
 
-  constexpr fmat4x3 m2(2.2f);
+  CONST_OR_CONSTEXPR fmat4x3 m2(2.2f);
   test_assert(m2[0] == fvec3(2.2f, 0.0f, 0.0f));
   test_assert(m2[1] == fvec3(0.0f, 2.2f, 0.0f));
   test_assert(m2[2] == fvec3(0.0f, 0.0f, 2.2f));
   test_assert(m2[3] == fvec3(0.0f, 0.0f, 0.0f));
 
-  constexpr fmat4x4 m3(3.3f);
+  CONST_OR_CONSTEXPR fmat4x4 m3(3.3f);
   test_assert(m3[0] == fvec4(3.3f, 0.0f, 0.0f, 0.0f));
   test_assert(m3[1] == fvec4(0.0f, 3.3f, 0.0f, 0.0f));
   test_assert(m3[2] == fvec4(0.0f, 0.0f, 3.3f, 0.0f));
@@ -104,7 +104,7 @@ TEST_CASE(scalar_constructor) {
 }
 
 TEST_CASE(column_constructor) {
-  constexpr fmat4x2 m = {
+  CONST_OR_CONSTEXPR fmat4x2 m = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
     { 3.1f, 3.2f },
@@ -117,170 +117,170 @@ TEST_CASE(column_constructor) {
 }
 
 TEST_CASE(extend_and_truncate_constructors) {
-  constexpr fmat4x4 m1({
+  CONST_OR_CONSTEXPR fmat4x4 m1({
     { 1.1f, 1.2f, 1.3f, 1.4f },
     { 2.1f, 2.2f, 2.3f, 2.4f },
     { 3.1f, 3.2f, 3.3f, 3.4f },
     { 4.1f, 4.2f, 4.3f, 4.4f },
   });
 
-  constexpr fmat4x2 m2((fmat2x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m2((fmat2x2(m1)));
   test_assert(m2[0] == fvec2(1.1f, 1.2f));
   test_assert(m2[1] == fvec2(2.1f, 2.2f));
   test_assert(m2[2] == fvec2(0.0f, 0.0f));
   test_assert(m2[3] == fvec2(0.0f, 0.0f));
 
-  constexpr fmat4x2 m3((fmat2x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m3((fmat2x3(m1)));
   test_assert(m3[0] == fvec2(1.1f, 1.2f));
   test_assert(m3[1] == fvec2(2.1f, 2.2f));
   test_assert(m3[2] == fvec2(0.0f, 0.0f));
   test_assert(m3[3] == fvec2(0.0f, 0.0f));
 
-  constexpr fmat4x2 m4((fmat2x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m4((fmat2x4(m1)));
   test_assert(m4[0] == fvec2(1.1f, 1.2f));
   test_assert(m4[1] == fvec2(2.1f, 2.2f));
   test_assert(m4[2] == fvec2(0.0f, 0.0f));
   test_assert(m4[3] == fvec2(0.0f, 0.0f));
 
-  constexpr fmat4x2 m5((fmat3x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m5((fmat3x2(m1)));
   test_assert(m5[0] == fvec2(1.1f, 1.2f));
   test_assert(m5[1] == fvec2(2.1f, 2.2f));
   test_assert(m5[2] == fvec2(3.1f, 3.2f));
   test_assert(m5[3] == fvec2(0.0f, 0.0f));
 
-  constexpr fmat4x2 m6((fmat3x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m6((fmat3x3(m1)));
   test_assert(m6[0] == fvec2(1.1f, 1.2f));
   test_assert(m6[1] == fvec2(2.1f, 2.2f));
   test_assert(m6[2] == fvec2(3.1f, 3.2f));
   test_assert(m6[3] == fvec2(0.0f, 0.0f));
 
-  constexpr fmat4x2 m7((fmat3x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m7((fmat3x4(m1)));
   test_assert(m7[0] == fvec2(1.1f, 1.2f));
   test_assert(m7[1] == fvec2(2.1f, 2.2f));
   test_assert(m7[2] == fvec2(3.1f, 3.2f));
   test_assert(m7[3] == fvec2(0.0f, 0.0f));
 
-  constexpr fmat4x2 m8((fmat4x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m8((fmat4x2(m1)));
   test_assert(m8[0] == fvec2(1.1f, 1.2f));
   test_assert(m8[1] == fvec2(2.1f, 2.2f));
   test_assert(m8[2] == fvec2(3.1f, 3.2f));
   test_assert(m8[3] == fvec2(4.1f, 4.2f));
 
-  constexpr fmat4x2 m9((fmat4x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m9((fmat4x3(m1)));
   test_assert(m9[0] == fvec2(1.1f, 1.2f));
   test_assert(m9[1] == fvec2(2.1f, 2.2f));
   test_assert(m9[2] == fvec2(3.1f, 3.2f));
   test_assert(m9[3] == fvec2(4.1f, 4.2f));
 
-  constexpr fmat4x2 m10((fmat4x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x2 m10((fmat4x4(m1)));
   test_assert(m10[0] == fvec2(1.1f, 1.2f));
   test_assert(m10[1] == fvec2(2.1f, 2.2f));
   test_assert(m10[2] == fvec2(3.1f, 3.2f));
   test_assert(m10[3] == fvec2(4.1f, 4.2f));
 
-  constexpr fmat4x3 m11((fmat2x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m11((fmat2x2(m1)));
   test_assert(m11[0] == fvec3(1.1f, 1.2f, 0.0f));
   test_assert(m11[1] == fvec3(2.1f, 2.2f, 0.0f));
   test_assert(m11[2] == fvec3(0.0f, 0.0f, 1.0f));
   test_assert(m11[3] == fvec3(0.0f, 0.0f, 0.0f));
 
-  constexpr fmat4x3 m12((fmat2x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m12((fmat2x3(m1)));
   test_assert(m12[0] == fvec3(1.1f, 1.2f, 1.3f));
   test_assert(m12[1] == fvec3(2.1f, 2.2f, 2.3f));
   test_assert(m12[2] == fvec3(0.0f, 0.0f, 1.0f));
   test_assert(m12[3] == fvec3(0.0f, 0.0f, 0.0f));
 
-  constexpr fmat4x3 m13((fmat2x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m13((fmat2x4(m1)));
   test_assert(m13[0] == fvec3(1.1f, 1.2f, 1.3f));
   test_assert(m13[1] == fvec3(2.1f, 2.2f, 2.3f));
   test_assert(m13[2] == fvec3(0.0f, 0.0f, 1.0f));
   test_assert(m13[3] == fvec3(0.0f, 0.0f, 0.0f));
 
-  constexpr fmat4x3 m14((fmat3x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m14((fmat3x2(m1)));
   test_assert(m14[0] == fvec3(1.1f, 1.2f, 0.0f));
   test_assert(m14[1] == fvec3(2.1f, 2.2f, 0.0f));
   test_assert(m14[2] == fvec3(3.1f, 3.2f, 1.0f));
   test_assert(m14[3] == fvec3(0.0f, 0.0f, 0.0f));
 
-  constexpr fmat4x3 m15((fmat3x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m15((fmat3x3(m1)));
   test_assert(m15[0] == fvec3(1.1f, 1.2f, 1.3f));
   test_assert(m15[1] == fvec3(2.1f, 2.2f, 2.3f));
   test_assert(m15[2] == fvec3(3.1f, 3.2f, 3.3f));
   test_assert(m15[3] == fvec3(0.0f, 0.0f, 0.0f));
 
-  constexpr fmat4x3 m16((fmat3x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m16((fmat3x4(m1)));
   test_assert(m16[0] == fvec3(1.1f, 1.2f, 1.3f));
   test_assert(m16[1] == fvec3(2.1f, 2.2f, 2.3f));
   test_assert(m16[2] == fvec3(3.1f, 3.2f, 3.3f));
   test_assert(m16[3] == fvec3(0.0f, 0.0f, 0.0f));
 
-  constexpr fmat4x3 m17((fmat4x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m17((fmat4x2(m1)));
   test_assert(m17[0] == fvec3(1.1f, 1.2f, 0.0f));
   test_assert(m17[1] == fvec3(2.1f, 2.2f, 0.0f));
   test_assert(m17[2] == fvec3(3.1f, 3.2f, 1.0f));
   test_assert(m17[3] == fvec3(4.1f, 4.2f, 0.0f));
 
-  constexpr fmat4x3 m18((fmat4x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m18((fmat4x3(m1)));
   test_assert(m18[0] == fvec3(1.1f, 1.2f, 1.3f));
   test_assert(m18[1] == fvec3(2.1f, 2.2f, 2.3f));
   test_assert(m18[2] == fvec3(3.1f, 3.2f, 3.3f));
   test_assert(m18[3] == fvec3(4.1f, 4.2f, 4.3f));
 
-  constexpr fmat4x3 m19((fmat4x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x3 m19((fmat4x4(m1)));
   test_assert(m19[0] == fvec3(1.1f, 1.2f, 1.3f));
   test_assert(m19[1] == fvec3(2.1f, 2.2f, 2.3f));
   test_assert(m19[2] == fvec3(3.1f, 3.2f, 3.3f));
   test_assert(m19[3] == fvec3(4.1f, 4.2f, 4.3f));
 
-  constexpr fmat4x4 m20((fmat2x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m20((fmat2x2(m1)));
   test_assert(m20[0] == fvec4(1.1f, 1.2f, 0.0f, 0.0f));
   test_assert(m20[1] == fvec4(2.1f, 2.2f, 0.0f, 0.0f));
   test_assert(m20[2] == fvec4(0.0f, 0.0f, 1.0f, 0.0f));
   test_assert(m20[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
 
-  constexpr fmat4x4 m21((fmat2x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m21((fmat2x3(m1)));
   test_assert(m21[0] == fvec4(1.1f, 1.2f, 1.3f, 0.0f));
   test_assert(m21[1] == fvec4(2.1f, 2.2f, 2.3f, 0.0f));
   test_assert(m21[2] == fvec4(0.0f, 0.0f, 1.0f, 0.0f));
   test_assert(m21[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
 
-  constexpr fmat4x4 m22((fmat2x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m22((fmat2x4(m1)));
   test_assert(m22[0] == fvec4(1.1f, 1.2f, 1.3f, 1.4f));
   test_assert(m22[1] == fvec4(2.1f, 2.2f, 2.3f, 2.4f));
   test_assert(m22[2] == fvec4(0.0f, 0.0f, 1.0f, 0.0f));
   test_assert(m22[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
 
-  constexpr fmat4x4 m23((fmat3x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m23((fmat3x2(m1)));
   test_assert(m23[0] == fvec4(1.1f, 1.2f, 0.0f, 0.0f));
   test_assert(m23[1] == fvec4(2.1f, 2.2f, 0.0f, 0.0f));
   test_assert(m23[2] == fvec4(3.1f, 3.2f, 1.0f, 0.0f));
   test_assert(m23[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
 
-  constexpr fmat4x4 m24((fmat3x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m24((fmat3x3(m1)));
   test_assert(m24[0] == fvec4(1.1f, 1.2f, 1.3f, 0.0f));
   test_assert(m24[1] == fvec4(2.1f, 2.2f, 2.3f, 0.0f));
   test_assert(m24[2] == fvec4(3.1f, 3.2f, 3.3f, 0.0f));
   test_assert(m24[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
 
-  constexpr fmat4x4 m25((fmat3x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m25((fmat3x4(m1)));
   test_assert(m25[0] == fvec4(1.1f, 1.2f, 1.3f, 1.4f));
   test_assert(m25[1] == fvec4(2.1f, 2.2f, 2.3f, 2.4f));
   test_assert(m25[2] == fvec4(3.1f, 3.2f, 3.3f, 3.4f));
   test_assert(m25[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
 
-  constexpr fmat4x4 m26((fmat4x2(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m26((fmat4x2(m1)));
   test_assert(m26[0] == fvec4(1.1f, 1.2f, 0.0f, 0.0f));
   test_assert(m26[1] == fvec4(2.1f, 2.2f, 0.0f, 0.0f));
   test_assert(m26[2] == fvec4(3.1f, 3.2f, 1.0f, 0.0f));
   test_assert(m26[3] == fvec4(4.1f, 4.2f, 0.0f, 1.0f));
 
-  constexpr fmat4x4 m27((fmat4x3(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m27((fmat4x3(m1)));
   test_assert(m27[0] == fvec4(1.1f, 1.2f, 1.3f, 0.0f));
   test_assert(m27[1] == fvec4(2.1f, 2.2f, 2.3f, 0.0f));
   test_assert(m27[2] == fvec4(3.1f, 3.2f, 3.3f, 0.0f));
   test_assert(m27[3] == fvec4(4.1f, 4.2f, 4.3f, 1.0f));
 
-  constexpr fmat4x4 m28((fmat4x4(m1)));
+  CONST_OR_CONSTEXPR fmat4x4 m28((fmat4x4(m1)));
   test_assert(m28[0] == fvec4(1.1f, 1.2f, 1.3f, 1.4f));
   test_assert(m28[1] == fvec4(2.1f, 2.2f, 2.3f, 2.4f));
   test_assert(m28[2] == fvec4(3.1f, 3.2f, 3.3f, 3.4f));
@@ -288,7 +288,7 @@ TEST_CASE(extend_and_truncate_constructors) {
 }
 
 TEST_CASE(explicit_conversion_constructor) {
-  constexpr fmat4x2 m(dm421);
+  CONST_OR_CONSTEXPR fmat4x2 m(dm421);
   test_assert(m[0] == fvec2(dm421[0]));
   test_assert(m[1] == fvec2(dm421[1]));
   test_assert(m[2] == fvec2(dm421[2]));
@@ -382,7 +382,7 @@ TEST_CASE(columns) {
 }
 
 TEST_CASE(subscript_operator) {
-  constexpr fmat4x2 cem = {
+  CONST_OR_CONSTEXPR fmat4x2 cem = {
     { 1.1f, 1.2f },
     { 2.1f, 2.2f },
     { 3.1f, 3.2f },
@@ -761,22 +761,22 @@ TEST_CASE(bitwise_shift_right_operator) {
 }
 
 TEST_CASE(equality_operator) {
-  constexpr fmat4x2 m1 = {
+  CONST_OR_CONSTEXPR fmat4x2 m1 = {
     fvec2(1.0f),
     fvec2(2.0f),
     fvec2(3.0f),
     fvec2(4.0f),
   };
-  constexpr ivec2 iv0(0);
-  constexpr ivec2 iv1(1);
-  constexpr ivec2 iv2(2);
-  constexpr ivec2 iv3(3);
-  constexpr ivec2 iv4(4);
-  constexpr mat4x2<int> m2(iv1, iv2, iv3, iv4);
-  constexpr mat4x2<int> m3(iv0, iv2, iv3, iv4);
-  constexpr mat4x2<int> m4(iv1, iv0, iv3, iv4);
-  constexpr mat4x2<int> m5(iv1, iv2, iv0, iv4);
-  constexpr mat4x2<int> m6(iv1, iv2, iv3, iv0);
+  CONST_OR_CONSTEXPR ivec2 iv0(0);
+  CONST_OR_CONSTEXPR ivec2 iv1(1);
+  CONST_OR_CONSTEXPR ivec2 iv2(2);
+  CONST_OR_CONSTEXPR ivec2 iv3(3);
+  CONST_OR_CONSTEXPR ivec2 iv4(4);
+  CONST_OR_CONSTEXPR mat4x2<int> m2(iv1, iv2, iv3, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m3(iv0, iv2, iv3, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m4(iv1, iv0, iv3, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m5(iv1, iv2, iv0, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m6(iv1, iv2, iv3, iv0);
   CONST_OR_CONSTEXPR bool result1 = (m1 == m2);
   CONST_OR_CONSTEXPR bool result2 = (m1 == m3);
   CONST_OR_CONSTEXPR bool result3 = (m1 == m4);
@@ -790,22 +790,22 @@ TEST_CASE(equality_operator) {
 }
 
 TEST_CASE(inequality_operator) {
-  constexpr fmat4x2 m1 = {
+  CONST_OR_CONSTEXPR fmat4x2 m1 = {
     fvec2(1.0f),
     fvec2(2.0f),
     fvec2(3.0f),
     fvec2(4.0f),
   };
-  constexpr ivec2 iv0(0);
-  constexpr ivec2 iv1(1);
-  constexpr ivec2 iv2(2);
-  constexpr ivec2 iv3(3);
-  constexpr ivec2 iv4(4);
-  constexpr mat4x2<int> m2(iv1, iv2, iv3, iv4);
-  constexpr mat4x2<int> m3(iv0, iv2, iv3, iv4);
-  constexpr mat4x2<int> m4(iv1, iv0, iv3, iv4);
-  constexpr mat4x2<int> m5(iv1, iv2, iv0, iv4);
-  constexpr mat4x2<int> m6(iv1, iv2, iv3, iv0);
+  CONST_OR_CONSTEXPR ivec2 iv0(0);
+  CONST_OR_CONSTEXPR ivec2 iv1(1);
+  CONST_OR_CONSTEXPR ivec2 iv2(2);
+  CONST_OR_CONSTEXPR ivec2 iv3(3);
+  CONST_OR_CONSTEXPR ivec2 iv4(4);
+  CONST_OR_CONSTEXPR mat4x2<int> m2(iv1, iv2, iv3, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m3(iv0, iv2, iv3, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m4(iv1, iv0, iv3, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m5(iv1, iv2, iv0, iv4);
+  CONST_OR_CONSTEXPR mat4x2<int> m6(iv1, iv2, iv3, iv0);
   CONST_OR_CONSTEXPR bool result1 = (m1 != m2);
   CONST_OR_CONSTEXPR bool result2 = (m1 != m3);
   CONST_OR_CONSTEXPR bool result3 = (m1 != m4);
@@ -1011,14 +1011,14 @@ TEST_CASE(comp_mult) {
 }
 
 TEST_CASE(transpose) {
-  constexpr fmat4x4 m44 = {
+  CONST_OR_CONSTEXPR fmat4x4 m44 = {
     { 1.1f, 1.2f, 1.3f, 1.4f },
     { 2.1f, 2.2f, 2.3f, 2.4f },
     { 3.1f, 3.2f, 3.3f, 3.4f },
     { 4.1f, 4.2f, 4.3f, 4.4f },
   };
-  constexpr fmat3x4 m34(m44);
-  constexpr fmat2x4 m24(m44);
+  CONST_OR_CONSTEXPR fmat3x4 m34(m44);
+  CONST_OR_CONSTEXPR fmat2x4 m24(m44);
 
   CONST_OR_CONSTEXPR fmat4x4 m1 = math::transpose(m44);
   test_assert(m1[0] == m44.row(0));
@@ -1040,7 +1040,7 @@ TEST_CASE(transpose) {
 }
 
 TEST_CASE(select) {
-  constexpr mat4x2<bool> mask = {
+  CONST_OR_CONSTEXPR mat4x2<bool> mask = {
     {  true, false },
     { false,  true },
     {  true,  true },

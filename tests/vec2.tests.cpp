@@ -22,18 +22,18 @@ constexpr auto i1 = 111;
 
 constexpr auto u2 = 2u;
 
-constexpr fvec2 fv21(1.1f, 1.2f);
-constexpr fvec2 fv22(2.2f, 2.4f);
+CONST_OR_CONSTEXPR fvec2 fv21(1.1f, 1.2f);
+CONST_OR_CONSTEXPR fvec2 fv22(2.2f, 2.4f);
 
-constexpr dvec2 dv21(1.1, 1.2);
-constexpr dvec2 dv22(2.2, 2.4);
+CONST_OR_CONSTEXPR dvec2 dv21(1.1, 1.2);
+CONST_OR_CONSTEXPR dvec2 dv22(2.2, 2.4);
 
-constexpr ivec2 iv21(111, 222);
-constexpr ivec2 iv22(2, 4);
+CONST_OR_CONSTEXPR ivec2 iv21(111, 222);
+CONST_OR_CONSTEXPR ivec2 iv22(2, 4);
 
-constexpr uvec2 uv22(2u, 4u);
+CONST_OR_CONSTEXPR uvec2 uv22(2u, 4u);
 
-constexpr mat2x2<unsigned int> um222{
+CONST_OR_CONSTEXPR mat2x2<unsigned int> um222{
   { 2u, 4u },
   { 6u, 8u },
 };
@@ -44,31 +44,31 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(scalar_constructor) {
-  constexpr fvec2 v(1.1f);
+  CONST_OR_CONSTEXPR fvec2 v(1.1f);
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 1.1f);
 }
 
 TEST_CASE(scalar_component_constructor) {
-  constexpr fvec2 v = { 1.1f, 2.2f };
+  CONST_OR_CONSTEXPR fvec2 v = { 1.1f, 2.2f };
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
 }
 
 TEST_CASE(truncate_vec3_constructor) {
-  constexpr fvec2 v(fvec3(1.1f, 2.2f, 3.3f));
+  CONST_OR_CONSTEXPR fvec2 v(fvec3(1.1f, 2.2f, 3.3f));
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
 }
 
 TEST_CASE(truncate_vec4_constructor) {
-  constexpr fvec2 v(fvec4(1.1f, 2.2f, 3.3f, 4.4f));
+  CONST_OR_CONSTEXPR fvec2 v(fvec4(1.1f, 2.2f, 3.3f, 4.4f));
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
 }
 
 TEST_CASE(explicit_conversion_constructor) {
-  constexpr fvec2 v(dv21);
+  CONST_OR_CONSTEXPR fvec2 v(dv21);
   test_assert(v[0] == static_cast<float>(dv21[0]));
   test_assert(v[1] == static_cast<float>(dv21[1]));
 }
@@ -132,7 +132,7 @@ TEST_CASE(data) {
 }
 
 TEST_CASE(subscript_operator) {
-  constexpr fvec2 cev(1.1f, 2.2f);
+  CONST_OR_CONSTEXPR fvec2 cev(1.1f, 2.2f);
   CONST_OR_CONSTEXPR float cev0 = cev[0];
   CONST_OR_CONSTEXPR float cev1 = cev[1];
   test_assert(cev0 == 1.1f);
@@ -438,10 +438,10 @@ TEST_CASE(bitwise_shift_right_operator) {
 }
 
 TEST_CASE(equality_operator) {
-  constexpr fvec2 v1(1.0f, 2.0f);
-  constexpr ivec2 v2(1, 2);
-  constexpr ivec2 v3(0, 2);
-  constexpr ivec2 v4(1, 0);
+  CONST_OR_CONSTEXPR fvec2 v1(1.0f, 2.0f);
+  CONST_OR_CONSTEXPR ivec2 v2(1, 2);
+  CONST_OR_CONSTEXPR ivec2 v3(0, 2);
+  CONST_OR_CONSTEXPR ivec2 v4(1, 0);
   CONST_OR_CONSTEXPR bool result1 = (v1 == v2);
   CONST_OR_CONSTEXPR bool result2 = (v1 == v3);
   CONST_OR_CONSTEXPR bool result3 = (v1 == v4);
@@ -451,10 +451,10 @@ TEST_CASE(equality_operator) {
 }
 
 TEST_CASE(inequality_operator) {
-  constexpr fvec2 v1(1.0f, 2.0f);
-  constexpr ivec2 v2(1, 2);
-  constexpr ivec2 v3(0, 2);
-  constexpr ivec2 v4(1, 0);
+  CONST_OR_CONSTEXPR fvec2 v1(1.0f, 2.0f);
+  CONST_OR_CONSTEXPR ivec2 v2(1, 2);
+  CONST_OR_CONSTEXPR ivec2 v3(0, 2);
+  CONST_OR_CONSTEXPR ivec2 v4(1, 0);
   CONST_OR_CONSTEXPR bool result1 = (v1 != v2);
   CONST_OR_CONSTEXPR bool result2 = (v1 != v3);
   CONST_OR_CONSTEXPR bool result3 = (v1 != v4);

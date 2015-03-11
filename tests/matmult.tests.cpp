@@ -12,43 +12,43 @@
 namespace {
 using namespace tue;
 
-constexpr fvec4 fv4(1.1f, 1.2f, 1.3f, 1.4f);
-constexpr fvec3 fv3(fv4);
-constexpr fvec2 fv2(fv4);
+CONST_OR_CONSTEXPR fvec4 fv4(1.1f, 1.2f, 1.3f, 1.4f);
+CONST_OR_CONSTEXPR fvec3 fv3(fv4);
+CONST_OR_CONSTEXPR fvec2 fv2(fv4);
 
-constexpr dvec4 dv4(2.2, 2.4, 2.6, 2.8);
-constexpr dvec3 dv3(fv4);
-constexpr dvec2 dv2(fv4);
+CONST_OR_CONSTEXPR dvec4 dv4(2.2, 2.4, 2.6, 2.8);
+CONST_OR_CONSTEXPR dvec3 dv3(fv4);
+CONST_OR_CONSTEXPR dvec2 dv2(fv4);
 
-constexpr fmat4x4 fm44{
+CONST_OR_CONSTEXPR fmat4x4 fm44{
   { 1.1f, 1.2f, 1.3f, 1.4f },
   { 2.1f, 2.2f, 2.3f, 2.4f },
   { 3.1f, 3.2f, 3.3f, 3.4f },
   { 4.1f, 4.2f, 4.3f, 4.4f },
 };
-constexpr fmat4x3 fm43(fm44);
-constexpr fmat4x2 fm42(fm44);
-constexpr fmat3x4 fm34(fm44);
-constexpr fmat3x3 fm33(fm44);
-constexpr fmat3x2 fm32(fm44);
-constexpr fmat2x4 fm24(fm44);
-constexpr fmat2x3 fm23(fm44);
-constexpr fmat2x2 fm22(fm44);
+CONST_OR_CONSTEXPR fmat4x3 fm43(fm44);
+CONST_OR_CONSTEXPR fmat4x2 fm42(fm44);
+CONST_OR_CONSTEXPR fmat3x4 fm34(fm44);
+CONST_OR_CONSTEXPR fmat3x3 fm33(fm44);
+CONST_OR_CONSTEXPR fmat3x2 fm32(fm44);
+CONST_OR_CONSTEXPR fmat2x4 fm24(fm44);
+CONST_OR_CONSTEXPR fmat2x3 fm23(fm44);
+CONST_OR_CONSTEXPR fmat2x2 fm22(fm44);
 
-constexpr dmat4x4 dm44{
+CONST_OR_CONSTEXPR dmat4x4 dm44{
   { 2.2, 2.4, 2.6, 2.8 },
   { 4.2, 4.4, 4.6, 4.8 },
   { 6.2, 6.4, 6.6, 6.8 },
   { 8.2, 8.4, 8.6, 8.8 },
 };
-constexpr dmat4x3 dm43(dm44);
-constexpr dmat4x2 dm42(dm44);
-constexpr dmat3x4 dm34(dm44);
-constexpr dmat3x3 dm33(dm44);
-constexpr dmat3x2 dm32(dm44);
-constexpr dmat2x4 dm24(dm44);
-constexpr dmat2x3 dm23(dm44);
-constexpr dmat2x2 dm22(dm44);
+CONST_OR_CONSTEXPR dmat4x3 dm43(dm44);
+CONST_OR_CONSTEXPR dmat4x2 dm42(dm44);
+CONST_OR_CONSTEXPR dmat3x4 dm34(dm44);
+CONST_OR_CONSTEXPR dmat3x3 dm33(dm44);
+CONST_OR_CONSTEXPR dmat3x2 dm32(dm44);
+CONST_OR_CONSTEXPR dmat2x4 dm24(dm44);
+CONST_OR_CONSTEXPR dmat2x3 dm23(dm44);
+CONST_OR_CONSTEXPR dmat2x2 dm22(dm44);
 
 TEST_CASE(vec2_times_mat2x2) {
   CONST_OR_CONSTEXPR auto v = fv2 * dm22;

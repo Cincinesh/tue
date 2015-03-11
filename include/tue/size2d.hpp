@@ -5,12 +5,6 @@
 
 #pragma once
 
-#ifdef _MSC_VER
-#define TUE_CONSTEXPR
-#else
-#define TUE_CONSTEXPR constexpr
-#endif
-
 namespace tue {
 
 template<typename T>
@@ -66,7 +60,7 @@ public:
 };
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR bool operator==(
+inline constexpr bool operator==(
     const size2d<T>& lhs,
     const size2d<U>& rhs) noexcept {
   return lhs.width() == rhs.width()
@@ -74,12 +68,10 @@ inline TUE_CONSTEXPR bool operator==(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR bool operator!=(
+inline constexpr bool operator!=(
     const size2d<T>& lhs,
     const size2d<U>& rhs) noexcept {
   return !(lhs == rhs);
 }
 
 }
-
-#undef TUE_CONSTEXPR
