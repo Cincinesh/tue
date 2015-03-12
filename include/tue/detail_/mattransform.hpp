@@ -124,24 +124,25 @@ namespace math
 
   template<typename T>
   inline constexpr mat<T, 4, 4> rotation_mat(const quat<T>& q) noexcept {
-    const T x = q.x();
-    const T y = q.y();
-    const T z = q.z();
-    const T w = q.w();
-    const T xx2 = x * x * T(2);
-    const T xy2 = x * y * T(2);
-    const T xz2 = x * z * T(2);
-    const T xw2 = x * w * T(2);
-    const T yy2 = y * y * T(2);
-    const T yz2 = y * z * T(2);
-    const T yw2 = y * w * T(2);
-    const T zz2 = z * z * T(2);
-    const T zw2 = z * w * T(2);
     return {
-      { T(1) - yy2 - zz2, xy2 - zw2, xz2 + yw2, T(0) },
-      { xy2 + zw2, T(1) - xx2 - zz2, yz2 - xw2, T(0) },
-      { xz2 - yw2, yz2 + xw2, T(1) - xx2 - yy2, T(0) },
-      {                       T(0), T(0), T(0), T(1) },
+      {
+        T(1) - T(2)*q.y()*q.y() - T(2)*q.z()*q.z(),
+        T(2)*q.x()*q.y() - T(2)*q.z()*q.w(),
+        T(2)*q.x()*q.z() + T(2)*q.y()*q.w(),
+        T(0),
+      }, {
+        T(2)*q.x()*q.y() + T(2)*q.z()*q.w(),
+        T(1) - T(2)*q.x()*q.x() - T(2)*q.z()*q.z(),
+        T(2)*q.y()*q.z() - T(2)*q.x()*q.w(),
+        T(0),
+      }, {
+        T(2)*q.x()*q.z() - T(2)*q.y()*q.w(),
+        T(2)*q.y()*q.z() + T(2)*q.x()*q.w(),
+        T(1) - T(2)*q.x()*q.x() - T(2)*q.y()*q.y(),
+        T(0),
+      }, {
+        T(0), T(0), T(0), T(1),
+      },
     };
   }
 
@@ -309,12 +310,11 @@ namespace math
       const T& near,
       const T& far) {
     using U = decltype(math::sin(width));
-    const U fmn = U(far - near);
     return mat<U, 4, 4>{
-      { U(2) / U(width),            U(0), U(0), U(0) },
-      { U(0), U(2) / U(height),           U(0), U(0) },
-      { U(0), U(0), U(2) / fmn, U(far + near) / fmn  },
-      { U(0), U(0), U(0),                       U(1) },
+      { U(2) / U(width),                                U(0), U(0), U(0) },
+      { U(0), U(2) / U(height),                               U(0), U(0) },
+      { U(0), U(0), U(2) / U(far - near), U(far + near) / U(far - near)  },
+      { U(0), U(0), U(0),                                           U(1) },
     };
   }
 }
