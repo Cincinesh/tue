@@ -136,6 +136,11 @@ public:
   constexpr const T& operator[](const I& i) const noexcept {
     return impl_.data[i];
   }
+
+  template<typename U>
+  inline quat& operator*=(const quat<U>& other) noexcept {
+    return *this = *this * other;
+  }
 };
 
 template<typename T, typename U>
@@ -153,20 +158,6 @@ inline constexpr auto operator*(
     const vec3<T>& v,
     const quat<U>& q) noexcept {
   return (q * quat<T>(v, T(0)) * math::conjugate(q)).v();
-}
-
-template<typename T, typename U>
-inline constexpr quat<T>& operator*=(
-    quat<T>& lhs,
-    const quat<U>& rhs) noexcept {
-  return lhs = lhs * rhs;
-}
-
-template<typename T, typename U>
-inline constexpr vec3<T>& operator*=(
-    vec3<T>& lhs,
-    const quat<U>& rhs) noexcept {
-  return lhs = lhs * rhs;
 }
 
 template<typename T, typename U>

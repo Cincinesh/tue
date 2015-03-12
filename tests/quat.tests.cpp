@@ -201,6 +201,12 @@ TEST_CASE(subscript_operator) {
   test_assert(&cq3 == &q3);
 }
 
+TEST_CASE(multiplication_assignment_operator) {
+  auto q = dq2;
+  test_assert(&(q *= fq1) == &q);
+  test_assert(q == dq2 * fq1);
+}
+
 TEST_CASE(multiplication_operator) {
   CONST_OR_CONSTEXPR auto q = fq1 * dq2;
   test_assert(q.v() == fq1.s()*dq2.v() + dq2.s()*fq1.v()
@@ -209,16 +215,6 @@ TEST_CASE(multiplication_operator) {
 
   CONST_OR_CONSTEXPR dvec3 v = dv32 * fq1;
   test_assert(v == (fq1 * dquat(dv32, 0) * math::conjugate(fq1)).v());
-}
-
-TEST_CASE(multiplication_assignment_operator) {
-  auto q = dq2;
-  test_assert(&(q *= fq1) == &q);
-  test_assert(q == dq2 * fq1);
-
-  auto v = dv32;
-  test_assert(&(v *= fq1) == &v);
-  test_assert(v == dv32 * fq1);
 }
 
 TEST_CASE(equality_operator) {

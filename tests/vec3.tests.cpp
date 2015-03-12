@@ -8,6 +8,7 @@
 
 #include <tue/mat.hpp>
 #include <tue/math.hpp>
+#include <tue/quat.hpp>
 #include <tue/unused.hpp>
 
 namespace {
@@ -32,6 +33,8 @@ CONST_OR_CONSTEXPR ivec3 iv31(111, 222, 333);
 CONST_OR_CONSTEXPR ivec3 iv32(2, 4, 6);
 
 CONST_OR_CONSTEXPR uvec3 uv32(2u, 4u, 6u);
+
+CONST_OR_CONSTEXPR fquat fq1(1.1f, 1.2f, 1.3f, 1.4f);
 
 CONST_OR_CONSTEXPR mat3x3<unsigned int> um332{
   {  2u,  4u,  6u },
@@ -300,9 +303,13 @@ TEST_CASE(multiplication_assignment_operator) {
   test_assert(&(v2 *= uv32) == &v2);
   test_assert(v2 == fv31 * uv32);
 
-  fvec3 v3 = fv31;
-  test_assert(&(v3 *= um332) == &v3);
-  test_assert(v3 == fv31 * um332);
+  dvec3 v3 = dv32;
+  test_assert(&(v3 *= fq1) == &v3);
+  test_assert(v3 == dv32 * fq1);
+
+  fvec3 v4 = fv31;
+  test_assert(&(v4 *= um332) == &v4);
+  test_assert(v4 == fv31 * um332);
 }
 
 TEST_CASE(division_assignment_operator) {

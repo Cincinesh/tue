@@ -237,8 +237,8 @@ public:
     return *this;
   }
 
-  template<typename U, int OtherC, int OtherR>
-  mat& operator*=(const mat<U, OtherC, OtherR>& other) noexcept {
+  template<typename U>
+  mat& operator*=(const mat<U, 4, 4>& other) noexcept {
     return *this = *this * other;
   }
 

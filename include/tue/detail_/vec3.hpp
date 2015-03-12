@@ -14,6 +14,9 @@ template<typename T, int C, int R>
 class mat;
 
 template<typename T>
+class quat;
+
+template<typename T>
 class vec<T, 3>
 {
 public:
@@ -228,6 +231,11 @@ public:
     impl_.data[1] *= other[1];
     impl_.data[2] *= other[2];
     return *this;
+  }
+
+  template<typename U>
+  vec& operator*=(const quat<U>& other) noexcept {
+    return *this = *this * other;
   }
 
   template<typename U>
