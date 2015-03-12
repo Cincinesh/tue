@@ -149,6 +149,13 @@ inline constexpr auto operator*(
 }
 
 template<typename T, typename U>
+inline constexpr auto operator*(
+    const vec3<T>& v,
+    const quat<U>& q) noexcept {
+  return (q * quat<T>(v, T(0)) * math::conjugate(q)).v();
+}
+
+template<typename T, typename U>
 inline constexpr bool operator==(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept {
@@ -194,13 +201,6 @@ namespace math
   template<typename T>
   inline constexpr quat<T> conjugate(const quat<T>& q) noexcept {
     return { -q.v(), q.s() };
-  }
-
-  template<typename T, typename U>
-  inline constexpr auto rotate(
-      const vec3<T>& v,
-      const quat<U>& q) noexcept {
-    return (q * quat<T>(v, T(0)) * math::conjugate(q)).v();
   }
 
   template<typename T>

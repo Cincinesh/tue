@@ -206,6 +206,9 @@ TEST_CASE(multiplication_operator) {
   test_assert(q.v() == fq1.s()*dq2.v() + dq2.s()*fq1.v()
       + math::cross(fq1.v(), dq2.v()));
   test_assert(q.s() == fq1.s() * dq2.s() - math::dot(fq1.v(), dq2.v()));
+
+  CONST_OR_CONSTEXPR dvec3 v = dv32 * fq1;
+  test_assert(v == (fq1 * dquat(dv32, 0) * math::conjugate(fq1)).v());
 }
 
 TEST_CASE(equality_operator) {
@@ -274,11 +277,6 @@ TEST_CASE(conjugate) {
   CONST_OR_CONSTEXPR fquat q = math::conjugate(fq1);
   test_assert(q.v() == -fq1.v());
   test_assert(q.s() == fq1.s());
-}
-
-TEST_CASE(rotate) {
-  CONST_OR_CONSTEXPR dvec3 v = math::rotate(dv32, fq1);
-  test_assert(v == (fq1 * dquat(dv32, 0) * math::conjugate(fq1)).v());
 }
 
 TEST_CASE(rotation_quat_from_axis_angle) {
