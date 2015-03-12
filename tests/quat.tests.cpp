@@ -279,9 +279,6 @@ TEST_CASE(conjugate) {
 TEST_CASE(rotate) {
   CONST_OR_CONSTEXPR dvec3 v = math::rotate(dv32, fq1);
   test_assert(v == (fq1 * dquat(dv32, 0) * math::conjugate(fq1)).v());
-
-  CONST_OR_CONSTEXPR dquat q = math::rotate(dq2, fq1);
-  test_assert(q == fq1 * dq2);
 }
 
 TEST_CASE(rotation_quat_from_axis_angle) {

@@ -203,13 +203,6 @@ namespace math
     return (q * quat<T>(v, T(0)) * math::conjugate(q)).v();
   }
 
-  template<typename T, typename U>
-  inline constexpr auto rotate(
-      const quat<T>& p,
-      const quat<U>& q) noexcept {
-    return q * p;
-  }
-
   template<typename T>
   inline auto rotation_quat(const vec3<T>& axis, const T& angle) noexcept {
     using U = decltype(sin(angle));
