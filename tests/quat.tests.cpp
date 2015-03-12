@@ -211,6 +211,16 @@ TEST_CASE(multiplication_operator) {
   test_assert(v == (fq1 * dquat(dv32, 0) * math::conjugate(fq1)).v());
 }
 
+TEST_CASE(multiplication_assignment_operator) {
+  auto q = dq2;
+  test_assert(&(q *= fq1) == &q);
+  test_assert(q == dq2 * fq1);
+
+  auto v = dv32;
+  test_assert(&(v *= fq1) == &v);
+  test_assert(v == dv32 * fq1);
+}
+
 TEST_CASE(equality_operator) {
   CONST_OR_CONSTEXPR fquat q1(1.0f, 2.0f, 3.0f, 4.0f);
   CONST_OR_CONSTEXPR quat<int> q2(1, 2, 3, 4);

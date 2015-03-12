@@ -156,6 +156,20 @@ inline constexpr auto operator*(
 }
 
 template<typename T, typename U>
+inline constexpr quat<T>& operator*=(
+    quat<T>& lhs,
+    const quat<U>& rhs) noexcept {
+  return lhs = lhs * rhs;
+}
+
+template<typename T, typename U>
+inline constexpr vec3<T>& operator*=(
+    vec3<T>& lhs,
+    const quat<U>& rhs) noexcept {
+  return lhs = lhs * rhs;
+}
+
+template<typename T, typename U>
 inline constexpr bool operator==(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept {
