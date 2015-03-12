@@ -674,8 +674,8 @@ inline constexpr auto operator>>(
 
 template<typename T, typename U, int R>
 inline constexpr bool operator==(
-        const mat<T, 3, R>& lhs,
-        const mat<U, 3, R>& rhs) noexcept {
+    const mat<T, 3, R>& lhs,
+    const mat<U, 3, R>& rhs) noexcept {
   return lhs[0] == rhs[0]
       && lhs[1] == rhs[1]
       && lhs[2] == rhs[2];

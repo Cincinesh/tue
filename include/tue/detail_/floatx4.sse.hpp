@@ -557,7 +557,7 @@ namespace math
 
   inline floatx4 normalize(const floatx4& v) noexcept {
     const auto sign_bit = _mm_and_ps(v, detail_::binary_m128(0x80000000u));
-    return _mm_xor_ps(sign_bit, floatx4(1.0f));
+    return _mm_or_ps(sign_bit, floatx4(1.0f));
   }
 
   inline floatx4 comp_mult(const floatx4& lhs, const floatx4& rhs) noexcept {
