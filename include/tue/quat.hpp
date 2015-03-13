@@ -157,7 +157,7 @@ template<typename T, typename U>
 inline constexpr auto operator*(
     const vec3<T>& v,
     const quat<U>& q) noexcept {
-  return (q * quat<T>(v, T(0)) * math::conjugate(q)).v();
+  return (q * quat<T>(v, T(0)) * quat<U>(-q.v(), q.s())).v();
 }
 
 template<typename T, typename U>
