@@ -9,6 +9,12 @@
 #include "math.hpp"
 #include "vec.hpp"
 
+#ifdef _MSC_VER
+#define TUE_CONSTEXPR
+#else
+#define TUE_CONSTEXPR constexpr
+#endif
+
 namespace tue {
 
 template<typename T>
@@ -144,7 +150,7 @@ public:
 };
 
 template<typename T, typename U>
-inline constexpr auto operator*(
+inline TUE_CONSTEXPR auto operator*(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept {
   return quat<decltype(lhs[0] * rhs[0])>{
@@ -154,14 +160,14 @@ inline constexpr auto operator*(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator*(
+inline TUE_CONSTEXPR auto operator*(
     const vec3<T>& v,
     const quat<U>& q) noexcept {
   return (q * quat<T>(v, T(0)) * quat<U>(-q.v(), q.s())).v();
 }
 
 template<typename T, typename U>
-inline constexpr bool operator==(
+inline TUE_CONSTEXPR bool operator==(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept {
   return lhs[0] == rhs[0]
@@ -171,7 +177,7 @@ inline constexpr bool operator==(
 }
 
 template<typename T, typename U>
-inline constexpr bool operator!=(
+inline TUE_CONSTEXPR bool operator!=(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept {
   return !(lhs == rhs);
@@ -204,7 +210,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr quat<T> conjugate(const quat<T>& q) noexcept {
+  inline TUE_CONSTEXPR quat<T> conjugate(const quat<T>& q) noexcept {
     return { -q.v(), q.s() };
   }
 
@@ -254,3 +260,5 @@ namespace math
 }
 
 }
+
+#undef TUE_CONSTEXPR

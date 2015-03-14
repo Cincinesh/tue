@@ -12,12 +12,18 @@
 #include "../quat.hpp"
 #include "../vec.hpp"
 
+#ifdef _MSC_VER
+#define TUE_CONSTEXPR
+#else
+#define TUE_CONSTEXPR constexpr
+#endif
+
 namespace tue {
 
 namespace math
 {
   template<typename T>
-  inline constexpr mat<T, 4, 4> translation_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
       const T& x, const T& y) noexcept {
     return {
       { T(1), T(0), T(0),    x },
@@ -28,13 +34,13 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> translation_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
       const vec2<T>& xy) noexcept {
     return translation_mat(xy.x(), xy.y());
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> translation_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
       const T& x, const T& y, const T& z) noexcept {
     return {
       { T(1), T(0), T(0),    x },
@@ -45,7 +51,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> translation_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
       const vec3<T>& xyz) noexcept {
     return translation_mat(xyz.x(), xyz.y(), xyz.z());
   }
@@ -123,7 +129,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> rotation_mat(const quat<T>& q) noexcept {
+  inline TUE_CONSTEXPR mat<T, 4, 4> rotation_mat(const quat<T>& q) noexcept {
     return {
       {
         T(1) - T(2)*q.y()*q.y() - T(2)*q.z()*q.z(),
@@ -147,7 +153,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> scale_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
       const T& x, const T& y) noexcept {
     return {
       {    x, T(0), T(0), T(0) },
@@ -158,13 +164,13 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> scale_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
       const vec2<T>& xy) noexcept {
     return scale_mat(xy.x(), xy.y());
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> scale_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
       const T& x, const T& y, const T& z) noexcept {
     return {
       {    x, T(0), T(0), T(0) },
@@ -175,7 +181,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr mat<T, 4, 4> scale_mat(
+  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
       const vec3<T>& xyz) noexcept {
     return scale_mat(xyz.x(), xyz.y(), xyz.z());
   }
@@ -219,7 +225,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr auto pose_mat(
+  inline TUE_CONSTEXPR auto pose_mat(
       const vec3<T>& translation,
       const quat<T>& rotation) noexcept {
     return rotation_mat(rotation)
@@ -227,7 +233,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr auto pose_mat(
+  inline TUE_CONSTEXPR auto pose_mat(
       const pose3d<T>& pose) noexcept {
     return pose_mat(pose.translation(), pose.rotation());
   }
@@ -271,7 +277,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr auto view_mat(
+  inline TUE_CONSTEXPR auto view_mat(
       const vec3<T>& translation,
       const quat<T>& rotation) noexcept {
     return translation_mat(-translation)
@@ -279,7 +285,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr auto view_mat(
+  inline TUE_CONSTEXPR auto view_mat(
       const pose3d<T>& pose) noexcept {
     return view_mat(pose.translation(), pose.rotation());
   }
@@ -304,7 +310,7 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr auto ortho_mat(
+  inline TUE_CONSTEXPR auto ortho_mat(
       const T& width,
       const T& height,
       const T& near,
@@ -320,3 +326,5 @@ namespace math
 }
 
 }
+
+#undef TUE_CONSTEXPR
