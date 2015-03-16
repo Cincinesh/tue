@@ -36,11 +36,15 @@ Types
 
 ### tue::vec ###
 
+    #include <tue/vec.hpp>
+
 `tue::vec<T, N>` represents an N-dimensional vector with component type `T`.
 2-dimensional, 3-dimensional, and 4-dimensional vec's of any component type are
-supported. Template arguments `T` and `N` can be determined for a specific vec
-type using the member type alias `component_type` and static const int
-`component_count` respectively.
+supported. A specific instantiation's template arguments are made available via
+the following public members:
+
+- `using component_type = T;`
+- `static const int component_count = N;`
 
 Type aliases for common combinations are provided for convenience:
 
@@ -243,3 +247,105 @@ Returns the length of the given vec, i.e., the square root of `length2(v)`.
 
 Returns a unit vec (vec with a length of 1) with the same direction as the given
 vec.
+
+
+### tue::quat ###
+
+    #include <tue/quat.hpp>
+
+`tue::quat<T>` represents quaternion with component type `T`. A specific
+instantiation's template argument is made available via
+the following public member:
+
+- `using component_type = T;`
+
+Type aliases for common combinations are provided for convenience:
+
+- `fquat` (component_type: float)
+- `dquat` (component_type: double)
+
+quat's are default-constructable, copy-constructable, and copy-assignable.
+Additionally, they can be constructed using any of the following:
+
+- Individual component values, e.g.:<br/>
+  `quat(1, 2, 3, 4)`
+- A vector part and a scalar part, e.g.:<br/>
+  `quat(vec3(1, 2, 3), 4) == quat(1, 2, 3, 4)`
+- Another quat with a different `component_type` to perform a component-wise
+  explicit conversion, e.g.:<br/>
+  `fquat(dquat(1.1, 2.2, 3.3, 4.4))
+      == fquat(float(1.1), float(2.2), float(3.3), float(4.4))`
+
+Implicit conversion operators are provided as well that perform component-wise
+implicit conversion, e.g.:
+
+    dquat q = fquat(1.1f, 2.2f, 3.3f, 4.4f);
+    v == dquat(1.1f, 2.2f, 3.3f, 4.4f); // true
+
+quat types contain the following static factory method:
+
+- `identity()` Returns a `quat` with the vector part set to 0 and the scalar
+               part set to 1.
+
+quat components can be accessed by value using the following getters and
+setters:
+
+- `x()`, `set_x(const T& x)`
+- `y()`, `set_y(const T& y)`
+- `z()`, `set_z(const T& z)`
+- `w()`, `set_w(const T& w)`
+
+Alternate component names are also included for when it's more convenient to
+treat a quat as a vector and a scalar part:
+
+- `v()`
+- `set_v(const T& x, const T& y, const T& z)`
+- `set_v(const vec3<T>& v)`
+- `s()`
+- `set_s(const T& s)`
+
+A raw pointer to the underlying array of components can be accessed using the
+following method:
+
+- `data()`
+
+References to individual components can be retrieved using the subscript
+operator. No bounds checking is performed. Index-to-component mappings are as
+follows:
+
+- `q[0] == q.x() == q.v().x()`
+- `q[1] == q.y() == q.v().y()`
+- `q[2] == q.z() == q.v().z()`
+- `q[3] == q.w() == q.s()`
+
+The `*` and `*=` operators can be used to calculate the Grassman product of two
+quat's. Given two rotation quaternions, the Grassman product can be used to
+calculate their composite rotation.
+
+The `*` and `*=` operators can also be used to rotate a vec3 by a rotation quat.
+The vec must be on the left side of the operator.
+
+The `==` returns true if all the pairs of corresponding components from two
+quat's are equal to each other. Otherwise it returns false. The `!=` operator
+does the exact opposite.
+
+The following function from `math::tue` take on special meanings for quat types:
+
+    length2(const quat& q);
+
+Returns the the length-squared of the given quat, i.e., the sum of each
+component squared.
+
+    length(const quat& q);
+
+Returns the length of the given quat, i.e., the square root of `length2(q)`.
+
+    normalize(const quat& q);
+
+Returns a unit quat (quat with a length of 1) with the same relative component
+ratios as the given quat.
+
+    conjugate(const quat& q);
+
+Returns the conjugate of the given quat, i.e., a quat with the same scalar part,
+but the vector part negated.
