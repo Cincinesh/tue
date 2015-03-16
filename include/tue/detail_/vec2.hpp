@@ -8,6 +8,12 @@
 #include "../math.hpp"
 #include "../vec.hpp"
 
+#ifdef _MSC_VER
+#define TUE_CONSTEXPR
+#else
+#define TUE_CONSTEXPR constexpr
+#endif
+
 namespace tue {
 
 template<typename T, int C, int R>
@@ -301,22 +307,22 @@ private:
 };
 
 template<typename T>
-inline constexpr auto operator+(const vec2<T>& v) noexcept {
+inline TUE_CONSTEXPR auto operator+(const vec2<T>& v) noexcept {
   return vec2<decltype(+v[0])>(+v[0], +v[1]);
 }
 
 template<typename T>
-inline constexpr auto operator-(const vec2<T>& v) noexcept {
+inline TUE_CONSTEXPR auto operator-(const vec2<T>& v) noexcept {
   return vec2<decltype(-v[0])>(-v[0], -v[1]);
 }
 
 template<typename T>
-inline constexpr auto operator~(const vec2<T>& v) noexcept {
+inline TUE_CONSTEXPR auto operator~(const vec2<T>& v) noexcept {
   return vec2<decltype(~v[0])>(~v[0], ~v[1]);
 }
 
 template<typename T, typename U>
-inline constexpr auto operator+(
+inline TUE_CONSTEXPR auto operator+(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs + rhs[0])>{
@@ -326,7 +332,7 @@ inline constexpr auto operator+(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator+(
+inline TUE_CONSTEXPR auto operator+(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] + rhs)>{
@@ -336,7 +342,7 @@ inline constexpr auto operator+(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator+(
+inline TUE_CONSTEXPR auto operator+(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] + rhs[0])>{
@@ -346,7 +352,7 @@ inline constexpr auto operator+(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator-(
+inline TUE_CONSTEXPR auto operator-(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs - rhs[0])>{
@@ -356,7 +362,7 @@ inline constexpr auto operator-(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator-(
+inline TUE_CONSTEXPR auto operator-(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] - rhs)>{
@@ -366,7 +372,7 @@ inline constexpr auto operator-(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator-(
+inline TUE_CONSTEXPR auto operator-(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] - rhs[0])>{
@@ -376,7 +382,7 @@ inline constexpr auto operator-(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator*(
+inline TUE_CONSTEXPR auto operator*(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs * rhs[0])>{
@@ -386,7 +392,7 @@ inline constexpr auto operator*(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator*(
+inline TUE_CONSTEXPR auto operator*(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] * rhs)>{
@@ -396,7 +402,7 @@ inline constexpr auto operator*(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator*(
+inline TUE_CONSTEXPR auto operator*(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] * rhs[0])>{
@@ -406,7 +412,7 @@ inline constexpr auto operator*(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator/(
+inline TUE_CONSTEXPR auto operator/(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs / rhs[0])>{
@@ -416,7 +422,7 @@ inline constexpr auto operator/(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator/(
+inline TUE_CONSTEXPR auto operator/(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] / rhs)>{
@@ -426,7 +432,7 @@ inline constexpr auto operator/(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator/(
+inline TUE_CONSTEXPR auto operator/(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] / rhs[0])>{
@@ -436,7 +442,7 @@ inline constexpr auto operator/(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator%(
+inline TUE_CONSTEXPR auto operator%(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs % rhs[0])>{
@@ -446,7 +452,7 @@ inline constexpr auto operator%(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator%(
+inline TUE_CONSTEXPR auto operator%(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] % rhs)>{
@@ -456,7 +462,7 @@ inline constexpr auto operator%(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator%(
+inline TUE_CONSTEXPR auto operator%(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] % rhs[0])>{
@@ -466,7 +472,7 @@ inline constexpr auto operator%(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator&(
+inline TUE_CONSTEXPR auto operator&(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs & rhs[0])>{
@@ -476,7 +482,7 @@ inline constexpr auto operator&(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator&(
+inline TUE_CONSTEXPR auto operator&(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] & rhs)>{
@@ -486,7 +492,7 @@ inline constexpr auto operator&(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator&(
+inline TUE_CONSTEXPR auto operator&(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] & rhs[0])>{
@@ -496,7 +502,7 @@ inline constexpr auto operator&(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator|(
+inline TUE_CONSTEXPR auto operator|(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs | rhs[0])>{
@@ -506,7 +512,7 @@ inline constexpr auto operator|(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator|(
+inline TUE_CONSTEXPR auto operator|(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] | rhs)>{
@@ -516,7 +522,7 @@ inline constexpr auto operator|(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator|(
+inline TUE_CONSTEXPR auto operator|(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] | rhs[0])>{
@@ -526,7 +532,7 @@ inline constexpr auto operator|(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator^(
+inline TUE_CONSTEXPR auto operator^(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs ^ rhs[0])>{
@@ -536,7 +542,7 @@ inline constexpr auto operator^(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator^(
+inline TUE_CONSTEXPR auto operator^(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] ^ rhs)>{
@@ -546,7 +552,7 @@ inline constexpr auto operator^(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator^(
+inline TUE_CONSTEXPR auto operator^(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] ^ rhs[0])>{
@@ -556,7 +562,7 @@ inline constexpr auto operator^(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator<<(
+inline TUE_CONSTEXPR auto operator<<(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs << rhs[0])>{
@@ -566,7 +572,7 @@ inline constexpr auto operator<<(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator<<(
+inline TUE_CONSTEXPR auto operator<<(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] << rhs)>{
@@ -576,7 +582,7 @@ inline constexpr auto operator<<(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator<<(
+inline TUE_CONSTEXPR auto operator<<(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] << rhs[0])>{
@@ -586,7 +592,7 @@ inline constexpr auto operator<<(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator>>(
+inline TUE_CONSTEXPR auto operator>>(
     const T& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs >> rhs[0])>{
@@ -596,7 +602,7 @@ inline constexpr auto operator>>(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator>>(
+inline TUE_CONSTEXPR auto operator>>(
     const vec2<T>& lhs,
     const U& rhs) noexcept {
   return vec2<decltype(lhs[0] >> rhs)>{
@@ -606,7 +612,7 @@ inline constexpr auto operator>>(
 }
 
 template<typename T, typename U>
-inline constexpr auto operator>>(
+inline TUE_CONSTEXPR auto operator>>(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] >> rhs[0])>{
@@ -616,7 +622,7 @@ inline constexpr auto operator>>(
 }
 
 template<typename T, typename U>
-inline constexpr bool operator==(
+inline TUE_CONSTEXPR bool operator==(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return lhs[0] == rhs[0]
@@ -624,7 +630,7 @@ inline constexpr bool operator==(
 }
 
 template<typename T, typename U>
-inline constexpr bool operator!=(
+inline TUE_CONSTEXPR bool operator!=(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return !(lhs == rhs);
@@ -746,7 +752,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto dot(
+  inline TUE_CONSTEXPR auto dot(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return lhs[0] * rhs[0]
@@ -770,7 +776,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto comp_mult(
+  inline TUE_CONSTEXPR auto comp_mult(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return vec2<decltype(math::comp_mult(lhs[0], rhs[0]))>{
@@ -780,7 +786,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto select(
+  inline TUE_CONSTEXPR auto select(
       const vec2<T>& v,
       const vec2<U>& mask) noexcept {
     return vec2<decltype(math::select(v[0], mask[0]))>{
@@ -790,7 +796,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto less(
+  inline TUE_CONSTEXPR auto less(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return vec2<decltype(math::less(lhs[0], rhs[0]))>{
@@ -800,7 +806,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto less_equal(
+  inline TUE_CONSTEXPR auto less_equal(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return vec2<decltype(math::less_equal(lhs[0], rhs[0]))>{
@@ -810,7 +816,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto greater(
+  inline TUE_CONSTEXPR auto greater(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return vec2<decltype(math::greater(lhs[0], rhs[0]))>{
@@ -820,7 +826,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto greater_equal(
+  inline TUE_CONSTEXPR auto greater_equal(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return vec2<decltype(math::greater_equal(lhs[0], rhs[0]))>{
@@ -830,7 +836,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto equal(
+  inline TUE_CONSTEXPR auto equal(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return vec2<decltype(math::equal(lhs[0], rhs[0]))>{
@@ -840,7 +846,7 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline constexpr auto not_equal(
+  inline TUE_CONSTEXPR auto not_equal(
       const vec2<T>& lhs,
       const vec2<U>& rhs) noexcept {
     return vec2<decltype(math::not_equal(lhs[0], rhs[0]))>{
@@ -851,3 +857,5 @@ namespace math
 }
 
 }
+
+#undef TUE_CONSTEXPR
