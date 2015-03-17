@@ -121,7 +121,7 @@ function calls:
     - `set_rgb(const T& r, const T& g, const T& b)`
     - `set_rgb(const vec3<T>& rgb)`
 
-A raw pointer to the underlying array of components can be accessed using the
+A raw pointer to the underlying array of components can be obtained using the
 following method:
 
 - `data()`
@@ -223,7 +223,7 @@ to each component individually:
 - `equal(const vec& lhs, const vec& rhs)`
 - `not_equal(const vec& lhs, const vec& rhs)`
 
-The following function from `math::tue` take on special meanings for vec types:
+The following functions from `math::tue` take on special meanings for vec types:
 
     dot(const vec& lhs, const vec& rhs);
 
@@ -304,7 +304,7 @@ treat a quat as a vector and a scalar part:
 - `s()`
 - `set_s(const T& s)`
 
-A raw pointer to the underlying array of components can be accessed using the
+A raw pointer to the underlying array of components can be obtained using the
 following method:
 
 - `data()`
@@ -319,17 +319,17 @@ follows:
 - `q[3] == q.w() == q.s()`
 
 The `*` and `*=` operators can be used to calculate the Grassman product of two
-quat's. Given two rotation quaternions, the Grassman product can be used to
-calculate their composite rotation.
+quat's.
 
 The `*` and `*=` operators can also be used to rotate a vec3 by a rotation quat.
 The vec must be on the left side of the operator.
 
-The `==` returns true if all the pairs of corresponding components from two
-quat's are equal to each other. Otherwise it returns false. The `!=` operator
-does the exact opposite.
+The `==` operator returns true if all the pairs of corresponding components from
+two quat's are equal to each other. Otherwise it returns false. The `!=`
+operator does the exact opposite.
 
-The following function from `math::tue` take on special meanings for quat types:
+The following functions from `math::tue` take on special meanings for quat
+types:
 
     length2(const quat& q);
 
