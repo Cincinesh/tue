@@ -14,8 +14,8 @@ How to read this documentation
 ------------------------------
 
 Tuesday makes heavy use of templates. Instead of using full template syntax
-repeatedly through the documentation, shorter pseudo-code will be used instead
-when the meaning is clear. For example, the word `vec` may refer to all possible
+repeatedly throughout the documentation, shorter pseudo-code will be used when
+the meaning is clear. For example, the word `vec` may refer to all possible
 instantiations of the vec template regardless of arguments.
 
 
@@ -58,10 +58,10 @@ Type aliases for common combinations are provided for convenience:
 vec's are default-constructable, copy-constructable, and copy-assignable.
 Additionally, they can be constructed using any of the following:
 
-- A single scalar to initialize each component to the same value, e.g.:<br/>
-  `vec2(123) == vec2(123, 123)`
 - Individual component values, e.g.:<br/>
   `vec2(1, 2)`
+- A single scalar to initialize each component to the same value, e.g.:<br/>
+  `vec2(123) == vec2(123, 123)`
 - A smaller vec to initialize a front subset of components, followed by scalars
   to fill in the rest, e.g.:<br/>
   `vec3(vec2(1, 2), 3) == vec3(1, 2, 3)`
@@ -71,25 +71,27 @@ Additionally, they can be constructed using any of the following:
   to perform a component-wise explicit conversion, e.g.:<br/>
   `fvec2(dvec2(1.2, 3.4)) == fvec2(float(1.2), float(3.4))`
 
-Implicit conversion operators are provided as well that perform component-wise
-implicit conversion, e.g.:
+Implicit conversion operators are provided as well, e.g.:
 
     dvec2 v = fvec2(1.2f, 3.4f);
     v == dvec2(1.2f, 3.4f); // true
 
 vec types contain the following static factory methods:
 
-- `zero()`   Returns a `vec` with each component set to 0.
-- `x_axis()` Returns a `vec` with the x-component set to 1 and all other
-             components set to 0.
-- `y_axis()` Returns a `vec` with the y-component set to 1 and all other
-             components set to 0.
-- `z_axis()` Returns a `vec` with the z-component set to 1 and all other
-             components set to 0.<br>
-             (`vec3` and `vec4` only)
-- `w_axis()` Returns a `vec` with the w-component set to 1 and all other
-             components set to 0.<br/>
-             (`vec4` only)
+- `zero()`<br/>
+   Returns a `vec` with each component set to 0.
+- `x_axis()`<br/>
+   Returns a `vec` with the x-component set to 1 and all other components set to
+   0.
+- `y_axis()`<br/>
+   Returns a `vec` with the y-component set to 1 and all other components set to
+   0.
+- `z_axis()` (`vec3` and `vec4` only)<br/>
+   Returns a `vec` with the z-component set to 1 and all other components set to
+   0.
+- `w_axis()` (`vec4` only)<br/>
+   Returns a `vec` with the w-component set to 1 and all other components set to
+   0.
 
 vec components can be accessed by value using the following getters and setters:
 
