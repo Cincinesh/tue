@@ -1029,10 +1029,10 @@ TEST_CASE(axis_angle) {
   test_assert(aa2 == aa1);
 
   const fvec4 aa3 = math::axis_angle(fvec3(0.0f));
-  test_assert(aa3 == fvec4(0.0f));
+  test_assert(aa3 == fvec4(0.0f, 0.0f, 1.0f, 0.0f));
 
   const fvec4 aa4 = math::axis_angle(0.0f, 0.0f, 0.0f);
-  test_assert(aa4 == fvec4(0.0f));
+  test_assert(aa4 == fvec4(0.0f, 0.0f, 1.0f, 0.0f));
 }
 
 }

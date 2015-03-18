@@ -1113,7 +1113,9 @@ namespace math
     using U = decltype(math::length(v));
     const auto angle = math::length(v);
     const auto mask = math::not_equal(angle, U(0));
-    const auto axis = math::select(vec3<U>(v) / angle, mask);
+    const auto axis =
+        math::select(vec3<U>(v) / angle, mask)
+        + math::select(vec3<U>::z_axis(), !mask);
     return vec4<U>(axis, angle);
   }
 

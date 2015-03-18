@@ -349,3 +349,44 @@ ratios as the given quat.
 
 Returns the conjugate of the given quat, i.e., a quat with the same scalar part,
 but the vector part negated.
+
+
+### Rotations ###
+
+While not technically a C++ type separate from the `vec` and `quat` types
+already discussed, rotations in Tuesday deserve some explanation. There is one
+main way to represent rotations in 2-dimensional space, and three ways in
+3-dimensional space.
+
+A 2-dimensional rotation can be represented by a single scalar angle in radians.
+Tuesday treats positive angle values as counter-clockwise.
+
+A 3-dimensional rotation can be represented in three different ways:
+
+- Axis-angle (a `vec4`, a `vec3` and a scalar, or four scalars)
+- A rotation vector (a `vec3` or three scalars)
+- A normalized quaternion (a `quat`)
+
+The meaning of the axis-angle representation is straightforward. The first three
+components represent the axis of rotation. All Tuesday functions which expect
+an axis-angle representation assume the axis to be a unit vector. The fourth
+component represents the angle of rotation around the axis. The direction of
+rotation can be determined using the right-hand rule. The axis-angle
+representation is most useful when you want to rotate around an arbitrary axis.
+
+A rotation vector is a little more complicated. There are several ways to think
+about it. One way is to think about it as a more-compact version of axis-angle,
+i.e. its direction is the axis of rotation, and its magnitude is the angle of
+rotation. This property makes it intuitive to multiply a rotation vector by a
+scalar. Another way to think about it is as three separate axis-angle
+representation, i.e., the x-component represents the angle of rotation around
+the x-axis, the y-component around the y-axis, and the z-component around the
+z-axis. This property makes adding two rotation vectors intuitive. The rotation
+vector representation is most useful for storing 3-dimensional angular velocity.
+
+A rotation quaternion is even more complicated conceptually, but that's okay:
+with Tuesday, there's rarely a need to calculate or interpret individual quat
+component values. The important thing to realize is quat's can be used to rotate
+vec3's and each other, as well as construct rotation matricies, using only
+simple arithmetic and no expensive trigonometric functions. Quaternions are most
+useful for storing 3-dimensional orientations and performing transformations.
