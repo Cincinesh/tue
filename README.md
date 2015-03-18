@@ -275,8 +275,9 @@ Additionally, they can be constructed using any of the following:
   `quat(vec3(1, 2, 3), 4) == quat(1, 2, 3, 4)`
 - Another quat with a different `component_type` to perform a component-wise
   explicit conversion, e.g.:<br/>
-  `fquat(dquat(1.1, 2.2, 3.3, 4.4))
-      == fquat(float(1.1), float(2.2), float(3.3), float(4.4))`
+
+        fquat(dquat(1.1, 2.2, 3.3, 4.4))
+            == fquat(float(1.1), float(2.2), float(3.3), float(4.4)); // true
 
 Implicit conversion operators are provided as well, e.g.:
 
