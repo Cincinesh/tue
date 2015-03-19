@@ -621,7 +621,7 @@ inline TUE_CONSTEXPR auto operator>>(
 }
 
 template<typename T, typename U, int R>
-inline TUE_CONSTEXPR bool operator==(
+inline constexpr bool operator==(
     const mat<T, 2, R>& lhs,
     const mat<U, 2, R>& rhs) noexcept {
   return lhs[0] == rhs[0]
@@ -629,7 +629,7 @@ inline TUE_CONSTEXPR bool operator==(
 }
 
 template<typename T, typename U, int R>
-inline TUE_CONSTEXPR bool operator!=(
+inline constexpr bool operator!=(
     const mat<T, 2, R>& lhs,
     const mat<U, 2, R>& rhs) noexcept {
   return !operator==(lhs, rhs);
@@ -761,7 +761,7 @@ namespace math
   }
 
   template<typename T, int R>
-  inline TUE_CONSTEXPR mat<T, 2, R> transpose(
+  inline constexpr mat<T, 2, R> transpose(
       const mat<T, R, 2>& m) noexcept {
     return {
       m.row(0),

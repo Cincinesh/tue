@@ -23,7 +23,7 @@ namespace tue {
 namespace math
 {
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
+  inline constexpr mat<T, 4, 4> translation_mat(
       const T& x, const T& y) noexcept {
     return {
       { T(1), T(0), T(0),    x },
@@ -34,13 +34,13 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
+  inline constexpr mat<T, 4, 4> translation_mat(
       const vec2<T>& xy) noexcept {
     return translation_mat(xy.x(), xy.y());
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
+  inline constexpr mat<T, 4, 4> translation_mat(
       const T& x, const T& y, const T& z) noexcept {
     return {
       { T(1), T(0), T(0),    x },
@@ -51,7 +51,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> translation_mat(
+  inline constexpr mat<T, 4, 4> translation_mat(
       const vec3<T>& xyz) noexcept {
     return translation_mat(xyz.x(), xyz.y(), xyz.z());
   }
@@ -129,7 +129,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> rotation_mat(const quat<T>& q) noexcept {
+  inline constexpr mat<T, 4, 4> rotation_mat(const quat<T>& q) noexcept {
     return {
       {
         T(1) - T(2)*q.y()*q.y() - T(2)*q.z()*q.z(),
@@ -153,7 +153,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
+  inline constexpr mat<T, 4, 4> scale_mat(
       const T& x, const T& y) noexcept {
     return {
       {    x, T(0), T(0), T(0) },
@@ -164,13 +164,13 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
+  inline constexpr mat<T, 4, 4> scale_mat(
       const vec2<T>& xy) noexcept {
     return scale_mat(xy.x(), xy.y());
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
+  inline constexpr mat<T, 4, 4> scale_mat(
       const T& x, const T& y, const T& z) noexcept {
     return {
       {    x, T(0), T(0), T(0) },
@@ -181,7 +181,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR mat<T, 4, 4> scale_mat(
+  inline constexpr mat<T, 4, 4> scale_mat(
       const vec3<T>& xyz) noexcept {
     return scale_mat(xyz.x(), xyz.y(), xyz.z());
   }

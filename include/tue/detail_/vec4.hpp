@@ -852,7 +852,7 @@ inline TUE_CONSTEXPR auto operator>>(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR bool operator==(
+inline constexpr bool operator==(
     const vec4<T>& lhs,
     const vec4<U>& rhs) noexcept {
   return lhs[0] == rhs[0]
@@ -862,7 +862,7 @@ inline TUE_CONSTEXPR bool operator==(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR bool operator!=(
+inline constexpr bool operator!=(
     const vec4<T>& lhs,
     const vec4<U>& rhs) noexcept {
   return !operator==(lhs, rhs);

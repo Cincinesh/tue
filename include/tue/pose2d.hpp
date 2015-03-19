@@ -67,10 +67,10 @@ public:
   }
 };
 
-template<typename L, typename R>
+template<typename T, typename U>
 inline constexpr bool operator==(
-    const pose2d<L>& lhs,
-    const pose2d<R>& rhs) noexcept {
+    const pose2d<T>& lhs,
+    const pose2d<U>& rhs) noexcept {
   return lhs.translation() == rhs.translation()
       && lhs.rotation() == rhs.rotation();
 }
