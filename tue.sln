@@ -46,6 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{F2
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		LICENSE_1_0.txt = LICENSE_1_0.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.exe.win32", "tests.exe.win32.vcxproj", "{2590E09E-85E4-4B7B-8322-1827A4698EB9}"

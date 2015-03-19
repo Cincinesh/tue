@@ -147,6 +147,19 @@ public:
     set_xy(xy[0], xy[1]);
   }
 
+  constexpr vec2<T> rg() const noexcept {
+    return vec2<T>(*this);
+  }
+
+  void set_rg(const T& r, const T& g) noexcept {
+    impl_.data[0] = r;
+    impl_.data[1] = g;
+  }
+
+  void set_rg(const vec2<T>& rg) noexcept {
+    set_xy(rg[0], rg[1]);
+  }
+
   T* data() noexcept {
     return impl_.data;
   }

@@ -93,6 +93,22 @@ public:
     impl_.data[1] = y;
   }
 
+  constexpr T r() const noexcept {
+    return impl_.data[0];
+  }
+
+  void set_r(const T& r) noexcept {
+    impl_.data[0] = r;
+  }
+
+  constexpr T g() const noexcept {
+    return impl_.data[1];
+  }
+
+  void set_g(const T& g) noexcept {
+    impl_.data[1] = g;
+  }
+
   T* data() noexcept {
     return impl_.data;
   }

@@ -121,6 +121,30 @@ TEST_CASE(set_y) {
   test_assert(v[1] == 2.2f);
 }
 
+TEST_CASE(r) {
+  CONST_OR_CONSTEXPR float r = fv21.r();
+  test_assert(r == fv21[0]);
+}
+
+TEST_CASE(set_r) {
+  fvec2 v(1.1f, 1.2f);
+  v.set_r(2.1f);
+  test_assert(v[0] == 2.1f);
+  test_assert(v[1] == 1.2f);
+}
+
+TEST_CASE(g) {
+  CONST_OR_CONSTEXPR float g = fv21.g();
+  test_assert(g == fv21[1]);
+}
+
+TEST_CASE(set_g) {
+  fvec2 v(1.1f, 1.2f);
+  v.set_g(2.2f);
+  test_assert(v[0] == 1.1f);
+  test_assert(v[1] == 2.2f);
+}
+
 TEST_CASE(data) {
   fvec2 v = fv21;
   float* data = v.data();

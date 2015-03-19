@@ -103,8 +103,8 @@ vec components can be accessed by value using the following getters and setters:
 Alternate component names are also included to make vec types more useful as
 color representations:
 
-- `r()`, `set_r(const T& r)` (`vec3` and `vec4` only)
-- `g()`, `set_g(const T& g)` (`vec3` and `vec4` only)
+- `r()`, `set_r(const T& r)`
+- `g()`, `set_g(const T& g)`
 - `b()`, `set_b(const T& b)` (`vec3` and `vec4` only)
 - `a()`, `set_a(const T& a)` (`vec4` only)
 
@@ -115,6 +115,9 @@ function calls:
     - `xy()`
     - `set_xy(const T& x, const T& y)`
     - `set_xy(const vec2<T>& xy)`
+    - `rg()`
+    - `set_rg(const T& r, const T& g)`
+    - `set_rg(const vec2<T>& rg)`
 - `vec4` only:
     - `xyz()`
     - `set_xyz(const T& x, const T& y, const T& z)`
