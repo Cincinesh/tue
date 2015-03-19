@@ -23,12 +23,12 @@ private:
 public:
   floatx4() noexcept = default;
 
-  explicit floatx4(float s) noexcept
-    : x(s), y(s), z(s), w(s) {
-  }
-
   floatx4(float x, float y, float z, float w) noexcept
     : x(x), y(y), z(z), w(w) {
+  }
+
+  explicit floatx4(float s) noexcept
+    : x(s), y(s), z(s), w(s) {
   }
 
   static floatx4 zero() noexcept {
@@ -162,7 +162,7 @@ public:
   }
 
   bool operator!=(const floatx4& other) const noexcept {
-    return !(*this == other);
+    return !operator==(other);
   }
 };
 

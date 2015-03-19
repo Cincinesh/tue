@@ -81,7 +81,7 @@ template<typename L, typename R>
 inline constexpr bool operator!=(
     const pose3d<L>& lhs,
     const pose3d<R>& rhs) noexcept {
-  return !(lhs == rhs);
+  return !operator==(lhs, rhs);
 }
 
 }

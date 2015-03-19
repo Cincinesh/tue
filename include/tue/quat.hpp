@@ -100,21 +100,19 @@ public:
   }
 
   constexpr vec3<T> v() const noexcept {
-    return {
-      impl_.data[0],
-      impl_.data[1],
-      impl_.data[2],
-    };
-  }
-
-  void set_v(const T& x, const T& y, const T& z) noexcept {
-    impl_.data[0] = x;
-    impl_.data[1] = y;
-    impl_.data[2] = z;
+    return { x(), y(), z() };
   }
 
   void set_v(const vec3<T>& v) noexcept {
-    set_v(v[0], v[1], v[2]);
+    set_x(v[0]);
+    set_y(v[1]);
+    set_z(v[2]);
+  }
+
+  void set_v(const T& x, const T& y, const T& z) noexcept {
+    set_x(x);
+    set_y(y);
+    set_z(z);
   }
 
   constexpr T s() const noexcept {
@@ -180,7 +178,7 @@ template<typename T, typename U>
 inline TUE_CONSTEXPR bool operator!=(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept {
-  return !(lhs == rhs);
+  return !operator==(lhs, rhs);
 }
 
 namespace math
@@ -200,12 +198,13 @@ namespace math
 
   template<typename T>
   inline auto normalize(const quat<T>& q) noexcept {
-    const auto l = math::length(q);
-    return quat<decltype(l / l)>{
-      decltype(l)(q[0]) / l,
-      decltype(l)(q[1]) / l,
-      decltype(l)(q[2]) / l,
-      decltype(l)(q[3]) / l,
+    using U = decltype(math::length(q));
+    const U length = math::length(q);
+    return quat<U>{
+      U(q[0]) / length,
+      U(q[1]) / length,
+      U(q[2]) / length,
+      U(q[3]) / length,
     };
   }
 
@@ -223,17 +222,17 @@ namespace math
   }
 
   template<typename T>
+  inline auto rotation_quat(const vec4<T>& v) noexcept {
+    return math::rotation_quat(v.xyz(), v.w());
+  }
+
+  template<typename T>
   inline auto rotation_quat(
       const T& axis_x,
       const T& axis_y,
       const T& axis_z,
       const T& angle) noexcept {
-    return math::rotation_quat(vec3<T>(axis_x, axis_y, axis_z), angle);
-  }
-
-  template<typename T>
-  inline auto rotation_quat(const vec4<T>& v) noexcept {
-    return math::rotation_quat(v.xyz(), v.w());
+    return math::rotation_quat(vec4<T>(axis_x, axis_y, axis_z, angle));
   }
 
   template<typename T>
@@ -243,7 +242,7 @@ namespace math
 
   template<typename T>
   inline auto rotation_quat(const T& x, const T& y, const T& z) noexcept {
-    return math::rotation_quat(vec3<T>(x, y, z));
+    return math::rotation_quat(math::axis_angle(x, y, z));
   }
 
   template<typename T>

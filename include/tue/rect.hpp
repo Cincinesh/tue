@@ -145,7 +145,7 @@ template<typename LP, typename LS, typename RP, typename RS>
 inline constexpr bool operator!=(
     const rect<LP, LS>& lhs,
     const rect<RP, RS>& rhs) noexcept {
-  return !(lhs == rhs);
+  return !operator==(lhs, rhs);
 }
 
 }

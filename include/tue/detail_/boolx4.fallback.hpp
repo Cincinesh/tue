@@ -20,12 +20,12 @@ private:
 public:
   boolx4() noexcept = default;
 
-  explicit boolx4(float s) noexcept
-    : x(s), y(s), z(s), w(s) {
-  }
-
   boolx4(bool x, bool y, bool z, bool w) noexcept
     : x(x), y(y), z(z), w(w) {
+  }
+
+  explicit boolx4(bool s) noexcept
+    : x(s), y(s), z(s), w(s) {
   }
 
   boolx4 operator!() const noexcept {
@@ -67,7 +67,7 @@ public:
   }
 
   bool operator!=(const boolx4& other) const noexcept {
-    return !(*this == other);
+    return !operator==(other);
   }
 };
 

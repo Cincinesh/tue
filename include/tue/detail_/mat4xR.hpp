@@ -752,7 +752,7 @@ template<typename T, typename U, int R>
 inline TUE_CONSTEXPR bool operator!=(
     const mat<T, 4, R>& lhs,
     const mat<U, 4, R>& rhs) noexcept {
-  return !(lhs == rhs);
+  return !operator==(lhs, rhs);
 }
 
 namespace math

@@ -27,16 +27,16 @@ private:
 public:
   boolx4() noexcept = default;
 
-  explicit boolx4(bool b) noexcept
-    : underlying_(_mm_set_ps1(bool_to_float_(b))) {
-  }
-
   boolx4(bool x, bool y, bool z, bool w) noexcept
     : underlying_(_mm_setr_ps(
           bool_to_float_(x),
           bool_to_float_(y),
           bool_to_float_(z),
           bool_to_float_(w))) {
+  }
+
+  explicit boolx4(bool b) noexcept
+    : underlying_(_mm_set_ps1(bool_to_float_(b))) {
   }
 
   boolx4(__m128 underlying) noexcept
@@ -48,7 +48,7 @@ public:
   }
 
   boolx4 operator!() const noexcept {
-    return _mm_xor_ps(underlying_, detail_::binary_m128(0xFFFFFFFFu));
+    return _mm_xor_ps(underlying_, detail_::binary_m128(~0u));
   }
 
   boolx4 operator&(const boolx4& other) const noexcept {
@@ -68,7 +68,7 @@ public:
   }
 
   bool operator==(const boolx4& other) const noexcept {
-    return !(*this != other);
+    return !operator!=(other);
   }
 };
 

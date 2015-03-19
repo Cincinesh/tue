@@ -71,7 +71,7 @@ template<typename T, typename U>
 inline constexpr bool operator!=(
     const size2d<T>& lhs,
     const size2d<U>& rhs) noexcept {
-  return !(lhs == rhs);
+  return !operator==(lhs, rhs);
 }
 
 }

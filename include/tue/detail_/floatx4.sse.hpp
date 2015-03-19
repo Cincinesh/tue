@@ -53,12 +53,12 @@ private:
 public:
   floatx4() noexcept = default;
 
-  explicit floatx4(float s) noexcept
-    : underlying_(_mm_set_ps1(s)) {
-  }
-
   floatx4(float x, float y, float z, float w) noexcept
     : underlying_(_mm_setr_ps(x, y, z, w)) {
+  }
+
+  explicit floatx4(float s) noexcept
+    : underlying_(_mm_set_ps1(s)) {
   }
 
   floatx4(__m128 underlying) noexcept
@@ -154,7 +154,7 @@ public:
   }
 
   bool operator!=(const floatx4& other) const noexcept {
-    return !(*this == other);
+    return !operator==(other);
   }
 };
 

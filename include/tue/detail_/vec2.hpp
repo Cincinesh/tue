@@ -651,7 +651,7 @@ template<typename T, typename U>
 inline TUE_CONSTEXPR bool operator!=(
     const vec2<T>& lhs,
     const vec2<U>& rhs) noexcept {
-  return !(lhs == rhs);
+  return !operator==(lhs, rhs);
 }
 
 namespace math
