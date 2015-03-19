@@ -12,12 +12,6 @@
 #include "../quat.hpp"
 #include "../vec.hpp"
 
-#ifdef _MSC_VER
-#define TUE_CONSTEXPR
-#else
-#define TUE_CONSTEXPR constexpr
-#endif
-
 namespace tue {
 
 namespace math
@@ -226,7 +220,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR auto pose_mat(
+  inline constexpr auto pose_mat(
       const vec3<T>& translation,
       const quat<T>& rotation) noexcept {
     return rotation_mat(rotation)
@@ -234,7 +228,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR auto pose_mat(
+  inline constexpr auto pose_mat(
       const pose3d<T>& pose) noexcept {
     return pose_mat(pose.translation(), pose.rotation());
   }
@@ -279,7 +273,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR auto view_mat(
+  inline constexpr auto view_mat(
       const vec3<T>& translation,
       const quat<T>& rotation) noexcept {
     return translation_mat(-translation)
@@ -287,7 +281,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR auto view_mat(
+  inline constexpr auto view_mat(
       const pose3d<T>& pose) noexcept {
     return view_mat(pose.translation(), pose.rotation());
   }
@@ -312,7 +306,7 @@ namespace math
   }
 
   template<typename T>
-  inline TUE_CONSTEXPR auto ortho_mat(
+  inline constexpr auto ortho_mat(
       const T& width,
       const T& height,
       const T& near,
@@ -328,5 +322,3 @@ namespace math
 }
 
 }
-
-#undef TUE_CONSTEXPR

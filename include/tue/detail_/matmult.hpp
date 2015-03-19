@@ -9,16 +9,10 @@
 #include "../math.hpp"
 #include "../vec.hpp"
 
-#ifdef _MSC_VER
-#define TUE_CONSTEXPR
-#else
-#define TUE_CONSTEXPR constexpr
-#endif
-
 namespace tue {
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec2<T>& lhs,
     const mat2x2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] * rhs[0][0])>{
@@ -28,7 +22,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec2<T>& lhs,
     const mat3x2<U>& rhs) noexcept {
   return vec3<decltype(lhs[0] * rhs[0][0])>{
@@ -39,7 +33,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec2<T>& lhs,
     const mat4x2<U>& rhs) noexcept {
   return vec4<decltype(lhs[0] * rhs[0][0])>{
@@ -51,7 +45,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec3<T>& lhs,
     const mat2x3<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] * rhs[0][0])>{
@@ -61,7 +55,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec3<T>& lhs,
     const mat3x3<U>& rhs) noexcept {
   return vec3<decltype(lhs[0] * rhs[0][0])>{
@@ -72,7 +66,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec3<T>& lhs,
     const mat4x3<U>& rhs) noexcept {
   return vec4<decltype(lhs[0] * rhs[0][0])>{
@@ -84,7 +78,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec4<T>& lhs,
     const mat2x4<U>& rhs) noexcept {
   return vec2<decltype(lhs[0] * rhs[0][0])>{
@@ -94,7 +88,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec4<T>& lhs,
     const mat3x4<U>& rhs) noexcept {
   return vec3<decltype(lhs[0] * rhs[0][0])>{
@@ -105,7 +99,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const vec4<T>& lhs,
     const mat4x4<U>& rhs) noexcept {
   return vec4<decltype(lhs[0] * rhs[0][0])>{
@@ -117,7 +111,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x2<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec2<decltype(lhs[0][0] * rhs[0])>{
@@ -127,7 +121,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x2<T>& lhs,
     const mat2x2<U>& rhs) noexcept {
   return mat2x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -142,7 +136,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x2<T>& lhs,
     const mat3x2<U>& rhs) noexcept {
   return mat3x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -160,7 +154,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x2<T>& lhs,
     const mat4x2<U>& rhs) noexcept {
   return mat4x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -181,7 +175,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x3<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec3<decltype(lhs[0][0] * rhs[0])>{
@@ -192,7 +186,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x3<T>& lhs,
     const mat2x2<U>& rhs) noexcept {
   return mat2x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -209,7 +203,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x3<T>& lhs,
     const mat3x2<U>& rhs) noexcept {
   return mat3x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -230,7 +224,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x3<T>& lhs,
     const mat4x2<U>& rhs) noexcept {
   return mat4x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -255,7 +249,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x4<T>& lhs,
     const vec2<U>& rhs) noexcept {
   return vec4<decltype(lhs[0][0] * rhs[0])>{
@@ -267,7 +261,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x4<T>& lhs,
     const mat2x2<U>& rhs) noexcept {
   return mat2x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -286,7 +280,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x4<T>& lhs,
     const mat3x2<U>& rhs) noexcept {
   return mat3x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -310,7 +304,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat2x4<T>& lhs,
     const mat4x2<U>& rhs) noexcept {
   return mat4x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -339,7 +333,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x2<T>& lhs,
     const vec3<U>& rhs) noexcept {
   return vec2<decltype(lhs[0][0] * rhs[0])>{
@@ -349,7 +343,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x2<T>& lhs,
     const mat2x3<U>& rhs) noexcept {
   return mat2x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -364,7 +358,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x2<T>& lhs,
     const mat3x3<U>& rhs) noexcept {
   return mat3x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -382,7 +376,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x2<T>& lhs,
     const mat4x3<U>& rhs) noexcept {
   return mat4x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -403,7 +397,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x3<T>& lhs,
     const vec3<U>& rhs) noexcept {
   return vec3<decltype(lhs[0][0] * rhs[0])>{
@@ -414,7 +408,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x3<T>& lhs,
     const mat2x3<U>& rhs) noexcept {
   return mat2x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -431,7 +425,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x3<T>& lhs,
     const mat3x3<U>& rhs) noexcept {
   return mat3x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -452,7 +446,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x3<T>& lhs,
     const mat4x3<U>& rhs) noexcept {
   return mat4x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -477,7 +471,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x4<T>& lhs,
     const vec3<U>& rhs) noexcept {
   return vec4<decltype(lhs[0][0] * rhs[0])>{
@@ -489,7 +483,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x4<T>& lhs,
     const mat2x3<U>& rhs) noexcept {
   return mat2x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -508,7 +502,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x4<T>& lhs,
     const mat3x3<U>& rhs) noexcept {
   return mat3x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -532,7 +526,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat3x4<T>& lhs,
     const mat4x3<U>& rhs) noexcept {
   return mat4x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -561,7 +555,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x2<T>& lhs,
     const vec4<U>& rhs) noexcept {
   return vec2<decltype(lhs[0][0] * rhs[0])>{
@@ -571,7 +565,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
   const mat4x2<T>& lhs,
   const mat2x4<U>& rhs) noexcept {
   return mat2x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -586,7 +580,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x2<T>& lhs,
     const mat3x4<U>& rhs) noexcept {
   return mat3x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -604,7 +598,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x2<T>& lhs,
     const mat4x4<U>& rhs) noexcept {
   return mat4x2<decltype(lhs[0][0] * rhs[0][0])>{
@@ -625,7 +619,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x3<T>& lhs,
     const vec4<U>& rhs) noexcept {
   return vec3<decltype(lhs[0][0] * rhs[0])>{
@@ -636,7 +630,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x3<T>& lhs,
     const mat2x4<U>& rhs) noexcept {
   return mat2x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -653,7 +647,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x3<T>& lhs,
     const mat3x4<U>& rhs) noexcept {
   return mat3x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -674,7 +668,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x3<T>& lhs,
     const mat4x4<U>& rhs) noexcept {
   return mat4x3<decltype(lhs[0][0] * rhs[0][0])>{
@@ -699,7 +693,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x4<T>& lhs,
     const vec4<U>& rhs) noexcept {
   return vec4<decltype(lhs[0][0] * rhs[0])>{
@@ -711,7 +705,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x4<T>& lhs,
     const mat2x4<U>& rhs) noexcept {
   return mat2x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -730,7 +724,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x4<T>& lhs,
     const mat3x4<U>& rhs) noexcept {
   return mat3x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -754,7 +748,7 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 template<typename T, typename U>
-inline TUE_CONSTEXPR auto operator*(
+inline constexpr auto operator*(
     const mat4x4<T>& lhs,
     const mat4x4<U>& rhs) noexcept {
   return mat4x4<decltype(lhs[0][0] * rhs[0][0])>{
@@ -783,5 +777,3 @@ inline TUE_CONSTEXPR auto operator*(
 }
 
 }
-
-#undef TUE_CONSTEXPR
