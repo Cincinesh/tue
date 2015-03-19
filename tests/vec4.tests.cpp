@@ -266,6 +266,27 @@ TEST_CASE(set_xy) {
   test_assert(v2[3] == 1.4f);
 }
 
+TEST_CASE(rg) {
+  CONST_OR_CONSTEXPR fvec2 rg = fv41.rg();
+  test_assert(rg == fvec2(fv41));
+}
+
+TEST_CASE(set_rg) {
+  fvec4 v1(1.1f, 1.2f, 1.3f, 1.4f);
+  v1.set_rg(2.1f, 2.2f);
+  test_assert(v1[0] == 2.1f);
+  test_assert(v1[1] == 2.2f);
+  test_assert(v1[2] == 1.3f);
+  test_assert(v1[3] == 1.4f);
+
+  fvec4 v2(1.1f, 1.2f, 1.3f, 1.4f);
+  v2.set_rg(fvec2(2.1f, 2.2f));
+  test_assert(v2[0] == 2.1f);
+  test_assert(v2[1] == 2.2f);
+  test_assert(v2[2] == 1.3f);
+  test_assert(v2[3] == 1.4f);
+}
+
 TEST_CASE(xyz) {
   CONST_OR_CONSTEXPR fvec3 xyz = fv41.xyz();
   test_assert(xyz == fvec3(fv41));

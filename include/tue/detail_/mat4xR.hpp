@@ -35,15 +35,6 @@ private:
 public:
   mat() = default;
 
-  explicit constexpr mat(const T& s) noexcept
-    : impl_({{
-        vec<T, R>(vec<T, 4>(s, T(0), T(0), T(0))),
-        vec<T, R>(vec<T, 4>(T(0), s, T(0), T(0))),
-        vec<T, R>(vec<T, 4>(T(0), T(0), s, T(0))),
-        vec<T, R>(vec<T, 4>(T(0), T(0), T(0), s)),
-      }}) {
-  }
-
   constexpr mat(
       const vec<T, R>& column0,
       const vec<T, R>& column1,
@@ -54,6 +45,15 @@ public:
         column1,
         column2,
         column3,
+      }}) {
+  }
+
+  explicit constexpr mat(const T& s) noexcept
+    : impl_({{
+        vec<T, R>(vec<T, 4>(s, T(0), T(0), T(0))),
+        vec<T, R>(vec<T, 4>(T(0), s, T(0), T(0))),
+        vec<T, R>(vec<T, 4>(T(0), T(0), s, T(0))),
+        vec<T, R>(vec<T, 4>(T(0), T(0), T(0), s)),
       }}) {
   }
 

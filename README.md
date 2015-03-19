@@ -113,18 +113,18 @@ function calls:
 
 - `vec3` and `vec4` only:
     - `xy()`
-    - `set_xy(const T& x, const T& y)`
     - `set_xy(const vec2<T>& xy)`
+    - `set_xy(const T& x, const T& y)`
     - `rg()`
-    - `set_rg(const T& r, const T& g)`
     - `set_rg(const vec2<T>& rg)`
+    - `set_rg(const T& r, const T& g)`
 - `vec4` only:
     - `xyz()`
-    - `set_xyz(const T& x, const T& y, const T& z)`
     - `set_xyz(const vec3<T>& xyz)`
+    - `set_xyz(const T& x, const T& y, const T& z)`
     - `rgb()`
-    - `set_rgb(const T& r, const T& g, const T& b)`
     - `set_rgb(const vec3<T>& rgb)`
+    - `set_rgb(const T& r, const T& g, const T& b)`
 
 A raw pointer to the underlying array of components can be obtained using the
 following method:

@@ -33,12 +33,12 @@ private:
 public:
   vec() noexcept = default;
 
-  explicit constexpr vec(const T& s) noexcept
-    : impl_({{ s, s }}) {
-  }
-
   constexpr vec(const T& x, const T& y) noexcept
     : impl_({{ x, y }}) {
+  }
+
+  explicit constexpr vec(const T& s) noexcept
+    : impl_({{ s, s }}) {
   }
 
   explicit constexpr vec(const vec3<T>& other) noexcept
@@ -140,15 +140,17 @@ public:
   }
 
   vec operator++(int) noexcept {
-    const auto orig = *this;
-    ++*this;
-    return orig;
+    return {
+      impl_.data[0]++,
+      impl_.data[1]++,
+    };
   }
 
   vec operator--(int) noexcept {
-    const auto orig = *this;
-    --*this;
-    return orig;
+    return {
+      impl_.data[0]--,
+      impl_.data[1]--,
+    };
   }
 
   template<typename U>

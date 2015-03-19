@@ -33,12 +33,12 @@ private:
 public:
   vec() noexcept = default;
 
-  explicit constexpr vec(const T& s) noexcept
-    : impl_({{ s, s, s, s }}) {
-  }
-
   constexpr vec(const T& x, const T& y, const T& z, const T& w) noexcept
     : impl_({{ x, y, z, w }}) {
+  }
+
+  explicit constexpr vec(const T& s) noexcept
+    : impl_({{ s, s, s, s }}) {
   }
 
   explicit constexpr vec(const vec2<T>& xy, const T& z, const T& w) noexcept
@@ -154,44 +154,63 @@ public:
   }
 
   constexpr vec2<T> xy() const noexcept {
-    return vec2<T>(*this);
-  }
-
-  void set_xy(const T& x, const T& y) noexcept {
-    impl_.data[0] = x;
-    impl_.data[1] = y;
+    return { x(), y() };
   }
 
   void set_xy(const vec2<T>& xy) noexcept {
-    set_xy(xy[0], xy[1]);
+    set_x(xy[0]);
+    set_y(xy[1]);
+  }
+
+  void set_xy(const T& x, const T& y) noexcept {
+    set_x(x);
+    set_y(y);
+  }
+
+  constexpr vec2<T> rg() const noexcept {
+    return{ r(), g() };
+  }
+
+  void set_rg(const vec2<T>& rg) noexcept {
+    set_r(rg[0]);
+    set_g(rg[1]);
+  }
+
+  void set_rg(const T& r, const T& g) noexcept {
+    set_r(r);
+    set_g(g);
   }
 
   constexpr vec3<T> xyz() const noexcept {
-    return vec3<T>(*this);
-  }
-
-  void set_xyz(const T& x, const T& y, const T& z) noexcept {
-    impl_.data[0] = x;
-    impl_.data[1] = y;
-    impl_.data[2] = z;
+    return { x(), y(), z() };
   }
 
   void set_xyz(const vec3<T>& xyz) noexcept {
-    set_xyz(xyz[0], xyz[1], xyz[2]);
+    set_x(xyz[0]);
+    set_y(xyz[1]);
+    set_z(xyz[2]);
+  }
+
+  void set_xyz(const T& x, const T& y, const T& z) noexcept {
+    set_x(x);
+    set_y(y);
+    set_z(z);
   }
 
   constexpr vec3<T> rgb() const noexcept {
-    return vec3<T>(*this);
-  }
-
-  void set_rgb(const T& r, const T& g, const T& b) noexcept {
-    impl_.data[0] = r;
-    impl_.data[1] = g;
-    impl_.data[2] = b;
+    return { r(), g(), b() };
   }
 
   void set_rgb(const vec3<T>& rgb) noexcept {
-    set_rgb(rgb[0], rgb[1], rgb[2]);
+    set_r(rgb[0]);
+    set_g(rgb[1]);
+    set_b(rgb[2]);
+  }
+
+  void set_rgb(const T& r, const T& g, const T& b) noexcept {
+    set_r(r);
+    set_g(g);
+    set_b(b);
   }
 
   T* data() noexcept {
@@ -229,15 +248,21 @@ public:
   }
 
   vec operator++(int) noexcept {
-    const auto orig = *this;
-    ++*this;
-    return orig;
+    return {
+      impl_.data[0]++,
+      impl_.data[1]++,
+      impl_.data[2]++,
+      impl_.data[3]++,
+    };
   }
 
   vec operator--(int) noexcept {
-    const auto orig = *this;
-    --*this;
-    return orig;
+    return {
+      impl_.data[0]--,
+      impl_.data[1]--,
+      impl_.data[2]--,
+      impl_.data[3]--,
+    };
   }
 
   template<typename U>

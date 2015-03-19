@@ -36,12 +36,12 @@ private:
 public:
   vec() noexcept = default;
 
-  explicit constexpr vec(const T& s) noexcept
-    : impl_({{ s, s, s }}) {
-  }
-
   constexpr vec(const T& x, const T& y, const T& z) noexcept
     : impl_({{ x, y, z }}) {
+  }
+
+  explicit constexpr vec(const T& s) noexcept
+    : impl_({{ s, s, s }}) {
   }
 
   explicit constexpr vec(const vec2<T>& xy, const T& z) noexcept
@@ -135,29 +135,31 @@ public:
   }
 
   constexpr vec2<T> xy() const noexcept {
-    return vec2<T>(*this);
-  }
-
-  void set_xy(const T& x, const T& y) noexcept {
-    impl_.data[0] = x;
-    impl_.data[1] = y;
+    return { x(), y() };
   }
 
   void set_xy(const vec2<T>& xy) noexcept {
-    set_xy(xy[0], xy[1]);
+    set_x(xy[0]);
+    set_y(xy[1]);
+  }
+
+  void set_xy(const T& x, const T& y) noexcept {
+    set_x(x);
+    set_y(y);
   }
 
   constexpr vec2<T> rg() const noexcept {
-    return vec2<T>(*this);
-  }
-
-  void set_rg(const T& r, const T& g) noexcept {
-    impl_.data[0] = r;
-    impl_.data[1] = g;
+    return { r(), g() };
   }
 
   void set_rg(const vec2<T>& rg) noexcept {
-    set_xy(rg[0], rg[1]);
+    set_r(rg[0]);
+    set_g(rg[1]);
+  }
+
+  void set_rg(const T& r, const T& g) noexcept {
+    set_r(r);
+    set_g(g);
   }
 
   T* data() noexcept {
@@ -193,15 +195,19 @@ public:
   }
 
   vec operator++(int) noexcept {
-    const auto orig = *this;
-    ++*this;
-    return orig;
+    return {
+      impl_.data[0]++,
+      impl_.data[1]++,
+      impl_.data[2]++,
+    };
   }
 
   vec operator--(int) noexcept {
-    const auto orig = *this;
-    --*this;
-    return orig;
+    return {
+      impl_.data[0]--,
+      impl_.data[1]--,
+      impl_.data[2]--,
+    };
   }
 
   template<typename U>
