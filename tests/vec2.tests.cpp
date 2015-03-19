@@ -656,10 +656,19 @@ TEST_CASE(comp_mult) {
 }
 
 TEST_CASE(select) {
-  CONST_OR_CONSTEXPR fvec2 v1 = math::select(fv21, bvec2(true, false));
-  CONST_OR_CONSTEXPR fvec2 v2 = math::select(fv21, bvec2(false, true));
+  CONST_OR_CONSTEXPR fvec2 v1 =
+      math::select(bvec2(true, false), fv21);
+  CONST_OR_CONSTEXPR fvec2 v2 =
+      math::select(bvec2(false, true), fv21);
   test_assert(v1 == fvec2(fv21[0], 0.0f));
   test_assert(v2 == fvec2(0.0f, fv21[1]));
+
+  CONST_OR_CONSTEXPR fvec2 v3 =
+      math::select(bvec2(true, false), fv21, fv22);
+  CONST_OR_CONSTEXPR fvec2 v4 =
+      math::select(bvec2(false, true), fv21, fv22);
+  test_assert(v3 == fvec2(fv21[0], fv22[1]));
+  test_assert(v4 == fvec2(fv22[0], fv21[1]));
 }
 
 TEST_CASE(less) {

@@ -151,10 +151,15 @@ TEST_CASE(comp_mult) {
 }
 
 TEST_CASE(select) {
-  CONST_OR_CONSTEXPR float f1 = math::select(1.23f, true);
-  CONST_OR_CONSTEXPR float f2 = math::select(1.23f, false);
+  CONST_OR_CONSTEXPR float f1 = math::select(true, 1.23f);
+  CONST_OR_CONSTEXPR float f2 = math::select(false, 1.23f);
   test_assert(f1 == 1.23f);
   test_assert(f2 == 0.0f);
+
+  CONST_OR_CONSTEXPR float f3 = math::select(true, 1.23f, 4.56f);
+  CONST_OR_CONSTEXPR float f4 = math::select(false, 1.23f, 4.56f);
+  test_assert(f3 == 1.23f);
+  test_assert(f4 == 4.56f);
 }
 
 TEST_CASE(less) {

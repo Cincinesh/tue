@@ -785,13 +785,18 @@ TEST_CASE(transpose) {
 }
 
 TEST_CASE(select) {
-  CONST_OR_CONSTEXPR mat2x2<bool> mask = {
+  CONST_OR_CONSTEXPR mat2x2<bool> condition = {
     {  true, false },
     { false,  true },
   };
-  CONST_OR_CONSTEXPR fmat2x2 m = math::select(fm221, mask);
-  test_assert(m[0] == math::select(fm221[0], mask[0]));
-  test_assert(m[1] == math::select(fm221[1], mask[1]));
+
+  CONST_OR_CONSTEXPR fmat2x2 m1 = math::select(condition, fm221);
+  test_assert(m1[0] == math::select(condition[0], fm221[0]));
+  test_assert(m1[1] == math::select(condition[1], fm221[1]));
+
+  CONST_OR_CONSTEXPR fmat2x2 m2 = math::select(condition, fm221, fm222);
+  test_assert(m2[0] == math::select(condition[0], fm221[0], fm222[0]));
+  test_assert(m2[1] == math::select(condition[1], fm221[1], fm222[1]));
 }
 
 TEST_CASE(less) {

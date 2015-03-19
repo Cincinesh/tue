@@ -1040,17 +1040,24 @@ TEST_CASE(transpose) {
 }
 
 TEST_CASE(select) {
-  CONST_OR_CONSTEXPR mat4x2<bool> mask = {
+  CONST_OR_CONSTEXPR mat4x2<bool> condition = {
     {  true, false },
     { false,  true },
     {  true,  true },
     { false, false },
   };
-  CONST_OR_CONSTEXPR fmat4x2 m = math::select(fm421, mask);
-  test_assert(m[0] == math::select(fm421[0], mask[0]));
-  test_assert(m[1] == math::select(fm421[1], mask[1]));
-  test_assert(m[2] == math::select(fm421[2], mask[2]));
-  test_assert(m[3] == math::select(fm421[3], mask[3]));
+
+  CONST_OR_CONSTEXPR fmat4x2 m1 = math::select(condition, fm421);
+  test_assert(m1[0] == math::select(condition[0], fm421[0]));
+  test_assert(m1[1] == math::select(condition[1], fm421[1]));
+  test_assert(m1[2] == math::select(condition[2], fm421[2]));
+  test_assert(m1[3] == math::select(condition[3], fm421[3]));
+
+  CONST_OR_CONSTEXPR fmat4x2 m2 = math::select(condition, fm421, fm422);
+  test_assert(m2[0] == math::select(condition[0], fm421[0], fm422[0]));
+  test_assert(m2[1] == math::select(condition[1], fm421[1], fm422[1]));
+  test_assert(m2[2] == math::select(condition[2], fm421[2], fm422[2]));
+  test_assert(m2[3] == math::select(condition[3], fm421[3], fm422[3]));
 }
 
 TEST_CASE(less) {

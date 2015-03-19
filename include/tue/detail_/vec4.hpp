@@ -1045,13 +1045,14 @@ namespace math
 
   template<typename T, typename U>
   inline constexpr auto select(
-      const vec4<T>& v,
-      const vec4<U>& mask) noexcept {
-    return vec4<decltype(math::select(v[0], mask[0]))>{
-      math::select(v[0], mask[0]),
-      math::select(v[1], mask[1]),
-      math::select(v[2], mask[2]),
-      math::select(v[3], mask[3]),
+      const vec4<T>& condition,
+      const vec4<U>& value,
+      const vec4<U>& otherwise = vec4<U>::zero()) noexcept {
+    return vec4<decltype(math::select(condition[0], value[0], otherwise[0]))>{
+      math::select(condition[0], value[0], otherwise[0]),
+      math::select(condition[1], value[1], otherwise[1]),
+      math::select(condition[2], value[2], otherwise[2]),
+      math::select(condition[3], value[3], otherwise[3]),
     };
   }
 
@@ -1131,10 +1132,10 @@ namespace math
   inline auto axis_angle(const vec3<T>& v) noexcept {
     using U = decltype(math::length(v));
     const auto angle = math::length(v);
-    const auto mask = math::not_equal(angle, U(0));
-    const auto axis =
-        math::select(vec3<U>(v) / angle, mask)
-        + math::select(vec3<U>::z_axis(), !mask);
+    const auto axis = math::select(
+          math::not_equal(angle, U(0)),
+          vec3<U>(v) / angle,
+          vec3<U>::z_axis());
     return vec4<U>(axis, angle);
   }
 

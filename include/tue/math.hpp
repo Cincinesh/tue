@@ -226,8 +226,11 @@ namespace math
   }
 
   template<typename T>
-  inline constexpr T select(const T& x, bool mask) noexcept {
-    return mask ? x : T(0);
+  inline constexpr T select(
+      bool condition,
+      const T& value,
+      const T& otherwise = T(0)) noexcept {
+    return condition ? value : otherwise;
   }
 
   template<typename T, typename U>

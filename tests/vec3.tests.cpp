@@ -838,10 +838,19 @@ TEST_CASE(comp_mult) {
 }
 
 TEST_CASE(select) {
-  CONST_OR_CONSTEXPR fvec3 v1 = math::select(fv31, bvec3(true, false, true));
-  CONST_OR_CONSTEXPR fvec3 v2 = math::select(fv31, bvec3(false, true, false));
+  CONST_OR_CONSTEXPR fvec3 v1 =
+      math::select(bvec3(true, false, true), fv31);
+  CONST_OR_CONSTEXPR fvec3 v2 =
+      math::select(bvec3(false, true, false), fv31);
   test_assert(v1 == fvec3(fv31[0], 0.0f, fv31[2]));
   test_assert(v2 == fvec3(0.0f, fv31[1], 0.0f));
+
+  CONST_OR_CONSTEXPR fvec3 v3 =
+      math::select(bvec3(true, false, true), fv31, fv32);
+  CONST_OR_CONSTEXPR fvec3 v4 =
+      math::select(bvec3(false, true, false), fv31, fv32);
+  test_assert(v3 == fvec3(fv31[0], fv32[1], fv31[2]));
+  test_assert(v4 == fvec3(fv32[0], fv31[1], fv32[2]));
 }
 
 TEST_CASE(less) {

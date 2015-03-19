@@ -921,13 +921,16 @@ namespace math
 
   template<typename T, typename U, int R>
   inline constexpr auto select(
-      const mat<T, 4, R>& m,
-      const mat<U, 4, R>& mask) noexcept {
-    return mat<decltype(math::select(m[0][0], mask[0][0])), 4, R>{
-      math::select(m[0], mask[0]),
-      math::select(m[1], mask[1]),
-      math::select(m[2], mask[2]),
-      math::select(m[3], mask[3]),
+      const mat<T, 4, R>& condition,
+      const mat<U, 4, R>& value,
+      const mat<U, 4, R>& otherwise = mat<U, 4, R>::zero()) noexcept {
+    return mat<
+        decltype(math::select(condition[0][0], value[0][0], otherwise[0][0])),
+        4, R>{
+      math::select(condition[0], value[0], otherwise[0]),
+      math::select(condition[1], value[1], otherwise[1]),
+      math::select(condition[2], value[2], otherwise[2]),
+      math::select(condition[3], value[3], otherwise[3]),
     };
   }
 

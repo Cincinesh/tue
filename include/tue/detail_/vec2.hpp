@@ -799,11 +799,12 @@ namespace math
 
   template<typename T, typename U>
   inline constexpr auto select(
-      const vec2<T>& v,
-      const vec2<U>& mask) noexcept {
-    return vec2<decltype(math::select(v[0], mask[0]))>{
-      math::select(v[0], mask[0]),
-      math::select(v[1], mask[1]),
+      const vec2<T>& condition,
+      const vec2<U>& value,
+      const vec2<U>& otherwise = vec2<U>::zero()) noexcept {
+    return vec2<decltype(math::select(condition[0], value[0], otherwise[0]))>{
+      math::select(condition[0], value[0], otherwise[0]),
+      math::select(condition[1], value[1], otherwise[1]),
     };
   }
 
