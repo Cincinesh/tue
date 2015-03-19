@@ -58,17 +58,17 @@ Type aliases for common combinations are provided for convenience:
 vec's are default-constructable, copy-constructable, and copy-assignable.
 Additionally, they can be constructed using any of the following:
 
-- Individual component values, e.g.:<br/>
+- Individual component values, e.g.: <br/>
   `vec2(1, 2)`
-- A single scalar to initialize each component to the same value, e.g.:<br/>
+- A single scalar to initialize each component to the same value, e.g.: <br/>
   `vec2(123) == vec2(123, 123)`
 - A smaller vec to initialize a front subset of components, followed by scalars
-  to fill in the rest, e.g.:<br/>
+  to fill in the rest, e.g.: <br/>
   `vec3(vec2(1, 2), 3) == vec3(1, 2, 3)`
-- A larger vec to truncate, e.g.:<br/>
+- A larger vec to truncate, e.g.: <br/>
   `vec2(vec3(1, 2, 3)) == vec2(1, 2)`
 - Another vec with the same `component_count` but a different `component_type`
-  to perform a component-wise explicit conversion, e.g.:<br/>
+  to perform a component-wise explicit conversion, e.g.: <br/>
   `fvec2(dvec2(1.2, 3.4)) == fvec2(float(1.2), float(3.4))`
 
 Implicit conversion operators are provided as well, e.g.:
@@ -78,18 +78,18 @@ Implicit conversion operators are provided as well, e.g.:
 
 vec types contain the following static factory methods:
 
-- `zero()`<br/>
+- `zero()` <br/>
    Returns a `vec` with each component set to 0.
-- `x_axis()`<br/>
+- `x_axis()` <br/>
    Returns a `vec` with the x-component set to 1 and all other components set to
    0.
-- `y_axis()`<br/>
+- `y_axis()` <br/>
    Returns a `vec` with the y-component set to 1 and all other components set to
    0.
-- `z_axis()` (`vec3` and `vec4` only)<br/>
+- `z_axis()` (`vec3` and `vec4` only) <br/>
    Returns a `vec` with the z-component set to 1 and all other components set to
    0.
-- `w_axis()` (`vec4` only)<br/>
+- `w_axis()` (`vec4` only) <br/>
    Returns a `vec` with the w-component set to 1 and all other components set to
    0.
 
@@ -229,8 +229,7 @@ The following functions from `math::tue` take on special meanings for vec types:
 
     dot(const vec& lhs, const vec& rhs);
 
-Returns the dot product (or "inner product") of two vec's, i.e., the sum of all
-the products of each pair of corresponding components.
+Returns the dot product of two vec's.
 
     cross(const vec3& lhs, const vec3& rhs);
 
@@ -247,17 +246,16 @@ Returns the length of the given vec, i.e., the square root of `length2(v)`.
 
     normalize(const vec& v);
 
-Returns a unit vec (vec with a length of 1) with the same direction as the given
-vec.
+Returns a unit vec with the same direction as the given vec.
 
 
 ### tue::quat ###
 
     #include <tue/quat.hpp>
 
-`tue::quat<T>` represents quaternion with component type `T`. A specific
-instantiation's template argument is made available via
-the following public member:
+`tue::quat<T>` represents a quaternion with component type `T`. A specific
+instantiation's template argument is made available via the following public
+member:
 
 - `using component_type = T;`
 
@@ -269,12 +267,12 @@ Type aliases for common combinations are provided for convenience:
 quat's are default-constructable, copy-constructable, and copy-assignable.
 Additionally, they can be constructed using any of the following:
 
-- Individual component values, e.g.:<br/>
+- Individual component values, e.g.: <br/>
   `quat(1, 2, 3, 4)`
-- A vector part and a scalar part, e.g.:<br/>
+- A vector part and a scalar part, e.g.: <br/>
   `quat(vec3(1, 2, 3), 4) == quat(1, 2, 3, 4)`
 - Another quat with a different `component_type` to perform a component-wise
-  explicit conversion, e.g.:<br/>
+  explicit conversion, e.g.:
 
         fquat(dquat(1.1, 2.2, 3.3, 4.4))
             == fquat(float(1.1), float(2.2), float(3.3), float(4.4)); // true
@@ -286,7 +284,7 @@ Implicit conversion operators are provided as well, e.g.:
 
 quat types contain the following static factory method:
 
-- `identity()`<br/>
+- `identity()` <br/>
    Returns a `quat` with the vector part set to 0 and the scalar part set to 1.
 
 quat components can be accessed by value using the following getters and
@@ -349,8 +347,7 @@ ratios as the given quat.
 
     conjugate(const quat& q);
 
-Returns the conjugate of the given quat, i.e., a quat with the same scalar part,
-but the vector part negated.
+Returns the conjugate of the given quat.
 
 
 ### Rotations ###
@@ -393,3 +390,29 @@ vec3's and each other, as well as construct rotation matricies, using only
 simple arithmetic and no expensive trigonometric functions. Quaternions are most
 useful for storing 3-dimensional orientations and performing vector
 transformations.
+
+Tuesday provides the following functions in the `tue::math` namespace for
+converting between different 3-dimensional rotation representations:
+
+- `#include <tue/vec.hpp>`
+    - axis-angle to rotation vector:
+	    - `vec3<T> rotation_vec(const vec4<T>& v)`
+	    - `vec3<T> rotation_vec(const vec3<T>& axis, const T& angle)`
+		- `vec3<T> rotation_vec(const T& axis_x, const T& axis_y,
+		                        const T& axis_z, const T& angle)`
+	- rotation vector to axis-angle:
+		- `vec4<T> axis_angle(const vec3<T>& v)`
+		- `vec4<T> axis_angle(const T& x, const T& y, const T& z)`
+- `#include <tue/quat.hpp>`
+	- axis-angle to rotation quaternion:
+	    - `quat<T> rotation_quat(const vec4<T>& v)`
+	    - `quat<T> rotation_quat(const vec3<T>& axis, const T& angle)`
+		- `quat<T> rotation_quat(const T& axis_x, const T& axis_y,
+		                         const T& axis_z, const T& angle)`
+	- rotation quaternion to axis-angle:
+		- `vec4<T> axis_angle(const quat<T>& q)`
+	- rotation quaternion to rotation vector:
+		- `vec3<T> rotation_vec(const quat<T>& q)`
+
+Note: rotation conversion functions that take a rotation vector safely handle
+the zero vector, e.g., `axis_angle(0, 0, 0)` returns a valid axis-angle vec4.
