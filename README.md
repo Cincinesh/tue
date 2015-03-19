@@ -220,7 +220,8 @@ to each component individually:
 - `max(const vec& v1, const vec& v2)`
 - `abs(const vec& v)`
 - `comp_mult(const vec& lhs, const vec& rhs)`
-- `select(const vec& v, const vec& mask)`
+- `select(const vec& condition, const vec& value)`
+- `select(const vec& condition, const vec& value, const vec& otherwise)`
 - `less(const vec& lhs, const vec& rhs)`
 - `less_equal(const vec& lhs, const vec& rhs)`
 - `greater(const vec& lhs, const vec& rhs)`

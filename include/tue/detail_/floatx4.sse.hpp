@@ -564,8 +564,19 @@ namespace math
     return lhs * rhs;
   }
 
-  inline floatx4 select(const floatx4& v, const boolx4& mask) noexcept {
-    return _mm_and_ps(v, mask);
+  inline floatx4 select(
+      const boolx4& condition,
+      const floatx4& value) noexcept {
+    return _mm_and_ps(condition, value);
+  }
+
+  inline floatx4 select(
+      const boolx4& condition,
+      const floatx4& value,
+      const floatx4& otherwise) noexcept {
+    return _mm_or_ps(
+        _mm_and_ps(condition, value),
+        _mm_andnot_ps(condition, otherwise));
   }
 
   inline boolx4 less(const floatx4& lhs, const floatx4& rhs) noexcept {

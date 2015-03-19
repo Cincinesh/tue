@@ -358,8 +358,11 @@ TEST_CASE(comp_mult) {
 }
 
 TEST_CASE(select) {
-  test_assert(math::select(f41, boolx4(true, false, true, false))
+  test_assert(math::select(boolx4(true, false, true, false), f41)
       == floatx4(f410, 0.0f, f412, 0.0f));
+
+  test_assert(math::select(boolx4(true, false, true, false), f41, f42)
+      == floatx4(f410, f421, f412, f423));
 }
 
 TEST_CASE(less) {

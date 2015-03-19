@@ -334,14 +334,18 @@ namespace math
     return lhs * rhs;
   }
 
-  inline floatx4 select(const floatx4& v, const boolx4& mask) noexcept {
-    const auto f = reinterpret_cast<const float*>(&v);
-    const auto b = reinterpret_cast<const bool*>(&mask);
+  inline floatx4 select(
+      const boolx4& condition,
+      const floatx4& value,
+      const floatx4& otherwise = floatx4::zero()) noexcept {
+    const auto c = reinterpret_cast<const bool*>(&condition);
+    const auto v = reinterpret_cast<const float*>(&value);
+    const auto o = reinterpret_cast<const float*>(&otherwise);
     return {
-      math::select(f[0], b[0]),
-      math::select(f[1], b[1]),
-      math::select(f[2], b[2]),
-      math::select(f[3], b[3]),
+      math::select(c[0], v[0], o[0]),
+      math::select(c[1], v[1], o[1]),
+      math::select(c[2], v[2], o[2]),
+      math::select(c[3], v[3], o[3]),
     };
   }
 
