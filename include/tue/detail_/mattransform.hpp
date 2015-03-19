@@ -125,7 +125,7 @@ namespace math
 
   template<typename T>
   inline auto rotation_mat(const vec3<T>& v) noexcept {
-    return math::rotation_mat(v.x(), v.y(), v.z());
+    return math::rotation_mat(math::axis_angle(v));
   }
 
   template<typename T>
@@ -203,17 +203,18 @@ namespace math
   template<typename T>
   inline auto pose_mat(
       const vec3<T>& translation,
-      const vec3<T>& rotation_axis,
-      const T& rotation_angle) noexcept {
-    return rotation_mat(rotation_axis, rotation_angle)
+      const vec4<T>& rotation) noexcept {
+    return rotation_mat(rotation)
         * translation_mat(translation);
   }
 
   template<typename T>
   inline auto pose_mat(
       const vec3<T>& translation,
-      const vec4<T>& rotation) noexcept {
-    return pose_mat(translation, rotation.xyz(), rotation.w());
+      const vec3<T>& rotation_axis,
+      const T& rotation_angle) noexcept {
+    return rotation_mat(rotation_axis, rotation_angle)
+        * translation_mat(translation);
   }
 
   template<typename T>
@@ -255,17 +256,18 @@ namespace math
   template<typename T>
   inline auto view_mat(
       const vec3<T>& translation,
-      const vec3<T>& rotation_axis,
-      const T& rotation_angle) noexcept {
+      const vec4<T>& rotation) noexcept {
     return translation_mat(-translation)
-        * rotation_mat(rotation_axis, -rotation_angle);
+        * rotation_mat(rotation.xyz(), -rotation.a());
   }
 
   template<typename T>
   inline auto view_mat(
       const vec3<T>& translation,
-      const vec4<T>& rotation) noexcept {
-    return view_mat(translation, rotation.xyz(), rotation.w());
+      const vec3<T>& rotation_axis,
+      const T& rotation_angle) noexcept {
+    return translation_mat(-translation)
+        * rotation_mat(rotation_axis, -rotation_angle);
   }
 
   template<typename T>

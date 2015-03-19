@@ -564,14 +564,6 @@ namespace math
     return lhs * rhs;
   }
 
-  inline void transpose(
-      floatx4& v0,
-      floatx4& v1,
-      floatx4& v2,
-      floatx4& v3) noexcept {
-    _MM_TRANSPOSE4_PS(v0, v1, v2, v3);
-  }
-
   inline floatx4 select(const floatx4& v, const boolx4& mask) noexcept {
     return _mm_and_ps(v, mask);
   }

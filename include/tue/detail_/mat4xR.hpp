@@ -187,15 +187,21 @@ public:
   }
 
   mat operator++(int) noexcept {
-    const auto orig = *this;
-    ++*this;
-    return orig;
+    return {
+      impl_.columns[0]++,
+      impl_.columns[1]++,
+      impl_.columns[2]++,
+      impl_.columns[3]++,
+    };
   }
 
   mat operator--(int) noexcept {
-    const auto orig = *this;
-    --*this;
-    return orig;
+    return {
+      impl_.columns[0]--,
+      impl_.columns[1]--,
+      impl_.columns[2]--,
+      impl_.columns[3]--,
+    };
   }
 
   template<typename U>

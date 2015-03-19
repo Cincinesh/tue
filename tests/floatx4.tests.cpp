@@ -357,18 +357,6 @@ TEST_CASE(comp_mult) {
   test_assert(math::comp_mult(f41, f42) == f41 * f42);
 }
 
-TEST_CASE(transpose) {
-  floatx4 v1(1.1f, 1.2f, 1.3f, 1.4f);
-  floatx4 v2(2.1f, 2.2f, 2.3f, 2.4f);
-  floatx4 v3(3.1f, 3.2f, 3.3f, 3.4f);
-  floatx4 v4(4.1f, 4.2f, 4.3f, 4.4f);
-  math::transpose(v1, v2, v3, v4);
-  test_assert(v1 == floatx4(1.1f, 2.1f, 3.1f, 4.1f));
-  test_assert(v2 == floatx4(1.2f, 2.2f, 3.2f, 4.2f));
-  test_assert(v3 == floatx4(1.3f, 2.3f, 3.3f, 4.3f));
-  test_assert(v4 == floatx4(1.4f, 2.4f, 3.4f, 4.4f));
-}
-
 TEST_CASE(select) {
   test_assert(math::select(f41, boolx4(true, false, true, false))
       == floatx4(f410, 0.0f, f412, 0.0f));

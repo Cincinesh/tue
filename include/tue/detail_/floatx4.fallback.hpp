@@ -334,22 +334,6 @@ namespace math
     return lhs * rhs;
   }
 
-  inline void transpose(
-      floatx4& v0,
-      floatx4& v1,
-      floatx4& v2,
-      floatx4& v3) noexcept {
-    float f0[4], f1[4], f2[4], f3[4];
-    v0.storeu(f0);
-    v1.storeu(f1);
-    v2.storeu(f2);
-    v3.storeu(f3);
-    v0 = { f0[0], f1[0], f2[0], f3[0] };
-    v1 = { f0[1], f1[1], f2[1], f3[1] };
-    v2 = { f0[2], f1[2], f2[2], f3[2] };
-    v3 = { f0[3], f1[3], f2[3], f3[3] };
-  }
-
   inline floatx4 select(const floatx4& v, const boolx4& mask) noexcept {
     const auto f = reinterpret_cast<const float*>(&v);
     const auto b = reinterpret_cast<const bool*>(&mask);
