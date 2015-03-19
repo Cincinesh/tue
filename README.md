@@ -31,7 +31,7 @@ Installation
 TODO
 
 
-Types
+Usage
 -----
 
 ### tue::vec ###
@@ -419,3 +419,53 @@ converting between different 3-dimensional rotation representations:
 
 Note: rotation conversion functions that take a rotation vector safely handle
 the zero vector, e.g., `axis_angle(0, 0, 0)` returns a valid axis-angle vec4.
+
+
+### tue::pose2d ###
+
+TODO
+
+
+### tue::pose3d ###
+
+TODO
+
+
+### tue::mat ###
+
+TODO
+
+
+### tue::math ###
+
+TODO
+
+
+### tue/simd.hpp ###
+
+TODO
+
+
+### tue::size2d ###
+
+TODO
+
+
+### tue::rect ###
+
+TODO
+
+
+### tue::unused() ###
+
+TODO
+
+
+License
+-------
+Copyright Jo Bates 2015.
+
+Distributed under the Boost Software License, Version 1.0.
+
+See accompanying file [LICENSE_1_0.txt](LICENSE_1_0.txt) or copy at
+http://www.boost.org/LICENSE_1_0.txt.
