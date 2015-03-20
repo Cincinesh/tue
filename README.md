@@ -426,7 +426,7 @@ the zero vector, e.g., `axis_angle(0, 0, 0)` returns a valid axis-angle vec4.
 
     #include <tue/pose2d.hpp>
 
-`pose2d<T>` represents a 2-dimensional position, i.e. combined translation and
+`pose2d<T>` represents a 2-dimensional position, i.e., combined translation and
 rotation. The translation is represented by a `vec2<T>` and the rotation a
 single scalar `T`. A specific instantiation's translation and rotation types,
 as well as the template argument itself, are made available via the following
@@ -479,7 +479,7 @@ operator does the exact opposite.
 
     #include <tue/pose3d.hpp>
 
-`pose3d<T>` represents a 3-dimensional position, i.e. combined translation and
+`pose3d<T>` represents a 3-dimensional position, i.e., combined translation and
 rotation. The translation is represented by a `vec3<T>` and the rotation a
 `quat<T>`. A specific instantiation's translation and rotation types, as well as
 the template argument itself, are made available via the following public
