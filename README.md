@@ -449,15 +449,19 @@ Additionally, they can be constructed using either of the following:
 - Another pose2d with a different `component_type` to perform a component-wise
   explicit conversion, e.g.: <br/>
 
-        fpose2d(dpose2d(dvec2(1.2, 3.4), 5.6))
-            == fpose2d(fvec2(dvec2(1.2, 3.4)), float(5.6)); // true
+        fpose2d(dpose2d(
+            dvec2(1.2, 3.4),
+            5.6))
+        == fpose2d(
+            fvec2(dvec2(1.2, 3.4)),
+            float(5.6)); // true
 
 Implicit conversion operators are provided as well, e.g.:
 
     dpose2d p = fpose2d(fvec2(1.1f, 2.2f), 3.3f);
     p == dpose2d(fvec2(1.1f, 2.2f), 3.3f); // true
 
-quat components can be accessed by value using the following getters and
+pose2d components can be accessed by value using the following getters and
 setters:
 
 - `translation()`
@@ -473,7 +477,59 @@ operator does the exact opposite.
 
 ### tue::pose3d ###
 
-TODO
+    #include <tue/pose3d.hpp>
+
+`pose3d<T>` represents a 3-dimensional position, i.e. combined translation and
+rotation. The translation is represented by a `vec3<T>` and the rotation a
+`quat<T>`. A specific instantiation's translation and rotation types, as well as
+the template argument itself, are made available via the following public
+members:
+
+- `using translation_type = vec3<T>;`
+- `using rotation_type = quat<T>;`
+- `using component_type = T;`
+
+Type aliases for common combinations are provided for convenience:
+
+- `fpose3d` (component_type: float)
+- `dpose3d` (component_type: double)
+
+pose3d's are default-constructable, copy-constructable, and copy-assignable.
+Additionally, they can be constructed using either of the following:
+
+- Translation and rotation values, e.g.: <br/>
+  `pose3d(vec3(1, 2, 3), quat(4, 5, 6, 7))`
+- Another pose3d with a different `component_type` to perform a component-wise
+  explicit conversion, e.g.: <br/>
+
+        fpose3d(dpose3d(
+            dvec3(1.1, 2.2, 3.3),
+            dquat(4.4, 5.5, 6.6, 7.7)))
+        == fpose3d(
+            fvec3(dvec3(1.1, 2.2, 3.3)),
+            fquat(dquat(4.4, 5.5, 6.6, 7.7))); // true
+
+Implicit conversion operators are provided as well, e.g.:
+
+    dpose3d p = fpose3d(
+        fvec3(1.1f, 2.2f, 3.3f),
+        fquat(4.45, 5.5f, 6.6f, 7.7f));
+    p == dpose3d(
+        fvec3(1.1f, 2.2f, 3.3f),
+        fquat(4.45, 5.5f, 6.6f, 7.7f)); // true
+
+pose3d components can be accessed by value using the following getters and
+setters:
+
+- `translation()`
+- `set_translation(const vec3<T>& translation)`
+- `set_translation(const T& x, const T& y, const T& z)`
+- `rotation()`
+- `set_rotation(const quat<T>& rotation)`
+
+The `==` operator returns true if all the pairs of corresponding components from
+two pose3d's are equal to each other. Otherwise it returns false. The `!=`
+operator does the exact opposite.
 
 
 ### tue::mat ###
