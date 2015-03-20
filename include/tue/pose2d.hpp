@@ -49,13 +49,13 @@ public:
     return translation_;
   }
 
+  void set_translation(const vec2<T>& translation) noexcept {
+    translation_ = translation;
+  }
+
   void set_translation(const T& x, const T& y) noexcept {
     translation_.set_x(x);
     translation_.set_y(y);
-  }
-
-  void set_translation(const vec2<T>& translation) noexcept {
-    translation_ = translation;
   }
 
   constexpr T rotation() const noexcept {

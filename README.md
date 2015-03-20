@@ -284,7 +284,7 @@ Additionally, they can be constructed using any of the following:
 Implicit conversion operators are provided as well, e.g.:
 
     dquat q = fquat(1.1f, 2.2f, 3.3f, 4.4f);
-    v == dquat(1.1f, 2.2f, 3.3f, 4.4f); // true
+    q == dquat(1.1f, 2.2f, 3.3f, 4.4f); // true
 
 quat types contain the following static factory method:
 
@@ -303,8 +303,8 @@ Alternate component names are also included for when it's more convenient to
 treat a quat as a vector and a scalar part:
 
 - `v()`
-- `set_v(const T& x, const T& y, const T& z)`
 - `set_v(const vec3<T>& v)`
+- `set_v(const T& x, const T& y, const T& z)`
 - `s()`
 - `set_s(const T& s)`
 
@@ -441,7 +441,34 @@ Type aliases for common combinations are provided for convenience:
 - `fpose2d` (component_type: float)
 - `dpose2d` (component_type: double)
 
-TODO
+pose2d's are default-constructable, copy-constructable, and copy-assignable.
+Additionally, they can be constructed using either of the following:
+
+- Translation and rotation values, e.g.: <br/>
+  `pose2d(vec2(1, 2), 3)`
+- Another pose2d with a different `component_type` to perform a component-wise
+  explicit conversion, e.g.: <br/>
+
+        fpose2d(dpose2d(dvec2(1.2, 3.4), 5.6))
+            == fpose2d(fvec2(dvec2(1.2, 3.4)), float(5.6)); // true
+
+Implicit conversion operators are provided as well, e.g.:
+
+    dpose2d p = fpose2d(fvec2(1.1f, 2.2f), 3.3f);
+    p == dpose2d(fvec2(1.1f, 2.2f), 3.3f); // true
+
+quat components can be accessed by value using the following getters and
+setters:
+
+- `translation()`
+- `set_translation(const vec2<T>& translation)`
+- `set_translation(const T& x, const T& y)`
+- `rotation()`
+- `set_rotation(const T& rotation)`
+
+The `==` operator returns true if all the pairs of corresponding components from
+two pose2d's are equal to each other. Otherwise it returns false. The `!=`
+operator does the exact opposite.
 
 
 ### tue::pose3d ###
