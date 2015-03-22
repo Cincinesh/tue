@@ -387,7 +387,7 @@ the x-axis, the y-component around the y-axis, and the z-component around the
 z-axis. This property makes adding two rotation vectors intuitive. The rotation
 vector representation is most useful for storing 3-dimensional angular velocity.
 
-A rotation quaternion is even more complicated conceptually, but that's okay:
+A rotation quaternion is even more complicated conceptually, but that's okay;
 with Tuesday, there's rarely a need to calculate or interpret individual quat
 component values. The important thing to realize is quat's can be used to rotate
 vec3's and each other, as well as construct rotation matricies, using only
