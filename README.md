@@ -278,8 +278,8 @@ Additionally, they can be constructed using any of the following:
 - Another quat with a different `component_type` to perform a component-wise
   explicit conversion, e.g.:
 
-        fquat(dquat(1.1, 2.2, 3.3, 4.4))
-            == fquat(float(1.1), float(2.2), float(3.3), float(4.4)); // true
+      fquat(dquat(1.1, 2.2, 3.3, 4.4))
+          == fquat(float(1.1), float(2.2), float(3.3), float(4.4)); // true
 
 Implicit conversion operators are provided as well, e.g.:
 
@@ -449,12 +449,12 @@ Additionally, they can be constructed using either of the following:
 - Another pose2d with a different `component_type` to perform a component-wise
   explicit conversion, e.g.: <br/>
 
-        fpose2d(dpose2d(
-            dvec2(1.2, 3.4),
-            5.6))
-        == fpose2d(
-            fvec2(dvec2(1.2, 3.4)),
-            float(5.6)); // true
+      fpose2d(dpose2d(
+          dvec2(1.2, 3.4),
+          5.6))
+      == fpose2d(
+          fvec2(dvec2(1.2, 3.4)),
+          float(5.6)); // true
 
 Implicit conversion operators are provided as well, e.g.:
 
@@ -502,12 +502,12 @@ Additionally, they can be constructed using either of the following:
 - Another pose3d with a different `component_type` to perform a component-wise
   explicit conversion, e.g.: <br/>
 
-        fpose3d(dpose3d(
-            dvec3(1.1, 2.2, 3.3),
-            dquat(4.4, 5.5, 6.6, 7.7)))
-        == fpose3d(
-            fvec3(dvec3(1.1, 2.2, 3.3)),
-            fquat(dquat(4.4, 5.5, 6.6, 7.7))); // true
+      fpose3d(dpose3d(
+          dvec3(1.1, 2.2, 3.3),
+          dquat(4.4, 5.5, 6.6, 7.7)))
+      == fpose3d(
+          fvec3(dvec3(1.1, 2.2, 3.3)),
+          fquat(dquat(4.4, 5.5, 6.6, 7.7))); // true
 
 Implicit conversion operators are provided as well, e.g.:
 
