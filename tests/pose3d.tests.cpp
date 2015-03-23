@@ -26,13 +26,15 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(component_constructor) {
-  CONST_OR_CONSTEXPR fpose3d pose(fv31, fq1);
+  CONST_OR_CONSTEXPR fpose3d pose = { fv31, fq1 };
   test_assert(pose.translation() == fv31);
   test_assert(pose.rotation() == fq1);
 }
 
 TEST_CASE(explicit_conversion_constructor) {
-  CONST_OR_CONSTEXPR dpose3d dpose(dvec3(1.1, 2.2, 3.3), dquat(4.4, 5.5, 6.6, 7.7));
+  CONST_OR_CONSTEXPR dpose3d dpose(
+      dvec3(1.1, 2.2, 3.3),
+      dquat(4.4, 5.5, 6.6, 7.7));
   CONST_OR_CONSTEXPR fpose3d fpose(dpose);
   test_assert(fpose.translation() == fvec3(dpose.translation()));
   test_assert(fpose.rotation() == fquat(dpose.rotation()));

@@ -28,7 +28,7 @@ private:
 public:
   size2d() noexcept = default;
 
-  explicit constexpr size2d(const T& width, const T& height) noexcept
+  constexpr size2d(const T& width, const T& height) noexcept
     : width_(width), height_(height) {
   }
 

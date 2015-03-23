@@ -29,7 +29,7 @@ private:
 public:
   size3d() noexcept = default;
 
-  explicit constexpr size3d(
+  constexpr size3d(
       const T& width,
       const T& height,
       const T& depth) noexcept

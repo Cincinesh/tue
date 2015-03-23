@@ -35,11 +35,11 @@ public:
     : impl_({{ s, s, s, s }}) {
   }
 
-  explicit constexpr vec(const vec2<T>& xy, const T& z, const T& w) noexcept
+  constexpr vec(const vec2<T>& xy, const T& z, const T& w) noexcept
     : impl_({{ xy[0], xy[1], z, w }}) {
   }
 
-  explicit constexpr vec(const vec3<T>& xyz, const T& w) noexcept
+  constexpr vec(const vec3<T>& xyz, const T& w) noexcept
     : impl_({{ xyz[0], xyz[1], xyz[2], w }}) {
   }
 
@@ -1133,9 +1133,9 @@ namespace math
     using U = decltype(math::length(v));
     const auto angle = math::length(v);
     const auto axis = math::select(
-          math::not_equal(angle, U(0)),
-          vec3<U>(v) / angle,
-          vec3<U>::z_axis());
+        math::not_equal(angle, U(0)),
+        vec3<U>(v) / angle,
+        vec3<U>::z_axis());
     return vec4<U>(axis, angle);
   }
 

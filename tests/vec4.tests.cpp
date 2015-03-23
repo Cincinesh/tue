@@ -62,7 +62,7 @@ TEST_CASE(scalar_component_constructor) {
 }
 
 TEST_CASE(vec2_component_constructor) {
-  CONST_OR_CONSTEXPR fvec4 v(fvec2(1.1f, 2.2f), 3.3f, 4.4f);
+  CONST_OR_CONSTEXPR fvec4 v = { { 1.1f, 2.2f }, 3.3f, 4.4f };
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
   test_assert(v[2] == 3.3f);
@@ -70,7 +70,7 @@ TEST_CASE(vec2_component_constructor) {
 }
 
 TEST_CASE(vec3_component_constructor) {
-  CONST_OR_CONSTEXPR fvec4 v(fvec3(1.1f, 2.2f, 3.3f), 4.4f);
+  CONST_OR_CONSTEXPR fvec4 v = { { 1.1f, 2.2f, 3.3f }, 4.4f };
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
   test_assert(v[2] == 3.3f);

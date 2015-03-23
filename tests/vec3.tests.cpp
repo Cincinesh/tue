@@ -62,7 +62,7 @@ TEST_CASE(scalar_component_constructor) {
 }
 
 TEST_CASE(vec2_component_constructor) {
-  CONST_OR_CONSTEXPR fvec3 v(fvec2(1.1f, 2.2f), 3.3f);
+  CONST_OR_CONSTEXPR fvec3 v = { { 1.1f, 2.2f }, 3.3f };
   test_assert(v[0] == 1.1f);
   test_assert(v[1] == 2.2f);
   test_assert(v[2] == 3.3f);

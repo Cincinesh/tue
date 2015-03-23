@@ -38,7 +38,7 @@ public:
     : impl_({{ s, s, s }}) {
   }
 
-  explicit constexpr vec(const vec2<T>& xy, const T& z) noexcept
+  constexpr vec(const vec2<T>& xy, const T& z) noexcept
     : impl_({{ xy[0], xy[1], z }}) {
   }
 

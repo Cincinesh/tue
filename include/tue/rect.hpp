@@ -35,28 +35,28 @@ private:
 public:
   rect() noexcept = default;
 
-  explicit constexpr rect(
+  constexpr rect(
       const P& x, const P& y,
       const S& width, const S& height) noexcept
     : position_(x, y),
       size_(width, height) {
   }
 
-  explicit constexpr rect(
+  constexpr rect(
       const P& x, const P& y,
       const size2d<S>& size) noexcept
     : position_(x, y),
       size_(size) {
   }
 
-  explicit constexpr rect(
+  constexpr rect(
       const vec2<P>& position,
       const S& width, const S& height) noexcept
     : position_(position),
       size_(width, height) {
   }
 
-  explicit constexpr rect(
+  constexpr rect(
       const vec2<P>& position,
       const size2d<S>& size) noexcept
     : position_(position),

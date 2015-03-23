@@ -25,7 +25,7 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(component_constructor) {
-  CONST_OR_CONSTEXPR fpose2d pose(fv21, f1);
+  CONST_OR_CONSTEXPR fpose2d pose = { fv21, f1 };
   test_assert(pose.translation() == fv21);
   test_assert(pose.rotation() == f1);
 }

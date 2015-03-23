@@ -17,7 +17,7 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(component_constructor) {
-  CONST_OR_CONSTEXPR fsize3d size(1.1f, 2.2f, 3.3f);
+  CONST_OR_CONSTEXPR fsize3d size = { 1.1f, 2.2f, 3.3f };
   test_assert(size.width() == 1.1f);
   test_assert(size.height() == 2.2f);
   test_assert(size.depth() == 3.3f);

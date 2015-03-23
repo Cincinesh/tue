@@ -19,7 +19,7 @@ TEST_CASE(default_constructor) {
 }
 
 TEST_CASE(x_y_width_height_component_constructor) {
-  CONST_OR_CONSTEXPR rect<float, int> r(1.1f, 2.2f, 3, 4);
+  CONST_OR_CONSTEXPR rect<float, int> r = { 1.1f, 2.2f, 3, 4 };
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
@@ -27,7 +27,7 @@ TEST_CASE(x_y_width_height_component_constructor) {
 }
 
 TEST_CASE(x_y_size_component_constructor) {
-  CONST_OR_CONSTEXPR rect<float, int> r(1.1f, 2.2f, isize2d(3, 4));
+  CONST_OR_CONSTEXPR rect<float, int> r = { 1.1f, 2.2f, { 3, 4 } };
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
@@ -35,7 +35,7 @@ TEST_CASE(x_y_size_component_constructor) {
 }
 
 TEST_CASE(position_width_height_component_constructor) {
-  CONST_OR_CONSTEXPR rect<float, int> r(fvec2(1.1f, 2.2f), 3, 4);
+  CONST_OR_CONSTEXPR rect<float, int> r = { { 1.1f, 2.2f }, 3, 4 };
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
@@ -43,7 +43,7 @@ TEST_CASE(position_width_height_component_constructor) {
 }
 
 TEST_CASE(position_size_component_constructor) {
-  CONST_OR_CONSTEXPR rect<float, int> r(fvec2(1.1f, 2.2f), isize2d(3, 4));
+  CONST_OR_CONSTEXPR rect<float, int> r = { { 1.1f, 2.2f }, { 3, 4 } };
   test_assert(r.x() == 1.1f);
   test_assert(r.y() == 2.2f);
   test_assert(r.width() == 3);
