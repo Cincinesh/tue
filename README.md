@@ -71,6 +71,14 @@ Additionally, they can be constructed using any of the following:
   to perform a component-wise explicit conversion, e.g.: <br/>
   `fvec2(dvec2(1.2, 3.4)) == fvec2(float(1.2), float(3.4))`
 
+Keep in-mind C++11 braced-init-lists also work for constructors that take
+multiple arguments, e.g.:
+
+    vec2 v2 = { 1, 2 };
+    vec3 v3 = { vec2(1, 2), 3 };
+    vec4 v4 = { { 1, 2, 3 }, 4 };
+    // etc.
+
 Implicit conversion operators are provided as well, e.g.:
 
     dvec2 v = fvec2(1.2f, 3.4f);
@@ -168,7 +176,7 @@ The two operands to a binary operator need not have the same `component_type`.
 In-general, Tuesday operators perform the same type promotions that C++ performs
 for the standard built-in types. For example:
 
-    fvec2(1.2f, 3.4f) + dvec(5.6, 7.8) == dvec(1.2f+5.6, 3.4f+7.8); // true
+    fvec2(1.2f, 3.4f) + dvec2(5.6, 7.8) == dvec2(1.2f+5.6, 3.4f+7.8); // true
 
 The complete list of operators vec's support is as follows:
 
@@ -280,6 +288,13 @@ Additionally, they can be constructed using any of the following:
 
       fquat(dquat(1.1, 2.2, 3.3, 4.4))
           == fquat(float(1.1), float(2.2), float(3.3), float(4.4)); // true
+
+Keep in-mind C++11 braced-init-lists also work for constructors that take
+multiple arguments, e.g.:
+
+    quat q1 = { 1, 2, 3, 4 };
+    quat q2 = { vec3(1, 2, 3), 4 };
+    quat q3 = { { 1, 2, 3 }, 4 };
 
 Implicit conversion operators are provided as well, e.g.:
 
@@ -403,7 +418,7 @@ converting between different 3-dimensional rotation representations:
 	    - `vec3<T> rotation_vec(const vec4<T>& v)`
 	    - `vec3<T> rotation_vec(const vec3<T>& axis, const T& angle)`
 		- `vec3<T> rotation_vec(const T& axis_x, const T& axis_y,
-		                        const T& axis_z, const T& angle)`
+                                        const T& axis_z, const T& angle)`
 	- rotation vector to axis-angle:
 		- `vec4<T> axis_angle(const vec3<T>& v)`
 		- `vec4<T> axis_angle(const T& x, const T& y, const T& z)`
@@ -412,7 +427,7 @@ converting between different 3-dimensional rotation representations:
 	    - `quat<T> rotation_quat(const vec4<T>& v)`
 	    - `quat<T> rotation_quat(const vec3<T>& axis, const T& angle)`
 		- `quat<T> rotation_quat(const T& axis_x, const T& axis_y,
-		                         const T& axis_z, const T& angle)`
+                                         const T& axis_z, const T& angle)`
 	- rotation quaternion to axis-angle:
 		- `vec4<T> axis_angle(const quat<T>& q)`
 	- rotation quaternion to rotation vector:
@@ -447,7 +462,7 @@ Additionally, they can be constructed using either of the following:
 - Translation and rotation values, e.g.: <br/>
   `pose2d(vec2(1, 2), 3)`
 - Another pose2d with a different `component_type` to perform a component-wise
-  explicit conversion, e.g.: <br/>
+  explicit conversion, e.g.:
 
       fpose2d(dpose2d(
           dvec2(1.2, 3.4),
@@ -455,6 +470,12 @@ Additionally, they can be constructed using either of the following:
       == fpose2d(
           fvec2(dvec2(1.2, 3.4)),
           float(5.6)); // true
+
+Keep in-mind C++11 braced-init-lists also work for constructors that take
+multiple arguments, e.g.:
+
+    fpose2d p1 = { vec2(1, 2), 3 };
+    fpose2d p2 = { { 1, 2 }, 3 };
 
 Implicit conversion operators are provided as well, e.g.:
 
@@ -500,7 +521,7 @@ Additionally, they can be constructed using either of the following:
 - Translation and rotation values, e.g.: <br/>
   `pose3d(vec3(1, 2, 3), quat(4, 5, 6, 7))`
 - Another pose3d with a different `component_type` to perform a component-wise
-  explicit conversion, e.g.: <br/>
+  explicit conversion, e.g.:
 
       fpose3d(dpose3d(
           dvec3(1.1, 2.2, 3.3),
@@ -508,6 +529,13 @@ Additionally, they can be constructed using either of the following:
       == fpose3d(
           fvec3(dvec3(1.1, 2.2, 3.3)),
           fquat(dquat(4.4, 5.5, 6.6, 7.7))); // true
+
+Keep in-mind C++11 braced-init-lists also work for constructors that take
+multiple arguments, e.g.:
+
+    fpose3d p1 = { vec3(1, 2, 3), quat(4, 5, 6, 7) };
+    fpose3d p2 = { { 1, 2, 3 }, { 4, 5, 6, 7 } };
+    // etc.
 
 Implicit conversion operators are provided as well, e.g.:
 
@@ -534,7 +562,215 @@ operator does the exact opposite.
 
 ### tue::mat ###
 
-TODO
+    #include <tue/mat.hpp>
+
+`tue::mat<T, C, R>` represents a column-major matrix with `C` columns, `R` rows,
+and component type `T`. All combinations of 2, 3, or 4 columns, 2, 3, or 4 rows,
+and any component type are supported. A specific instantiation's template
+arguments are made available via the following public members:
+
+- `using column_type = vec<T, R>;`
+- `using row_type = vec<T, C>;`
+- `using component_type = vec<T>;`
+- `static const int column_count = C;`
+- `static const int row_count = R;`
+- `static const int component_count = N;`
+
+Type aliases for common combinations are provided for convenience:
+
+- `mat2x2<T>`, `mat2x3<T>`, `mat2x4<T>`
+- `mat3x2<T>`, `mat3x3<T>`, `mat3x4<T>`
+- `mat4x2<T>`, `mat4x3<T>`, `mat4x4<T>`
+- `fmat2x2`, `fmat2x3`, fmat2x4` (component_type: float)
+- `fmat3x2`, `fmat3x3`, fmat3x4` (component_type: float)
+- `fmat4x2`, `fmat4x3`, fmat4x4` (component_type: float)
+- `dmat2x2`, `dmat2x3`, dmat2x4` (component_type: double)
+- `dmat3x2`, `dmat3x3`, dmat3x4` (component_type: double)
+- `dmat4x2`, `dmat4x3`, dmat4x4` (component_type: double)
+
+mat's are default-constructable, copy-constructable, and copy-assignable.
+Additionally, they can be constructed using any of the following:
+
+- Individual column vec's, e.g.: <br/>
+  `mat2x2(vec2(1, 2), vec2(3, 4))`
+- A single scalar to initialize the main diagonal, filling in all other values
+  with 0, e.g.: <br/>
+  `mat2x2(123) == mat2x2(vec2(123, 0), vec2(0, 123))`
+- A mat of any other size, but the same component_type, to extend or truncate.
+  extended values will be initialized with the corresponding value from the
+  identity matrix, e.g.:
+
+      mat2x4 m1 = {
+        { 1, 2, 3, 4 },
+        { 5, 6, 7, 8 },
+      };
+
+      mat3x3 m2(m1); // <-- This is the constructor we're describing
+      m2 == mat3x3 {
+        { 1, 2, 3 },
+        { 5, 6, 7 },
+        { 0, 0, 1 },
+      }; // true
+
+- Another mat with the same dimensions but a different `component_type` to
+  perform a component-wise explicit conversion, e.g.:
+
+      fmat2x2(dmat2x2(dvec2(1.0, 2.0), dvec2(3.0, 4.0)))
+          == fmat2x2(fvec2(dvec2(1.0, 2.0)), fvec2(dvec2(3.0, 4.0)))
+
+Implicit conversion operators are provided as well, e.g.:
+
+    dmat2x2 m = fmat2x2{ { 1.1f, 2.2f }, { 3.3f, 4.4f } };
+    m == dmat2x2{ { 1.1f, 2.2f }, { 3.3f, 4.4f } }; // true
+
+mat types contain the following static factory methods:
+
+- `identity()` <br/>
+   Returns  a `mat` with the main diagonal set to 1 and all other components set
+   to 0.
+- `zero()` <br/>
+   Returns a `mat` with all components set to 0.
+
+mat columns and rows can be accessed by value using the following getters and
+setters:
+
+- `column(const I& i)`
+- `set_column(const I& i, const vec<T, R>& column)`
+- `row(const J& j)`
+- `set_row(const J& j, const vec<T, C>& row)`
+
+A raw pointer to the underlying array of columns can be obtained using the
+following method:
+
+- `columns()`
+
+A raw pointer to the underlying array of components can be obtained using the
+following method:
+
+- `data()` (equivelent to `columns()[0].data()`)
+
+References to individual columns can be retrieved using the subscript
+operator. No bounds checking is performed. Index-to-column mappings are as
+follows:
+
+- `m[0] == m.column(0)`
+- `m[1] == m.column(1)`
+- `m[2] == m.column(2)` (`mat3xR` and `mat4xR` only)
+- `m[3] == m.column(3)` (`mat4xR` only)
+
+Most bitwise and arithmetic operators work intuitively with mat's. Unary
+operators return the result of applying the operator to each component. For
+example:
+
+    -mat2x2{ { 1, -2 }, { -3, 4 } }
+        == mat2x2{ { -1, 2 }, { 3, -4 } }; // true
+
+Similarly, binary operators where both sides are mat's with the same dimensions
+return the result of applying the operator to each corresponding pair of
+components. For example:
+
+    mat2x2{ { 1, 2 }, { 3, 4 } } + mat2x2{ { 8, 7 }, { 6, 5 } }
+        == mat2x2{ { 1+8, 2+7 }, { 3+6, 4+5 } }; // true
+
+If one operand of a binary operator is a mat but the other is not, the return
+value is the result of applying the non-mat operand to each component of the mat
+operand. For example:
+
+    2 * mat2x2{ { 3, 4 }, { 5, 6 } }
+        == mat2x2{ { 2*3, 2*4 }, { 2*5, 2*6 } }; // true
+
+Matrix multiplication is an exception to these rules. If both sides of the `*`
+or `*=` operator are mat operands, then standard matrix multiplication is
+performed instead of component-wise multiplication. To perform component-wise
+multiplication, use `tue::math::comp_mult()` instead.
+
+If the left-hand side operand of `*` or `*=` is a vec and the right-hand side
+is a mat, then the vec is treated as a matrix with one row for the purposes of
+matrix multiplication. If a mat is on the left-hand side and a vec on the
+right-hand side, the vec is treated as a matrix with one column.
+
+The only other exceptions to these rules are the `==` and `!=` operators.
+Instead of returning the result of comparing each pair of components
+individually, the equality operators return a single `bool` value indicating
+whether or not *all* pairs of components are equal. To perform component-wise
+comparisons, use the comparison functions from the `tue::math` namespace
+instead.
+
+The two operands to a binary operator need not have the same `component_type`.
+In-general, Tuesday operators perform the same type promotions that C++ performs
+for the standard built-in types. For example:
+
+    fmat2x2{ { 1.1f, 2.2f }, { 3.3f, 4.4f } }
+        + dmat2x2{ { 5.5, 6.6 }, { 7.7, 8.8 } }
+        == dmat2x2{
+              { 1.1f+5.5, 2.2f+6.6 },
+              { 3.3f+7.7, 4.4f+8.8 },
+          }; // true
+
+The complete list of operators mat's support is as follows:
+
+- `+m`
+- `-m`
+- `~m`
+- `++m`
+- `--m`
+- `m++`
+- `m--`
+- `lhs + rhs`
+- `lhs - rhs`
+- `lhs * rhs`
+- `lhs / rhs`
+- `lhs % rhs`
+- `lhs & rhs`
+- `lhs | rhs`
+- `lhs ^ rhs`
+- `lhs << rhs`
+- `lhs >> rhs`
+- `lhs += rhs`
+- `lhs -= rhs`
+- `lhs *= rhs`
+- `lhs /= rhs`
+- `lhs %= rhs`
+- `lhs &= rhs`
+- `lhs |= rhs`
+- `lhs ^= rhs`
+- `lhs <<= rhs`
+- `lhs >>= rhs`
+- `lhs == rhs`
+- `lhs != rhs`
+
+mat's are compatible with the following functions from the `tue::math`
+namespace. In-general, the return value is the result of applying the function
+to each component individually:
+
+- `sin(const mat& m)`
+- `cos(const mat& m)`
+- `sincos(const mat& m, mat& sin_result, mat& cos_result)`
+- `exp(const mat& m)`
+- `log(const mat& m)`
+- `pow(const mat& base, const scalar& exponent)`
+- `pow(const mat& base, const mat& exponent)`
+- `recip(const mat& m)`
+- `sqrt(const mat& m)`
+- `rsqrt(const mat& m)`
+- `min(const mat& m1, const mat& m2)`
+- `max(const mat& m1, const mat& m2)`
+- `abs(const mat& m)`
+- `comp_mult(const mat& lhs, const mat& rhs)`
+- `select(const mat& condition, const mat& value)`
+- `select(const mat& condition, const mat& value, const mat& otherwise)`
+- `less(const mat& lhs, const mat& rhs)`
+- `less_equal(const mat& lhs, const mat& rhs)`
+- `greater(const mat& lhs, const mat& rhs)`
+- `greater_equal(const mat& lhs, const mat& rhs)`
+- `equal(const mat& lhs, const mat& rhs)`
+- `not_equal(const mat& lhs, const mat& rhs)`
+
+The following function from `math::tue` takes on special meanings for mat types:
+
+    mat<T, C, R> transpose(const mat<T, R, C)& m);
+
+Returns the transpose of the given mat.
 
 
 ### tue::math ###
