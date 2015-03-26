@@ -384,6 +384,7 @@ A 3-dimensional rotation can be represented in three different ways:
 - Axis-angle (a `vec4`, a `vec3` and a scalar, or four scalars)
 - A rotation vector (a `vec3` or three scalars)
 - A normalized quaternion (a `quat`)
+- A rotation matrix
 
 The meaning of the axis-angle representation is straightforward. The first three
 components represent the axis of rotation. All Tuesday functions which expect
@@ -409,6 +410,8 @@ vec3's and each other, as well as construct rotation matricies, using only
 simple arithmetic and no expensive trigonometric functions. Quaternions are most
 useful for storing 3-dimensional orientations and performing vector
 transformations.
+
+Rotation matricies are described later in the Transformation Matricies section.
 
 Tuesday provides the following functions in the `tue::math` namespace for
 converting between different 3-dimensional rotation representations:
@@ -771,6 +774,64 @@ The following function from `math::tue` takes on special meanings for mat types:
     mat<T, C, R> transpose(const mat<T, R, C)& m);
 
 Returns the transpose of the given mat.
+
+
+### Transformation Matricies ###
+
+    #include <tue/mat.hpp>
+
+Tuesday supports generating 4x4 transformation matricies. Many types of
+transformation matricies could theoretically be smaller, but then explicit
+conversions would be required to compose them using matrix multiplication.
+
+The generated transformation matricies are expected to be multiplied
+left-to-right in the order transformations are to be applied instead of
+right-to-left (functional composition style) like many math textbooks prefer.
+This isn't a mere aesthetic choice; it's actually more computationally
+efficient. Consider the following chain of multiplications:
+
+    vec4 v;
+    mat4x4 m1, m2, m3;
+    v * m1 * m2 * m3;
+
+Because of C++ operator associativity, the above expression gets grouped like:
+
+    ((v * m1) * m2) * m3;
+
+The intermediate result of the expressions in parentheses are vec4's. If the
+operations were done in reverse order (i.e., the vec to transform would be on
+the far right), the intermediate results would be mat4x4's, which would require
+more arithmetic to multiply.
+
+Transformation matrices can be generated using the following functions from the
+`tue::math` namespace.
+
+- `translation_mat(const vec2<T>& xy)`
+- `translation_mat(const T& x, const T& y)`
+- `translation_mat(const vec3<T>& xyz)`
+- `translation_mat(const T& x, const T& y, const T& z)`
+- `rotation_mat(const T& angle)` (2-dimensional counter-clockwise radians)
+- `rotation_mat(const vec4<T>& axis_angle)`
+- `rotation_mat(const vec3<T>& axis, const T& angle)`
+- `rotation_mat(const T& axis_x, const T& axis_y, const T& axis_z,
+                const T& angle)`
+- `rotation_mat(const vec3<T>& v)` (3-dimensional rotation vector)
+- `rotation_mat(const T& x, const T& y, const T& z)`
+- `rotation_mat(const quat<T>& q)`
+- `scale_mat(const vec2<T>& xy)`
+- `scale_mat(const T& x, const T& y)`
+- `scale_mat(const vec3<T>& xyz)`
+- `scale_mat(const T& x, const T& y, const T& z)`
+- `pose_mat(const pose2d<T>& pose)`
+- `pose_mat(const vec2<T>& translation, const T& rotation)`
+- `pose_mat(const pose3d<T>& pose)`
+- `pose_mat(const vec3<T>& translation, const quat<T>& rotation)`
+- `view_mat(const pose2d<T>& pose)`
+- `view_mat(const vec2<T>& translation, const T& rotation)`
+- `view_mat(const pose3d<T>& pose)`
+- `view_mat(const vec3<T>& translation, const quat<T>& rotation)`
+- `perspective_mat(const T& fovy, const T& aspect, const T& near, const T& far)`
+- `ortho_mat(const T& width, const T& height, const T& near, const T& far)`
 
 
 ### tue::math ###

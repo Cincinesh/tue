@@ -108,8 +108,8 @@ namespace math
   }
 
   template<typename T>
-  inline auto rotation_mat(const vec4<T>& v) noexcept {
-    return rotation_mat(v.x(), v.y(), v.z(), v.w());
+  inline auto rotation_mat(const vec4<T>& axis_angle) noexcept {
+    return rotation_mat(axis_angle.xyz(), axis_angle.w());
   }
 
   template<typename T>
@@ -195,31 +195,6 @@ namespace math
   }
 
   template<typename T>
-  inline auto pose_mat(
-      const vec3<T>& translation,
-      const vec4<T>& rotation) noexcept {
-    return rotation_mat(rotation)
-        * translation_mat(translation);
-  }
-
-  template<typename T>
-  inline auto pose_mat(
-      const vec3<T>& translation,
-      const vec3<T>& rotation_axis,
-      const T& rotation_angle) noexcept {
-    return rotation_mat(rotation_axis, rotation_angle)
-        * translation_mat(translation);
-  }
-
-  template<typename T>
-  inline auto pose_mat(
-      const vec3<T>& translation,
-      const vec3<T>& rotation) noexcept {
-    return rotation_mat(rotation)
-        * translation_mat(translation);
-  }
-
-  template<typename T>
   inline constexpr auto pose_mat(
       const vec3<T>& translation,
       const quat<T>& rotation) noexcept {
@@ -245,31 +220,6 @@ namespace math
   inline auto view_mat(
       const pose2d<T>& pose) noexcept {
     return view_mat(pose.translation(), pose.rotation());
-  }
-
-  template<typename T>
-  inline auto view_mat(
-      const vec3<T>& translation,
-      const vec4<T>& rotation) noexcept {
-    return translation_mat(-translation)
-        * rotation_mat(rotation.xyz(), -rotation.a());
-  }
-
-  template<typename T>
-  inline auto view_mat(
-      const vec3<T>& translation,
-      const vec3<T>& rotation_axis,
-      const T& rotation_angle) noexcept {
-    return translation_mat(-translation)
-        * rotation_mat(rotation_axis, -rotation_angle);
-  }
-
-  template<typename T>
-  inline auto view_mat(
-      const vec3<T>& translation,
-      const vec3<T>& rotation) noexcept {
-    return translation_mat(-translation)
-        * rotation_mat(-rotation);
   }
 
   template<typename T>

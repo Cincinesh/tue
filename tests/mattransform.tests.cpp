@@ -141,34 +141,7 @@ TEST_CASE(pose_mat_2d) {
   test_assert(m2 == m1);
 }
 
-TEST_CASE(pose_mat_from_axis_angle) {
-  const fvec3 translation(1.1f, 2.2f, 3.3f);
-  const fvec3 rotation_axis(4.4f, 5.5f, 6.6f);
-  const float rotation_angle = 7.7f;
-  const fmat4x4 m1 = math::pose_mat(
-      translation,
-      rotation_axis,
-      rotation_angle);
-  test_assert(m1
-      == math::rotation_mat(rotation_axis, rotation_angle)
-          * math::translation_mat(translation));
-
-  const fmat4x4 m2 = math::pose_mat(
-      translation,
-      fvec4(rotation_axis, rotation_angle));
-  test_assert(m2 == m1);
-}
-
-TEST_CASE(pose_mat_from_rotation_vec) {
-  const fvec3 translation(1.1f, 2.2f, 3.3f);
-  const fvec3 rotation(4.4f, 5.5f, 6.6f);
-  const fmat4x4 m1 = math::pose_mat(translation, rotation);
-  test_assert(m1
-      == math::rotation_mat(rotation)
-          * math::translation_mat(translation));
-}
-
-TEST_CASE(pose_mat_from_quat) {
+TEST_CASE(pose_mat_3d) {
   CONST_OR_CONSTEXPR fvec3 translation(1.1f, 2.2f, 3.3f);
   CONST_OR_CONSTEXPR fquat rotation(4.4f, 5.5f, 6.6f, 7.7f);
   CONST_OR_CONSTEXPR fmat4x4 m1 = math::pose_mat(translation, rotation);
@@ -193,34 +166,7 @@ TEST_CASE(view_mat_2d) {
   test_assert(m2 == m1);
 }
 
-TEST_CASE(view_mat_from_axis_angle) {
-  const fvec3 translation(1.1f, 2.2f, 3.3f);
-  const fvec3 rotation_axis(4.4f, 5.5f, 6.6f);
-  const float rotation_angle = 7.7f;
-  const fmat4x4 m1 = math::view_mat(
-      translation,
-      rotation_axis,
-      rotation_angle);
-  test_assert(m1
-      == math::translation_mat(-translation)
-          * math::rotation_mat(rotation_axis, -rotation_angle));
-
-  const fmat4x4 m2 = math::view_mat(
-      translation,
-      fvec4(rotation_axis, rotation_angle));
-  test_assert(m2 == m1);
-}
-
-TEST_CASE(view_mat_from_rotation_vec) {
-  const fvec3 translation(1.1f, 2.2f, 3.3f);
-  const fvec3 rotation(4.4f, 5.5f, 6.6f);
-  const fmat4x4 m1 = math::view_mat(translation, rotation);
-  test_assert(m1
-      == math::translation_mat(-translation)
-          * math::rotation_mat(-rotation));
-}
-
-TEST_CASE(view_mat_from_quat) {
+TEST_CASE(view_mat_3d) {
   CONST_OR_CONSTEXPR fvec3 translation(1.1f, 2.2f, 3.3f);
   CONST_OR_CONSTEXPR fquat rotation(4.4f, 5.5f, 6.6f, 7.7f);
   CONST_OR_CONSTEXPR fmat4x4 m1 = math::view_mat(translation, rotation);
