@@ -597,8 +597,13 @@ Additionally, they can be constructed using any of the following:
 - Individual column vec's, e.g.: <br/>
   `mat2x2(vec2(1, 2), vec2(3, 4))`
 - A single scalar to initialize the main diagonal, filling in all other values
-  with 0, e.g.: <br/>
-  `mat2x2(123) == mat2x2(vec2(123, 0), vec2(0, 123))`
+  with 0, e.g.:
+
+      mat2x2(123) == mat2x2 {
+        { 123, 0 },
+        { 0, 123 },
+      };
+
 - A mat of any other size, but the same component_type, to extend or truncate.
   extended values will be initialized with the corresponding value from the
   identity matrix, e.g.:
@@ -845,6 +850,11 @@ TODO
 
 
 ### tue::size2d ###
+
+TODO
+
+
+### tue::size3d ###
 
 TODO
 
