@@ -209,8 +209,8 @@ TEST_CASE(multiplication_assignment_operator) {
 
 TEST_CASE(multiplication_operator) {
   CONST_OR_CONSTEXPR auto q = fq1 * dq2;
-  test_assert(q.v() == fq1.s()*dq2.v() + dq2.s()*fq1.v()
-      + math::cross(fq1.v(), dq2.v()));
+  test_assert(q.v() == dq2.s()*fq1.v() + fq1.s()*dq2.v()
+      + math::cross(dq2.v(), fq1.v()));
   test_assert(q.s() == fq1.s() * dq2.s() - math::dot(fq1.v(), dq2.v()));
 
   CONST_OR_CONSTEXPR dvec3 v = dv32 * fq1;

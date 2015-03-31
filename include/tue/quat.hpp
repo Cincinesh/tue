@@ -145,9 +145,9 @@ template<typename T, typename U>
 inline constexpr auto operator*(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept {
-  return quat<decltype(lhs[0] * rhs[0])>{
-    lhs.s()*rhs.v() + rhs.s()*lhs.v() + math::cross(lhs.v(), rhs.v()),
-    lhs.s()*rhs.s() - math::dot(lhs.v(), rhs.v()),
+  return quat<decltype(rhs[0] * lhs[0])>{
+    rhs.s()*lhs.v() + lhs.s()*rhs.v() + math::cross(rhs.v(), lhs.v()),
+    rhs.s()*lhs.s() - math::dot(rhs.v(), lhs.v()),
   };
 }
 
