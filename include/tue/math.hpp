@@ -18,19 +18,6 @@ namespace math
 
   template<typename T>
   inline typename std::enable_if<std::is_floating_point<T>::value,
-  void>::type sincos(T x, T& sin_out, T& cos_out) noexcept {
-    sin_out = std::sin(x);
-    cos_out = std::cos(x);
-  }
-
-  template<typename T>
-  inline typename std::enable_if<std::is_integral<T>::value,
-  void>::type sincos(T x, double& sin_out, double& cos_out) noexcept {
-    math::sincos(static_cast<double>(x), sin_out, cos_out);
-  }
-
-  template<typename T>
-  inline typename std::enable_if<std::is_floating_point<T>::value,
   T>::type sin(T x) noexcept {
     return std::sin(x);
   }
@@ -51,6 +38,19 @@ namespace math
   inline typename std::enable_if<std::is_integral<T>::value,
   double>::type cos(T x) noexcept {
     return math::cos(static_cast<double>(x));
+  }
+
+  template<typename T>
+  inline typename std::enable_if<std::is_floating_point<T>::value,
+  void>::type sincos(T x, T& sin_out, T& cos_out) noexcept {
+    sin_out = std::sin(x);
+    cos_out = std::cos(x);
+  }
+
+  template<typename T>
+  inline typename std::enable_if<std::is_integral<T>::value,
+  void>::type sincos(T x, double& sin_out, double& cos_out) noexcept {
+    math::sincos(static_cast<double>(x), sin_out, cos_out);
   }
 
   template<typename T>

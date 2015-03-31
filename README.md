@@ -34,6 +34,98 @@ TODO
 Usage
 -----
 
+### tue::math ###
+
+    #include <tue/math.hpp>
+
+The `tue::math` namespace includes frequently-used mathematical constants and
+functions, some of which can also be found in the Standard Library, some of
+which are added for convenience, and some of which are added for the sake of
+Tuesday composite types such as `vec` and `mat`. `<tue/math.hpp>` only contains
+the scalar versions of these function; additional overloads for the composite
+types are included in each types' respective headers.
+
+Tuesday tries to follow the same conventions as the Standard Library by
+converting integral arguments to `double` or `long double` when an integer
+result wouldn't make sense.
+
+Tuesday provides the following constant in the `tue::math` namespace:
+
+- `constexpr float pi = 3.14159265358979323846264338327950288f;`
+
+The `tue::math` namespace also includes the following functions. `F` is used to
+denote any floating-point type. `I` is used to denote any integral type. `T` and
+`U` are used to denote any of either.
+
+- `F sin(F x)`
+- `double sin(I x)`
+- `F cos(F x)`
+- `double cos(I x)`
+- `F exp(F x)`
+- `double exp(I x)`
+- `F log(F x)`
+- `double log(I x)`
+- `F exp(F base, F exponent)`
+- `double exp(T base, U exponent)` (if neither arg is `long double`)
+- `long double exp(T base, U exponent)` (if one of the args is `long double`)
+- `F sqrt(F x)`
+- `double sqrt(I x)`
+- `T min(T x1, T x2)`
+- `T max(T x1, T x2)`
+- `T abs(T x)` (accepts unsigned integers unlike `std::abs()`)
+
+In-addition to the above functions which can also be found in the Standard
+Library, Tuesday adds the following functions:
+
+- `void sincos(F x, F& sin_out, F& cos_out)` <br/>
+  `void sincos(I x, double& sin_out, double& cos_out)` <br/>
+   Calculates the trigonometric sin and cos simultaneously and outputs the
+   results to the reference arguments.
+- `F recip(F x)` <br/>
+  `double recip(I x)` <br/>
+   Returns the reciprocal (`1 / x`) of the given value.
+- `F rsqrt(F x)` <br/>
+  `double rsqrt(I x)` <br/>
+   Returns the recipricol square root (`1 / sqrt(x)`) of the given value.
+- `decltype(T()*U()) dot(T lhs, U rhs)` <br/>
+   Returns the dot product of two values. This is only here for uniformity with
+   composite types. In the case of scalars, this is equivelent to `lhs * rhs`.
+- `F length2(F x)` <br/>
+  `double length2(I x)` <br/>
+   Returns the length squared of the given value. This is only here for
+   uniformity with composite types. In the case of scalars, this is equivelent
+   to `x * x`.
+- `F length(F x)` <br/>
+  `double length(I x)` <br/>
+   Returns the length of the given number. This is only here for uniformity with
+   composite types. In the case of scalars, this is equivelent to `abs(x)`.
+- `F normalize(F x)` <br/>
+  `double normalize(I x)` <br/>
+   Returns a value with the same sign as the given value and a magnitude of 1.
+   In the case of scalars, this is equivelent to `copysign(1, x)`.
+- `decltype(T()*U()) comp_mult(T lhs, U rhs)` <br/>
+   Returns the component-wise product of two numbers. This is only here for
+   uniformity with composite types. In the case of scalars, this is identical to
+   the `lhs * rhs`.
+- `T select(bool condition, const T& value)` <br/>
+  `T select(bool condition, const T& value, const T& otherwise)` <br/>
+   If `condition` is true, returns a copy of `value`. Otherwise, returns a copy
+   of `otherwise`, or `T(0)` if left unspecified. Unlike the other functions
+   described so far, `T` need not be an arithmetic type. The ordering of the
+   arguments are meant to match the ternary (`?:`) operator. Component-wise
+   versions for composite types also exist, which are useful in combination with
+   the component-wise comparison functions below.
+- `bool less(T lhs, U rhs)` <br/>
+  `bool less_equal(T lhs, U rhs)` <br/>
+  `bool greater(T lhs, U rhs)` <br/>
+  `bool greater_equal(T lhs, U rhs)` <br/>
+  `bool equal(T lhs, U rhs)` <br/>
+  `bool not_equal(T lhs, U rhs)` <br/>
+   Returns the component-wise comparisons of the given values. These are only
+   here for uniformity with composite types. In the case of scalars, these are
+   equivelent to their corresponding operators.
+
+
 ### tue::vec ###
 
     #include <tue/vec.hpp>
@@ -837,11 +929,6 @@ Transformation matrices can be generated using the following functions from the
 - `view_mat(const vec3<T>& translation, const quat<T>& rotation)`
 - `perspective_mat(const T& fovy, const T& aspect, const T& near, const T& far)`
 - `ortho_mat(const T& width, const T& height, const T& near, const T& far)`
-
-
-### tue::math ###
-
-TODO
 
 
 ### tue/simd.hpp ###
