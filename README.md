@@ -329,28 +329,20 @@ to each component individually:
 - `equal(const vec& lhs, const vec& rhs)`
 - `not_equal(const vec& lhs, const vec& rhs)`
 
-The following functions from `math::tue` take on special meanings for vec types:
+The following functions from `tue::math` do more than simply calculate the
+component-wise result:
 
-    dot(const vec& lhs, const vec& rhs);
-
-Returns the dot product of two vec's.
-
-    cross(const vec3& lhs, const vec3& rhs);
-
-Returns the cross product of two vec's.
-
-    length2(const vec& v);
-
-Returns the the length-squared of the given vec, i.e., the sum of each component
-squared.
-
-    length(const vec& v);
-
-Returns the length of the given vec, i.e., the square root of `length2(v)`.
-
-    normalize(const vec& v);
-
-Returns a unit vec with the same direction as the given vec.
+- `dot(const vec& lhs, const vec& rhs)` <br/>
+   Returns the dot product of two vec's.
+- `cross(const vec3& lhs, const vec3& rhs)` <br/>
+   Returns the cross product of two vec's.
+- `length2(const vec& v)` <br/>
+   Returns the the length-squared of the given vec, i.e., the sum of each
+   component squared.
+- `length(const vec& v)` <br/>
+   Returns the length of the given vec, i.e., `sqrt(length2(v))`.
+- `normalize(const vec& v)` <br/>
+   Returns a unit vec with the same direction as the given vec.
 
 
 ### tue::quat ###
@@ -440,39 +432,32 @@ The `==` operator returns true if all the pairs of corresponding components from
 two quat's are equal to each other. Otherwise it returns false. The `!=`
 operator does the exact opposite.
 
-The following functions from `math::tue` take on special meanings for quat
-types:
+quat's are compatible with the following functions from the `tue::math`
+namespace.
 
-    length2(const quat& q);
-
-Returns the the length-squared of the given quat, i.e., the sum of each
-component squared.
-
-    length(const quat& q);
-
-Returns the length of the given quat, i.e., the square root of `length2(q)`.
-
-    normalize(const quat& q);
-
-Returns a unit quat (quat with a length of 1) with the same relative component
-ratios as the given quat.
-
-    conjugate(const quat& q);
-
-Returns the conjugate of the given quat.
+- `length2(const quat& q)` <br/>
+   Returns the the length-squared of the given quat, i.e., the sum of each
+   component squared.
+- `length(const quat& q)` <br/>
+   Returns the length of the given quat, i.e., `sqrt(length2(q))`.
+- `normalize(const quat& q)` <br/>
+   Returns a unit quat (quat with a length of 1) with the same relative
+   component ratios as the given quat.
+- `conjugate(const quat& q)` <br/>
+   Returns the conjugate of the given quat.
 
 
 ### Rotations ###
 
 While not technically a C++ type separate from the `vec` and `quat` types
 already discussed, rotations in Tuesday deserve some explanation. There is one
-main way to represent rotations in 2-dimensional space, and three ways in
+main way to represent rotations in 2-dimensional space, and four ways in
 3-dimensional space.
 
 A 2-dimensional rotation can be represented by a single scalar angle in radians.
 Tuesday treats positive angle values as counter-clockwise.
 
-A 3-dimensional rotation can be represented in three different ways:
+A 3-dimensional rotation can be represented in four different ways:
 
 - Axis-angle (a `vec4`, a `vec3` and a scalar, or four scalars)
 - A rotation vector (a `vec3` or three scalars)
@@ -511,26 +496,27 @@ converting between different 3-dimensional rotation representations:
 
 - `#include <tue/vec.hpp>`
     - axis-angle to rotation vector:
-	    - `vec3<T> rotation_vec(const vec4<T>& v)`
-	    - `vec3<T> rotation_vec(const vec3<T>& axis, const T& angle)`
-		- `vec3<T> rotation_vec(const T& axis_x, const T& axis_y,
-                                        const T& axis_z, const T& angle)`
-	- rotation vector to axis-angle:
-		- `vec4<T> axis_angle(const vec3<T>& v)`
-		- `vec4<T> axis_angle(const T& x, const T& y, const T& z)`
+        - `vec3<T> rotation_vec(const vec4<T>& v)`
+        - `vec3<T> rotation_vec(const vec3<T>& axis, const T& angle)`
+        - `vec3<T> rotation_vec(const T& axis_x, const T& axis_y,
+                                const T& axis_z, const T& angle)`
+    - rotation vector to axis-angle:
+        - `vec4<T> axis_angle(const vec3<T>& v)`
+        - `vec4<T> axis_angle(const T& x, const T& y, const T& z)`
 - `#include <tue/quat.hpp>`
-	- axis-angle to rotation quaternion:
-	    - `quat<T> rotation_quat(const vec4<T>& v)`
-	    - `quat<T> rotation_quat(const vec3<T>& axis, const T& angle)`
-		- `quat<T> rotation_quat(const T& axis_x, const T& axis_y,
-                                         const T& axis_z, const T& angle)`
-	- rotation quaternion to axis-angle:
-		- `vec4<T> axis_angle(const quat<T>& q)`
-	- rotation quaternion to rotation vector:
-		- `vec3<T> rotation_vec(const quat<T>& q)`
+    - axis-angle to rotation quaternion:
+        - `quat<T> rotation_quat(const vec4<T>& v)`
+        - `quat<T> rotation_quat(const vec3<T>& axis, const T& angle)`
+        - `quat<T> rotation_quat(const T& axis_x, const T& axis_y,
+                                 const T& axis_z, const T& angle)`
+    - rotation quaternion to axis-angle:
+        - `vec4<T> axis_angle(const quat<T>& q)`
+    - rotation quaternion to rotation vector:
+        - `vec3<T> rotation_vec(const quat<T>& q)`
 
 Note: rotation conversion functions that take a rotation vector safely handle
-the zero vector, e.g., `axis_angle(0, 0, 0)` returns a valid axis-angle vec4.
+the zero vector, e.g., `axis_angle(vec3::zero())` returns a valid axis-angle
+vec4.
 
 
 ### tue::pose2d ###
@@ -867,11 +853,11 @@ to each component individually:
 - `equal(const mat& lhs, const mat& rhs)`
 - `not_equal(const mat& lhs, const mat& rhs)`
 
-The following function from `math::tue` takes on special meanings for mat types:
+The following function from `tue::math` does more than simply calculate the
+component-wise result:
 
-    mat<T, C, R> transpose(const mat<T, R, C)& m);
-
-Returns the transpose of the given mat.
+- `mat<T, C, R> transpose(const mat<T, R, C)& m)` <br/>
+   Returns the transpose of the given mat.
 
 
 ### Transformation Matricies ###
