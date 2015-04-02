@@ -935,6 +935,12 @@ The Tuesday SIMD library currently includes two types:
 
 They behave like limited versions of the comparable `vec4` types.
 
+Additionally, `<tue/simd.hpp>` defines the following macros if the corresponding
+instruction set extension is supported by the current compiler configuration:
+
+- TUE_SSE
+- TUE_SSE2
+
 
 #### tue::boolx4 ####
 
