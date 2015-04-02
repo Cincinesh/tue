@@ -28,7 +28,7 @@ public:
     : x(s), y(s), z(s), w(s) {
   }
 
-  boolx4 operator!() const noexcept {
+  boolx4 operator~() const noexcept {
     return { !x, !y, !z, !w };
   }
 
@@ -57,6 +57,18 @@ public:
       z != other.z,
       w != other.w,
     };
+  }
+
+  boolx4& operator&=(const boolx4& other) noexcept {
+      return *this = *this & other;
+  }
+
+  boolx4& operator|=(const boolx4& other) noexcept {
+      return *this = *this | other;
+  }
+
+  boolx4& operator^=(const boolx4& other) noexcept {
+      return *this = *this ^ other;
   }
 
   bool operator==(const boolx4& other) const noexcept {

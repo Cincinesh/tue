@@ -47,7 +47,7 @@ public:
     return underlying_;
   }
 
-  boolx4 operator!() const noexcept {
+  boolx4 operator~() const noexcept {
     return _mm_xor_ps(underlying_, detail_::binary_m128(~0u));
   }
 
@@ -61,6 +61,18 @@ public:
 
   boolx4 operator^(const boolx4& other) const noexcept {
     return _mm_xor_ps(underlying_, other);
+  }
+
+  boolx4& operator&=(const boolx4& other) noexcept {
+      return *this = *this & other;
+  }
+
+  boolx4& operator|=(const boolx4& other) noexcept {
+      return *this = *this | other;
+  }
+
+  boolx4& operator^=(const boolx4& other) noexcept {
+      return *this = *this ^ other;
   }
 
   bool operator!=(const boolx4& other) const noexcept {

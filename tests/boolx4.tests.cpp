@@ -29,7 +29,7 @@ TEST_CASE(component_constructor) {
 
 TEST_CASE(not_operator) {
   const boolx4 v(true, false, true, false);
-  test_assert(!v == boolx4(false, true, false, true));
+  test_assert(~v == boolx4(false, true, false, true));
 }
 
 TEST_CASE(and_operator) {
@@ -69,6 +69,27 @@ TEST_CASE(xor_operator) {
   test_assert((v2 ^ v3) == boolx4(true, false, true, false));
   test_assert((v2 ^ v4) == boolx4(false, true, false, true));
   test_assert((v3 ^ v4) == boolx4(true, true, true, true));
+}
+
+TEST_CASE(and_assignment_operator) {
+  boolx4 v1(true, true, false, false);
+  const boolx4 v2(true, false, true, false);
+  test_assert(&(v1 &= v2) == &v1);
+  test_assert(v1 == boolx4(true, false, false, false));
+}
+
+TEST_CASE(or_assignment_operator) {
+  boolx4 v1(true, true, false, false);
+  const boolx4 v2(true, false, true, false);
+  test_assert(&(v1 |= v2) == &v1);
+  test_assert(v1 == boolx4(true, true, true, false));
+}
+
+TEST_CASE(xor_assignment_operator) {
+  boolx4 v1(true, true, false, false);
+  const boolx4 v2(true, false, true, false);
+  test_assert(&(v1 ^= v2) == &v1);
+  test_assert(v1 == boolx4(false, true, true, false));
 }
 
 TEST_CASE(equality_operator) {

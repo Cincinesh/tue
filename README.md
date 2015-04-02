@@ -918,7 +918,89 @@ Transformation matrices can be generated using the following functions from the
 - `ortho_mat(const T& width, const T& height, const T& near, const T& far)`
 
 
-### tue/simd.hpp ###
+### <tue/simd.hpp> ###
+
+`<tue/simd.hpp>` provides thin wrappers around platform-specific SIMD
+intrinsics. It currently only supports SSE `boolx4` and `floatx4` with generic,
+non-SIMD fallbacks.
+
+SIMD types are explicitly kept separate from `vec` types. This is preferable for
+many reasons well-summarized here: <TODO: insert link>. Vectors of SIMD types
+(e.g. `vec3<floatx4>`) are supported.
+
+The Tuesday SIMD library currently includes two types:
+
+- `boolx4` (4 parallel boolean values)
+- `floatx4` (4 parallel 32-bit single precision floating-point values)
+
+They behave like limited versions of the comparable `vec4` types.
+
+
+#### tue::boolx4 ####
+
+    #include <tue/simd.hpp>
+
+boolx4's are default-constructable, copy-constructable, and copy-assignable.
+Additionally, they can be constructed using any of the following:
+
+- Individual component values, e.g.: <br/>
+  `boolx4(true, false, true, false)`
+- A single bool to initialize each component to the same value, e.g.: <br/>
+  `boolx4(true) == boolx4(true, true, true, true)`
+- (SSE only) An explicit or implicit conversion from an `__m128`, e.g.: <br/>
+
+      __m128 v = _mm_setzero_ps();
+      boolx4 b1(v);
+      b1 == boolx4(false, false, false, false); // true
+      boolx4 b2 = v;
+      b2 == boolx4(false, false, false, false); // true
+
+  The given __m128 is expected to be a bitmask (all bits 0 for false and 1 for
+  true).
+
+Keep in-mind C++11 braced-init-lists also work for constructors that take
+multiple arguments, e.g.:
+
+    boolx4 b = { true, false, true, false };
+
+Bitwise operators work intuitively with boolx4's. Unary operators return the
+result of applying the operator to each component. For example:
+
+    ~boolx4(true, false, true, false)
+        == boolx4(false, true, false, true); // true
+
+Similarly, binary operators return the result of applying the operator to each
+corresponding pair of components. For example:
+
+    (boolx4(true, true, false, false)
+        & boolx4(true, false, true, false))
+        == boolx4(true&true, true&false, false&true, false&false); // true
+
+The only exceptions to these rules are the `==` and `!=` operators. Instead of
+returning the result of comparing each pair of components individually, the
+equality operators return a single `bool` value indicating whether or not *all*
+pairs of components are equal.
+
+The complete list of operators boolx4's support is as follows:
+
+- `~v`
+- `lhs & rhs`
+- `lhs | rhs`
+- `lhs ^ rhs`
+- `lhs &= rhs`
+- `lhs |= rhs`
+- `lhs ^= rhs`
+- `lhs == rhs`
+- `lhs != rhs`
+
+boolx4 supports bitwise operators instead of logical operators because
+short-circuiting operators like `&&` and `||` don't make sense when operating on
+multiple values in-parallel.
+
+
+#### tue::floatx4 ####
+
+    #include <tue/simd.hpp>
 
 TODO
 
