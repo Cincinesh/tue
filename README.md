@@ -856,7 +856,7 @@ to each component individually:
 The following function from `tue::math` does more than simply calculate the
 component-wise result:
 
-- `mat<T, C, R> transpose(const mat<T, R, C)& m)` <br/>
+- `mat<T, C, R> transpose(const mat<T, R, C>& m)` <br/>
    Returns the transpose of the given mat.
 
 
@@ -918,22 +918,35 @@ Transformation matrices can be generated using the following functions from the
 - `ortho_mat(const T& width, const T& height, const T& near, const T& far)`
 
 
-### <tue/simd.hpp> ###
+### &lt;tue/simd.hpp&gt; ###
 
 `<tue/simd.hpp>` provides thin wrappers around platform-specific SIMD
 intrinsics. It currently only supports SSE `boolx4` and `floatx4` with generic,
 non-SIMD fallbacks.
 
-SIMD types are explicitly kept separate from `vec` types. This is preferable for
-many reasons well-summarized here: <TODO: insert link>. Vectors of SIMD types
-(e.g. `vec3<floatx4>`) are supported.
+SIMD types are explicitly kept separate from `vec` types. This is preferred for
+several reasons:
+
+- Accessing individual components of an SIMD data type is usually slow. For
+  instance, if fvec4 were implemented using the SSE __m128 data type, then using
+  the component getters and setters would probably be a bad idea. To enforce
+  this, Tuesday SIMD types don't even have getters or setters for individual
+  components.
+- SIMD types have stricter alignment requirements than simple composite data
+  types.
+- SIMD instruction sets are optimized for types with power-of-two component
+  counts, e.g.: 2, 4, 8, etc. If a type like fvec3 were to utilize SIMD
+  intrinsics, it would require a wasted fourth component for padding.
+
+Because of this, SIMD data types probably shouldn't be used for 3-dimensional
+geometric data directly. Instead, Tusday supports composite types where SIMD
+types are the components, e.g., `vec3<floatx4>`, which could be thought of as
+four parallel fvec3's.
 
 The Tuesday SIMD library currently includes two types:
 
 - `boolx4` (4 parallel boolean values)
 - `floatx4` (4 parallel 32-bit single precision floating-point values)
-
-They behave like limited versions of the comparable `vec4` types.
 
 Additionally, `<tue/simd.hpp>` defines the following macros if the corresponding
 instruction set extension is supported by the current compiler configuration:
@@ -955,11 +968,11 @@ Additionally, they can be constructed using any of the following:
   `boolx4(true) == boolx4(true, true, true, true)`
 - (SSE only) An explicit or implicit conversion from an `__m128`, e.g.: <br/>
 
-      __m128 v = _mm_setzero_ps();
-      boolx4 b1(v);
-      b1 == boolx4(false, false, false, false); // true
-      boolx4 b2 = v;
-      b2 == boolx4(false, false, false, false); // true
+        __m128 v = _mm_setzero_ps();
+        boolx4 b1(v);
+        b1 == boolx4(false, false, false, false); // true
+        boolx4 b2 = v;
+        b2 == boolx4(false, false, false, false); // true
 
   The given __m128 is expected to be a bitmask (all bits 0 for false and 1 for
   true).
