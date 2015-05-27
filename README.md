@@ -178,62 +178,67 @@ Implicit conversion operators are provided as well, e.g.:
 
 vec types contain the following static factory methods:
 
-- `zero()` <br/>
+- `vec<T, N> zero()` <br/>
    Returns a `vec` with each component set to 0.
-- `x_axis()` <br/>
+- `vec<T, N> x_axis()` <br/>
    Returns a `vec` with the x-component set to 1 and all other components set to
    0.
-- `y_axis()` <br/>
+- `vec<T, N> y_axis()` <br/>
    Returns a `vec` with the y-component set to 1 and all other components set to
    0.
-- `z_axis()` (`vec3` and `vec4` only) <br/>
+- `vec<T, N> z_axis()` (`vec3` and `vec4` only) <br/>
    Returns a `vec` with the z-component set to 1 and all other components set to
    0.
-- `w_axis()` (`vec4` only) <br/>
+- `vec<T, N> w_axis()` (`vec4` only) <br/>
    Returns a `vec` with the w-component set to 1 and all other components set to
    0.
 
 vec components can be accessed by value using the following getters and setters:
 
-- `x()`, `set_x(const T& x)`
-- `y()`, `set_y(const T& y)`
-- `z()`, `set_z(const T& z)` (`vec3` and `vec4` only)
-- `w()`, `set_w(const T& w)` (`vec4` only)
+- `T x() const`, `void set_x(const T& x)`
+- `T y() const`, `void set_y(const T& y)`
+- `T z() const`, `void set_z(const T& z)` (`vec3` and `vec4` only)
+- `T w() const`, `void set_w(const T& w)` (`vec4` only)
 
 Alternate component names are also included to make vec types more useful as
 color representations:
 
-- `r()`, `set_r(const T& r)`
-- `g()`, `set_g(const T& g)`
-- `b()`, `set_b(const T& b)` (`vec3` and `vec4` only)
-- `a()`, `set_a(const T& a)` (`vec4` only)
+- `T r() const`, `void set_r(const T& r)`
+- `T g() const`, `void set_g(const T& g)`
+- `T b() const`, `void set_b(const T& b)` (`vec3` and `vec4` only)
+- `T a() const`, `void set_a(const T& a)` (`vec4` only)
 
 The first 2 or 3 components of a vec can be accessed or set using single
 function calls:
 
 - `vec3` and `vec4` only:
-    - `xy()`
-    - `set_xy(const vec2<T>& xy)`
-    - `set_xy(const T& x, const T& y)`
-    - `rg()`
-    - `set_rg(const vec2<T>& rg)`
-    - `set_rg(const T& r, const T& g)`
+    - `vec2<T> xy() const`
+    - `void set_xy(const vec2<T>& xy)`
+    - `void set_xy(const T& x, const T& y)`
+    - `vec2<T> rg() const`
+    - `void set_rg(const vec2<T>& rg)`
+    - `void set_rg(const T& r, const T& g)`
 - `vec4` only:
-    - `xyz()`
-    - `set_xyz(const vec3<T>& xyz)`
-    - `set_xyz(const T& x, const T& y, const T& z)`
-    - `rgb()`
-    - `set_rgb(const vec3<T>& rgb)`
-    - `set_rgb(const T& r, const T& g, const T& b)`
+    - `vec3<T> xyz() const`
+    - `void set_xyz(const vec3<T>& xyz)`
+    - `void set_xyz(const T& x, const T& y, const T& z)`
+    - `vec3<T> rgb() const`
+    - `void set_rgb(const vec3<T>& rgb)`
+    - `void set_rgb(const T& r, const T& g, const T& b)`
 
 A raw pointer to the underlying array of components can be obtained using the
-following method:
+following methods:
 
-- `data()`
+- `T* data()`
+- `const T* data() const`
 
 References to individual components can be retrieved using the subscript
-operator. No bounds checking is performed. Index-to-component mappings are as
-follows:
+operator. No bounds checking is performed.
+
+- `template<typename I> T& operator[](const I& i)`
+- `template<typename I> const T& operator[](const I&) const`
+
+Index-to-component mappings are as follows:
 
 - `v[0] == v.x() == v.r()`
 - `v[1] == v.y() == v.g()`
@@ -338,11 +343,13 @@ component-wise result:
    Returns the cross product of two vec's.
 - `length2(const vec& v)` <br/>
    Returns the the length-squared of the given vec, i.e., the sum of each
-   component squared.
+   component squared. Integral types will be converted to double automatically.
 - `length(const vec& v)` <br/>
-   Returns the length of the given vec, i.e., `sqrt(length2(v))`.
+   Returns the length of the given vec, i.e., `sqrt(length2(v))`. Integral types
+   will be converted to double automatically.
 - `normalize(const vec& v)` <br/>
-   Returns a unit vec with the same direction as the given vec.
+   Returns a unit vec with the same direction as the given vec. Integral types
+   will be converted to double automatically.
 
 
 ### tue::quat ###
@@ -387,34 +394,39 @@ Implicit conversion operators are provided as well, e.g.:
 
 quat types contain the following static factory method:
 
-- `identity()` <br/>
+- `quat<T> identity()` <br/>
    Returns a `quat` with the vector part set to 0 and the scalar part set to 1.
 
 quat components can be accessed by value using the following getters and
 setters:
 
-- `x()`, `set_x(const T& x)`
-- `y()`, `set_y(const T& y)`
-- `z()`, `set_z(const T& z)`
-- `w()`, `set_w(const T& w)`
+- `T x() const`, `void set_x(const T& x)`
+- `T y() const`, `void set_y(const T& y)`
+- `T z() const`, `void set_z(const T& z)`
+- `T w() const`, `void set_w(const T& w)`
 
 Alternate component names are also included for when it's more convenient to
 treat a quat as a vector and a scalar part:
 
-- `v()`
-- `set_v(const vec3<T>& v)`
-- `set_v(const T& x, const T& y, const T& z)`
-- `s()`
-- `set_s(const T& s)`
+- `vec3<T> v() const`
+- `void set_v(const vec3<T>& v)`
+- `void set_v(const T& x, const T& y, const T& z)`
+- `T s() const`
+- `void set_s(const T& s)`
 
 A raw pointer to the underlying array of components can be obtained using the
-following method:
+following methods:
 
-- `data()`
+- `T* data()`
+- `const T* data() const`
 
 References to individual components can be retrieved using the subscript
-operator. No bounds checking is performed. Index-to-component mappings are as
-follows:
+operator. No bounds checking is performed.
+
+- `template<typename I> T& operator[](const I& i)`
+- `template<typename I> const T& operator[](const I&) const`
+
+Index-to-component mappings are as follows:
 
 - `q[0] == q.x() == q.v().x()`
 - `q[1] == q.y() == q.v().y()`
@@ -511,6 +523,9 @@ converting between different 3-dimensional rotation representations:
                                  const T& axis_z, const T& angle)`
     - rotation quaternion to axis-angle:
         - `vec4<T> axis_angle(const quat<T>& q)`
+    - rotation vector to rotation quaternion:
+        - `quat<T> rotation_quat(const vec3<T>& v)`
+        - `quat<T> rotation_quat(const T& x, const T& y, const T& z)`
     - rotation quaternion to rotation vector:
         - `vec3<T> rotation_vec(const quat<T>& q)`
 
@@ -567,11 +582,11 @@ Implicit conversion operators are provided as well, e.g.:
 pose2d components can be accessed by value using the following getters and
 setters:
 
-- `translation()`
-- `set_translation(const vec2<T>& translation)`
-- `set_translation(const T& x, const T& y)`
-- `rotation()`
-- `set_rotation(const T& rotation)`
+- `vec2<T> translation() const`
+- `void set_translation(const vec2<T>& translation)`
+- `void set_translation(const T& x, const T& y)`
+- `T rotation() const`
+- `void set_rotation(const T& rotation)`
 
 The `==` operator returns true if all the pairs of corresponding components from
 two pose2d's are equal to each other. Otherwise it returns false. The `!=`
@@ -631,11 +646,11 @@ Implicit conversion operators are provided as well, e.g.:
 pose3d components can be accessed by value using the following getters and
 setters:
 
-- `translation()`
-- `set_translation(const vec3<T>& translation)`
-- `set_translation(const T& x, const T& y, const T& z)`
-- `rotation()`
-- `set_rotation(const quat<T>& rotation)`
+- `vec3<T> translation() const`
+- `void set_translation(const vec3<T>& translation)`
+- `void set_translation(const T& x, const T& y, const T& z)`
+- `quat<T> rotation() const`
+- `void set_rotation(const quat<T>& rotation)`
 
 The `==` operator returns true if all the pairs of corresponding components from
 two pose3d's are equal to each other. Otherwise it returns false. The `!=`
@@ -712,33 +727,39 @@ Implicit conversion operators are provided as well, e.g.:
 
 mat types contain the following static factory methods:
 
-- `identity()` <br/>
+- `mat<T, C, R> identity()` <br/>
    Returns  a `mat` with the main diagonal set to 1 and all other components set
    to 0.
-- `zero()` <br/>
+- `mat<T, C, R> zero()` <br/>
    Returns a `mat` with all components set to 0.
 
 mat columns and rows can be accessed by value using the following getters and
 setters:
 
-- `column(const I& i)`
-- `set_column(const I& i, const vec<T, R>& column)`
-- `row(const J& j)`
-- `set_row(const J& j, const vec<T, C>& row)`
+- `template<typename I> vec<T, R> column(const I& i) const`
+- `template<typename I> void set_column(const I& i, const vec<T, R>& column)`
+- `template<typename J> vec<T, C> row(const J& j) const`
+- `template<typename J> void set_row(const J& j, const vec<T, C>& row)`
 
 A raw pointer to the underlying array of columns can be obtained using the
-following method:
+following methods:
 
-- `columns()`
+- `vec<T, R>* columns()`
+- `const vec<T, R>* columns() const`
 
 A raw pointer to the underlying array of components can be obtained using the
-following method:
+following methods:
 
-- `data()` (equivelent to `columns()[0].data()`)
+- `T* data()` (equivelent to `columns()[0].data()`)
+- `const T* data() const`
 
 References to individual columns can be retrieved using the subscript
-operator. No bounds checking is performed. Index-to-column mappings are as
-follows:
+operator. No bounds checking is performed.
+
+- `template<typename I> vec<T, R>& operator[](const I& i)`
+- `template<typename I> const vec<T, R>& operator[](const I&) const`
+
+Index-to-column mappings are as follows:
 
 - `m[0] == m.column(0)`
 - `m[1] == m.column(1)`
