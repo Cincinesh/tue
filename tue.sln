@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Main", "1. Main", "{B31035BF-A30B-4548-93E3-31FC4CFF6931}"
 EndProject
@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "detail_", "detail_", "{B467
 		include\tue\detail_\vec4.hpp = include\tue\detail_\vec4.hpp
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Other", "4. Other", "{F2A9CF2E-1859-4F9F-88A4-1C9E35220A7E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Other", "5. Other", "{F2A9CF2E-1859-4F9F-88A4-1C9E35220A7E}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
@@ -55,6 +55,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests.exe.win32", "tests.ex
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mon.lib.win32", "lib\mon\mon.lib.win32.vcxproj", "{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Documentation", "4. Documentation", "{9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\headers.md = docs\headers.md
+		docs\index.md = docs\index.md
+		docs\namespaces.md = docs\namespaces.md
+		docs\types.md = docs\types.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
