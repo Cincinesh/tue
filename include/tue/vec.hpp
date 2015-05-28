@@ -22,15 +22,19 @@ using vec4 = vec<T, 4>;
 using fvec2 = vec2<float>;
 using fvec3 = vec3<float>;
 using fvec4 = vec4<float>;
+
 using dvec2 = vec2<double>;
 using dvec3 = vec3<double>;
 using dvec4 = vec4<double>;
+
 using ivec2 = vec2<int>;
 using ivec3 = vec3<int>;
 using ivec4 = vec4<int>;
+
 using uvec2 = vec2<unsigned int>;
 using uvec3 = vec3<unsigned int>;
 using uvec4 = vec4<unsigned int>;
+
 using bvec2 = vec2<bool>;
 using bvec3 = vec3<bool>;
 using bvec4 = vec4<bool>;

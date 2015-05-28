@@ -17,7 +17,7 @@ type.
 `C` and `R` are used to specify the column and row counts respectively. Each
 value must be an integer between 2 and 4 inclusive.
 
-The matrix is laid out in column-major order.
+All `mat` types are stored in column-major order.
 
 Type aliases
 ------------
