@@ -1,5 +1,5 @@
 `tue::floatx4`
-=============
+==============
 Provided by header [`<tue/simd.hpp>`](../headers/simd.md)
 
 `floatx4` represents a 4-component array of single-precision floating-point

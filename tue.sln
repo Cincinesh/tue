@@ -84,6 +84,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "types", "types", "{4E3183A3
 		docs\types\floatx4.md = docs\types\floatx4.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "namespaces", "namespaces", "{00A0F82F-91B5-4CC4-B63B-7F01DA6E9434}"
+	ProjectSection(SolutionItems) = preProject
+		docs\namespaces\tue.md = docs\namespaces\tue.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -120,5 +125,6 @@ Global
 		{C1C142D3-ADE2-43F8-A990-FFD9438FDB5D} = {BC12C7A7-49FE-405B-BAE6-81731920DCAF}
 		{8A8C99A5-46FD-432A-882F-B63F255944D2} = {9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}
 		{4E3183A3-2D61-44E8-8241-ED63848F26A2} = {9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}
+		{00A0F82F-91B5-4CC4-B63B-7F01DA6E9434} = {9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}
 	EndGlobalSection
 EndGlobal
