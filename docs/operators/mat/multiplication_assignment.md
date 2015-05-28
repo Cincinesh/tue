@@ -4,7 +4,6 @@ Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
 // m *= other
-
 template<typename T, typename U, int C, int R>
 mat<T, C, R>& operator*=(mat<T, C, R>& m, const U& other) noexcept;
 ```

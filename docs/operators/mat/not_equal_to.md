@@ -14,7 +14,7 @@ Returns `false` if each and every corresponding component between two
 [`mat`](../../headers/mat.md)'s are equal and `true` otherwise.
 
 To check for component-wise inequality, use
-[`tue::math::equal`](../../functions/math/not_equal.md) instead.
+[`tue::math::not_equal`](../../functions/math/not_equal.md) instead.
 
 License
 -------
