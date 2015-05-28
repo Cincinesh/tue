@@ -82,11 +82,13 @@ Member functions
 ----------------
 - Object creation
     - [(constructor)](../functions/mat/constructor.md)
+    - [(conversion)](../functions/mat/conversion.md)
     - [`identity`](../functions/mat/identity.md)
     - [`zero`](../functions/mat/zero.md)
 - Accessors
     - [`column`](../functions/mat/column.md)
 	- [`columns`](../functions/mat/columns.md)
+    - [`m[i]`](../operators/mat/subscript.md)
     - [`row`](../functions/mat/row.md)
     - [`data`](../functions/mat/data.md)
 - Modifiers
@@ -124,7 +126,6 @@ Operators
 - [`m >>= other`](../operators/mat/shift_right_assignment.md)
 - [`lhs == rhs`](../operators/mat/equal_to.md)
 - [`lhs != rhs`](../operators/mat/not_equal_to.md)
-- [`m[i]`](../operators/mat/subscript.md)
 
 Non-member functions
 --------------------

@@ -56,6 +56,7 @@ Member functions
 ----------------
 - Object creation
     - [(constructor)](../functions/vec/constructor.md)
+    - [(conversion)](../functions/vec/conversion.md)
     - [`zero`](../functions/vec/zero.md)
     - [`x_axis`](../functions/vec/x_axis.md)
     - [`y_axis`](../functions/vec/y_axis.md)
@@ -70,11 +71,12 @@ Member functions
     - [`g`](../functions/vec/g.md)
     - [`b`](../functions/vec/b.md) (component_count >= 3)
     - [`a`](../functions/vec/a.md) (component_count >= 4)
+    - [`v[i]`](../operators/vec/subscript.md)
+    - [`data`](../functions/vec/data.md)
     - [`xy`](../functions/vec/xy.md) (component_count > 2)
     - [`rg`](../functions/vec/rg.md) (component_count > 2)
     - [`xyz`](../functions/vec/xyz.md) (component_count > 3)
     - [`rgb`](../functions/vec/rgb.md) (component_count > 3)
-    - [`data`](../functions/vec/data.md)
 - Modifiers
     - [`set_x`](../functions/vec/set_x.md)
     - [`set_y`](../functions/vec/set_y.md)
@@ -120,7 +122,6 @@ Operators
 - [`v >>= other`](../operators/vec/shift_right_assignment.md)
 - [`lhs == rhs`](../operators/vec/equal_to.md)
 - [`lhs != rhs`](../operators/vec/not_equal_to.md)
-- [`v[i]`](../operators/vec/subscript.md)
 
 Non-member functions
 --------------------
