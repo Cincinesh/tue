@@ -1,5 +1,5 @@
-`tue::mat` equal to
-===================
+`tue::mat` equality operator
+============================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
