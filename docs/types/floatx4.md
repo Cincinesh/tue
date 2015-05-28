@@ -33,14 +33,14 @@ Member functions
 ----------------
 - Object creation
     - [(constructor)](../functions/floatx4/constructor.md)
-	- [(zero)](../functions/floatx4/zero.md)
-	- [(load)](../functions/floatx4/load.md)
-	- [(loadu)](../functions/floatx4/loadu.md)
+	- [`zero`](../functions/floatx4/zero.md)
+	- [`load`](../functions/floatx4/load.md)
+	- [`loadu`](../functions/floatx4/loadu.md)
 - Conversions
     - [`__m128`](../operators/floatx4/__m128.md) (SSE only)
 - Accessors
-    - [(store)](../functions/floatx4/store.md)
-	- [(storeu)](../functions/floatx4/storeu.md)
+    - [`store`](../functions/floatx4/store.md)
+	- [`storeu`](../functions/floatx4/storeu.md)
 
 Operators
 ---------
