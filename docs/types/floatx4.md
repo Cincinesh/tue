@@ -1,6 +1,6 @@
 `tue::floatx4`
 =============
-Defined in header [`<tue/simd.hpp>`](../headers/simd.md)
+Provided by header [`<tue/simd.hpp>`](../headers/simd.md)
 
 `floatx4` represents a 4-component array of single-precision floating-point
 values for use with SIMD intrinsics. Currently, only an SSE-accelerated version
