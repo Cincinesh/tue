@@ -7,6 +7,7 @@ namespace tue {
   template<typename... Args>
   inline void unused(Args&&...) noexcept {}
 }
+```
 
 The `unused` function template is useful for suppressing unused variable
 compiler warnings. Using it will evaluate but won't copy the given arguments.

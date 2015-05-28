@@ -17,8 +17,8 @@ Types
 - [`boolx4`](../types/boolx4.md)
 - [`floatx4`](../types/floatx4.md)
 
-Non-member functions
---------------------
+Functions
+---------
 - [`tue::math`](../namespaces/tue/math.md)
     - Trigonometric functions
         - [`sin`](../functions/math/sin.md)

@@ -53,6 +53,12 @@ Operators
 - [`lhs == rhs`](../operators/boolx4/equal_to.md)
 - [`lhs != rhs`](../operators/boolx4/not_equal_to.md)
 
+Non-member functions
+--------------------
+- [`tue::math`](../namespaces/tue/math.md)
+    - Logical functions
+        - [`select`](../functions/math/select.md)
+
 License
 -------
 Copyright Jo Bates 2015.

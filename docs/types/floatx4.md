@@ -67,8 +67,8 @@ Operators
 - [`lhs == rhs`](../operators/floatx4/equal_to.md)
 - [`lhs != rhs`](../operators/floatx4/not_equal_to.md)
 
-Functions
----------
+Non-member functions
+--------------------
 - [`tue::math`](../namespaces/tue/math.md)
     - Trigonometric functions
         - [`sin`](../functions/math/sin.md)
