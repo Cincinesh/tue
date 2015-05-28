@@ -1,4 +1,4 @@
-`tue::mat` Addition
+`tue::mat` addition
 ===================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
@@ -24,7 +24,7 @@ constexpr auto operator+(
 
 Returns the result of component-wise matrix addition. If one argument is a
 scalar, the result will be as if it were a `mat` with each component set to the
-value of the scalar.
+value of that scalar.
 
 License
 -------
