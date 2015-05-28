@@ -3,6 +3,8 @@
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
+// lhs + rhs
+
 template<typename T, typename U, int C, int R>
 constexpr auto operator+(
     const T& lhs,
