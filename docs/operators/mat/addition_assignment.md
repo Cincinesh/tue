@@ -13,8 +13,8 @@ mat<T, C, R>& operator+=(mat<T, C, R>& m, const mat<U, C, R>& other) noexcept;
 ```
 
 Performs component-wise matrix addition. If the right-hand side argument is a
-scalar, the result will be as if it were a `mat` with each component set to the
-value of that scalar.
+scalar, the result will be as if it were a [`mat`](../../headers/mat.md)
+with each component set to the value of that scalar.
 
 Stores the result in the left-hand side argument and returns a reference to it.
 
