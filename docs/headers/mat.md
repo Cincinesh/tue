@@ -1,6 +1,6 @@
 Header `<tue/mat.hpp>`
 ===============
-This header provides the `mat` type, type aliases, and some related global math
+This header provides the `mat` type, type aliases, and some related non-member
 functions.
 
 Types
@@ -14,7 +14,7 @@ The `mat` type is declared as follows:
 
 Both `C` and `R` must be an integers between 2 and 4 inclusive.
 
-Type Aliases
+Type aliases
 ------------
     template<typename T>
     using mat2x2 = mat<T, 2, 2>;
@@ -63,8 +63,8 @@ Type Aliases
     using dmat4x3 = mat4x3<double>;
     using dmat4x4 = mat4x4<double>;
 
-Global Math Functions
----------------------
+Non-member functions
+--------------------
 - [`tue::math`](../namespaces/math.md)
     - [`sin`](../functions/math/sin.md)
     - [`cos`](../functions/math/cos.md)

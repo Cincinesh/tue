@@ -2,13 +2,13 @@ Types
 =====
 - [`boolx4`](types/boolx4.md)
 - [`floatx4`](types/floatx4.md)
-- [`mat<T, C, R>`](headers/mat.md)
-- [`pose2d<T>`](headers/pose2d.md)
-- [`pose3d<T>`](headers/pose3d.md)
-- [`quat<T>`](headers/quat.md)
-- [`rect<P, S>`](headers/rect.md)
-- [`size2d<T>`](headers/size2d.md)
-- [`vec<T, N>`](headers/vec.md)
+- [`mat`](headers/mat.md)
+- [`pose2d`](headers/pose2d.md)
+- [`pose3d`](headers/pose3d.md)
+- [`quat`](headers/quat.md)
+- [`rect`](headers/rect.md)
+- [`size2d`](headers/size2d.md)
+- [`vec`](headers/vec.md)
 
 License
 -------

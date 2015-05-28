@@ -1,6 +1,6 @@
 Header `<tue/vec.hpp>`
 ===============
-This header provides the `vec` type, type aliases, and some related global math
+This header provides the `vec` type, type aliases, and some related non-member
 functions.
 
 Types
@@ -14,7 +14,7 @@ The `vec` type is declared as follows:
 
 `N` must be an integer between 2 and 4 inclusive.
 
-Type Aliases
+Type aliases
 ------------
     template<typename T>
     using vec2 = vec<T, 2>;
@@ -41,8 +41,8 @@ Type Aliases
     using bvec3 = vec3<bool>;
     using bvec4 = vec4<bool>;
 
-Global Math Functions
----------------------
+Non-member functions
+--------------------
 - [`tue::math`](../namespaces/math.md)
     - [`sin`](../functions/math/sin.md)
     - [`cos`](../functions/math/cos.md)
