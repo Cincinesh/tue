@@ -1,5 +1,5 @@
 Header `<tue/size2d.hpp>`
-===============
+=========================
 This header provides the `size2d` type and type aliases.
 
 Types

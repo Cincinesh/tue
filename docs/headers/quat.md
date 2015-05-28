@@ -1,5 +1,5 @@
 Header `<tue/quat.hpp>`
-===============
+=======================
 This header provides the `quat` type, type aliases, and some related non-member
 functions.
 

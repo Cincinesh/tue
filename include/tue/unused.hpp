@@ -6,9 +6,6 @@
 #pragma once
 
 namespace tue {
-
-template<typename... Args>
-inline void unused(Args&&...) noexcept {
-}
-
+  template<typename... Args>
+  inline void unused(Args&&...) noexcept {}
 }

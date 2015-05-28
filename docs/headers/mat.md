@@ -1,5 +1,5 @@
 Header `<tue/mat.hpp>`
-===============
+======================
 This header provides the `mat` type, type aliases, and some related non-member
 functions.
 

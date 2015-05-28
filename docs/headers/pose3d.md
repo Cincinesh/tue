@@ -1,5 +1,5 @@
 Header `<tue/pose3d.hpp>`
-===============
+=========================
 This header provides the `pose3d` type and type aliases.
 
 Types

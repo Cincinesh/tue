@@ -1,5 +1,5 @@
 Header `<tue/math.hpp>`
-===============
+=======================
 This header provides common mathematical constants and functions. Most of the
 following functions are available in the C++ Standard Library but are also
 provided here for uniformity with composite types such as [`vec`](vec.md) and
