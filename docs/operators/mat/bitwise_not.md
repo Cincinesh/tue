@@ -5,8 +5,7 @@ Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 ```c++
 // ~m
 template<typename T, int C, int R>
-constexpr auto operator~(
-    const mat<T, C, R>& m) noexcept
+constexpr auto operator~(const mat<T, C, R>& m) noexcept
 	-> mat<decltype(~m[0][0]), C, R>;
 ```
 
