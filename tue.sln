@@ -59,7 +59,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Documentation", "4. Documentation", "{9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}"
 	ProjectSection(SolutionItems) = preProject
 		docs\headers.md = docs\headers.md
-		docs\index.md = docs\index.md
 		docs\namespaces.md = docs\namespaces.md
 		docs\types.md = docs\types.md
 	EndProjectSection
@@ -92,6 +91,58 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "math", "math", "{D3058CD0-7251-437D-968D-273F90F1EDA4}"
 	ProjectSection(SolutionItems) = preProject
 		docs\namespaces\tue\math.md = docs\namespaces\tue\math.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functions", "functions", "{3E299C42-5647-445A-BC6C-D22FF2621E43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mat", "mat", "{D390DBB1-9A7C-4B73-9B15-7F506E5798B3}"
+	ProjectSection(SolutionItems) = preProject
+		docs\functions\mat\column.md = docs\functions\mat\column.md
+		docs\functions\mat\columns.md = docs\functions\mat\columns.md
+		docs\functions\mat\constructor.md = docs\functions\mat\constructor.md
+		docs\functions\mat\conversion.md = docs\functions\mat\conversion.md
+		docs\functions\mat\data.md = docs\functions\mat\data.md
+		docs\functions\mat\identity.md = docs\functions\mat\identity.md
+		docs\functions\mat\row.md = docs\functions\mat\row.md
+		docs\functions\mat\set_column.md = docs\functions\mat\set_column.md
+		docs\functions\mat\set_row.md = docs\functions\mat\set_row.md
+		docs\functions\mat\zero.md = docs\functions\mat\zero.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "operators", "operators", "{C3C9F982-62B1-45E8-A983-A7ADF420BB2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mat", "mat", "{38ACF094-6069-4E9F-944D-96A2A29613BC}"
+	ProjectSection(SolutionItems) = preProject
+		docs\operators\mat\addition.md = docs\operators\mat\addition.md
+		docs\operators\mat\addition_assignment.md = docs\operators\mat\addition_assignment.md
+		docs\operators\mat\bitwise_and.md = docs\operators\mat\bitwise_and.md
+		docs\operators\mat\bitwise_and_assignment.md = docs\operators\mat\bitwise_and_assignment.md
+		docs\operators\mat\bitwise_not.md = docs\operators\mat\bitwise_not.md
+		docs\operators\mat\bitwise_or.md = docs\operators\mat\bitwise_or.md
+		docs\operators\mat\bitwise_or_assignment.md = docs\operators\mat\bitwise_or_assignment.md
+		docs\operators\mat\bitwise_xor.md = docs\operators\mat\bitwise_xor.md
+		docs\operators\mat\bitwise_xor_assignment.md = docs\operators\mat\bitwise_xor_assignment.md
+		docs\operators\mat\division.md = docs\operators\mat\division.md
+		docs\operators\mat\division_assignment.md = docs\operators\mat\division_assignment.md
+		docs\operators\mat\equal_to.md = docs\operators\mat\equal_to.md
+		docs\operators\mat\modulo.md = docs\operators\mat\modulo.md
+		docs\operators\mat\modulo_assignment.md = docs\operators\mat\modulo_assignment.md
+		docs\operators\mat\multiplication.md = docs\operators\mat\multiplication.md
+		docs\operators\mat\multiplication_assignment.md = docs\operators\mat\multiplication_assignment.md
+		docs\operators\mat\not_equal_to.md = docs\operators\mat\not_equal_to.md
+		docs\operators\mat\post_decrement.md = docs\operators\mat\post_decrement.md
+		docs\operators\mat\post_increment.md = docs\operators\mat\post_increment.md
+		docs\operators\mat\pre_decrement.md = docs\operators\mat\pre_decrement.md
+		docs\operators\mat\pre_increment.md = docs\operators\mat\pre_increment.md
+		docs\operators\mat\shift_left.md = docs\operators\mat\shift_left.md
+		docs\operators\mat\shift_left_assignment.md = docs\operators\mat\shift_left_assignment.md
+		docs\operators\mat\shift_right.md = docs\operators\mat\shift_right.md
+		docs\operators\mat\shift_right_assignment.md = docs\operators\mat\shift_right_assignment.md
+		docs\operators\mat\subscript.md = docs\operators\mat\subscript.md
+		docs\operators\mat\subtraction.md = docs\operators\mat\subtraction.md
+		docs\operators\mat\subtraction_assignment.md = docs\operators\mat\subtraction_assignment.md
+		docs\operators\mat\unary_minus.md = docs\operators\mat\unary_minus.md
+		docs\operators\mat\unary_plus.md = docs\operators\mat\unary_plus.md
 	EndProjectSection
 EndProject
 Global
@@ -132,5 +183,9 @@ Global
 		{4E3183A3-2D61-44E8-8241-ED63848F26A2} = {9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}
 		{00A0F82F-91B5-4CC4-B63B-7F01DA6E9434} = {9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}
 		{D3058CD0-7251-437D-968D-273F90F1EDA4} = {00A0F82F-91B5-4CC4-B63B-7F01DA6E9434}
+		{3E299C42-5647-445A-BC6C-D22FF2621E43} = {9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}
+		{D390DBB1-9A7C-4B73-9B15-7F506E5798B3} = {3E299C42-5647-445A-BC6C-D22FF2621E43}
+		{C3C9F982-62B1-45E8-A983-A7ADF420BB2E} = {9D02DFE1-EA79-486D-A3F3-9722C8B2AC6D}
+		{38ACF094-6069-4E9F-944D-96A2A29613BC} = {C3C9F982-62B1-45E8-A983-A7ADF420BB2E}
 	EndGlobalSection
 EndGlobal
