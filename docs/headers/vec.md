@@ -1,18 +1,18 @@
 Header `<tue/mat.hpp>`
 ===============
-This header provides the `mat<T, C, R>` type, its specializations, its type
+This header provides the `vec<T, N>` type, its specializations, its type
 aliases, and some associated global math functions.
 
 Types
 -----
-    template<typename T, int C, int R = C>
-    class mat;
+    template<typename T, int N>
+    class vec;
 
 Specializations
 ---------------
-- [`mat<T, 2, R>`](../types/mat2xR.md)
-- [`mat<T, 3, R>`](../types/mat3xR.md)
-- [`mat<T, 4, R>`](../types/mat4xR.md)
+- [`vec<T, 2>`](../types/vec2.md)
+- [`vec<T, 3>`](../types/vec3.md)
+- [`vec<T, 4>`](../types/vec4.md)
 
 Functions
 ---------
@@ -29,8 +29,12 @@ Functions
     - [`min`](../functions/math/min.md)
     - [`max`](../functions/math/max.md)
     - [`abs`](../functions/math/abs.md)
+    - [`dot`](../functions/math/dot.md)
+    - [`cross`](../functions/math/cross.md)
+    - [`length2`](../functions/math/length2.md)
+    - [`length`](../functions/math/length.md)
+    - [`normalize`](../functions/math/normalize.md)
     - [`comp_mult`](../functions/math/comp_mult.md)
-    - [`transpose`](../functions/math/transpose.md)
     - [`select`](../functions/math/select.md)
     - [`less`](../functions/math/less.md)
     - [`less_equal`](../functions/math/less_equal.md)
@@ -42,51 +46,29 @@ Functions
 Type Aliases
 ------------
     template<typename T>
-    using mat2x2 = mat<T, 2, 2>;
+    using vec2 = vec<T, 2>;
     
     template<typename T>
-    using mat2x3 = mat<T, 2, 3>;
+    using vec3 = vec<T, 3>;
     
     template<typename T>
-    using mat2x4 = mat<T, 2, 4>;
+    using vec4 = vec<T, 4>;
     
-    template<typename T>
-    using mat3x2 = mat<T, 3, 2>;
-    
-    template<typename T>
-    using mat3x3 = mat<T, 3, 3>;
-    
-    template<typename T>
-    using mat3x4 = mat<T, 3, 4>;
-    
-    template<typename T>
-    using mat4x2 = mat<T, 4, 2>;
-    
-    template<typename T>
-    using mat4x3 = mat<T, 4, 3>;
-    
-    template<typename T>
-    using mat4x4 = mat<T, 4, 4>;
-    
-    using fmat2x2 = mat2x2<float>;
-    using fmat2x3 = mat2x3<float>;
-    using fmat2x4 = mat2x4<float>;
-    using fmat3x2 = mat3x2<float>;
-    using fmat3x3 = mat3x3<float>;
-    using fmat3x4 = mat3x4<float>;
-    using fmat4x2 = mat4x2<float>;
-    using fmat4x3 = mat4x3<float>;
-    using fmat4x4 = mat4x4<float>;
-
-    using dmat2x2 = mat2x2<double>;
-    using dmat2x3 = mat2x3<double>;
-    using dmat2x4 = mat2x4<double>;
-    using dmat3x2 = mat3x2<double>;
-    using dmat3x3 = mat3x3<double>;
-    using dmat3x4 = mat3x4<double>;
-    using dmat4x2 = mat4x2<double>;
-    using dmat4x3 = mat4x3<double>;
-    using dmat4x4 = mat4x4<double>;
+    using fvec2 = vec2<float>;
+    using fvec3 = vec3<float>;
+    using fvec4 = vec4<float>;
+    using dvec2 = vec2<double>;
+    using dvec3 = vec3<double>;
+    using dvec4 = vec4<double>;
+    using ivec2 = vec2<int>;
+    using ivec3 = vec3<int>;
+    using ivec4 = vec4<int>;
+    using uvec2 = vec2<unsigned int>;
+    using uvec3 = vec3<unsigned int>;
+    using uvec4 = vec4<unsigned int>;
+    using bvec2 = vec2<bool>;
+    using bvec3 = vec3<bool>;
+    using bvec4 = vec4<bool>;
 
 License
 -------
