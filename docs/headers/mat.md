@@ -1,43 +1,18 @@
 Header `<tue/mat.hpp>`
 ===============
-This header provides the `mat<T, C, R>` type, its specializations, its type
-aliases, and some associated global math functions.
+This header provides the `mat` type, type aliases, and some related global math
+functions.
 
 Types
 -----
-    template<typename T, int C, int R = C>
+The `mat` type is declared as follows:
+
+    template<typename T, int C, int R>
     class mat;
 
-Specializations
----------------
-- [`mat<T, 2, R>`](../types/mat2xR.md)
-- [`mat<T, 3, R>`](../types/mat3xR.md)
-- [`mat<T, 4, R>`](../types/mat4xR.md)
+`T` may be any type, though the interface is optimized for simple data types.
 
-Functions
----------
-- [`tue::math`](../namespaces/math.md)
-    - [`sin`](../functions/math/sin.md)
-    - [`cos`](../functions/math/cos.md)
-    - [`sincos`](../functions/math/sincos.md)
-    - [`exp`](../functions/math/exp.md)
-    - [`log`](../functions/math/log.md)
-    - [`pow`](../functions/math/pow.md)
-    - [`recip`](../functions/math/recip.md)
-    - [`sqrt`](../functions/math/sqrt.md)
-    - [`rsqrt`](../functions/math/rsqrt.md)
-    - [`min`](../functions/math/min.md)
-    - [`max`](../functions/math/max.md)
-    - [`abs`](../functions/math/abs.md)
-    - [`comp_mult`](../functions/math/comp_mult.md)
-    - [`transpose`](../functions/math/transpose.md)
-    - [`select`](../functions/math/select.md)
-    - [`less`](../functions/math/less.md)
-    - [`less_equal`](../functions/math/less_equal.md)
-    - [`greater`](../functions/math/greater.md)
-    - [`greater_equal`](../functions/math/greater_equal.md)
-    - [`equal`](../functions/math/equal.md)
-    - [`not_equal`](../functions/math/not_equal.md)
+Both `C` and `R` must be an integers between 2 and 4 inclusive.
 
 Type Aliases
 ------------
@@ -87,6 +62,31 @@ Type Aliases
     using dmat4x2 = mat4x2<double>;
     using dmat4x3 = mat4x3<double>;
     using dmat4x4 = mat4x4<double>;
+
+Global Math Functions
+---------------------
+- [`tue::math`](../namespaces/math.md)
+    - [`sin`](../functions/math/sin.md)
+    - [`cos`](../functions/math/cos.md)
+    - [`sincos`](../functions/math/sincos.md)
+    - [`exp`](../functions/math/exp.md)
+    - [`log`](../functions/math/log.md)
+    - [`pow`](../functions/math/pow.md)
+    - [`recip`](../functions/math/recip.md)
+    - [`sqrt`](../functions/math/sqrt.md)
+    - [`rsqrt`](../functions/math/rsqrt.md)
+    - [`min`](../functions/math/min.md)
+    - [`max`](../functions/math/max.md)
+    - [`abs`](../functions/math/abs.md)
+    - [`comp_mult`](../functions/math/comp_mult.md)
+    - [`transpose`](../functions/math/transpose.md)
+    - [`select`](../functions/math/select.md)
+    - [`less`](../functions/math/less.md)
+    - [`less_equal`](../functions/math/less_equal.md)
+    - [`greater`](../functions/math/greater.md)
+    - [`greater_equal`](../functions/math/greater_equal.md)
+    - [`equal`](../functions/math/equal.md)
+    - [`not_equal`](../functions/math/not_equal.md)
 
 License
 -------
