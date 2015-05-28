@@ -7,7 +7,9 @@ intrinsics. Currently, only an SSE-accelerated version is provided where
 available with an un-accelerated compatibility fallback otherwise. It is
 declared as follows:
 
-    class boolx4;
+```c++
+class boolx4;
+```
 
 The SSE-accelerated version is backed by a single `__m128`. Its format is meant
 to correspond with the output of SSE comparison intrinsics such as
