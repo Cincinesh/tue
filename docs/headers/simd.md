@@ -7,9 +7,9 @@ otherwise.
 
 Macros
 ------
-- `#define TUE_SSE`
+- `#define TUE_SSE` <br/>
   Defined if the current compiler configuration supports SSE intrinsics.
-- `#define TUE_SSE2`
+- `#define TUE_SSE2` <br/>
   Defined if the current compiler configuration supports SSE2 intrinsics.
 
 Types
