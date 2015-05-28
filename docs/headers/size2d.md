@@ -30,11 +30,11 @@ Member functions
     - [(constructor)](../functions/size2d/constructor.md)
     - [(conversion)](../functions/size2d/conversion.md)
 - Accessors
-	- [`width`](../functions/size2d/width.md)
-	- [`height`](../functions/size2d/height.md)
+    - [`width`](../functions/size2d/width.md)
+    - [`height`](../functions/size2d/height.md)
 - Modifiers
-	- [`set_width`](../functions/size2d/set_width.md)
-	- [`set_height`](../functions/size2d/set_height.md)
+    - [`set_width`](../functions/size2d/set_width.md)
+    - [`set_height`](../functions/size2d/set_height.md)
 
 Operators
 ---------

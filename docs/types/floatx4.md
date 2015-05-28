@@ -33,14 +33,14 @@ Member functions
 ----------------
 - Object creation
     - [(constructor)](../functions/floatx4/constructor.md)
-	- [`zero`](../functions/floatx4/zero.md)
-	- [`load`](../functions/floatx4/load.md)
-	- [`loadu`](../functions/floatx4/loadu.md)
+    - [`zero`](../functions/floatx4/zero.md)
+    - [`load`](../functions/floatx4/load.md)
+    - [`loadu`](../functions/floatx4/loadu.md)
 - Conversions
     - [`__m128`](../operators/floatx4/__m128.md) (SSE only)
 - Accessors
     - [`store`](../functions/floatx4/store.md)
-	- [`storeu`](../functions/floatx4/storeu.md)
+    - [`storeu`](../functions/floatx4/storeu.md)
 
 Operators
 ---------
@@ -71,7 +71,7 @@ Functions
     - Exponential functions
         - [`exp`](../functions/math/exp.md)
         - [`log`](../functions/math/log.md)
-	- Power functions
+    - Power functions
         - [`pow`](../functions/math/pow.md)
         - [`recip`](../functions/math/recip.md)
         - [`sqrt`](../functions/math/sqrt.md)
@@ -80,14 +80,14 @@ Functions
         - [`min`](../functions/math/min.md)
         - [`max`](../functions/math/max.md)
         - [`abs`](../functions/math/abs.md)
-	- Geometric functions
+    - Geometric functions
         - [`dot`](../functions/math/dot.md)
         - [`length2`](../functions/math/length2.md)
         - [`length`](../functions/math/length.md)
         - [`normalize`](../functions/math/normalize.md)
         - [`comp_mult`](../functions/math/comp_mult.md)
     - Logical functions
-	    - [`select`](../functions/math/select.md)
+        - [`select`](../functions/math/select.md)
         - [`less`](../functions/math/less.md)
         - [`less_equal`](../functions/math/less_equal.md)
         - [`greater`](../functions/math/greater.md)

@@ -88,7 +88,7 @@ Member functions
     - [`identity`](../functions/mat/identity.md)
     - [`zero`](../functions/mat/zero.md)
 - Accessors
-	- [`columns`](../functions/mat/columns.md)
+    - [`columns`](../functions/mat/columns.md)
     - [`column`](../functions/mat/column.md)
     - [`m[i]`](../operators/mat/subscript.md)
     - [`row`](../functions/mat/row.md)
@@ -139,7 +139,7 @@ Non-member functions
     - Exponential functions
         - [`exp`](../functions/math/exp.md)
         - [`log`](../functions/math/log.md)
-	- Power functions
+    - Power functions
         - [`pow`](../functions/math/pow.md)
         - [`recip`](../functions/math/recip.md)
         - [`sqrt`](../functions/math/sqrt.md)
@@ -148,25 +148,25 @@ Non-member functions
         - [`min`](../functions/math/min.md)
         - [`max`](../functions/math/max.md)
         - [`abs`](../functions/math/abs.md)
-	- Geometric functions
+    - Geometric functions
         - [`comp_mult`](../functions/math/comp_mult.md)
         - [`transpose`](../functions/math/transpose.md)
     - Logical functions
-	    - [`select`](../functions/math/select.md)
+        - [`select`](../functions/math/select.md)
         - [`less`](../functions/math/less.md)
         - [`less_equal`](../functions/math/less_equal.md)
         - [`greater`](../functions/math/greater.md)
         - [`greater_equal`](../functions/math/greater_equal.md)
         - [`equal`](../functions/math/equal.md)
         - [`not_equal`](../functions/math/not_equal.md)
-	- Transformation matrix generation
-	    - [`translation_mat`](../functions/math/translation_mat.md)
-	    - [`rotation_mat`](../functions/math/rotation_mat.md)
-	    - [`scale_mat`](../functions/math/scale_mat.md)
-	    - [`pose_mat`](../functions/math/pose_mat.md)
-	    - [`view_mat`](../functions/math/view_mat.md)
-	    - [`perspective_mat`](../functions/math/perspective_mat.md)
-	    - [`ortho_mat`](../functions/math/ortho_mat.md)
+    - Transformation matrix generation
+        - [`translation_mat`](../functions/math/translation_mat.md)
+        - [`rotation_mat`](../functions/math/rotation_mat.md)
+        - [`scale_mat`](../functions/math/scale_mat.md)
+        - [`pose_mat`](../functions/math/pose_mat.md)
+        - [`view_mat`](../functions/math/view_mat.md)
+        - [`perspective_mat`](../functions/math/perspective_mat.md)
+        - [`ortho_mat`](../functions/math/ortho_mat.md)
 
 License
 -------

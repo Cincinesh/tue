@@ -32,7 +32,7 @@ Member functions
     - [(conversion)](../functions/pose2d/conversion.md)
 - Accessors
     - [`translation`](../functions/pose2d/translation.md)
-	- [`rotation`](../functions/pose2d/rotation.md)
+    - [`rotation`](../functions/pose2d/rotation.md)
 - Modifiers
     - [`set_translation`](../functions/pose2d/set_translation.md)
     - [`set_rotation`](../functions/pose2d/set_rotation.md)

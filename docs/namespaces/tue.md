@@ -14,10 +14,6 @@ Types
 - [`size2d`](../headers/size2d.md)
 - [`vec`](../headers/vec.md)
 
-Constants
----------
-- [`pi`](../headers/math.md)
-
 Functions
 ---------
 - [`unused`](../headers/unused.md)

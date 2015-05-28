@@ -56,15 +56,15 @@ Operators
 Non-member functions
 --------------------
 - [`tue::math`](../namespaces/tue/math.md)
-	- Geometric functions
+    - Geometric functions
         - [`length2`](../functions/math/length2.md)
         - [`length`](../functions/math/length.md)
         - [`normalize`](../functions/math/normalize.md)
         - [`conjugate`](../functions/math/conjugate.md)
     - Rotation conversion functions
-	    - [`rotation_quat`](../functions/math/rotation_quat.md)
-	    - [`axis_angle`](../functions/math/axis_angle.md)
-	    - [`rotation_vec`](../functions/math/rotation_vec.md)
+        - [`axis_angle`](../functions/math/axis_angle.md)
+        - [`rotation_vec`](../functions/math/rotation_vec.md)
+        - [`rotation_quat`](../functions/math/rotation_quat.md)
 
 License
 -------

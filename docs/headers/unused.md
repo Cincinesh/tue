@@ -21,13 +21,13 @@ Example
     std::mutex my_mutex;
     
     void do_something(int arg1, const big_type& arg2) {
-	  tue::unused(arg1, arg2);
+      tue::unused(arg1, arg2);
       
       std::lock_guard<std::mutex> my_lock(my_mutex);
       tue::unused(my_lock);
       
       // Now really do something
-	}
+    }
 
 License
 -------

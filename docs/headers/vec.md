@@ -137,7 +137,7 @@ Non-member functions
     - Exponential functions
         - [`exp`](../functions/math/exp.md)
         - [`log`](../functions/math/log.md)
-	- Power functions
+    - Power functions
         - [`pow`](../functions/math/pow.md)
         - [`recip`](../functions/math/recip.md)
         - [`sqrt`](../functions/math/sqrt.md)
@@ -146,7 +146,7 @@ Non-member functions
         - [`min`](../functions/math/min.md)
         - [`max`](../functions/math/max.md)
         - [`abs`](../functions/math/abs.md)
-	- Geometric functions
+    - Geometric functions
         - [`dot`](../functions/math/dot.md)
         - [`cross`](../functions/math/cross.md) (component_count == 3)
         - [`length2`](../functions/math/length2.md)
@@ -154,7 +154,7 @@ Non-member functions
         - [`normalize`](../functions/math/normalize.md)
         - [`comp_mult`](../functions/math/comp_mult.md)
     - Logical functions
-	    - [`select`](../functions/math/select.md)
+        - [`select`](../functions/math/select.md)
         - [`less`](../functions/math/less.md)
         - [`less_equal`](../functions/math/less_equal.md)
         - [`greater`](../functions/math/greater.md)
@@ -162,8 +162,8 @@ Non-member functions
         - [`equal`](../functions/math/equal.md)
         - [`not_equal`](../functions/math/not_equal.md)
     - Rotation conversion functions
-	    - [`rotation_vec`](../functions/math/rotation_vec.md)
-	    - [`axis_angle`](../functions/math/axis_angle.md)
+        - [`rotation_vec`](../functions/math/rotation_vec.md)
+        - [`axis_angle`](../functions/math/axis_angle.md)
 
 License
 -------

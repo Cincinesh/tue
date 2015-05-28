@@ -38,16 +38,16 @@ Member functions
     - [`position`](../functions/rect/position.md)
     - [`x`](../functions/rect/x.md)
     - [`y`](../functions/rect/y.md)
-	- [`size`](../functions/rect/size.md)
-	- [`width`](../functions/rect/width.md)
-	- [`height`](../functions/rect/height.md)
+    - [`size`](../functions/rect/size.md)
+    - [`width`](../functions/rect/width.md)
+    - [`height`](../functions/rect/height.md)
 - Modifiers
     - [`set_position`](../functions/rect/set_position.md)
     - [`set_x`](../functions/rect/set_x.md)
     - [`set_y`](../functions/rect/set_y.md)
-	- [`set_size`](../functions/rect/set_size.md)
-	- [`set_width`](../functions/rect/set_width.md)
-	- [`set_height`](../functions/rect/set_height.md)
+    - [`set_size`](../functions/rect/set_size.md)
+    - [`set_width`](../functions/rect/set_width.md)
+    - [`set_height`](../functions/rect/set_height.md)
 
 Operators
 ---------
