@@ -1,4 +1,4 @@
-Header `<tue/mat.hpp>`
+Header `<tue/vec.hpp>`
 ===============
 This header provides the `vec<T, N>` type, its specializations, its type
 aliases, and some associated global math functions.
