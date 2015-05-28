@@ -65,7 +65,7 @@ Type aliases
 
 Non-member functions
 --------------------
-- [`tue::math`](../namespaces/math.md)
+- [`tue::math`](../namespaces/tue/math.md)
     - [`sin`](../functions/math/sin.md)
     - [`cos`](../functions/math/cos.md)
     - [`sincos`](../functions/math/sincos.md)
