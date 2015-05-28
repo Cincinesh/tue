@@ -158,12 +158,12 @@ Non-member functions
         - [`not_equal`](../functions/math/not_equal.md)
 	- Transformation matrix generation
 	    - [`translation_mat`](../functions/math/translation_mat.md)
-	    - [`rotation_mat`](../functions/math/translation_mat.md)
-	    - [`scale_mat`](../functions/math/translation_mat.md)
-	    - [`pose_mat`](../functions/math/translation_mat.md)
-	    - [`view_mat`](../functions/math/translation_mat.md)
-	    - [`perspective_mat`](../functions/math/translation_mat.md)
-	    - [`ortho_mat`](../functions/math/translation_mat.md)
+	    - [`rotation_mat`](../functions/math/rotation_mat.md)
+	    - [`scale_mat`](../functions/math/scale_mat.md)
+	    - [`pose_mat`](../functions/math/pose_mat.md)
+	    - [`view_mat`](../functions/math/view_mat.md)
+	    - [`perspective_mat`](../functions/math/perspective_mat.md)
+	    - [`ortho_mat`](../functions/math/ortho_mat.md)
 
 License
 -------
