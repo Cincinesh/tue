@@ -8,22 +8,28 @@ The `pose3d` type represents a 3-dimensional translation (represented by a
 [`vec3`](vec.md)) and rotation (represented by a [`quat`](quat.md)). It is
 declared as follows:
 
-    template<typename T>
-    class pose3d;
+```c++
+template<typename T>
+class pose3d;
+```
 
 `T` is used to specify the translation and rotation component types. No
 restrictions are placed on this type.
 
 Type aliases
 ------------
-    using fpose3d = pose3d<float>;
-    using dpose3d = pose3d<double>;
+```c++
+using fpose3d = pose3d<float>;
+using dpose3d = pose3d<double>;
+```
 
 Member types
 ------------
-    using translation_type = vec3<T>;
-    using rotation_type = quat<T>;
-    using component_type = T;
+```c++
+using translation_type = vec3<T>;
+using rotation_type = quat<T>;
+using component_type = T;
+```
 
 Member functions
 ----------------

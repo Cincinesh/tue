@@ -7,7 +7,9 @@ values for use with SIMD intrinsics. Currently, only an SSE-accelerated version
 is provided where available with an un-accelerated compatibility fallback
 otherwise. It is declared as follows:
 
-    class floatx4;
+```c++
+class floatx4;
+```
 
 The SSE-accelerated version is backed by a single `__m128`.
 
@@ -23,11 +25,15 @@ any interaction between non-corresponding components, e.g., functions like
 
 Member types
 ------------
-    using component_type = float;
+```c++
+using component_type = float;
+```
 
 Member constants
 ----------------
-    static constexpr int component_count = 4;
+```c++
+static constexpr int component_count = 4;
+```
 
 Member functions
 ----------------

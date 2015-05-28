@@ -7,22 +7,28 @@ Types
 The `size2d` type represents a 2-dimensional size (width and height) with a
 given component type. It is declared as follows:
 
-    template<typename T>
-    class size2d;
+```c++
+template<typename T>
+class size2d;
+```
 
 `T` is used to specify the component type. No restrictions are placed on this
 type.
 
 Type aliases
 ------------
-    using fsize2d = size2d<float>;
-    using dsize2d = size2d<double>;
-    using isize2d = size2d<int>;
-    using usize2d = size2d<unsigned int>;
+```c++
+using fsize2d = size2d<float>;
+using dsize2d = size2d<double>;
+using isize2d = size2d<int>;
+using usize2d = size2d<unsigned int>;
+```
 
 Member types
 ------------
-    using component_type = T;
+```c++
+using component_type = T;
+```
 
 Member functions
 ----------------

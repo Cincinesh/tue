@@ -24,11 +24,15 @@ alignment requirements.
 
 Member types
 ------------
-    using component_type = bool;
+```c++
+using component_type = bool;
+```
 
 Member constants
 ----------------
-    static constexpr int component_count = 4;
+```c++
+static constexpr int component_count = 4;
+```
 
 Member functions
 ----------------

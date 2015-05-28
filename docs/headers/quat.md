@@ -5,23 +5,29 @@ functions.
 
 Types
 -----
-The `quat` type represents a quaternion with a given component type. It is 
+The `quat` type represents a quaternion with a given component type. It is
 declared as follows:
 
-    template<typename T>
-    class quat;
+```c++
+template<typename T>
+class quat;
+```
 
 `T` is used to specify the component type. No restrictions are placed on this
 type.
 
 Type aliases
 ------------
-    using fquat = quat<float>;
-    using dquat = quat<double>;
+```c++
+using fquat = quat<float>;
+using dquat = quat<double>;
+```
 
 Member types
 ------------
-    using component_type = T;
+```c++
+using component_type = T;
+```
 
 Member functions
 ----------------

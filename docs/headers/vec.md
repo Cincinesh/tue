@@ -8,8 +8,10 @@ Types
 The `vec` type represents an N-dimensional vector with a given component type
 and count. It is declared as follows:
 
-    template<typename T, int N>
-    class vec;
+```c++
+template<typename T, int N>
+class vec;
+```
 
 `T` is used to specify the component type. No restrictions are placed on this
 type.
@@ -19,42 +21,48 @@ type.
 
 Type aliases
 ------------
-    template<typename T>
-    using vec2 = vec<T, 2>;
-    
-    template<typename T>
-    using vec3 = vec<T, 3>;
-    
-    template<typename T>
-    using vec4 = vec<T, 4>;
-    
-    using fvec2 = vec2<float>;
-    using fvec3 = vec3<float>;
-    using fvec4 = vec4<float>;
-    
-    using dvec2 = vec2<double>;
-    using dvec3 = vec3<double>;
-    using dvec4 = vec4<double>;
-    
-    using ivec2 = vec2<int>;
-    using ivec3 = vec3<int>;
-    using ivec4 = vec4<int>;
-    
-    using uvec2 = vec2<unsigned int>;
-    using uvec3 = vec3<unsigned int>;
-    using uvec4 = vec4<unsigned int>;
-    
-    using bvec2 = vec2<bool>;
-    using bvec3 = vec3<bool>;
-    using bvec4 = vec4<bool>;
+```c++
+template<typename T>
+using vec2 = vec<T, 2>;
+
+template<typename T>
+using vec3 = vec<T, 3>;
+
+template<typename T>
+using vec4 = vec<T, 4>;
+
+using fvec2 = vec2<float>;
+using fvec3 = vec3<float>;
+using fvec4 = vec4<float>;
+
+using dvec2 = vec2<double>;
+using dvec3 = vec3<double>;
+using dvec4 = vec4<double>;
+
+using ivec2 = vec2<int>;
+using ivec3 = vec3<int>;
+using ivec4 = vec4<int>;
+
+using uvec2 = vec2<unsigned int>;
+using uvec3 = vec3<unsigned int>;
+using uvec4 = vec4<unsigned int>;
+
+using bvec2 = vec2<bool>;
+using bvec3 = vec3<bool>;
+using bvec4 = vec4<bool>;
+```
 
 Member types
 ------------
-    using component_type = T;
+```c++
+using component_type = T;
+```
 
 Member constants
 ----------------
-    static constexpr int component_count = N;
+```c++
+static constexpr int component_count = N;
+```
 
 Member functions
 ----------------

@@ -8,22 +8,28 @@ The `pose2d` type represents a 2-dimensional translation (represented by a
 [`vec2`](vec.md)) and rotation (represented by a scalar of counter-clockwise
 radians). It is declared as follows:
 
-    template<typename T>
-    class pose2d;
+```c++
+template<typename T>
+class pose2d;
+```
 
 `T` is used to specify the translation and rotation component types. No
 restrictions are placed on this type.
 
 Type aliases
 ------------
-    using fpose2d = pose2d<float>;
-    using dpose2d = pose2d<double>;
+```c++
+using fpose2d = pose2d<float>;
+using dpose2d = pose2d<double>;
+```
 
 Member types
 ------------
-    using translation_type = vec2<T>;
-    using rotation_type = T;
-    using component_type = T;
+```c++
+using translation_type = vec2<T>;
+using rotation_type = T;
+using component_type = T;
+```
 
 Member functions
 ----------------

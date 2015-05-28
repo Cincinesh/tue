@@ -8,26 +8,32 @@ The `rect` type represents a 2-dimensional rectangle consisting of a position
 (represented by a [`vec2`](vec.md)) and size (represented by a
 [`size2d`](size2d.md)). It is declared as follows:
 
-    template<typename P, typename S = P>
-    class rect;
+```c++
+template<typename P, typename S = P>
+class rect;
+```
 
 `P` and `S` are used to specify the position and size component types
 respectively. No restrictions are placed on these types.
 
 Type aliases
 ------------
-    using frect = rect<float>;
-    using drect = rect<double>;
-    using irect = rect<int>;
-    using urect = rect<unsigned int>;
-    using iurect = rect<int, unsigned int>;
+```c++
+using frect = rect<float>;
+using drect = rect<double>;
+using irect = rect<int>;
+using urect = rect<unsigned int>;
+using iurect = rect<int, unsigned int>;
+```
 
 Member types
 ------------
-    using position_type = vec2<P>;
-    using position_component_type = P;
-    using size_type = size2d<S>;
-    using size_component_type = S;
+```c++
+using position_type = vec2<P>;
+using position_component_type = P;
+using size_type = size2d<S>;
+using size_component_type = S;
+```
 
 Member functions
 ----------------

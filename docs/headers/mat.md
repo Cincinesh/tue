@@ -8,8 +8,10 @@ Types
 The `mat` type represents a 2-dimensional matrix with a given component type and
 dimensions. It is declared as follows:
 
-    template<typename T, int C, int R>
-    class mat;
+```c++
+template<typename T, int C, int R>
+class mat;
+```
 
 `T` is used to specify the component type. No restrictions are placed on this
 type.
@@ -21,64 +23,70 @@ All `mat` types are stored in column-major order.
 
 Type aliases
 ------------
-    template<typename T>
-    using mat2x2 = mat<T, 2, 2>;
-    
-    template<typename T>
-    using mat2x3 = mat<T, 2, 3>;
-    
-    template<typename T>
-    using mat2x4 = mat<T, 2, 4>;
-    
-    template<typename T>
-    using mat3x2 = mat<T, 3, 2>;
-    
-    template<typename T>
-    using mat3x3 = mat<T, 3, 3>;
-    
-    template<typename T>
-    using mat3x4 = mat<T, 3, 4>;
-    
-    template<typename T>
-    using mat4x2 = mat<T, 4, 2>;
-    
-    template<typename T>
-    using mat4x3 = mat<T, 4, 3>;
-    
-    template<typename T>
-    using mat4x4 = mat<T, 4, 4>;
-    
-    using fmat2x2 = mat2x2<float>;
-    using fmat2x3 = mat2x3<float>;
-    using fmat2x4 = mat2x4<float>;
-    using fmat3x2 = mat3x2<float>;
-    using fmat3x3 = mat3x3<float>;
-    using fmat3x4 = mat3x4<float>;
-    using fmat4x2 = mat4x2<float>;
-    using fmat4x3 = mat4x3<float>;
-    using fmat4x4 = mat4x4<float>;
+```c++
+template<typename T>
+using mat2x2 = mat<T, 2, 2>;
 
-    using dmat2x2 = mat2x2<double>;
-    using dmat2x3 = mat2x3<double>;
-    using dmat2x4 = mat2x4<double>;
-    using dmat3x2 = mat3x2<double>;
-    using dmat3x3 = mat3x3<double>;
-    using dmat3x4 = mat3x4<double>;
-    using dmat4x2 = mat4x2<double>;
-    using dmat4x3 = mat4x3<double>;
-    using dmat4x4 = mat4x4<double>;
+template<typename T>
+using mat2x3 = mat<T, 2, 3>;
+
+template<typename T>
+using mat2x4 = mat<T, 2, 4>;
+
+template<typename T>
+using mat3x2 = mat<T, 3, 2>;
+
+template<typename T>
+using mat3x3 = mat<T, 3, 3>;
+
+template<typename T>
+using mat3x4 = mat<T, 3, 4>;
+
+template<typename T>
+using mat4x2 = mat<T, 4, 2>;
+
+template<typename T>
+using mat4x3 = mat<T, 4, 3>;
+
+template<typename T>
+using mat4x4 = mat<T, 4, 4>;
+
+using fmat2x2 = mat2x2<float>;
+using fmat2x3 = mat2x3<float>;
+using fmat2x4 = mat2x4<float>;
+using fmat3x2 = mat3x2<float>;
+using fmat3x3 = mat3x3<float>;
+using fmat3x4 = mat3x4<float>;
+using fmat4x2 = mat4x2<float>;
+using fmat4x3 = mat4x3<float>;
+using fmat4x4 = mat4x4<float>;
+
+using dmat2x2 = mat2x2<double>;
+using dmat2x3 = mat2x3<double>;
+using dmat2x4 = mat2x4<double>;
+using dmat3x2 = mat3x2<double>;
+using dmat3x3 = mat3x3<double>;
+using dmat3x4 = mat3x4<double>;
+using dmat4x2 = mat4x2<double>;
+using dmat4x3 = mat4x3<double>;
+using dmat4x4 = mat4x4<double>;
+```
 
 Member types
 ------------
-    using column_type = vec<T, R>;
-    using row_type = vec<T, C>;
-    using component_type = T;
+```c++
+using column_type = vec<T, R>;
+using row_type = vec<T, C>;
+using component_type = T;
+```
 
 Member constants
 ----------------
-    static constexpr int column_count = C;
-    static constexpr int row_count = R;
-    static constexpr int component_count = column_count * row_count;
+```c++
+static constexpr int column_count = C;
+static constexpr int row_count = R;
+static constexpr int component_count = column_count * row_count;
+```
 
 Member functions
 ----------------

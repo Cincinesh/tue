@@ -7,7 +7,9 @@ provided here for uniformity with composite types such as [`vec`](vec.md) and
 
 Constants
 ---------
-    constexpr float pi = 3.14159265358979323846264338327950288f;
+```c++
+constexpr float pi = 3.14159265358979323846264338327950288f;
+```
 
 Functions
 ---------
