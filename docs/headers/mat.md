@@ -5,14 +5,17 @@ functions.
 
 Types
 -----
-The `mat` type is declared as follows:
+The `mat` type represents a 2-dimensional matrix with a given component type and
+dimensions. It is declared as follows:
 
     template<typename T, int C, int R>
     class mat;
 
-`T` may be any type, though the interface is optimized for simple data types.
+`T` is used to specify the component type. No restriction is placed on this
+type.
 
-Both `C` and `R` must be an integers between 2 and 4 inclusive.
+`C` and `R` represent the column and row counts respectively. Each value must be
+an integer between 2 and 4 inclusive.
 
 Type aliases
 ------------
@@ -62,6 +65,66 @@ Type aliases
     using dmat4x2 = mat4x2<double>;
     using dmat4x3 = mat4x3<double>;
     using dmat4x4 = mat4x4<double>;
+
+Member types
+------------
+    using column_type = vec<T, R>;
+    using row_type = vec<T, C>;
+    using component_type = T;
+
+Member constants
+----------------
+    static constexpr int column_count = C;
+    static constexpr int row_count = R;
+    static constexpr int component_count = column_count * row_count;
+
+Member functions
+----------------
+- Object creation
+    - [(constructor)](../functions/mat/mat.md)
+    - [`identity`](../functions/mat/identity.md)
+    - [`zero`](../functions/mat/zero.md)
+- Accessors
+    - [`column`](../functions/mat/column.md)
+	- [`columns`](../functions/mat/columns.md)
+    - [`row`](../functions/mat/row.md)
+    - [`data`](../functions/mat/data.md)
+- Modifiers
+    - [`set_column`](../functions/mat/set_column.md)
+    - [`set_row`](../functions/mat/set_row.md)
+
+Operators
+---------
+- [`+m`](../operators/mat/unary_plus.md)
+- [`-m`](../operators/mat/unary_minus.md)
+- [`~m`](../operators/mat/bitwise_not.md)
+- [`++m`](../operators/mat/pre_increment.md)
+- [`--m`](../operators/mat/pre_decrement.md)
+- [`m++`](../operators/mat/post_increment.md)
+- [`m--`](../operators/mat/post_decrement.md)
+- [`lhs + rhs`](../operators/mat/addition.md)
+- [`lhs - rhs`](../operators/mat/subtraction.md)
+- [`lhs * rhs`](../operators/mat/multiplication.md)
+- [`lhs / rhs`](../operators/mat/division.md)
+- [`lhs % rhs`](../operators/mat/modulo.md)
+- [`lhs & rhs`](../operators/mat/bitwise_and.md)
+- [`lhs | rhs`](../operators/mat/bitwise_or.md)
+- [`lhs ^ rhs`](../operators/mat/bitwise_xor.md)
+- [`lhs << rhs`](../operators/mat/shift_left.md)
+- [`lhs >> rhs`](../operators/mat/shift_right.md)
+- [`m += other`](../operators/mat/addition_assignment.md)
+- [`m -= other`](../operators/mat/subtraction_assignment.md)
+- [`m *= other`](../operators/mat/multiplication_assignment.md)
+- [`m /= other`](../operators/mat/division_assignment.md)
+- [`m %= other`](../operators/mat/modulo_assignment.md)
+- [`m &= other`](../operators/mat/bitwise_and_assignment.md)
+- [`m |= other`](../operators/mat/bitwise_or_assignment.md)
+- [`m ^= other`](../operators/mat/bitwise_xor_assignment.md)
+- [`m <<= other`](../operators/mat/shift_left_assignment.md)
+- [`m >>= other`](../operators/mat/shift_right_assignment.md)
+- [`lhs == rhs`](../operators/mat/equal_to.md)
+- [`lhs != rhs`](../operators/mat/not_equal_to.md)
+- [`m[i]`](../operators/mat/subscript.md)
 
 Non-member functions
 --------------------
