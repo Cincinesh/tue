@@ -5,14 +5,17 @@ functions.
 
 Types
 -----
-The `vec` type is declared as follows:
+The `vec` type represents an N-dimensional vector with a given component type
+and count. It is declared as follows:
 
     template<typename T, int N>
     class vec;
 
-`T` may be any type, though the interface is optimized for simple data types.
+`T` is used to specify the component type. No restrictions are placed on this
+type.
 
-`N` must be an integer between 2 and 4 inclusive.
+`N` is used to specify the component count. It must be an integer between 2 and
+4 inclusive.
 
 Type aliases
 ------------
@@ -40,6 +43,84 @@ Type aliases
     using bvec2 = vec2<bool>;
     using bvec3 = vec3<bool>;
     using bvec4 = vec4<bool>;
+
+Member types
+------------
+    using component_type = T;
+
+Member constants
+----------------
+    static constexpr int component_count = N;
+
+Member functions
+----------------
+- Object creation
+    - [(constructor)](../functions/vec/constructor.md)
+    - [`zero`](../functions/vec/zero.md)
+    - [`x_axis`](../functions/vec/x_axis.md)
+    - [`y_axis`](../functions/vec/y_axis.md)
+    - [`z_axis`](../functions/vec/z_axis.md) (N >= 3)
+    - [`w_axis`](../functions/vec/w_axis.md) (N >= 4)
+- Accessors
+    - [`x`](../functions/vec/x.md)
+    - [`y`](../functions/vec/y.md)
+    - [`z`](../functions/vec/z.md) (N >= 3)
+    - [`w`](../functions/vec/w.md) (N >= 4)
+    - [`r`](../functions/vec/r.md)
+    - [`g`](../functions/vec/g.md)
+    - [`b`](../functions/vec/b.md) (N >= 3)
+    - [`a`](../functions/vec/a.md) (N >= 4)
+    - [`xy`](../functions/vec/xy.md) (N > 2)
+    - [`rg`](../functions/vec/rg.md) (N > 2)
+    - [`xyz`](../functions/vec/xyz.md) (N > 3)
+    - [`rgb`](../functions/vec/rgb.md) (N > 3)
+    - [`data`](../functions/vec/data.md)
+- Modifiers
+    - [`set_x`](../functions/vec/set_x.md)
+    - [`set_y`](../functions/vec/set_y.md)
+    - [`set_z`](../functions/vec/set_z.md) (N >= 3)
+    - [`set_w`](../functions/vec/set_w.md) (N >= 4)
+    - [`set_r`](../functions/vec/set_r.md)
+    - [`set_g`](../functions/vec/set_g.md)
+    - [`set_b`](../functions/vec/set_b.md) (N >= 3)
+    - [`set_a`](../functions/vec/set_a.md) (N >= 4)
+    - [`set_xy`](../functions/vec/set_xy.md) (N > 2)
+    - [`set_rg`](../functions/vec/set_rg.md) (N > 2)
+    - [`set_xyz`](../functions/vec/set_xyz.md) (N > 3)
+    - [`set_rgb`](../functions/vec/set_rgb.md) (N > 3)
+
+Operators
+---------
+- [`+m`](../operators/vec/unary_plus.md)
+- [`-m`](../operators/vec/unary_minus.md)
+- [`~m`](../operators/vec/bitwise_not.md)
+- [`++m`](../operators/vec/pre_increment.md)
+- [`--m`](../operators/vec/pre_decrement.md)
+- [`m++`](../operators/vec/post_increment.md)
+- [`m--`](../operators/vec/post_decrement.md)
+- [`lhs + rhs`](../operators/vec/addition.md)
+- [`lhs - rhs`](../operators/vec/subtraction.md)
+- [`lhs * rhs`](../operators/vec/multiplication.md)
+- [`lhs / rhs`](../operators/vec/division.md)
+- [`lhs % rhs`](../operators/vec/modulo.md)
+- [`lhs & rhs`](../operators/vec/bitwise_and.md)
+- [`lhs | rhs`](../operators/vec/bitwise_or.md)
+- [`lhs ^ rhs`](../operators/vec/bitwise_xor.md)
+- [`lhs << rhs`](../operators/vec/shift_left.md)
+- [`lhs >> rhs`](../operators/vec/shift_right.md)
+- [`m += other`](../operators/vec/addition_assignment.md)
+- [`m -= other`](../operators/vec/subtraction_assignment.md)
+- [`m *= other`](../operators/vec/multiplication_assignment.md)
+- [`m /= other`](../operators/vec/division_assignment.md)
+- [`m %= other`](../operators/vec/modulo_assignment.md)
+- [`m &= other`](../operators/vec/bitwise_and_assignment.md)
+- [`m |= other`](../operators/vec/bitwise_or_assignment.md)
+- [`m ^= other`](../operators/vec/bitwise_xor_assignment.md)
+- [`m <<= other`](../operators/vec/shift_left_assignment.md)
+- [`m >>= other`](../operators/vec/shift_right_assignment.md)
+- [`lhs == rhs`](../operators/vec/equal_to.md)
+- [`lhs != rhs`](../operators/vec/not_equal_to.md)
+- [`m[i]`](../operators/vec/subscript.md)
 
 Non-member functions
 --------------------

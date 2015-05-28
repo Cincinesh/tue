@@ -11,11 +11,11 @@ dimensions. It is declared as follows:
     template<typename T, int C, int R>
     class mat;
 
-`T` is used to specify the component type. No restriction is placed on this
+`T` is used to specify the component type. No restrictions are placed on this
 type.
 
-`C` and `R` represent the column and row counts respectively. Each value must be
-an integer between 2 and 4 inclusive.
+`C` and `R` are used to specify the column and row counts respectively. Each
+value must be an integer between 2 and 4 inclusive.
 
 Type aliases
 ------------
@@ -81,7 +81,7 @@ Member constants
 Member functions
 ----------------
 - Object creation
-    - [(constructor)](../functions/mat/mat.md)
+    - [(constructor)](../functions/mat/constructor.md)
     - [`identity`](../functions/mat/identity.md)
     - [`zero`](../functions/mat/zero.md)
 - Accessors
