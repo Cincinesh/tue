@@ -1,17 +1,18 @@
-Header `<tue/mat.hpp>`
+Header `<tue/pose2d.hpp>`
 ===============
 This header provides the `pose2d` type and type aliases.
 
 Types
 -----
-The `pose2d` type represents a 2-dimensional translation and rotation with a
-given component type. It is declared as follows:
+The `pose2d` type represents a 2-dimensional translation (represented by a
+[`vec2`](vec.md)) and rotation (represented by a scalar of counter-clockwise
+radians). It is declared as follows:
 
     template<typename T>
     class pose2d;
 
-`T` is used to specify the component type. No restrictions are placed on this
-type.
+`T` is used to specify the translation and rotation component types. No
+restrictions are placed on this type.
 
 Type aliases
 ------------

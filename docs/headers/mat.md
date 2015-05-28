@@ -17,6 +17,8 @@ type.
 `C` and `R` are used to specify the column and row counts respectively. Each
 value must be an integer between 2 and 4 inclusive.
 
+The matrix is laid out in column-major order.
+
 Type aliases
 ------------
     template<typename T>
@@ -86,8 +88,8 @@ Member functions
     - [`identity`](../functions/mat/identity.md)
     - [`zero`](../functions/mat/zero.md)
 - Accessors
-    - [`column`](../functions/mat/column.md)
 	- [`columns`](../functions/mat/columns.md)
+    - [`column`](../functions/mat/column.md)
     - [`m[i]`](../operators/mat/subscript.md)
     - [`row`](../functions/mat/row.md)
     - [`data`](../functions/mat/data.md)
