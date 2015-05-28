@@ -70,6 +70,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "headers", "headers", "{8A8C
 		docs\headers\math.md = docs\headers\math.md
 		docs\headers\pose2d.md = docs\headers\pose2d.md
 		docs\headers\pose3d.md = docs\headers\pose3d.md
+		docs\headers\quat.md = docs\headers\quat.md
 		docs\headers\vec.md = docs\headers\vec.md
 	EndProjectSection
 EndProject
