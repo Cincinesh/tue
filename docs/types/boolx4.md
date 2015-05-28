@@ -1,6 +1,6 @@
 `tue::boolx4`
 =============
-    #include <tue/simd.hpp>
+Defined in header [`<tue/simd.hpp>`](../headers/simd.md)
 
 `boolx4` represents a 4-component array of booleans for use with SIMD
 intrinsics. Currently, only an SSE-accelerated version is provided where
