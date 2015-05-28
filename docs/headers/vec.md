@@ -125,31 +125,40 @@ Operators
 Non-member functions
 --------------------
 - [`tue::math`](../namespaces/tue/math.md)
-    - [`sin`](../functions/math/sin.md)
-    - [`cos`](../functions/math/cos.md)
-    - [`sincos`](../functions/math/sincos.md)
-    - [`exp`](../functions/math/exp.md)
-    - [`log`](../functions/math/log.md)
-    - [`pow`](../functions/math/pow.md)
-    - [`recip`](../functions/math/recip.md)
-    - [`sqrt`](../functions/math/sqrt.md)
-    - [`rsqrt`](../functions/math/rsqrt.md)
-    - [`min`](../functions/math/min.md)
-    - [`max`](../functions/math/max.md)
-    - [`abs`](../functions/math/abs.md)
-    - [`dot`](../functions/math/dot.md)
-    - [`cross`](../functions/math/cross.md) (component_count == 3)
-    - [`length2`](../functions/math/length2.md)
-    - [`length`](../functions/math/length.md)
-    - [`normalize`](../functions/math/normalize.md)
-    - [`comp_mult`](../functions/math/comp_mult.md)
-    - [`select`](../functions/math/select.md)
-    - [`less`](../functions/math/less.md)
-    - [`less_equal`](../functions/math/less_equal.md)
-    - [`greater`](../functions/math/greater.md)
-    - [`greater_equal`](../functions/math/greater_equal.md)
-    - [`equal`](../functions/math/equal.md)
-    - [`not_equal`](../functions/math/not_equal.md)
+    - Trigonometric functions
+        - [`sin`](../functions/math/sin.md)
+        - [`cos`](../functions/math/cos.md)
+        - [`sincos`](../functions/math/sincos.md)
+    - Exponential functions
+        - [`exp`](../functions/math/exp.md)
+        - [`log`](../functions/math/log.md)
+	- Power functions
+        - [`pow`](../functions/math/pow.md)
+        - [`recip`](../functions/math/recip.md)
+        - [`sqrt`](../functions/math/sqrt.md)
+        - [`rsqrt`](../functions/math/rsqrt.md)
+    - Miscellaneous functions
+        - [`min`](../functions/math/min.md)
+        - [`max`](../functions/math/max.md)
+        - [`abs`](../functions/math/abs.md)
+	- Geometric functions
+        - [`dot`](../functions/math/dot.md)
+        - [`cross`](../functions/math/cross.md) (component_count == 3)
+        - [`length2`](../functions/math/length2.md)
+        - [`length`](../functions/math/length.md)
+        - [`normalize`](../functions/math/normalize.md)
+        - [`comp_mult`](../functions/math/comp_mult.md)
+    - Logical functions
+	    - [`select`](../functions/math/select.md)
+        - [`less`](../functions/math/less.md)
+        - [`less_equal`](../functions/math/less_equal.md)
+        - [`greater`](../functions/math/greater.md)
+        - [`greater_equal`](../functions/math/greater_equal.md)
+        - [`equal`](../functions/math/equal.md)
+        - [`not_equal`](../functions/math/not_equal.md)
+    - Rotation conversion functions
+	    - [`rotation_vec`](../functions/math/rotation_vec.md)
+	    - [`axis_angle`](../functions/math/axis_angle.md)
 
 License
 -------
