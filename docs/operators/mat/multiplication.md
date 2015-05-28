@@ -21,7 +21,7 @@ constexpr auto operator*(
 ```
 
 Returns the result of component-wise matrix multiplication, i.e., the result of
-multiplying each component of the [`mat`](../../headers/mat.md) arguments by the
+multiplying each component of the [`mat`](../../headers/mat.md) argument by the
 value of the scalar argument.
 
 Matrix multiplication
