@@ -1,5 +1,5 @@
 `tue::mat` addition assignment
-===================
+==============================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
