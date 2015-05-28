@@ -13,6 +13,9 @@ constexpr bool operator==(
 Returns `true` if each and every corresponding component between two
 [`mat`](../../headers/mat.md)'s are equal and `false` otherwise.
 
+To check for component-wise equality, use
+[`tue::math::equal`](../../functions/math/equal.md) instead.
+
 License
 -------
 Copyright Jo Bates 2015.
