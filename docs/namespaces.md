@@ -1,5 +1,5 @@
-Tuesday C++ Math and Template Library Namespaces
-================================================
+Namespaces
+==========
 - [`tue`](namespaces/tue.md)
     - [`tue::math`](namespaces/tue/math.md)
 

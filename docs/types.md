@@ -1,5 +1,5 @@
-Tuesday C++ Math and Template Library Types
-===========================================
+Types
+=====
 - [`boolx4`](types/boolx4.md)
 - [`floatx4`](types/floatx4.md)
 - [`mat<T, C, R>`](headers/mat.md)

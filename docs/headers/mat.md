@@ -1,5 +1,5 @@
-Tuesday C++ Math and Template Library Header `<tue/mat.hpp>`
-============================================================
+Header `<tue/mat.hpp>`
+===============
 This header provides the `mat<T, C, R>` type, its
 specializations, its type aliases, and some associated
 global math functions.
@@ -17,7 +17,7 @@ Specializations
 
 Functions
 ---------
-- [`namespace tue::math`](../namespaces/math.md)
+- [`tue::math`](../namespaces/math.md)
     - [`sin`](../functions/math/sin.md)
     - [`cos`](../functions/math/cos.md)
     - [`sincos`](../functions/math/sincos.md)
