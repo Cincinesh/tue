@@ -81,6 +81,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "types", "types", "{4E3183A3-2D61-44E8-8241-ED63848F26A2}"
 	ProjectSection(SolutionItems) = preProject
 		docs\types\boolx4.md = docs\types\boolx4.md
+		docs\types\floatx4.md = docs\types\floatx4.md
 	EndProjectSection
 EndProject
 Global

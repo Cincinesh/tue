@@ -15,6 +15,11 @@ to correspond with the output of SSE comparison intrinsics such as
 
 The un-accelerated compatibility fallback is simply an array of 4 `bool`'s.
 
+Note: This type is very different from [`bvec4`](../headers/vec.md). The
+interface intentionally makes it difficult to access individual components since
+this is a slow operation in most SIMD instruction sets and it may have stricter
+alignment requirements.
+
 Member types
 ------------
     using component_type = bool;
