@@ -134,8 +134,8 @@ Operators
 - [`m ^= other`](../operators/mat/bitwise_xor_assignment.md)
 - [`m <<= other`](../operators/mat/shift_left_assignment.md)
 - [`m >>= other`](../operators/mat/shift_right_assignment.md)
-- [`lhs == rhs`](../operators/mat/equal_to.md)
-- [`lhs != rhs`](../operators/mat/not_equal_to.md)
+- [`lhs == rhs`](../operators/mat/equality.md)
+- [`lhs != rhs`](../operators/mat/inequality.md)
 
 Non-member functions
 --------------------

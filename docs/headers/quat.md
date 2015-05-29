@@ -56,8 +56,8 @@ Operators
 ---------
 - [`lhs * rhs`](../operators/quat/multiplication.md)
 - [`q *= other`](../operators/quat/multiplication_assignment.md)
-- [`lhs == rhs`](../operators/quat/equal_to.md)
-- [`lhs != rhs`](../operators/quat/not_equal_to.md)
+- [`lhs == rhs`](../operators/quat/equality.md)
+- [`lhs != rhs`](../operators/quat/inequality.md)
 
 Non-member functions
 --------------------

@@ -44,8 +44,8 @@ Member functions
 
 Operators
 ---------
-- [`lhs == rhs`](../operators/size2d/equal_to.md)
-- [`lhs != rhs`](../operators/size2d/not_equal_to.md)
+- [`lhs == rhs`](../operators/size2d/equality.md)
+- [`lhs != rhs`](../operators/size2d/inequality.md)
 
 License
 -------

@@ -132,8 +132,8 @@ Operators
 - [`v ^= other`](../operators/vec/bitwise_xor_assignment.md)
 - [`v <<= other`](../operators/vec/shift_left_assignment.md)
 - [`v >>= other`](../operators/vec/shift_right_assignment.md)
-- [`lhs == rhs`](../operators/vec/equal_to.md)
-- [`lhs != rhs`](../operators/vec/not_equal_to.md)
+- [`lhs == rhs`](../operators/vec/equality.md)
+- [`lhs != rhs`](../operators/vec/inequality.md)
 
 Non-member functions
 --------------------

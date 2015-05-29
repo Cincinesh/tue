@@ -64,8 +64,8 @@ Operators
 - [`v -= other`](../operators/floatx4/subtraction_assignment.md)
 - [`v *= other`](../operators/floatx4/multiplication_assignment.md)
 - [`v /= other`](../operators/floatx4/division_assignment.md)
-- [`lhs == rhs`](../operators/floatx4/equal_to.md)
-- [`lhs != rhs`](../operators/floatx4/not_equal_to.md)
+- [`lhs == rhs`](../operators/floatx4/equality.md)
+- [`lhs != rhs`](../operators/floatx4/inequality.md)
 
 Non-member functions
 --------------------

@@ -50,8 +50,8 @@ Operators
 - [`v &= other`](../operators/boolx4/bitwise_and_assignment.md)
 - [`v |= other`](../operators/boolx4/bitwise_or_assignment.md)
 - [`v ^= other`](../operators/boolx4/bitwise_xor_assignment.md)
-- [`lhs == rhs`](../operators/boolx4/equal_to.md)
-- [`lhs != rhs`](../operators/boolx4/not_equal_to.md)
+- [`lhs == rhs`](../operators/boolx4/equality.md)
+- [`lhs != rhs`](../operators/boolx4/inequality.md)
 
 Non-member functions
 --------------------

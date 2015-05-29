@@ -57,8 +57,8 @@ Member functions
 
 Operators
 ---------
-- [`lhs == rhs`](../operators/rect/equal_to.md)
-- [`lhs != rhs`](../operators/rect/not_equal_to.md)
+- [`lhs == rhs`](../operators/rect/equality.md)
+- [`lhs != rhs`](../operators/rect/inequality.md)
 
 License
 -------

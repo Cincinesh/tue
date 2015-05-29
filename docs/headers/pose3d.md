@@ -45,8 +45,8 @@ Member functions
 
 Operators
 ---------
-- [`lhs == rhs`](../operators/pose3d/equal_to.md)
-- [`lhs != rhs`](../operators/pose3d/not_equal_to.md)
+- [`lhs == rhs`](../operators/pose3d/equality.md)
+- [`lhs != rhs`](../operators/pose3d/inequality.md)
 
 License
 -------
