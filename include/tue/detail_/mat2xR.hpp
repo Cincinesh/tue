@@ -27,7 +27,7 @@ private:
   struct { vec<T, R> columns[2]; } impl_;
 
 public:
-  mat() = default;
+  mat() noexcept = default;
 
   constexpr mat(
       const vec<T, R>& column0,

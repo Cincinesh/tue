@@ -6,10 +6,11 @@ Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 // ~m
 template<typename T, int C, int R>
 constexpr auto operator~(const mat<T, C, R>& m) noexcept
-	-> mat<decltype(~m[0][0]), C, R>;
+    -> mat<decltype(~m[0][0]), C, R>;
 ```
 
-Returns the result of a component-wise bitwise NOT operation.
+Returns the result of performing a bitwise NOT on each and every component of
+the given [`mat`](../../headers/mat.md).
 
 License
 -------
