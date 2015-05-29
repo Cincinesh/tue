@@ -14,8 +14,8 @@ template<typename I>
 constexpr const vec<T, R>& mat<T, C, R>::operator[](const I& i) const noexcept;
 ```
 
-Returns a reference to column `i` (as a [`vec`](../../headers/vec.md)) of this
-[`mat`](../../headers/mat.md).
+Returns a reference to column `i` of this [`mat`](../../headers/mat.md) as a
+[`vec`](../../headers/vec.md).
 
 License
 -------
