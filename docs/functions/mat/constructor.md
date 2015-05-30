@@ -45,14 +45,26 @@ constexpr mat<T, 4, R>::mat(
     const vec<T, R>& column3) noexcept
 ```
 
-1) Default-constructs a new [`mat`](../../headers/mat.md)
+1. Default-constructs a new [`mat`](../../headers/mat.md).
 
-2) Constructs a new `mat` with every component of the main diagonal set to `s`
-   and all other components initialized to `0`.
+2. Constructs a new `mat` with each component of the main diagonal set to `s`
+   and all other components set to `0`.
 
-3) Constructs a new `mat` using the corresponding components of another `mat`
-   with the same component type but different dimensions. Unspecified components
-   will be initialized to `0`. Unused components will be ignored.
+3. Constructs a new `mat` using the corresponding components of another `mat`
+   with the same component type but different dimensions. Components in the new
+   `mat` without corresponding components from the `other` `mat` will be
+   initialized to `0`. Components from the `other` `mat` without corresponding
+   components in the new `mat` will be ignored.
+
+4. Explicitly converts the corresponding components of another `mat` with the
+   same dimensions but a different component type to the new `mat`'s component
+   type. [Implicit conversion](conversion.md) is also available.
+
+5. Constructs a 2-column `mat` with the 2 given columns.
+
+6. Constructs a 3-column `mat` with the 3 given columns.
+
+7. Constructs a 4-column `mat` with the 4 given columns.
 
 License
 -------
