@@ -1,5 +1,5 @@
-`tue::mat::set_column`
-======================
+`tue::mat::set_row`
+===================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
