@@ -58,7 +58,7 @@ constexpr mat<T, 4, R>::mat(
 
 4. Explicitly converts the corresponding components of another `mat` with the
    same dimensions but a different component type to the new `mat`'s component
-   type. [Implicit conversion](conversion.md) is also available.
+   type. Implicit [conversion](conversion.md) is also available.
 
 5. Constructs a 2-column `mat` with the 2 given columns.
 
