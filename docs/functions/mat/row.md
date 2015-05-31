@@ -9,7 +9,7 @@ constexpr vec<T, R> mat<T, C, R>::row(const J& j) const noexcept;
 ```
 
 Returns a copy of row `j` of this [`mat`](../../headers/mat.md) as a
-[`vec`](../../headers/vec.md).
+[`vec`](../../headers/vec.md). No bounds checking is performed.
 
 License
 -------
