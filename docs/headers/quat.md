@@ -34,7 +34,7 @@ Member functions
 - Object creation
     - [(constructor)](../functions/quat/constructor.md)
     - [(conversion)](../functions/quat/conversion.md)
-    - [`identity`](../functions/quat/identity.md)
+    - [`identity`](../functions/quat/identity.md) (static)
 - Accessors
     - [`x`](../functions/quat/x.md)
     - [`y`](../functions/quat/y.md)

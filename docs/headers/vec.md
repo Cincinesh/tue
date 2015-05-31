@@ -69,11 +69,11 @@ Member functions
 - Object creation
     - [(constructor)](../functions/vec/constructor.md)
     - [(conversion)](../functions/vec/conversion.md)
-    - [`zero`](../functions/vec/zero.md)
-    - [`x_axis`](../functions/vec/x_axis.md)
-    - [`y_axis`](../functions/vec/y_axis.md)
-    - [`z_axis`](../functions/vec/z_axis.md) (component_count >= 3)
-    - [`w_axis`](../functions/vec/w_axis.md) (component_count >= 4)
+    - [`zero`](../functions/vec/zero.md) (static)
+    - [`x_axis`](../functions/vec/x_axis.md) (static)
+    - [`y_axis`](../functions/vec/y_axis.md) (static)
+    - [`z_axis`](../functions/vec/z_axis.md) (static) (component_count >= 3)
+    - [`w_axis`](../functions/vec/w_axis.md) (static) (component_count >= 4)
 - Accessors
     - [`x`](../functions/vec/x.md)
     - [`y`](../functions/vec/y.md)

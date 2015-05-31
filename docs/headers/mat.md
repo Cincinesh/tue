@@ -93,8 +93,8 @@ Member functions
 - Object creation
     - [(constructor)](../functions/mat/constructor.md)
     - [(conversion)](../functions/mat/conversion.md)
-    - [`identity`](../functions/mat/identity.md)
-    - [`zero`](../functions/mat/zero.md)
+    - [`identity`](../functions/mat/identity.md) (static)
+    - [`zero`](../functions/mat/zero.md) (static)
 - Accessors
     - [`columns`](../functions/mat/columns.md)
     - [`column`](../functions/mat/column.md)
