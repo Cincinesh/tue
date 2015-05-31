@@ -1,5 +1,5 @@
-`tue::mat` implicit conversion
-==============================
+`tue::mat` conversion
+=====================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
