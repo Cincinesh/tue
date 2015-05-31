@@ -1,5 +1,5 @@
-`tue::mat::zero`
-================
+`tue::mat::zero` (static)
+=========================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

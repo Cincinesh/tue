@@ -1,5 +1,5 @@
-`tue::mat::identity`
-====================
+`tue::mat::identity` (static)
+=============================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
