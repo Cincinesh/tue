@@ -24,8 +24,8 @@ explicit constexpr pose2d<T>::pose2d(
 
 2. Constructs a new `pose2d` with the given `translation` and `rotation`.
 
-3. Explicitly converts the corresponding components of another `pose2d` with a
-   different component type to the new `pose2d`'s component type. Implicit
+3. Explicitly converts the `translation` and `rotation` of another `pose2d` with
+   a different component type to the new `pose2d`'s component type. Implicit
    [conversion](conversion.md) is also available.
 
 License
