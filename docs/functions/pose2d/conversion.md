@@ -12,8 +12,8 @@ Implicitly converts the `translation` and `rotation` of this
 [`pose2d`](../../headers/pose2d.md) to the component type of another `pose2d`.
 
 Depending on the current compiler configuration, this function may or may not
-produce warnings for conversions which lose precision. To avoid such warnings,
-use the explicit conversion [constructor](constructor.md) instead.
+produce warnings for conversions which lose precision. To suppress such
+warnings, use the explicit conversion [constructor](constructor.md) instead.
 
 License
 -------

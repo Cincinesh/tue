@@ -11,7 +11,7 @@ void pose3d<T>::set_translation(const T& x, const T& y, const T& z) noexcept;
 ```
 
 Sets the `translation` of this [`pose3d`](../../headers/pose3d.md) either using
-a whole [`vec3`](../../headers/vec.md) or individual components.
+a whole [`vec3`](../../headers/vec.md) or individual component values.
 
 License
 -------

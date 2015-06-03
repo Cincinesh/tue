@@ -7,8 +7,8 @@ template<typename T>
 constexpr T pose2d<T>::rotation() const noexcept;
 ```
 
-Returns a copy of this [`pose2d`](../../headers/pose2d.md)'s `rotation` in the
-form of a scalar.
+Returns a copy of this [`pose2d`](../../headers/pose2d.md)'s `rotation`
+(represented by a scalar of counter-clockwise radians).
 
 License
 -------

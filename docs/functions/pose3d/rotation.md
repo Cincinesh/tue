@@ -7,8 +7,8 @@ template<typename T>
 constexpr quat<T> pose3d<T>::rotation() const noexcept;
 ```
 
-Returns a copy of this [`pose3d`](../../headers/pose3d.md)'s `rotation` in the
-form of a [`quat`](../../headers/quat.md).
+Returns a copy of this [`pose3d`](../../headers/pose3d.md)'s `rotation`
+(represented by a [`quat`](../../headers/quat.md)).
 
 License
 -------

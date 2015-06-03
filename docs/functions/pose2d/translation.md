@@ -7,8 +7,8 @@ template<typename T>
 constexpr vec2<T> pose2d<T>::translation() const noexcept;
 ```
 
-Returns a copy of this [`pose2d`](../../headers/pose2d.md)'s `translation` in
-the form of a [`vec2`](../../headers/vec.md).
+Returns a copy of this [`pose2d`](../../headers/pose2d.md)'s `translation`
+(represented by a [`vec2`](../../headers/vec.md)).
 
 License
 -------
