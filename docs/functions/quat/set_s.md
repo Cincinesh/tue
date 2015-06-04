@@ -7,9 +7,8 @@ template<typename T>
 void quat<T>::set_s(const T& s) noexcept;
 ```
 
-Sets the fourth component (i.e. the scalar component, as opposed to
-the vector component [`set_v()`](set_v.md)) of this
-[`quat`](../../headers/quat.md).
+Sets the fourth component (i.e. the scalar part, as opposed to the vector part
+[`set_v()`](set_v.md)) of this [`quat`](../../headers/quat.md).
 
 License
 -------
