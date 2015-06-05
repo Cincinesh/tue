@@ -1,5 +1,5 @@
-`tue::quat::s`
-==============
+`tue::quat::set_y`
+==================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

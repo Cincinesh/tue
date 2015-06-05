@@ -1,5 +1,5 @@
-`tue::matquatidentity` (static)
-===============================
+`tue::quat::identity` (static)
+==============================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

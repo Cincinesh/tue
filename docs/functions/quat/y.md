@@ -1,4 +1,4 @@
-`tue::quat::s`
+`tue::quat::y`
 ==============
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
