@@ -16,7 +16,7 @@ constexpr auto operator*(
 template<typename T, typename U>
 constexpr auto operator*(
     const vec3<T>& v,
-    const quat<U>& q) noexcept {
+    const quat<U>& q) noexcept
     -> return vec3<decltype(rhs[0] * lhs[0])>;
 ```
 
