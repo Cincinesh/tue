@@ -8,19 +8,19 @@ Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 template<typename T, typename U, int C, int R>
 constexpr auto operator<<(
     const T& lhs,
-	const mat<U, C, R>& rhs) noexcept
+    const mat<U, C, R>& rhs) noexcept
     -> mat<decltype(lhs << rhs[0][0]), C, R>;
 
 template<typename T, typename U, int C, int R>
 constexpr auto operator<<(
     const mat<T, C, R>& lhs,
-	const U& rhs) noexcept
+    const U& rhs) noexcept
     -> mat<decltype(lhs[0][0] << rhs), C, R>;
 
 template<typename T, typename U, int C, int R>
 constexpr auto operator<<(
     const mat<T, C, R>& lhs,
-	const mat<U, C, R>& rhs) noexcept
+    const mat<U, C, R>& rhs) noexcept
     -> mat<decltype(lhs[0][0] << rhs[0][0]), C, R>;
 ```
 

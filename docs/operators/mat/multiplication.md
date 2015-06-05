@@ -10,13 +10,13 @@ Scalar multiplication
 template<typename T, typename U, int C, int R>
 constexpr auto operator*(
     const T& lhs,
-	const mat<U, C, R>& rhs) noexcept
+    const mat<U, C, R>& rhs) noexcept
     -> mat<decltype(lhs * rhs[0][0]), C, R>;
 
 template<typename T, typename U, int C, int R>
 constexpr auto operator*(
     const mat<T, C, R>& lhs,
-	const U& rhs) noexcept
+    const U& rhs) noexcept
     -> mat<decltype(lhs[0][0] * rhs), C, R>;
 ```
 
@@ -32,20 +32,20 @@ Matrix multiplication
 template<typename T, typename U, int C, int R>
 constexpr auto operator*(
     const vec<T, R>& lhs,
-	const mat<U, C, R>& rhs) noexcept
+    const mat<U, C, R>& rhs) noexcept
     -> vec<decltype(lhs[0] * rhs[0][0]), C>;
 
 template<typename T, typename U, int C, int R>
 constexpr auto operator*(
     const mat<T, C, R>& lhs,
-	const vec<U, C>& rhs) noexcept
+    const vec<U, C>& rhs) noexcept
     -> vec<decltype(lhs[0][0] * rhs[0]), R>;
 
 template<typename T, typename U, int C, int R, int X>
 constexpr auto operator*(
     const mat<T, X, R>& lhs,
-	const mat<U, C, X>& rhs) noexcept
-	-> vec<decltype(lhs[0][0] & rhs[0][0]), C, R>;
+    const mat<U, C, X>& rhs) noexcept
+    -> vec<decltype(lhs[0][0] & rhs[0][0]), C, R>;
 ```
 
 Returns the result of matrix multiplication. The number of columns in the
