@@ -16,6 +16,9 @@ class quat;
 `T` is used to specify the component type. No restrictions are placed on this
 type.
 
+A `quat` can be viewed as an array of four scalar components (`x`, `y`, `z`, and
+`w`) or as a vector part and sclar part (`v` and `s`).
+
 Type aliases
 ------------
 ```c++
