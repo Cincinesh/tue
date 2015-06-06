@@ -3,16 +3,14 @@
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++
-// lhs * rhs
-
-// (1)
+// (1) (lhs * rhs)
 template<typename T, typename U>
 constexpr auto operator*(
     const quat<T>& lhs,
     const quat<U>& rhs) noexcept
     -> return quat<decltype(rhs[0] * lhs[0])>;
 
-// (2)
+// (2) (v * q)
 template<typename T, typename U>
 constexpr auto operator*(
     const vec3<T>& v,
