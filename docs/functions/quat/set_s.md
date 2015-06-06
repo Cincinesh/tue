@@ -8,7 +8,7 @@ void quat<T>::set_s(const T& s) noexcept;
 ```
 
 Sets the fourth component (i.e. the scalar part, as opposed to the vector part
-[`set_v()`](set_v.md)) of this [`quat`](../../headers/quat.md).
+[`v`](set_v.md)) of this [`quat`](../../headers/quat.md).
 
 License
 -------

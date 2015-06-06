@@ -8,7 +8,7 @@ constexpr T quat<T>::s() const noexcept;
 ```
 
 Returns a copy of the fourth component (i.e. the scalar part, as opposed to the
-vector part [`v()`](v.md)) of this [`quat`](../../headers/quat.md).
+vector part [`v`](v.md)) of this [`quat`](../../headers/quat.md).
 
 License
 -------
