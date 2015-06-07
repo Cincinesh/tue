@@ -1,5 +1,5 @@
-`tue::mat` bitwise XOR assignment
-=================================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/bitwise XOR assignment
+==================================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

@@ -1,5 +1,5 @@
-`tue::mat` subscript operator
-=============================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/subscript operator
+==============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

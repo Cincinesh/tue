@@ -1,5 +1,5 @@
-`tue::mat` equality operator
-============================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/equality operator
+=============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

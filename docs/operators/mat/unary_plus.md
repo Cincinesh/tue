@@ -1,5 +1,5 @@
-`tue::mat` unary plus
-=====================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/unary plus
+======================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

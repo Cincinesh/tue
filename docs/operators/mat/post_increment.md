@@ -1,5 +1,5 @@
-`tue::mat` post-increment
-=========================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/post-increment
+==========================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

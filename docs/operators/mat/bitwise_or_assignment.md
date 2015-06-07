@@ -1,5 +1,5 @@
-`tue::mat` bitwise OR assignment
-================================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/bitwise OR assignment
+=================================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

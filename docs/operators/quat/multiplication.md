@@ -1,5 +1,5 @@
-`tue::quat` multiplication
-==========================
+[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/multiplication
+============================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

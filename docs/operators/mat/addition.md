@@ -1,5 +1,5 @@
-`tue::mat` addition
-===================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/addition
+====================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

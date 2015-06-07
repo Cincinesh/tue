@@ -1,5 +1,5 @@
-`tue::mat` bitwise NOT
-======================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/bitwise NOT
+=======================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

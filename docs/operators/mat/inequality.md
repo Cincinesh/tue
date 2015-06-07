@@ -1,5 +1,5 @@
-`tue::mat` inequality operator
-==============================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/inequality operator
+===============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

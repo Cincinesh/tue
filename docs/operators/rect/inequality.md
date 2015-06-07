@@ -1,5 +1,5 @@
-`tue::rect` inequality operator
-===============================
+[Tuesday](../../../README.md)/[`rect`](../../headers/rect.md)/inequality operator
+=================================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++

@@ -1,5 +1,5 @@
-`tue::pose2d` inequality operator
-=================================
+[Tuesday](../../../README.md)/[`pose2d`](../../headers/pose2d.md)/inequality operator
+=====================================================================================
 Provided by header [`<tue/pose2d.hpp>`](../../headers/pose2d.md)
 
 ```c++

@@ -1,5 +1,5 @@
-`tue::mat` multiplication
-=========================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/multiplication
+==========================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 Scalar multiplication

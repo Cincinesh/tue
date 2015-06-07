@@ -1,5 +1,5 @@
-`tue::mat` modulo assignment
-============================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/modulo assignment
+=============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

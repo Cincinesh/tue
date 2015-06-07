@@ -1,5 +1,5 @@
-`tue::quat` equality operator
-=============================
+[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/equality operator
+===============================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

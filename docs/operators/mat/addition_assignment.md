@@ -1,5 +1,5 @@
-`tue::mat` addition assignment
-==============================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/addition assignment
+===============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
