@@ -1,4 +1,4 @@
-[Tuesday](../../../README.md)/[Namespaces](../namespaces.md)/[`tue`](../tue.md)`::math`
+[Tuesday](../../../README.md)/[Namespaces](../namespaces.md)/[`tue`](../tue.md)/`math`
 =======================================================================================
 `tue::math` provides common mathematical constants and functions. Many of the
 following functions are available in the C++ Standard Library but are also
