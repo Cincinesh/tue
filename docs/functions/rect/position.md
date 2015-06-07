@@ -1,17 +1,14 @@
-`tue::pose3d::set_translation`
-======================
-Provided by header [`<tue/pose3d.hpp>`](../../headers/pose3d.md)
+`tue::rect::position`
+=====================
+Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++
-template<typename T>
-void pose3d<T>::set_translation(const vec3<T>& translation) noexcept;
-
-template<typename T>
-void pose3d<T>::set_translation(const T& x, const T& y, const T& z) noexcept;
+template<typename P, typename S>
+constexpr vec2<P> rect<P, S>::position() const noexcept;
 ```
 
-Sets the `translation` of this [`pose3d`](../../headers/pose3d.md) either using
-a whole [`vec3`](../../headers/vec.md) or individual component values.
+Returns a copy of this [`rect`](../../headers/rect.md)'s `position` (represented
+by a [`vec2`](../../headers/vec.md)).
 
 License
 -------
