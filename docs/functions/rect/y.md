@@ -7,7 +7,7 @@ template<typename P, typename S>
 constexpr P rect<P, S>::y() const noexcept;
 ```
 
-Returns a copy of the `y` component this [`rects`](../../headers/rect.md)'s
+Returns a copy of the `y` component this [`rect`](../../headers/rect.md)'s
 [`position`](position.md) component.
 
 License

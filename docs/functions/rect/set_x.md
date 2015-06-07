@@ -7,7 +7,7 @@ template<typename P, typename S>
 void rect<P, S>::set_x(const P& x) noexcept;
 ```
 
-Sets the `x` component of this [`rects`](../../headers/rect.md)'s
+Sets the `x` component of this [`rect`](../../headers/rect.md)'s
 [`position`](position.md) component.
 
 License

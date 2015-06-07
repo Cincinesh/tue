@@ -8,7 +8,7 @@ constexpr S rect<P, S>::height() const noexcept;
 ```
 
 Returns a copy of the `height` component of this
-[`rects`](../../headers/rect.md)'s [`size`](size.md) component.
+[`rect`](../../headers/rect.md)'s [`size`](size.md) component.
 
 License
 -------

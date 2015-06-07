@@ -7,7 +7,7 @@ template<typename P, typename S>
 constexpr S rect<P, S>::width() const noexcept;
 ```
 
-Returns a copy of the `width` component this [`rects`](../../headers/rect.md)'s
+Returns a copy of the `width` component this [`rect`](../../headers/rect.md)'s
 [`size`](size.md) component.
 
 License

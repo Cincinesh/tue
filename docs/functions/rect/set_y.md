@@ -7,7 +7,7 @@ template<typename P, typename S>
 void rect<P, S>::set_y(const P& y) noexcept;
 ```
 
-Sets the `y` component of this [`rects`](../../headers/rect.md)'s
+Sets the `y` component of this [`rect`](../../headers/rect.md)'s
 [`position`](position.md) component.
 
 License
