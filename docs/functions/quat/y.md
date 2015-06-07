@@ -1,5 +1,5 @@
-`tue::quat::y`
-==============
+[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/`y`
+=================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

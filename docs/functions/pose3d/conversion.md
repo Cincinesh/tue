@@ -1,5 +1,5 @@
-`tue::pose3d` conversion
-========================
+[Tuesday](../../../README.md)/[`pose3d`](../../headers/pose3d.md)/conversion
+============================================================================
 Provided by header [`<tue/pose3d.hpp>`](../../headers/pose3d.md)
 
 ```c++

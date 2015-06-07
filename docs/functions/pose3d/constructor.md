@@ -1,5 +1,5 @@
-`tue::pose3d` constructor
-=========================
+[Tuesday](../../../README.md)/[`pose3d`](../../headers/pose3d.md)/constructor
+=============================================================================
 Provided by header [`<tue/pose3d.hpp>`](../../headers/pose2d.md)
 
 ```c++

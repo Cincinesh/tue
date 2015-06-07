@@ -1,5 +1,5 @@
-`tue::rect::set_size`
-=====================
+[Tuesday](../../../README.md)/[`rect`](../../headers/rect.md)/`set_size`
+========================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++

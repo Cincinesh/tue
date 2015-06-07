@@ -1,5 +1,5 @@
-`tue::mat::set_column`
-======================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/`set_column`
+========================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

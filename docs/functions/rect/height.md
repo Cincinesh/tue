@@ -1,5 +1,5 @@
-`tue::rect::height`
-===================
+[Tuesday](../../../README.md)/[`rect`](../../headers/rect.md)/`height`
+======================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++

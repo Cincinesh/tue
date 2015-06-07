@@ -1,5 +1,5 @@
-`tue::mat` conversion
-=====================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/conversion
+======================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

@@ -1,5 +1,5 @@
-`tue::mat::identity` (static)
-=============================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/`identity` (static)
+===============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

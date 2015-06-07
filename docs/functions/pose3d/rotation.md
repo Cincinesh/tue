@@ -1,5 +1,5 @@
-`tue::pose3d::rotation`
-=======================
+[Tuesday](../../../README.md)/[`pose3d`](../../headers/pose3d.md)/`rotation`
+============================================================================
 Provided by header [`<tue/pose3d.hpp>`](../../headers/pose3d.md)
 
 ```c++

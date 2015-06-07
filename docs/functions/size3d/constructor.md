@@ -1,5 +1,5 @@
-`tue::size3d` constructor
-=========================
+[Tuesday](../../../README.md)/[`size3d`](../../headers/size3d.md)/constructor
+=============================================================================
 Provided by header [`<tue/size3d.hpp>`](../../headers/size3d.md)
 
 ```c++

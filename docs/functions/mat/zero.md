@@ -1,5 +1,5 @@
-`tue::mat::zero` (static)
-=========================
+[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/`zero` (static)
+===========================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

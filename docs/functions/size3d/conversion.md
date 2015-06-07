@@ -1,5 +1,5 @@
-`tue::size3d` conversion
-========================
+[Tuesday](../../../README.md)/[`size3d`](../../headers/size3d.md)/conversion
+============================================================================
 Provided by header [`<tue/size3d.hpp>`](../../headers/size3d.md)
 
 ```c++

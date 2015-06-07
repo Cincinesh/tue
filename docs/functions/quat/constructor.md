@@ -1,5 +1,5 @@
-`tue::quat` constructor
-=======================
+[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/constructor
+=========================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

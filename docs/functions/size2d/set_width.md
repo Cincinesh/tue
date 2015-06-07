@@ -1,5 +1,5 @@
-`tue::size2d::set_width`
-========================
+[Tuesday](../../../README.md)/[`size2d`](../../headers/size2d.md)/`set_width`
+=============================================================================
 Provided by header [`<tue/size2d.hpp>`](../../headers/size2d.md)
 
 ```c++

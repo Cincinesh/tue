@@ -1,5 +1,5 @@
-`tue::quat` conversion
-======================
+[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/conversion
+========================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

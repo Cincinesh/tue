@@ -1,5 +1,5 @@
-`tue::size3d::width`
-====================
+[Tuesday](../../../README.md)/[`size3d`](../../headers/size3d.md)/`width`
+=========================================================================
 Provided by header [`<tue/size3d.hpp>`](../../headers/size3d.md)
 
 ```c++

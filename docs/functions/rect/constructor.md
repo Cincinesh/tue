@@ -1,5 +1,5 @@
-`tue::rect` constructor
-=======================
+[Tuesday](../../../README.md)/[`rect`](../../headers/rect.md)/constructor
+=========================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++

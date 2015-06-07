@@ -1,5 +1,5 @@
-`tue::rect::position`
-=====================
+[Tuesday](../../../README.md)/[`rect`](../../headers/rect.md)/`position`
+========================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++

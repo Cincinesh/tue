@@ -1,5 +1,5 @@
-`tue::pose2d::translation`
-==========================
+[Tuesday](../../../README.md)/[`pose2d`](../../headers/pose2d.md)/`translation`
+===============================================================================
 Provided by header [`<tue/pose2d.hpp>`](../../headers/pose2d.md)
 
 ```c++

@@ -1,5 +1,5 @@
-`tue::quat::identity` (static)
-==============================
+[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/`identity` (static)
+=================================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++
