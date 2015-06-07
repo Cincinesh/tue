@@ -8,6 +8,7 @@ Headers
 - [`<tue/rect.hpp>`](headers/rect.md)
 - [`<tue/simd.hpp>`](headers/simd.md)
 - [`<tue/size2d.hpp>`](headers/size2d.md)
+- [`<tue/size3d.hpp>`](headers/size3d.md)
 - [`<tue/unused.hpp>`](headers/unused.md)
 - [`<tue/vec.hpp>`](headers/vec.md)
 
