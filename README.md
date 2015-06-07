@@ -7,7 +7,7 @@ applications. It provides data types commonly used in games and other
 simulations such as vectors, quaternions, and matrices, operator overloads for
 combining and manipulating these types, as well as some other common
 mathematical functions. It was written to match the style of the C++ Standard
-Library, and uses modern C++ features (i.e., C++14) extensively.
+Library and uses modern C++ features (i.e., C++14) extensively.
 
 
 How to read this documentation
