@@ -7,7 +7,7 @@ template<typename T>
 void pose2d<T>::set_rotation(const T& rotation) noexcept;
 ```
 
-Sets the `rotation` of this [`pose2d`](../../headers/pose2d.md).
+Sets the `rotation` component of this [`pose2d`](../../headers/pose2d.md).
 
 License
 -------

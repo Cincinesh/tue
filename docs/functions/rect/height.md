@@ -7,8 +7,8 @@ template<typename P, typename S>
 constexpr S rect<P, S>::height() const noexcept;
 ```
 
-Returns a copy of the `height` component this [`rects`](../../headers/rect.md)'s
-[`size`](size.md) component.
+Returns a copy of the `height` component of this
+[`rects`](../../headers/rect.md)'s [`size`](size.md) component.
 
 License
 -------

@@ -8,7 +8,7 @@ constexpr vec2<T> pose2d<T>::translation() const noexcept;
 ```
 
 Returns a copy of this [`pose2d`](../../headers/pose2d.md)'s `translation`
-(represented by a [`vec2`](../../headers/vec.md)).
+component (represented by a [`vec2`](../../headers/vec.md)).
 
 License
 -------

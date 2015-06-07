@@ -10,8 +10,9 @@ template<typename T>
 void pose2d<T>::set_translation(const T& x, const T& y) noexcept;
 ```
 
-Sets the `translation` of this [`pose2d`](../../headers/pose2d.md) either using
-a whole [`vec2`](../../headers/vec.md) or individual component values.
+Sets the `translation` component of this [`pose2d`](../../headers/pose2d.md)
+either using a whole [`vec2`](../../headers/vec.md) or individual component
+values.
 
 License
 -------

@@ -7,8 +7,8 @@ template<typename P, typename S>
 constexpr vec2<P> rect<P, S>::position() const noexcept;
 ```
 
-Returns a copy of this [`rect`](../../headers/rect.md)'s `position` (represented
-by a [`vec2`](../../headers/vec.md)).
+Returns a copy of this [`rect`](../../headers/rect.md)'s `position` component
+(represented by a [`vec2`](../../headers/vec.md)).
 
 License
 -------

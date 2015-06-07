@@ -10,8 +10,8 @@ template<typename P, typename S>
 void rect<P, S>::set_position(const P& x, const P& y) noexcept;
 ```
 
-Sets the `position` of this [`rect`](../../headers/rect.md) either using a whole
-[`vec2`](../../headers/vec.md) or individual component values.
+Sets the `position` component of this [`rect`](../../headers/rect.md) either
+using a whole [`vec2`](../../headers/vec.md) or individual component values.
 
 License
 -------

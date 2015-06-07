@@ -7,7 +7,7 @@ template<typename T>
 void pose3d<T>::set_rotation(const quat<T>& rotation) noexcept;
 ```
 
-Sets the `rotation` of this [`pose3d`](../../headers/pose3d.md).
+Sets the `rotation` component of this [`pose3d`](../../headers/pose3d.md).
 
 License
 -------

@@ -8,7 +8,7 @@ constexpr quat<T> pose3d<T>::rotation() const noexcept;
 ```
 
 Returns a copy of this [`pose3d`](../../headers/pose3d.md)'s `rotation`
-(represented by a [`quat`](../../headers/quat.md)).
+component (represented by a [`quat`](../../headers/quat.md)).
 
 License
 -------

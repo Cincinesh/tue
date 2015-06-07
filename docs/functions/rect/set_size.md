@@ -10,8 +10,8 @@ template<typename P, typename S>
 void rect<P, S>::set_size(const S& width, const S& height) noexcept;
 ```
 
-Sets the `size` of this [`rect`](../../headers/rect.md) either using a whole
-[`size2d`](../../headers/size2d.md) or individual component values.
+Sets the `size` component of this [`rect`](../../headers/rect.md) either using a
+whole [`size2d`](../../headers/size2d.md) or individual component values.
 
 License
 -------

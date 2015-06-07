@@ -7,8 +7,8 @@ template<typename P, typename S>
 constexpr size2d<S> rect<P, S>::size() const noexcept;
 ```
 
-Returns a copy of this [`rect`](../../headers/rect.md)'s `size` (represented by
-a [`size2d`](../../headers/size2d.md)).
+Returns a copy of this [`rect`](../../headers/rect.md)'s `size` component
+(represented by a [`size2d`](../../headers/size2d.md)).
 
 License
 -------
