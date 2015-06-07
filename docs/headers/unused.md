@@ -1,5 +1,5 @@
-Header `<tue/unused.hpp>`
-=========================
+[Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/unused.hpp>`
+======================================================================
 This header provides the `unused` function template. It is defined as follows:
 
 ```c++
