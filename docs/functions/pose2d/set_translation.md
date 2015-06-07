@@ -1,5 +1,5 @@
 `tue::pose2d::set_translation`
-======================
+==============================
 Provided by header [`<tue/pose2d.hpp>`](../../headers/pose2d.md)
 
 ```c++
