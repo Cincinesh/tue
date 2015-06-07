@@ -8,7 +8,7 @@ void rect<P, S>::set_height(const S& height) noexcept;
 ```
 
 Sets the `height` component of this [`rect`](../../headers/rect.md)'s
-[`size`](size.md) component.
+[`size`](set_size.md) component.
 
 License
 -------

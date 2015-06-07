@@ -8,7 +8,7 @@ void rect<P, S>::set_x(const P& x) noexcept;
 ```
 
 Sets the `x` component of this [`rect`](../../headers/rect.md)'s
-[`position`](position.md) component.
+[`position`](set_position.md) component.
 
 License
 -------

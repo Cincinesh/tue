@@ -8,7 +8,7 @@ void rect<P, S>::set_width(const S& width) noexcept;
 ```
 
 Sets the `width` component of this [`rect`](../../headers/rect.md)'s
-[`size`](size.md) component.
+[`size`](set_size.md) component.
 
 License
 -------

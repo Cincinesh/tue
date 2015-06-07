@@ -8,7 +8,7 @@ void rect<P, S>::set_y(const P& y) noexcept;
 ```
 
 Sets the `y` component of this [`rect`](../../headers/rect.md)'s
-[`position`](position.md) component.
+[`position`](set_position.md) component.
 
 License
 -------
