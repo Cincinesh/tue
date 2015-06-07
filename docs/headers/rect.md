@@ -1,5 +1,5 @@
-Header `<tue/rect.hpp>`
-=======================
+[Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/rect.hpp>`
+====================================================================
 This header provides the `rect` type and type aliases.
 
 Types

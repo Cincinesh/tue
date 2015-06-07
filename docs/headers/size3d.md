@@ -1,5 +1,5 @@
-Header `<tue/size3d.hpp>`
-=========================
+[Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/size3d.hpp>`
+======================================================================
 This header provides the `size3d` type and type aliases.
 
 Types

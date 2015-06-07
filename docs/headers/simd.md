@@ -1,5 +1,5 @@
-Header `<tue/simd.hpp>`
-=======================
+[Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/simd.hpp>`
+====================================================================
 This header provides thin wrapper classes and functions around platform-specific
 SIMD intrinsics. Currently, only a few classes are provided with SSE
 acceleration where available and un-accelerated compatibility fallbacks

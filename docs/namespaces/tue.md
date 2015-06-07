@@ -1,5 +1,5 @@
-Namespace `tue`
-===============
+[Tuesday](../../README.md)/[Namespaces](../namespaces.md)/`tue`
+===============================================================
 `tue` is the main namespace for the Tuesday C++ Math and Template Library.
 
 Types
@@ -12,7 +12,7 @@ Types
 - [`quat`](../headers/quat.md)
 - [`rect`](../headers/rect.md)
 - [`size2d`](../headers/size2d.md)
-- [`size3d`](../headers/size2d.md)
+- [`size3d`](../headers/size3d.md)
 - [`vec`](../headers/vec.md)
 
 Functions

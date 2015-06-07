@@ -1,5 +1,5 @@
-`tue::boolx4`
-=============
+[Tuesday](../../README.md)/[Types](../types.md)/`boolx4`
+========================================================
 Provided by header [`<tue/simd.hpp>`](../headers/simd.md)
 
 `boolx4` represents a 4-component array of booleans for use with SIMD

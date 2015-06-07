@@ -1,5 +1,5 @@
-Header `<tue/vec.hpp>`
-======================
+[Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/vec.hpp>`
+===================================================================
 This header provides the `vec` type, type aliases, and some related non-member
 functions.
 

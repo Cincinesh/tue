@@ -1,5 +1,5 @@
-Header `<tue/pose2d.hpp>`
-=========================
+[Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/pose2d.hpp>`
+======================================================================
 This header provides the `pose2d` type and type aliases.
 
 Types

@@ -1,5 +1,5 @@
-Namespaces
-==========
+[Tuesday](../README.md)/Namespaces
+==================================
 - [`tue`](namespaces/tue.md)
     - [`tue::math`](namespaces/tue/math.md)
 
