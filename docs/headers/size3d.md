@@ -38,7 +38,7 @@ Member functions
 - Accessors
     - [`width`](../functions/size3d/width.md)
     - [`height`](../functions/size3d/height.md)
-    - [`depth`](../functions/size3d/height.md)
+    - [`depth`](../functions/size3d/depth.md)
 - Modifiers
     - [`set_width`](../functions/size3d/set_width.md)
     - [`set_height`](../functions/size3d/set_height.md)
