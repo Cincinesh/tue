@@ -3,13 +3,20 @@
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++
-// q *= other
+// (1) (q *= other)
 template<typename T, typename U>
 quat<T>& operator*=(quat<T>& q, const quat<U>& other) noexcept;
+
+// (2) (v *= q)
+template<typename T, typename U>
+vec3<T>& operator*=(vec3<T>& v, const quat<U>& q) noexcept;
 ```
 
-Calculates [`q * other`](multiplication.md), stores the result in `q`, and
-returns a reference to `q`.
+1. Calculates [`q * other`](multiplication.md), stores the result in `q`, and
+   returns a reference to `q`.
+
+2. Calculates [`v * q`](multiplication.md), stores the result in `v`, and
+   returns a reference to `v`.
 
 License
 -------
