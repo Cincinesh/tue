@@ -9,7 +9,8 @@ constexpr vec2<T> vec<T, N>::xy() const noexcept;
 ```
 
 Returns a copy of the first two components of this
-[`vec`](../../headers/vec.md) in the form of a `vec2`.
+[`vec`](../../headers/vec.md) in the form of a `vec2`. This function is only
+available when `N > 2`.
 
 License
 -------

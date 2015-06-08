@@ -1,5 +1,5 @@
 [Tuesday](../../../README.md)/[`vec`](../../headers/vec.md)/`rg`
-=================================================================
+================================================================
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++
@@ -9,7 +9,8 @@ constexpr vec2<T> vec<T, N>::rg() const noexcept;
 ```
 
 Returns a copy of the first two components of this
-[`vec`](../../headers/vec.md) in the form of a `vec2`.
+[`vec`](../../headers/vec.md) in the form of a `vec2`. This function is only
+available when `N > 2`.
 
 License
 -------

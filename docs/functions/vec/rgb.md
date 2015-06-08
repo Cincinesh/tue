@@ -9,7 +9,8 @@ constexpr vec3<T> vec<T, N>::rgb() const noexcept;
 ```
 
 Returns a copy of the first three components of this
-[`vec`](../../headers/vec.md) in the form of a `vec3`.
+[`vec`](../../headers/vec.md) in the form of a `vec3`. This function is only
+available when `N > 3`.
 
 License
 -------
