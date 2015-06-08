@@ -32,6 +32,10 @@ each component set to the value of that scalar.
 [`quat multiplication`](../quat/multiplication.md) and
 [`mat multiplication`](../mat/multiplication.md).
 
+To calculate the dot product or the cross product of two `vec`'s, see
+[`math::dot`](../../functions/math/dot.md) or
+[`math::cross`](../../functions/math/cross.md) respectively.
+
 License
 -------
 Copyright Jo Bates 2015.
