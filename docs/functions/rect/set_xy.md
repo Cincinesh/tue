@@ -1,4 +1,4 @@
-[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`set_x`
+[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`set_x, set_y`
 ==========================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 

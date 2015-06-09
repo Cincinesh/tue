@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`width`
-==========================================================================
+[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`width, height`
+==================================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++
