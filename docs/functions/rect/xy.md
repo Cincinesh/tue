@@ -11,7 +11,7 @@ constexpr P rect<P, S>::y() const noexcept;
 ```
 
 Returns copies of the `x` and `y` components this
-[`rect`](../../headers/rect.md)'s [`position`](position.md) component.
+[`rect`](../../headers/rect.md)'s `position` component.
 
 To access both `position` components in one function call, use
 [`position`](position.md) instead.

@@ -11,7 +11,7 @@ void rect<P, S>::set_height(const S& height) noexcept;
 ```
 
 Sets the `width` and `height` components of this
-[`rect`](../../headers/rect.md)'s [`size`](set_size.md) component.
+[`rect`](../../headers/rect.md)'s `size` component.
 
 To set both components in one function call, use [`set_size`](set_size.md)
 instead.

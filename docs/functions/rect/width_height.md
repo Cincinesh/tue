@@ -11,7 +11,7 @@ constexpr S rect<P, S>::height() const noexcept;
 ```
 
 Returns copies of the `width` and `height` components of this
-[`rect`](../../headers/rect.md)'s [`size`](size.md) component.
+[`rect`](../../headers/rect.md)'s `size` component.
 
 To access both `size` components in one function call, use [`size`](size.md)
 instead.
