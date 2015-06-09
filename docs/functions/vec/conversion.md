@@ -9,7 +9,7 @@ constexpr vec<T, N>::operator vec<U, N>() const noexcept;
 ```
 
 Implicitly converts all the components of this [`vec`](../../headers/vec.md) to
-the component type of another `vec` with the same dimensions.
+the component type of another `vec` with the same component count.
 
 Depending on the current compiler configuration, this function may or may not
 produce warnings for conversions which lose precision. To suppress such
