@@ -1,15 +1,21 @@
-[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/`set_xyz`
-==========================================================================
+[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/`set_xyz, set_rgb`
+===================================================================================
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++
 // (vec<T, 4> only)
+
 template<typename T, int N>
 void vec<T, N>::set_xyz(const vec3<T>& xyz) noexcept;
 
-// (vec<T, 4> only)
+template<typename T, int N>
+void vec<T, N>::set_rgb(const vec3<T>& xyz) noexcept;
+
 template<typename T, int N>
 void vec<T, N>::set_xyz(const T& x, const T& y, const T& z) noexcept;
+
+template<typename T, int N>
+void vec<T, N>::set_rgb(const T& r, const T& g, const T& b) noexcept;
 ```
 
 Sets the first three components of this [`vec`](../../headers/vec.md), either

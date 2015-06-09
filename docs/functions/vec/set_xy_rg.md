@@ -1,15 +1,21 @@
-[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/`set_xy`
-=========================================================================
+[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/`set_xy, set_rg`
+=================================================================================
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++
 // (vec<T, 3> and vec<T, 4> only)
+
 template<typename T, int N>
 void vec<T, N>::set_xy(const vec2<T>& xy) noexcept;
 
-// (vec<T, 3> and vec<T, 4> only)
+template<typename T, int N>
+void vec<T, N>::set_rg(const vec2<T>& rg) noexcept;
+
 template<typename T, int N>
 void vec<T, N>::set_xy(const T& x, const T& y) noexcept;
+
+template<typename T, int N>
+void vec<T, N>::set_rg(const T& r, const T& g) noexcept;
 ```
 
 Sets the first two components of this [`vec`](../../headers/vec.md), either
