@@ -50,7 +50,7 @@ Member functions
 Operators
 ---------
 - [`lhs * rhs`](../operators/quat/multiplication.md)
-- [`q *= other`](../operators/quat/multiplication_assignment.md)
+- [`q *= other, v *= q`](../operators/quat/multiplication_assignment.md)
 - [`lhs == rhs`](../operators/quat/equality.md)
 - [`lhs != rhs`](../operators/quat/inequality.md)
 
