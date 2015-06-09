@@ -14,7 +14,8 @@ template<typename I>
 constexpr const T& quat<T>::operator[](const I& i) const noexcept;
 ```
 
-Returns a reference to component `i` of this [`quat`](../../headers/quat.md).
+Returns a reference to component `i` of this [`quat`](../../headers/quat.md). No
+bounds checking is performed.
 
 License
 -------
