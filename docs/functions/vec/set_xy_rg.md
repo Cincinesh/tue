@@ -13,8 +13,9 @@ void vec<T, N>::set_xy(const T& x, const T& y) noexcept;
 ```
 
 Sets the first two components of this [`vec`](../../headers/vec.md), either
-using a whole `vec2` or individual component values. This function is only
-available when `N > 2`.
+using a whole `vec2` or individual component values.
+
+These functions are only available when `N > 2`.
 
 License
 -------

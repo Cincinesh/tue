@@ -13,8 +13,9 @@ void vec<T, N>::set_xyz(const T& x, const T& y, const T& z) noexcept;
 ```
 
 Sets the first three components of this [`vec`](../../headers/vec.md), either
-using a whole `vec3` or individual component values. This function is only
-available when `N > 3`.
+using a whole `vec3` or individual component values.
+
+These functions are only available when `N > 3`.
 
 License
 -------
