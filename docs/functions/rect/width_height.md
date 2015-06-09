@@ -5,6 +5,9 @@ Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 ```c++
 template<typename P, typename S>
 constexpr S rect<P, S>::width() const noexcept;
+
+template<typename P, typename S>
+constexpr S rect<P, S>::height() const noexcept;
 ```
 
 Returns copies of the `width` and `height` components of this
