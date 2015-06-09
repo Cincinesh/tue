@@ -6,7 +6,7 @@ Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 template<typename T, int N>
 T* vec<T, T>::data() noexcept;
 
-template<typename T>
+template<typename T, int N>
 const T* vec<T, N>::data() const noexcept;
 ```
 

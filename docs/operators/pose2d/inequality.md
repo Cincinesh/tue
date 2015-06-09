@@ -5,7 +5,7 @@ Provided by header [`<tue/pose2d.hpp>`](../../headers/pose2d.md)
 ```c++
 // lhs != rhs
 template<typename T, typename U>
-constexpr bool operator==(const pose2d<T>& lhs, const pose2d<U>& rhs) noexcept;
+constexpr bool operator!=(const pose2d<T>& lhs, const pose2d<U>& rhs) noexcept;
 ```
 
 Returns `false` if the `translation`'s and `rotation`'s of two

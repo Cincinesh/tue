@@ -11,8 +11,8 @@ const T* mat<T, C, R>::data() const noexcept;
 ```
 
 Returns a pointer to this [`mat`](../../headers/mat.md)'s underlying component
-array. `mat` components are stored in column-major order. To access entire
-columns, use the [`columns`](columns.md) function instead.
+array. `mat` components are stored in column-major order. To view this `mat` as
+an array of entire columns, use the [`columns`](columns.md) function instead.
 
 License
 -------

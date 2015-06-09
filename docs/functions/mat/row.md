@@ -5,7 +5,7 @@ Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 ```c++
 template<typename T, int C, int R>
 template<typename J>
-constexpr vec<T, R> mat<T, C, R>::row(const J& j) const noexcept;
+constexpr vec<T, C> mat<T, C, R>::row(const J& j) const noexcept;
 ```
 
 Returns a copy of row `j` of this [`mat`](../../headers/mat.md) as a

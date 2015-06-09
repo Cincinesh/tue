@@ -13,7 +13,7 @@ explicit constexpr mat<T, C, R>::mat(const T& s) noexcept;
 
 // (3)
 template<typename T, int C, int R>
-template<OtherC, OtherR>
+template<int OtherC, int OtherR>
 explicit constexpr mat<T, C, R>::mat(
     const mat<T, OtherC, OtherR>& other) noexcept;
 

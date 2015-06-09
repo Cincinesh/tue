@@ -45,18 +45,18 @@ template<typename T, typename U, int C, int R, int X>
 constexpr auto operator*(
     const mat<T, X, R>& lhs,
     const mat<U, C, X>& rhs) noexcept
-    -> vec<decltype(lhs[0][0] & rhs[0][0]), C, R>;
+    -> vec<decltype(lhs[0][0] * rhs[0][0]), C, R>;
 ```
 
 Returns the result of matrix multiplication. The number of columns in the
 left-hand side argument must match the number of rows in the right-hand side
 argument.
 
-If the left-hand side argument is a [`vec`](../../headers/vec.md), it gets
-interpreted as a the row in a matrix with one row.
+If the left-hand side argument is a [`vec`](../../headers/vec.md), it will be
+interpreted as a matrix with one row.
 
-If the right-hand side argument is a [`vec`](../../headers/vec.md), it gets
-interpreted as a the column in a matrix with one column.
+If the right-hand side argument is a `vec`, it will be interpreted as a matrix
+with one column.
 
 To perform component-wise matrix multiplication, use
 [`tue::math::comp_mult`](../../functions/math/comp_mult.md) instead.

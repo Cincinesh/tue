@@ -11,8 +11,8 @@ const vec<T, R>* mat<T, C, R>::columns() const noexcept;
 ```
 
 Returns a pointer to this [`mat`](../../headers/mat.md)'s underlying column
-array in the form of [`vec`](../../headers/vec.md)'s. To access the individual
-components, use the [`data`](data.md) function instead.
+array in the form of [`vec`](../../headers/vec.md)'s. To view this `mat` as an
+array of individual components, use the [`data`](data.md) function instead.
 
 License
 -------
