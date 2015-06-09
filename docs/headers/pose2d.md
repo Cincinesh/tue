@@ -1,10 +1,10 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/pose2d.hpp>`
 ======================================================================
-This header provides the `pose2d` type and type aliases.
+This header provides the `tue::pose2d` type and type aliases.
 
 Types
 -----
-The `pose2d` type represents a 2-dimensional translation (represented by a
+The `tue::pose2d` type represents a 2-dimensional translation (represented by a
 [`vec2`](vec.md)) and rotation (represented by a scalar of counter-clockwise
 radians). It is declared as follows:
 

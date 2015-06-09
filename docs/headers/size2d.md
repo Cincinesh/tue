@@ -1,10 +1,10 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/size2d.hpp>`
 ======================================================================
-This header provides the `size2d` type and type aliases.
+This header provides the `tue::size2d` type and type aliases.
 
 Types
 -----
-The `size2d` type represents a 2-dimensional size (width and height) with a
+The `tue::size2d` type represents a 2-dimensional size (width and height) with a
 given component type. It is declared as follows:
 
 ```c++

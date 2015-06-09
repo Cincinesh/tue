@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/pre-increment
-=========================================================================
+[Tuesday](../../../README.md)/[`tue::mat`](../../headers/mat.md)/pre-increment
+==============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

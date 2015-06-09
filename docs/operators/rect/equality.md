@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`rect`](../../headers/rect.md)/equality operator
-===============================================================================
+[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/equality operator
+====================================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++

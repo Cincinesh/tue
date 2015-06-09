@@ -1,10 +1,10 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/pose3d.hpp>`
 ======================================================================
-This header provides the `pose3d` type and type aliases.
+This header provides the `tue::pose3d` type and type aliases.
 
 Types
 -----
-The `pose3d` type represents a 3-dimensional translation (represented by a
+The `tue::pose3d` type represents a 3-dimensional translation (represented by a
 [`vec3`](vec.md)) and rotation (represented by a [`quat`](quat.md)). It is
 declared as follows:
 

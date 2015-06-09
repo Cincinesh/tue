@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/bitwise XOR
-=======================================================================
+[Tuesday](../../../README.md)/[`tue::mat`](../../headers/mat.md)/bitwise XOR
+============================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

@@ -1,11 +1,11 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/size3d.hpp>`
 ======================================================================
-This header provides the `size3d` type and type aliases.
+This header provides the `tue::size3d` type and type aliases.
 
 Types
 -----
-The `size3d` type represents a 3-dimensional size (width, height, and depth)
-with a given component type. It is declared as follows:
+The `tue::size3d` type represents a 3-dimensional size (width, height, and
+depth) with a given component type. It is declared as follows:
 
 ```c++
 template<typename T>

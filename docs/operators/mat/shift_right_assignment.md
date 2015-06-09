@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`mat`](../../headers/mat.md)/bitwise shift right assignment
-==========================================================================================
+[Tuesday](../../../README.md)/[`tue::mat`](../../headers/mat.md)/bitwise shift right assignment
+===============================================================================================
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++

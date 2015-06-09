@@ -1,11 +1,11 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/rect.hpp>`
 ====================================================================
-This header provides the `rect` type and type aliases.
+This header provides the `tue::rect` type and type aliases.
 
 Types
 -----
-The `rect` type represents a 2-dimensional rectangle consisting of a position
-(represented by a [`vec2`](vec.md)) and size (represented by a
+The `tue::rect` type represents a 2-dimensional rectangle consisting of a
+position (represented by a [`vec2`](vec.md)) and size (represented by a
 [`size2d`](size2d.md)). It is declared as follows:
 
 ```c++

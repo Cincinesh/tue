@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`size2d`](../../headers/size2d.md)/inequality operator
-=====================================================================================
+[Tuesday](../../../README.md)/[`tue::size2d`](../../headers/size2d.md)/inequality operator
+==========================================================================================
 Provided by header [`<tue/size2d.hpp>`](../../headers/size2d.md)
 
 ```c++

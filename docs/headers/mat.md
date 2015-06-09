@@ -1,12 +1,12 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/mat.hpp>`
 ===================================================================
-This header provides the `mat` type, type aliases, and some related non-member
-functions.
+This header provides the `mtue::at` type, type aliases, and some related
+non-member functions.
 
 Types
 -----
-The `mat` type represents a 2-dimensional matrix with a given component type and
-dimensions. It is declared as follows:
+The `tue::mat` type represents a 2-dimensional matrix with a given component
+type and dimensions. It is declared as follows:
 
 ```c++
 template<typename T, int C, int R>

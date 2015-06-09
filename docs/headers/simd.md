@@ -14,8 +14,8 @@ Macros
 
 Types
 -----
-- [`boolx4`](../types/boolx4.md)
-- [`floatx4`](../types/floatx4.md)
+- [`tue::boolx4`](../types/boolx4.md)
+- [`tue::floatx4`](../types/floatx4.md)
 
 Functions
 ---------

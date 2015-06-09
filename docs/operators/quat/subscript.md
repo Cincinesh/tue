@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/subscript operator
-================================================================================
+[Tuesday](../../../README.md)/[`tue::quat`](../../headers/quat.md)/subscript operator
+=====================================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

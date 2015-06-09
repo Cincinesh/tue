@@ -1,12 +1,12 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/vec.hpp>`
 ===================================================================
-This header provides the `vec` type, type aliases, and some related non-member
-functions.
+This header provides the `tue::vec` type, type aliases, and some related
+non-member functions.
 
 Types
 -----
-The `vec` type represents an N-dimensional vector with a given component type
-and count. It is declared as follows:
+The `tue::vec` type represents an N-dimensional vector with a given component
+type and count. It is declared as follows:
 
 ```c++
 template<typename T, int N>

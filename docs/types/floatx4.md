@@ -2,7 +2,7 @@
 =========================================================
 Provided by header [`<tue/simd.hpp>`](../headers/simd.md)
 
-`floatx4` represents a 4-component array of single-precision floating-point
+`tue::floatx4` represents a 4-component array of single-precision floating-point
 values for use with SIMD intrinsics. Currently, only an SSE-accelerated version
 is provided where available with an un-accelerated compatibility fallback
 otherwise. It is declared as follows:

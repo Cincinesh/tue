@@ -1,11 +1,11 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/quat.hpp>`
 ====================================================================
-This header provides the `quat` type, type aliases, and some related non-member
-functions.
+This header provides the `tue::quat` type, type aliases, and some related
+non-member functions.
 
 Types
 -----
-The `quat` type represents a quaternion with a given component type. It is
+The `tue::quat` type represents a quaternion with a given component type. It is
 declared as follows:
 
 ```c++

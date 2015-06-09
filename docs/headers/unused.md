@@ -1,12 +1,11 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/unused.hpp>`
 ======================================================================
-This header provides the `unused` function template. It is defined as follows:
+This header provides the `tue::unused` function template. It is defined as
+follows:
 
 ```c++
-namespace tue {
-  template<typename... Args>
-  inline void unused(Args&&...) noexcept {}
-}
+template<typename... Args>
+inline void unused(Args&&...) noexcept {}
 ```
 
 The `unused` function template is useful for suppressing unused variable
