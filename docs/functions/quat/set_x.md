@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`quat`](../../headers/quat.md)/`set_x`
-=====================================================================
+[Tuesday](../../../README.md)/[`tue::quat`](../../headers/quat.md)/`set_x`
+==========================================================================
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++

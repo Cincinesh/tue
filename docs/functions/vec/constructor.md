@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`vec`](../../headers/vec.md)/constructor
-=======================================================================
+[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/constructor
+============================================================================
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++

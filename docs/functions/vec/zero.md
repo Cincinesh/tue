@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`vec`](../../headers/vec.md)/`zero` (static)
-===========================================================================
+[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/`zero` (static)
+================================================================================
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++

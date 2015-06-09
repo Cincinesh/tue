@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`rect`](../../headers/rect.md)/`set_position`
-============================================================================
+[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`set_position`
+=================================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++

@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`size3d`](../../headers/size3d.md)/constructor
-=============================================================================
+[Tuesday](../../../README.md)/[`tue::size3d`](../../headers/size3d.md)/constructor
+==================================================================================
 Provided by header [`<tue/size3d.hpp>`](../../headers/size3d.md)
 
 ```c++

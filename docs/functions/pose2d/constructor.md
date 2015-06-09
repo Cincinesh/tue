@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`pose2d`](../../headers/pose2d.md)/constructor
-=============================================================================
+[Tuesday](../../../README.md)/[`tue::pose2d`](../../headers/pose2d.md)/constructor
+==================================================================================
 Provided by header [`<tue/pose2d.hpp>`](../../headers/pose2d.md)
 
 ```c++

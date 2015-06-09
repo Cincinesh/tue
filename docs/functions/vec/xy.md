@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`vec`](../../headers/vec.md)/`xy`
-=================================================================
+[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/`xy`
+=====================================================================
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++

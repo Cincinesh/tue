@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`pose2d`](../../headers/pose2d.md)/`set_rotation`
-================================================================================
+[Tuesday](../../../README.md)/[`tue::pose2d`](../../headers/pose2d.md)/`set_rotation`
+=====================================================================================
 Provided by header [`<tue/pose2d.hpp>`](../../headers/pose2d.md)
 
 ```c++

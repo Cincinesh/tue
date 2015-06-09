@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`size2d`](../../headers/size2d.md)/`width`
-=========================================================================
+[Tuesday](../../../README.md)/[`tue::size2d`](../../headers/size2d.md)/`width`
+==============================================================================
 Provided by header [`<tue/size2d.hpp>`](../../headers/size2d.md)
 
 ```c++
