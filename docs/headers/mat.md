@@ -1,6 +1,6 @@
 [Tuesday](../../README.md)/[Headers](../headers.md)/`<tue/mat.hpp>`
 ===================================================================
-This header provides the `mtue::at` type, type aliases, and some related
+This header provides the `tue::mat` type, type aliases, and some related
 non-member functions.
 
 Types
