@@ -9,8 +9,9 @@ constexpr vec<T, N> vec<T, N>::w_axis() noexcept
 ```
 
 Creates a new [`vec`](../../headers/vec.md) with the fourth component set to `1`
-and all other components set to `0`. This function is only available when
-`N >= 4`.
+and all other components set to `0`.
+
+This function is only available when `N >= 4`.
 
 License
 -------
