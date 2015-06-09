@@ -15,8 +15,8 @@ vec3<T>& operator*=(vec3<T>& v, const quat<U>& q) noexcept;
 1. Calculates [`q * other`](multiplication.md), stores the result in `q`, and
    returns a reference to `q`.
 
-2. Calculates [`v * q`](multiplication.md), stores the result in `v`, and
-   returns a reference to `v`.
+2. Calculates [`v * q`](multiplication.md), stores the result in
+   [`vec3`](../../headers/vec.md) `v`, and returns a reference to `vec3` `v`.
 
 License
 -------

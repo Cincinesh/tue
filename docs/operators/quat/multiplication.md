@@ -27,8 +27,8 @@ constexpr auto operator*(
    normalized rotation quaternions, this could be interpreted conceptually as
    "rotation `lhs` followed by `rhs`."
 
-2. Rotates the [`vec3`](../../headers/vec.md) `v` by `quat` `q` (assuming `q`
-   is a normalized rotation quaternion).
+2. Returns the result of rotating [`vec3`](../../headers/vec.md) `v` by `quat`
+   `q` (assuming `q` is a normalized rotation quaternion).
 
 License
 -------
