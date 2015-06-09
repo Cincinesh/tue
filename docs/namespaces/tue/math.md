@@ -29,6 +29,7 @@ Functions
     - [`abs`](../../functions/math/abs.md)
 - Geometric functions
     - [`dot`](../../functions/math/dot.md)
+    - [`cross`](../../functions/math/cross.md)
     - [`length2`](../../functions/math/length2.md)
     - [`length`](../../functions/math/length.md)
     - [`normalize`](../../functions/math/normalize.md)

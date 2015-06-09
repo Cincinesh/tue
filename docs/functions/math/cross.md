@@ -1,6 +1,6 @@
-[Tuesday](../../../README.md)/[`tue::math`](../../namespaces/tue/math.md)/`abs`
-===============================================================================
-Provided by several headers.
+[Tuesday](../../../README.md)/[`tue::math`](../../namespaces/tue/math.md)/`cross`
+=================================================================================
+Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++
 // Code here
