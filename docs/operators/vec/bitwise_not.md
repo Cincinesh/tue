@@ -6,7 +6,7 @@ Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 // ~v
 template<typename T, int N>
 constexpr auto operator~(const vec<T, N>& v) noexcept
-    -> vec<decltype(~v[0]), C, R>;
+    -> vec<decltype(~v[0]), N>;
 ```
 
 Returns the result of performing a bitwise NOT on each and every component of
