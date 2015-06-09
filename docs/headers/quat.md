@@ -17,7 +17,7 @@ class quat;
 type.
 
 A `quat` can be viewed as an array of four scalar components (`x`, `y`, `z`, and
-`w`) or as a vector part and sclar part (`v` and `s`).
+`w`) or as a vector part and scalar part (`v` and `s`).
 
 Type aliases
 ------------
@@ -39,21 +39,13 @@ Member functions
     - [(conversion)](../functions/quat/conversion.md)
     - [`identity`](../functions/quat/identity.md) (static)
 - Accessors
-    - [`x`](../functions/quat/x.md)
-    - [`y`](../functions/quat/y.md)
-    - [`z`](../functions/quat/z.md)
-    - [`w`](../functions/quat/w.md)
+    - [`x, y, z, w`](../functions/quat/xyzw.md)
+    - [`v, s`](../functions/quat/vs.md)
     - [`q[i]`](../operators/quat/subscript.md)
     - [`data`](../functions/quat/data.md)
-    - [`v`](../functions/quat/v.md)
-    - [`s`](../functions/quat/s.md)
 - Modifiers
-    - [`set_x`](../functions/quat/set_x.md)
-    - [`set_y`](../functions/quat/set_y.md)
-    - [`set_z`](../functions/quat/set_z.md)
-    - [`set_w`](../functions/quat/set_w.md)
-    - [`set_v`](../functions/quat/set_v.md)
-    - [`set_s`](../functions/quat/set_s.md)
+    - [`set_x, set_y, set_z, set_w`](../functions/quat/set_xyzw.md)
+    - [`set_v, set_s`](../functions/quat/set_vs.md)
 
 Operators
 ---------
