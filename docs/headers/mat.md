@@ -126,7 +126,7 @@ Operators
 - [`lhs >> rhs`](../operators/mat/shift_right.md)
 - [`m += other`](../operators/mat/addition_assignment.md)
 - [`m -= other`](../operators/mat/subtraction_assignment.md)
-- [`m *= other`](../operators/mat/multiplication_assignment.md)
+- [`m *= other, v *= m`](../operators/mat/multiplication_assignment.md)
 - [`m /= other`](../operators/mat/division_assignment.md)
 - [`m %= other`](../operators/mat/modulo_assignment.md)
 - [`m &= other`](../operators/mat/bitwise_and_assignment.md)

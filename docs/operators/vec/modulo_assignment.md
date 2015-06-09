@@ -1,5 +1,5 @@
-[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/division modulo
-================================================================================
+[Tuesday](../../../README.md)/[`tue::vec`](../../headers/vec.md)/modulo assignment
+==================================================================================
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++
