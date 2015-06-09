@@ -16,7 +16,7 @@ template<typename T>
 void quat<T>::set_w(const T& w) noexcept;
 ```
 
-Sets the first, second, third, and fourth components respectively of this
+Sets the first, second, third, and fourth components of this
 [`quat`](../../headers/quat.md).
 
 Aliases for the same components can also be modified via
