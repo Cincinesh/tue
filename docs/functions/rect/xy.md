@@ -1,14 +1,20 @@
-[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`y`
+[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`x`
 ======================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++
 template<typename P, typename S>
+constexpr P rect<P, S>::x() const noexcept;
+
+template<typename P, typename S>
 constexpr P rect<P, S>::y() const noexcept;
 ```
 
-Returns a copy of the `y` component this [`rect`](../../headers/rect.md)'s
-[`position`](position.md) component.
+Returns copies of the `x` and `y` components this
+[`rect`](../../headers/rect.md)'s [`position`](position.md) component.
+
+To access both `position` components in one function call, use
+[`position`](position.md) instead.
 
 License
 -------

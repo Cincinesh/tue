@@ -1,14 +1,20 @@
-[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`set_y`
+[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`set_x`
 ==========================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++
 template<typename P, typename S>
+void rect<P, S>::set_x(const P& x) noexcept;
+
+template<typename P, typename S>
 void rect<P, S>::set_y(const P& y) noexcept;
 ```
 
-Sets the `y` component of this [`rect`](../../headers/rect.md)'s
+Sets the `x` and `y` components of this [`rect`](../../headers/rect.md)'s
 [`position`](set_position.md) component.
+
+To set both components in one function call, use
+[`set_position`](set_position.md) instead.
 
 License
 -------

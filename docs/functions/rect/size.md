@@ -10,6 +10,9 @@ constexpr size2d<S> rect<P, S>::size() const noexcept;
 Returns a copy of this [`rect`](../../headers/rect.md)'s `size` component
 (represented by a [`size2d`](../../headers/size2d.md)).
 
+To access `size` components individually, use [`width, height`](width_height.md)
+instead.
+
 License
 -------
 Copyright Jo Bates 2015.

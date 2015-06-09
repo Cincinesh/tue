@@ -1,14 +1,17 @@
-[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`height`
-===========================================================================
+[Tuesday](../../../README.md)/[`tue::rect`](../../headers/rect.md)/`width`
+==========================================================================
 Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++
 template<typename P, typename S>
-constexpr S rect<P, S>::height() const noexcept;
+constexpr S rect<P, S>::width() const noexcept;
 ```
 
-Returns a copy of the `height` component of this
+Returns copies of the `width` and `height` components of this
 [`rect`](../../headers/rect.md)'s [`size`](size.md) component.
+
+To access both `size` components in one function call, use [`size`](size.md)
+instead.
 
 License
 -------

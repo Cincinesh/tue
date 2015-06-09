@@ -5,10 +5,16 @@ Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 ```c++
 template<typename P, typename S>
 void rect<P, S>::set_width(const S& width) noexcept;
+
+template<typename P, typename S>
+void rect<P, S>::set_height(const S& height) noexcept;
 ```
 
-Sets the `width` component of this [`rect`](../../headers/rect.md)'s
-[`size`](set_size.md) component.
+Sets the `width` and `height` components of this
+[`rect`](../../headers/rect.md)'s [`size`](set_size.md) component.
+
+To set both components in one function call, use [`set_size`](set_size.md)
+instead.
 
 License
 -------

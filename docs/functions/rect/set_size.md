@@ -13,6 +13,9 @@ void rect<P, S>::set_size(const S& width, const S& height) noexcept;
 Sets the `size` component of this [`rect`](../../headers/rect.md) either using a
 whole [`size2d`](../../headers/size2d.md) or individual component values.
 
+To set `size` components individually, use
+[`set_width, set_height`](set_width_height.md) instead.
+
 License
 -------
 Copyright Jo Bates 2015.

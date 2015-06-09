@@ -10,6 +10,8 @@ constexpr vec2<P> rect<P, S>::position() const noexcept;
 Returns a copy of this [`rect`](../../headers/rect.md)'s `position` component
 (represented by a [`vec2`](../../headers/vec.md)).
 
+To access `position` components individually, use [`x, y`](xy.md) instead.
+
 License
 -------
 Copyright Jo Bates 2015.

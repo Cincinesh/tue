@@ -13,6 +13,9 @@ void rect<P, S>::set_position(const P& x, const P& y) noexcept;
 Sets the `position` component of this [`rect`](../../headers/rect.md) either
 using a whole [`vec2`](../../headers/vec.md) or individual component values.
 
+To set `position` components individually, use [`set_x, set_y`](set_xy.md)
+instead.
+
 License
 -------
 Copyright Jo Bates 2015.
