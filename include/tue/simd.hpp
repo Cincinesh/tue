@@ -18,11 +18,12 @@
 #endif
 
 #if defined(TUE_SSE)
+#include <cstdint>
 #include <xmmintrin.h>
 
 namespace tue {
   namespace detail_ {
-    inline __m128 binary_m128(unsigned int value) noexcept {
+    inline __m128 binary_m128(std::uint32_t value) noexcept {
       return _mm_load1_ps(reinterpret_cast<const float*>(&value));
     }
   }

@@ -10,23 +10,23 @@
 namespace tue {
 
 enum bool8 : std::uint8_t {
-  true8 = 0xFFu,
-  false8 = 0x00u,
+  true8 = UINT8_C(0xFF),
+  false8 = UINT8_C(0x00),
 };
 
 enum bool16 : std::uint16_t {
-  true16 = 0xFFFFu,
-  false16 = 0x0000u,
+  true16 = UINT16_C(0xFFFF),
+  false16 = UINT16_C(0x0000),
 };
 
 enum bool32 : std::uint32_t {
-  true32 = 0xFFFFFFFFul,
-  false32 = 0x00000000ul,
+  true32 = UINT32_C(0xFFFFFFFF),
+  false32 = UINT32_C(0x00000000),
 };
 
 enum bool64 : std::uint64_t {
-  true64 = 0xFFFFFFFFFFFFFFFFull,
-  false64 = 0x0000000000000000ull,
+  true64 = UINT64_C(0xFFFFFFFFFFFFFFFF),
+  false64 = UINT64_C(0x0000000000000000),
 };
 
 }

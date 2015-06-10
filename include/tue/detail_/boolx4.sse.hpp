@@ -5,7 +5,10 @@
 
 #pragma once
 
+#include <cstdint>
 #include <xmmintrin.h>
+
+#include "../simd.hpp"
 
 namespace tue {
 
@@ -48,7 +51,7 @@ public:
   }
 
   boolx4 operator~() const noexcept {
-    return _mm_xor_ps(underlying_, detail_::binary_m128(~0u));
+    return _mm_xor_ps(underlying_, detail_::binary_m128(~UINT32_C(0)));
   }
 
   boolx4 operator&(const boolx4& other) const noexcept {

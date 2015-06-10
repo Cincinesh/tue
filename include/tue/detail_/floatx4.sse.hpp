@@ -29,7 +29,9 @@
 
 #pragma once
 
+#include <cstdint>
 #include <xmmintrin.h>
+
 #include "../simd.hpp"
 
 #ifdef TUE_SSE2
@@ -94,7 +96,7 @@ public:
   }
 
   floatx4 operator-() const noexcept {
-    return _mm_xor_ps(underlying_, detail_::binary_m128(0x80000000u));
+    return _mm_xor_ps(underlying_, detail_::binary_m128(UINT32_C(0x80000000)));
   }
 
   floatx4 operator+(const floatx4& other) const noexcept {
@@ -182,10 +184,11 @@ namespace math
     sign_bit_sin = x;
 
     // Take the absolute value
-    x = _mm_and_ps(x, detail_::binary_m128(~0x80000000u));
+    x = _mm_and_ps(x, detail_::binary_m128(~UINT32_C(0x80000000)));
 
     // Extract the sign bit (upper one)
-    sign_bit_sin = _mm_and_ps(sign_bit_sin, detail_::binary_m128(0x80000000u));
+    sign_bit_sin = _mm_and_ps(
+        sign_bit_sin, detail_::binary_m128(UINT32_C(0x80000000)));
 
     // Scale by 4/Pi
     y = _mm_mul_ps(x, _mm_set_ps1(1.27323954473516f));
@@ -439,7 +442,7 @@ namespace math
     __m128 invalid_mask = _mm_cmple_ps(x, _mm_setzero_ps());
 
     // Cut off denormalized stuff
-    x = _mm_max_ps(x, detail_::binary_m128(0x00800000u));
+    x = _mm_max_ps(x, detail_::binary_m128(UINT32_C(0x00800000)));
 
 #ifndef TUE_SSE2
     // Part 1: x = frexpf(x, &e);
@@ -450,7 +453,7 @@ namespace math
     emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
 #endif
     // Keep only the fractional part
-    x = _mm_and_ps(x, detail_::binary_m128(~0x7F800000u));
+    x = _mm_and_ps(x, detail_::binary_m128(~UINT32_C(0x7F800000)));
     x = _mm_or_ps(x, _mm_set_ps1(0.5f));
 
 #ifndef TUE_SSE2
@@ -540,7 +543,7 @@ namespace math
   }
 
   inline floatx4 abs(const floatx4& v) noexcept {
-    return _mm_and_ps(v, detail_::binary_m128(0x7FFFFFFFu));
+    return _mm_and_ps(v, detail_::binary_m128(UINT32_C(0x7FFFFFFF)));
   }
 
   inline floatx4 dot(const floatx4& lhs, const floatx4& rhs) noexcept {
@@ -556,7 +559,8 @@ namespace math
   }
 
   inline floatx4 normalize(const floatx4& v) noexcept {
-    const auto sign_bit = _mm_and_ps(v, detail_::binary_m128(0x80000000u));
+    const auto sign_bit = _mm_and_ps(
+        v, detail_::binary_m128(UINT32_C(0x80000000)));
     return _mm_or_ps(sign_bit, floatx4(1.0f));
   }
 
