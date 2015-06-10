@@ -4,6 +4,10 @@
 
 Types
 -----
+- [`bool8`](../headers/bool.md)
+- [`bool16`](../headers/bool.md)
+- [`bool32`](../headers/bool.md)
+- [`bool64`](../headers/bool.md)
 - [`boolx4`](../types/boolx4.md)
 - [`floatx4`](../types/floatx4.md)
 - [`mat`](../headers/mat.md)

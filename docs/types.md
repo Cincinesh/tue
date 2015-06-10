@@ -1,5 +1,9 @@
 [Tuesday](../README.md)/Types
 =============================
+- [`tue::bool8`](headers/bool.md)
+- [`tue::bool16`](headers/bool.md)
+- [`tue::bool32`](headers/bool.md)
+- [`tue::bool64`](headers/bool.md)
 - [`tue::boolx4`](types/boolx4.md)
 - [`tue::floatx4`](types/floatx4.md)
 - [`tue::mat`](headers/mat.md)
