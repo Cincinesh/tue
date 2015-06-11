@@ -39,6 +39,13 @@ TEST_CASE(implicit_conversion_operator) {
   test_assert(dsize.depth() == static_cast<double>(fsize.depth()));
 }
 
+TEST_CASE(zero) {
+  CONST_OR_CONSTEXPR fsize3d size = fsize3d::zero();
+  test_assert(size.width() == 0.0f);
+  test_assert(size.height() == 0.0f);
+  test_assert(size.depth() == 0.0f);
+}
+
 TEST_CASE(width) {
   CONST_OR_CONSTEXPR fsize3d size(1.1f, 2.2f, 3.3f);
   CONST_OR_CONSTEXPR float width = size.width();

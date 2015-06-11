@@ -42,6 +42,10 @@ public:
     return size2d<U>(width_, height_);
   }
 
+  static constexpr size2d zero() noexcept {
+    return { T(0), T(0) };
+  }
+
   constexpr T width() const noexcept {
     return width_;
   }

@@ -35,6 +35,7 @@ Member functions
 - Object creation
     - [(constructor)](../functions/size3d/constructor.md)
     - [(conversion)](../functions/size3d/conversion.md)
+    - [zero](../functions/size3d/zero.md) (static)
 - Accessors
     - [`width`](../functions/size3d/width.md)
     - [`height`](../functions/size3d/height.md)

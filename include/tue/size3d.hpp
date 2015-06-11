@@ -48,6 +48,10 @@ public:
     return size3d<U>(width_, height_, depth_);
   }
 
+  static constexpr size3d zero() noexcept {
+    return { T(0), T(0), T(0) };
+  }
+
   constexpr T width() const noexcept {
     return width_;
   }

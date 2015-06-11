@@ -36,6 +36,12 @@ TEST_CASE(implicit_conversion_operator) {
   test_assert(dsize.height() == static_cast<double>(fsize.height()));
 }
 
+TEST_CASE(zero) {
+  CONST_OR_CONSTEXPR fsize2d size = fsize2d::zero();
+  test_assert(size.width() == 0.0f);
+  test_assert(size.height() == 0.0f);
+}
+
 TEST_CASE(width) {
   CONST_OR_CONSTEXPR fsize2d size(1.1f, 2.2f);
   CONST_OR_CONSTEXPR float width = size.width();
