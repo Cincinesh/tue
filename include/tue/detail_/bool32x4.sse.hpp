@@ -10,6 +10,10 @@
 #include "../bool.hpp"
 #include "../simd.hpp"
 
+#ifdef TUE_SSE2
+#include <emmintrin.h>
+#endif
+
 namespace tue {
 
 template<>
@@ -45,6 +49,16 @@ public:
   operator __m128() const noexcept {
     return underlying_;
   }
+
+#ifdef TUE_SSE2
+  simd(__m128i underlying) noexcept
+    : underlying_(_mm_castsi128_ps(underlying)) {
+  }
+
+  operator __m128i() const noexcept {
+    return _mm_castps_si128(underlying_);
+  }
+#endif
 
   static bool32x4 load(const bool32* array) noexcept {
     return _mm_load_ps(reinterpret_cast<const float*>(array));
