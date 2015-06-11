@@ -188,6 +188,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pose2d", "pose2d", "{284E7F
 	ProjectSection(SolutionItems) = preProject
 		docs\functions\pose2d\constructor.md = docs\functions\pose2d\constructor.md
 		docs\functions\pose2d\conversion.md = docs\functions\pose2d\conversion.md
+		docs\functions\pose2d\identity.md = docs\functions\pose2d\identity.md
 		docs\functions\pose2d\rotation.md = docs\functions\pose2d\rotation.md
 		docs\functions\pose2d\set_rotation.md = docs\functions\pose2d\set_rotation.md
 		docs\functions\pose2d\set_translation.md = docs\functions\pose2d\set_translation.md
@@ -198,6 +199,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pose3d", "pose3d", "{CBFBA7
 	ProjectSection(SolutionItems) = preProject
 		docs\functions\pose3d\constructor.md = docs\functions\pose3d\constructor.md
 		docs\functions\pose3d\conversion.md = docs\functions\pose3d\conversion.md
+		docs\functions\pose3d\identity.md = docs\functions\pose3d\identity.md
 		docs\functions\pose3d\rotation.md = docs\functions\pose3d\rotation.md
 		docs\functions\pose3d\set_rotation.md = docs\functions\pose3d\set_rotation.md
 		docs\functions\pose3d\set_translation.md = docs\functions\pose3d\set_translation.md
@@ -238,6 +240,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "size2d", "size2d", "{274D13
 		docs\functions\size2d\set_height.md = docs\functions\size2d\set_height.md
 		docs\functions\size2d\set_width.md = docs\functions\size2d\set_width.md
 		docs\functions\size2d\width.md = docs\functions\size2d\width.md
+		docs\functions\size2d\zero.md = docs\functions\size2d\zero.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "size3d", "size3d", "{5E191EA1-727B-4A3D-906E-EF5E6000B569}"
@@ -250,6 +253,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "size3d", "size3d", "{5E191E
 		docs\functions\size3d\set_height.md = docs\functions\size3d\set_height.md
 		docs\functions\size3d\set_width.md = docs\functions\size3d\set_width.md
 		docs\functions\size3d\width.md = docs\functions\size3d\width.md
+		docs\functions\size3d\zero.md = docs\functions\size3d\zero.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vec", "vec", "{4975D012-C3E8-4711-BF1D-166E70628194}"
