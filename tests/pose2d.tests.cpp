@@ -44,6 +44,12 @@ TEST_CASE(implicit_conversion_operator) {
   test_assert(dpose.rotation() == static_cast<double>(fpose.rotation()));
 }
 
+TEST_CASE(identity) {
+  CONST_OR_CONSTEXPR auto pose = fpose2d::identity();
+  test_assert(pose.translation() == fvec2::zero());
+  test_assert(pose.rotation() == 0.0f);
+}
+
 TEST_CASE(translation) {
   CONST_OR_CONSTEXPR fpose2d pose(fv21, f1);
   CONST_OR_CONSTEXPR fvec2 translation = pose.translation();

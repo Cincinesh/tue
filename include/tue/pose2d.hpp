@@ -45,6 +45,10 @@ public:
     return { translation_, rotation_ };
   }
 
+  static constexpr pose2d identity() noexcept {
+    return { vec2<T>::zero(), T(0) };
+  }
+
   constexpr vec2<T> translation() const noexcept {
     return translation_;
   }

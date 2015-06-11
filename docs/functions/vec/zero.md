@@ -4,7 +4,7 @@ Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++
 template<typename T, int N>
-constexpr vec<T, N> vec<T, N>::zero() noexcept
+constexpr vec<T, N> vec<T, N>::zero() noexcept;
 ```
 
 Creates a new [`vec`](../../headers/vec.md) with each and every component set to

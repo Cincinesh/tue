@@ -49,6 +49,12 @@ TEST_CASE(implicit_conversion_operator) {
   test_assert(dpose.rotation() == dquat(fpose.rotation()));
 }
 
+TEST_CASE(identity) {
+  CONST_OR_CONSTEXPR auto pose = fpose3d::identity();
+  test_assert(pose.translation() == fvec3::zero());
+  test_assert(pose.rotation() == fquat::identity());
+}
+
 TEST_CASE(translation) {
   CONST_OR_CONSTEXPR fpose3d pose(fv31, fq1);
   CONST_OR_CONSTEXPR fvec3 translation = pose.translation();

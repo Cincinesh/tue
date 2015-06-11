@@ -4,7 +4,7 @@ Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
 template<typename T, int C, int R>
-constexpr mat<T, C, R> mat<T, C, R>::identity() noexcept
+constexpr mat<T, C, R> mat<T, C, R>::identity() noexcept;
 ```
 
 Creates a new [`mat`](../../headers/mat.md) with each component of the main

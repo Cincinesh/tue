@@ -5,7 +5,7 @@ Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 ```c++
 // (vec<T, 4> only)
 template<typename T, int N>
-constexpr vec<T, N> vec<T, N>::w_axis() noexcept
+constexpr vec<T, N> vec<T, N>::w_axis() noexcept;
 ```
 
 Creates a new [`vec`](../../headers/vec.md) with the fourth component set to `1`

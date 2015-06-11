@@ -46,6 +46,10 @@ public:
     return { translation_, rotation_ };
   }
 
+  static constexpr pose3d identity() noexcept {
+    return { vec3<T>::zero(), quat<T>::identity() };
+  }
+
   constexpr vec3<T> translation() const noexcept {
     return translation_;
   }

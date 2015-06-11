@@ -36,6 +36,7 @@ Member functions
 - Object creation
     - [(constructor)](../functions/pose2d/constructor.md)
     - [(conversion)](../functions/pose2d/conversion.md)
+    - [identity](../functions/pose2d/identity.md) (static)
 - Accessors
     - [`translation`](../functions/pose2d/translation.md)
     - [`rotation`](../functions/pose2d/rotation.md)
