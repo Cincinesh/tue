@@ -356,6 +356,10 @@ TEST_CASE(comp_mult) {
   test_assert(math::comp_mult(f41, f42) == f41 * f42);
 }
 
+TEST_CASE(transpose) {
+  test_assert(math::transpose(f41) == f41);
+}
+
 TEST_CASE(select) {
   test_assert(math::select(bool32x4(true32, false32, true32, false32), f41)
       == float32x4(f410, 0.0f, f412, 0.0f));

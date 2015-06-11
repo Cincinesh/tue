@@ -573,6 +573,10 @@ namespace math
     return lhs * rhs;
   }
 
+  inline float32x4 transpose(const float32x4& v) noexcept {
+    return v;
+  }
+
   inline float32x4 select(
       const bool32x4& condition,
       const float32x4& value) noexcept {

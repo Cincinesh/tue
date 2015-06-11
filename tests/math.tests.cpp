@@ -150,6 +150,14 @@ TEST_CASE(comp_mult) {
   test_assert(i == 123 * 456);
 }
 
+TEST_CASE(transpose) {
+  CONST_OR_CONSTEXPR auto f = math::transpose(1.23f);
+  test_assert(f == 1.23f);
+
+  CONST_OR_CONSTEXPR auto i = math::transpose(123);
+  test_assert(i == 123);
+}
+
 TEST_CASE(select) {
   CONST_OR_CONSTEXPR float f1 = math::select(true, 1.23f);
   CONST_OR_CONSTEXPR float f2 = math::select(false, 1.23f);

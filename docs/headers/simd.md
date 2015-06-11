@@ -61,6 +61,7 @@ Non-member functions
         - [`length`](../functions/math/length.md)
         - [`normalize`](../functions/math/normalize.md)
         - [`comp_mult`](../functions/math/comp_mult.md)
+        - [`transpose`](../functions/math/transpose.md)
     - Logical functions
         - [`select`](../functions/math/select.md)
         - [`less`](../functions/math/less.md)

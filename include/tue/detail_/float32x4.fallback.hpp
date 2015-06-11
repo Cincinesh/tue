@@ -196,8 +196,13 @@ namespace math
       const float32x4& v,
       float32x4& sin_result,
       float32x4& cos_result) noexcept {
-    sin_result = math::sin(v);
-    cos_result = math::cos(v);
+    const auto f = reinterpret_cast<const float*>(&v);
+    const auto sf = reinterpret_cast<float*>(&sin_result);
+    const auto cf = reinterpret_cast<float*>(&cos_result);
+    math::sincos(f[0], sf[0], cf[0]);
+    math::sincos(f[1], sf[1], cf[1]);
+    math::sincos(f[2], sf[2], cf[2]);
+    math::sincos(f[3], sf[3], cf[3]);
   }
 
   inline float32x4 exp(const float32x4& v) noexcept {
@@ -339,7 +344,24 @@ namespace math
   inline float32x4 comp_mult(
       const float32x4& lhs,
       const float32x4& rhs) noexcept {
-    return lhs * rhs;
+    const auto lf = reinterpret_cast<const float*>(&lhs);
+    const auto rf = reinterpret_cast<const float*>(&rhs);
+    return {
+      math::comp_mult(lf[0], rf[0]),
+      math::comp_mult(lf[1], rf[1]),
+      math::comp_mult(lf[2], rf[2]),
+      math::comp_mult(lf[3], rf[3]),
+    };
+  }
+
+  inline float32x4 transpose(const float32x4& v) noexcept {
+    const auto f = reinterpret_cast<const float*>(&v);
+    return {
+      math::transpose(f[0]),
+      math::transpose(f[1]),
+      math::transpose(f[2]),
+      math::transpose(f[3]),
+    };
   }
 
   inline float32x4 select(

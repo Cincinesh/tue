@@ -226,6 +226,12 @@ namespace math
   }
 
   template<typename T>
+  inline constexpr typename std::enable_if<std::is_arithmetic<T>::value,
+  T>::type transpose(T x) noexcept {
+    return x;
+  }
+
+  template<typename T>
   inline constexpr T select(
       bool condition,
       const T& value,

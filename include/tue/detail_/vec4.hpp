@@ -1043,6 +1043,11 @@ namespace math
     };
   }
 
+  template<typename T>
+  inline constexpr vec4<T> transpose(const vec4<T>& v) noexcept {
+    return v;
+  }
+
   template<typename T, typename U>
   inline constexpr auto select(
       const vec4<T>& condition,

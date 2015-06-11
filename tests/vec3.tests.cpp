@@ -837,6 +837,11 @@ TEST_CASE(comp_mult) {
   test_assert(v == fv31 * dv32);
 }
 
+TEST_CASE(transpose) {
+  CONST_OR_CONSTEXPR auto v = math::transpose(fv31);
+  test_assert(v == fv31);
+}
+
 TEST_CASE(select) {
   CONST_OR_CONSTEXPR fvec3 v1 =
       math::select(bvec3(true, false, true), fv31);
