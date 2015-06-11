@@ -42,23 +42,42 @@ TEST_CASE(component_constructor) {
   test_assert(b[3] == false32);
 }
 
-/*#if defined(TUE_SSE)
+#if defined(TUE_SSE)
 TEST_CASE(underlying_converison_constructor) {
-  const __m128 underlying = _mm_setr_ps(1.1f, 2.2f, 3.3f, 4.4f);
-  const bool32x4 v(underlying);
-  test_assert(v == float32x4(1.1f, 2.2f, 3.3f, 4.4f));
+  const __m128 underlying1 = _mm_setr_ps(
+      detail_::binary_float(true32),
+      detail_::binary_float(true32),
+      detail_::binary_float(false32),
+      detail_::binary_float(false32));
+  const bool32x4 v1(underlying1);
+  test_assert(v1 == bool32x4(true32, true32, false32, false32));
+
+  const __m128 underlying2 = _mm_setr_ps(
+      detail_::binary_float(true32),
+      detail_::binary_float(false32),
+      detail_::binary_float(true32),
+      detail_::binary_float(false32));
+  const bool32x4 v2(underlying2);
+  test_assert(v2 == bool32x4(true32, false32, true32, false32));
 }
 
 TEST_CASE(underlying_converison_operator) {
-  const __m128 underlying = f41;
-  float result[4];
-  _mm_storeu_ps(result, underlying);
-  test_assert(result[0] == f410);
-  test_assert(result[1] == f411);
-  test_assert(result[2] == f412);
-  test_assert(result[3] == f413);
+  const __m128 underlying1 = bool32x4(true32, true32, false32, false32);
+  bool32 result[4];
+  _mm_storeu_ps(reinterpret_cast<float*>(result), underlying1);
+  test_assert(result[0] == true32);
+  test_assert(result[1] == true32);
+  test_assert(result[2] == false32);
+  test_assert(result[3] == false32);
+
+  const __m128 underlying2 = bool32x4(true32, false32, true32, false32);
+  _mm_storeu_ps(reinterpret_cast<float*>(result), underlying2);
+  test_assert(result[0] == true32);
+  test_assert(result[1] == false32);
+  test_assert(result[2] == true32);
+  test_assert(result[3] == false32);
 }
-#endif*/
+#endif
 
 TEST_CASE(load) {
   alignas(16) const bool32 array1[4] = { true32, true32, false32, false32 };

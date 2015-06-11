@@ -56,7 +56,7 @@ TEST_CASE(component_constructor) {
   test_assert(f[3] == 4.4f);
 }
 
-/*#if defined(TUE_SSE)
+#if defined(TUE_SSE)
 TEST_CASE(underlying_converison_constructor) {
   const __m128 underlying = _mm_setr_ps(1.1f, 2.2f, 3.3f, 4.4f);
   const float32x4 v(underlying);
@@ -72,7 +72,7 @@ TEST_CASE(underlying_converison_operator) {
   test_assert(result[2] == f412);
   test_assert(result[3] == f413);
 }
-#endif*/
+#endif
 
 TEST_CASE(zero) {
   const auto v = float32x4::zero();
