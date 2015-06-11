@@ -5,6 +5,10 @@
 
 #pragma once
 
+static_assert(sizeof(float) == 4, "float isn't 32-bit");
+
+#include <cstdint>
+
 #include "bool.hpp"
 
 #if defined(__SSE__) \
