@@ -44,13 +44,9 @@ namespace tue {
   }
 }
 
-#include "detail_/bool32x4.fallback.hpp"
-#include "detail_/float32x4.fallback.hpp"
-#include "detail_/boolx4.sse.hpp"
-#include "detail_/floatx4.sse.hpp"
+#include "detail_/bool32x4.sse.hpp"
+#include "detail_/float32x4.sse.hpp"
 #else
 #include "detail_/bool32x4.fallback.hpp"
 #include "detail_/float32x4.fallback.hpp"
-#include "detail_/boolx4.fallback.hpp"
-#include "detail_/floatx4.fallback.hpp"
 #endif
