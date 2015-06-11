@@ -9,52 +9,48 @@ combining and manipulating these types, as well as some other common
 mathematical functions. It was written to match the style of the C++ Standard
 Library and uses modern C++ features (i.e., C++14) extensively.
 
-
 Requirements
 ------------
 
 TODO
-
 
 Installation
 ------------
 
 TODO
 
-
 API Documentation
 -----------------
 - [Headers](docs/headers.md)
-    - [`<tue/bool.hpp>`](headers/bool.md)
-    - [`<tue/mat.hpp>`](headers/mat.md)
-    - [`<tue/math.hpp>`](headers/math.md)
-    - [`<tue/pose2d.hpp>`](headers/pose2d.md)
-    - [`<tue/pose3d.hpp>`](headers/pose3d.md)
-    - [`<tue/quat.hpp>`](headers/quat.md)
-    - [`<tue/rect.hpp>`](headers/rect.md)
-    - [`<tue/simd.hpp>`](headers/simd.md)
-    - [`<tue/size2d.hpp>`](headers/size2d.md)
-    - [`<tue/size3d.hpp>`](headers/size3d.md)
-    - [`<tue/unused.hpp>`](headers/unused.md)
-    - [`<tue/vec.hpp>`](headers/vec.md)
+    - [`<tue/bool.hpp>`](docs/headers/bool.md)
+    - [`<tue/mat.hpp>`](docs/headers/mat.md)
+    - [`<tue/math.hpp>`](docs/headers/math.md)
+    - [`<tue/pose2d.hpp>`](docs/headers/pose2d.md)
+    - [`<tue/pose3d.hpp>`](docs/headers/pose3d.md)
+    - [`<tue/quat.hpp>`](docs/headers/quat.md)
+    - [`<tue/rect.hpp>`](docs/headers/rect.md)
+    - [`<tue/simd.hpp>`](docs/headers/simd.md)
+    - [`<tue/size2d.hpp>`](docs/headers/size2d.md)
+    - [`<tue/size3d.hpp>`](docs/headers/size3d.md)
+    - [`<tue/unused.hpp>`](docs/headers/unused.md)
+    - [`<tue/vec.hpp>`](docs/headers/vec.md)
 - [Namespaces](docs/namespaces.md)
-    - [`tue`](namespaces/tue.md)
-        - [`tue::math`](namespaces/tue/math.md)
+    - [`tue`](docs/namespaces/tue.md)
+        - [`tue::math`](docs/namespaces/tue/math.md)
 - [Types](docs/types.md)
-    - [`tue::bool8`](headers/bool.md)
-    - [`tue::bool16`](headers/bool.md)
-    - [`tue::bool32`](headers/bool.md)
-    - [`tue::bool64`](headers/bool.md)
-    - [`tue::mat`](headers/mat.md)
-    - [`tue::pose2d`](headers/pose2d.md)
-    - [`tue::pose3d`](headers/pose3d.md)
-    - [`tue::quat`](headers/quat.md)
-    - [`tue::rect`](headers/rect.md)
-    - [`tue::simd`](headers/simd.md)
-    - [`tue::size2d`](headers/size2d.md)
-    - [`tue::size3d`](headers/size3d.md)
-    - [`tue::vec`](headers/vec.md)
-
+    - [`tue::bool8`](docs/headers/bool.md)
+    - [`tue::bool16`](docs/headers/bool.md)
+    - [`tue::bool32`](docs/headers/bool.md)
+    - [`tue::bool64`](docs/headers/bool.md)
+    - [`tue::mat`](docs/headers/mat.md)
+    - [`tue::pose2d`](docs/headers/pose2d.md)
+    - [`tue::pose3d`](docs/headers/pose3d.md)
+    - [`tue::quat`](docs/headers/quat.md)
+    - [`tue::rect`](docs/headers/rect.md)
+    - [`tue::simd`](docs/headers/simd.md)
+    - [`tue::size2d`](docs/headers/size2d.md)
+    - [`tue::size3d`](docs/headers/size3d.md)
+    - [`tue::vec`](docs/headers/vec.md)
 
 License
 -------
