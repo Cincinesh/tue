@@ -180,8 +180,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="tests\boolx4.tests.cpp" />
-    <ClCompile Include="tests\floatx4.tests.cpp" />
+    <ClCompile Include="tests\bool.tests.cpp" />
+    <ClCompile Include="tests\bool32x4.tests.cpp" />
+    <ClCompile Include="tests\float32x4.tests.cpp" />
     <ClCompile Include="tests\mat2xR.tests.cpp" />
     <ClCompile Include="tests\mat3xR.tests.cpp" />
     <ClCompile Include="tests\mat4xR.tests.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="tests\quat.tests.cpp" />
     <ClCompile Include="tests\rect.tests.cpp" />
     <ClCompile Include="tests\size2d.tests.cpp" />
+    <ClCompile Include="tests\size3d.tests.cpp" />
     <ClCompile Include="tests\vec2.tests.cpp" />
     <ClCompile Include="tests\vec3.tests.cpp" />
     <ClCompile Include="tests\vec4.tests.cpp" />
