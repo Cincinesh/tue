@@ -6,7 +6,6 @@
 #include <tue/simd.hpp>
 #include <mon/test_case.hpp>
 
-#include <cstring>
 #include <tue/math.hpp>
 #include <tue/unused.hpp>
 
