@@ -14,11 +14,30 @@ Macros
 
 Types
 -----
-- [`tue::boolx4`](../types/boolx4.md)
-- [`tue::floatx4`](../types/floatx4.md)
+TODO
 
-Functions
+Type aliases
+------------
+TODO
+
+Member types
+------------
+TODO
+
+Member constants
+----------------
+TODO
+
+Member functions
+----------------
+TODO
+
+Operators
 ---------
+TODO
+
+Non-member functions
+--------------------
 - [`tue::math`](../namespaces/tue/math.md)
     - Trigonometric functions
         - [`sin`](../functions/math/sin.md)
