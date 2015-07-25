@@ -7,6 +7,7 @@
 
 #include "../mat.hpp"
 #include "../math.hpp"
+#include "../simd.hpp"
 #include "../vec.hpp"
 
 namespace tue {

@@ -7,6 +7,7 @@
 
 #include "../mat.hpp"
 #include "../math.hpp"
+#include "../simd.hpp"
 #include "../vec.hpp"
 
 namespace tue {
@@ -838,6 +839,20 @@ namespace math
       m.row(0),
       m.row(1),
       m.row(2),
+    };
+  }
+
+  template<typename T, typename U, int R>
+  inline constexpr auto select(
+      const T& condition,
+      const mat<U, 3, R>& value,
+      const mat<U, 3, R>& otherwise = mat<U, 3, R>::zero()) noexcept {
+    return mat<
+        decltype(math::select(condition, value[0][0], otherwise[0][0])),
+        3, R>{
+      math::select(condition, value[0], otherwise[0]),
+      math::select(condition, value[1], otherwise[1]),
+      math::select(condition, value[2], otherwise[2]),
     };
   }
 

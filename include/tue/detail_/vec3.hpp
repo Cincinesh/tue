@@ -6,6 +6,7 @@
 #pragma once
 
 #include "../math.hpp"
+#include "../simd.hpp"
 #include "../vec.hpp"
 
 namespace tue {
@@ -940,6 +941,18 @@ namespace math
   template<typename T>
   inline constexpr vec3<T> transpose(const vec3<T>& v) noexcept {
     return v;
+  }
+
+  template<typename T, typename U>
+  inline constexpr auto select(
+      const T& condition,
+      const vec3<U>& value,
+      const vec3<U>& otherwise = vec3<U>::zero()) noexcept {
+    return vec3<decltype(math::select(condition, value[0], otherwise[0]))>{
+      math::select(condition, value[0], otherwise[0]),
+      math::select(condition, value[1], otherwise[1]),
+      math::select(condition, value[2], otherwise[2]),
+    };
   }
 
   template<typename T, typename U>

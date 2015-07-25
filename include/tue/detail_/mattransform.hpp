@@ -10,6 +10,7 @@
 #include "../pose2d.hpp"
 #include "../pose3d.hpp"
 #include "../quat.hpp"
+#include "../simd.hpp"
 #include "../vec.hpp"
 
 namespace tue {
