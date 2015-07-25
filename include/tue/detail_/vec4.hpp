@@ -1151,7 +1151,7 @@ namespace math
   inline auto axis_angle(const vec3<T>& v) noexcept {
     using U = decltype(math::length(v));
     const U angle = math::length(v);
-    const auto axis = math::select(
+    const auto axis = math::select<decltype(math::not_equal(angle, U(0))), U>(
         math::not_equal(angle, U(0)),
         vec3<U>(v) / angle,
         vec3<U>::z_axis());
