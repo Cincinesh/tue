@@ -5,7 +5,7 @@ Provided by several headers.
 ```c++
 // (1)
 // #include <tue/math.hpp>
-// (T must be an arithmetic type, signed or unsigned)
+// (Where T is an arithmetic type, signed or unsigned)
 template<typename T>
 T abs(T x) noexcept;
 

@@ -10,6 +10,7 @@ template<typename T, typename U>
 constexpr decltype(T() * U()) comp_mult(T lhs, U rhs) noexcept;
 
 // (2)
+// #include <tue/vec.hpp>
 template<typename T, typename U, int N>
 constexpr auto comp_mult(
     const vec<T, N>& lhs,
