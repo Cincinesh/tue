@@ -12,7 +12,7 @@ constexpr decltype(T() * U()) dot(T lhs, U rhs) noexcept;
 // (2)
 // #include <tue/vec.hpp>
 template<typename T, typename U, int N>
-constexpr auto comp_mult(
+constexpr auto dot(
     const vec<T, N>& lhs,
     const vec<U, N>& rhs) noexcept
     -> vec<decltype(lhs[0] * rhs[0]), N>;
