@@ -7,19 +7,19 @@ Provided by several headers.
 // #include <tue/vec.hpp>
 template<typename T>
 auto axis_angle(const vec3<T>& v) noexcept
-  -> vec4<decltype(math::length(v))>;
+    -> vec4<decltype(math::length(v))>;
 
 // (2)
 // #include <tue/vec.hpp>
 template<typename T>
 auto axis_angle(const T& x, const T& y, const T& z) noexcept
-  -> vec4<decltype(math::length(x))>;
+    -> vec4<decltype(math::length(x))>;
 
 // (3)
 // #include <tue/quat.hpp>
 template<typename T>
 auto axis_angle(const quat<T>& q) noexcept
-  -> vec4<decltype(std::acos(q.s()))>;
+    -> vec4<decltype(std::acos(q.s()))>;
 ```
 
 1. Converts the given rotation vector to an axis-angle vector. For an

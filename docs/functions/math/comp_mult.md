@@ -3,10 +3,47 @@
 Provided by several headers.
 
 ```c++
-// Code here
+// (1)
+// #include <tue/math.hpp>
+// (T and U must both be arithmetic types)
+template<typename T, typename U>
+constexpr decltype(T() * U()) comp_mult(T lhs, U rhs) noexcept;
+
+// (2)
+template<typename T, typename U, int N>
+constexpr auto comp_mult(
+    const vec<T, N>& lhs,
+    const vec<U, N>& rhs) noexcept
+    -> vec<decltype(math::comp_mult(lhs[0], rhs[0])), N>;
+
+// (3)
+// #include <tue/mat.hpp>
+template<typename T, typename U, int C, int R>
+constexpr auto comp_mult(
+    const mat<T, C, R>& lhs,
+    const mat<U, C, R>& rhs) noexcept
+    -> vec<decltype(math::comp_mult(lhs[0], rhs[0])), N>;
+
+// (4)
+// #include <tue/simd.hpp>
+template<typename T, typename U, int N>
+constexpr auto comp_mult(
+    const simd<T, N>& lhs,
+    const simd<U, N>& rhs) noexcept
+    -> simd<decltype(math::comp_mult(T(), U())), N>;
 ```
 
-TODO.
+1. Returns the result of multiplying the two given numbers. This function is
+   provided for uniformity with the other overloads below.
+
+2. Returns the result of passing each corresponding pair of components from the
+   to given [vec](../../headers/vec.md)'s to `tue::math::comp_mult`.
+
+3. Returns the result of passing each corresponding pair of components from the
+   to given [mat](../../headers/mat.md)'s to `tue::math::comp_mult`.
+
+4. Returns the result of passing each corresponding pair of components from the
+   to given [simd](../../headers/simd.md)'s to `tue::math::comp_mult`.
 
 License
 -------
