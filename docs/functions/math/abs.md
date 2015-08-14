@@ -18,6 +18,11 @@ vec<T, N> abs(const vec<T, N>& v) noexcept;
 // #include <tue/mat.hpp>
 template<typename T, int C, int R>
 mat<T, C, R> abs(const mat<T, C, R>& m) noexcept;
+
+// (4)
+// #include <tue/simd.hpp>
+template<typename T, int N>
+simd<T, N> abs(const simd<T, N>& v) noexcept;
 ```
 
 1. Returns the absolute value of the given number. Unlike the C++ Standard
@@ -28,6 +33,9 @@ mat<T, C, R> abs(const mat<T, C, R>& m) noexcept;
 
 3. Returns the result of passing each component of the given
    [mat](../../headers/mat.md) to `tue::math::abs`.
+
+4. Returns the result of passing each component of the given
+   [simd](../../headers/simd.md) to `tue::math::abs`.
 
 License
 -------
