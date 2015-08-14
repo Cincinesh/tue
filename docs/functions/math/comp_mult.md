@@ -37,13 +37,13 @@ constexpr auto comp_mult(
    provided for uniformity with the other overloads below.
 
 2. Returns the result of passing each corresponding pair of components from the
-   to given [vec](../../headers/vec.md)'s to `tue::math::comp_mult`.
+   two given [vec](../../headers/vec.md)'s to `tue::math::comp_mult`.
 
 3. Returns the result of passing each corresponding pair of components from the
-   to given [mat](../../headers/mat.md)'s to `tue::math::comp_mult`.
+   two given [mat](../../headers/mat.md)'s to `tue::math::comp_mult`.
 
 4. Returns the result of passing each corresponding pair of components from the
-   to given [simd](../../headers/simd.md)'s to `tue::math::comp_mult`.
+   two given [simd](../../headers/simd.md)'s to `tue::math::comp_mult`.
 
 License
 -------
