@@ -3,10 +3,12 @@
 Provided by header [`<tue/quat.hpp>`](../../headers/quat.md)
 
 ```c++
-// Code here
+template<typename T>
+constexpr quat<T> conjugate(const quat<T>& q) noexcept;
 ```
 
-TODO.
+Returns the conjugate of the given [`quat`](../../headers/quat.md), i.e., another
+`quat` with the vector part negated, but the scalar part unchanged.
 
 License
 -------

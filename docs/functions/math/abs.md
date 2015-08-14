@@ -29,13 +29,13 @@ simd<T, N> abs(const simd<T, N>& v) noexcept;
    Library, this function also accepts and returns unsigned types.
 
 2. Returns the result of passing each component of the given
-   [vec](../../headers/vec.md) to `tue::math::abs`.
+   [`vec`](../../headers/vec.md) to `tue::math::abs`.
 
 3. Returns the result of passing each component of the given
-   [mat](../../headers/mat.md) to `tue::math::abs`.
+   [`mat`](../../headers/mat.md) to `tue::math::abs`.
 
 4. Returns the result of passing each component of the given
-   [simd](../../headers/simd.md) to `tue::math::abs`.
+   [`simd`](../../headers/simd.md) to `tue::math::abs`.
 
 License
 -------
