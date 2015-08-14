@@ -24,13 +24,13 @@ auto axis_angle(const quat<T>& q) noexcept
 
 1. Converts the given rotation vector to an axis-angle vector. For an
    explanation of the differences between the two, see the
-   (../../other/rotations.md)/Rotations page.
+   [Rotations](../../other/rotations.md) page.
 
 2. Same as (1) but with the rotation vector given as individual components.
 
 1. Converts the given rotation quaternion to an axis-angle vector. For an
    explanation of the differences between the two, see the
-   (../../other/rotations.md)/Rotations page.
+   [Rotations](../../other/rotations.md) page.
 
 License
 -------
