@@ -53,8 +53,9 @@ constexpr mat<T, 4, R>::mat(
 3. Constructs a new `mat` using the corresponding components of another `mat`
    with the same component type but different dimensions. Components in the new
    `mat` without corresponding components from the `other` `mat` will be
-   initialized to `0`. Components from the `other` `mat` without corresponding
-   components in the new `mat` will be ignored.
+   initialized to `1` along the main diagonal and `0` otherwise. Components from 
+   the `other` `mat` without corresponding components in the new `mat` will be
+   ignored.
 
 4. Explicitly converts the corresponding components of another `mat` with the
    same dimensions but a different component type to the new `mat`'s component
