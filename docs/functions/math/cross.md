@@ -3,10 +3,14 @@
 Provided by header [`<tue/vec.hpp>`](../../headers/vec.md)
 
 ```c++
-// Code here
+template<typename T, typename U>
+constexpr auto cross(
+    const vec3<T>& lhs,
+    const vec3<U>& rhs) noexcept
+    -> vec<decltype(lhs[1]*rhs[2] - lhs[2]*rhs[1]), 3>;
 ```
 
-TODO.
+Returns the cross-product of the two given [`vec`](../../headers/vec.md)'s.
 
 License
 -------

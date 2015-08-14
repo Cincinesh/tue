@@ -5,7 +5,7 @@ Provided by several headers.
 ```c++
 // (1)
 // #include <tue/math.hpp>
-// (T and U must both be arithmetic types)
+// (Where T and U are both arithmetic types)
 template<typename T, typename U>
 constexpr decltype(T() * U()) comp_mult(T lhs, U rhs) noexcept;
 

@@ -3,10 +3,25 @@
 Provided by several headers.
 
 ```c++
-// Code here
+// (1)
+// #include <tue/math.hpp>
+// (Where T and U are both arithmetic types)
+template<typename T, typename U>
+constexpr decltype(T() * U()) dot(T lhs, U rhs) noexcept;
+
+// (2)
+// #include <tue/vec.hpp>
+template<typename T, typename U, int N>
+constexpr auto comp_mult(
+    const vec<T, N>& lhs,
+    const vec<U, N>& rhs) noexcept
+    -> vec<decltype(lhs[0] * rhs[0]), N>;
 ```
 
-TODO.
+1. Returns the result of multiplying the two given numbers. This function is
+   provided for uniformity with the other overload below.
+
+2. Returns the dot-product of the two given [`vec`](../../headers/vec.md)'s.
 
 License
 -------
