@@ -22,7 +22,7 @@ template<typename T, typename U, int C, int R>
 constexpr auto comp_mult(
     const mat<T, C, R>& lhs,
     const mat<U, C, R>& rhs) noexcept
-    -> vec<decltype(math::comp_mult(lhs[0], rhs[0])), N>;
+    -> mat<decltype(math::comp_mult(lhs[0][0], rhs[0][0])), C, R>;
 
 // (4)
 // #include <tue/simd.hpp>

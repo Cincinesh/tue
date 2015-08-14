@@ -3,10 +3,49 @@
 Provided by several headers.
 
 ```c++
-// Code here
+// (1)
+// #include <tue/math.hpp>
+// (Where T is a floating-point type)
+template<typename T>
+T cos(T x) noexcept;
+
+// (2)
+// #include <tue/math.hpp>
+// (Where T is an integral type)
+template<typename T>
+double cos(T x) noexcept;
+
+// (3)
+// #include <tue/vec.hpp>
+template<typename T, int N>
+auto cos(const vec<T, N>& v) noexcept
+    -> vec<decltype(cos(v[0])), N>;
+
+// (4)
+// #include <tue/mat.hpp>
+template<typename T, int C, int R>
+auto cos(const mat<T, C, R>& m) noexcept
+    -> mat<decltype(cos(v[0])), C, R>;
+
+// (5)
+// #include <tue/simd.hpp>
+template<typename T, int N>
+auto cos(const simd<T, N>& v) noexcept
+    -> simd<decltype(cos(T())), N>;
 ```
 
-TODO.
+1. Returns the cosine of the given value.
+
+2. Converts the given value to a `double` and returns its cosine.
+
+3. Returns the result of passing each component of the given
+   [`vec`](../../headers/vec.md) to `tue::math::cos`.
+
+4. Returns the result of passing each component of the given
+   [`mat`](../../headers/mat.md) to `tue::math::cos`.
+
+5. Returns the result of passing each component of the given
+   [`simd`](../../headers/simd.md) to `tue::math::cos`.
 
 License
 -------
