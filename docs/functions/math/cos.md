@@ -19,19 +19,19 @@ double cos(T x) noexcept;
 // #include <tue/vec.hpp>
 template<typename T, int N>
 auto cos(const vec<T, N>& v) noexcept
-    -> vec<decltype(cos(v[0])), N>;
+    -> vec<decltype(math::cos(v[0])), N>;
 
 // (4)
 // #include <tue/mat.hpp>
 template<typename T, int C, int R>
 auto cos(const mat<T, C, R>& m) noexcept
-    -> mat<decltype(cos(v[0])), C, R>;
+    -> mat<decltype(math::cos(m[0][0])), C, R>;
 
 // (5)
 // #include <tue/simd.hpp>
 template<typename T, int N>
 auto cos(const simd<T, N>& v) noexcept
-    -> simd<decltype(cos(T())), N>;
+    -> simd<decltype(math::cos(T())), N>;
 ```
 
 1. Returns the cosine of the given value.

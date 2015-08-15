@@ -113,4 +113,19 @@ public:
   }
 };
 
+namespace math
+{
+  inline bool32x4 not_equal(
+      const bool32x4& lhs,
+      const bool32x4& rhs) noexcept {
+    return lhs ^ rhs;
+  }
+
+  inline bool32x4 equal(
+      const bool32x4& lhs,
+      const bool32x4& rhs) noexcept {
+    return ~math::not_equal(lhs, rhs);
+  }
+}
+
 }

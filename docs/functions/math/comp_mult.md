@@ -28,7 +28,7 @@ constexpr auto comp_mult(
 // (4)
 // #include <tue/simd.hpp>
 template<typename T, typename U, int N>
-constexpr auto comp_mult(
+auto comp_mult(
     const simd<T, N>& lhs,
     const simd<U, N>& rhs) noexcept
     -> simd<decltype(math::comp_mult(T(), U())), N>;

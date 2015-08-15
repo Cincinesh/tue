@@ -260,4 +260,42 @@ TEST_CASE(inequality_operator) {
   test_assert((v1 != v6) == true);
 }
 
+TEST_CASE(equal) {
+  const bool32x4 v1(true32, true32, true32, true32);
+  const bool32x4 v2(false32, false32, false32, false32);
+  const bool32x4 v3(true32, false32, true32, false32);
+  const bool32x4 v4(false32, true32, false32, true32);
+  test_assert(math::equal(v1, v2)
+              == bool32x4(false32, false32, false32, false32));
+  test_assert(math::equal(v1, v3)
+              == bool32x4(true32, false32, true32, false32));
+  test_assert(math::equal(v1, v4)
+              == bool32x4(false32, true32, false32, true32));
+  test_assert(math::equal(v2, v3)
+              == bool32x4(false32, true32, false32, true32));
+  test_assert(math::equal(v2, v4)
+              == bool32x4(true32, false32, true32, false32));
+  test_assert(math::equal(v3, v4)
+              == bool32x4(false32, false32, false32, false32));
+}
+
+TEST_CASE(not_equal) {
+  const bool32x4 v1(true32, true32, true32, true32);
+  const bool32x4 v2(false32, false32, false32, false32);
+  const bool32x4 v3(true32, false32, true32, false32);
+  const bool32x4 v4(false32, true32, false32, true32);
+  test_assert(math::not_equal(v1, v2)
+              == bool32x4(true32, true32, true32, true32));
+  test_assert(math::not_equal(v1, v3)
+              == bool32x4(false32, true32, false32, true32));
+  test_assert(math::not_equal(v1, v4)
+              == bool32x4(true32, false32, true32, false32));
+  test_assert(math::not_equal(v2, v3)
+              == bool32x4(true32, false32, true32, false32));
+  test_assert(math::not_equal(v2, v4)
+              == bool32x4(false32, true32, false32, true32));
+  test_assert(math::not_equal(v3, v4)
+              == bool32x4(true32, true32, true32, true32));
+}
+
 }
