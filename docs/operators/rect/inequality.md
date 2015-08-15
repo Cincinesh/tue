@@ -4,13 +4,13 @@ Provided by header [`<tue/rect.hpp>`](../../headers/rect.md)
 
 ```c++
 // lhs != rhs
-template<typename P, typename S, typename OtherP, typenrmae OtherS>
+template<typename P, typename S, typename OtherP, typename OtherS>
 constexpr bool operator!=(
     const rect<P, S>& lhs,
     const rect<OtherP< OtherS>& rhs) noexcept;
 ```
 
-Returns `false` if the `position`'s and `size`'s of two
+Returns `false` if the positions and sizes of two
 [`rect`](../../headers/rect.md)'s compare equal and `true` otherwise.
 
 License

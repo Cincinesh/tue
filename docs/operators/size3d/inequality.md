@@ -10,7 +10,7 @@ constexpr bool operator!=(
     const size3d<T>& rhs) noexcept;
 ```
 
-Returns `false` if the `width`'s, `heights`'s, and `depth`'s of two
+Returns `false` if the widths, heights, and depths of two
 [`size3d`](../../headers/size3d.md)'s compare equal and `true` otherwise.
 
 License

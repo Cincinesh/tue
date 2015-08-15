@@ -10,7 +10,7 @@ constexpr bool operator==(
     const size2d<T>& rhs) noexcept;
 ```
 
-Returns `true` if the `width`'s and `heights`'s of two
+Returns `true` if the widths and heights of two
 [`size2d`](../../headers/size2d.md)'s compare equal and `false` otherwise.
 
 License
