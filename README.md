@@ -1,6 +1,5 @@
 The Tuesday C++ Math and Template Library
 =========================================
-
 The Tuesday C++ Math and Template Library ("Tuesday" for short) is a library of
 template classes and math functions with a focus on physics and graphics
 applications. It provides data types commonly used in games and other
@@ -11,26 +10,22 @@ Library and uses modern C++ features (i.e., C++14) extensively.
 
 Status
 ------
-
 Tuesday is currently a work-in-progress and has no version numbering scheme. It
 is, however, well-tested with unit tests and already in a useful state. The
 majority of the work remaining before a "release" version involves user testing
-and more work on the documentation.
+and documentation.
 
 Requirements
 ------------
-
 Visual Studio 2015 or a C++14 compiler.
 
 Installation
 ------------
-
 Tuesday is a header-only library. Simply make sure the `include` directory in
 the root of this project is on your include path.
 
 Developer Setup
 ---------------
-
 Here are some tips if you want to make changes or additions to Tuesday:
 - This repository uses git submodules. After cloning, make sure to use
   `git submodule init` and `git submodule update`.
@@ -80,3 +75,8 @@ Distributed under the Boost Software License, Version 1.0.
 
 See accompanying file [LICENSE_1_0.txt](LICENSE_1_0.txt) or copy at
 http://www.boost.org/LICENSE_1_0.txt.
+
+Bug Reporting
+-------------
+Please report any bugs, typos, or suggestions to
+https://github.com/Cincinesh/tue/issues.
