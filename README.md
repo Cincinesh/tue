@@ -15,8 +15,8 @@ is, however, well-tested with unit tests and already in a useful state. The
 majority of the work remaining before a "release" version involves user testing
 and documentation.
 
-See [issues I've opened
-](https://github.com/Cincinesh/tue/issues/created_by/Cincinesh)
+See [issues I've opened]
+(https://github.com/Cincinesh/tue/issues/created_by/Cincinesh)
 for a list of currently-planned additions.
 
 Requirements
