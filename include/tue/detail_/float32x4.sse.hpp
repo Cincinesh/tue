@@ -6,7 +6,7 @@
 //     Please report any bugs, typos, or suggestions to
 //         https://github.com/Cincinesh/tue/issues
 
-// This file contains code based on Julien Pommier's neon_mathfun.h originally
+// This file contains code based on Julien Pommier's sse_mathfun.h originally
 // published at http://gruntthepeon.free.fr/ssemath/ under the following
 // license:
 //
