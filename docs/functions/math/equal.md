@@ -46,7 +46,7 @@ constexpr simd<boolX, N> equal(
 
 4. Returns the result of passing each corresponding pair of components from the
    two given [`simd`](../../headers/simd.md)'s to `tue::math::equal` converted
-   to the appropriate sized `bool` type.
+   to the appropriate sized bool type.
 
 License
 -------

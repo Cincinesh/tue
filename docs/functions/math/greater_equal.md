@@ -47,7 +47,7 @@ constexpr simd<boolX, N> greater_equal(
 
 4. Returns the result of passing each corresponding pair of components from the
    two given [`simd`](../../headers/simd.md)'s to `tue::math::greater_equal`
-   converted to the appropriate sized `bool` type.
+   converted to the appropriate sized bool type.
 
 License
 -------

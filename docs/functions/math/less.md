@@ -46,7 +46,7 @@ constexpr simd<boolX, N> less(
 
 4. Returns the result of passing each corresponding pair of components from the
    two given [`simd`](../../headers/simd.md)'s to `tue::math::less` converted to
-   the appropriate sized `bool` type.
+   the appropriate sized bool type.
 
 License
 -------
