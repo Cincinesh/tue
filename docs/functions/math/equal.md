@@ -30,7 +30,7 @@ constexpr auto equal(
 // (Where boolX is a sized bool type matching the size of T,
 //  e.g., if T is float, boolX is bool32)
 template<typename T, int N>
-constexpr simd<boolX, N> equal(
+simd<boolX, N> equal(
     const simd<T, N>& lhs,
     const simd<T, N>& rhs);
 ```

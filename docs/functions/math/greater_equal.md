@@ -30,7 +30,7 @@ constexpr auto greater_equal(
 // (Where boolX is a sized bool type matching the size of T,
 //  e.g., if T is float, boolX is bool32)
 template<typename T, int N>
-constexpr simd<boolX, N> greater_equal(
+simd<boolX, N> greater_equal(
     const simd<T, N>& lhs,
     const simd<T, N>& rhs);
 ```
