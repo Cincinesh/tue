@@ -35,7 +35,7 @@ constexpr simd<boolX, N> greater(
     const simd<T, N>& rhs);
 ```
 
-1. Returns `true` if `lhs` is greater than `rhs and `false` otherwise. This
+1. Returns `true` if `lhs` is greater than `rhs` and `false` otherwise. This
    function is provided for uniformity with the other overloads below.
 
 2. Returns the result of passing each corresponding pair of components from the
