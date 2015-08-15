@@ -12,13 +12,17 @@ constexpr bool equal(T lhs, U rhs) noexcept;
 // (2)
 // #include <tue/vec.hpp>
 template<typename T, typename U, int N>
-constexpr auto equal(const vec<T, N>& lhs, const vec<T, N>& rhs)
+constexpr auto equal(
+    const vec<T, N>& lhs,
+    const vec<T, N>& rhs)
     -> vec<decltype(math::equal(lhs[0], rhs[0])), N>;
 
 // (3)
 // #include <tue/mat.hpp>
 template<typename T, typename U, int C, int R>
-constexpr auto equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs)
+constexpr auto equal(
+    const mat<T, C, R>& lhs,
+    const mat<U, C, R>& rhs)
     -> mat<decltype(math::equal(lhs[0][0], rhs[0][0])), C, R>;
 
 // (4)
@@ -26,7 +30,9 @@ constexpr auto equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs)
 // (Where boolX is a sized bool type matching the size of T,
 //  e.g., if T is float, boolX is bool32)
 template<typename T, int N>
-constexpr simd<boolX, N> equal(const simd<T, N>& lhs, const simd<T, N>& rhs);
+constexpr simd<boolX, N> equal(
+    const simd<T, N>& lhs,
+    const simd<T, N>& rhs);
 ```
 
 1. Returns `true` if the two given numbers are equal and `false` otherwise. This

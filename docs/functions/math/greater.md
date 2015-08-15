@@ -3,10 +3,50 @@
 Provided by several headers.
 
 ```c++
-// Code here
+// (1)
+// #include <tue/math.hpp>
+// (Where T and U are both arithmetic types)
+template<typename T, typename U>
+constexpr bool greater(T lhs, U rhs) noexcept;
+
+// (2)
+// #include <tue/vec.hpp>
+template<typename T, typename U, int N>
+constexpr auto greater(
+    const vec<T, N>& lhs,
+    const vec<T, N>& rhs)
+    -> vec<decltype(math::greater(lhs[0], rhs[0])), N>;
+
+// (3)
+// #include <tue/mat.hpp>
+template<typename T, typename U, int C, int R>
+constexpr auto greater(
+    const mat<T, C, R>& lhs,
+    const mat<U, C, R>& rhs)
+    -> mat<decltype(math::greater(lhs[0][0], rhs[0][0])), C, R>;
+
+// (4)
+// #include <tue/simd.hpp>
+// (Where boolX is a sized bool type matching the size of T,
+//  e.g., if T is float, boolX is bool32)
+template<typename T, int N>
+constexpr simd<boolX, N> greater(
+    const simd<T, N>& lhs,
+    const simd<T, N>& rhs);
 ```
 
-TODO.
+1. Returns `true` if `lhs` is greater than `rhs and `false` otherwise. This
+   function is provided for uniformity with the other overloads below.
+
+2. Returns the result of passing each corresponding pair of components from the
+   two given [`vec`](../../headers/vec.md)'s to `tue::math::greater`.
+
+3. Returns the result of passing each corresponding pair of components from the
+   two given [`mat`](../../headers/mat.md)'s to `tue::math::greater`.
+
+4. Returns the result of passing each corresponding pair of components from the
+   two given [`simd`](../../headers/simd.md)'s to `tue::math::greater` converted
+   to the appropriate sized `bool` type.
 
 License
 -------
