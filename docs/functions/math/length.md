@@ -18,7 +18,7 @@ double length(T x) noexcept;
 // (3)
 // #include <tue/vec.hpp>
 template<typename T, int N>
-constexpr auto length(const vec<T, N>& v) noexcept
+auto length(const vec<T, N>& v) noexcept
     -> decltype(math::sqrt(math::length2(v)));
 
 // (4)
