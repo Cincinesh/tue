@@ -36,7 +36,7 @@ auto cos(const simd<T, N>& v) noexcept
 
 1. Returns the cosine of the given value.
 
-2. Converts the given value to a `double` and returns its cosine.
+2. Same as above after first converting `x` to a `double`.
 
 3. Returns the result of passing each component of the given
    [`vec`](../../headers/vec.md) to `tue::math::cos`.
