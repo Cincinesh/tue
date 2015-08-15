@@ -9,15 +9,35 @@ combining and manipulating these types, as well as some other common
 mathematical functions. It was written to match the style of the C++ Standard
 Library and uses modern C++ features (i.e., C++14) extensively.
 
+Status
+------
+
+Tuesday is currently a work-in-progress and has no version numbering scheme. It
+is, however, well-tested with unit tests and already in a useful state. The
+majority of the work remaining before a "release" version involves user testing
+and more work on the documentation.
+
 Requirements
 ------------
 
-TODO
+Visual Studio 2015 or a C++14 compiler.
 
 Installation
 ------------
 
-TODO
+Tuesday is a header-only library. Simply make sure the `include` directory in
+the root of this project is on your include path.
+
+Developer Setup
+---------------
+
+Here are some tips if you want to make changes or additions to Tuesday:
+- This repository uses git submodules. After cloning, make sure to use
+  `git submodule init` and `git submodule update`.
+- Only Visual Studio 2015 project files are provided. To compile the tests with
+  any other IDE or build system, simply make sure `include` and
+  `lib/mon/include` are in the include path and compile all the source files
+  under the `tests` and `lib/mon/src` directories.
 
 API Documentation
 -----------------
