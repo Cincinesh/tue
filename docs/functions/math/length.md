@@ -24,7 +24,8 @@ constexpr auto length(const vec<T, N>& v) noexcept
 // (4)
 // #include <tue/simd.hpp>
 template<typename T, int N>
-simd<T, N> length(const simd<T, N>& v) noexcept;
+auto length(const simd<T, N>& v) noexcept
+    -> simd<decltype(math::length(T())), N>;
 ```
 
 1. Returns the absolute value of the given number. This function is provided for
