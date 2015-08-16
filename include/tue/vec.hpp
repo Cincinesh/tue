@@ -42,6 +42,12 @@ using bvec2 = vec2<bool>;
 using bvec3 = vec3<bool>;
 using bvec4 = vec4<bool>;
 
+namespace detail_
+{
+    template<typename T, int N>
+    struct vec_utils;
+}
+
 }
 
 #include "detail_/vec2.hpp"

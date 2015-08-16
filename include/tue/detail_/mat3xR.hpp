@@ -55,8 +55,8 @@ public:
   template<int OtherR>
   explicit constexpr mat(const mat<T, 2, OtherR>& other) noexcept
     : impl_({{
-        vec<T, R>::extend_(other[0], T(0), T(0)),
-        vec<T, R>::extend_(other[1], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[0], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[1], T(0), T(0)),
         vec<T, R>(vec<T, 4>(T(0), T(0), T(1), T(0))),
       }}) {
   }
@@ -64,18 +64,18 @@ public:
   template<int OtherR>
   explicit constexpr mat(const mat<T, 3, OtherR>& other) noexcept
     : impl_({{
-        vec<T, R>::extend_(other[0], T(0), T(0)),
-        vec<T, R>::extend_(other[1], T(0), T(0)),
-        vec<T, R>::extend_(other[2], T(1), T(0)),
+        detail_::vec_utils<T, R>::resize(other[0], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[1], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[2], T(1), T(0)),
       }}) {
   }
 
   template<int OtherR>
   explicit constexpr mat(const mat<T, 4, OtherR>& other) noexcept
     : impl_({{
-        vec<T, R>::extend_(other[0], T(0), T(0)),
-        vec<T, R>::extend_(other[1], T(0), T(0)),
-        vec<T, R>::extend_(other[2], T(1), T(0)),
+        detail_::vec_utils<T, R>::resize(other[0], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[1], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[2], T(1), T(0)),
       }}) {
   }
 

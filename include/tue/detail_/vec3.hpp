@@ -377,31 +377,6 @@ public:
     impl_.data[2] >>= other[2];
     return *this;
   }
-
-private:
-  template<typename U, int C, int R>
-  friend class mat;
-
-  static constexpr vec extend_(
-      const vec2<T>& v,
-      const T& z,
-      const T&) noexcept {
-    return vec(v, z);
-  }
-
-  static constexpr vec extend_(
-      const vec3<T>& v,
-      const T&,
-      const T&) noexcept {
-    return v;
-  }
-
-  static constexpr vec extend_(
-      const vec4<T>& v,
-      const T&,
-      const T&) noexcept {
-    return vec(v);
-  }
 };
 
 template<typename T>
@@ -1054,6 +1029,31 @@ namespace math
   inline auto rotation_vec(const vec4<T>& v) noexcept {
     return math::rotation_vec(v.xyz(), v.w());
   }
+}
+
+namespace detail_
+{
+    template<typename T>
+    struct vec_utils<T, 3>
+    {
+        static vec<T, 3> resize(
+            const vec<T, 2>& v, const T& z, const T&) noexcept
+        {
+            return vec<T, 3>(v, z);
+        }
+
+        static vec<T, 3> resize(
+            const vec<T, 3>& v, const T&, const T&) noexcept
+        {
+            return v;
+        }
+
+        static vec<T, 3> resize(
+            const vec<T, 4>& v, const T&, const T&) noexcept
+        {
+            return vec<T, 3>(v);
+        }
+    };
 }
 
 }
