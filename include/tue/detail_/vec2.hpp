@@ -869,19 +869,19 @@ namespace detail_
     template<typename T>
     struct vec_utils<T, 2>
     {
-        static vec<T, 2> resize(
+        static constexpr vec<T, 2> resize(
             const vec<T, 2>& v, const T&, const T&) noexcept
         {
             return v;
         }
 
-        static vec<T, 2> resize(
+        static constexpr vec<T, 2> resize(
             const vec<T, 3>& v, const T&, const T&) noexcept
         {
             return vec<T, 2>(v);
         }
 
-        static vec<T, 2> resize(
+        static constexpr vec<T, 2> resize(
             const vec<T, 4>& v, const T&, const T&) noexcept
         {
             return vec<T, 2>(v);

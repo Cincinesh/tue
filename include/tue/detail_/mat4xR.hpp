@@ -1031,7 +1031,7 @@ namespace detail_
     template<typename T>
     struct mat_utils<T, 4, 2>
     {
-        static mat<T, 4, 2> create(
+        static constexpr mat<T, 4, 2> create(
             const T& m00, const T& m01, const T&, const T&,
             const T& m10, const T& m11, const T&, const T&,
             const T& m20, const T& m21, const T&, const T&,
@@ -1049,7 +1049,7 @@ namespace detail_
     template<typename T>
     struct mat_utils<T, 4, 3>
     {
-        static mat<T, 4, 3> create(
+        static constexpr mat<T, 4, 3> create(
             const T& m00, const T& m01, const T& m02, const T&,
             const T& m10, const T& m11, const T& m12, const T&,
             const T& m20, const T& m21, const T& m22, const T&,
@@ -1067,7 +1067,7 @@ namespace detail_
     template<typename T>
     struct mat_utils<T, 4, 4>
     {
-        static mat<T, 4, 4> create(
+        static constexpr mat<T, 4, 4> create(
             const T& m00, const T& m01, const T& m02, const T& m03,
             const T& m10, const T& m11, const T& m12, const T& m13,
             const T& m20, const T& m21, const T& m22, const T& m23,
