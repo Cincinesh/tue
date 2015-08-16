@@ -854,6 +854,57 @@ namespace math
   }
 }
 
+namespace detail_
+{
+    template<typename T>
+    struct mat_utils<T, 2, 2>
+    {
+        static mat<T, 2, 2> create(
+            const T& m00, const T& m01, const T&, const T&,
+            const T& m10, const T& m11, const T&, const T&,
+            const T&, const T&, const T&, const T&,
+            const T&, const T&, const T&, const T&) noexcept
+        {
+            return {
+                { m00, m01 },
+                { m10, m11 },
+            };
+        }
+    };
+
+    template<typename T>
+    struct mat_utils<T, 2, 3>
+    {
+        static mat<T, 2, 3> create(
+            const T& m00, const T& m01, const T& m02, const T&,
+            const T& m10, const T& m11, const T& m12, const T&,
+            const T&, const T&, const T&, const T&,
+            const T&, const T&, const T&, const T&) noexcept
+        {
+            return {
+                { m00, m01, m02 },
+                { m10, m11, m12 },
+            };
+        }
+    };
+
+    template<typename T>
+    struct mat_utils<T, 2, 4>
+    {
+        static mat<T, 2, 4> create(
+            const T& m00, const T& m01, const T& m02, const T& m03,
+            const T& m10, const T& m11, const T& m12, const T& m13,
+            const T&, const T&, const T&, const T&,
+            const T&, const T&, const T&, const T&) noexcept
+        {
+            return {
+                { m00, m01, m02, m03 },
+                { m10, m11, m12, m13 },
+            };
+        }
+    };
+}
+
 }
 
 #include "matmult.hpp"

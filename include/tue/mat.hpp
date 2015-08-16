@@ -60,6 +60,12 @@ using dmat4x2 = mat4x2<double>;
 using dmat4x3 = mat4x3<double>;
 using dmat4x4 = mat4x4<double>;
 
+namespace detail_
+{
+    template<typename T, int C, int R>
+    struct mat_utils;
+}
+
 }
 
 #include "detail_/mat2xR.hpp"
