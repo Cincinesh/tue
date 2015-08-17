@@ -65,7 +65,7 @@ for a list of currently-planned additions.
 
 Requirements
 ------------
-Tuesday requires Visual Studio 2015 or a fully C++14-compliant compiler such as
+Tuesday requires Visual Studio 2015 or a fully C++14 compliant compiler such as
 GCC 5 or Clang 3.4.
 
 Usage
