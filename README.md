@@ -37,7 +37,7 @@ following unique features:
 
 - It uses `constexpr` whenever possible which, as it turns out, is often.
 
-- [SIMD types](docs/headers/simd.md) are completely separate from the [vector
+- [SIMD types](docs/headers/simd.md) are completely separate from [vector
   types](docs/headers/vec.md). This may seem counter-intuitive, but SIMD vectors
   aren't very efficient when used as traditional 3D vectors. The fourth
   component of an SIMD vector would often go to waste, and functions where
