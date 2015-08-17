@@ -10,7 +10,7 @@ constexpr auto cross(
     -> vec<decltype(lhs[1]*rhs[2] - lhs[2]*rhs[1]), 3>;
 ```
 
-Returns the cross-product of the two given [`vec`](../../headers/vec.md)'s.
+Returns the cross product of the two given [`vec`](../../headers/vec.md)'s.
 
 License
 -------

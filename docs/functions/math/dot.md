@@ -26,7 +26,7 @@ simd<T, N> dot(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept;
 1. Returns the result of multiplying the two given numbers. This function is
    provided for uniformity with the `vec` overload below.
 
-2. Returns the dot-product of the two given [`vec`](../../headers/vec.md)'s.
+2. Returns the dot product of the two given [`vec`](../../headers/vec.md)'s.
 
 3. Returns the result of passing each component of the given
    [`simd`](../../headers/simd.md) to `tue::math::dot`. Note: this is NOT the

@@ -44,18 +44,21 @@ following unique features:
   `fvec3 + dvec3` results in a `dvec3` just as `float + double` results in a
   `double`.
 - It uses `constexpr` whenever possible which, as it turns out, is often.
-- [SIMD types](docs/headers/simd.md) are completely separate from the vector
-  types. This may seem counter-intuitive, but SIMD vectors aren't very efficient
-  when used as traditional 3D vectors. The fourth component of an SIMD vector
-  would often go to waste, and functions where multiple components interact
-  (such as the length function, dot-product, or cross-product) would be horribly
-  inefficient with SIMD intrinsics. Instead, SIMD instructions should be used to
-  perform the same logic on multiple vectors in-parallel. Tuesday makes this
-  easy to do. For example, `vec3<float32x4> v` could be though of as 4 parallel
-  `fvec3`'s (4 x-values, followed by 4 y-values, and finally 4 z-values).
-  Something like [`math::dot(v)`](docs/functions/math/dot.md) would then compute
-  a single `float32x4` containing the dot-products of those 4 parallel `fvec3`'s
-  without any inefficient component shuffling.
+- [SIMD types](docs/headers/simd.md) are completely separate from the [vector
+  types](docs/headers/vec.md). This may seem counter-intuitive, but SIMD vectors
+  aren't very efficient when used as traditional 3D vectors. The fourth
+  component of an SIMD vector would often go to waste, and functions where
+  multiple components interact (such as the
+  [length](docs/functions/math/length.md) function,
+  [dot](docs/functions/math/dot.md) product, or
+  [cross](docs/functions/math/cross.md) product) would be horribly inefficient
+  with SIMD intrinsics. Instead, SIMD instructions should be used to perform the
+  same logic on multiple vectors in parallel. Tuesday makes this easy to do. For
+  example, `vec3<float32x4> v` could be though of as 4 parallel `fvec3`'s
+  (4 x-values, followed by 4 y-values, and finally 4 z-values). Something like
+  `math::dot(v)` would then compute a single `float32x4` containing the
+  dot products of those 4 parallel `fvec3`'s without any inefficient component
+  shuffling.
 
 Requirements
 ------------
