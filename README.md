@@ -12,8 +12,8 @@ manipulating all these types, as well as some other
 match the style of the C++ Standard Library and uses modern C++ features (i.e.,
 C++14) extensively.
 
-Features
---------
+Major Features
+--------------
 [GLM](https://github.com/g-truc/glm) is great and currently provides a lot of
 features Tuesday simply does not (yet). Tuesday does, however, provide the
 following unique features:
