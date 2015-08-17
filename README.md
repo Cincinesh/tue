@@ -12,8 +12,8 @@ manipulating all these types, as well as some other
 match the style of the C++ Standard Library and uses modern C++ features (i.e.,
 C++14) extensively.
 
-Advantages Over GLM
--------------------
+Features
+--------
 [GLM](https://github.com/g-truc/glm) is great and currently provides a lot of
 features Tuesday simply does not (yet). Tuesday does, however, provide the
 following unique features:
@@ -74,7 +74,7 @@ Tuesday is a header-only library. Simply make sure the `include` directory in
 the root of this project is on your include path. For GCC and Clang, you might
 have to provide the compiler option `-std=c++14` or higher as well.
 
-Here's a small code example:
+Here's a small usage example:
 ```c++
 #include <tue/mat.hpp>
 #include <tue/quat.hpp>
