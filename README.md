@@ -44,7 +44,7 @@ following unique features:
   `fvec3 + dvec3` results in a `dvec3` just as `float + double` results in a
   `double`.
 - It uses `constexpr` whenever possible which, as it turns out, is often.
-- [SIMD](docs/headers/simd.md) types are completely separate from the vector
+- [SIMD types](docs/headers/simd.md) are completely separate from the vector
   types. This may seem counter-intuitive, but SIMD vectors aren't very efficient
   when used as traditional 3D vectors. The fourth component of an SIMD vector
   would often go to waste, and functions where multiple components interact
