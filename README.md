@@ -74,8 +74,42 @@ Tuesday is a header-only library. Simply make sure the `include` directory in
 the root of this project is on your include path. For GCC and Clang, you might
 have to provide the compiler option `-std=c++14` or higher as well.
 
-I will try to write some small examples to demonstrate Tuesday's major features
-here soon.
+Example:
+```c++
+#include <tue/mat.hpp>
+#include <tue/quat.hpp>
+#include <tue/simd.hpp>
+#include <tue/vec.hpp>
+
+using namespace tue;
+
+void UpdateTransform(
+    fvec3& translation,
+    fquat& rotation,
+    fmat3x4& poseMatrix,
+    const fvec3& linearVelocity,
+    const fvec3& angularVelocity,
+    float deltaTime)
+{
+    translation += linearVelocity * deltaTime;
+    rotation *= math::rotation_quat(angularVelocity * deltaTime);
+    poseMatrix = math::pose_mat<float, 3, 4>(translation, rotation);
+}
+
+void SimdUpdateTransforms(
+    vec3<float32x4>& translations,
+    quat<float32x4>& rotations,
+    mat3x4<float32x4>& poseMatrices,
+    const vec3<float32x4>& linearVelocities,
+    const vec3<float32x4>& angularVelocities,
+    float deltaTime)
+{
+    const float32x4 deltaTimes(deltaTime);
+    translations += linearVelocities * deltaTimes;
+    rotations *= math::rotation_quat(angularVelocities * deltaTimes);
+    poseMatrices = math::pose_mat<float32x4, 3, 4>(translations, rotations);
+}
+```
 
 Testing
 -------
