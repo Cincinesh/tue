@@ -14,7 +14,7 @@ Status
 Tuesday is currently a work-in-progress and has no version numbering scheme. It
 is, however, well-tested with unit tests and already in a useful state. The
 majority of the work remaining before a "release" version involves user testing
-and a little more work on the documentation.
+and a little more documentation.
 
 See [issues I've opened]
 (https://github.com/Cincinesh/tue/issues/created_by/Cincinesh)
@@ -25,32 +25,34 @@ Advantages Over GLM
 [GLM](https://github.com/g-truc/glm) is great and currently provides a lot of
 features Tuesday simply doesn't (yet). Tuesday does, however, provide the
 following unique features:
-- The dimensions of vector and matrix types are template parameters, unlike GLM
-  where, e.g., `tvec2`, `tvec3`, and `tvec4` are separate types. By making the
+- The dimensions of [vector](docs/headers/vec.md) and
+  [matrix](docs/headers/mat.md) types are template parameters, unlike GLM where,
+  e.g., `tvec2`, `tvec3`, and `tvec4` are separate types. By making the
   dimensions template parameters, it's possible to write one template function
   that can operate on and/or produce vectors or matrices of multiple dimensions.
   For example, the transformation matrix generation functions (e.g.
-  `math::translation_mat()`, `math::rotation_mat()`, etc.) can produce matrices
-  of multiple sizes so long as they meet the minimum requirements of each
-  transformation and are, at the largest, 4x4.
+  [`translation_mat`](docs/functions/math/translation_mat.md),
+  [`rotation_mat`](docs/functions/math/rotation_mat.md), etc.) can produce
+  matrices of multiple sizes so long as they meet the minimum requirements of
+  each transformation and are, at the largest, 4x4.
 - It makes heavy use of `decltype` and `auto` return types. This makes it
   possible for composite types to behave much more like their component types
   when it comes to things like implicit type conversions. For example,
   `fvec3 + dvec3` results in a `dvec3` just as `float + double` results in a
   `double`.
 - It uses `constexpr` whenever possible which, as it turns out, is often.
-- SIMD types are completely separate from the vector types. This may seem
-  counter-intuitive, but SIMD vectors aren't very efficient when used as
-  traditional 3D vectors. The fourth component of an SIMD vector would often go
-  to waste, and functions where multiple components interact (such as the length
-  function, dot-product, or cross-product) would be horribly inefficient with
-  SIMD intrinsics. Instead, SIMD instructions should be used to perform the same
-  logic on multiple vectors in-parallel. Tuesday makes this easy to do. For
-  example, `vec3<float32x4> v` could be though of as 4 parallel `fvec3`'s (4
-  x-values, followed by 4 y-values, and finally 4 z-values). Something like
-  `math::dot(v)` would then compute a single `float32x4` containing the
-  dot-products of those 4 parallel `fvec3`'s without any inefficient component
-  shuffling.
+- [SIMD](docs/headers/simd.md) types are completely separate from the vector
+  types. This may seem counter-intuitive, but SIMD vectors aren't very efficient
+  when used as traditional 3D vectors. The fourth component of an SIMD vector
+  would often go to waste, and functions where multiple components interact
+  (such as the length function, dot-product, or cross-product) would be horribly
+  inefficient with SIMD intrinsics. Instead, SIMD instructions should be used to
+  perform the same logic on multiple vectors in-parallel. Tuesday makes this
+  easy to do. For example, `vec3<float32x4> v` could be though of as 4 parallel
+  `fvec3`'s (4 x-values, followed by 4 y-values, and finally 4 z-values).
+  Something like [`math::dot(v)`](docs/functions/math/dot.md) would then compute
+  a single `float32x4` containing the dot-products of those 4 parallel `fvec3`'s
+  without any inefficient component shuffling.
 
 Requirements
 ------------
