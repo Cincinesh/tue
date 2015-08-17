@@ -44,8 +44,8 @@ using bvec4 = vec4<bool>;
 
 namespace detail_
 {
-    template<typename T, int N>
-    struct vec_utils;
+  template<typename T, int N>
+  struct vec_utils;
 }
 
 }
