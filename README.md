@@ -12,22 +12,12 @@ manipulating all these types, as well as some other
 match the style of the C++ Standard Library and uses modern C++ features (i.e.,
 C++14) extensively.
 
-Status
-------
-Tuesday is currently a work-in-progress and has no version numbering scheme. It
-is, however, well-tested with unit tests and already in a useful state. The
-majority of the work remaining before a "release" version involves user testing
-and a little more documentation.
-
-See [issues I've opened]
-(https://github.com/Cincinesh/tue/issues/created_by/Cincinesh)
-for a list of currently-planned additions.
-
 Advantages Over GLM
 -------------------
 [GLM](https://github.com/g-truc/glm) is great and currently provides a lot of
 features Tuesday simply doesn't (yet). Tuesday does, however, provide the
 following unique features:
+
 - The dimensions of [vector](docs/headers/vec.md) and
   [matrix](docs/headers/mat.md) types are template parameters, unlike GLM where,
   e.g., `tvec2`, `tvec3`, and `tvec4` are separate types. By making the
@@ -38,12 +28,15 @@ following unique features:
   [`rotation_mat`](docs/functions/math/rotation_mat.md), etc.) can produce
   matrices of multiple sizes so long as they meet the minimum requirements of
   each transformation and are, at the largest, 4x4.
+
 - It makes heavy use of `decltype` and `auto` return types. This makes it
   possible for composite types to behave much more like their component types
   when it comes to things like implicit type conversions. For example,
   `fvec3 + dvec3` results in a `dvec3` just as `float + double` results in a
   `double`.
+
 - It uses `constexpr` whenever possible which, as it turns out, is often.
+
 - [SIMD types](docs/headers/simd.md) are completely separate from the [vector
   types](docs/headers/vec.md). This may seem counter-intuitive, but SIMD vectors
   aren't very efficient when used as traditional 3D vectors. The fourth
@@ -59,6 +52,17 @@ following unique features:
   `math::dot(v)` would then compute a single `float32x4` containing the dot
   products of those 4 parallel vectors without any inefficient component
   shuffling.
+
+Status
+------
+Tuesday is currently a work-in-progress and has no version numbering scheme. It
+is, however, well-tested with unit tests and already in a useful state. The
+majority of the work remaining before a "release" version involves user testing
+and a little more documentation.
+
+See [issues I've opened]
+(https://github.com/Cincinesh/tue/issues/created_by/Cincinesh)
+for a list of currently-planned additions.
 
 Requirements
 ------------
