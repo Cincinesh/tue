@@ -30,9 +30,8 @@ the root of this project is on your include path.
 
 Developer Setup
 ---------------
-Here are some tips if you want to make changes or additions to Tuesday:
-- This repository uses git submodules. After cloning, make sure to use
-  `git submodule init` and `git submodule update`.
+This repository uses git submodules. After cloning, make sure to use
+`git submodule init` and `git submodule update`.
 
 API Documentation
 -----------------
