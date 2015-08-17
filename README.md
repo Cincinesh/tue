@@ -74,7 +74,7 @@ Tuesday is a header-only library. Simply make sure the `include` directory in
 the root of this project is on your include path. For GCC and Clang, you might
 have to provide the compiler option `-std=c++14` or higher as well.
 
-Example:
+Here's a small code example:
 ```c++
 #include <tue/mat.hpp>
 #include <tue/quat.hpp>
@@ -83,23 +83,23 @@ Example:
 
 using namespace tue;
 
-void UpdateTransform(
+void UpdatePose(
     fvec3& translation,
     fquat& rotation,
-    fmat3x4& poseMatrix,
+    fmat3x4& matrix,
     const fvec3& linearVelocity,
     const fvec3& angularVelocity,
     float deltaTime)
 {
     translation += linearVelocity * deltaTime;
     rotation *= math::rotation_quat(angularVelocity * deltaTime);
-    poseMatrix = math::pose_mat<float, 3, 4>(translation, rotation);
+    matrix = math::pose_mat<float, 3, 4>(translation, rotation);
 }
 
-void SimdUpdateTransforms(
+void SimdUpdatePoses(
     vec3<float32x4>& translations,
     quat<float32x4>& rotations,
-    mat3x4<float32x4>& poseMatrices,
+    mat3x4<float32x4>& matrices,
     const vec3<float32x4>& linearVelocities,
     const vec3<float32x4>& angularVelocities,
     float deltaTime)
@@ -107,7 +107,7 @@ void SimdUpdateTransforms(
     const float32x4 deltaTimes(deltaTime);
     translations += linearVelocities * deltaTimes;
     rotations *= math::rotation_quat(angularVelocities * deltaTimes);
-    poseMatrices = math::pose_mat<float32x4, 3, 4>(translations, rotations);
+    matrices = math::pose_mat<float32x4, 3, 4>(translations, rotations);
 }
 ```
 
