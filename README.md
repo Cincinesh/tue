@@ -23,7 +23,7 @@ following unique features:
   e.g., `tvec2`, `tvec3`, and `tvec4` are separate types. By making the
   dimensions template parameters, it's possible to write one template function
   that can operate on and/or produce vectors or matrices of multiple dimensions.
-  For example, the transformation matrix generation functions (e.g.
+  For example, the transformation matrix generation functions (
   [`translation_mat`](docs/functions/math/translation_mat.md),
   [`rotation_mat`](docs/functions/math/rotation_mat.md), etc.) can produce
   matrices of multiple sizes so long as they meet the minimum requirements of
