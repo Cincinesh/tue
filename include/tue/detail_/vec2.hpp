@@ -295,31 +295,6 @@ public:
     impl_.data[1] >>= other[1];
     return *this;
   }
-
-private:
-  template<typename U, int C, int R>
-  friend class mat;
-
-  static constexpr vec extend_(
-      const vec2<T>& v,
-      const T&,
-      const T&) noexcept {
-    return v;
-  }
-
-  static constexpr vec extend_(
-      const vec3<T>& v,
-      const T&,
-      const T&) noexcept {
-    return vec(v);
-  }
-
-  static constexpr vec extend_(
-      const vec4<T>& v,
-      const T&,
-      const T&) noexcept {
-    return vec(v);
-  }
 };
 
 template<typename T>
@@ -887,6 +862,28 @@ namespace math
       math::not_equal(lhs[1], rhs[1]),
     };
   }
+}
+
+namespace detail_
+{
+  template<typename T>
+  struct vec_utils<T, 2>
+  {
+    static constexpr vec<T, 2> resize(
+        const vec<T, 2>& v, const T&, const T&) noexcept {
+      return v;
+    }
+
+    static constexpr vec<T, 2> resize(
+        const vec<T, 3>& v, const T&, const T&) noexcept {
+      return vec<T, 2>(v);
+    }
+
+    static constexpr vec<T, 2> resize(
+        const vec<T, 4>& v, const T&, const T&) noexcept {
+      return vec<T, 2>(v);
+    }
+  };
 }
 
 }

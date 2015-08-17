@@ -58,8 +58,8 @@ public:
   template<int OtherR>
   explicit constexpr mat(const mat<T, 2, OtherR>& other) noexcept
     : impl_({{
-        vec<T, R>::extend_(other[0], T(0), T(0)),
-        vec<T, R>::extend_(other[1], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[0], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[1], T(0), T(0)),
         vec<T, R>(vec<T, 4>(T(0), T(0), T(1), T(0))),
         vec<T, R>(vec<T, 4>(T(0), T(0), T(0), T(1))),
       }}) {
@@ -68,9 +68,9 @@ public:
   template<int OtherR>
   explicit constexpr mat(const mat<T, 3, OtherR>& other) noexcept
     : impl_({{
-        vec<T, R>::extend_(other[0], T(0), T(0)),
-        vec<T, R>::extend_(other[1], T(0), T(0)),
-        vec<T, R>::extend_(other[2], T(1), T(0)),
+        detail_::vec_utils<T, R>::resize(other[0], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[1], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[2], T(1), T(0)),
         vec<T, R>(vec<T, 4>(T(0), T(0), T(0), T(1))),
       }}) {
   }
@@ -78,10 +78,10 @@ public:
   template<int OtherR>
   explicit constexpr mat(const mat<T, 4, OtherR>& other) noexcept
     : impl_({{
-        vec<T, R>::extend_(other[0], T(0), T(0)),
-        vec<T, R>::extend_(other[1], T(0), T(0)),
-        vec<T, R>::extend_(other[2], T(1), T(0)),
-        vec<T, R>::extend_(other[3], T(0), T(1)),
+        detail_::vec_utils<T, R>::resize(other[0], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[1], T(0), T(0)),
+        detail_::vec_utils<T, R>::resize(other[2], T(1), T(0)),
+        detail_::vec_utils<T, R>::resize(other[3], T(0), T(1)),
       }}) {
   }
 
@@ -1024,6 +1024,60 @@ namespace math
       math::not_equal(lhs[3], rhs[3]),
     };
   }
+}
+
+namespace detail_
+{
+  template<typename T>
+  struct mat_utils<T, 4, 2>
+  {
+    static constexpr mat<T, 4, 2> create(
+        const T& m00, const T& m01, const T&, const T&,
+        const T& m10, const T& m11, const T&, const T&,
+        const T& m20, const T& m21, const T&, const T&,
+        const T& m30, const T& m31, const T&, const T&) noexcept {
+      return {
+        { m00, m01 },
+        { m10, m11 },
+        { m20, m21 },
+        { m30, m31 },
+      };
+    }
+  };
+
+  template<typename T>
+  struct mat_utils<T, 4, 3>
+  {
+    static constexpr mat<T, 4, 3> create(
+        const T& m00, const T& m01, const T& m02, const T&,
+        const T& m10, const T& m11, const T& m12, const T&,
+        const T& m20, const T& m21, const T& m22, const T&,
+        const T& m30, const T& m31, const T& m32, const T&) noexcept {
+      return {
+        { m00, m01, m02 },
+        { m10, m11, m12 },
+        { m20, m21, m22 },
+        { m30, m31, m32 },
+      };
+    }
+  };
+
+  template<typename T>
+  struct mat_utils<T, 4, 4>
+  {
+    static constexpr mat<T, 4, 4> create(
+        const T& m00, const T& m01, const T& m02, const T& m03,
+        const T& m10, const T& m11, const T& m12, const T& m13,
+        const T& m20, const T& m21, const T& m22, const T& m23,
+        const T& m30, const T& m31, const T& m32, const T& m33) noexcept {
+      return {
+        { m00, m01, m02, m03 },
+        { m10, m11, m12, m13 },
+        { m20, m21, m22, m23 },
+        { m30, m31, m32, m33 },
+      };
+    }
+  };
 }
 
 }
