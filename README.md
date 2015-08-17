@@ -15,7 +15,7 @@ C++14) extensively.
 Advantages Over GLM
 -------------------
 [GLM](https://github.com/g-truc/glm) is great and currently provides a lot of
-features Tuesday simply doesn't (yet). Tuesday does, however, provide the
+features Tuesday simply does not (yet). Tuesday does, however, provide the
 following unique features:
 
 - The dimensions of [vector](docs/headers/vec.md) and
