@@ -14,9 +14,8 @@ C++14) extensively.
 
 Major Features
 --------------
-[GLM](https://github.com/g-truc/glm) is great and currently provides a lot of
-features Tuesday simply does not (yet). Tuesday does, however, provide the
-following unique features:
+Tuesday provides the following unique features over other similar libraries such
+as [GLM](https://github.com/g-truc/glm):
 
 - The dimensions of [vector](docs/headers/vec.md) and
   [matrix](docs/headers/mat.md) types are template parameters, unlike GLM where,
