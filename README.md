@@ -33,10 +33,6 @@ Developer Setup
 Here are some tips if you want to make changes or additions to Tuesday:
 - This repository uses git submodules. After cloning, make sure to use
   `git submodule init` and `git submodule update`.
-- Only Visual Studio 2015 project files are provided. To compile the tests with
-  any other IDE or build system, simply make sure `include` and
-  `lib/mon/include` are in the include path and compile all the source files
-  under the `tests` and `lib/mon/src` directories.
 
 API Documentation
 -----------------
