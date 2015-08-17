@@ -111,17 +111,8 @@ void SimdUpdatePoses(
 }
 ```
 
-Testing
--------
-Here are some tips for running the unit tests:
-- This repository uses git submodules. After cloning, make sure to use
-  `git submodule init` and `git submodule update`.
-- This project uses a fairly simple [CMake](http://www.cmake.org/)
-  configuration. Use CMake to generate IDE project files or build scripts and
-  simply build the `check` target to run the unit tests.
-
-API Documentation
------------------
+Documentation
+-------------
 - [Headers](docs/headers.md)
     - [`<tue/bool.hpp>`](docs/headers/bool.md)
     - [`<tue/mat.hpp>`](docs/headers/mat.md)
@@ -152,6 +143,15 @@ API Documentation
     - [`tue::size2d`](docs/headers/size2d.md)
     - [`tue::size3d`](docs/headers/size3d.md)
     - [`tue::vec`](docs/headers/vec.md)
+
+Testing
+-------
+Here are some tips for running the unit tests:
+- This repository uses git submodules. After cloning, make sure to use
+  `git submodule init` and `git submodule update`.
+- This project uses a fairly simple [CMake](http://www.cmake.org/)
+  configuration. Use CMake to generate IDE project files or build scripts and
+  simply build the `check` target to run the unit tests.
 
 License
 -------
