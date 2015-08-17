@@ -3,11 +3,14 @@ The Tuesday C++ Math and Template Library
 The Tuesday C++ Math and Template Library ("Tuesday" for short) is a library of
 template classes and math functions with a focus on physics and graphics
 applications. It provides data types commonly used in games and other
-simulations such as vectors, quaternions, and matrices, SIMD intrinsic wrapper
-classes completely separate from (but compatible with) the other types, operator
-overloads for combining and manipulating all these types, as well as some other
-common mathematical functions. It was written to match the style of the C++
-Standard Library and uses modern C++ features (i.e., C++14) extensively.
+simulations such as [vectors](docs/headers/vec.md),
+[quaternions](docs/headers/quat.md), and [matrices](docs/headers/mat.md),
+[SIMD intrinsic wrapper classes](docs/headers/simd.md) completely separate from
+(but compatible with) the other types, operator overloads for combining and
+manipulating all these types, as well as some other
+[common mathematical functions](docs/namespaces/tue/math.md). It was written to
+match the style of the C++ Standard Library and uses modern C++ features (i.e.,
+C++14) extensively.
 
 Status
 ------
@@ -69,12 +72,12 @@ here soon.
 
 Testing
 -------
-Here are some tips for running the test suite:
+Here are some tips for running the unit tests:
 - This repository uses git submodules. After cloning, make sure to use
   `git submodule init` and `git submodule update`.
 - This project uses a fairly simple [CMake](http://www.cmake.org/)
   configuration. Use CMake to generate IDE project files or build scripts and
-  simply build the `check` target to run the tests.
+  simply build the `check` target to run the unit tests.
 
 API Documentation
 -----------------
