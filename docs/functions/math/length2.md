@@ -37,8 +37,8 @@ auto length2(const simd<T, N>& v) noexcept
    the sum of each of its components squared.
 
 3. Returns the result of passing each component of the given
-   [`simd`](../../headers/simd.md) to `tue::math::length2`. Note: this is NOT
-   the vector length squared like the `vec` overload above.
+   [`simd`](../../headers/simd.md) to `tue::math::length2`. Note: this operates
+   on each component individually unlike the `vec` overload above.
 
 License
 -------

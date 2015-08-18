@@ -29,8 +29,8 @@ simd<T, N> dot(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept;
 2. Returns the dot product of the two given [`vec`](../../headers/vec.md)'s.
 
 3. Returns the result of passing each component of the given
-   [`simd`](../../headers/simd.md) to `tue::math::dot`. Note: this is NOT the
-   vector dot product like the `vec` overload above.
+   [`simd`](../../headers/simd.md) to `tue::math::dot`. Note: this operates on
+   each component individually unlike the `vec` overload above.
 
 License
 -------
