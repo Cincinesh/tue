@@ -52,7 +52,7 @@ as [GLM](https://github.com/g-truc/glm):
   containing the dot products of those 4 parallel vectors without any
   inefficient component shuffling. See
   [this answer](http://stackoverflow.com/a/11620369/1195206) to a naive question
-  I asked on Stack Overflow a few years back.
+  I asked on Stack Overflow a few years back for some more rationale.
 
 Status
 ------
