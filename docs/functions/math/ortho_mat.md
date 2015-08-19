@@ -13,8 +13,8 @@ constexpr auto ortho_mat(
     -> mat<decltype(math::recip(width)), C, R>;
 ```
 
-Returns an orthographic projection matrix with the given dimensions (`C` and `R`
-for column and row counts respectively).
+Returns an orthographic projection matrix with the given dimensions `C` and `R`
+for column and row counts respectively.
 
 The `width` parameter determines the horizontal clipping planes.
 

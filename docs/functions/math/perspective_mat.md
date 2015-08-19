@@ -15,8 +15,8 @@ constexpr auto perspective_mat(
     -> mat<decltype(math::sin(fovy)), C, R>;
 ```
 
-Returns a 3D perspective projection matrix with the given dimensions (`C` and
-`R` for column and row counts respectively).
+Returns a 3D perspective projection matrix with the given dimensions `C` and `R`
+for column and row counts respectively.
 
 The `fovy` parameter specifies the vertical field of view.
 
@@ -28,7 +28,7 @@ clipping planes.
 The exact calculation is as follows:
 
 ```
-// Where f = cos(fovy/2) / sin(fovy/2)
+Where f = cos(fovy/2) / sin(fovy/2)
 
 [ f/aspect  0             0              0 ]
 [    0      f             0              0 ]
