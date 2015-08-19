@@ -25,10 +25,10 @@ The `near` and `far` parameters determine the near and far clipping planes.
 The exact calculation is as follows:
 
 ```
-[2/width    0               0           0 ]
-[   0    2/height           0           0 ]
-[   0       0          2/(near-far)     0 ]
-[   0       0     (near+far)/(near-far) 1 ]
+[ 2/width     0                0            0 ]
+[    0     2/height            0            0 ]
+[    0        0           2/(near-far)      0 ]
+[    0        0      (near+far)/(near-far)  1 ]
 ```
 
 License
