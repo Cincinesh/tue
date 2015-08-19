@@ -340,8 +340,8 @@ TEST_CASE(ortho_mat) {
   test_assert(m1[1][3] == 0.0f);
   test_assert(m1[2][0] == 0.0f);
   test_assert(m1[2][1] == 0.0f);
-  test_assert(m1[2][2] == 2 / (far - near));
-  test_assert(m1[2][3] == (far + near) / (far - near));
+  test_assert(m1[2][2] == 2 / (near - far));
+  test_assert(m1[2][3] == (near + far) / (near - far));
   test_assert(m1[3][0] == 0.0f);
   test_assert(m1[3][1] == 0.0f);
   test_assert(m1[3][2] == 0.0f);
