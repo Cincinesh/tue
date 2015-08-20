@@ -3,10 +3,33 @@
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
-// Code here
+template<typename T, int C = 4, int R = 4>
+auto pose_mat(
+    const vec2<T>& translation,
+    const T& rotation) noexcept
+    -> decltype(rotation_mat<T, R, R>(rotation)
+       * translation_mat<T, C, R>(translation));
+
+template<typename T, int C = 4, int R = 4>
+auto pose_mat(const pose2d<T>& pose) noexcept
+    -> decltype(rotation_mat<T, R, R>(pose.rotation())
+       * translation_mat<T, C, R>(pose.translation()));
+
+template<typename T, int C = 4, int R = 4>
+constexpr auto pose_mat(
+    const vec3<T>& translation,
+    const quat<T>& rotation) noexcept
+    -> decltype(rotation_mat<T, R, R>(rotation)
+       * translation_mat<T, C, R>(translation));
+
+template<typename T, int C = 4, int R = 4>
+constexpr auto pose_mat(const pose3d<T>& pose) noexcept
+    -> decltype(rotation_mat<T, R, R>(pose.rotation())
+       * translation_mat<T, C, R>(pose.translation()));
 ```
 
-TODO.
+Returns a pose transformation matrix (the composite of a rotation matrix
+followed by a translation matrix).
 
 License
 -------
