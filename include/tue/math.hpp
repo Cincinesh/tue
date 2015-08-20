@@ -80,34 +80,62 @@ namespace math
     return math::log(static_cast<double>(x));
   }
 
-  template<typename T>
-  inline std::enable_if_t<std::is_floating_point<T>::value,
-  T> pow(T base, T exponent) noexcept {
+  template<typename T, typename U>
+  inline auto pow(T base, U exponent) noexcept
+      -> std::enable_if_t<(
+         std::is_floating_point<T>::value
+         && std::is_floating_point<U>::value),
+         decltype(std::pow(base, exponent))> {
     return std::pow(base, exponent);
   }
 
   template<typename T, typename U>
-  inline std::enable_if_t<
-      std::is_arithmetic<T>::value
-      && std::is_arithmetic<U>::value
-      && !std::is_same<T, long double>::value
-      && !std::is_same<U, long double>::value,
-  double> pow(T base, U exponent) noexcept {
-    return math::pow(
-        static_cast<double>(base),
-        static_cast<double>(exponent));
+  inline auto pow(T base, U exponent) noexcept
+      -> std::enable_if_t<(
+         std::is_floating_point<T>::value
+         && std::is_integral<U>::value
+         && sizeof(T) <= sizeof(double)),
+         decltype(std::pow(base, static_cast<double>(exponent)))> {
+    return std::pow(base, static_cast<double>(exponent));
   }
 
   template<typename T, typename U>
-  inline std::enable_if_t<
-      std::is_arithmetic<T>::value
-      && std::is_arithmetic<U>::value
-      && (std::is_same<T, long double>::value
-          ^ std::is_same<U, long double>::value),
-  long double> pow(T base, U exponent) noexcept {
-    return math::pow(
-        static_cast<long double>(base),
-        static_cast<long double>(exponent));
+  inline auto pow(T base, U exponent) noexcept
+      -> std::enable_if_t<(
+         std::is_floating_point<T>::value
+         && std::is_integral<U>::value
+         && sizeof(T) > sizeof(double)),
+         decltype(std::pow(base, static_cast<T>(exponent)))> {
+    return std::pow(base, static_cast<T>(exponent));
+  }
+
+  template<typename T, typename U>
+  inline auto pow(T base, U exponent) noexcept
+      -> std::enable_if_t<(
+         std::is_integral<T>::value
+         && std::is_floating_point<U>::value
+         && sizeof(U) <= sizeof(double)),
+         decltype(std::pow(static_cast<double>(base), exponent))> {
+    return std::pow(static_cast<double>(base), exponent);
+  }
+
+  template<typename T, typename U>
+  inline auto pow(T base, U exponent) noexcept
+      -> std::enable_if_t<(
+         std::is_integral<T>::value
+         && std::is_floating_point<U>::value
+         && sizeof(U) > sizeof(double)),
+         decltype(std::pow(static_cast<U>(base), exponent))> {
+    return std::pow(static_cast<U>(base), exponent);
+  }
+
+  template<typename T, typename U>
+  inline auto pow(T base, U exponent) noexcept
+      -> std::enable_if_t<(
+         std::is_integral<T>::value
+         && std::is_integral<U>::value),
+         double> {
+    return std::pow(static_cast<double>(base), static_cast<double>(exponent));
   }
 
   template<typename T>
