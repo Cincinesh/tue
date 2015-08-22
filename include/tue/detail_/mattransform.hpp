@@ -255,12 +255,11 @@ namespace math
       -> std::enable_if_t<(C >= 3 && R >= 4),
          mat<decltype(math::recip(width)), C, R>>  {
     using U = decltype(math::recip(width));
-    const U nmf = U(near - far);
     return detail_::mat_utils<U, C, R>::create(
-        U(2) / U(width),           U(0), U(0), U(0),
-        U(0), U(2) / U(height),          U(0), U(0),
-        U(0), U(0), U(2) / nmf, U(near + far) / nmf,
-        U(0), U(0), U(0),                      U(1));
+        U(2) / U(width),                               U(0), U(0), U(0),
+        U(0), U(2) / U(height),                              U(0), U(0),
+        U(0), U(0), U(2) / U(near - far), U(near + far) / U(near - far),
+        U(0), U(0), U(0),                                          U(1));
   }
 }
 

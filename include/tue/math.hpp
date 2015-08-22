@@ -15,6 +15,18 @@
 
 namespace tue {
 
+namespace detail_
+{
+  template<typename T, typename U>
+  using pow_promote_t =
+    std::conditional_t<
+        std::is_floating_point<T>::value, T,
+        std::conditional_t<
+            std::is_integral<U>::value, double,
+            std::conditional_t<
+                (sizeof(U) <= sizeof(double)), double, U>>>;
+}
+
 namespace math
 {
   constexpr float pi = 3.14159265358979323846264338327950288f;
@@ -81,61 +93,14 @@ namespace math
   }
 
   template<typename T, typename U>
-  inline auto pow(T base, U exponent) noexcept
-      -> std::enable_if_t<(
-         std::is_floating_point<T>::value
-         && std::is_floating_point<U>::value),
-         decltype(std::pow(base, exponent))> {
-    return std::pow(base, exponent);
-  }
-
-  template<typename T, typename U>
-  inline auto pow(T base, U exponent) noexcept
-      -> std::enable_if_t<(
-         std::is_floating_point<T>::value
-         && std::is_integral<U>::value
-         && sizeof(T) <= sizeof(double)),
-         decltype(std::pow(base, static_cast<double>(exponent)))> {
-    return std::pow(base, static_cast<double>(exponent));
-  }
-
-  template<typename T, typename U>
-  inline auto pow(T base, U exponent) noexcept
-      -> std::enable_if_t<(
-         std::is_floating_point<T>::value
-         && std::is_integral<U>::value
-         && sizeof(T) > sizeof(double)),
-         decltype(std::pow(base, static_cast<T>(exponent)))> {
-    return std::pow(base, static_cast<T>(exponent));
-  }
-
-  template<typename T, typename U>
-  inline auto pow(T base, U exponent) noexcept
-      -> std::enable_if_t<(
-         std::is_integral<T>::value
-         && std::is_floating_point<U>::value
-         && sizeof(U) <= sizeof(double)),
-         decltype(std::pow(static_cast<double>(base), exponent))> {
-    return std::pow(static_cast<double>(base), exponent);
-  }
-
-  template<typename T, typename U>
-  inline auto pow(T base, U exponent) noexcept
-      -> std::enable_if_t<(
-         std::is_integral<T>::value
-         && std::is_floating_point<U>::value
-         && sizeof(U) > sizeof(double)),
-         decltype(std::pow(static_cast<U>(base), exponent))> {
-    return std::pow(static_cast<U>(base), exponent);
-  }
-
-  template<typename T, typename U>
-  inline auto pow(T base, U exponent) noexcept
-      -> std::enable_if_t<(
-         std::is_integral<T>::value
-         && std::is_integral<U>::value),
-         double> {
-    return std::pow(static_cast<double>(base), static_cast<double>(exponent));
+  inline std::enable_if_t<(
+      std::is_arithmetic<T>::value
+      && std::is_arithmetic<U>::value),
+  decltype(detail_::pow_promote_t<T, U>() * detail_::pow_promote_t<U, T>())>
+  pow(T base, U exponent) noexcept {
+    return std::pow(
+        static_cast<detail_::pow_promote_t<T, U>>(base),
+        static_cast<detail_::pow_promote_t<U, T>>(exponent));
   }
 
   template<typename T>
@@ -230,16 +195,10 @@ namespace math
     return math::length(static_cast<double>(x));
   }
 
-  inline float normalize(float x) noexcept {
-    return ::copysignf(1.0f, x);
-  }
-
-  inline double normalize(double x) noexcept {
-    return ::copysign(1.0, x);
-  }
-
-  inline long double normalize(long double x) noexcept {
-    return ::copysignl(1.0L, x);
+  template<typename T>
+  inline std::enable_if_t<std::is_floating_point<T>::value,
+  T> normalize(T x) noexcept {
+      return std::copysign(T(1), x);
   }
 
   template<typename T>
