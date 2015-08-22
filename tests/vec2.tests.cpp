@@ -543,21 +543,29 @@ TEST_CASE(log) {
 }
 
 TEST_CASE(pow) {
-  const auto fpow1 = math::pow(fv21, f2);
-  test_assert(fpow1[0] == math::pow(fv21[0], f2));
-  test_assert(fpow1[1] == math::pow(fv21[1], f2));
+  const auto fpow1 = math::pow(f1, fv22);
+  test_assert(fpow1[0] == math::pow(f1, fv22[0]));
+  test_assert(fpow1[1] == math::pow(f1, fv22[1]));
 
-  const auto ipow1 = math::pow(iv21, f2);
-  test_assert(ipow1[0] == math::pow(iv21[0], f2));
-  test_assert(ipow1[1] == math::pow(iv21[1], f2));
+  const auto ipow1 = math::pow(i1, fv22);
+  test_assert(ipow1[0] == math::pow(i1, fv22[0]));
+  test_assert(ipow1[1] == math::pow(i1, fv22[1]));
 
-  const auto fpow2 = math::pow(fv21, fv22);
-  test_assert(fpow2[0] == math::pow(fv21[0], fv22[0]));
-  test_assert(fpow2[1] == math::pow(fv21[1], fv22[1]));
+  const auto fpow2 = math::pow(fv21, f2);
+  test_assert(fpow2[0] == math::pow(fv21[0], f2));
+  test_assert(fpow2[1] == math::pow(fv21[1], f2));
 
-  const auto ipow2 = math::pow(iv21, fv22);
-  test_assert(ipow2[0] == math::pow(iv21[0], fv22[0]));
-  test_assert(ipow2[1] == math::pow(iv21[1], fv22[1]));
+  const auto ipow2 = math::pow(iv21, f2);
+  test_assert(ipow2[0] == math::pow(iv21[0], f2));
+  test_assert(ipow2[1] == math::pow(iv21[1], f2));
+
+  const auto fpow3 = math::pow(fv21, fv22);
+  test_assert(fpow3[0] == math::pow(fv21[0], fv22[0]));
+  test_assert(fpow3[1] == math::pow(fv21[1], fv22[1]));
+
+  const auto ipow3 = math::pow(iv21, fv22);
+  test_assert(ipow3[0] == math::pow(iv21[0], fv22[0]));
+  test_assert(ipow3[1] == math::pow(iv21[1], fv22[1]));
 }
 
 TEST_CASE(recip) {

@@ -786,25 +786,35 @@ TEST_CASE(log) {
 }
 
 TEST_CASE(pow) {
-  const auto fpow1 = math::pow(fm321, f2);
-  test_assert(fpow1[0] == math::pow(fm321[0], f2));
-  test_assert(fpow1[1] == math::pow(fm321[1], f2));
-  test_assert(fpow1[2] == math::pow(fm321[2], f2));
+  const auto fpow1 = math::pow(f1, fm322);
+  test_assert(fpow1[0] == math::pow(f1, fm322[0]));
+  test_assert(fpow1[1] == math::pow(f1, fm322[1]));
+  test_assert(fpow1[2] == math::pow(f1, fm322[2]));
 
-  const auto ipow1 = math::pow(im321, f2);
-  test_assert(ipow1[0] == math::pow(im321[0], f2));
-  test_assert(ipow1[1] == math::pow(im321[1], f2));
-  test_assert(ipow1[2] == math::pow(im321[2], f2));
+  const auto ipow1 = math::pow(i1, fm322);
+  test_assert(ipow1[0] == math::pow(i1, fm322[0]));
+  test_assert(ipow1[1] == math::pow(i1, fm322[1]));
+  test_assert(ipow1[2] == math::pow(i1, fm322[2]));
 
-  const auto fpow2 = math::pow(fm321, fm322);
-  test_assert(fpow2[0] == math::pow(fm321[0], fm322[0]));
-  test_assert(fpow2[1] == math::pow(fm321[1], fm322[1]));
-  test_assert(fpow2[2] == math::pow(fm321[2], fm322[2]));
+  const auto fpow2 = math::pow(fm321, f2);
+  test_assert(fpow2[0] == math::pow(fm321[0], f2));
+  test_assert(fpow2[1] == math::pow(fm321[1], f2));
+  test_assert(fpow2[2] == math::pow(fm321[2], f2));
 
-  const auto ipow2 = math::pow(im321, fm322);
-  test_assert(ipow2[0] == math::pow(im321[0], fm322[0]));
-  test_assert(ipow2[1] == math::pow(im321[1], fm322[1]));
-  test_assert(ipow2[2] == math::pow(im321[2], fm322[2]));
+  const auto ipow2 = math::pow(im321, f2);
+  test_assert(ipow2[0] == math::pow(im321[0], f2));
+  test_assert(ipow2[1] == math::pow(im321[1], f2));
+  test_assert(ipow2[2] == math::pow(im321[2], f2));
+
+  const auto fpow3 = math::pow(fm321, fm322);
+  test_assert(fpow3[0] == math::pow(fm321[0], fm322[0]));
+  test_assert(fpow3[1] == math::pow(fm321[1], fm322[1]));
+  test_assert(fpow3[2] == math::pow(fm321[2], fm322[2]));
+
+  const auto ipow3 = math::pow(im321, fm322);
+  test_assert(ipow3[0] == math::pow(im321[0], fm322[0]));
+  test_assert(ipow3[1] == math::pow(im321[1], fm322[1]));
+  test_assert(ipow3[2] == math::pow(im321[2], fm322[2]));
 }
 
 TEST_CASE(recip) {

@@ -672,6 +672,16 @@ namespace math
 
   template<typename T, typename U>
   inline auto pow(
+      const T& base,
+      const vec2<U>& exponent) noexcept {
+    return vec2<decltype(math::pow(base, exponent[0]))>{
+      math::pow(base, exponent[0]),
+      math::pow(base, exponent[1]),
+    };
+  }
+
+  template<typename T, typename U>
+  inline auto pow(
       const vec2<T>& base,
       const U& exponent) noexcept {
     return vec2<decltype(math::pow(base[0], exponent))>{
