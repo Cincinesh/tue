@@ -5,7 +5,7 @@ Provided by several headers.
 ```c++
 // (1)
 // #include <tue/math.hpp>
-// (Where T is an arithmetic type)
+// Where T is an arithmetic type
 template<typename T>
 T min(T x1, T x2) noexcept;
 

@@ -3,7 +3,7 @@
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
-// (Where C = 3 or 4 and R = 4)
+// Where C = 3 or 4 and R = 4
 template<typename T, int C = 4, int R = 4>
 constexpr auto ortho_mat(
     const T& width,

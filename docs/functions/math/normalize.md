@@ -5,13 +5,13 @@ Provided by several headers.
 ```c++
 // (1)
 // #include <tue/math.hpp>
-// (Where T is a floating-point type)
+// Where T is a floating-point type
 template<typename T>
 T normalize(T x) noexcept;
 
 // (2)
 // #include <tue/math.hpp>
-// (Where T is an integral type)
+// Where T is an integral type
 template<typename T>
 double normalize(T x) noexcept;
 

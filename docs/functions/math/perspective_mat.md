@@ -3,8 +3,8 @@
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
-// (C and R must both = 4)
-// (They're only parameters for consistency with the other transformation matrices)
+// C and R must both = 4. They're only parameters for consistency with the other
+// transformation matrices.
 template<typename T, int C = 4, int R = 4>
 constexpr auto perspective_mat(
     const T& fovy,

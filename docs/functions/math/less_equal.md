@@ -5,7 +5,7 @@ Provided by several headers.
 ```c++
 // (1)
 // #include <tue/math.hpp>
-// (Where T and U are both arithmetic types)
+// Where T and U are both arithmetic types
 template<typename T, typename U>
 constexpr bool less_equal(T lhs, U rhs) noexcept;
 
