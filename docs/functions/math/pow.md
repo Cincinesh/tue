@@ -77,23 +77,23 @@ auto pow(
 2. Returns the result of passing `base` and each component of the `exponent`
    [`vec`](../../headers/vec.md) to `tue::math::pow`.
 
-3. Returns the result of passing each component of the `vec` `base` along with
+3. Returns the result of passing each component of the `base` `vec` along with
    `exponent` to `tue::math::pow`.
 
-4. Returns the result of passing each corresponding pair of components of the
-   `vec`'s `base` and `exponent` to `tue::math::pow`.
+4. Returns the result of passing each corresponding pair of components in the
+   `base` and `exponent` `vec`'s  to `tue::math::pow`.
 
 5. Returns the result of passing `base` and each component of the `exponent`
    [`mat`](../../headers/mat.md) to `tue::math::pow`.
 
-6. Returns the result of passing each component of the `mat` `base` along with
+6. Returns the result of passing each component of the `base` `mat` along with
    `exponent` to `tue::math::pow`.
 
 7. Returns the result of passing each corresponding pair of components of the
-   `mat`'s `base` and `exponent` to `tue::math::pow`.
+   `base` and `exponent` `mat`'s to `tue::math::pow`.
 
 8. Returns the result of passing each corresponding pair of components of the
-   [`simd`](../../headers/simd.md)'s `base` and `exponent` to `tue::math::pow`.
+   `base` and `exponent` [`simd`](../../headers/simd.md)'s to `tue::math::pow`.
 
 License
 -------
