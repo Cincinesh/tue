@@ -59,7 +59,7 @@ auto pow(
     -> mat<decltype(math::pow(base[0][0], exponent[0][0])), C, R>;
 
 // (8)
-// #include <tue/vec.hpp>
+// #include <tue/simd.hpp>
 template<typename T, int N>
 auto pow(
     const simd<T, N>& base,
