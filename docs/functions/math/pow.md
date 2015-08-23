@@ -5,18 +5,8 @@ Provided by several headers.
 ```c++
 // (1)
 // #include <tue/math.hpp>
-//
 // Where T and U are arithmetic types, and PromotedT and PromotedU are
-// determined as follows:
-//
-// - If T is a floating-type, PromotedT = T
-// - If T is an integral type
-//   - and U is an integral type, PromotedT = double
-//   - and U is a floating-point type
-//     - and sizeof(U) <= double, PromotedT = double
-//     - and sizeof(U) > double, PromotedT = U
-//
-// - Swap T and U in the above rules to determine PromotedU
+// determined as in the description below.
 template<typename T, typename U>
 decltype(PromotedT() * PromotedU()) pow(T base, U exponent) noexcept;
 
@@ -71,12 +61,39 @@ auto pow(
 // (8)
 // #include <tue/vec.hpp>
 template<typename T, int N>
-simd<T, N> pow(
+auto pow(
     const simd<T, N>& base,
-    const simd<T, N>& exponent) noexcept;
+    const simd<T, N>& exponent) noexcept
+    -> simd<decltype(math::pow(T(), T())), N>;
 ```
 
-TODO.
+1. Returns the value of `base` raised to the `exponent` power. If an argument
+   type is an integral type, it will be converted to type `double` unless the
+   other argument type is a floating-point type larger than `double`, in which
+   case it will be converted to that type. For example, `pow(int, float)` will
+   be converted to `pow(double, float)`, but `pow(int, long double)` will be
+   converted to `pow(long double, long double)`.
+
+2. Returns the result of passing `base` and each component of the `exponent`
+   [`vec`](../../headers/vec.md) to `tue::math::pow`.
+
+3. Returns the result of passing each component of the `vec` `base` along with
+   `exponent` to `tue::math::pow`.
+
+4. Returns the result of passing each corresponding pair of components of the
+   `vec`'s `base` and `exponent` to `tue::math::pow`.
+
+5. Returns the result of passing `base` and each component of the `exponent`
+   [`mat`](../../headers/mat.md) to `tue::math::pow`.
+
+6. Returns the result of passing each component of the `mat` `base` along with
+   `exponent` to `tue::math::pow`.
+
+7. Returns the result of passing each corresponding pair of components of the
+   `mat`'s `base` and `exponent` to `tue::math::pow`.
+
+8. Returns the result of passing each corresponding pair of components of the
+   [`simd`](../../headers/simd.md)'s `base` and `exponent` to `tue::math::pow`.
 
 License
 -------
