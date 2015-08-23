@@ -63,8 +63,8 @@ constexpr mat<T, C, R> rotation_mat(const quat<T>& q) noexcept;
    and row counts respectively. `angle` is treated as counter-clockwise radians
    around the given `axis`. The exact calculation is as follows:
    ```
-   Where x, y, and z are the components of the given axis and s and c are
-   sin(angle) and cos(angle) respectively.
+   Where x, y, and z are components of the given axis and s and c are sin(angle)
+   and cos(angle) respectively
 
    [ xx(1-c)+c   xy(1-c)+zs  xz(1-c)-ys  0 ]
    [ xy(1-c)-zs  yy(1-c)+c   yz(1-c)+xs  0 ]
@@ -89,7 +89,7 @@ constexpr mat<T, C, R> rotation_mat(const quat<T>& q) noexcept;
    [rotation quaternion](../../other/rotation_types.md). The exact calculation
    is as follows:
    ```
-   Where x, y, z, and w are the components of the given quat.
+   Where x, y, z, and w are components of the given rotation quaternion
 
    [ 1-2yy-2zz    2xy+2zw    2xz-2yw  0 ]
    [   2xy-2zw  1-2xx-2zz    2yz+2xw  0 ]
