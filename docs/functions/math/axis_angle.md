@@ -28,7 +28,7 @@ auto axis_angle(const quat<T>& q) noexcept
 
 2. Same as (1) but with the rotation vector given as individual components.
 
-1. Converts the given rotation quaternion to an axis-angle vector. For an
+3. Converts the given rotation quaternion to an axis-angle vector. For an
    explanation of the differences between the two, see
    [Rotation Types](../../other/rotation_types.md).
 
