@@ -35,13 +35,13 @@ auto rotation_mat(const vec4<T>& axis_angle) noexcept
 // Where C and R are each 3 or 4
 template<typename T, int C = 4, int R = 4>
 auto rotation_mat(const vec3<T>& v) noexcept
-    -> mat<decltype(math::axis_angle(v).w()), C, R>;
+    -> mat<decltype(math::sin(math::axis_angle(v).w()), C, R>;
 
 // (6)
 // Where C and R are each 3 or 4
 template<typename T, int C = 4, int R = 4>
 auto rotation_mat(const T& x, const T& y, const T& z) noexcept
-    -> mat<decltype(math::axis_angle(x, y, z).w()), C, R>;
+    -> mat<decltype(math::sin(math::axis_angle(x, y, z).w())), C, R>;
 
 // (7)
 // Where C and R are each 3 or 4
@@ -72,17 +72,17 @@ constexpr mat<T, C, R> rotation_mat(const quat<T>& q) noexcept;
    [     0           0           0       1 ]
    ```
 
-3. Same as (2) except with the axis split into individual components.
+3. Same as (2) but with the axis split into individual components.
 
-4. Same as (2) except with the axis and angle combined into one
+4. Same as (2) but with the axis and angle combined into one
    [`vec`](../../headers/vec.md).
 
-5. Same as (4) except with a rotation vector instead of the axis-angle
+5. Same as (4) but with a rotation vector instead of the axis-angle
    representation. For an explanation of the differences between the two, see
    [Rotation Types](../../other/rotation_types.md). This overload behaves as if
    `math::rotation_mat<T, C, R>(math::axis_angle(v))` were called.
 
-6. Same as (5) except with the rotation vector split into individual components.
+6. Same as (5) but with the rotation vector split into individual components.
 
 7. Returns a 3D rotation matrix with the given dimensions `C` and `R` for column
    and row counts respectively. `q` is treated as a

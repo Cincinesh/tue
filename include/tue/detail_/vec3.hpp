@@ -1023,12 +1023,12 @@ namespace math
   }
 
   template<typename T>
-  inline auto rotation_vec(const vec3<T>& axis, const T& angle) noexcept {
+  inline vec3<T> rotation_vec(const vec3<T>& axis, const T& angle) noexcept {
     return axis * angle;
   }
 
   template<typename T>
-  inline auto rotation_vec(
+  inline vec3<T> rotation_vec(
       const T& axis_x,
       const T& axis_y,
       const T& axis_z,
@@ -1037,7 +1037,7 @@ namespace math
   }
 
   template<typename T>
-  inline auto rotation_vec(const vec4<T>& v) noexcept {
+  inline vec3<T> rotation_vec(const vec4<T>& v) noexcept {
     return math::rotation_vec(v.xyz(), v.w());
   }
 }

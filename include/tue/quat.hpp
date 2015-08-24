@@ -213,15 +213,10 @@ namespace math
 
   template<typename T>
   inline auto rotation_quat(const vec3<T>& axis, const T& angle) noexcept {
-    using U = decltype(sin(angle));
+    using U = decltype(math::sin(angle));
     U s, c;
     math::sincos(U(angle) / U(2), s, c);
     return quat<U>(vec3<U>(axis) * s, c);
-  }
-
-  template<typename T>
-  inline auto rotation_quat(const vec4<T>& v) noexcept {
-    return math::rotation_quat(v.xyz(), v.w());
   }
 
   template<typename T>
@@ -231,6 +226,11 @@ namespace math
       const T& axis_z,
       const T& angle) noexcept {
     return math::rotation_quat(vec4<T>(axis_x, axis_y, axis_z, angle));
+  }
+
+  template<typename T>
+  inline auto rotation_quat(const vec4<T>& v) noexcept {
+    return math::rotation_quat(v.xyz(), v.w());
   }
 
   template<typename T>

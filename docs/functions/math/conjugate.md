@@ -7,8 +7,8 @@ template<typename T>
 constexpr quat<T> conjugate(const quat<T>& q) noexcept;
 ```
 
-Returns the conjugate of the given [`quat`](../../headers/quat.md), i.e., another
-`quat` with the vector part negated, but the scalar part unchanged.
+Returns the conjugate of the given [`quat`](../../headers/quat.md), i.e.,
+another `quat` with the vector part negated, but the scalar part unchanged.
 
 License
 -------

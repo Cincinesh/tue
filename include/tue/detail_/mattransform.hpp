@@ -117,13 +117,13 @@ namespace math
   }
 
   template<typename T, int C = 4, int R = 4>
-  inline auto rotation_mat(const T& x, const T& y, const T& z) noexcept {
-    return math::rotation_mat<T, C, R>(math::axis_angle(x, y, z));
+  inline auto rotation_mat(const vec3<T>& v) noexcept {
+    return math::rotation_mat<T, C, R>(math::axis_angle(v));
   }
 
   template<typename T, int C = 4, int R = 4>
-  inline auto rotation_mat(const vec3<T>& v) noexcept {
-    return math::rotation_mat<T, C, R>(math::axis_angle(v));
+  inline auto rotation_mat(const T& x, const T& y, const T& z) noexcept {
+    return math::rotation_mat<T, C, R>(math::axis_angle(x, y, z));
   }
 
   template<typename T, int C = 4, int R = 4>
