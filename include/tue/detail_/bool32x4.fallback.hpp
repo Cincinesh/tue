@@ -116,6 +116,19 @@ public:
 
 namespace math
 {
+  inline bool32x4 select(
+      const bool32x4& condition,
+      const bool32x4& value) noexcept {
+    return condition & value;
+  }
+
+  inline bool32x4 select(
+      const bool32x4& condition,
+      const bool32x4& value,
+      const bool32x4& otherwise) noexcept {
+    return (condition & value) | (~condition & otherwise);
+  }
+
   inline bool32x4 not_equal(
       const bool32x4& lhs,
       const bool32x4& rhs) noexcept {

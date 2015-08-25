@@ -118,6 +118,21 @@ public:
 
 namespace math
 {
+  inline bool32x4 select(
+      const bool32x4& condition,
+      const bool32x4& value) noexcept {
+    return _mm_and_ps(condition, value);
+  }
+
+  inline bool32x4 select(
+      const bool32x4& condition,
+      const bool32x4& value,
+      const bool32x4& otherwise) noexcept {
+    return _mm_or_ps(
+        _mm_and_ps(condition, value),
+        _mm_andnot_ps(condition, otherwise));
+  }
+
   inline bool32x4 not_equal(
       const bool32x4& lhs,
       const bool32x4& rhs) noexcept {

@@ -27,8 +27,8 @@ constexpr auto greater(
 
 // (4)
 // #include <tue/simd.hpp>
-// (Where boolX is a sized bool type matching the size of T,
-//  e.g., if T is float, boolX is bool32)
+// Where boolX is a sized bool type matching the size of T,
+// e.g., if T is float, boolX is bool32.
 template<typename T, int N>
 simd<boolX, N> greater(
     const simd<T, N>& lhs,
