@@ -34,7 +34,7 @@ auto sin(const simd<T, N>& v) noexcept
     -> simd<decltype(math::sin(T())), N>;
 ```
 
-1. Returns the sine of the given value.
+1. Returns the trigonometric sine of the given angle in radians.
 
 2. Same as above after first converting `x` to a `double`.
 

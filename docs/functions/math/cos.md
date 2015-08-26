@@ -34,7 +34,7 @@ auto cos(const simd<T, N>& v) noexcept
     -> simd<decltype(math::cos(T())), N>;
 ```
 
-1. Returns the cosine of the given value.
+1. Returns the trigonometric cosine of the given angle in radians.
 
 2. Same as above after first converting `x` to a `double`.
 
