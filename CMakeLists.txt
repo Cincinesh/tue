@@ -19,52 +19,10 @@ set(MON_SOURCES
     lib/mon/src/mon.test_runner.cpp)
 
 # tue
-set(TUE_SOURCES
-    include/tue/bool.hpp
-    include/tue/detail_/bool32x4.fallback.hpp
-    include/tue/detail_/bool32x4.sse.hpp
-    include/tue/detail_/float32x4.fallback.hpp
-    include/tue/detail_/float32x4.sse.hpp
-    include/tue/detail_/mat2xR.hpp
-    include/tue/detail_/mat3xR.hpp
-    include/tue/detail_/mat4xR.hpp
-    include/tue/detail_/matmult.hpp
-    include/tue/detail_/mattransform.hpp
-    include/tue/detail_/vec2.hpp
-    include/tue/detail_/vec3.hpp
-    include/tue/detail_/vec4.hpp
-    include/tue/mat.hpp
-    include/tue/math.hpp
-    include/tue/pose2d.hpp
-    include/tue/pose3d.hpp
-    include/tue/quat.hpp
-    include/tue/rect.hpp
-    include/tue/simd.hpp
-    include/tue/size2d.hpp
-    include/tue/size3d.hpp
-    include/tue/unused.hpp
-    include/tue/vec.hpp)
+set(TUE_SOURCES)
 
 # tue.tests
-set(TUE_TEST_SOURCES
-    tests/bool.tests.cpp
-    tests/bool32x4.tests.cpp
-    tests/float32x4.tests.cpp
-    tests/mat2xR.tests.cpp
-    tests/mat3xR.tests.cpp
-    tests/mat4xR.tests.cpp
-    tests/math.tests.cpp
-    tests/matmult.tests.cpp
-    tests/mattransform.tests.cpp
-    tests/pose2d.tests.cpp
-    tests/pose3d.tests.cpp
-    tests/quat.tests.cpp
-    tests/rect.tests.cpp
-    tests/size2d.tests.cpp
-    tests/size3d.tests.cpp
-    tests/vec2.tests.cpp
-    tests/vec3.tests.cpp
-    tests/vec4.tests.cpp)
+set(TUE_TEST_SOURCES)
 
 add_executable(
     tue.tests
