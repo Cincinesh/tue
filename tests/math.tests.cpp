@@ -84,4 +84,19 @@ namespace
     {
         test_assert(math::abs(12u) == 12u);
     }
+
+    TEST_CASE(pow)
+    {
+        test_assert(math::pow(1.2, 3.4) == std::pow(1.2, 3.4));
+        test_assert(math::pow(1.2, 3.4L) == std::pow(1.2L, 3.4L));
+        test_assert(math::pow(1.2, 34) == std::pow(1.2, 34.0));
+
+        test_assert(math::pow(1.2L, 3.4) == std::pow(1.2L, 3.4L));
+        test_assert(math::pow(1.2L, 3.4L) == std::pow(1.2L, 3.4L));
+        test_assert(math::pow(1.2L, 34) == std::pow(1.2L, 34.0L));
+
+        test_assert(math::pow(12, 3.4) == std::pow(12.0, 3.4));
+        test_assert(math::pow(12, 3.4L) == std::pow(12.0L, 3.4L));
+        test_assert(math::pow(12, 34) == std::pow(12.0, 34.0));
+    }
 }
