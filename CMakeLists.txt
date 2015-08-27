@@ -19,12 +19,10 @@ set(MON_SOURCES
     lib/mon/src/mon.test_runner.cpp)
 
 # tue
-set(TUE_SOURCES
-    include/tue/math.hpp)
+set(TUE_SOURCES)
 
 # tue.tests
-set(TUE_TEST_SOURCES
-    tests/math.tests.cpp)
+set(TUE_TEST_SOURCES)
 
 add_executable(
     tue.tests
