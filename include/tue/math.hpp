@@ -30,8 +30,8 @@ namespace tue
 
         template<typename T, typename U>
         using pow_return_t = decltype(std::pow(
-            ::tue::detail_::pow_promote_t<T, U>(),
-            ::tue::detail_::pow_promote_t<U, T>()));
+            tue::detail_::pow_promote_t<T, U>(),
+            tue::detail_::pow_promote_t<U, T>()));
     }
 
     /**
@@ -125,7 +125,9 @@ namespace tue
         inline std::enable_if_t<std::is_integral<T>::value>
         sincos(T x, double& sin_out, double& cos_out) noexcept
         {
-            ::tue::math::sincos(static_cast<double>(x), sin_out, cos_out);
+            const auto dx = static_cast<double>(x);
+            sin_out = std::sin(dx);
+            cos_out = std::cos(dx);
         }
 
         /**
@@ -226,12 +228,38 @@ namespace tue
         template<typename T, typename U>
         inline std::enable_if_t<(
             std::is_arithmetic<T>::value && std::is_arithmetic<U>::value),
-            ::tue::detail_::pow_return_t<T, U>>
+            tue::detail_::pow_return_t<T, U>>
         pow(T x, U y) noexcept
         {
             return std::pow(
-                static_cast<::tue::detail_::pow_promote_t<T, U>>(x),
-                static_cast<::tue::detail_::pow_promote_t<U, T>>(y));
+                static_cast<tue::detail_::pow_promote_t<T, U>>(x),
+                static_cast<tue::detail_::pow_promote_t<U, T>>(y));
+        }
+
+        /**
+        * \brief     Computes the nonnegative square root of `x`.
+        * \tparam T  The type of parameter `x`.
+        * \param x   A floating-point number.
+        * \return    The nonnegative square root of `x`.
+        */
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        sqrt(T x) noexcept
+        {
+            return std::sqrt(x);
+        }
+
+        /**
+        * \brief     Computes the nonnegative square root of `x`.
+        * \tparam T  The type of parameter `x`.
+        * \param x   An integral number.
+        * \return    The nonnegative square root of `static_cast<double>(x)`.
+        */
+        template<typename T>
+        inline std::enable_if_t<std::is_integral<T>::value, double>
+        sqrt(T x) noexcept
+        {
+            return std::sqrt(static_cast<double>(x));
         }
     }
 }

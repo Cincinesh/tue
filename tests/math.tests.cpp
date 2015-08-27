@@ -99,4 +99,14 @@ namespace
         test_assert(math::pow(12, 3.4L) == std::pow(12.0L, 3.4L));
         test_assert(math::pow(12, 34) == std::pow(12.0, 34.0));
     }
+
+    TEST_CASE(floating_point_sqrt)
+    {
+        test_assert(math::sqrt(1.2) == std::sqrt(1.2));
+    }
+
+    TEST_CASE(integral_sqrt)
+    {
+        test_assert(math::sqrt(12) == std::sqrt(12.0));
+    }
 }
