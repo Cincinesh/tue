@@ -34,7 +34,7 @@ auto exp(const simd<T, N>& v) noexcept
     -> simd<decltype(math::exp(T())), N>;
 ```
 
-1. Returns the base-e exponential function of `x`, i.e., `e` to the `x`.
+1. Returns the base-e exponential function of `x`, i.e., e to the `x`.
 
 2. Same as above after first converting `x` to a `double`.
 
