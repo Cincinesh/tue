@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <type_traits>
@@ -237,11 +238,11 @@ namespace tue
         }
 
         /**
-        * \brief     Computes the nonnegative square root of `x`.
-        * \tparam T  The type of parameter `x`.
-        * \param x   A floating-point number.
-        * \return    The nonnegative square root of `x`.
-        */
+         * \brief     Computes the nonnegative square root of `x`.
+         * \tparam T  The type of parameter `x`.
+         * \param x   A floating-point number.
+         * \return    The nonnegative square root of `x`.
+         */
         template<typename T>
         inline std::enable_if_t<std::is_floating_point<T>::value, T>
         sqrt(T x) noexcept
@@ -250,16 +251,30 @@ namespace tue
         }
 
         /**
-        * \brief     Computes the nonnegative square root of `x`.
-        * \tparam T  The type of parameter `x`.
-        * \param x   An integral number.
-        * \return    The nonnegative square root of `static_cast<double>(x)`.
-        */
+         * \brief     Computes the nonnegative square root of `x`.
+         * \tparam T  The type of parameter `x`.
+         * \param x   An integral number.
+         * \return    The nonnegative square root of `static_cast<double>(x)`.
+         */
         template<typename T>
         inline std::enable_if_t<std::is_integral<T>::value, double>
         sqrt(T x) noexcept
         {
             return std::sqrt(static_cast<double>(x));
+        }
+
+        /**
+         * \brief     Determines the maximum numeric value of the arguments.
+         * \tparam T  The type of parameters `x` and `y`.
+         * \param x   A number.
+         * \param y   Another number.
+         * \return    The maximum numeric value of the arguments.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
+        max(T x, T y) noexcept
+        {
+            return std::max(x, y);
         }
     }
 }

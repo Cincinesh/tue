@@ -109,4 +109,13 @@ namespace
     {
         test_assert(math::sqrt(12) == std::sqrt(12.0));
     }
+
+    TEST_CASE(max)
+    {
+        test_assert(math::max(1.2, 3.4) == 3.4);
+        test_assert(math::max(1.2, -3.4) == 1.2);
+
+        test_assert(math::max(12, 34) == 34);
+        test_assert(math::max(12, -34) == 12);
+    }
 }
