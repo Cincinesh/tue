@@ -14,7 +14,7 @@ constexpr bool less(T lhs, U rhs) noexcept;
 template<typename T, typename U, int N>
 constexpr auto less(
     const vec<T, N>& lhs,
-    const vec<T, N>& rhs)
+    const vec<T, N>& rhs) noexcept
     -> vec<decltype(math::less(lhs[0], rhs[0])), N>;
 
 // (3)
@@ -22,7 +22,7 @@ constexpr auto less(
 template<typename T, typename U, int C, int R>
 constexpr auto less(
     const mat<T, C, R>& lhs,
-    const mat<U, C, R>& rhs)
+    const mat<U, C, R>& rhs) noexcept
     -> mat<decltype(math::less(lhs[0][0], rhs[0][0])), C, R>;
 
 // (4)
@@ -32,7 +32,7 @@ constexpr auto less(
 template<typename T, int N>
 simd<boolX, N> less(
     const simd<T, N>& lhs,
-    const simd<T, N>& rhs);
+    const simd<T, N>& rhs) noexcept;
 ```
 
 1. Returns `true` if `lhs` is less than `rhs` and `false` otherwise. This

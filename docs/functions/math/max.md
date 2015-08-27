@@ -14,7 +14,7 @@ T max(T x1, T x2) noexcept;
 template<typename T, int N>
 auto max(
     const vec<T, N>& v1,
-    const vec<T, N>& v2)
+    const vec<T, N>& v2) noexcept
     -> vec<decltype(math::max(lhs[0], rhs[0])), N>;
 
 // (3)
@@ -22,15 +22,16 @@ auto max(
 template<typename T, int C, int R>
 auto max(
     const mat<T, C, R>& m1,
-    const mat<T, C, R>& m2)
+    const mat<T, C, R>& m2) noexcept
     -> mat<decltype(math::max(lhs[0][0], rhs[0][0])), C, R>;
 
 // (4)
 // #include <tue/simd.hpp>
 template<typename T, int N>
-simd<T, N> max(
+auto max(
     const simd<T, N>& lhs,
-    const simd<T, N>& rhs);
+    const simd<T, N>& rhs) noexcept
+    -> vec<decltype(math::max(T(), T())), N>;
 ```
 
 1. Returns the maximum of the two given numbers. This function is provided for
