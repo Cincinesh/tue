@@ -118,4 +118,13 @@ namespace
         test_assert(math::max(12, 34) == 34);
         test_assert(math::max(12, -34) == 12);
     }
+
+    TEST_CASE(min)
+    {
+        test_assert(math::min(1.2, 3.4) == 1.2);
+        test_assert(math::min(1.2, -3.4) == -3.4);
+
+        test_assert(math::min(12, 34) == 12);
+        test_assert(math::min(12, -34) == -34);
+    }
 }

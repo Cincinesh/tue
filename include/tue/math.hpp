@@ -276,5 +276,19 @@ namespace tue
         {
             return std::max(x, y);
         }
+
+        /**
+         * \brief     Determines the minimum numeric value of the arguments.
+         * \tparam T  The type of parameters `x` and `y`.
+         * \param x   A number.
+         * \param y   Another number.
+         * \return    The minimum numeric value of the arguments.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
+        min(T x, T y) noexcept
+        {
+            return std::min(x, y);
+        }
     }
 }
