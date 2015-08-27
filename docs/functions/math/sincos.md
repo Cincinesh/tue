@@ -27,9 +27,9 @@ void sincos(
 // #include <tue/mat.hpp>
 template<typename T, int N>
 void sincos(
-    const mat<T, N>& v,
-    decltype(math::sin(v))& sin_result,
-    decltype(math::cos(v))& cos_result) noexcept;
+    const mat<T, N>& m,
+    decltype(math::sin(m))& sin_result,
+    decltype(math::cos(m))& cos_result) noexcept;
 
 // (5)
 // #include <tue/simd.hpp>
