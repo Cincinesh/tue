@@ -3,10 +3,33 @@
 Provided by header [`<tue/mat.hpp>`](../../headers/mat.md)
 
 ```c++
-// Code here
+template<typename T, int C = 4, int R = 4>
+auto view_mat(
+    const vec2<T>& translation,
+    const T& rotation) noexcept
+    -> decltype(translation_mat<T, C, R>(-translation)
+       * rotation_mat<T, C, C>(-rotation));
+
+template<typename T, int C = 4, int R = 4>
+auto view_mat(const pose2d<T>& pose) noexcept
+    -> decltype(translation_mat<T, C, R>(-pose.translation())
+       * rotation_mat<T, C, C>(-pose.rotation()));
+
+template<typename T, int C = 4, int R = 4>
+constexpr auto view_mat(
+    const vec3<T>& translation,
+    const quat<T>& rotation) noexcept
+    -> decltype(translation_mat<T, C, R>(-translation)
+       * rotation_mat<T, C, C>(math::conjugate(rotation)));
+
+template<typename T, int C = 4, int R = 4>
+constexpr auto view_mat(const pose3d<T>& pose) noexcept
+    -> decltype(translation_mat<T, C, R>(-pose.translation())
+       * rotation_mat<T, C, C>(math::conjugate(pose.rotation())));
 ```
 
-TODO.
+Returns a view transformation matrix, i.e., the inverse of the corresponding
+pose transformation matrix.
 
 License
 -------
