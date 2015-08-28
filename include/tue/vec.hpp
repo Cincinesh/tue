@@ -623,3 +623,5 @@ namespace tue
         inline T& operator[](const I& i) noexcept;
     };
 }
+
+#include "detail_/vec4.hpp"
