@@ -15,15 +15,13 @@ namespace tue
     template<typename T>
     class vec<T, 3>
     {
+        struct { T data[3]; } impl_;
+
     public:
         using component_type = T;
 
         static constexpr int component_count = 3;
 
-    private:
-        struct { T data[3]; } impl_;
-
-    public:
         vec() noexcept = default;
 
         template<typename U>

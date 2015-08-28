@@ -9,11 +9,38 @@
 #include <tue/vec.hpp>
 #include <mon/test_case.hpp>
 
+#include <type_traits>
 #include <tue/unused.hpp>
 
 namespace
 {
     using namespace tue;
+
+    TEST_CASE(component_type)
+    {
+        test_assert((
+            std::is_same<typename vec2<float>::component_type, float>::value));
+        test_assert((
+            std::is_same<typename fvec2::component_type, float>::value));
+        test_assert((
+            std::is_same<typename dvec2::component_type, double>::value));
+        test_assert((
+            std::is_same<typename ivec2::component_type, int>::value));
+        test_assert((
+            std::is_same<typename uvec2::component_type, unsigned int>::value));
+        test_assert((
+            std::is_same<typename bvec2::component_type, bool>::value));
+    }
+
+    TEST_CASE(component_count)
+    {
+        test_assert(vec2<float>::component_count == 2);
+        test_assert(fvec2::component_count == 2);
+        test_assert(dvec2::component_count == 2);
+        test_assert(ivec2::component_count == 2);
+        test_assert(uvec2::component_count == 2);
+        test_assert(bvec2::component_count == 2);
+    }
 
     TEST_CASE(default_constructor)
     {
