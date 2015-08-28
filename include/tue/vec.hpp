@@ -225,5 +225,11 @@ namespace tue
          * \param other  The larger `vec` to truncate.
          */
         inline explicit constexpr vec(const vec4<T>& other) noexcept;
+
+        /*!
+         * \brief        Explicitly casts another `vec` to a new component type.
+         * \param other  The `vec` to cast.
+         */
+        inline explicit constexpr vec(const vec<U, N>& other) noexcept;
     };
 }
