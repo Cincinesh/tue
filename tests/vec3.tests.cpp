@@ -419,6 +419,51 @@ namespace
         test_assert(v2[2] == 32LL % 7);
     }
 
+    TEST_CASE(bitwise_and_assignment_operator)
+    {
+        vec3<long long> v1(12LL, 34LL, 56LL);
+        test_assert(&(v1 &= 78) == &v1);
+        test_assert(v1[0] == (12LL & 78));
+        test_assert(v1[1] == (34LL & 78));
+        test_assert(v1[2] == (56LL & 78));
+
+        vec3<long long> v2(12LL, 34LL, 56LL);
+        test_assert(&(v2 &= ivec3(78, 910, 1112)) == &v2);
+        test_assert(v2[0] == (12LL & 78));
+        test_assert(v2[1] == (34LL & 910));
+        test_assert(v2[2] == (56LL & 1112));
+    }
+
+    TEST_CASE(bitwise_or_assignment_operator)
+    {
+        vec3<long long> v1(12LL, 34LL, 56LL);
+        test_assert(&(v1 |= 78) == &v1);
+        test_assert(v1[0] == (12LL | 78));
+        test_assert(v1[1] == (34LL | 78));
+        test_assert(v1[2] == (56LL | 78));
+
+        vec3<long long> v2(12LL, 34LL, 56LL);
+        test_assert(&(v2 |= ivec3(78, 910, 1112)) == &v2);
+        test_assert(v2[0] == (12LL | 78));
+        test_assert(v2[1] == (34LL | 910));
+        test_assert(v2[2] == (56LL | 1112));
+    }
+
+    TEST_CASE(bitwise_xor_assignment_operator)
+    {
+        vec3<long long> v1(12LL, 34LL, 56LL);
+        test_assert(&(v1 ^= 78) == &v1);
+        test_assert(v1[0] == (12LL ^ 78));
+        test_assert(v1[1] == (34LL ^ 78));
+        test_assert(v1[2] == (56LL ^ 78));
+
+        vec3<long long> v2(12LL, 34LL, 56LL);
+        test_assert(&(v2 ^= ivec3(78, 910, 1112)) == &v2);
+        test_assert(v2[0] == (12LL ^ 78));
+        test_assert(v2[1] == (34LL ^ 910));
+        test_assert(v2[2] == (56LL ^ 1112));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec3 v1(1.2f, 3.4f, 5.6f);

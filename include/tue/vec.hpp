@@ -750,7 +750,7 @@ namespace tue
          * \brief     Multiplies each component of this `vec` by the
          *            corresponding component from `v`.
          *
-         * \tparam U  The type of parameter `x`.
+         * \tparam U  The component type of parameter `v`.
          * \param v   The values to multiply each component of this `vec` by.
          * \return    A reference to this `vec`.
          */
@@ -770,7 +770,7 @@ namespace tue
          * \brief     Divides each component of this `vec` by the corresponding
          *            component from `v`.
          *
-         * \tparam U  The type of parameter `x`.
+         * \tparam U  The component type of parameter `v`.
          * \param v   The values to divide each component of this `vec` by.
          * \return    A reference to this `vec`.
          */
@@ -790,12 +790,80 @@ namespace tue
          * \brief     Modulos each component of this `vec` by the corresponding
          *            component from `v`.
          *
-         * \tparam U  The type of parameter `x`.
+         * \tparam U  The component type of parameter `v`.
          * \param v   The values to modulo each component of this `vec` by.
          * \return    A reference to this `vec`.
          */
         template<typename U>
         inline vec<T, N>& operator%=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Bitwise ANDs each component of this `vec` with `x`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to bitwise AND each component of this `vec`
+         *            with.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator&=(const U& x) noexcept;
+
+        /*!
+         * \brief     Bitwise ANDs each component of this `vec` with the
+         *            corresponding component from `v`.
+         *
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The values to bitwise AND each component of this `vec`
+         *            with.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator&=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Bitwise ORs each component of this `vec` with `x`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to bitwise OR each component of this `vec` with.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator|=(const U& x) noexcept;
+
+        /*!
+         * \brief     Bitwise ORs each component of this `vec` with the
+         *            corresponding component from `v`.
+         *
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The values to bitwise OR each component of this `vec`
+         *            with.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator|=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Bitwise XORs each component of this `vec` with `x`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to bitwise XOR each component of this `vec`
+         *            with.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator^=(const U& x) noexcept;
+
+        /*!
+         * \brief     Bitwise XORs each component of this `vec` with the
+         *            corresponding component from `v`.
+         *
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The values to bitwise XOR each component of this `vec`
+         *            with.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator^=(const vec<U, N>& v) noexcept;
     };
 }
 
