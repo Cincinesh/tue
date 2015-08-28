@@ -199,9 +199,9 @@ namespace tue
             const vec2<T>& xy, const T& z, const T& w) noexcept;
 
         /*!
-         * \brief     Constructs each component with the value of the
-         *            corresponding argument.
-         * \details   This overload is only available when `N` equals `4`.
+         * \brief      Constructs each component with the value of the
+         *             corresponding argument.
+         * \details    This overload is only available when `N` equals `4`.
          *
          * \param xyz  The values to construct the first three components with.
          * \param w    The value to construct the fourth component with.
@@ -213,6 +213,7 @@ namespace tue
          * \details      This overload is only available when `N` is less than
          *               `3`. When `N` equals `3`, this is replaced by the
          *               automatically generated copy constructor.
+         *
          * \param other  The larger `vec` to truncate.
          */
         inline explicit constexpr vec(const vec3<T>& other) noexcept;
@@ -222,12 +223,14 @@ namespace tue
          * \details      This overload is only available when `N` is less than
          *               `4`. When `N` equals `4`, this is replaced by the
          *               automatically generated copy constructor.
+         *
          * \param other  The larger `vec` to truncate.
          */
         inline explicit constexpr vec(const vec4<T>& other) noexcept;
 
         /*!
          * \brief        Explicitly casts another `vec` to a new component type.
+         * \tparam U     The component type of `other`.
          * \param other  The `vec` to cast.
          */
          template<typename U>
