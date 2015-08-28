@@ -429,6 +429,36 @@ namespace tue
         }
 
         template<typename T, typename U>
+        inline constexpr vec2<decltype(std::declval<T>() - std::declval<U>())>
+        subtraction_operator(const T& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                lhs - rhs[0],
+                lhs - rhs[1],
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(std::declval<T>() - std::declval<U>())>
+        subtraction_operator(const vec2<T>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] - rhs,
+                lhs[1] - rhs,
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(std::declval<T>() - std::declval<U>())>
+        subtraction_operator(const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                lhs[0] - rhs[0],
+                lhs[1] - rhs[1],
+            };
+        }
+
+        template<typename T, typename U>
         inline constexpr bool equality_operator(
             const vec2<T>& lhs, const vec2<U>& rhs) noexcept
         {
