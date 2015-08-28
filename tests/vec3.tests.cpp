@@ -359,6 +359,66 @@ namespace
         test_assert(v2[2] == 5.6 + 9);
     }
 
+    TEST_CASE(subtraction_assignment_operator)
+    {
+        dvec3 v1(1.2, 3.4, 5.6);
+        test_assert(&(v1 -= 7) == &v1);
+        test_assert(v1[0] == 1.2 - 7);
+        test_assert(v1[1] == 3.4 - 7);
+        test_assert(v1[2] == 5.6 - 7);
+
+        dvec3 v2(1.2, 3.4, 5.6);
+        test_assert(&(v2 -= ivec3(7, 8, 9)) == &v2);
+        test_assert(v2[0] == 1.2 - 7);
+        test_assert(v2[1] == 3.4 - 8);
+        test_assert(v2[2] == 5.6 - 9);
+    }
+
+    TEST_CASE(multiplication_assignment_operator)
+    {
+        dvec3 v1(1.2, 3.4, 5.6);
+        test_assert(&(v1 *= 7) == &v1);
+        test_assert(v1[0] == 1.2 * 7);
+        test_assert(v1[1] == 3.4 * 7);
+        test_assert(v1[2] == 5.6 * 7);
+
+        dvec3 v2(1.2, 3.4, 5.6);
+        test_assert(&(v2 *= ivec3(7, 8, 9)) == &v2);
+        test_assert(v2[0] == 1.2 * 7);
+        test_assert(v2[1] == 3.4 * 8);
+        test_assert(v2[2] == 5.6 * 9);
+    }
+
+    TEST_CASE(division_assignment_operator)
+    {
+        dvec3 v1(1.2, 3.4, 5.6);
+        test_assert(&(v1 /= 7) == &v1);
+        test_assert(v1[0] == 1.2 / 7);
+        test_assert(v1[1] == 3.4 / 7);
+        test_assert(v1[2] == 5.6 / 7);
+
+        dvec3 v2(1.2, 3.4, 5.6);
+        test_assert(&(v2 /= ivec3(7, 8, 9)) == &v2);
+        test_assert(v2[0] == 1.2 / 7);
+        test_assert(v2[1] == 3.4 / 8);
+        test_assert(v2[2] == 5.6 / 9);
+    }
+
+    TEST_CASE(modulo_assignment_operator)
+    {
+        vec3<long long> v1(10LL, 21LL, 32LL);
+        test_assert(&(v1 %= 9) == &v1);
+        test_assert(v1[0] == 10LL % 9);
+        test_assert(v1[1] == 21LL % 9);
+        test_assert(v1[2] == 32LL % 9);
+
+        vec3<long long> v2(10LL, 21LL, 32LL);
+        test_assert(&(v2 %= ivec3(9, 8, 7)) == &v2);
+        test_assert(v2[0] == 10LL % 9);
+        test_assert(v2[1] == 21LL % 8);
+        test_assert(v2[2] == 32LL % 7);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec3 v1(1.2f, 3.4f, 5.6f);

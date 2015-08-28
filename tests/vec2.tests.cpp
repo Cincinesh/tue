@@ -274,6 +274,58 @@ namespace
         test_assert(v2[1] == 3.4 + 6);
     }
 
+    TEST_CASE(subtraction_assignment_operator)
+    {
+        dvec2 v1(1.2, 3.4);
+        test_assert(&(v1 -= 5) == &v1);
+        test_assert(v1[0] == 1.2 - 5);
+        test_assert(v1[1] == 3.4 - 5);
+
+        dvec2 v2(1.2, 3.4);
+        test_assert(&(v2 -= ivec2(5, 6)) == &v2);
+        test_assert(v2[0] == 1.2 - 5);
+        test_assert(v2[1] == 3.4 - 6);
+    }
+
+    TEST_CASE(multiplication_assignment_operator)
+    {
+        dvec2 v1(1.2, 3.4);
+        test_assert(&(v1 *= 5) == &v1);
+        test_assert(v1[0] == 1.2 * 5);
+        test_assert(v1[1] == 3.4 * 5);
+
+        dvec2 v2(1.2, 3.4);
+        test_assert(&(v2 *= ivec2(5, 6)) == &v2);
+        test_assert(v2[0] == 1.2 * 5);
+        test_assert(v2[1] == 3.4 * 6);
+    }
+
+    TEST_CASE(division_assignment_operator)
+    {
+        dvec2 v1(1.2, 3.4);
+        test_assert(&(v1 /= 5) == &v1);
+        test_assert(v1[0] == 1.2 / 5);
+        test_assert(v1[1] == 3.4 / 5);
+
+        dvec2 v2(1.2, 3.4);
+        test_assert(&(v2 /= ivec2(5, 6)) == &v2);
+        test_assert(v2[0] == 1.2 / 5);
+        test_assert(v2[1] == 3.4 / 6);
+    }
+
+    TEST_CASE(modulo_assignment_operator)
+    {
+        vec2<long long> v1(10LL, 21LL);
+        test_assert(&(v1 %= 9) == &v1);
+        test_assert(v1[0] == 10LL % 9);
+        test_assert(v1[1] == 21LL % 9);
+
+        vec2<long long> v2(10LL, 21LL);
+        test_assert(&(v2 %= ivec2(9, 8)) == &v2);
+        test_assert(v2[0] == 10LL % 9);
+        test_assert(v2[1] == 21LL % 8);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);

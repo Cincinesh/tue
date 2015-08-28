@@ -716,6 +716,86 @@ namespace tue
          */
         template<typename U>
         inline vec<T, N>& operator+=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Subtracts `x` from each component of this `vec`.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to subtract from each component of this `vec`.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator-=(const U& x) noexcept;
+
+        /*!
+         * \brief     Subtracts each component of `v` from the corresponding
+         *            component of this `vec`.
+         *
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The values to subtract from each component of this `vec`.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator-=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Multiplies each component of this `vec` by `x`.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to multiply each component of this `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator*=(const U& x) noexcept;
+
+        /*!
+         * \brief     Multiplies each component of this `vec` by the
+         *            corresponding component from `v`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param v   The values to multiply each component of this `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator*=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Divides each component of this `vec` by `x`.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to divide each component of this `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator/=(const U& x) noexcept;
+
+        /*!
+         * \brief     Divides each component of this `vec` by the corresponding
+         *            component from `v`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param v   The values to divide each component of this `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator/=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Modulos each component of this `vec` by `x`.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to modulo each component of this `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator%=(const U& x) noexcept;
+
+        /*!
+         * \brief     Modulos each component of this `vec` by the corresponding
+         *            component from `v`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param v   The values to modulo each component of this `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator%=(const vec<U, N>& v) noexcept;
     };
 }
 
