@@ -84,7 +84,7 @@ namespace
         test_assert(v[3] == 7.8);
     }
 
-    TEST_CASE(first_two_components_constructor)
+    TEST_CASE(extend_vec2_constructor)
     {
         CONST_OR_CONSTEXPR dvec4 v = { { 1.2, 3.4 }, 5.6, 7.8 };
         test_assert(v[0] == 1.2);
@@ -93,7 +93,7 @@ namespace
         test_assert(v[3] == 7.8);
     }
 
-    TEST_CASE(first_three_components_constructor)
+    TEST_CASE(extend_vec3_constructor)
     {
         CONST_OR_CONSTEXPR dvec4 v = { { 1.2, 3.4, 5.6 }, 7.8 };
         test_assert(v[0] == 1.2);

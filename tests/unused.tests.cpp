@@ -29,14 +29,22 @@ namespace
         {
             other.was_copied = true;
         }
+
+        test_struct(test_struct&& other) noexcept :
+            was_copied(false)
+        {
+            other.was_copied = true;
+        }
     };
 
     TEST_CASE(unused)
     {
         test_struct x;
-        const test_struct y;
-        tue::unused(x, std::move(x), y);
+        test_struct y;
+        const test_struct z;
+        tue::unused(x, std::move(y), z);
         test_assert(x.was_copied == false);
         test_assert(y.was_copied == false);
+        test_assert(z.was_copied == false);
     }
 }
