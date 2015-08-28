@@ -622,6 +622,23 @@ namespace tue
         template<typename I>
         inline T& operator[](const I& i) noexcept;
     };
+
+    /*!
+     * \brief      Determines whether or not two `vec`'s compare equal.
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side `vec`.
+     * \param rhs  The right-hand side `vec`.
+     * \return     `true` if all the corresponding pairs of components compare
+     *             equal and `false` otherwise.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr bool operator==(
+        const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::equality_operator(lhs, rhs);
+    }
 }
 
 #include "detail_/vec2.hpp"

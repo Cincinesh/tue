@@ -360,4 +360,17 @@ namespace tue
             return this->impl_.data[i];
         }
     };
+
+    namespace detail_
+    {
+        template<typename T, typename U>
+        inline constexpr bool equality_operator(
+            const vec4<T>& lhs, const vec4<U>& rhs) noexcept
+        {
+            return lhs[0] == rhs[0]
+                && lhs[1] == rhs[1]
+                && lhs[2] == rhs[2]
+                && lhs[3] == rhs[3];
+        }
+    }
 }

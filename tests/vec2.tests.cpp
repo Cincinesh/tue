@@ -81,15 +81,14 @@ namespace
         test_assert(g == 3.4);
     }
 
-    // TODO
-    /*TEST_CASE(xy_rg)
+    TEST_CASE(xy_rg)
     {
-        CONST_OR_CONSTEXPR dvec2 v(1.2, 3.4, 5.6);
+        CONST_OR_CONSTEXPR dvec2 v(1.2, 3.4);
         CONST_OR_CONSTEXPR auto xy = v.xy();
         CONST_OR_CONSTEXPR auto rg = v.rg();
         test_assert(xy == dvec2(1.2, 3.4));
         test_assert(rg == dvec2(1.2, 3.4));
-    }*/
+    }
 
     TEST_CASE(set_x_y)
     {
@@ -163,5 +162,19 @@ namespace
         auto& v1 = v[1];
         test_assert(&v0 == v.data() + 0);
         test_assert(&v1 == v.data() + 1);
+    }
+
+    TEST_CASE(equality_operator)
+    {
+        CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);
+        CONST_OR_CONSTEXPR dvec2 v2(1.2f, 3.4f);
+        CONST_OR_CONSTEXPR dvec2 v3(1.2f, 0.0f);
+        CONST_OR_CONSTEXPR dvec2 v4(0.0f, 3.4f);
+        CONST_OR_CONSTEXPR auto result1 = (v1 == v2);
+        CONST_OR_CONSTEXPR auto result2 = (v1 == v3);
+        CONST_OR_CONSTEXPR auto result3 = (v1 == v4);
+        test_assert(result1 == true);
+        test_assert(result2 == false);
+        test_assert(result3 == false);
     }
 }
