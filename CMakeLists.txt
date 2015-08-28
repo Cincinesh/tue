@@ -24,11 +24,13 @@ set(TUE_SOURCES
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp
     include/tue/math.hpp
+    include/tue/unused.hpp
     include/tue/vec.hpp)
 
 # tue.tests
 set(TUE_TEST_SOURCES
     tests/math.tests.cpp
+    tests/unused.tests.cpp
     tests/vec.tests.cpp
     tests/vec2.tests.cpp
     tests/vec3.tests.cpp

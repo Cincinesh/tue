@@ -9,6 +9,8 @@
 #include <tue/vec.hpp>
 #include <mon/test_case.hpp>
 
+#include <tue/unused.hpp>
+
 namespace
 {
     using namespace tue;
@@ -16,7 +18,7 @@ namespace
     TEST_CASE(default_constructor)
     {
         fvec2 v;
-        //unused(v); // TODO
+        unused(v);
     }
 
     TEST_CASE(scalar_constructor)
