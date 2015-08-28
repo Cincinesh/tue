@@ -970,7 +970,7 @@ namespace tue
      * \return    The logical NOT of each component of `v`.
      */
     template<typename T, int N>
-    inline constexpr vec<decltype(~std::declval<T>()), N>
+    inline constexpr vec<decltype(!std::declval<T>()), N>
     operator!(const vec<T, N>& v) noexcept
     {
         return tue::detail_::logical_not_operator(v);

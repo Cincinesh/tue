@@ -412,7 +412,7 @@ namespace
     TEST_CASE(logical_not_operator)
     {
         CONST_OR_CONSTEXPR auto v = !ivec2(0, 1);
-        test_assert(v == ivec2(!0, !1));
+        test_assert(v == bvec2(!0, !1));
     }
 
     TEST_CASE(equality_operator)
