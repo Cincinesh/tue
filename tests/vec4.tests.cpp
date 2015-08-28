@@ -47,15 +47,14 @@ namespace
         test_assert(v[3] == 7.8);
     }*/
 
-    // TODO
-    /*TEST_CASE(first_three_components_constructor)
+    TEST_CASE(first_three_components_constructor)
     {
         CONST_OR_CONSTEXPR dvec4 v = { { 1.2, 3.4, 5.6 }, 7.8 };
         test_assert(v[0] == 1.2);
         test_assert(v[1] == 3.4);
         test_assert(v[2] == 5.6);
         test_assert(v[3] == 7.8);
-    }*/
+    }
 
     TEST_CASE(explicit_conversion_constructor)
     {
@@ -119,8 +118,8 @@ namespace
         CONST_OR_CONSTEXPR dvec4 v(1.2, 3.4, 5.6, 7.8);
         CONST_OR_CONSTEXPR auto xyz = v.xyz();
         CONST_OR_CONSTEXPR auto rgb = v.rgb();
-        test_assert(xyz == dvec2(1.2, 3.4, 5.6));
-        test_assert(rgb == dvec2(1.2, 3.4, 5.6));
+        test_assert(xyz == dvec3(1.2, 3.4, 5.6));
+        test_assert(rgb == dvec3(1.2, 3.4, 5.6));
     }*/
 
     // TODO
@@ -129,8 +128,8 @@ namespace
         CONST_OR_CONSTEXPR dvec4 v(1.2, 3.4, 5.6, 7.8);
         CONST_OR_CONSTEXPR auto xyzw = v.xyzw();
         CONST_OR_CONSTEXPR auto rgba = v.rgba();
-        test_assert(xyzw == v);
-        test_assert(rgba == v);
+        test_assert(xyzw == dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(rgba == dvec4(1.2, 3.4, 5.6, 7.8));
     }*/
 
     TEST_CASE(set_x_y_z_w)
@@ -210,13 +209,13 @@ namespace
         test_assert(v[0] == 15.16);
         test_assert(v[1] == 17.18);
         test_assert(v[2] == 19.20);
-        test_assert(v[3] == 7.8);
+        test_assert(v[3] == 7.8);*/
 
-        v.set_xyz(dvec3(15.16, 17.18, 19.20));
+        v.set_xyz(dvec3(21.22, 23.24, 25.26));
         test_assert(v[0] == 21.22);
         test_assert(v[1] == 23.24);
         test_assert(v[2] == 25.26);
-        test_assert(v[3] == 7.8);*/
+        test_assert(v[3] == 7.8);
     }
 
     TEST_CASE(set_rgb)
@@ -234,13 +233,13 @@ namespace
         test_assert(v[0] == 15.16);
         test_assert(v[1] == 17.18);
         test_assert(v[2] == 19.20);
-        test_assert(v[3] == 7.8);
+        test_assert(v[3] == 7.8);*/
 
-        v.set_rgb(dvec3(15.16, 17.18, 19.20));
+        v.set_rgb(dvec3(21.22, 23.24, 25.26));
         test_assert(v[0] == 21.22);
         test_assert(v[1] == 23.24);
         test_assert(v[2] == 25.26);
-        test_assert(v[3] == 7.8);*/
+        test_assert(v[3] == 7.8);
     }
 
     TEST_CASE(set_xyzw)
@@ -258,7 +257,7 @@ namespace
         test_assert(v[0] == 17.18);
         test_assert(v[1] == 19.20);
         test_assert(v[2] == 21.22);
-        test_assert(v[3] == 23.24);
+        test_assert(v[3] == 23.24);*/
 
         v.set_xyzw(dvec3(25.26, 27.28, 29.30), 31.32);
         test_assert(v[0] == 25.26);
@@ -270,7 +269,7 @@ namespace
         test_assert(v[0] == 33.34);
         test_assert(v[1] == 35.36);
         test_assert(v[2] == 37.38);
-        test_assert(v[3] == 39.40);*/
+        test_assert(v[3] == 39.40);
     }
 
     TEST_CASE(set_rgba)
@@ -288,7 +287,7 @@ namespace
         test_assert(v[0] == 17.18);
         test_assert(v[1] == 19.20);
         test_assert(v[2] == 21.22);
-        test_assert(v[3] == 23.24);
+        test_assert(v[3] == 23.24);*/
 
         v.set_rgba(dvec3(25.26, 27.28, 29.30), 31.32);
         test_assert(v[0] == 25.26);
@@ -300,7 +299,7 @@ namespace
         test_assert(v[0] == 33.34);
         test_assert(v[1] == 35.36);
         test_assert(v[2] == 37.38);
-        test_assert(v[3] == 39.40);*/
+        test_assert(v[3] == 39.40);
     }
 
     TEST_CASE(data)

@@ -20,6 +20,7 @@ set(MON_SOURCES
 
 # tue
 set(TUE_SOURCES
+    include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp
     include/tue/math.hpp
     include/tue/vec.hpp)
@@ -28,6 +29,7 @@ set(TUE_SOURCES
 set(TUE_TEST_SOURCES
     tests/math.tests.cpp
     tests/vec.tests.cpp
+    tests/vec3.tests.cpp
     tests/vec4.tests.cpp)
 
 add_executable(

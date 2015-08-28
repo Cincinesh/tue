@@ -13,15 +13,15 @@
 namespace tue
 {
     template<typename T>
-    class vec<T, 4>
+    class vec<T, 3>
     {
     public:
         using component_type = T;
 
-        static constexpr int component_count = 4;
+        static constexpr int component_count = 3;
 
     private:
-        struct { T data[4]; } impl_;
+        struct { T data[3]; } impl_;
 
     public:
         vec() noexcept = default;
@@ -32,45 +32,42 @@ namespace tue
                 static_cast<T>(x),
                 static_cast<T>(x),
                 static_cast<T>(x),
-                static_cast<T>(x),
             }})
         {
         }
 
-        constexpr vec(const T& x, const T& y, const T& z, const T& w) noexcept :
-            impl_({{ x, y, z, w }})
+        constexpr vec(const T& x, const T& y, const T& z) noexcept :
+            impl_({{ x, y, z }})
         {
         }
 
-        constexpr vec(const vec2<T>& xy, const T& z, const T& w) noexcept :
-            impl_({{ xy[0], xy[1], z, w }})
+        constexpr vec(const vec2<T>& xy, const T& z) noexcept :
+            impl_({{ xy[0], xy[1], z }})
         {
         }
 
-        constexpr vec(const vec3<T>& xyz, const T& w) noexcept :
-            impl_({{ xyz[0], xyz[1], xyz[2], w }})
+        explicit constexpr vec(const vec4<T>& other) noexcept :
+            impl_({{ other[0], other[1], other[2] }})
         {
         }
 
         template<typename U>
-        explicit constexpr vec(const vec<U, 4>& other) noexcept :
+        explicit constexpr vec(const vec<U, 3>& other) noexcept :
             impl_({{
                 static_cast<T>(other[0]),
                 static_cast<T>(other[1]),
                 static_cast<T>(other[2]),
-                static_cast<T>(other[3]),
             }})
         {
         }
 
         template<typename U>
-        constexpr operator vec<U, 4>() const noexcept
+        constexpr operator vec<U, 3>() const noexcept
         {
             return {
                 this->impl_.data[0],
                 this->impl_.data[1],
                 this->impl_.data[2],
-                this->impl_.data[3],
             };
         }
 
@@ -89,11 +86,6 @@ namespace tue
             return this->impl_.data[2];
         }
 
-        constexpr T w() const noexcept
-        {
-            return this->impl_.data[3];
-        }
-
         constexpr T r() const noexcept
         {
             return this->impl_.data[0];
@@ -107,11 +99,6 @@ namespace tue
         constexpr T b() const noexcept
         {
             return this->impl_.data[2];
-        }
-
-        constexpr T a() const noexcept
-        {
-            return this->impl_.data[3];
         }
 
         constexpr vec2<T> xy() const noexcept
@@ -148,26 +135,6 @@ namespace tue
             };
         }
 
-        constexpr vec4<T> xyzw() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-                this->impl_.data[2],
-                this->impl_.data[3],
-            };
-        }
-
-        constexpr vec4<T> rgba() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-                this->impl_.data[2],
-                this->impl_.data[3],
-            };
-        }
-
         void set_x(const T& x) noexcept
         {
             this->impl_.data[0] = x;
@@ -183,11 +150,6 @@ namespace tue
             this->impl_.data[2] = z;
         }
 
-        void set_w(const T& w) noexcept
-        {
-            this->impl_.data[3] = w;
-        }
-
         void set_r(const T& r) noexcept
         {
             this->impl_.data[0] = r;
@@ -201,11 +163,6 @@ namespace tue
         void set_b(const T& b) noexcept
         {
             this->impl_.data[2] = b;
-        }
-
-        void set_a(const T& a) noexcept
-        {
-            this->impl_.data[3] = a;
         }
 
         void set_xy(const T& x, const T& y) noexcept
@@ -272,70 +229,6 @@ namespace tue
             this->impl_.data[0] = rgb[0];
             this->impl_.data[1] = rgb[1];
             this->impl_.data[2] = rgb[2];
-        }
-
-        void set_xyzw(const T& x, const T& y, const T& z, const T& w) noexcept
-        {
-            this->impl_.data[0] = x;
-            this->impl_.data[1] = y;
-            this->impl_.data[2] = z;
-            this->impl_.data[3] = w;
-        }
-
-        void set_xyzw(const vec2<T>& xy, const T& z, const T& w) noexcept
-        {
-            this->impl_.data[0] = xy[0];
-            this->impl_.data[1] = xy[1];
-            this->impl_.data[2] = z;
-            this->impl_.data[3] = w;
-        }
-
-        void set_xyzw(const vec3<T>& xyz, const T& w) noexcept
-        {
-            this->impl_.data[0] = xyz[0];
-            this->impl_.data[1] = xyz[1];
-            this->impl_.data[2] = xyz[2];
-            this->impl_.data[3] = w;
-        }
-
-        void set_xyzw(const vec4<T>& xyzw) noexcept
-        {
-            this->impl_.data[0] = xyzw[0];
-            this->impl_.data[1] = xyzw[1];
-            this->impl_.data[2] = xyzw[2];
-            this->impl_.data[3] = xyzw[3];
-        }
-
-        void set_rgba(const T& r, const T& g, const T& b, const T& a) noexcept
-        {
-            this->impl_.data[0] = r;
-            this->impl_.data[1] = g;
-            this->impl_.data[2] = b;
-            this->impl_.data[3] = a;
-        }
-
-        void set_rgba(const vec2<T>& rg, const T& b, const T& a) noexcept
-        {
-            this->impl_.data[0] = rg[0];
-            this->impl_.data[1] = rg[1];
-            this->impl_.data[2] = b;
-            this->impl_.data[3] = a;
-        }
-
-        void set_rgba(const vec3<T>& rgb, const T& a) noexcept
-        {
-            this->impl_.data[0] = rgb[0];
-            this->impl_.data[1] = rgb[1];
-            this->impl_.data[2] = rgb[2];
-            this->impl_.data[3] = a;
-        }
-
-        void set_rgba(const vec4<T>& rgba) noexcept
-        {
-            this->impl_.data[0] = rgba[0];
-            this->impl_.data[1] = rgba[1];
-            this->impl_.data[2] = rgba[2];
-            this->impl_.data[3] = rgba[3];
         }
 
         const T* data() const noexcept
