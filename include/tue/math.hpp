@@ -42,32 +42,6 @@ namespace tue
     namespace math
     {
         /*!
-         * \brief     Computes the cosine of `x` (measured in radians).
-         * \tparam T  The type of parameter `x`.
-         * \param x   An angle (measured in radians).
-         * \return    The cosine of `x`.
-         */
-        template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
-        cos(T x) noexcept
-        {
-            return std::cos(x);
-        }
-
-        /*!
-         * \brief     Computes the cosine of `x` (measured in radians).
-         * \tparam T  The type of parameter `x`.
-         * \param x   An angle (measured in radians).
-         * \return    The cosine of `static_cast<double>(x)`.
-         */
-        template<typename T>
-        inline std::enable_if_t<std::is_integral<T>::value, double>
-        cos(T x) noexcept
-        {
-            return std::cos(static_cast<double>(x));
-        }
-
-        /*!
          * \brief     Computes the sine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
          * \param x   An angle (measured in radians).
@@ -91,6 +65,32 @@ namespace tue
         sin(T x) noexcept
         {
             return std::sin(static_cast<double>(x));
+        }
+
+        /*!
+         * \brief     Computes the cosine of `x` (measured in radians).
+         * \tparam T  The type of parameter `x`.
+         * \param x   An angle (measured in radians).
+         * \return    The cosine of `x`.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        cos(T x) noexcept
+        {
+            return std::cos(x);
+        }
+
+        /*!
+         * \brief     Computes the cosine of `x` (measured in radians).
+         * \tparam T  The type of parameter `x`.
+         * \param x   An angle (measured in radians).
+         * \return    The cosine of `static_cast<double>(x)`.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_integral<T>::value, double>
+        cos(T x) noexcept
+        {
+            return std::cos(static_cast<double>(x));
         }
 
         /*!
@@ -265,32 +265,6 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes the reciprocal square root of `x`.
-         * \tparam T  The type of parameter `x`.
-         * \param x   A floating-point number.
-         * \return    The reciprocal square root of `x`.
-         */
-        template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
-        rsqrt(T x) noexcept
-        {
-            return 1 / std::sqrt(x);
-        }
-
-        /*!
-         * \brief     Computes the reciprocal square root of `x`.
-         * \tparam T  The type of parameter `x`.
-         * \param x   An integral number.
-         * \return    The reciprocal square root of `static_cast<double>(x)`.
-         */
-        template<typename T>
-        inline std::enable_if_t<std::is_integral<T>::value, double>
-        rsqrt(T x) noexcept
-        {
-            return 1 / std::sqrt(static_cast<double>(x));
-        }
-
-        /*!
          * \brief     Computes the nonnegative square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
@@ -317,17 +291,29 @@ namespace tue
         }
 
         /*!
-         * \brief     Determines the maximum numeric value of the arguments.
-         * \tparam T  The type of parameters `x` and `y`.
-         * \param x   A number.
-         * \param y   Another number.
-         * \return    The maximum numeric value of the arguments.
+         * \brief     Computes the reciprocal square root of `x`.
+         * \tparam T  The type of parameter `x`.
+         * \param x   A floating-point number.
+         * \return    The reciprocal square root of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
-        max(T x, T y) noexcept
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        rsqrt(T x) noexcept
         {
-            return std::max(x, y);
+            return 1 / std::sqrt(x);
+        }
+
+        /*!
+         * \brief     Computes the reciprocal square root of `x`.
+         * \tparam T  The type of parameter `x`.
+         * \param x   An integral number.
+         * \return    The reciprocal square root of `static_cast<double>(x)`.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_integral<T>::value, double>
+        rsqrt(T x) noexcept
+        {
+            return 1 / std::sqrt(static_cast<double>(x));
         }
 
         /*!
@@ -342,6 +328,20 @@ namespace tue
         min(T x, T y) noexcept
         {
             return std::min(x, y);
+        }
+
+        /*!
+         * \brief     Determines the maximum numeric value of the arguments.
+         * \tparam T  The type of parameters `x` and `y`.
+         * \param x   A number.
+         * \param y   Another number.
+         * \return    The maximum numeric value of the arguments.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
+        max(T x, T y) noexcept
+        {
+            return std::max(x, y);
         }
     }
 }

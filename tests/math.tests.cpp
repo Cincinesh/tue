@@ -15,16 +15,16 @@ namespace
 {
     using namespace tue;
 
-    TEST_CASE(cos)
-    {
-        test_assert(math::cos(1.2) == std::cos(1.2));
-        test_assert(math::cos(12) == std::cos(12.0));
-    }
-
     TEST_CASE(sin)
     {
         test_assert(math::sin(1.2) == std::sin(1.2));
         test_assert(math::sin(12) == std::sin(12.0));
+    }
+
+    TEST_CASE(cos)
+    {
+        test_assert(math::cos(1.2) == std::cos(1.2));
+        test_assert(math::cos(12) == std::cos(12.0));
     }
 
     TEST_CASE(sincos)
@@ -82,25 +82,16 @@ namespace
         test_assert(math::recip(12) == 1 / 12.0);
     }
 
-    TEST_CASE(rsqrt)
-    {
-        test_assert(math::rsqrt(1.2) == 1 / std::sqrt(1.2));
-        test_assert(math::rsqrt(12) == 1 / std::sqrt(12.0));
-    }
-
     TEST_CASE(sqrt)
     {
         test_assert(math::sqrt(1.2) == std::sqrt(1.2));
         test_assert(math::sqrt(12) == std::sqrt(12.0));
     }
 
-    TEST_CASE(max)
+    TEST_CASE(rsqrt)
     {
-        test_assert(math::max(1.2, 3.4) == 3.4);
-        test_assert(math::max(1.2, -3.4) == 1.2);
-
-        test_assert(math::max(12, 34) == 34);
-        test_assert(math::max(12, -34) == 12);
+        test_assert(math::rsqrt(1.2) == 1 / std::sqrt(1.2));
+        test_assert(math::rsqrt(12) == 1 / std::sqrt(12.0));
     }
 
     TEST_CASE(min)
@@ -110,5 +101,14 @@ namespace
 
         test_assert(math::min(12, 34) == 12);
         test_assert(math::min(12, -34) == -34);
+    }
+
+    TEST_CASE(max)
+    {
+        test_assert(math::max(1.2, 3.4) == 3.4);
+        test_assert(math::max(1.2, -3.4) == 1.2);
+
+        test_assert(math::max(12, 34) == 34);
+        test_assert(math::max(12, -34) == 12);
     }
 }
