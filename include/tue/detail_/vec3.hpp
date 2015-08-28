@@ -26,11 +26,7 @@ namespace tue
 
         template<typename U>
         explicit constexpr vec(const U& x) noexcept :
-            impl_({{
-                static_cast<T>(x),
-                static_cast<T>(x),
-                static_cast<T>(x),
-            }})
+            impl_({{ T(x), T(x), T(x) }})
         {
         }
 
@@ -51,11 +47,7 @@ namespace tue
 
         template<typename U>
         explicit constexpr vec(const vec<U, 3>& other) noexcept :
-            impl_({{
-                static_cast<T>(other[0]),
-                static_cast<T>(other[1]),
-                static_cast<T>(other[2]),
-            }})
+            impl_({{ T(other[0]), T(other[1]), T(other[2]) }})
         {
         }
 
