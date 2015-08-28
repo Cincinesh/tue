@@ -624,5 +624,6 @@ namespace tue
     };
 }
 
+#include "detail_/vec2.hpp"
 #include "detail_/vec3.hpp"
 #include "detail_/vec4.hpp"

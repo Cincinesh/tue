@@ -35,14 +35,13 @@ namespace
         test_assert(v[2] == 5.6);
     }
 
-    // TODO
-    /*TEST_CASE(first_two_components_constructor)
+    TEST_CASE(first_two_components_constructor)
     {
         CONST_OR_CONSTEXPR dvec3 v = { { 1.2, 3.4 }, 5.6 };
         test_assert(v[0] == 1.2);
         test_assert(v[1] == 3.4);
         test_assert(v[2] == 5.6);
-    }*/
+    }
 
     TEST_CASE(truncate_vec4_constructor)
     {
@@ -143,11 +142,10 @@ namespace
         test_assert(v[1] == 9.10);
         test_assert(v[2] == 5.6);
 
-        // TODO
-        /*v.set_xy(dvec2(11.12, 13.14));
+        v.set_xy(dvec2(11.12, 13.14));
         test_assert(v[0] == 11.12);
         test_assert(v[1] == 13.14);
-        test_assert(v[2] == 5.6);*/
+        test_assert(v[2] == 5.6);
     }
 
     TEST_CASE(set_rg)
@@ -159,11 +157,10 @@ namespace
         test_assert(v[1] == 9.10);
         test_assert(v[2] == 5.6);
 
-        // TODO
-        /*v.set_rg(dvec2(11.12, 13.14));
+        v.set_rg(dvec2(11.12, 13.14));
         test_assert(v[0] == 11.12);
         test_assert(v[1] == 13.14);
-        test_assert(v[2] == 5.6);*/
+        test_assert(v[2] == 5.6);
     }
 
     TEST_CASE(set_xyz)
@@ -175,11 +172,10 @@ namespace
         test_assert(v[1] == 9.10);
         test_assert(v[2] == 11.12);
 
-        // TODO
-        /*v.set_xyz(dvec2(13.14, 15.16), 17.18);
+        v.set_xyz(dvec2(13.14, 15.16), 17.18);
         test_assert(v[0] == 13.14);
         test_assert(v[1] == 15.16);
-        test_assert(v[2] == 17.18);*/
+        test_assert(v[2] == 17.18);
 
         v.set_xyz(dvec3(19.20, 21.22, 23.24));
         test_assert(v[0] == 19.20);
@@ -196,11 +192,10 @@ namespace
         test_assert(v[1] == 9.10);
         test_assert(v[2] == 11.12);
 
-        // TODO
-        /*v.set_rgb(dvec2(13.14, 15.16), 17.18);
+        v.set_rgb(dvec2(13.14, 15.16), 17.18);
         test_assert(v[0] == 13.14);
         test_assert(v[1] == 15.16);
-        test_assert(v[2] == 17.18);*/
+        test_assert(v[2] == 17.18);
 
         v.set_rgb(dvec3(19.20, 21.22, 23.24));
         test_assert(v[0] == 19.20);
