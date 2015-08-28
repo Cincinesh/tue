@@ -864,6 +864,52 @@ namespace tue
          */
         template<typename U>
         inline vec<T, N>& operator^=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Bitwise shifts left each component of this `vec` by `x`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to bitwise shift left each component of this
+         *            `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator<<=(const U& x) noexcept;
+
+        /*!
+         * \brief     Bitwise shifts left each component of this `vec` by the
+         *            corresponding component from `v`.
+         *
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The values to bitwise shift left each component of this
+         *            `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator<<=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Bitwise shifts right each component of this `vec` by `x`.
+         *
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to bitwise right left each component of this
+         *            `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator>>=(const U& x) noexcept;
+
+        /*!
+         * \brief     Bitwise shifts right each component of this `vec` by the
+         *            corresponding component from `v`.
+         *
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The values to bitwise shift right each component of this
+         *            `vec` by.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator>>=(const vec<U, N>& v) noexcept;
     };
 }
 

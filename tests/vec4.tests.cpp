@@ -587,6 +587,40 @@ namespace
         test_assert(v2[3] == (78LL ^ 1516));
     }
 
+    TEST_CASE(bitwise_shift_left_assignment_operator)
+    {
+        vec4<long long> v1(12LL, 34LL, 56LL, 78LL);
+        test_assert(&(v1 <<= 1) == &v1);
+        test_assert(v1[0] == (12LL << 1));
+        test_assert(v1[1] == (34LL << 1));
+        test_assert(v1[2] == (56LL << 1));
+        test_assert(v1[3] == (78LL << 1));
+
+        vec4<long long> v2(12LL, 34LL, 56LL, 78LL);
+        test_assert(&(v2 <<= ivec4(1, 2, 3, 4)) == &v2);
+        test_assert(v2[0] == (12LL << 1));
+        test_assert(v2[1] == (34LL << 2));
+        test_assert(v2[2] == (56LL << 3));
+        test_assert(v2[3] == (78LL << 4));
+    }
+
+    TEST_CASE(bitwise_shift_right_assignment_operator)
+    {
+        vec4<long long> v1(12LL, 34LL, 56LL, 78LL);
+        test_assert(&(v1 >>= 1) == &v1);
+        test_assert(v1[0] == (12LL >> 1));
+        test_assert(v1[1] == (34LL >> 1));
+        test_assert(v1[2] == (56LL >> 1));
+        test_assert(v1[3] == (78LL >> 1));
+
+        vec4<long long> v2(12LL, 34LL, 56LL, 78LL);
+        test_assert(&(v2 >>= ivec4(1, 2, 3, 4)) == &v2);
+        test_assert(v2[0] == (12LL >> 1));
+        test_assert(v2[1] == (34LL >> 2));
+        test_assert(v2[2] == (56LL >> 3));
+        test_assert(v2[3] == (78LL >> 4));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);

@@ -570,6 +570,46 @@ namespace tue
             this->impl_.data[3] ^= v[3];
             return *this;
         }
+
+        template<typename U>
+        vec<T, 4>& operator<<=(const U& x) noexcept
+        {
+            this->impl_.data[0] <<= x;
+            this->impl_.data[1] <<= x;
+            this->impl_.data[2] <<= x;
+            this->impl_.data[3] <<= x;
+            return *this;
+        }
+
+        template<typename U>
+        vec<T, 4>& operator<<=(const vec<U, 4>& v) noexcept
+        {
+            this->impl_.data[0] <<= v[0];
+            this->impl_.data[1] <<= v[1];
+            this->impl_.data[2] <<= v[2];
+            this->impl_.data[3] <<= v[3];
+            return *this;
+        }
+
+        template<typename U>
+        vec<T, 4>& operator>>=(const U& x) noexcept
+        {
+            this->impl_.data[0] >>= x;
+            this->impl_.data[1] >>= x;
+            this->impl_.data[2] >>= x;
+            this->impl_.data[3] >>= x;
+            return *this;
+        }
+
+        template<typename U>
+        vec<T, 4>& operator>>=(const vec<U, 4>& v) noexcept
+        {
+            this->impl_.data[0] >>= v[0];
+            this->impl_.data[1] >>= v[1];
+            this->impl_.data[2] >>= v[2];
+            this->impl_.data[3] >>= v[3];
+            return *this;
+        }
     };
 
     namespace detail_

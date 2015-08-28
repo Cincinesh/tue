@@ -365,6 +365,32 @@ namespace
         test_assert(v2[1] == (34LL ^ 78));
     }
 
+    TEST_CASE(bitwise_shift_left_assignment_operator)
+    {
+        vec2<long long> v1(12LL, 34LL);
+        test_assert(&(v1 <<= 1) == &v1);
+        test_assert(v1[0] == (12LL << 1));
+        test_assert(v1[1] == (34LL << 1));
+
+        vec2<long long> v2(12LL, 34LL);
+        test_assert(&(v2 <<= ivec2(1, 2)) == &v2);
+        test_assert(v2[0] == (12LL << 1));
+        test_assert(v2[1] == (34LL << 2));
+    }
+
+    TEST_CASE(bitwise_shift_right_assignment_operator)
+    {
+        vec2<long long> v1(12LL, 34LL);
+        test_assert(&(v1 >>= 1) == &v1);
+        test_assert(v1[0] == (12LL >> 1));
+        test_assert(v1[1] == (34LL >> 1));
+
+        vec2<long long> v2(12LL, 34LL);
+        test_assert(&(v2 >>= ivec2(1, 2)) == &v2);
+        test_assert(v2[0] == (12LL >> 1));
+        test_assert(v2[1] == (34LL >> 2));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);
