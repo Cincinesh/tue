@@ -25,7 +25,8 @@ set(TUE_SOURCES
 
 # tue.tests
 set(TUE_TEST_SOURCES
-    tests/math.tests.cpp)
+    tests/math.tests.cpp
+    tests/vec.tests.cpp)
 
 add_executable(
     tue.tests

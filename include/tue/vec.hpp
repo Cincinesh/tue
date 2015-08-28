@@ -13,7 +13,7 @@ namespace tue
     /*!
      * \brief     An `N`-dimensional vector.
      * \tparam T  The component type.
-     * \tparam N  The number of components. Must be 2, 3, or 4.
+     * \tparam N  The component count. Must be 2, 3, or 4.
      */
     template<typename T, int N>
     class vec;
@@ -113,4 +113,69 @@ namespace tue
      * \brief  A 4-dimensional vector with `bool` components.
      */
     using bvec4 = vec4<bool>;
+}
+
+namespace tue
+{
+    template<typename T, int N>
+    class vec
+    {
+    public:
+        /*!
+         * \brief  This `vec` type's component type.
+         */
+        using component_type = T;
+
+        /*!
+         * \brief  This `vec` type's component count.
+         */
+        static constexpr int component_count = N;
+
+        /*!
+         * \brief  Default constructs each component.
+         */
+        vec() noexcept = default;
+
+        /*!
+         * \brief     Constructs each component with the same value.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to construct each component with.
+         */
+        template<typename U>
+        inline explicit constexpr vec(const U& x) noexcept;
+
+        /*!
+         * \brief     Constructs each component with the value of the
+         *            corresponding argument.
+         * \details   This overload is only available when `N` equals `2`.
+         *
+         * \param x   The value to construct the first component with.
+         * \param y   The value to construct the second component with.
+         */
+        inline constexpr vec(const T& x, const T& y) noexcept;
+
+        /*!
+         * \brief     Constructs each component with the value of the
+         *            corresponding argument.
+         * \details   This overload is only available when `N` equals `3`.
+         *
+         * \param x   The value to construct the first component with.
+         * \param y   The value to construct the second component with.
+         * \param z   The value to construct the third component with.
+         */
+        inline constexpr vec(const T& x, const T& y, const T& z) noexcept;
+
+        /*!
+         * \brief     Constructs each component with the value of the
+         *            corresponding argument.
+         * \details   This overload is only available when `N` equals `4`.
+         *
+         * \param x   The value to construct the first component with.
+         * \param y   The value to construct the second component with.
+         * \param z   The value to construct the third component with.
+         * \param w   The value to construct the fourth component with.
+         */
+        inline constexpr vec(
+            const T& x, const T& y, const T& z, const T& w) noexcept;
+    };
 }
