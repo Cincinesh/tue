@@ -177,4 +177,18 @@ namespace
         test_assert(result2 == false);
         test_assert(result3 == false);
     }
+
+    TEST_CASE(inequality_operator)
+    {
+        CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);
+        CONST_OR_CONSTEXPR dvec2 v2(1.2f, 3.4f);
+        CONST_OR_CONSTEXPR dvec2 v3(1.2f, 0.0f);
+        CONST_OR_CONSTEXPR dvec2 v4(0.0f, 3.4f);
+        CONST_OR_CONSTEXPR auto result1 = (v1 != v2);
+        CONST_OR_CONSTEXPR auto result2 = (v1 != v3);
+        CONST_OR_CONSTEXPR auto result3 = (v1 != v4);
+        test_assert(result1 == false);
+        test_assert(result2 == true);
+        test_assert(result3 == true);
+    }
 }

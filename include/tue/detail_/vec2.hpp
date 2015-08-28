@@ -180,5 +180,13 @@ namespace tue
             return lhs[0] == rhs[0]
                 && lhs[1] == rhs[1];
         }
+
+        template<typename T, typename U>
+        inline constexpr bool inequality_operator(
+            const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return lhs[0] != rhs[0]
+                || lhs[1] != rhs[1];
+        }
     }
 }

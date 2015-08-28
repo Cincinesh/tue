@@ -353,4 +353,24 @@ namespace
         test_assert(result4 == false);
         test_assert(result5 == false);
     }
+
+    TEST_CASE(inequality_operator)
+    {
+        CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dvec4 v2(1.2f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dvec4 v3(1.2f, 3.4f, 5.6f, 0.0f);
+        CONST_OR_CONSTEXPR dvec4 v4(1.2f, 3.4f, 0.0f, 7.8f);
+        CONST_OR_CONSTEXPR dvec4 v5(1.2f, 0.0f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dvec4 v6(0.0f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR auto result1 = (v1 != v2);
+        CONST_OR_CONSTEXPR auto result2 = (v1 != v3);
+        CONST_OR_CONSTEXPR auto result3 = (v1 != v4);
+        CONST_OR_CONSTEXPR auto result4 = (v1 != v5);
+        CONST_OR_CONSTEXPR auto result5 = (v1 != v6);
+        test_assert(result1 == false);
+        test_assert(result2 == true);
+        test_assert(result3 == true);
+        test_assert(result4 == true);
+        test_assert(result5 == true);
+    }
 }
