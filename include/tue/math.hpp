@@ -264,6 +264,32 @@ namespace tue
         }
 
         /**
+         * \brief     Computes the reciprocal square root of `x`.
+         * \tparam T  The type of parameter `x`.
+         * \param x   A floating-point number.
+         * \return    The reciprocal square root of `x`.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        rsqrt(T x) noexcept
+        {
+            return 1 / std::sqrt(x);
+        }
+
+        /**
+         * \brief     Computes the reciprocal square root of `x`.
+         * \tparam T  The type of parameter `x`.
+         * \param x   An integral number.
+         * \return    The reciprocal square root of `static_cast<double>(x)`.
+         */
+        template<typename T>
+        inline std::enable_if_t<std::is_integral<T>::value, double>
+        rsqrt(T x) noexcept
+        {
+            return 1 / std::sqrt(static_cast<double>(x));
+        }
+
+        /**
          * \brief     Computes the nonnegative square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
