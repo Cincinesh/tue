@@ -113,10 +113,8 @@ namespace tue
      * \brief  A 4-dimensional vector with `bool` components.
      */
     using bvec4 = vec4<bool>;
-}
 
-namespace tue
-{
+    /**/
     template<typename T, int N>
     class vec
     {
@@ -145,37 +143,87 @@ namespace tue
         inline explicit constexpr vec(const U& x) noexcept;
 
         /*!
-         * \brief     Constructs each component with the value of the
-         *            corresponding argument.
-         * \details   This overload is only available when `N` equals `2`.
+         * \brief    Constructs each component with the value of the
+         *           corresponding argument.
+         * \details  This overload is only available when `N` equals `2`.
          *
-         * \param x   The value to construct the first component with.
-         * \param y   The value to construct the second component with.
+         * \param x  The value to construct the first component with.
+         * \param y  The value to construct the second component with.
          */
         inline constexpr vec(const T& x, const T& y) noexcept;
+
+        /*!
+         * \brief    Constructs each component with the value of the
+         *           corresponding argument.
+         * \details  This overload is only available when `N` equals `3`.
+         *
+         * \param x  The value to construct the first component with.
+         * \param y  The value to construct the second component with.
+         * \param z  The value to construct the third component with.
+         */
+        inline constexpr vec(const T& x, const T& y, const T& z) noexcept;
+
+        /*!
+         * \brief    Constructs each component with the value of the
+         *           corresponding argument.
+         * \details  This overload is only available when `N` equals `4`.
+         *
+         * \param x  The value to construct the first component with.
+         * \param y  The value to construct the second component with.
+         * \param z  The value to construct the third component with.
+         * \param w  The value to construct the fourth component with.
+         */
+        inline constexpr vec(
+            const T& x, const T& y, const T& z, const T& w) noexcept;
 
         /*!
          * \brief     Constructs each component with the value of the
          *            corresponding argument.
          * \details   This overload is only available when `N` equals `3`.
          *
-         * \param x   The value to construct the first component with.
-         * \param y   The value to construct the second component with.
+         * \param xy  The values to construct the first two components with.
          * \param z   The value to construct the third component with.
          */
-        inline constexpr vec(const T& x, const T& y, const T& z) noexcept;
+        inline constexpr vec(const vec2<T>& xy, const T& z) noexcept;
 
         /*!
          * \brief     Constructs each component with the value of the
          *            corresponding argument.
          * \details   This overload is only available when `N` equals `4`.
          *
-         * \param x   The value to construct the first component with.
-         * \param y   The value to construct the second component with.
+         * \param xy  The values to construct the first two components with.
          * \param z   The value to construct the third component with.
          * \param w   The value to construct the fourth component with.
          */
         inline constexpr vec(
-            const T& x, const T& y, const T& z, const T& w) noexcept;
+            const vec2<T>& xy, const T& z, const T& w) noexcept;
+
+        /*!
+         * \brief     Constructs each component with the value of the
+         *            corresponding argument.
+         * \details   This overload is only available when `N` equals `4`.
+         *
+         * \param xyz  The values to construct the first three components with.
+         * \param w    The value to construct the fourth component with.
+         */
+        inline constexpr vec(const vec3<T>& xyz, const T& w) noexcept;
+
+        /*!
+         * \brief        Truncates a larger `vec`.
+         * \details      This overload is only available when `N` is less than
+         *               `3`. When `N` equals `3`, this is replaced by the
+         *               automatically generated copy constructor.
+         * \param other  The larger `vec` to truncate.
+         */
+        inline explicit constexpr vec(const vec3<T>& other) noexcept;
+
+        /*!
+         * \brief        Truncates a larger `vec`.
+         * \details      This overload is only available when `N` is less than
+         *               `4`. When `N` equals `4`, this is replaced by the
+         *               automatically generated copy constructor.
+         * \param other  The larger `vec` to truncate.
+         */
+        inline explicit constexpr vec(const vec4<T>& other) noexcept;
     };
 }

@@ -18,6 +18,7 @@
  */
 namespace tue
 {
+    /**/
     namespace detail_
     {
         template<typename T, typename U>
