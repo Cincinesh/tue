@@ -13,7 +13,7 @@
 #include <cstdlib>
 #include <type_traits>
 
-/**
+/*!
  * The Tuesday namespace.
  */
 namespace tue
@@ -35,12 +35,12 @@ namespace tue
             tue::detail_::pow_promote_t<U, T>()));
     }
 
-    /**
+    /*!
      * Math functions.
      */
     namespace math
     {
-        /**
+        /*!
          * \brief     Computes the cosine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
          * \param x   An angle (measured in radians).
@@ -53,7 +53,7 @@ namespace tue
             return std::cos(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the cosine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
          * \param x   An angle (measured in radians).
@@ -66,7 +66,7 @@ namespace tue
             return std::cos(static_cast<double>(x));
         }
 
-        /**
+        /*!
          * \brief     Computes the sine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
          * \param x   An angle (measured in radians).
@@ -79,7 +79,7 @@ namespace tue
             return std::sin(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the sine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
          * \param x   An angle (measured in radians).
@@ -92,7 +92,7 @@ namespace tue
             return std::sin(static_cast<double>(x));
         }
 
-        /**
+        /*!
          * \brief          Computes the sine and cosine of `x` (measured in
          *                 radians).
          *
@@ -111,7 +111,7 @@ namespace tue
             cos_out = std::cos(x);
         }
 
-        /**
+        /*!
          * \brief          Computes the sine and cosine of `x` (measured in
          *                 radians).
          *
@@ -131,7 +131,7 @@ namespace tue
             cos_out = std::cos(dx);
         }
 
-        /**
+        /*!
          * \brief     Computes the base-e exponential of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
@@ -144,7 +144,7 @@ namespace tue
             return std::exp(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the base-e exponential of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   An integral number.
@@ -157,7 +157,7 @@ namespace tue
             return std::exp(static_cast<double>(x));
         }
 
-        /**
+        /*!
          * \brief     Computes the base-e (natural) logarithm of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
@@ -170,7 +170,7 @@ namespace tue
             return std::log(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the base-e (natural) logarithm of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   An integral number.
@@ -184,7 +184,7 @@ namespace tue
             return std::log(static_cast<double>(x));
         }
 
-        /**
+        /*!
          * \brief     Computes the absolute value of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A signed number.
@@ -197,7 +197,7 @@ namespace tue
             return std::abs(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the absolute value of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   An unsigned number.
@@ -210,7 +210,7 @@ namespace tue
             return x;
         }
 
-        /**
+        /*!
          * \brief     Computes `x` raised to the power `y`.
          * \tparam T  The type of parameter `x`.
          * \tparam U  The type of parameter `y`.
@@ -237,7 +237,7 @@ namespace tue
                 static_cast<tue::detail_::pow_promote_t<U, T>>(y));
         }
 
-        /**
+        /*!
          * \brief     Computes the reciprocal of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
@@ -250,7 +250,7 @@ namespace tue
             return 1 / x;
         }
 
-        /**
+        /*!
          * \brief     Computes the reciprocal of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   An integral number.
@@ -263,7 +263,7 @@ namespace tue
             return 1 / static_cast<double>(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the reciprocal square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
@@ -276,7 +276,7 @@ namespace tue
             return 1 / std::sqrt(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the reciprocal square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   An integral number.
@@ -289,7 +289,7 @@ namespace tue
             return 1 / std::sqrt(static_cast<double>(x));
         }
 
-        /**
+        /*!
          * \brief     Computes the nonnegative square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
@@ -302,7 +302,7 @@ namespace tue
             return std::sqrt(x);
         }
 
-        /**
+        /*!
          * \brief     Computes the nonnegative square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   An integral number.
@@ -315,7 +315,7 @@ namespace tue
             return std::sqrt(static_cast<double>(x));
         }
 
-        /**
+        /*!
          * \brief     Determines the maximum numeric value of the arguments.
          * \tparam T  The type of parameters `x` and `y`.
          * \param x   A number.
@@ -329,7 +329,7 @@ namespace tue
             return std::max(x, y);
         }
 
-        /**
+        /*!
          * \brief     Determines the minimum numeric value of the arguments.
          * \tparam T  The type of parameters `x` and `y`.
          * \param x   A number.

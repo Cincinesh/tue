@@ -10,7 +10,7 @@
 
 namespace tue
 {
-    /**
+    /*!
      * \brief     An `N`-dimensional vector.
      * \tparam T  The component type.
      * \tparam N  The number of components. Must be 2, 3, or 4.
