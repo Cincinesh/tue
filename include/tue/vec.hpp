@@ -622,7 +622,14 @@ namespace tue
         template<typename I>
         inline T& operator[](const I& i) noexcept;
     };
+}
 
+#include "detail_/vec2.hpp"
+#include "detail_/vec3.hpp"
+#include "detail_/vec4.hpp"
+
+namespace tue
+{
     /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
      * \tparam T   The component type of `lhs`.
@@ -657,7 +664,3 @@ namespace tue
         return tue::detail_::inequality_operator(lhs, rhs);
     }
 }
-
-#include "detail_/vec2.hpp"
-#include "detail_/vec3.hpp"
-#include "detail_/vec4.hpp"
