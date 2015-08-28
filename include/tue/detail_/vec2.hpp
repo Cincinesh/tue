@@ -176,6 +176,36 @@ namespace tue
         {
             return this->impl_.data[i];
         }
+
+        vec<T, 2>& operator++() noexcept
+        {
+            ++this->impl_.data[0];
+            ++this->impl_.data[1];
+            return *this;
+        }
+
+        vec<T, 2> operator++(int) noexcept
+        {
+            return {
+                this->impl_.data[0]++,
+                this->impl_.data[1]++,
+            };
+        }
+
+        vec<T, 2>& operator--() noexcept
+        {
+            --this->impl_.data[0];
+            --this->impl_.data[1];
+            return *this;
+        }
+
+        vec<T, 2> operator--(int) noexcept
+        {
+            return {
+                this->impl_.data[0]--,
+                this->impl_.data[1]--,
+            };
+        }
     };
 
     namespace detail_

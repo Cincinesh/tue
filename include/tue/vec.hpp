@@ -672,6 +672,30 @@ namespace tue
          */
         template<typename I>
         inline T& operator[](const I& i) noexcept;
+
+        /*!
+         * \brief   Pre-increments each component of this `vec`.
+         * \return  A reference to this `vec`.
+         */
+        inline vec<T, N>& operator++() noexcept;
+
+        /*!
+         * \brief   Post-increments each component of this `vec`.
+         * \return  A copy this `vec` before being incremented.
+         */
+        inline vec<T, N> operator++(int) noexcept;
+
+        /*!
+         * \brief   Pre-decrements each component of this `vec`.
+         * \return  A reference to this `vec`.
+         */
+        inline vec<T, N>& operator--() noexcept;
+
+        /*!
+         * \brief   Post-decrements each component of this `vec`.
+         * \return  A copy this `vec` before being decremented.
+         */
+        inline vec<T, N> operator--(int) noexcept;
     };
 }
 

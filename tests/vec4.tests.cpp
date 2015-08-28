@@ -411,6 +411,46 @@ namespace
         test_assert(&v3 == v.data() + 3);
     }
 
+    TEST_CASE(pre_increment_operator)
+    {
+        ivec4 v(1, 2, 3, 4);
+        test_assert(&(++v) == &v);
+        test_assert(v[0] == 2);
+        test_assert(v[1] == 3);
+        test_assert(v[2] == 4);
+        test_assert(v[3] == 5);
+    }
+
+    TEST_CASE(post_increment_operator)
+    {
+        ivec4 v(1, 2, 3, 4);
+        test_assert(v++ == ivec4(1, 2, 3, 4));
+        test_assert(v[0] == 2);
+        test_assert(v[1] == 3);
+        test_assert(v[2] == 4);
+        test_assert(v[3] == 5);
+    }
+
+    TEST_CASE(pre_decrement_operator)
+    {
+        ivec4 v(1, 2, 3, 4);
+        test_assert(&(--v) == &v);
+        test_assert(v[0] == 0);
+        test_assert(v[1] == 1);
+        test_assert(v[2] == 2);
+        test_assert(v[3] == 3);
+    }
+
+    TEST_CASE(post_decrement_operator)
+    {
+        ivec4 v(1, 2, 3, 4);
+        test_assert(v-- == ivec4(1, 2, 3, 4));
+        test_assert(v[0] == 0);
+        test_assert(v[1] == 1);
+        test_assert(v[2] == 2);
+        test_assert(v[3] == 3);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);

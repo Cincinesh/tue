@@ -229,6 +229,38 @@ namespace
         test_assert(&v1 == v.data() + 1);
     }
 
+    TEST_CASE(pre_increment_operator)
+    {
+        ivec2 v(1, 2);
+        test_assert(&(++v) == &v);
+        test_assert(v[0] == 2);
+        test_assert(v[1] == 3);
+    }
+
+    TEST_CASE(post_increment_operator)
+    {
+        ivec2 v(1, 2);
+        test_assert(v++ == ivec2(1, 2));
+        test_assert(v[0] == 2);
+        test_assert(v[1] == 3);
+    }
+
+    TEST_CASE(pre_decrement_operator)
+    {
+        ivec2 v(1, 2);
+        test_assert(&(--v) == &v);
+        test_assert(v[0] == 0);
+        test_assert(v[1] == 1);
+    }
+
+    TEST_CASE(post_decrement_operator)
+    {
+        ivec2 v(1, 2);
+        test_assert(v-- == ivec2(1, 2));
+        test_assert(v[0] == 0);
+        test_assert(v[1] == 1);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);
