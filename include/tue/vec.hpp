@@ -585,5 +585,21 @@ namespace tue
          * \param rgba  The new values for the first four components.
          */
         inline void set_rgba(const vec4<T>& rgba) noexcept;
+
+        /*!
+         * \brief   Returns a pointer to this `vec`'s underlying component
+         *          array.
+         *
+         * \return  A pointer to this `vec`'s underlying component array.
+         */
+        inline const T* data() const noexcept;
+
+        /*!
+         * \brief   Returns a pointer to this `vec`'s underlying component
+         *          array.
+         *
+         * \return  A pointer to this `vec`'s underlying component array.
+         */
+        inline T* data() noexcept;
     };
 }
