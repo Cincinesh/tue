@@ -251,22 +251,10 @@ namespace tue
         inline constexpr T x() const noexcept;
 
         /*!
-         * \brief    Sets this `vec`'s first component.
-         * \param x  The new value for the first component.
-         */
-        inline void set_x(const T& x) noexcept;
-
-        /*!
          * \brief   Returns a copy of this `vec`'s second component.
          * \return  A copy of this `vec`'s second component.
          */
         inline constexpr T y() const noexcept;
-
-        /*!
-         * \brief    Sets this `vec`'s second component.
-         * \param y  The new value for the second component.
-         */
-        inline void set_y(const T& y) noexcept;
 
         /*!
          * \brief    Returns a copy of this `vec`'s third component.
@@ -278,15 +266,6 @@ namespace tue
         inline constexpr T z() const noexcept;
 
         /*!
-         * \brief    Sets this `vec`'s third component.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `3`.
-         *
-         * \param z  The new value for the third component.
-         */
-        inline void set_z(const T& z) noexcept;
-
-        /*!
          * \brief    Returns a copy of this `vec`'s fourth component.
          * \details  This overload is only available when `N` is greater than or
          *           equal to `4`.
@@ -294,6 +273,27 @@ namespace tue
          * \return   A copy of this `vec`'s fourth component.
          */
         inline constexpr T w() const noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s first component.
+         * \param x  The new value for the first component.
+         */
+        inline void set_x(const T& x) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s second component.
+         * \param y  The new value for the second component.
+         */
+        inline void set_y(const T& y) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s third component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \param z  The new value for the third component.
+         */
+        inline void set_z(const T& z) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s fourth component.
