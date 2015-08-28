@@ -645,6 +645,30 @@ namespace
         test_assert(v == bvec4(!0, !1, !0, !2));
     }
 
+    TEST_CASE(addition_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            1 + dvec4(2.3, 4.5, 6.7, 8.9);
+        test_assert(v1[0] == 1 + 2.3);
+        test_assert(v1[1] == 1 + 4.5);
+        test_assert(v1[2] == 1 + 6.7);
+        test_assert(v1[3] == 1 + 8.9);
+
+        CONST_OR_CONSTEXPR auto v2 =
+            dvec4(1.2, 3.4, 5.6, 7.8) + 9;
+        test_assert(v2[0] == 1.2 + 9);
+        test_assert(v2[1] == 3.4 + 9);
+        test_assert(v2[2] == 5.6 + 9);
+        test_assert(v2[3] == 7.8 + 9);
+
+        CONST_OR_CONSTEXPR auto v3 =
+            dvec4(1.2, 3.4, 5.6, 7.8) + ivec4(9, 10, 11, 12);
+        test_assert(v3[0] == 1.2 + 9);
+        test_assert(v3[1] == 3.4 + 10);
+        test_assert(v3[2] == 5.6 + 11);
+        test_assert(v3[3] == 7.8 + 12);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);
