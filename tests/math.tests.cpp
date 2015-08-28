@@ -100,6 +100,16 @@ namespace
         test_assert(math::pow(12, 34) == std::pow(12.0, 34.0));
     }
 
+    TEST_CASE(floating_point_recip)
+    {
+        test_assert(math::recip(1.2) == 1 / 1.2);
+    }
+
+    TEST_CASE(integral_recip)
+    {
+        test_assert(math::recip(12) == 1 / 12.0);
+    }
+
     TEST_CASE(floating_point_sqrt)
     {
         test_assert(math::sqrt(1.2) == std::sqrt(1.2));
