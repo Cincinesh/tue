@@ -66,6 +66,21 @@ namespace tue
             };
         }
 
+        static constexpr vec<T, 2> zero() noexcept
+        {
+            return { T(0), T(0) };
+        }
+
+        static constexpr vec<T, 2> x_axis() noexcept
+        {
+            return { T(1), T(0) };
+        }
+
+        static constexpr vec<T, 2> y_axis() noexcept
+        {
+            return { T(0), T(1) };
+        }
+
         constexpr T x() const noexcept
         {
             return this->impl_.data[0];

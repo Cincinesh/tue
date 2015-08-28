@@ -116,6 +116,30 @@ namespace
         test_assert(dv[2] == 5.6f);
     }
 
+    TEST_CASE(zero)
+    {
+        CONST_OR_CONSTEXPR auto v = fvec3::zero();
+        test_assert(v == fvec3(0.0f, 0.0f, 0.0f));
+    }
+
+    TEST_CASE(x_axis)
+    {
+        CONST_OR_CONSTEXPR auto v = fvec3::x_axis();
+        test_assert(v == fvec3(1.0f, 0.0f, 0.0f));
+    }
+
+    TEST_CASE(y_axis)
+    {
+        CONST_OR_CONSTEXPR auto v = fvec3::y_axis();
+        test_assert(v == fvec3(0.0f, 1.0f, 0.0f));
+    }
+
+    TEST_CASE(z_axis)
+    {
+        CONST_OR_CONSTEXPR auto v = fvec3::z_axis();
+        test_assert(v == fvec3(0.0f, 0.0f, 1.0f));
+    }
+
     TEST_CASE(x_y_z)
     {
         CONST_OR_CONSTEXPR dvec3 v(1.2, 3.4, 5.6);

@@ -250,6 +250,52 @@ namespace tue
         inline constexpr operator vec<U, N>() const noexcept;
 
         /*!
+         * \brief   Returns a `vec` with each component set to `0`.
+         * \return  A `vec` with each component set to `0`.
+         */
+        inline static constexpr vec<T, N> zero() noexcept;
+
+        /*!
+         * \brief   Returns a `vec` with the first component set to `1` and all
+         *          other components set to `0`.
+         *
+         * \return  A `vec` with the first component set to `1` and all other
+         *          components set to `0`.
+         */
+        inline static constexpr vec<T, N> x_axis() noexcept;
+
+        /*!
+         * \brief   Returns a `vec` with the second component set to `1` and all
+         *          other components set to `0`.
+         *
+         * \return  A `vec` with the second component set to `1` and all other
+         *          components set to `0`.
+         */
+        inline static constexpr vec<T, N> y_axis() noexcept;
+
+        /*!
+         * \brief    Returns a `vec` with the third component set to `1` and all
+         *           other components set to `0`.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \return   A `vec` with the third component set to `1` and all other
+         *           components set to `0`.
+         */
+        inline static constexpr vec<T, N> z_axis() noexcept;
+
+        /*!
+         * \brief    Returns a `vec` with the fourth component set to `1` and
+         *           all other components set to `0`.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `4`.
+         *
+         * \return   A `vec` with the fourth component set to `1` and all other
+         *           components set to `0`.
+         */
+        inline static constexpr vec<T, N> w_axis() noexcept;
+
+        /*!
          * \brief   Returns a copy of this `vec`'s first component.
          * \return  A copy of this `vec`'s first component.
          */
