@@ -216,7 +216,7 @@ namespace tue
         /*!
          * \brief        Truncates a larger `vec`.
          * \details      This overload is only available when `N` is less than
-         *               `3`. When `N` equals `3`, this is replaced by the
+         *               `3`. When `N` equals `3`, it is replaced by the
          *               automatically generated copy constructor.
          *
          * \param other  The larger `vec` to truncate.
@@ -226,7 +226,7 @@ namespace tue
         /*!
          * \brief        Truncates a larger `vec`.
          * \details      This overload is only available when `N` is less than
-         *               `4`. When `N` equals `4`, this is replaced by the
+         *               `4`. When `N` equals `4`, it is replaced by the
          *               automatically generated copy constructor.
          *
          * \param other  The larger `vec` to truncate.
