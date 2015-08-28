@@ -231,9 +231,16 @@ namespace tue
         /*!
          * \brief        Explicitly casts another `vec` to a new component type.
          * \tparam U     The component type of `other`.
-         * \param other  The `vec` to cast.
+         * \param other  The `vec` to cast from.
          */
-         template<typename U>
+        template<typename U>
         inline explicit constexpr vec(const vec<U, N>& other) noexcept;
+
+        /*!
+         * \brief     Implicitly casts this `vec` to a new component type.
+         * \tparam U  The new component type.
+         */
+        template<typename U>
+        inline constexpr operator vec<U, N>() const noexcept;
     };
 }
