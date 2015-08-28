@@ -275,6 +275,36 @@ namespace tue
         inline constexpr T w() const noexcept;
 
         /*!
+         * \brief   Returns a copy of this `vec`'s first component.
+         * \return  A copy of this `vec`'s first component.
+         */
+        inline constexpr T r() const noexcept;
+
+        /*!
+         * \brief   Returns a copy of this `vec`'s second component.
+         * \return  A copy of this `vec`'s second component.
+         */
+        inline constexpr T g() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s third component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \return   A copy of this `vec`'s third component.
+         */
+        inline constexpr T b() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s fourth component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `4`.
+         *
+         * \return   A copy of this `vec`'s fourth component.
+         */
+        inline constexpr T a() const noexcept;
+
+        /*!
          * \brief    Sets this `vec`'s first component.
          * \param x  The new value for the first component.
          */
@@ -303,5 +333,35 @@ namespace tue
          * \param w  The new value for the fourth component.
          */
         inline void set_w(const T& w) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s first component.
+         * \param r  The new value for the first component.
+         */
+        inline void set_r(const T& r) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s second component.
+         * \param g  The new value for the second component.
+         */
+        inline void set_g(const T& g) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s third component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \param b  The new value for the third component.
+         */
+        inline void set_b(const T& b) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s fourth component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `4`.
+         *
+         * \param a  The new value for the fourth component.
+         */
+        inline void set_a(const T& a) noexcept;
     };
 }
