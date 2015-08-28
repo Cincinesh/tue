@@ -621,6 +621,30 @@ namespace
         test_assert(v2[3] == (78LL >> 4));
     }
 
+    TEST_CASE(unary_plus_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = +dvec4(1.2, 3.4, 5.6, 7.8);
+        test_assert(v == dvec4(+1.2, +3.4, +5.6, +7.8));
+    }
+
+    TEST_CASE(unary_minus_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = -dvec4(1.2, 3.4, 5.6, 7.8);
+        test_assert(v == dvec4(-1.2, -3.4, -5.6, -7.8));
+    }
+
+    TEST_CASE(bitwise_not_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = ~ivec4(1, 2, 3, 4);
+        test_assert(v == ivec4(~1, ~2, ~3, ~4));
+    }
+
+    TEST_CASE(logical_not_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = !ivec4(0, 1, 0, 2);
+        test_assert(v == ivec4(!0, !1, !0, !2));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);

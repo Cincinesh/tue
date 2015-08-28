@@ -9,6 +9,7 @@
 #pragma once
 
 #include <type_traits>
+#include <utility>
 
 namespace tue
 {
@@ -919,6 +920,62 @@ namespace tue
 
 namespace tue
 {
+    /*!
+     * \brief     Calculates the unary plus of each component of `v`.
+     * \tparam T  The component type of `v`.
+     * \tparam N  The component count of `v`.
+     * \param v   A vector.
+     * \return    The unary plus of each component of `v`.
+     */
+    template<typename T, int N>
+    inline constexpr vec<decltype(+std::declval<T>()), N>
+    operator+(const vec<T, N>& v) noexcept
+    {
+        return tue::detail_::unary_plus_operator(v);
+    }
+
+    /*!
+     * \brief     Calculates the unary minus of each component of `v`.
+     * \tparam T  The component type of `v`.
+     * \tparam N  The component count of `v`.
+     * \param v   A vector.
+     * \return    The unary minus of each component of `v`.
+     */
+    template<typename T, int N>
+    inline constexpr vec<decltype(-std::declval<T>()), N>
+    operator-(const vec<T, N>& v) noexcept
+    {
+        return tue::detail_::unary_minus_operator(v);
+    }
+
+    /*!
+     * \brief     Calculates the bitwise NOT of each component of `v`.
+     * \tparam T  The component type of `v`.
+     * \tparam N  The component count of `v`.
+     * \param v   A vector.
+     * \return    The bitwise NOT of each component of `v`.
+     */
+    template<typename T, int N>
+    inline constexpr vec<decltype(~std::declval<T>()), N>
+    operator~(const vec<T, N>& v) noexcept
+    {
+        return tue::detail_::bitwise_not_operator(v);
+    }
+
+    /*!
+     * \brief     Calculates the logical NOT of each component of `v`.
+     * \tparam T  The component type of `v`.
+     * \tparam N  The component count of `v`.
+     * \param v   A vector.
+     * \return    The logical NOT of each component of `v`.
+     */
+    template<typename T, int N>
+    inline constexpr vec<decltype(~std::declval<T>()), N>
+    operator!(const vec<T, N>& v) noexcept
+    {
+        return tue::detail_::logical_not_operator(v);
+    }
+
     /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
      * \tparam T   The component type of `lhs`.

@@ -46,13 +46,13 @@ namespace tue
         }
 
         template<typename U>
-        explicit constexpr vec(const vec<U, 3>& other) noexcept :
+        explicit constexpr vec(const vec3<U>& other) noexcept :
             impl_({{ T(other[0]), T(other[1]), T(other[2]) }})
         {
         }
 
         template<typename U>
-        constexpr operator vec<U, 3>() const noexcept
+        constexpr operator vec3<U>() const noexcept
         {
             return {
                 this->impl_.data[0],
@@ -61,22 +61,22 @@ namespace tue
             };
         }
 
-        static constexpr vec<T, 3> zero() noexcept
+        static constexpr vec3<T> zero() noexcept
         {
             return { T(0), T(0), T(0) };
         }
 
-        static constexpr vec<T, 3> x_axis() noexcept
+        static constexpr vec3<T> x_axis() noexcept
         {
             return { T(1), T(0), T(0) };
         }
 
-        static constexpr vec<T, 3> y_axis() noexcept
+        static constexpr vec3<T> y_axis() noexcept
         {
             return { T(0), T(1), T(0) };
         }
 
-        static constexpr vec<T, 3> z_axis() noexcept
+        static constexpr vec3<T> z_axis() noexcept
         {
             return { T(0), T(0), T(1) };
         }
@@ -263,7 +263,7 @@ namespace tue
             return this->impl_.data[i];
         }
 
-        vec<T, 3>& operator++() noexcept
+        vec3<T>& operator++() noexcept
         {
             ++this->impl_.data[0];
             ++this->impl_.data[1];
@@ -271,7 +271,7 @@ namespace tue
             return *this;
         }
 
-        vec<T, 3> operator++(int) noexcept
+        vec3<T> operator++(int) noexcept
         {
             return {
                 this->impl_.data[0]++,
@@ -280,7 +280,7 @@ namespace tue
             };
         }
 
-        vec<T, 3>& operator--() noexcept
+        vec3<T>& operator--() noexcept
         {
             --this->impl_.data[0];
             --this->impl_.data[1];
@@ -288,7 +288,7 @@ namespace tue
             return *this;
         }
 
-        vec<T, 3> operator--(int) noexcept
+        vec3<T> operator--(int) noexcept
         {
             return {
                 this->impl_.data[0]--,
@@ -298,7 +298,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator+=(const U& x) noexcept
+        vec3<T>& operator+=(const U& x) noexcept
         {
             this->impl_.data[0] += x;
             this->impl_.data[1] += x;
@@ -307,7 +307,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator+=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator+=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] += v[0];
             this->impl_.data[1] += v[1];
@@ -316,7 +316,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator-=(const U& x) noexcept
+        vec3<T>& operator-=(const U& x) noexcept
         {
             this->impl_.data[0] -= x;
             this->impl_.data[1] -= x;
@@ -325,7 +325,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator-=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator-=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] -= v[0];
             this->impl_.data[1] -= v[1];
@@ -334,7 +334,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator*=(const U& x) noexcept
+        vec3<T>& operator*=(const U& x) noexcept
         {
             this->impl_.data[0] *= x;
             this->impl_.data[1] *= x;
@@ -343,7 +343,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator*=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator*=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] *= v[0];
             this->impl_.data[1] *= v[1];
@@ -352,7 +352,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator/=(const U& x) noexcept
+        vec3<T>& operator/=(const U& x) noexcept
         {
             this->impl_.data[0] /= x;
             this->impl_.data[1] /= x;
@@ -361,7 +361,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator/=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator/=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] /= v[0];
             this->impl_.data[1] /= v[1];
@@ -370,7 +370,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator%=(const U& x) noexcept
+        vec3<T>& operator%=(const U& x) noexcept
         {
             this->impl_.data[0] %= x;
             this->impl_.data[1] %= x;
@@ -379,7 +379,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator%=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator%=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] %= v[0];
             this->impl_.data[1] %= v[1];
@@ -388,7 +388,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator&=(const U& x) noexcept
+        vec3<T>& operator&=(const U& x) noexcept
         {
             this->impl_.data[0] &= x;
             this->impl_.data[1] &= x;
@@ -397,7 +397,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator&=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator&=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] &= v[0];
             this->impl_.data[1] &= v[1];
@@ -406,7 +406,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator|=(const U& x) noexcept
+        vec3<T>& operator|=(const U& x) noexcept
         {
             this->impl_.data[0] |= x;
             this->impl_.data[1] |= x;
@@ -415,7 +415,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator|=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator|=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] |= v[0];
             this->impl_.data[1] |= v[1];
@@ -424,7 +424,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator^=(const U& x) noexcept
+        vec3<T>& operator^=(const U& x) noexcept
         {
             this->impl_.data[0] ^= x;
             this->impl_.data[1] ^= x;
@@ -433,7 +433,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator^=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator^=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] ^= v[0];
             this->impl_.data[1] ^= v[1];
@@ -442,7 +442,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator<<=(const U& x) noexcept
+        vec3<T>& operator<<=(const U& x) noexcept
         {
             this->impl_.data[0] <<= x;
             this->impl_.data[1] <<= x;
@@ -451,7 +451,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator<<=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator<<=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] <<= v[0];
             this->impl_.data[1] <<= v[1];
@@ -460,7 +460,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator>>=(const U& x) noexcept
+        vec3<T>& operator>>=(const U& x) noexcept
         {
             this->impl_.data[0] >>= x;
             this->impl_.data[1] >>= x;
@@ -469,7 +469,7 @@ namespace tue
         }
 
         template<typename U>
-        vec<T, 3>& operator>>=(const vec<U, 3>& v) noexcept
+        vec3<T>& operator>>=(const vec3<U>& v) noexcept
         {
             this->impl_.data[0] >>= v[0];
             this->impl_.data[1] >>= v[1];
@@ -480,6 +480,34 @@ namespace tue
 
     namespace detail_
     {
+        template<typename T>
+        inline constexpr vec3<decltype(+std::declval<T>())>
+        unary_plus_operator(const vec3<T>& v) noexcept
+        {
+            return { +v[0], +v[1], +v[2] };
+        }
+
+        template<typename T>
+        inline constexpr vec3<decltype(-std::declval<T>())>
+        unary_minus_operator(const vec3<T>& v) noexcept
+        {
+            return { -v[0], -v[1], -v[2] };
+        }
+
+        template<typename T>
+        inline constexpr vec3<decltype(~std::declval<T>())>
+        bitwise_not_operator(const vec3<T>& v) noexcept
+        {
+            return { ~v[0], ~v[1], ~v[2] };
+        }
+
+        template<typename T>
+        inline constexpr vec3<decltype(!std::declval<T>())>
+        logical_not_operator(const vec3<T>& v) noexcept
+        {
+            return { !v[0], !v[1], !v[2] };
+        }
+
         template<typename T, typename U>
         inline constexpr bool equality_operator(
             const vec3<T>& lhs, const vec3<U>& rhs) noexcept

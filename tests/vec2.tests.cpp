@@ -391,6 +391,30 @@ namespace
         test_assert(v2[1] == (34LL >> 2));
     }
 
+    TEST_CASE(unary_plus_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = +dvec2(1.2, 3.4);
+        test_assert(v == dvec2(+1.2, +3.4));
+    }
+
+    TEST_CASE(unary_minus_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = -dvec2(1.2, 3.4);
+        test_assert(v == dvec2(-1.2, -3.4));
+    }
+
+    TEST_CASE(bitwise_not_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = ~ivec2(1, 2);
+        test_assert(v == ivec2(~1, ~2));
+    }
+
+    TEST_CASE(logical_not_operator)
+    {
+        CONST_OR_CONSTEXPR auto v = !ivec2(0, 1);
+        test_assert(v == ivec2(!0, !1));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);
