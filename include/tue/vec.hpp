@@ -14,6 +14,7 @@ namespace tue
 {
     /*!
      * \brief     An `N`-dimensional vector.
+     * \details   `vec` has the same size and alignment requirements as `T[N]`.
      * \tparam T  The component type.
      * \tparam N  The component count. Must be 2, 3, or 4.
      */
