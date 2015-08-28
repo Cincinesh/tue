@@ -475,7 +475,7 @@ namespace tue
          *
          * \param r  The new value for the first component.
          * \param g  The new value for the second component.
-         * \param n  The new value for the third component.
+         * \param b  The new value for the third component.
          */
         inline void set_rgb(const T& r, const T& g, const T& b) noexcept;
 
