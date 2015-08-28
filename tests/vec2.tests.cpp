@@ -261,6 +261,19 @@ namespace
         test_assert(v[1] == 1);
     }
 
+    TEST_CASE(addition_assignment_operator)
+    {
+        dvec2 v1(1.2, 3.4);
+        test_assert(&(v1 += 5) == &v1);
+        test_assert(v1[0] == 1.2 + 5);
+        test_assert(v1[1] == 3.4 + 5);
+
+        dvec2 v2(1.2, 3.4);
+        test_assert(&(v2 += ivec2(5, 6)) == &v2);
+        test_assert(v2[0] == 1.2 + 5);
+        test_assert(v2[1] == 3.4 + 6);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);

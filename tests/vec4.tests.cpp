@@ -451,6 +451,23 @@ namespace
         test_assert(v[3] == 3);
     }
 
+    TEST_CASE(addition_assignment_operator)
+    {
+        dvec4 v1(1.2, 3.4, 5.6, 7.8);
+        test_assert(&(v1 += 9) == &v1);
+        test_assert(v1[0] == 1.2 + 9);
+        test_assert(v1[1] == 3.4 + 9);
+        test_assert(v1[2] == 5.6 + 9);
+        test_assert(v1[3] == 7.8 + 9);
+
+        dvec4 v2(1.2, 3.4, 5.6, 7.8);
+        test_assert(&(v2 += ivec4(9, 10, 11, 12)) == &v2);
+        test_assert(v2[0] == 1.2 + 9);
+        test_assert(v2[1] == 3.4 + 10);
+        test_assert(v2[2] == 5.6 + 11);
+        test_assert(v2[3] == 7.8 + 12);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);

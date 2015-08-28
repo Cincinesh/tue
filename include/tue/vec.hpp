@@ -214,32 +214,32 @@ namespace tue
         inline constexpr vec(const vec3<T>& xyz, const T& w) noexcept;
 
         /*!
-         * \brief        Truncates a larger `vec`.
-         * \details      This overload is only available when `N` is less than
-         *               `3`. When `N` equals `3`, it is replaced by the
-         *               automatically generated copy constructor.
+         * \brief    Truncates a larger `vec`.
+         * \details  This overload is only available when `N` is less than `3`.
+         *           When `N` equals `3`, it is replaced by the automatically
+         *           generated copy constructor.
          *
-         * \param other  The larger `vec` to truncate.
+         * \param v  The larger `vec` to truncate.
          */
-        inline explicit constexpr vec(const vec3<T>& other) noexcept;
+        inline explicit constexpr vec(const vec3<T>& v) noexcept;
 
         /*!
-         * \brief        Truncates a larger `vec`.
-         * \details      This overload is only available when `N` is less than
-         *               `4`. When `N` equals `4`, it is replaced by the
-         *               automatically generated copy constructor.
+         * \brief    Truncates a larger `vec`.
+         * \details  This overload is only available when `N` is less than `4`.
+         *           When `N` equals `4`, it is replaced by the automatically
+         *           generated copy constructor.
          *
-         * \param other  The larger `vec` to truncate.
+         * \param v  The larger `vec` to truncate.
          */
-        inline explicit constexpr vec(const vec4<T>& other) noexcept;
+        inline explicit constexpr vec(const vec4<T>& v) noexcept;
 
         /*!
-         * \brief        Explicitly casts another `vec` to a new component type.
-         * \tparam U     The component type of `other`.
-         * \param other  The `vec` to cast from.
+         * \brief     Explicitly casts another `vec` to a new component type.
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The `vec` to cast from.
          */
         template<typename U>
-        inline explicit constexpr vec(const vec<U, N>& other) noexcept;
+        inline explicit constexpr vec(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Implicitly casts this `vec` to a new component type.
@@ -696,6 +696,26 @@ namespace tue
          * \return  A copy this `vec` before being decremented.
          */
         inline vec<T, N> operator--(int) noexcept;
+
+        /*!
+         * \brief     Adds `x` to each component of this `vec`.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to add to each component of this `vec`.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator+=(const U& x) noexcept;
+
+        /*!
+         * \brief     Adds each component of `v` to the corresponding component
+         *            of this `vec`.
+         *
+         * \tparam U  The component type of parameter `v`.
+         * \param v   The values to add to each component of this `vec`.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator+=(const vec<U, N>& v) noexcept;
     };
 }
 
