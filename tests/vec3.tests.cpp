@@ -16,6 +16,24 @@ namespace
 {
     using namespace tue;
 
+    TEST_CASE(size)
+    {
+        test_assert(sizeof(fvec3) == sizeof(float) * 3);
+        test_assert(sizeof(dvec3) == sizeof(double) * 3);
+        test_assert(sizeof(ivec3) == sizeof(int) * 3);
+        test_assert(sizeof(uvec3) == sizeof(unsigned int) * 3);
+        test_assert(sizeof(bvec3) == sizeof(bool) * 3);
+    }
+
+    TEST_CASE(alignment)
+    {
+        test_assert(alignof(fvec3) == alignof(float));
+        test_assert(alignof(dvec3) == alignof(double));
+        test_assert(alignof(ivec3) == alignof(int));
+        test_assert(alignof(uvec3) == alignof(unsigned int));
+        test_assert(alignof(bvec3) == alignof(bool));
+    }
+
     TEST_CASE(component_type)
     {
         test_assert((
