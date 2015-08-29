@@ -114,7 +114,69 @@ namespace
 
     TEST_CASE(select)
     {
-        test_assert(math::select(true, 1, 2) == 1);
-        test_assert(math::select(false, 1, 2) == 2);
+        constexpr auto x = math::select(true, 1, 2);
+        constexpr auto y = math::select(false, 1, 2);
+        test_assert(x == 1);
+        test_assert(y == 2);
+    }
+
+    TEST_CASE(less)
+    {
+        constexpr auto x = math::less(1, 2.0);
+        constexpr auto y = math::less(2, 2.0);
+        constexpr auto z = math::less(3, 2.0);
+        test_assert(x == true);
+        test_assert(y == false);
+        test_assert(z == false);
+    }
+
+    TEST_CASE(less_equal)
+    {
+        constexpr auto x = math::less_equal(1, 2.0);
+        constexpr auto y = math::less_equal(2, 2.0);
+        constexpr auto z = math::less_equal(3, 2.0);
+        test_assert(x == true);
+        test_assert(y == true);
+        test_assert(z == false);
+    }
+
+    TEST_CASE(greater)
+    {
+        constexpr auto x = math::greater(1, 2.0);
+        constexpr auto y = math::greater(2, 2.0);
+        constexpr auto z = math::greater(3, 2.0);
+        test_assert(x == false);
+        test_assert(y == false);
+        test_assert(z == true);
+    }
+
+    TEST_CASE(greater_equal)
+    {
+        constexpr auto x = math::greater_equal(1, 2.0);
+        constexpr auto y = math::greater_equal(2, 2.0);
+        constexpr auto z = math::greater_equal(3, 2.0);
+        test_assert(x == false);
+        test_assert(y == true);
+        test_assert(z == true);
+    }
+
+    TEST_CASE(equal)
+    {
+        constexpr auto x = math::equal(1, 2.0);
+        constexpr auto y = math::equal(2, 2.0);
+        constexpr auto z = math::equal(3, 2.0);
+        test_assert(x == false);
+        test_assert(y == true);
+        test_assert(z == false);
+    }
+
+    TEST_CASE(not_equal)
+    {
+        constexpr auto x = math::not_equal(1, 2.0);
+        constexpr auto y = math::not_equal(2, 2.0);
+        constexpr auto z = math::not_equal(3, 2.0);
+        test_assert(x == true);
+        test_assert(y == false);
+        test_assert(z == true);
     }
 }
