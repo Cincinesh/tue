@@ -674,6 +674,48 @@ namespace
         test_assert(v3[2] == (56LL ^ 1112));
     }
 
+    TEST_CASE(bitwise_shift_left_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            54 << vec3<long long>(3LL, 2LL, 1LL);
+        test_assert(v1[0] == (54 << 3LL));
+        test_assert(v1[1] == (54 << 2LL));
+        test_assert(v1[2] == (54 << 1LL));
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec3<long long>(76LL, 54LL, 32LL) << 1;
+        test_assert(v2[0] == (76LL << 1));
+        test_assert(v2[1] == (54LL << 1));
+        test_assert(v2[2] == (32LL << 1));
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec3<long long>(98LL, 76LL, 54LL) << ivec3(3, 2, 1);
+        test_assert(v3[0] == (98LL << 3));
+        test_assert(v3[1] == (76LL << 2));
+        test_assert(v3[2] == (54LL << 1));
+    }
+
+    TEST_CASE(bitwise_shift_right_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            54 >> vec3<long long>(3LL, 2LL, 1LL);
+        test_assert(v1[0] == (54 >> 3LL));
+        test_assert(v1[1] == (54 >> 2LL));
+        test_assert(v1[2] == (54 >> 1LL));
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec3<long long>(76LL, 54LL, 32LL) >> 1;
+        test_assert(v2[0] == (76LL >> 1));
+        test_assert(v2[1] == (54LL >> 1));
+        test_assert(v2[2] == (32LL >> 1));
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec3<long long>(98LL, 76LL, 54LL) >> ivec3(3, 2, 1);
+        test_assert(v3[0] == (98LL >> 3));
+        test_assert(v3[1] == (76LL >> 2));
+        test_assert(v3[2] == (54LL >> 1));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec3 v1(1.2f, 3.4f, 5.6f);

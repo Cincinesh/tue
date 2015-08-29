@@ -840,6 +840,54 @@ namespace
         test_assert(v3[3] == (78LL ^ 1516));
     }
 
+    TEST_CASE(bitwise_shift_left_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            65 << vec4<long long>(4LL, 3LL, 2LL, 1LL);
+        test_assert(v1[0] == (65 << 4LL));
+        test_assert(v1[1] == (65 << 3LL));
+        test_assert(v1[2] == (65 << 2LL));
+        test_assert(v1[3] == (65 << 1LL));
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec4<long long>(98LL, 76LL, 54LL, 32LL) << 1;
+        test_assert(v2[0] == (98LL << 1));
+        test_assert(v2[1] == (76LL << 1));
+        test_assert(v2[2] == (54LL << 1));
+        test_assert(v2[3] == (32LL << 1));
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec4<long long>(1211LL, 109LL, 87LL, 65LL) << ivec4(4, 3, 2, 1);
+        test_assert(v3[0] == (1211LL << 4));
+        test_assert(v3[1] == (109LL << 3));
+        test_assert(v3[2] == (87LL << 2));
+        test_assert(v3[3] == (65LL << 1));
+    }
+
+    TEST_CASE(bitwise_shift_right_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            65 >> vec4<long long>(4LL, 3LL, 2LL, 1LL);
+        test_assert(v1[0] == (65 >> 4LL));
+        test_assert(v1[1] == (65 >> 3LL));
+        test_assert(v1[2] == (65 >> 2LL));
+        test_assert(v1[3] == (65 >> 1LL));
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec4<long long>(98LL, 76LL, 54LL, 32LL) >> 1;
+        test_assert(v2[0] == (98LL >> 1));
+        test_assert(v2[1] == (76LL >> 1));
+        test_assert(v2[2] == (54LL >> 1));
+        test_assert(v2[3] == (32LL >> 1));
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec4<long long>(1211LL, 109LL, 87LL, 65LL) >> ivec4(4, 3, 2, 1);
+        test_assert(v3[0] == (1211LL >> 4));
+        test_assert(v3[1] == (109LL >> 3));
+        test_assert(v3[2] == (87LL >> 2));
+        test_assert(v3[3] == (65LL >> 1));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);
