@@ -1028,5 +1028,24 @@ namespace tue
                  + lhs[1] * rhs[1]
                  + lhs[2] * rhs[2];
         }
+
+        template<typename T, typename U>
+        inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
+        cross(const vec3<T>& lhs, const vec3<U>& rhs) noexcept
+        {
+            return {
+                lhs[1]*rhs[2] - lhs[2]*rhs[1],
+                lhs[2]*rhs[0] - lhs[0]*rhs[2],
+                lhs[0]*rhs[1] - lhs[1]*rhs[0],
+            };
+        }
+
+        template<typename T>
+        inline constexpr T length2(const vec3<T>& v) noexcept
+        {
+            return v[0] * v[0]
+                 + v[1] * v[1]
+                 + v[2] * v[2];
+        }
     }
 }

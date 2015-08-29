@@ -705,4 +705,16 @@ namespace
         CONST_OR_CONSTEXPR auto x = math::dot(dvec2(1.2, 3.4), dvec2(7, 8));
         test_assert(x == 1.2*7 + 3.4*8);
     }
+
+    TEST_CASE(length)
+    {
+        test_assert(math::length(dvec2(1.2, 3.4))
+                    == math::sqrt(math::length2(dvec2(1.2, 3.4))));
+    }
+
+    TEST_CASE(length2)
+    {
+        CONST_OR_CONSTEXPR auto x = math::length2(dvec2(1.2, 3.4));
+        test_assert(x == 1.2*1.2 + 3.4*3.4);
+    }
 }

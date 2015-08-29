@@ -871,4 +871,25 @@ namespace
             dvec3(1.2, 3.4, 5.6), dvec3(7, 8, 9));
         test_assert(x == 1.2*7 + 3.4*8 + 5.6*9);
     }
+
+    TEST_CASE(cross)
+    {
+        CONST_OR_CONSTEXPR auto v = math::cross(
+            dvec3(1.2, 3.4, 5.6), dvec3(7, 8, 9));
+        test_assert(v[0] == 3.4*9 - 5.6*8);
+        test_assert(v[1] == 5.6*7 - 1.2*9);
+        test_assert(v[2] == 1.2*8 - 3.4*7);
+    }
+
+    TEST_CASE(length)
+    {
+        test_assert(math::length(dvec3(1.2, 3.4, 5.6))
+                    == math::sqrt(math::length2(dvec3(1.2, 3.4, 5.6))));
+    }
+
+    TEST_CASE(length2)
+    {
+        CONST_OR_CONSTEXPR auto x = math::length2(dvec3(1.2, 3.4, 5.6));
+        test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6);
+    }
 }

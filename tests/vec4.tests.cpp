@@ -1067,4 +1067,16 @@ namespace
             dvec4(1.2, 3.4, 5.6, 7.8), ivec4(9, 10, 11, 12));
         test_assert(x == 1.2*9 + 3.4*10 + 5.6*11 + 7.8*12);
     }
+
+    TEST_CASE(length)
+    {
+        test_assert(math::length(dvec4(1.2, 3.4, 5.6, 7.8))
+                    == math::sqrt(math::length2(dvec4(1.2, 3.4, 5.6, 7.8))));
+    }
+
+    TEST_CASE(length2)
+    {
+        CONST_OR_CONSTEXPR auto x = math::length2(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6 + 7.8*7.8);
+    }
 }

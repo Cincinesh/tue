@@ -1786,17 +1786,61 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes the dot product of `lhs` and `rhs`.
-         * \tparam T  The component type of `lhs`.
-         * \tparam U  The component type of `rhs`.
-         * \tparam N  The component count of both `lhs` and `rhs`.
-         * \return    The dot product of `lhs` and `rhs`.
+         * \brief      Computes the dot product of `lhs` and `rhs`.
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam N   The component count of both `lhs` and `rhs`.
+         * \param lhs  A `vec`.
+         * \param rhs  Another `vec`.
+         * \return     The dot product of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
         inline constexpr decltype(std::declval<T>() * std::declval<U>())
         dot(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
             return tue::detail_::dot(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes the cross product of `lhs` and `rhs`.
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \param lhs  A `vec`.
+         * \param rhs  Another `vec`.
+         * \return     The cross product of `lhs` and `rhs`.
+         */
+        template<typename T, typename U>
+        inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
+        cross(const vec3<T>& lhs, const vec3<U>& rhs) noexcept
+        {
+            return tue::detail_::cross(lhs, rhs);
+        }
+
+        /*!
+         * \brief     Returns the vector length of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   A `vec`.
+         * \return    The vector length of `v`.
+         */
+        template<typename T, int N>
+        inline decltype(tue::math::sqrt(std::declval<T>()))
+        length(const vec<T, N>& v) noexcept
+        {
+            return tue::math::sqrt(tue::detail_::length2(v));
+        }
+
+        /*!
+         * \brief     Returns the vector length squared of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   A `vec`.
+         * \return    The vector length squared of `v`.
+         */
+        template<typename T, int N>
+        inline constexpr T length2(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::length2(v);
         }
     }
 }

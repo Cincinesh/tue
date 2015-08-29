@@ -871,5 +871,12 @@ namespace tue
             return lhs[0] * rhs[0]
                  + lhs[1] * rhs[1];
         }
+
+        template<typename T>
+        inline constexpr T length2(const vec2<T>& v) noexcept
+        {
+            return v[0] * v[0]
+                 + v[1] * v[1];
+        }
     }
 }
