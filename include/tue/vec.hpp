@@ -1647,5 +1647,66 @@ namespace tue
         {
             return tue::detail_::abs(v);
         }
+
+        /*!
+         * \brief             Computes `tue::math::pow()` for `base` and each
+         *                    component of `exponents`.
+         *
+         * \tparam T          The type of parameter `base`.
+         * \tparam U          The component type of `exponents`.
+         * \tparam N          The component count of `exponents`.
+         * \param base        The base.
+         * \param exponents   The exponents.
+         * \return            `tue::math::pow()` for `base` and each component
+         *                    of `exponents`.
+         */
+        template<typename T, typename U, int N>
+        inline
+        vec<decltype(tue::math::pow(std::declval<T>(), std::declval<U>())), N>
+        pow(const T& base, const vec<U, N>& exponents) noexcept
+        {
+            return tue::detail_::pow(base, exponents);
+        }
+
+        /*!
+         * \brief            Computes `tue::math::pow()` for each component of
+         *                   `bases` and `exponent`.
+         *
+         * \tparam T         The component type of `bases`.
+         * \tparam U         The type of parameter `exponent`.
+         * \tparam N         The component count of `bases`.
+         * \param bases      The bases.
+         * \param exponent   The exponent.
+         * \return           `tue::math::pow()` for each component of `bases`
+         *                   and `exponent`.
+         */
+        template<typename T, typename U, int N>
+        inline
+        vec<decltype(tue::math::pow(std::declval<T>(), std::declval<U>())), N>
+        pow(const vec<T, N>& bases, const U& exponent) noexcept
+        {
+            return tue::detail_::pow(bases, exponent);
+        }
+
+        /*!
+         * \brief             Computes `tue::math::pow()` for each component of
+         *                    `bases` and each corresponding component of
+         *                    `exponents`.
+         *
+         * \tparam T          The component type of `bases`.
+         * \tparam U          The component type of `exponents`.
+         * \tparam N          The component count of `bases` and `exponents`.
+         * \param bases       The bases.
+         * \param exponents   The exponents.
+         * \return            `tue::math::pow()` for each component of `bases`
+         *                    and each corresponding component of `exponents`.
+         */
+        template<typename T, typename U, int N>
+        inline
+        vec<decltype(tue::math::pow(std::declval<T>(), std::declval<U>())), N>
+        pow(const vec<T, N>& bases, const vec<U, N>& exponents) noexcept
+        {
+            return tue::detail_::pow(bases, exponents);
+        }
     }
 }
