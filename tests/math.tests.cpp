@@ -111,4 +111,10 @@ namespace
         test_assert(math::max(12, 34) == 34);
         test_assert(math::max(12, -34) == 12);
     }
+
+    TEST_CASE(select)
+    {
+        test_assert(math::select(true, 1, 2) == 1);
+        test_assert(math::select(false, 1, 2) == 2);
+    }
 }

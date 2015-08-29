@@ -344,5 +344,20 @@ namespace tue
         {
             return std::max(x, y);
         }
+
+        /*!
+         * \brief            Selects a return value based on `condition`.
+         * \tparam T         The return type.
+         * \param condition  The condition.
+         * \param value      The return value when condition is `true`.
+         * \param otherwise  The return value when condition is `false`.
+         * \return           `value` or `otherwise` depending on `condition`.
+         */
+        template<typename T>
+        inline constexpr T select(
+            bool condition, const T& value, const T& otherwise = T(0)) noexcept
+        {
+            return condition ? value : otherwise;
+        }
     }
 }
