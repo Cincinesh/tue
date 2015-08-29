@@ -804,4 +804,22 @@ namespace
         test_assert(v[1] == math::abs(-3.4));
         test_assert(v[2] == math::abs(5.6));
     }
+
+    TEST_CASE(pow)
+    {
+        const auto v1 = math::pow(2, dvec3(3.4, 5.6, 7.8));
+        test_assert(v1[0] == math::pow(2, 3.4));
+        test_assert(v1[1] == math::pow(2, 5.6));
+        test_assert(v1[2] == math::pow(2, 7.8));
+
+        const auto v2 = math::pow(dvec3(1.2, 3.4, 5.6), 7);
+        test_assert(v2[0] == math::pow(1.2, 7));
+        test_assert(v2[1] == math::pow(3.4, 7));
+        test_assert(v2[2] == math::pow(5.6, 7));
+
+        const auto v3 = math::pow(dvec3(1.2, 3.4, 5.6), ivec3(7, 8, 9));
+        test_assert(v3[0] == math::pow(1.2, 7));
+        test_assert(v3[1] == math::pow(3.4, 8));
+        test_assert(v3[2] == math::pow(5.6, 9));
+    }
 }

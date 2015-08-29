@@ -1102,5 +1102,44 @@ namespace tue
                 tue::math::abs(v[3]),
             };
         }
+
+        template<typename T, typename U>
+        inline
+        vec4<decltype(tue::math::pow(std::declval<T>(), std::declval<U>()))>
+        pow(const T& base, const vec4<U>& exponents) noexcept
+        {
+            return {
+                tue::math::pow(base, exponents[0]),
+                tue::math::pow(base, exponents[1]),
+                tue::math::pow(base, exponents[2]),
+                tue::math::pow(base, exponents[3]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline
+        vec4<decltype(tue::math::pow(std::declval<T>(), std::declval<U>()))>
+        pow(const vec4<T>& bases, const U& exponent) noexcept
+        {
+            return {
+                tue::math::pow(bases[0], exponent),
+                tue::math::pow(bases[1], exponent),
+                tue::math::pow(bases[2], exponent),
+                tue::math::pow(bases[3], exponent),
+            };
+        }
+
+        template<typename T, typename U>
+        inline
+        vec4<decltype(tue::math::pow(std::declval<T>(), std::declval<U>()))>
+        pow(const vec4<T>& bases, const vec4<U>& exponents) noexcept
+        {
+            return {
+                tue::math::pow(bases[0], exponents[0]),
+                tue::math::pow(bases[1], exponents[1]),
+                tue::math::pow(bases[2], exponents[2]),
+                tue::math::pow(bases[3], exponents[3]),
+            };
+        }
     }
 }
