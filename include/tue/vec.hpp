@@ -924,7 +924,7 @@ namespace tue
      * \brief     Computes the unary plus of each component of `v`.
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
-     * \param v   A vector.
+     * \param v   A `vec`.
      * \return    The unary plus of each component of `v`.
      */
     template<typename T, int N>
@@ -938,7 +938,7 @@ namespace tue
      * \brief     Computes the unary minus of each component of `v`.
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
-     * \param v   A vector.
+     * \param v   A `vec`.
      * \return    The unary minus of each component of `v`.
      */
     template<typename T, int N>
@@ -952,7 +952,7 @@ namespace tue
      * \brief     Computes the bitwise NOT of each component of `v`.
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
-     * \param v   A vector.
+     * \param v   A `vec`.
      * \return    The bitwise NOT of each component of `v`.
      */
     template<typename T, int N>
@@ -966,7 +966,7 @@ namespace tue
      * \brief     Computes the logical NOT of each component of `v`.
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
-     * \param v   A vector.
+     * \param v   A `vec`.
      * \return    The logical NOT of each component of `v`.
      */
     template<typename T, int N>
@@ -1550,5 +1550,53 @@ namespace tue
         const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::inequality_operator(lhs, rhs);
+    }
+
+    /**/
+    namespace math
+    {
+        /*!
+         * \brief     Computes the sines of each component of `v` (measured in
+         *            radians).
+         *
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   Angles (measured in radians).
+         * \return    The sines of each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::sin(std::declval<T>())), N>
+        sin(const vec<T, N>& v) noexcept;
+
+        /*!
+         * \brief     Computes the cosines of each component of `v` (measured in
+         *            radians).
+         *
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   Angles (measured in radians).
+         * \return    The cosines of each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::cos(std::declval<T>())), N>
+        cos(const vec<T, N>& v) noexcept;
+
+        /*!
+         * \brief          Computes the sines and cosines of each component of
+         *                 `v` (measured in radians).
+         *
+         * \tparam T       The component type of `v`.
+         * \tparam N       The component count of `v`.
+         * \param v        Angles (measured in radians).
+         * \param sin_out  A reference to the `vec` where the sines of `v`
+         *                 will be stored.
+         * \param cos_out  A reference to the `vec` where the cosines of `v`
+         *                 will be stored.
+         */
+        template<typename T, int N>
+        inline void sincos(
+            const vec<T, N>& v,
+            vec<decltype(tue::math::sin(std::declval<T>())), N>& sin_out,
+            vec<decltype(tue::math::cos(std::declval<T>())), N>& cos_out) noexcept;
     }
 }
