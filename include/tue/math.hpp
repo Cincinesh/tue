@@ -14,7 +14,7 @@
 #include <type_traits>
 
 /*!
- * The Tuesday namespace.
+ * \brief The Tuesday namespace.
  */
 namespace tue
 {
@@ -37,7 +37,7 @@ namespace tue
     }
 
     /*!
-     * Math functions.
+     * \brief Math functions.
      */
     namespace math
     {
