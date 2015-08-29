@@ -1019,5 +1019,14 @@ namespace tue
                 tue::math::max(v1[2], v2[2]),
             };
         }
+
+        template<typename T, typename U>
+        inline constexpr decltype(std::declval<T>() * std::declval<U>())
+        dot(const vec3<T>& lhs, const vec3<U>& rhs) noexcept
+        {
+            return lhs[0] * rhs[0]
+                 + lhs[1] * rhs[1]
+                 + lhs[2] * rhs[2];
+        }
     }
 }

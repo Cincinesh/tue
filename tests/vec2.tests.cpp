@@ -699,4 +699,10 @@ namespace
         test_assert(v[0] == math::max(1.2, 5.6));
         test_assert(v[1] == math::max(3.4, -7.8));
     }
+
+    TEST_CASE(dot)
+    {
+        CONST_OR_CONSTEXPR auto x = math::dot(dvec2(1.2, 3.4), dvec2(7, 8));
+        test_assert(x == 1.2*7 + 3.4*8);
+    }
 }

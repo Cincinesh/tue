@@ -1060,4 +1060,11 @@ namespace
         test_assert(v[2] == math::max(5.6, 13.14));
         test_assert(v[3] == math::max(7.8, -15.16));
     }
+
+    TEST_CASE(dot)
+    {
+        CONST_OR_CONSTEXPR auto x = math::dot(
+            dvec4(1.2, 3.4, 5.6, 7.8), ivec4(9, 10, 11, 12));
+        test_assert(x == 1.2*9 + 3.4*10 + 5.6*11 + 7.8*12);
+    }
 }

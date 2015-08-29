@@ -1784,5 +1784,19 @@ namespace tue
         {
             return tue::detail_::max(v1, v2);
         }
+
+        /*!
+         * \brief     Computes the dot product of `lhs` and `rhs`.
+         * \tparam T  The component type of `lhs`.
+         * \tparam U  The component type of `rhs`.
+         * \tparam N  The component count of both `lhs` and `rhs`.
+         * \return    The dot product of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int N>
+        inline constexpr decltype(std::declval<T>() * std::declval<U>())
+        dot(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+        {
+            return tue::detail_::dot(lhs, rhs);
+        }
     }
 }
