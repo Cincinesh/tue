@@ -1134,6 +1134,57 @@ namespace tue
     }
 
     /*!
+     * \brief      Computes the quotients of `lhs` over each component of `rhs`.
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The quotients of `lhs` over each component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
+    operator/(const T& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::division_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the quotients of each component of `lhs` over `rhs`.
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam N   The component count of `lhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The quotients of each component of `lhs` over `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
+    operator/(const vec<T, N>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::division_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the quotients of each component of `lhs` over each
+     *             corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The quotients of each component of `lhs` over each
+     *             corresponding component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
+    operator/(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::division_operator(lhs, rhs);
+    }
+
+    /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
