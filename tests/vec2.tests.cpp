@@ -490,6 +490,60 @@ namespace
         test_assert(v3[1] == 21LL % 8);
     }
 
+    TEST_CASE(bitwise_and_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            1 & vec2<long long>(23LL, 45LL);
+        test_assert(v1[0] == (1 & 23LL));
+        test_assert(v1[1] == (1 & 45LL));
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec2<long long>(12LL, 34LL) & 5;
+        test_assert(v2[0] == (12LL & 5));
+        test_assert(v2[1] == (34LL & 5));
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec2<long long>(12LL, 34LL) & ivec2(56, 78);
+        test_assert(v3[0] == (12LL & 56));
+        test_assert(v3[1] == (34LL & 78));
+    }
+
+    TEST_CASE(bitwise_or_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            1 | vec2<long long>(23LL, 45LL);
+        test_assert(v1[0] == (1 | 23LL));
+        test_assert(v1[1] == (1 | 45LL));
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec2<long long>(12LL, 34LL) | 5;
+        test_assert(v2[0] == (12LL | 5));
+        test_assert(v2[1] == (34LL | 5));
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec2<long long>(12LL, 34LL) | ivec2(56, 78);
+        test_assert(v3[0] == (12LL | 56));
+        test_assert(v3[1] == (34LL | 78));
+    }
+
+    TEST_CASE(bitwise_xor_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            1 ^ vec2<long long>(23LL, 45LL);
+        test_assert(v1[0] == (1 ^ 23LL));
+        test_assert(v1[1] == (1 ^ 45LL));
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec2<long long>(12LL, 34LL) ^ 5;
+        test_assert(v2[0] == (12LL ^ 5));
+        test_assert(v2[1] == (34LL ^ 5));
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec2<long long>(12LL, 34LL) ^ ivec2(56, 78);
+        test_assert(v3[0] == (12LL ^ 56));
+        test_assert(v3[1] == (34LL ^ 78));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec2 v1(1.2f, 3.4f);

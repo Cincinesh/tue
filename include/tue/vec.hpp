@@ -1236,6 +1236,167 @@ namespace tue
     }
 
     /*!
+     * \brief      Computes the bitwise AND of `lhs` and each component of
+     *             `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise AND of `lhs` and each component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
+    operator&(const T& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_and_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise AND of each component of `lhs` and
+     *             `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam N   The component count of `lhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise AND of each component of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
+    operator&(const vec<T, N>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_and_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise AND of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise AND of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
+    operator&(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_and_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise OR of `lhs` and each component of `rhs`.
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise OR of `lhs` and each component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
+    operator|(const T& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_or_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise OR of each component of `lhs` and `rhs`.
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam N   The component count of `lhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise OR of each component of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
+    operator|(const vec<T, N>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_or_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise OR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise OR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
+    operator|(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_or_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise XOR of `lhs` and each component of
+     *             `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise XOR of `lhs` and each component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
+    operator^(const T& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise XOR of each component of `lhs` and
+     *             `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam N   The component count of `lhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise XOR of each component of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
+    operator^(const vec<T, N>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise XOR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise XOR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
+    operator^(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+    }
+
+    /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
