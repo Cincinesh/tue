@@ -1633,5 +1633,19 @@ namespace tue
         {
             return tue::detail_::log(v);
         }
+
+        /*!
+         * \brief     Computes `tue::math::abs()` for each component of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   The components.
+         * \return    `tue::math::abs()` for each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::abs(std::declval<T>())), N>
+        abs(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::abs(v);
+        }
     }
 }

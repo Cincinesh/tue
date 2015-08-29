@@ -1090,5 +1090,17 @@ namespace tue
                 tue::math::log(v[3]),
             };
         }
+
+        template<typename T>
+        inline vec4<decltype(tue::math::abs(std::declval<T>()))>
+        abs(const vec4<T>& v) noexcept
+        {
+            return {
+                tue::math::abs(v[0]),
+                tue::math::abs(v[1]),
+                tue::math::abs(v[2]),
+                tue::math::abs(v[3]),
+            };
+        }
     }
 }

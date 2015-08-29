@@ -642,4 +642,11 @@ namespace
         test_assert(v[0] == math::log(1.2));
         test_assert(v[1] == math::log(3.4));
     }
+
+    TEST_CASE(abs)
+    {
+        const auto v = math::abs(dvec2(1.2, -3.4));
+        test_assert(v[0] == math::abs(1.2));
+        test_assert(v[1] == math::abs(-3.4));
+    }
 }

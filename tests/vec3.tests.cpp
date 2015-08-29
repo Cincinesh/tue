@@ -796,4 +796,12 @@ namespace
         test_assert(v[1] == math::log(3.4));
         test_assert(v[2] == math::log(5.6));
     }
+
+    TEST_CASE(abs)
+    {
+        const auto v = math::abs(dvec3(1.2, -3.4, 5.6));
+        test_assert(v[0] == math::abs(1.2));
+        test_assert(v[1] == math::abs(-3.4));
+        test_assert(v[2] == math::abs(5.6));
+    }
 }

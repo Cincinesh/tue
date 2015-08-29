@@ -980,4 +980,13 @@ namespace
         test_assert(v[2] == math::log(5.6));
         test_assert(v[3] == math::log(7.8));
     }
+
+    TEST_CASE(abs)
+    {
+        const auto v = math::abs(dvec4(1.2, -3.4, 5.6, -7.8));
+        test_assert(v[0] == math::abs(1.2));
+        test_assert(v[1] == math::abs(-3.4));
+        test_assert(v[2] == math::abs(5.6));
+        test_assert(v[3] == math::abs(-7.8));
+    }
 }
