@@ -752,5 +752,25 @@ namespace tue
             tue::math::sincos(v[0], sin_out[0], cos_out[0]);
             tue::math::sincos(v[1], sin_out[1], cos_out[1]);
         }
+
+        template<typename T>
+        inline vec2<decltype(tue::math::exp(std::declval<T>()))>
+        exp(const vec2<T>& v) noexcept
+        {
+            return {
+                tue::math::exp(v[0]),
+                tue::math::exp(v[1]),
+            };
+        }
+
+        template<typename T>
+        inline vec2<decltype(tue::math::log(std::declval<T>()))>
+        log(const vec2<T>& v) noexcept
+        {
+            return {
+                tue::math::log(v[0]),
+                tue::math::log(v[1]),
+            };
+        }
     }
 }

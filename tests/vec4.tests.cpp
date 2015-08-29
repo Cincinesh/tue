@@ -962,4 +962,22 @@ namespace
         test_assert(c[2] == math::cos(5.6));
         test_assert(c[3] == math::cos(7.8));
     }
+
+    TEST_CASE(exp)
+    {
+        const auto v = math::exp(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v[0] == math::exp(1.2));
+        test_assert(v[1] == math::exp(3.4));
+        test_assert(v[2] == math::exp(5.6));
+        test_assert(v[3] == math::exp(7.8));
+    }
+
+    TEST_CASE(log)
+    {
+        const auto v = math::log(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v[0] == math::log(1.2));
+        test_assert(v[1] == math::log(3.4));
+        test_assert(v[2] == math::log(5.6));
+        test_assert(v[3] == math::log(7.8));
+    }
 }

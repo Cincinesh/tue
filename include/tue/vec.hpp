@@ -1558,13 +1558,11 @@ namespace tue
     namespace math
     {
         /*!
-         * \brief     Computes the sines of each component of `v` (measured in
-         *            radians).
-         *
+         * \brief     Computes `tue::math::sin()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   Angles (measured in radians).
-         * \return    The sines of each component of `v`.
+         * \param v   The components.
+         * \return    `tue::math::sin()` for each component of `v`.
          */
         template<typename T, int N>
         inline vec<decltype(tue::math::sin(std::declval<T>())), N>
@@ -1574,13 +1572,11 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes the cosines of each component of `v` (measured in
-         *            radians).
-         *
+         * \brief     Computes `tue::math::cos()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   Angles (measured in radians).
-         * \return    The cosines of each component of `v`.
+         * \param v   The components.
+         * \return    `tue::math::cos()` for each component of `v`.
          */
         template<typename T, int N>
         inline vec<decltype(tue::math::cos(std::declval<T>())), N>
@@ -1590,16 +1586,16 @@ namespace tue
         }
 
         /*!
-         * \brief          Computes the sines and cosines of each component of
-         *                 `v` (measured in radians).
+         * \brief          Computes `tue::math::sincos()` for each component of
+         *                 `v`.
          *
          * \tparam T       The component type of `v`.
          * \tparam N       The component count of `v`.
-         * \param v        Angles (measured in radians).
-         * \param sin_out  A reference to the `vec` where the sines of `v`
-         *                 will be stored.
-         * \param cos_out  A reference to the `vec` where the cosines of `v`
-         *                 will be stored.
+         * \param v        The components.
+         * \param sin_out  A reference to the `vec` to store the `sin()` results
+         *                 in.
+         * \param cos_out  A reference to the `vec` to store the `cos()` results
+         *                 in.
          */
         template<typename T, int N>
         inline void sincos(
@@ -1608,6 +1604,34 @@ namespace tue
             decltype(tue::math::sin(v))& cos_out) noexcept
         {
             tue::detail_::sincos(v, sin_out, cos_out);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::exp()` for each component of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   The components.
+         * \return    `tue::math::exp()` for each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::exp(std::declval<T>())), N>
+        exp(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::exp(v);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::log()` for each component of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   The components.
+         * \return    `tue::math::log()` for each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::log(std::declval<T>())), N>
+        log(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::log(v);
         }
     }
 }
