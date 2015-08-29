@@ -1046,7 +1046,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the differences between each component of `lhs` and 
+     * \brief      Computes the differences between each component of `lhs` and
      *             `rhs`.
      *
      * \tparam T   The component type of `lhs`.
@@ -1080,6 +1080,57 @@ namespace tue
     operator-(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::subtraction_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the products of `lhs` and each component of `rhs`.
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The products of `lhs` and each component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
+    operator*(const T& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the products of each component of `lhs` and `rhs`.
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam N   The component count of `lhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The products of each component of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
+    operator*(const vec<T, N>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the products of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The products of each component of `lhs` and each
+     *             corresponding component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
+    operator*(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
     }
 
     /*!

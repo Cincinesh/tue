@@ -575,6 +575,39 @@ namespace tue
         }
 
         template<typename T, typename U>
+        inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
+        multiplication_operator(const T& lhs, const vec3<U>& rhs) noexcept
+        {
+            return {
+                lhs * rhs[0],
+                lhs * rhs[1],
+                lhs * rhs[2],
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
+        multiplication_operator(const vec3<T>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] * rhs,
+                lhs[1] * rhs,
+                lhs[2] * rhs,
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
+        multiplication_operator(const vec3<T>& lhs, const vec3<U>& rhs) noexcept
+        {
+            return {
+                lhs[0] * rhs[0],
+                lhs[1] * rhs[1],
+                lhs[2] * rhs[2],
+            };
+        }
+
+        template<typename T, typename U>
         inline constexpr bool equality_operator(
             const vec3<T>& lhs, const vec3<U>& rhs) noexcept
         {
