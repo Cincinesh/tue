@@ -966,5 +966,38 @@ namespace tue
                 tue::math::pow(bases[2], exponents[2]),
             };
         }
+
+        template<typename T>
+        inline vec3<decltype(tue::math::recip(std::declval<T>()))>
+        recip(const vec3<T>& v) noexcept
+        {
+            return {
+                tue::math::recip(v[0]),
+                tue::math::recip(v[1]),
+                tue::math::recip(v[2]),
+            };
+        }
+
+        template<typename T>
+        inline vec3<decltype(tue::math::sqrt(std::declval<T>()))>
+        sqrt(const vec3<T>& v) noexcept
+        {
+            return {
+                tue::math::sqrt(v[0]),
+                tue::math::sqrt(v[1]),
+                tue::math::sqrt(v[2]),
+            };
+        }
+
+        template<typename T>
+        inline vec3<decltype(tue::math::rsqrt(std::declval<T>()))>
+        rsqrt(const vec3<T>& v) noexcept
+        {
+            return {
+                tue::math::rsqrt(v[0]),
+                tue::math::rsqrt(v[1]),
+                tue::math::rsqrt(v[2]),
+            };
+        }
     }
 }

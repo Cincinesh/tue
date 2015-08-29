@@ -1013,4 +1013,31 @@ namespace
         test_assert(v3[2] == math::pow(5.6, 11));
         test_assert(v3[3] == math::pow(7.8, 12));
     }
+
+    TEST_CASE(recip)
+    {
+        const auto v = math::recip(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v[0] == math::recip(1.2));
+        test_assert(v[1] == math::recip(3.4));
+        test_assert(v[2] == math::recip(5.6));
+        test_assert(v[3] == math::recip(7.8));
+    }
+
+    TEST_CASE(sqrt)
+    {
+        const auto v = math::sqrt(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v[0] == math::sqrt(1.2));
+        test_assert(v[1] == math::sqrt(3.4));
+        test_assert(v[2] == math::sqrt(5.6));
+        test_assert(v[3] == math::sqrt(7.8));
+    }
+
+    TEST_CASE(rsqrt)
+    {
+        const auto v = math::rsqrt(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v[0] == math::rsqrt(1.2));
+        test_assert(v[1] == math::rsqrt(3.4));
+        test_assert(v[2] == math::rsqrt(5.6));
+        test_assert(v[3] == math::rsqrt(7.8));
+    }
 }

@@ -1708,5 +1708,47 @@ namespace tue
         {
             return tue::detail_::pow(bases, exponents);
         }
+
+        /*!
+         * \brief     Computes `tue::math::recip()` for each component of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   The components.
+         * \return    `tue::math::recip()` for each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::recip(std::declval<T>())), N>
+        recip(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::recip(v);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::sqrt()` for each component of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   The components.
+         * \return    `tue::math::sqrt()` for each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::sqrt(std::declval<T>())), N>
+        sqrt(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::sqrt(v);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::rsqrt()` for each component of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   The components.
+         * \return    `tue::math::rsqrt()` for each component of `v`.
+         */
+        template<typename T, int N>
+        inline vec<decltype(tue::math::rsqrt(std::declval<T>())), N>
+        rsqrt(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::rsqrt(v);
+        }
     }
 }
