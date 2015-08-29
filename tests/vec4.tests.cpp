@@ -1079,4 +1079,10 @@ namespace
         CONST_OR_CONSTEXPR auto x = math::length2(dvec4(1.2, 3.4, 5.6, 7.8));
         test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6 + 7.8*7.8);
     }
+
+    TEST_CASE(normalize)
+    {
+        const dvec4 v(1.2, 3.4, 5.6, 7.8);
+        test_assert(math::normalize(v) == v / math::length(v));
+    }
 }

@@ -1813,11 +1813,15 @@ namespace tue
         inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
         cross(const vec3<T>& lhs, const vec3<U>& rhs) noexcept
         {
-            return tue::detail_::cross(lhs, rhs);
+            return {
+                lhs[1]*rhs[2] - lhs[2]*rhs[1],
+                lhs[2]*rhs[0] - lhs[0]*rhs[2],
+                lhs[0]*rhs[1] - lhs[1]*rhs[0],
+            };
         }
 
         /*!
-         * \brief     Returns the vector length of `v`.
+         * \brief     Computes the vector length of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
          * \param v   A `vec`.
@@ -1831,7 +1835,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Returns the vector length squared of `v`.
+         * \brief     Computes the vector length squared of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
          * \param v   A `vec`.
@@ -1841,6 +1845,21 @@ namespace tue
         inline constexpr T length2(const vec<T, N>& v) noexcept
         {
             return tue::detail_::length2(v);
+        }
+
+        /*!
+         * \brief     Returns a normalized copy of `v`.
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         * \param v   A `vec`.
+         * \return    A normalized copy of `v`.
+         */
+        template<typename T, int N>
+        inline decltype(std::declval<vec<T, N>>()
+                      / tue::math::length(std::declval<vec<T, N>>()))
+        normalize(const vec<T, N>& v) noexcept
+        {
+            return v / tue::math::length(v);
         }
     }
 }
