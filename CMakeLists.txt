@@ -31,7 +31,6 @@ set(TUE_SOURCES
 set(TUE_TEST_SOURCES
     tests/math.tests.cpp
     tests/unused.tests.cpp
-    tests/vec.tests.cpp
     tests/vec2.tests.cpp
     tests/vec3.tests.cpp
     tests/vec4.tests.cpp)
