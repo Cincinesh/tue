@@ -364,14 +364,13 @@ namespace tue
          * \brief      Computes whether or not `lhs` is less than `rhs`.
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
-         * \param lhs  A number.
-         * \param rhs  Another number.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     `true` if `lhs` is less than `rhs` and `false` otherwise.
          */
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value,
-            bool>
+            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
         less(T lhs, U rhs) noexcept
         {
             return lhs < rhs;
@@ -383,15 +382,14 @@ namespace tue
          *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
-         * \param lhs  A number.
-         * \param rhs  Another number.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     `true` if `lhs` is less than or equal to `rhs` and
          *             `false` otherwise.
          */
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value,
-            bool>
+            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
         less_equal(T lhs, U rhs) noexcept
         {
             return lhs <= rhs;
@@ -401,15 +399,14 @@ namespace tue
          * \brief      Computes whether or not `lhs` is greater than `rhs`.
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
-         * \param lhs  A number.
-         * \param rhs  Another number.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     `true` if `lhs` is greater than `rhs` and `false`
          *             otherwise.
          */
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value,
-            bool>
+            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
         greater(T lhs, U rhs) noexcept
         {
             return lhs > rhs;
@@ -421,15 +418,14 @@ namespace tue
          *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
-         * \param lhs  A number.
-         * \param rhs  Another number.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     `true` if `lhs` is greater than or equal to `rhs` and
          *             `false` otherwise.
          */
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value,
-            bool>
+            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
         greater_equal(T lhs, U rhs) noexcept
         {
             return lhs >= rhs;
@@ -439,14 +435,13 @@ namespace tue
          * \brief      Computes whether or not `lhs` is equal to `rhs`.
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
-         * \param lhs  A number.
-         * \param rhs  Another number.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     `true` if `lhs` is equal to `rhs` and `false` otherwise.
          */
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value,
-            bool>
+            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
         equal(T lhs, U rhs) noexcept
         {
             return lhs == rhs;
@@ -456,15 +451,14 @@ namespace tue
          * \brief      Computes whether or not `lhs` is not equal to `rhs`.
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
-         * \param lhs  A number.
-         * \param rhs  Another number.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     `true` if `lhs` is not equal to `rhs` and `false`
          *             otherwise.
          */
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value,
-            bool>
+            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
         not_equal(T lhs, U rhs) noexcept
         {
             return lhs != rhs;

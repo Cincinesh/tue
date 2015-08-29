@@ -734,4 +734,64 @@ namespace
             bvec2(true, false), dvec2(1.2, 3.4), dvec2(5.6, 7.8));
         test_assert(v2 == dvec2(1.2, 7.8));
     }
+
+    TEST_CASE(less)
+    {
+        CONST_OR_CONSTEXPR auto v1 = math::less(
+            ivec2(1, 2), dvec2(2.1, 2.0));
+        CONST_OR_CONSTEXPR auto v2 = math::less(
+            ivec2(3, 4), dvec2(1.9, 1.8));
+        test_assert(v1 == bvec2(true, false));
+        test_assert(v2 == bvec2(false, false));
+    }
+
+    TEST_CASE(less_equal)
+    {
+        CONST_OR_CONSTEXPR auto v1 = math::less_equal(
+            ivec2(1, 2), dvec2(2.1, 2.0));
+        CONST_OR_CONSTEXPR auto v2 = math::less_equal(
+            ivec2(3, 4), dvec2(1.9, 1.8));
+        test_assert(v1 == bvec2(true, true));
+        test_assert(v2 == bvec2(false, false));
+    }
+
+    TEST_CASE(greater)
+    {
+        CONST_OR_CONSTEXPR auto v1 = math::greater(
+            ivec2(1, 2), dvec2(2.1, 2.0));
+        CONST_OR_CONSTEXPR auto v2 = math::greater(
+            ivec2(3, 4), dvec2(1.9, 1.8));
+        test_assert(v1 == bvec2(false, false));
+        test_assert(v2 == bvec2(true, true));
+    }
+
+    TEST_CASE(greater_equal)
+    {
+        CONST_OR_CONSTEXPR auto v1 = math::greater_equal(
+            ivec2(1, 2), dvec2(2.1, 2.0));
+        CONST_OR_CONSTEXPR auto v2 = math::greater_equal(
+            ivec2(3, 4), dvec2(1.9, 1.8));
+        test_assert(v1 == bvec2(false, true));
+        test_assert(v2 == bvec2(true, true));
+    }
+
+    TEST_CASE(equal)
+    {
+        CONST_OR_CONSTEXPR auto v1 = math::equal(
+            ivec2(1, 2), dvec2(2.1, 2.0));
+        CONST_OR_CONSTEXPR auto v2 = math::equal(
+            ivec2(3, 4), dvec2(1.9, 1.8));
+        test_assert(v1 == bvec2(false, true));
+        test_assert(v2 == bvec2(false, false));
+    }
+
+    TEST_CASE(not_equal)
+    {
+        CONST_OR_CONSTEXPR auto v1 = math::not_equal(
+            ivec2(1, 2), dvec2(2.1, 2.0));
+        CONST_OR_CONSTEXPR auto v2 = math::not_equal(
+            ivec2(3, 4), dvec2(1.9, 1.8));
+        test_assert(v1 == bvec2(true, false));
+        test_assert(v2 == bvec2(true, true));
+    }
 }

@@ -912,4 +912,46 @@ namespace
             dvec3(7.8, 9.10, 11.12));
         test_assert(v2 == dvec3(1.2, 9.10, 5.6));
     }
+
+    TEST_CASE(less)
+    {
+        CONST_OR_CONSTEXPR auto v = math::less(
+            ivec3(1, 2, 3), dvec3(2.1, 2.0, 1.9));
+        test_assert(v == bvec3(true, false, false));
+    }
+
+    TEST_CASE(less_equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::less_equal(
+            ivec3(1, 2, 3), dvec3(2.1, 2.0, 1.9));
+        test_assert(v == bvec3(true, true, false));
+    }
+
+    TEST_CASE(greater)
+    {
+        CONST_OR_CONSTEXPR auto v = math::greater(
+            ivec3(1, 2, 3), dvec3(2.1, 2.0, 1.9));
+        test_assert(v == bvec3(false, false, true));
+    }
+
+    TEST_CASE(greater_equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::greater_equal(
+            ivec3(1, 2, 3), dvec3(2.1, 2.0, 1.9));
+        test_assert(v == bvec3(false, true, true));
+    }
+
+    TEST_CASE(equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::equal(
+            ivec3(1, 2, 3), dvec3(2.1, 2.0, 1.9));
+        test_assert(v == bvec3(false, true, false));
+    }
+
+    TEST_CASE(not_equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::not_equal(
+            ivec3(1, 2, 3), dvec3(2.1, 2.0, 1.9));
+        test_assert(v == bvec3(true, false, true));
+    }
 }

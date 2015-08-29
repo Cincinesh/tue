@@ -1413,8 +1413,8 @@ namespace tue
      * \return     The bitwise shift left of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr
-    vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>
+    inline constexpr vec<decltype(
+        std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
@@ -1432,8 +1432,8 @@ namespace tue
      * \return     The bitwise shift left of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr
-    vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>
+    inline constexpr vec<decltype(
+        std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
@@ -1452,8 +1452,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr
-    vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>
+    inline constexpr vec<decltype(
+        std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
@@ -1471,8 +1471,8 @@ namespace tue
      * \return     The bitwise shift right of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr
-    vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>
+    inline constexpr vec<decltype(
+        std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
@@ -1490,8 +1490,8 @@ namespace tue
      * \return     The bitwise shift right of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr
-    vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>
+    inline constexpr vec<decltype(
+        std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
@@ -1510,8 +1510,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr
-    vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>
+    inline constexpr vec<decltype(
+        std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
@@ -1661,8 +1661,8 @@ namespace tue
          *                   `exponents`.
          */
         template<typename T, typename U, int N>
-        inline
-        vec<decltype(tue::math::pow(std::declval<T>(), std::declval<U>())), N>
+        inline vec<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>())), N>
         pow(const T& base, const vec<U, N>& exponents) noexcept
         {
             return tue::detail_::pow(base, exponents);
@@ -1681,8 +1681,8 @@ namespace tue
          *                  `exponent`.
          */
         template<typename T, typename U, int N>
-        inline
-        vec<decltype(tue::math::pow(std::declval<T>(), std::declval<U>())), N>
+        inline vec<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>())), N>
         pow(const vec<T, N>& bases, const U& exponent) noexcept
         {
             return tue::detail_::pow(bases, exponent);
@@ -1702,8 +1702,8 @@ namespace tue
          *                   and each corresponding component of `exponents`.
          */
         template<typename T, typename U, int N>
-        inline
-        vec<decltype(tue::math::pow(std::declval<T>(), std::declval<U>())), N>
+        inline vec<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>())), N>
         pow(const vec<T, N>& bases, const vec<U, N>& exponents) noexcept
         {
             return tue::detail_::pow(bases, exponents);
@@ -1884,6 +1884,126 @@ namespace tue
             const vec<U, N>& otherwise = vec<U, N>(0)) noexcept
         {
             return tue::detail_::select(conditions, values, otherwise);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::less()` for each corresponding pair
+         *             of components of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam N   The component count of `lhs` and `rhs`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         * \return     `tue::math::less()` for each corresponding pair of
+         *             components of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int N>
+        inline vec<decltype(
+            tue::math::less(std::declval<T>(), std::declval<U>())), N>
+        less(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+        {
+            return tue::detail_::less(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::less_equal()` for each corresponding
+         *             pair of components of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam N   The component count of `lhs` and `rhs`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         * \return     `tue::math::less_equal()` for each corresponding pair of
+         *             components of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int N>
+        inline vec<decltype(
+            tue::math::less_equal(std::declval<T>(), std::declval<U>())), N>
+        less_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+        {
+            return tue::detail_::less_equal(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::greater()` for each corresponding
+         *             pair of components of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam N   The component count of `lhs` and `rhs`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         * \return     `tue::math::greater()` for each corresponding pair of
+         *             components of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int N>
+        inline vec<decltype(
+            tue::math::greater(std::declval<T>(), std::declval<U>())), N>
+        greater(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+        {
+            return tue::detail_::greater(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::greater_equal()` for each
+         *             corresponding pair of components of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam N   The component count of `lhs` and `rhs`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         * \return     `tue::math::greater_equal()` for each corresponding pair
+         *             of components of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int N>
+        inline vec<decltype(
+            tue::math::greater_equal(std::declval<T>(), std::declval<U>())), N>
+        greater_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+        {
+            return tue::detail_::greater_equal(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::equal()` for each corresponding pair
+         *             of components of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam N   The component count of `lhs` and `rhs`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         * \return     `tue::math::equal()` for each corresponding pair of
+         *             components of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int N>
+        inline vec<decltype(
+            tue::math::equal(std::declval<T>(), std::declval<U>())), N>
+        equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+        {
+            return tue::detail_::equal(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::not_equal()` for each corresponding
+         *             pair of components of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam N   The component count of `lhs` and `rhs`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         * \return     `tue::math::not_equal()` for each corresponding pair of
+         *             components of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int N>
+        inline vec<decltype(
+            tue::math::not_equal(std::declval<T>(), std::declval<U>())), N>
+        not_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+        {
+            return tue::detail_::not_equal(lhs, rhs);
         }
     }
 }

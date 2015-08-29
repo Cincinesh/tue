@@ -1099,4 +1099,46 @@ namespace
             dvec4(9.10, 11.12, 13.14, 15.16));
         test_assert(v2 == dvec4(1.2, 11.12, 5.6, 15.16));
     }
+
+    TEST_CASE(less)
+    {
+        CONST_OR_CONSTEXPR auto v = math::less(
+            ivec4(1, 2, 3, 4), dvec4(2.1, 2.0, 1.9, 1.8));
+        test_assert(v == bvec4(true, false, false, false));
+    }
+
+    TEST_CASE(less_equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::less_equal(
+            ivec4(1, 2, 3, 4), dvec4(2.1, 2.0, 1.9, 1.8));
+        test_assert(v == bvec4(true, true, false, false));
+    }
+
+    TEST_CASE(greater)
+    {
+        CONST_OR_CONSTEXPR auto v = math::greater(
+            ivec4(1, 2, 3, 4), dvec4(2.1, 2.0, 1.9, 1.8));
+        test_assert(v == bvec4(false, false, true, true));
+    }
+
+    TEST_CASE(greater_equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::greater_equal(
+            ivec4(1, 2, 3, 4), dvec4(2.1, 2.0, 1.9, 1.8));
+        test_assert(v == bvec4(false, true, true, true));
+    }
+
+    TEST_CASE(equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::equal(
+            ivec4(1, 2, 3, 4), dvec4(2.1, 2.0, 1.9, 1.8));
+        test_assert(v == bvec4(false, true, false, false));
+    }
+
+    TEST_CASE(not_equal)
+    {
+        CONST_OR_CONSTEXPR auto v = math::not_equal(
+            ivec4(1, 2, 3, 4), dvec4(2.1, 2.0, 1.9, 1.8));
+        test_assert(v == bvec4(true, false, true, true));
+    }
 }

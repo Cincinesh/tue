@@ -784,8 +784,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline
-        vec2<decltype(tue::math::pow(std::declval<T>(), std::declval<U>()))>
+        inline vec2<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>()))>
         pow(const T& base, const vec2<U>& exponents) noexcept
         {
             return {
@@ -795,8 +795,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline
-        vec2<decltype(tue::math::pow(std::declval<T>(), std::declval<U>()))>
+        inline vec2<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>()))>
         pow(const vec2<T>& bases, const U& exponent) noexcept
         {
             return {
@@ -806,8 +806,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline
-        vec2<decltype(tue::math::pow(std::declval<T>(), std::declval<U>()))>
+        inline vec2<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>()))>
         pow(const vec2<T>& bases, const vec2<U>& exponents) noexcept
         {
             return {
@@ -888,6 +888,72 @@ namespace tue
             return {
                 tue::math::select(conditions[0], values[0], otherwise[0]),
                 tue::math::select(conditions[1], values[1], otherwise[1]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(
+            tue::math::less(std::declval<T>(), std::declval<U>()))>
+        less(const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                tue::math::less(lhs[0], rhs[0]),
+                tue::math::less(lhs[1], rhs[1]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(
+            tue::math::less_equal(std::declval<T>(), std::declval<U>()))>
+        less_equal(const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                tue::math::less_equal(lhs[0], rhs[0]),
+                tue::math::less_equal(lhs[1], rhs[1]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(
+            tue::math::greater(std::declval<T>(), std::declval<U>()))>
+        greater(const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                tue::math::greater(lhs[0], rhs[0]),
+                tue::math::greater(lhs[1], rhs[1]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(
+            tue::math::greater_equal(std::declval<T>(), std::declval<U>()))>
+        greater_equal(const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                tue::math::greater_equal(lhs[0], rhs[0]),
+                tue::math::greater_equal(lhs[1], rhs[1]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(
+            tue::math::equal(std::declval<T>(), std::declval<U>()))>
+        equal(const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                tue::math::equal(lhs[0], rhs[0]),
+                tue::math::equal(lhs[1], rhs[1]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline constexpr vec2<decltype(
+            tue::math::not_equal(std::declval<T>(), std::declval<U>()))>
+        not_equal(const vec2<T>& lhs, const vec2<U>& rhs) noexcept
+        {
+            return {
+                tue::math::not_equal(lhs[0], rhs[0]),
+                tue::math::not_equal(lhs[1], rhs[1]),
             };
         }
     }
