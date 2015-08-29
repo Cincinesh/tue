@@ -11,6 +11,8 @@
 #include <type_traits>
 #include <utility>
 
+#include "math.hpp"
+
 namespace tue
 {
     /*!
@@ -1515,8 +1517,8 @@ namespace tue
         return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
     }
 
-#undef shift_left
 #undef shift_right
+#undef shift_left
 
     /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
@@ -1566,7 +1568,10 @@ namespace tue
          */
         template<typename T, int N>
         inline vec<decltype(tue::math::sin(std::declval<T>())), N>
-        sin(const vec<T, N>& v) noexcept;
+        sin(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::sin(v);
+        }
 
         /*!
          * \brief     Computes the cosines of each component of `v` (measured in
@@ -1579,7 +1584,10 @@ namespace tue
          */
         template<typename T, int N>
         inline vec<decltype(tue::math::cos(std::declval<T>())), N>
-        cos(const vec<T, N>& v) noexcept;
+        cos(const vec<T, N>& v) noexcept
+        {
+            return tue::detail_::cos(v);
+        }
 
         /*!
          * \brief          Computes the sines and cosines of each component of
@@ -1596,7 +1604,10 @@ namespace tue
         template<typename T, int N>
         inline void sincos(
             const vec<T, N>& v,
-            vec<decltype(tue::math::sin(std::declval<T>())), N>& sin_out,
-            vec<decltype(tue::math::cos(std::declval<T>())), N>& cos_out) noexcept;
+            decltype(tue::math::sin(v))& sin_out,
+            decltype(tue::math::sin(v))& cos_out) noexcept
+        {
+            tue::detail_::sincos(v, sin_out, cos_out);
+        }
     }
 }

@@ -10,6 +10,7 @@
 #include <mon/test_case.hpp>
 
 #include <type_traits>
+#include <tue/math.hpp>
 #include <tue/unused.hpp>
 
 namespace
@@ -926,5 +927,39 @@ namespace
         test_assert(result3 == true);
         test_assert(result4 == true);
         test_assert(result5 == true);
+    }
+
+    TEST_CASE(sin)
+    {
+        const auto v = math::sin(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v[0] == math::sin(1.2));
+        test_assert(v[1] == math::sin(3.4));
+        test_assert(v[2] == math::sin(5.6));
+        test_assert(v[3] == math::sin(7.8));
+    }
+
+    TEST_CASE(cos)
+    {
+        const auto v = math::cos(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v[0] == math::cos(1.2));
+        test_assert(v[1] == math::cos(3.4));
+        test_assert(v[2] == math::cos(5.6));
+        test_assert(v[3] == math::cos(7.8));
+    }
+
+    TEST_CASE(sincos)
+    {
+        dvec4 s, c;
+        math::sincos(dvec4(1.2, 3.4, 5.6, 7.8), s, c);
+
+        test_assert(s[0] == math::sin(1.2));
+        test_assert(s[1] == math::sin(3.4));
+        test_assert(s[2] == math::sin(5.6));
+        test_assert(s[3] == math::sin(7.8));
+
+        test_assert(c[0] == math::cos(1.2));
+        test_assert(c[1] == math::cos(3.4));
+        test_assert(c[2] == math::cos(5.6));
+        test_assert(c[3] == math::cos(7.8));
     }
 }

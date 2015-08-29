@@ -10,6 +10,7 @@
 #include <mon/test_case.hpp>
 
 #include <type_traits>
+#include <tue/math.hpp>
 #include <tue/unused.hpp>
 
 namespace
@@ -600,5 +601,31 @@ namespace
         test_assert(result1 == false);
         test_assert(result2 == true);
         test_assert(result3 == true);
+    }
+
+    TEST_CASE(sin)
+    {
+        const auto v = math::sin(dvec2(1.2, 3.4));
+        test_assert(v[0] == math::sin(1.2));
+        test_assert(v[1] == math::sin(3.4));
+    }
+
+    TEST_CASE(cos)
+    {
+        const auto v = math::cos(dvec2(1.2, 3.4));
+        test_assert(v[0] == math::cos(1.2));
+        test_assert(v[1] == math::cos(3.4));
+    }
+
+    TEST_CASE(sincos)
+    {
+        dvec2 s, c;
+        math::sincos(dvec2(1.2, 3.4), s, c);
+
+        test_assert(s[0] == math::sin(1.2));
+        test_assert(s[1] == math::sin(3.4));
+
+        test_assert(c[0] == math::cos(1.2));
+        test_assert(c[1] == math::cos(3.4));
     }
 }

@@ -10,6 +10,7 @@
 
 #include <utility>
 
+#include "../math.hpp"
 #include "../vec.hpp"
 
 namespace tue
@@ -1028,6 +1029,42 @@ namespace tue
                 || lhs[1] != rhs[1]
                 || lhs[2] != rhs[2]
                 || lhs[3] != rhs[3];
+        }
+
+        template<typename T>
+        inline vec4<decltype(tue::math::sin(std::declval<T>()))>
+        sin(const vec4<T>& v) noexcept
+        {
+            return {
+                tue::math::sin(v[0]),
+                tue::math::sin(v[1]),
+                tue::math::sin(v[2]),
+                tue::math::sin(v[3]),
+            };
+        }
+
+        template<typename T>
+        inline vec4<decltype(tue::math::cos(std::declval<T>()))>
+        cos(const vec4<T>& v) noexcept
+        {
+            return {
+                tue::math::cos(v[0]),
+                tue::math::cos(v[1]),
+                tue::math::cos(v[2]),
+                tue::math::cos(v[3]),
+            };
+        }
+
+        template<typename T>
+        inline void sincos(
+            const vec4<T>& v,
+            decltype(tue::math::sin(v))& sin_out,
+            decltype(tue::math::cos(v))& cos_out) noexcept
+        {
+            tue::math::sincos(v[0], sin_out[0], cos_out[0]);
+            tue::math::sincos(v[1], sin_out[1], cos_out[1]);
+            tue::math::sincos(v[2], sin_out[2], cos_out[2]);
+            tue::math::sincos(v[3], sin_out[3], cos_out[3]);
         }
     }
 }
