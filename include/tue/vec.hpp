@@ -1397,6 +1397,116 @@ namespace tue
     }
 
     /*!
+     * \brief      Computes the bitwise shift left of `lhs` by each component of
+     *             `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise shift left of `lhs` by each component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() << std::declval<U>()), N>
+    operator<<(const T& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shift left of each component of `lhs` by
+     *             `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam N   The component count of `lhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise shift left of each component of `lhs` by `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() << std::declval<U>()), N>
+    operator<<(const vec<T, N>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shift left of each component of `lhs` by
+     *             each corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise shift left of each component of `lhs` by each
+     *             corresponding component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() << std::declval<U>()), N>
+    operator<<(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shift right of `lhs` by each component
+     *             of `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise shift right of `lhs` by each component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() >> std::declval<U>()), N>
+    operator>>(const T& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shift right of each component of `lhs`
+     *             by `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam N   The component count of `lhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise shift right of each component of `lhs` by `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() >> std::declval<U>()), N>
+    operator>>(const vec<T, N>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shift right of each component of `lhs`
+     *             by each corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     * \return     The bitwise shift right of each component of `lhs` by each
+     *             corresponding component of `rhs`.
+     */
+    template<typename T, typename U, int N>
+    inline constexpr vec<decltype(std::declval<T>() >> std::declval<U>()), N>
+    operator>>(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+    }
+
+    /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
