@@ -741,6 +741,30 @@ namespace
         test_assert(v3[3] == 7.8 / 12);
     }
 
+    TEST_CASE(modulo_operator)
+    {
+        CONST_OR_CONSTEXPR auto v1 =
+            10 % vec4<long long>(9LL, 8LL, 7LL, 6LL);
+        test_assert(v1[0] == 10 % 9LL);
+        test_assert(v1[1] == 10 % 8LL);
+        test_assert(v1[2] == 10 % 7LL);
+        test_assert(v1[3] == 10 % 6LL);
+
+        CONST_OR_CONSTEXPR auto v2 =
+            vec4<long long>(10LL, 21LL, 32LL, 43LL) % 9;
+        test_assert(v2[0] == 10LL % 9);
+        test_assert(v2[1] == 21LL % 9);
+        test_assert(v2[2] == 32LL % 9);
+        test_assert(v2[3] == 43LL % 9);
+
+        CONST_OR_CONSTEXPR auto v3 =
+            vec4<long long>(10LL, 21LL, 32LL, 43LL) % ivec4(9, 8, 7, 5);
+        test_assert(v3[0] == 10LL % 9);
+        test_assert(v3[1] == 21LL % 8);
+        test_assert(v3[2] == 32LL % 7);
+        test_assert(v3[3] == 43LL % 5);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fvec4 v1(1.2f, 3.4f, 5.6f, 7.8f);
