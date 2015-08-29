@@ -1040,4 +1040,24 @@ namespace
         test_assert(v[2] == math::rsqrt(5.6));
         test_assert(v[3] == math::rsqrt(7.8));
     }
+
+    TEST_CASE(min)
+    {
+        const auto v = math::min(
+            dvec4(1.2, 3.4, 5.6, 7.8), dvec4(9.10, -11.12, 13.14, -15.16));
+        test_assert(v[0] == math::min(1.2, 9.10));
+        test_assert(v[1] == math::min(3.4, -11.12));
+        test_assert(v[2] == math::min(5.6, 13.14));
+        test_assert(v[3] == math::min(7.8, -15.16));
+    }
+
+    TEST_CASE(max)
+    {
+        const auto v = math::max(
+            dvec4(1.2, 3.4, 5.6, 7.8), dvec4(9.10, -11.12, 13.14, -15.16));
+        test_assert(v[0] == math::max(1.2, 9.10));
+        test_assert(v[1] == math::max(3.4, -11.12));
+        test_assert(v[2] == math::max(5.6, 13.14));
+        test_assert(v[3] == math::max(7.8, -15.16));
+    }
 }

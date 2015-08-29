@@ -999,5 +999,25 @@ namespace tue
                 tue::math::rsqrt(v[2]),
             };
         }
+
+        template<typename T>
+        inline vec3<T> min(const vec3<T>& v1, const vec3<T>& v2) noexcept
+        {
+            return {
+                tue::math::min(v1[0], v2[0]),
+                tue::math::min(v1[1], v2[1]),
+                tue::math::min(v1[2], v2[2]),
+            };
+        }
+
+        template<typename T>
+        inline vec3<T> max(const vec3<T>& v1, const vec3<T>& v2) noexcept
+        {
+            return {
+                tue::math::max(v1[0], v2[0]),
+                tue::math::max(v1[1], v2[1]),
+                tue::math::max(v1[2], v2[2]),
+            };
+        }
     }
 }

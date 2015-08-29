@@ -1750,5 +1750,39 @@ namespace tue
         {
             return tue::detail_::rsqrt(v);
         }
+
+        /*!
+         * \brief      Computes `tue::math::min()` for each corresponding pair
+         *             of components of `v1` and `v2`.
+         *
+         * \tparam T   The component type of `v1` and `v2`.
+         * \tparam N   The component count of `v1` and `v2`.
+         * \param v1   A `vec`.
+         * \param v2   Another `vec`.
+         * \return     `tue::math::min()` for each corresponding pair of
+         *             components of `v1` and `v2`.
+         */
+        template<typename T, int N>
+        inline vec<T, N> min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
+        {
+            return tue::detail_::min(v1, v2);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::max()` for each corresponding pair
+         *             of components of `v1` and `v2`.
+         *
+         * \tparam T   The component type of `v1` and `v2`.
+         * \tparam N   The component count of `v1` and `v2`.
+         * \param v1   A `vec`.
+         * \param v2   Another `vec`.
+         * \return     `tue::math::max()` for each corresponding pair of
+         *             components of `v1` and `v2`.
+         */
+        template<typename T, int N>
+        inline vec<T, N> max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
+        {
+            return tue::detail_::max(v1, v2);
+        }
     }
 }
