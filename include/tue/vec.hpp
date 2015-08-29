@@ -1649,16 +1649,16 @@ namespace tue
         }
 
         /*!
-         * \brief             Computes `tue::math::pow()` for `base` and each
-         *                    component of `exponents`.
+         * \brief            Computes `tue::math::pow()` for `base` and each
+         *                   component of `exponents`.
          *
-         * \tparam T          The type of parameter `base`.
-         * \tparam U          The component type of `exponents`.
-         * \tparam N          The component count of `exponents`.
-         * \param base        The base.
-         * \param exponents   The exponents.
-         * \return            `tue::math::pow()` for `base` and each component
-         *                    of `exponents`.
+         * \tparam T         The type of parameter `base`.
+         * \tparam U         The component type of `exponents`.
+         * \tparam N         The component count of `exponents`.
+         * \param base       The base.
+         * \param exponents  The exponents.
+         * \return           `tue::math::pow()` for `base` and each component of
+         *                   `exponents`.
          */
         template<typename T, typename U, int N>
         inline
@@ -1669,16 +1669,16 @@ namespace tue
         }
 
         /*!
-         * \brief            Computes `tue::math::pow()` for each component of
-         *                   `bases` and `exponent`.
+         * \brief           Computes `tue::math::pow()` for each component of
+         *                  `bases` and `exponent`.
          *
-         * \tparam T         The component type of `bases`.
-         * \tparam U         The type of parameter `exponent`.
-         * \tparam N         The component count of `bases`.
-         * \param bases      The bases.
-         * \param exponent   The exponent.
-         * \return           `tue::math::pow()` for each component of `bases`
-         *                   and `exponent`.
+         * \tparam T        The component type of `bases`.
+         * \tparam U        The type of parameter `exponent`.
+         * \tparam N        The component count of `bases`.
+         * \param bases     The bases.
+         * \param exponent  The exponent.
+         * \return          `tue::math::pow()` for each component of `bases` and
+         *                  `exponent`.
          */
         template<typename T, typename U, int N>
         inline
@@ -1689,17 +1689,17 @@ namespace tue
         }
 
         /*!
-         * \brief             Computes `tue::math::pow()` for each component of
-         *                    `bases` and each corresponding component of
-         *                    `exponents`.
+         * \brief            Computes `tue::math::pow()` for each component of
+         *                   `bases` and each corresponding component of
+         *                   `exponents`.
          *
-         * \tparam T          The component type of `bases`.
-         * \tparam U          The component type of `exponents`.
-         * \tparam N          The component count of `bases` and `exponents`.
-         * \param bases       The bases.
-         * \param exponents   The exponents.
-         * \return            `tue::math::pow()` for each component of `bases`
-         *                    and each corresponding component of `exponents`.
+         * \tparam T         The component type of `bases`.
+         * \tparam U         The component type of `exponents`.
+         * \tparam N         The component count of `bases` and `exponents`.
+         * \param bases      The bases.
+         * \param exponents  The exponents.
+         * \return           `tue::math::pow()` for each component of `bases`
+         *                   and each corresponding component of `exponents`.
          */
         template<typename T, typename U, int N>
         inline
@@ -1752,15 +1752,15 @@ namespace tue
         }
 
         /*!
-         * \brief      Computes `tue::math::min()` for each corresponding pair
-         *             of components of `v1` and `v2`.
+         * \brief     Computes `tue::math::min()` for each corresponding pair of
+         *            components of `v1` and `v2`.
          *
-         * \tparam T   The component type of `v1` and `v2`.
-         * \tparam N   The component count of `v1` and `v2`.
-         * \param v1   A `vec`.
-         * \param v2   Another `vec`.
-         * \return     `tue::math::min()` for each corresponding pair of
-         *             components of `v1` and `v2`.
+         * \tparam T  The component type of `v1` and `v2`.
+         * \tparam N  The component count of `v1` and `v2`.
+         * \param v1  A `vec`.
+         * \param v2  Another `vec`.
+         * \return    `tue::math::min()` for each corresponding pair of
+         *            components of `v1` and `v2`.
          */
         template<typename T, int N>
         inline vec<T, N> min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
@@ -1769,15 +1769,15 @@ namespace tue
         }
 
         /*!
-         * \brief      Computes `tue::math::max()` for each corresponding pair
-         *             of components of `v1` and `v2`.
+         * \brief     Computes `tue::math::max()` for each corresponding pair of
+         *            components of `v1` and `v2`.
          *
-         * \tparam T   The component type of `v1` and `v2`.
-         * \tparam N   The component count of `v1` and `v2`.
-         * \param v1   A `vec`.
-         * \param v2   Another `vec`.
-         * \return     `tue::math::max()` for each corresponding pair of
-         *             components of `v1` and `v2`.
+         * \tparam T  The component type of `v1` and `v2`.
+         * \tparam N  The component count of `v1` and `v2`.
+         * \param v1  A `vec`.
+         * \param v2  Another `vec`.
+         * \return    `tue::math::max()` for each corresponding pair of
+         *            components of `v1` and `v2`.
          */
         template<typename T, int N>
         inline vec<T, N> max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
