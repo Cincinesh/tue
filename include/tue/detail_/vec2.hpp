@@ -878,5 +878,17 @@ namespace tue
             return v[0] * v[0]
                  + v[1] * v[1];
         }
+
+        template<typename T, typename U>
+        inline constexpr vec2<U> select(
+            const vec2<T>& conditions,
+            const vec2<U>& values,
+            const vec2<U>& otherwise) noexcept
+        {
+            return {
+                tue::math::select(conditions[0], values[0], otherwise[0]),
+                tue::math::select(conditions[1], values[1], otherwise[1]),
+            };
+        }
     }
 }

@@ -1861,5 +1861,29 @@ namespace tue
         {
             return v / tue::math::length(v);
         }
+
+        /*!
+         * \brief             Computes `tue::math::select()` for each
+         *                    corresponding triple of components from
+         *                    `conditions`, `values`, and `otherwise`.
+         *
+         * \tparam T          The component type of `conditions`.
+         * \tparam U          The component type of `values` and `otherwise`.
+         * \tparam N          The component count of all three parameters.
+         * \param conditions  A `vec`.
+         * \param values      Another `vec`.
+         * \param otherwise   Another `vec`.
+         * \return            `tue::math::select()` for each corresponding
+         *                    triple of components from `conditions`, `values`,
+         *                    and `otherwise`.
+         */
+        template<typename T, typename U, int N>
+        inline constexpr vec<U, N> select(
+            const vec<T, N>& conditions,
+            const vec<U, N>& values,
+            const vec<U, N>& otherwise = vec<U, N>(0)) noexcept
+        {
+            return tue::detail_::select(conditions, values, otherwise);
+        }
     }
 }

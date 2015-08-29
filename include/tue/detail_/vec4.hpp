@@ -1218,5 +1218,19 @@ namespace tue
                  + v[2] * v[2]
                  + v[3] * v[3];
         }
+
+        template<typename T, typename U>
+        inline constexpr vec4<U> select(
+            const vec4<T>& conditions,
+            const vec4<U>& values,
+            const vec4<U>& otherwise) noexcept
+        {
+            return {
+                tue::math::select(conditions[0], values[0], otherwise[0]),
+                tue::math::select(conditions[1], values[1], otherwise[1]),
+                tue::math::select(conditions[2], values[2], otherwise[2]),
+                tue::math::select(conditions[3], values[3], otherwise[3]),
+            };
+        }
     }
 }

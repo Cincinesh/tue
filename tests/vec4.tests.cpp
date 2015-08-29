@@ -1085,4 +1085,18 @@ namespace
         const dvec4 v(1.2, 3.4, 5.6, 7.8);
         test_assert(math::normalize(v) == v / math::length(v));
     }
+
+    TEST_CASE(select)
+    {
+        CONST_OR_CONSTEXPR auto v1 = math::select(
+            bvec4(true, false, true, false),
+            dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(v1 == dvec4(1.2, 0.0, 5.6, 0.0));
+
+        CONST_OR_CONSTEXPR auto v2 = math::select(
+            bvec4(true, false, true, false),
+            dvec4(1.2, 3.4, 5.6, 7.8),
+            dvec4(9.10, 11.12, 13.14, 15.16));
+        test_assert(v2 == dvec4(1.2, 11.12, 5.6, 15.16));
+    }
 }

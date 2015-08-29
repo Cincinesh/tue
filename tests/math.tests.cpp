@@ -114,10 +114,14 @@ namespace
 
     TEST_CASE(select)
     {
-        constexpr auto x = math::select(true, 1, 2);
-        constexpr auto y = math::select(false, 1, 2);
+        constexpr auto x = math::select(true, 1);
+        constexpr auto y = math::select(false, 1);
+        constexpr auto z = math::select(true, 1, 2);
+        constexpr auto w = math::select(false, 1, 2);
         test_assert(x == 1);
-        test_assert(y == 2);
+        test_assert(y == 0);
+        test_assert(z == 1);
+        test_assert(w == 2);
     }
 
     TEST_CASE(less)
