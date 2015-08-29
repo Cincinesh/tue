@@ -291,10 +291,10 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes the reciprocal square root of `x`.
+         * \brief     Computes the reciprocal nonnegative square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
-         * \return    The reciprocal square root of `x`.
+         * \return    The reciprocal nonnegative square root of `x`.
          */
         template<typename T>
         inline std::enable_if_t<std::is_floating_point<T>::value, T>
@@ -304,10 +304,11 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes the reciprocal square root of `x`.
+         * \brief     Computes the reciprocal nonnegative square root of `x`.
          * \tparam T  The type of parameter `x`.
          * \param x   An integral number.
-         * \return    The reciprocal square root of `static_cast<double>(x)`.
+         * \return    The reciprocal nonnegative square root of
+         *            `static_cast<double>(x)`.
          */
         template<typename T>
         inline std::enable_if_t<std::is_integral<T>::value, double>
