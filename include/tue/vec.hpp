@@ -1396,6 +1396,9 @@ namespace tue
         return tue::detail_::bitwise_xor_operator(lhs, rhs);
     }
 
+#define shift_left <<
+#define shift_right >> // Because ">>" inside template args confuses Doxygen
+
     /*!
      * \brief      Computes the bitwise shift left of `lhs` by each component of
      *             `rhs`.
@@ -1408,7 +1411,8 @@ namespace tue
      * \return     The bitwise shift left of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() << std::declval<U>()), N>
+    inline constexpr
+    vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
@@ -1426,7 +1430,8 @@ namespace tue
      * \return     The bitwise shift left of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() << std::declval<U>()), N>
+    inline constexpr
+    vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
@@ -1445,7 +1450,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() << std::declval<U>()), N>
+    inline constexpr
+    vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
@@ -1463,7 +1469,8 @@ namespace tue
      * \return     The bitwise shift right of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() >> std::declval<U>()), N>
+    inline constexpr
+    vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
@@ -1481,7 +1488,8 @@ namespace tue
      * \return     The bitwise shift right of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() >> std::declval<U>()), N>
+    inline constexpr
+    vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
@@ -1500,11 +1508,15 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() >> std::declval<U>()), N>
+    inline constexpr
+    vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
     }
+
+#undef shift_left
+#undef shift_right
 
     /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
