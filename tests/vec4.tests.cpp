@@ -155,6 +155,48 @@ namespace
         test_assert(v == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
     }
 
+    TEST_CASE(subscript_operator)
+    {
+        CONST_OR_CONSTEXPR dvec4 cev(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto cev0 = cev[0];
+        CONST_OR_CONSTEXPR auto cev1 = cev[1];
+        CONST_OR_CONSTEXPR auto cev2 = cev[2];
+        CONST_OR_CONSTEXPR auto cev3 = cev[3];
+        test_assert(cev0 == 1.2);
+        test_assert(cev1 == 3.4);
+        test_assert(cev2 == 5.6);
+        test_assert(cev3 == 7.8);
+
+        const auto cv = cev;
+        const auto& cv0 = cv[0];
+        const auto& cv1 = cv[1];
+        const auto& cv2 = cv[2];
+        const auto& cv3 = cv[3];
+        test_assert(&cv0 == cv.data() + 0);
+        test_assert(&cv1 == cv.data() + 1);
+        test_assert(&cv2 == cv.data() + 2);
+        test_assert(&cv3 == cv.data() + 3);
+
+        auto v = cev;
+        auto& v0 = v[0];
+        auto& v1 = v[1];
+        auto& v2 = v[2];
+        auto& v3 = v[3];
+        test_assert(&v0 == v.data() + 0);
+        test_assert(&v1 == v.data() + 1);
+        test_assert(&v2 == v.data() + 2);
+        test_assert(&v3 == v.data() + 3);
+    }
+
+    TEST_CASE(data)
+    {
+        const dvec4 cv(1.2);
+        test_assert(cv.data() == static_cast<const void*>(&cv));
+
+        dvec4 v;
+        test_assert(v.data() == static_cast<void*>(&v));
+    }
+
     TEST_CASE(x_y_z_w)
     {
         CONST_OR_CONSTEXPR dvec4 v(1.2, 3.4, 5.6, 7.8);
@@ -370,48 +412,6 @@ namespace
         test_assert(v[1] == 35.36);
         test_assert(v[2] == 37.38);
         test_assert(v[3] == 39.40);
-    }
-
-    TEST_CASE(data)
-    {
-        const dvec4 cv(1.2);
-        test_assert(cv.data() == static_cast<const void*>(&cv));
-
-        dvec4 v;
-        test_assert(v.data() == static_cast<void*>(&v));
-    }
-
-    TEST_CASE(subscript_operator)
-    {
-        CONST_OR_CONSTEXPR dvec4 cev(1.2, 3.4, 5.6, 7.8);
-        CONST_OR_CONSTEXPR auto cev0 = cev[0];
-        CONST_OR_CONSTEXPR auto cev1 = cev[1];
-        CONST_OR_CONSTEXPR auto cev2 = cev[2];
-        CONST_OR_CONSTEXPR auto cev3 = cev[3];
-        test_assert(cev0 == 1.2);
-        test_assert(cev1 == 3.4);
-        test_assert(cev2 == 5.6);
-        test_assert(cev3 == 7.8);
-
-        const auto cv = cev;
-        const auto& cv0 = cv[0];
-        const auto& cv1 = cv[1];
-        const auto& cv2 = cv[2];
-        const auto& cv3 = cv[3];
-        test_assert(&cv0 == cv.data() + 0);
-        test_assert(&cv1 == cv.data() + 1);
-        test_assert(&cv2 == cv.data() + 2);
-        test_assert(&cv3 == cv.data() + 3);
-
-        auto v = cev;
-        auto& v0 = v[0];
-        auto& v1 = v[1];
-        auto& v2 = v[2];
-        auto& v3 = v[3];
-        test_assert(&v0 == v.data() + 0);
-        test_assert(&v1 == v.data() + 1);
-        test_assert(&v2 == v.data() + 2);
-        test_assert(&v3 == v.data() + 3);
     }
 
     TEST_CASE(pre_increment_operator)

@@ -300,6 +300,42 @@ namespace tue
         inline static constexpr vec<T, N> w_axis() noexcept;
 
         /*!
+         * \brief     Returns a reference to the component at the given index.
+         * \details   No bounds checking is performed.
+         * \tparam I  The index type.
+         * \param i   The index.
+         * \return    A reference to the component at the given index.
+         */
+        template<typename I>
+        inline constexpr const T& operator[](const I& i) const noexcept;
+
+        /*!
+         * \brief     Returns a reference to the component at the given index.
+         * \details   No bounds checking is performed.
+         * \tparam I  The index type.
+         * \param i   The index.
+         * \return    A reference to the component at the given index.
+         */
+        template<typename I>
+        inline T& operator[](const I& i) noexcept;
+
+        /*!
+         * \brief   Returns a pointer to this `vec`'s underlying component
+         *          array.
+         *
+         * \return  A pointer to this `vec`'s underlying component array.
+         */
+        inline const T* data() const noexcept;
+
+        /*!
+         * \brief   Returns a pointer to this `vec`'s underlying component
+         *          array.
+         *
+         * \return  A pointer to this `vec`'s underlying component array.
+         */
+        inline T* data() noexcept;
+
+        /*!
          * \brief   Returns a copy of this `vec`'s first component.
          * \return  A copy of this `vec`'s first component.
          */
@@ -642,42 +678,6 @@ namespace tue
          * \param rgba  The new values for the first four components.
          */
         inline void set_rgba(const vec4<T>& rgba) noexcept;
-
-        /*!
-         * \brief   Returns a pointer to this `vec`'s underlying component
-         *          array.
-         *
-         * \return  A pointer to this `vec`'s underlying component array.
-         */
-        inline const T* data() const noexcept;
-
-        /*!
-         * \brief   Returns a pointer to this `vec`'s underlying component
-         *          array.
-         *
-         * \return  A pointer to this `vec`'s underlying component array.
-         */
-        inline T* data() noexcept;
-
-        /*!
-         * \brief     Returns a reference to the component at the given index.
-         * \details   No bounds checking is performed.
-         * \tparam I  The index type.
-         * \param i   The index.
-         * \return    A reference to the component at the given index.
-         */
-        template<typename I>
-        inline constexpr const T& operator[](const I& i) const noexcept;
-
-        /*!
-         * \brief     Returns a reference to the component at the given index.
-         * \details   No bounds checking is performed.
-         * \tparam I  The index type.
-         * \param i   The index.
-         * \return    A reference to the component at the given index.
-         */
-        template<typename I>
-        inline T& operator[](const I& i) noexcept;
 
         /*!
          * \brief   Pre-increments each component of this `vec`.

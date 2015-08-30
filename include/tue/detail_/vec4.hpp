@@ -90,6 +90,28 @@ namespace tue
             return { T(0), T(0), T(0), T(1) };
         }
 
+        template<typename I>
+        constexpr const T& operator[](const I& i) const noexcept
+        {
+            return this->impl_.data[i];
+        }
+
+        template<typename I>
+        T& operator[](const I& i) noexcept
+        {
+            return this->impl_.data[i];
+        }
+
+        const T* data() const noexcept
+        {
+            return this->impl_.data;
+        }
+
+        T* data() noexcept
+        {
+            return this->impl_.data;
+        }
+
         constexpr T x() const noexcept
         {
             return this->impl_.data[0];
@@ -352,28 +374,6 @@ namespace tue
             this->impl_.data[1] = rgba[1];
             this->impl_.data[2] = rgba[2];
             this->impl_.data[3] = rgba[3];
-        }
-
-        const T* data() const noexcept
-        {
-            return this->impl_.data;
-        }
-
-        T* data() noexcept
-        {
-            return this->impl_.data;
-        }
-
-        template<typename I>
-        constexpr const T& operator[](const I& i) const noexcept
-        {
-            return this->impl_.data[i];
-        }
-
-        template<typename I>
-        T& operator[](const I& i) noexcept
-        {
-            return this->impl_.data[i];
         }
 
         vec4<T>& operator++() noexcept

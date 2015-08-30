@@ -61,15 +61,6 @@ namespace
         test_assert(v[3] == 7.8);
     }
 
-    TEST_CASE(data)
-    {
-        const dquat dq(1.2, 3.4, 5.6, 7.8);
-        test_assert(dq.data() == static_cast<const void*>(&dq));
-
-        dquat q;
-        test_assert(q.data() == static_cast<void*>(&q));
-    }
-
     TEST_CASE(subscript_operator)
     {
         CONST_OR_CONSTEXPR dquat ceq(1.2, 3.4, 5.6, 7.8);
@@ -101,5 +92,14 @@ namespace
         test_assert(&q1 == q.data() + 1);
         test_assert(&q2 == q.data() + 2);
         test_assert(&q3 == q.data() + 3);
+    }
+
+    TEST_CASE(data)
+    {
+        const dquat dq(1.2, 3.4, 5.6, 7.8);
+        test_assert(dq.data() == static_cast<const void*>(&dq));
+
+        dquat q;
+        test_assert(q.data() == static_cast<void*>(&q));
     }
 }

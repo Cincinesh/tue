@@ -131,6 +131,36 @@ namespace
         test_assert(v == fvec2(0.0f, 1.0f));
     }
 
+    TEST_CASE(subscript_operator)
+    {
+        CONST_OR_CONSTEXPR dvec2 cev(1.2, 3.4);
+        CONST_OR_CONSTEXPR auto cev0 = cev[0];
+        CONST_OR_CONSTEXPR auto cev1 = cev[1];
+        test_assert(cev0 == 1.2);
+        test_assert(cev1 == 3.4);
+
+        const auto cv = cev;
+        const auto& cv0 = cv[0];
+        const auto& cv1 = cv[1];
+        test_assert(&cv0 == cv.data() + 0);
+        test_assert(&cv1 == cv.data() + 1);
+
+        auto v = cev;
+        auto& v0 = v[0];
+        auto& v1 = v[1];
+        test_assert(&v0 == v.data() + 0);
+        test_assert(&v1 == v.data() + 1);
+    }
+
+    TEST_CASE(data)
+    {
+        const dvec2 cv(1.2);
+        test_assert(cv.data() == static_cast<const void*>(&cv));
+
+        dvec2 v;
+        test_assert(v.data() == static_cast<void*>(&v));
+    }
+
     TEST_CASE(x_y_z)
     {
         CONST_OR_CONSTEXPR dvec2 v(1.2, 3.4);
@@ -200,36 +230,6 @@ namespace
         v.set_rg(dvec2(9.10, 11.12));
         test_assert(v[0] == 9.10);
         test_assert(v[1] == 11.12);
-    }
-
-    TEST_CASE(data)
-    {
-        const dvec2 cv(1.2);
-        test_assert(cv.data() == static_cast<const void*>(&cv));
-
-        dvec2 v;
-        test_assert(v.data() == static_cast<void*>(&v));
-    }
-
-    TEST_CASE(subscript_operator)
-    {
-        CONST_OR_CONSTEXPR dvec2 cev(1.2, 3.4);
-        CONST_OR_CONSTEXPR auto cev0 = cev[0];
-        CONST_OR_CONSTEXPR auto cev1 = cev[1];
-        test_assert(cev0 == 1.2);
-        test_assert(cev1 == 3.4);
-
-        const auto cv = cev;
-        const auto& cv0 = cv[0];
-        const auto& cv1 = cv[1];
-        test_assert(&cv0 == cv.data() + 0);
-        test_assert(&cv1 == cv.data() + 1);
-
-        auto v = cev;
-        auto& v0 = v[0];
-        auto& v1 = v[1];
-        test_assert(&v0 == v.data() + 0);
-        test_assert(&v1 == v.data() + 1);
     }
 
     TEST_CASE(pre_increment_operator)

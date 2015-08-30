@@ -66,28 +66,6 @@ namespace tue
         }
 
         /*!
-         * \brief   Returns a pointer to this `quat`'s underlying component
-         *          array.
-         *
-         * \return  A pointer to this `quat`'s underlying component array.
-         */
-        const T* data() const noexcept
-        {
-            return this->impl_.data;
-        }
-
-        /*!
-         * \brief   Returns a pointer to this `quat`'s underlying component
-         *          array.
-         *
-         * \return  A pointer to this `quat`'s underlying component array.
-         */
-        T* data() noexcept
-        {
-            return this->impl_.data;
-        }
-
-        /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.
          * \tparam I  The index type.
@@ -111,6 +89,28 @@ namespace tue
         T& operator[](const I& i) noexcept
         {
             return this->impl_.data[i];
+        }
+
+        /*!
+         * \brief   Returns a pointer to this `quat`'s underlying component
+         *          array.
+         *
+         * \return  A pointer to this `quat`'s underlying component array.
+         */
+        const T* data() const noexcept
+        {
+            return this->impl_.data;
+        }
+
+        /*!
+         * \brief   Returns a pointer to this `quat`'s underlying component
+         *          array.
+         *
+         * \return  A pointer to this `quat`'s underlying component array.
+         */
+        T* data() noexcept
+        {
+            return this->impl_.data;
         }
     };
 }
