@@ -54,20 +54,40 @@ namespace
 
     TEST_CASE(individual_components_constructor)
     {
-        CONST_OR_CONSTEXPR dquat v = { 1.2, 3.4, 5.6, 7.8 };
-        test_assert(v[0] == 1.2);
-        test_assert(v[1] == 3.4);
-        test_assert(v[2] == 5.6);
-        test_assert(v[3] == 7.8);
+        CONST_OR_CONSTEXPR dquat q = { 1.2, 3.4, 5.6, 7.8 };
+        test_assert(q[0] == 1.2);
+        test_assert(q[1] == 3.4);
+        test_assert(q[2] == 5.6);
+        test_assert(q[3] == 7.8);
     }
 
     TEST_CASE(extend_vec3_constructor)
     {
-        CONST_OR_CONSTEXPR dquat v = { { 1.2, 3.4, 5.6 }, 7.8 };
-        test_assert(v[0] == 1.2);
-        test_assert(v[1] == 3.4);
-        test_assert(v[2] == 5.6);
-        test_assert(v[3] == 7.8);
+        CONST_OR_CONSTEXPR dquat q = { { 1.2, 3.4, 5.6 }, 7.8 };
+        test_assert(q[0] == 1.2);
+        test_assert(q[1] == 3.4);
+        test_assert(q[2] == 5.6);
+        test_assert(q[3] == 7.8);
+    }
+
+    TEST_CASE(explicit_conversion_constructor)
+    {
+        CONST_OR_CONSTEXPR dquat dq(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR fquat fq(dq);
+        test_assert(fq[0] == 1.2f);
+        test_assert(fq[1] == 3.4f);
+        test_assert(fq[2] == 5.6f);
+        test_assert(fq[3] == 7.8f);
+    }
+
+    TEST_CASE(implicit_conversion_operator)
+    {
+        CONST_OR_CONSTEXPR fquat fq(1.2f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dquat dq = fq;
+        test_assert(dq[0] == 1.2f);
+        test_assert(dq[1] == 3.4f);
+        test_assert(dq[2] == 5.6f);
+        test_assert(dq[3] == 7.8f);
     }
 
     TEST_CASE(subscript_operator)

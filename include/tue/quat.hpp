@@ -82,6 +82,33 @@ namespace tue
         }
 
         /*!
+         * \brief     Explicitly casts another `quat` to a new component type.
+         * \tparam U  The component type of parameter `q`.
+         * \param q   The `quat` to cast from.
+         */
+        template<typename U>
+        explicit constexpr quat(const quat<U>& q) noexcept :
+            impl_({{ T(q[0]), T(q[1]), T(q[2]), T(q[3]) }})
+        {
+        }
+
+        /*!
+         * \brief     Implicitly casts this `quat` to a new component type.
+         * \tparam U  The new component type.
+         * \return    A new `quat` with the new component type.
+         */
+        template<typename U>
+        constexpr operator quat<U>() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+                this->impl_.data[3],
+            };
+        }
+
+        /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.
          * \tparam I  The index type.
