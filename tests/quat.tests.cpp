@@ -90,6 +90,12 @@ namespace
         test_assert(dq[3] == 7.8f);
     }
 
+    TEST_CASE(identity)
+    {
+        CONST_OR_CONSTEXPR auto q = dquat::identity();
+        test_assert(q == dquat(0.0, 0.0, 0.0, 1.0));
+    }
+
     TEST_CASE(subscript_operator)
     {
         CONST_OR_CONSTEXPR dquat ceq(1.2, 3.4, 5.6, 7.8);
@@ -130,5 +136,45 @@ namespace
 
         dquat q;
         test_assert(q.data() == static_cast<void*>(&q));
+    }
+
+    TEST_CASE(equality_operator)
+    {
+        CONST_OR_CONSTEXPR fquat q1(1.2f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q2(1.2f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q3(1.2f, 3.4f, 5.6f, 0.0f);
+        CONST_OR_CONSTEXPR dquat q4(1.2f, 3.4f, 0.0f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q5(1.2f, 0.0f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q6(0.0f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR auto result1 = (q1 == q2);
+        CONST_OR_CONSTEXPR auto result2 = (q1 == q3);
+        CONST_OR_CONSTEXPR auto result3 = (q1 == q4);
+        CONST_OR_CONSTEXPR auto result4 = (q1 == q5);
+        CONST_OR_CONSTEXPR auto result5 = (q1 == q6);
+        test_assert(result1 == true);
+        test_assert(result2 == false);
+        test_assert(result3 == false);
+        test_assert(result4 == false);
+        test_assert(result5 == false);
+    }
+
+    TEST_CASE(inequality_operator)
+    {
+        CONST_OR_CONSTEXPR fquat q1(1.2f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q2(1.2f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q3(1.2f, 3.4f, 5.6f, 0.0f);
+        CONST_OR_CONSTEXPR dquat q4(1.2f, 3.4f, 0.0f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q5(1.2f, 0.0f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR dquat q6(0.0f, 3.4f, 5.6f, 7.8f);
+        CONST_OR_CONSTEXPR auto result1 = (q1 != q2);
+        CONST_OR_CONSTEXPR auto result2 = (q1 != q3);
+        CONST_OR_CONSTEXPR auto result3 = (q1 != q4);
+        CONST_OR_CONSTEXPR auto result4 = (q1 != q5);
+        CONST_OR_CONSTEXPR auto result5 = (q1 != q6);
+        test_assert(result1 == false);
+        test_assert(result2 == true);
+        test_assert(result3 == true);
+        test_assert(result4 == true);
+        test_assert(result5 == true);
     }
 }

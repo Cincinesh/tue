@@ -109,6 +109,18 @@ namespace tue
         }
 
         /*!
+         * \brief   Returns a `quat` with the fourth component set to `1` and
+         *          all other components set to `0`.
+         *
+         * \return  A `quat` with the fourth component set to `1` and all other
+         *          components set to `0`.
+         */
+        static constexpr quat<T> identity() noexcept
+        {
+            return { T(0), T(0), T(0), T(1) };
+        }
+
+        /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.
          * \tparam I  The index type.
@@ -156,4 +168,48 @@ namespace tue
             return this->impl_.data;
         }
     };
+
+    /*!
+     * \brief      Determines whether or not two `quat`'s compare equal.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     `true` if all the corresponding pairs of components compare
+     *             equal and `false` otherwise.
+     */
+    template<typename T, typename U>
+    inline constexpr bool operator==(
+        const quat<T>& lhs, const quat<U>& rhs) noexcept
+    {
+        return lhs[0] == rhs[0]
+            && lhs[1] == rhs[1]
+            && lhs[2] == rhs[2]
+            && lhs[3] == rhs[3];
+    }
+
+    /*!
+     * \brief      Determines whether or not two `quat`'s compare not equal.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     `true` if at least one of the corresponding pairs of
+     *             components compares not equal and `false` otherwise.
+     */
+    template<typename T, typename U>
+    inline constexpr bool operator!=(
+        const quat<T>& lhs, const quat<U>& rhs) noexcept
+    {
+        return lhs[0] != rhs[0]
+            || lhs[1] != rhs[1]
+            || lhs[2] != rhs[2]
+            || lhs[3] != rhs[3];
+    }
 }

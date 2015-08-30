@@ -121,26 +121,26 @@ namespace
 
     TEST_CASE(zero)
     {
-        CONST_OR_CONSTEXPR auto v = fvec3::zero();
-        test_assert(v == fvec3(0.0f, 0.0f, 0.0f));
+        CONST_OR_CONSTEXPR auto v = dvec3::zero();
+        test_assert(v == dvec3(0.0, 0.0, 0.0));
     }
 
     TEST_CASE(x_axis)
     {
-        CONST_OR_CONSTEXPR auto v = fvec3::x_axis();
-        test_assert(v == fvec3(1.0f, 0.0f, 0.0f));
+        CONST_OR_CONSTEXPR auto v = dvec3::x_axis();
+        test_assert(v == dvec3(1.0, 0.0, 0.0));
     }
 
     TEST_CASE(y_axis)
     {
-        CONST_OR_CONSTEXPR auto v = fvec3::y_axis();
-        test_assert(v == fvec3(0.0f, 1.0f, 0.0f));
+        CONST_OR_CONSTEXPR auto v = dvec3::y_axis();
+        test_assert(v == dvec3(0.0, 1.0, 0.0));
     }
 
     TEST_CASE(z_axis)
     {
-        CONST_OR_CONSTEXPR auto v = fvec3::z_axis();
-        test_assert(v == fvec3(0.0f, 0.0f, 1.0f));
+        CONST_OR_CONSTEXPR auto v = dvec3::z_axis();
+        test_assert(v == dvec3(0.0, 0.0, 1.0));
     }
 
     TEST_CASE(subscript_operator)
