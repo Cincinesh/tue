@@ -19,6 +19,7 @@ namespace
 
     TEST_CASE(size)
     {
+        test_assert(sizeof(vec4<short>) == sizeof(short) * 4);
         test_assert(sizeof(fvec4) == sizeof(float) * 4);
         test_assert(sizeof(dvec4) == sizeof(double) * 4);
         test_assert(sizeof(ivec4) == sizeof(int) * 4);
@@ -28,6 +29,7 @@ namespace
 
     TEST_CASE(alignment)
     {
+        test_assert(alignof(vec4<short>) == alignof(short));
         test_assert(alignof(fvec4) == alignof(float));
         test_assert(alignof(dvec4) == alignof(double));
         test_assert(alignof(ivec4) == alignof(int));
@@ -38,7 +40,7 @@ namespace
     TEST_CASE(component_type)
     {
         test_assert((
-            std::is_same<typename vec4<float>::component_type, float>::value));
+            std::is_same<typename vec4<short>::component_type, short>::value));
         test_assert((
             std::is_same<typename fvec4::component_type, float>::value));
         test_assert((
@@ -53,7 +55,7 @@ namespace
 
     TEST_CASE(component_count)
     {
-        test_assert(vec4<float>::component_count == 4);
+        test_assert(vec4<short>::component_count == 4);
         test_assert(fvec4::component_count == 4);
         test_assert(dvec4::component_count == 4);
         test_assert(ivec4::component_count == 4);
@@ -63,7 +65,7 @@ namespace
 
     TEST_CASE(default_constructor)
     {
-        fvec4 v;
+        dvec4 v;
         unused(v);
     }
 
