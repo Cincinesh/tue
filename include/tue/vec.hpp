@@ -1899,7 +1899,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
-        inline vec<decltype(
+        inline constexpr vec<decltype(
             tue::math::less(std::declval<T>(), std::declval<U>())), N>
         less(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
@@ -1919,7 +1919,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
-        inline vec<decltype(
+        inline constexpr vec<decltype(
             tue::math::less_equal(std::declval<T>(), std::declval<U>())), N>
         less_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
@@ -1939,7 +1939,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
-        inline vec<decltype(
+        inline constexpr vec<decltype(
             tue::math::greater(std::declval<T>(), std::declval<U>())), N>
         greater(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
@@ -1959,7 +1959,7 @@ namespace tue
          *             of components of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
-        inline vec<decltype(
+        inline constexpr vec<decltype(
             tue::math::greater_equal(std::declval<T>(), std::declval<U>())), N>
         greater_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
@@ -1979,7 +1979,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
-        inline vec<decltype(
+        inline constexpr vec<decltype(
             tue::math::equal(std::declval<T>(), std::declval<U>())), N>
         equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
@@ -1999,7 +1999,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
-        inline vec<decltype(
+        inline constexpr vec<decltype(
             tue::math::not_equal(std::declval<T>(), std::declval<U>())), N>
         not_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {

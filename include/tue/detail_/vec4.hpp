@@ -1058,8 +1058,8 @@ namespace tue
         template<typename T>
         inline void sincos(
             const vec4<T>& v,
-            decltype(tue::math::sin(v))& sin_out,
-            decltype(tue::math::cos(v))& cos_out) noexcept
+            decltype(tue::detail_::sin(v))& sin_out,
+            decltype(tue::detail_::cos(v))& cos_out) noexcept
         {
             tue::math::sincos(v[0], sin_out[0], cos_out[0]);
             tue::math::sincos(v[1], sin_out[1], cos_out[1]);
