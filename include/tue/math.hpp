@@ -213,10 +213,12 @@ namespace tue
 
         /*!
          * \brief     Computes `x` raised to the power `y`.
+         *
          * \tparam T  The type of parameter `x`.
          * \tparam U  The type of parameter `y`.
          * \param x   A number.
          * \param y   Another number.
+         *
          * \return    `x` raised to the power `y`. If `T` and/or `U` are
          *            integral types, `x` and/or `y` will be explicitly cast to
          *            floating-point values as follows:

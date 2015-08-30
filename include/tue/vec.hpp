@@ -1402,8 +1402,8 @@ namespace tue
 #define shift_right >> // Because ">>" inside template args confuses Doxygen
 
     /*!
-     * \brief      Computes the bitwise shift left of `lhs` by each component of
-     *             `rhs`.
+     * \brief      Computes the bitwise shifts left of `lhs` by each component
+     *             of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1421,8 +1421,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shift left of each component of `lhs` by
-     *             `rhs`.
+     * \brief      Computes the bitwise shifts left of each component of `lhs`
+     *             by `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1440,8 +1440,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shift left of each component of `lhs` by
-     *             each corresponding component of `rhs`.
+     * \brief      Computes the bitwise shifts left of each component of `lhs`
+     *             by each corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1460,7 +1460,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shift right of `lhs` by each component
+     * \brief      Computes the bitwise shifts right of `lhs` by each component
      *             of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
@@ -1479,7 +1479,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shift right of each component of `lhs`
+     * \brief      Computes the bitwise shifts right of each component of `lhs`
      *             by `rhs`.
      *
      * \tparam T   The component type of `lhs`.
@@ -1498,7 +1498,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shift right of each component of `lhs`
+     * \brief      Computes the bitwise shifts right of each component of `lhs`
      *             by each corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
@@ -1561,7 +1561,7 @@ namespace tue
          * \brief     Computes `tue::math::sin()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::sin()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1575,7 +1575,7 @@ namespace tue
          * \brief     Computes `tue::math::cos()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::cos()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1591,7 +1591,7 @@ namespace tue
          *
          * \tparam T       The component type of `v`.
          * \tparam N       The component count of `v`.
-         * \param v        The components.
+         * \param v        A `vec`.
          * \param sin_out  A reference to the `vec` to store the `sin()` results
          *                 in.
          * \param cos_out  A reference to the `vec` to store the `cos()` results
@@ -1610,7 +1610,7 @@ namespace tue
          * \brief     Computes `tue::math::exp()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::exp()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1624,7 +1624,7 @@ namespace tue
          * \brief     Computes `tue::math::log()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::log()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1638,7 +1638,7 @@ namespace tue
          * \brief     Computes `tue::math::abs()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::abs()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1713,7 +1713,7 @@ namespace tue
          * \brief     Computes `tue::math::recip()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::recip()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1727,7 +1727,7 @@ namespace tue
          * \brief     Computes `tue::math::sqrt()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::sqrt()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1741,7 +1741,7 @@ namespace tue
          * \brief     Computes `tue::math::rsqrt()` for each component of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
-         * \param v   The components.
+         * \param v   A `vec`.
          * \return    `tue::math::rsqrt()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1790,8 +1790,8 @@ namespace tue
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
-         * \param lhs  A `vec`.
-         * \param rhs  Another `vec`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     The dot product of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
@@ -1805,8 +1805,8 @@ namespace tue
          * \brief      Computes the cross product of `lhs` and `rhs`.
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \param lhs  A `vec`.
-         * \param rhs  Another `vec`.
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
          * \return     The cross product of `lhs` and `rhs`.
          */
         template<typename T, typename U>
@@ -1848,7 +1848,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Returns a normalized copy of `v`.
+         * \brief     Computes a normalized copy of `v`.
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
          * \param v   A `vec`.
