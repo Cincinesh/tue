@@ -98,6 +98,7 @@ namespace tue
          *                 radians).
          *
          * \tparam T       The type of parameter `x`.
+         *
          * \param x        An angle (measured in radians).
          * \param sin_out  A reference to the value where the sine of `x` will
          *                 be stored.
@@ -117,6 +118,7 @@ namespace tue
          *                 radians).
          *
          * \tparam T       The type of parameter `x`.
+         *
          * \param x        An angle (measured in radians).
          * \param sin_out  A reference to the value where the sine of
          *                 `static_cast<double>(x)` will be stored.
@@ -216,6 +218,7 @@ namespace tue
          *
          * \tparam T  The type of parameter `x`.
          * \tparam U  The type of parameter `y`.
+         *
          * \param x   A number.
          * \param y   Another number.
          *
@@ -321,9 +324,12 @@ namespace tue
 
         /*!
          * \brief     Determines the minimum numeric value of the arguments.
+         *
          * \tparam T  The type of parameters `x` and `y`.
+         *
          * \param x   A number.
          * \param y   Another number.
+         *
          * \return    The minimum numeric value of the arguments.
          */
         template<typename T>
@@ -335,9 +341,12 @@ namespace tue
 
         /*!
          * \brief     Determines the maximum numeric value of the arguments.
+         *
          * \tparam T  The type of parameters `x` and `y`.
+         *
          * \param x   A number.
          * \param y   Another number.
+         *
          * \return    The maximum numeric value of the arguments.
          */
         template<typename T>
@@ -349,10 +358,13 @@ namespace tue
 
         /*!
          * \brief            Selects a return value based on `condition`.
+         *
          * \tparam T         The return type.
+         *
          * \param condition  The condition.
          * \param value      The return value when condition is `true`.
          * \param otherwise  The return value when condition is `false`.
+         *
          * \return           `value` or `otherwise` depending on `condition`.
          */
         template<typename T>
@@ -364,10 +376,13 @@ namespace tue
 
         /*!
          * \brief      Computes whether or not `lhs` is less than `rhs`.
+         *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `true` if `lhs` is less than `rhs` and `false` otherwise.
          */
         template<typename T, typename U>
@@ -384,8 +399,10 @@ namespace tue
          *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `true` if `lhs` is less than or equal to `rhs` and
          *             `false` otherwise.
          */
@@ -399,10 +416,13 @@ namespace tue
 
         /*!
          * \brief      Computes whether or not `lhs` is greater than `rhs`.
+         *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `true` if `lhs` is greater than `rhs` and `false`
          *             otherwise.
          */
@@ -420,8 +440,10 @@ namespace tue
          *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `true` if `lhs` is greater than or equal to `rhs` and
          *             `false` otherwise.
          */
@@ -435,10 +457,13 @@ namespace tue
 
         /*!
          * \brief      Computes whether or not `lhs` is equal to `rhs`.
+         *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `true` if `lhs` is equal to `rhs` and `false` otherwise.
          */
         template<typename T, typename U>
@@ -451,10 +476,13 @@ namespace tue
 
         /*!
          * \brief      Computes whether or not `lhs` is not equal to `rhs`.
+         *
          * \tparam T   The type of parameter `lhs`.
          * \tparam U   The type of parameter `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `true` if `lhs` is not equal to `rhs` and `false`
          *             otherwise.
          */

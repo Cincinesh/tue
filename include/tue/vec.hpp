@@ -18,6 +18,7 @@ namespace tue
     /*!
      * \brief     An `N`-dimensional vector.
      * \details   `vec` has the same size and alignment requirements as `T[N]`.
+     *
      * \tparam T  The component type.
      * \tparam N  The component count. Must be 2, 3, or 4.
      */
@@ -468,6 +469,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `vec`'s first two components.
+         *
          * \param x  The new value for the first component.
          * \param y  The new value for the second component.
          */
@@ -481,6 +483,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `vec`'s first two components.
+         *
          * \param r  The new value for the first component.
          * \param g  The new value for the second component.
          */
@@ -712,7 +715,6 @@ namespace tue
         /*!
          * \brief     Adds each component of `v` to the corresponding component
          *            of this `vec`.
-         *
          * \tparam U  The component type of parameter `v`.
          * \param v   The values to add to each component of this `vec`.
          * \return    A reference to this `vec`.
@@ -732,7 +734,6 @@ namespace tue
         /*!
          * \brief     Subtracts each component of `v` from the corresponding
          *            component of this `vec`.
-         *
          * \tparam U  The component type of parameter `v`.
          * \param v   The values to subtract from each component of this `vec`.
          * \return    A reference to this `vec`.
@@ -752,7 +753,6 @@ namespace tue
         /*!
          * \brief     Multiplies each component of this `vec` by the
          *            corresponding component from `v`.
-         *
          * \tparam U  The component type of parameter `v`.
          * \param v   The values to multiply each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -772,7 +772,6 @@ namespace tue
         /*!
          * \brief     Divides each component of this `vec` by the corresponding
          *            component from `v`.
-         *
          * \tparam U  The component type of parameter `v`.
          * \param v   The values to divide each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -792,7 +791,6 @@ namespace tue
         /*!
          * \brief     Modulos each component of this `vec` by the corresponding
          *            component from `v`.
-         *
          * \tparam U  The component type of parameter `v`.
          * \param v   The values to modulo each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -804,8 +802,10 @@ namespace tue
          * \brief     Bitwise ANDs each component of this `vec` with `x`.
          *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise AND each component of this `vec`
          *            with.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -816,8 +816,10 @@ namespace tue
          *            corresponding component from `v`.
          *
          * \tparam U  The component type of parameter `v`.
+         *
          * \param v   The values to bitwise AND each component of this `vec`
          *            with.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -825,7 +827,6 @@ namespace tue
 
         /*!
          * \brief     Bitwise ORs each component of this `vec` with `x`.
-         *
          * \tparam U  The type of parameter `x`.
          * \param x   The value to bitwise OR each component of this `vec` with.
          * \return    A reference to this `vec`.
@@ -838,8 +839,10 @@ namespace tue
          *            corresponding component from `v`.
          *
          * \tparam U  The component type of parameter `v`.
+         *
          * \param v   The values to bitwise OR each component of this `vec`
          *            with.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -849,8 +852,10 @@ namespace tue
          * \brief     Bitwise XORs each component of this `vec` with `x`.
          *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise XOR each component of this `vec`
          *            with.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -861,8 +866,10 @@ namespace tue
          *            corresponding component from `v`.
          *
          * \tparam U  The component type of parameter `v`.
+         *
          * \param v   The values to bitwise XOR each component of this `vec`
          *            with.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -872,8 +879,10 @@ namespace tue
          * \brief     Bitwise shifts left each component of this `vec` by `x`.
          *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise shift left each component of this
          *            `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -884,8 +893,10 @@ namespace tue
          *            corresponding component from `v`.
          *
          * \tparam U  The component type of parameter `v`.
+         *
          * \param v   The values to bitwise shift left each component of this
          *            `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -895,8 +906,10 @@ namespace tue
          * \brief     Bitwise shifts right each component of this `vec` by `x`.
          *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise right left each component of this
          *            `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -907,8 +920,10 @@ namespace tue
          *            corresponding component from `v`.
          *
          * \tparam U  The component type of parameter `v`.
+         *
          * \param v   The values to bitwise shift right each component of this
          *            `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -924,9 +939,12 @@ namespace tue
 {
     /*!
      * \brief     Computes the unary plus of each component of `v`.
+     *
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
+     *
      * \param v   A `vec`.
+     *
      * \return    The unary plus of each component of `v`.
      */
     template<typename T, int N>
@@ -938,9 +956,12 @@ namespace tue
 
     /*!
      * \brief     Computes the unary minus of each component of `v`.
+     *
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
+     *
      * \param v   A `vec`.
+     *
      * \return    The unary minus of each component of `v`.
      */
     template<typename T, int N>
@@ -952,9 +973,12 @@ namespace tue
 
     /*!
      * \brief     Computes the bitwise NOT of each component of `v`.
+     *
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
+     *
      * \param v   A `vec`.
+     *
      * \return    The bitwise NOT of each component of `v`.
      */
     template<typename T, int N>
@@ -966,9 +990,12 @@ namespace tue
 
     /*!
      * \brief     Computes the logical NOT of each component of `v`.
+     *
      * \tparam T  The component type of parameter `v`.
      * \tparam N  The component count of parameter `v`.
+     *
      * \param v   A `vec`.
+     *
      * \return    The logical NOT of each component of `v`.
      */
     template<typename T, int N>
@@ -980,11 +1007,14 @@ namespace tue
 
     /*!
      * \brief      Computes the sums of `lhs` and each component of `rhs`.
+     *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The sums of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -996,11 +1026,14 @@ namespace tue
 
     /*!
      * \brief      Computes the sums of each component of `lhs` and `rhs`.
+     *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The sums of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1017,8 +1050,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The sums of each component of `lhs` and each corresponding
      *             component of `rhs`.
      */
@@ -1036,8 +1071,10 @@ namespace tue
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The differences between `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1054,8 +1091,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The differences between each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1072,8 +1111,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The differences between each component of `lhs` and each
      *             corresponding component of `rhs`.
      */
@@ -1086,11 +1127,14 @@ namespace tue
 
     /*!
      * \brief      Computes the products of `lhs` and each component of `rhs`.
+     *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The products of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1102,11 +1146,14 @@ namespace tue
 
     /*!
      * \brief      Computes the products of each component of `lhs` and `rhs`.
+     *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The products of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1123,8 +1170,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The products of each component of `lhs` and each
      *             corresponding component of `rhs`.
      */
@@ -1137,11 +1186,14 @@ namespace tue
 
     /*!
      * \brief      Computes the quotients of `lhs` over each component of `rhs`.
+     *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The quotients of `lhs` over each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1153,11 +1205,14 @@ namespace tue
 
     /*!
      * \brief      Computes the quotients of each component of `lhs` over `rhs`.
+     *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The quotients of each component of `lhs` over `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1174,8 +1229,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The quotients of each component of `lhs` over each
      *             corresponding component of `rhs`.
      */
@@ -1188,11 +1245,14 @@ namespace tue
 
     /*!
      * \brief      Computes the modulos of `lhs` over each component of `rhs`.
+     *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The modulos of `lhs` over each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1204,11 +1264,14 @@ namespace tue
 
     /*!
      * \brief      Computes the modulos of each component of `lhs` over `rhs`.
+     *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The modulos of each component of `lhs` over `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1225,8 +1288,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The modulos of each component of `lhs` over each
      *             corresponding component of `rhs`.
      */
@@ -1244,8 +1309,10 @@ namespace tue
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise AND of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1262,8 +1329,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise AND of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1280,8 +1349,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise AND of each component of `lhs` and each
      *             corresponding component of `rhs`.
      */
@@ -1294,11 +1365,14 @@ namespace tue
 
     /*!
      * \brief      Computes the bitwise OR of `lhs` and each component of `rhs`.
+     *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise OR of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1310,11 +1384,14 @@ namespace tue
 
     /*!
      * \brief      Computes the bitwise OR of each component of `lhs` and `rhs`.
+     *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise OR of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1331,8 +1408,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise OR of each component of `lhs` and each
      *             corresponding component of `rhs`.
      */
@@ -1350,8 +1429,10 @@ namespace tue
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise XOR of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1368,8 +1449,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise XOR of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1386,8 +1469,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise XOR of each component of `lhs` and each
      *             corresponding component of `rhs`.
      */
@@ -1408,8 +1493,10 @@ namespace tue
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise shift left of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1427,8 +1514,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise shift left of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1446,8 +1535,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise shift left of each component of `lhs` by each
      *             corresponding component of `rhs`.
      */
@@ -1466,8 +1557,10 @@ namespace tue
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise shift right of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1485,8 +1578,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
      * \tparam N   The component count of `lhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise shift right of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1504,8 +1599,10 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     The bitwise shift right of each component of `lhs` by each
      *             corresponding component of `rhs`.
      */
@@ -1522,11 +1619,14 @@ namespace tue
 
     /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
+     *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     `true` if all the corresponding pairs of components compare
      *             equal and `false` otherwise.
      */
@@ -1539,11 +1639,14 @@ namespace tue
 
     /*!
      * \brief      Determines whether or not two `vec`'s compare not equal.
+     *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam N   The component count of both `lhs` and `rhs`.
+     *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
+     *
      * \return     `true` if at least one of the corresponding pairs of
      *             components compares not equal and `false` otherwise.
      */
@@ -1559,9 +1662,12 @@ namespace tue
     {
         /*!
          * \brief     Computes `tue::math::sin()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::sin()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1573,9 +1679,12 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::cos()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::cos()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1591,6 +1700,7 @@ namespace tue
          *
          * \tparam T       The component type of `v`.
          * \tparam N       The component count of `v`.
+         *
          * \param v        A `vec`.
          * \param sin_out  A reference to the `vec` to store the `sin()` results
          *                 in.
@@ -1608,9 +1718,12 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::exp()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::exp()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1622,9 +1735,12 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::log()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::log()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1636,9 +1752,12 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::abs()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::abs()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1655,8 +1774,10 @@ namespace tue
          * \tparam T         The type of parameter `base`.
          * \tparam U         The component type of `exponents`.
          * \tparam N         The component count of `exponents`.
+         *
          * \param base       The base.
          * \param exponents  The exponents.
+         *
          * \return           `tue::math::pow()` for `base` and each component of
          *                   `exponents`.
          */
@@ -1675,8 +1796,10 @@ namespace tue
          * \tparam T        The component type of `bases`.
          * \tparam U        The type of parameter `exponent`.
          * \tparam N        The component count of `bases`.
+         *
          * \param bases     The bases.
          * \param exponent  The exponent.
+         *
          * \return          `tue::math::pow()` for each component of `bases` and
          *                  `exponent`.
          */
@@ -1696,8 +1819,10 @@ namespace tue
          * \tparam T         The component type of `bases`.
          * \tparam U         The component type of `exponents`.
          * \tparam N         The component count of `bases` and `exponents`.
+         *
          * \param bases      The bases.
          * \param exponents  The exponents.
+         *
          * \return           `tue::math::pow()` for each component of `bases`
          *                   and each corresponding component of `exponents`.
          */
@@ -1711,9 +1836,12 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::recip()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::recip()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1725,9 +1853,12 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::sqrt()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::sqrt()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1739,9 +1870,12 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::rsqrt()` for each component of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    `tue::math::rsqrt()` for each component of `v`.
          */
         template<typename T, int N>
@@ -1757,8 +1891,10 @@ namespace tue
          *
          * \tparam T  The component type of `v1` and `v2`.
          * \tparam N  The component count of `v1` and `v2`.
+         *
          * \param v1  A `vec`.
          * \param v2  Another `vec`.
+         *
          * \return    `tue::math::min()` for each corresponding pair of
          *            components of `v1` and `v2`.
          */
@@ -1774,8 +1910,10 @@ namespace tue
          *
          * \tparam T  The component type of `v1` and `v2`.
          * \tparam N  The component count of `v1` and `v2`.
+         *
          * \param v1  A `vec`.
          * \param v2  Another `vec`.
+         *
          * \return    `tue::math::max()` for each corresponding pair of
          *            components of `v1` and `v2`.
          */
@@ -1787,11 +1925,14 @@ namespace tue
 
         /*!
          * \brief      Computes the dot product of `lhs` and `rhs`.
+         *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     The dot product of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
@@ -1803,10 +1944,13 @@ namespace tue
 
         /*!
          * \brief      Computes the cross product of `lhs` and `rhs`.
+         *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     The cross product of `lhs` and `rhs`.
          */
         template<typename T, typename U>
@@ -1822,9 +1966,12 @@ namespace tue
 
         /*!
          * \brief     Computes the vector length of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    The vector length of `v`.
          */
         template<typename T, int N>
@@ -1836,9 +1983,12 @@ namespace tue
 
         /*!
          * \brief     Computes the vector length squared of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    The vector length squared of `v`.
          */
         template<typename T, int N>
@@ -1849,9 +1999,12 @@ namespace tue
 
         /*!
          * \brief     Computes a normalized copy of `v`.
+         *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
+         *
          * \param v   A `vec`.
+         *
          * \return    A normalized copy of `v`.
          */
         template<typename T, int N>
@@ -1870,9 +2023,11 @@ namespace tue
          * \tparam T          The component type of `conditions`.
          * \tparam U          The component type of `values` and `otherwise`.
          * \tparam N          The component count of all three parameters.
+         *
          * \param conditions  A `vec`.
          * \param values      Another `vec`.
          * \param otherwise   Another `vec`.
+         *
          * \return            `tue::math::select()` for each corresponding
          *                    triple of components from `conditions`, `values`,
          *                    and `otherwise`.
@@ -1893,8 +2048,10 @@ namespace tue
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of `lhs` and `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `tue::math::less()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
@@ -1913,8 +2070,10 @@ namespace tue
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of `lhs` and `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `tue::math::less_equal()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
@@ -1933,8 +2092,10 @@ namespace tue
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of `lhs` and `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `tue::math::greater()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
@@ -1953,8 +2114,10 @@ namespace tue
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of `lhs` and `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `tue::math::greater_equal()` for each corresponding pair
          *             of components of `lhs` and `rhs`.
          */
@@ -1973,8 +2136,10 @@ namespace tue
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of `lhs` and `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `tue::math::equal()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
@@ -1993,8 +2158,10 @@ namespace tue
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
          * \tparam N   The component count of `lhs` and `rhs`.
+         *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
+         *
          * \return     `tue::math::not_equal()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
