@@ -61,6 +61,15 @@ namespace
         test_assert(v[3] == 7.8);
     }
 
+    TEST_CASE(extend_vec3_constructor)
+    {
+        CONST_OR_CONSTEXPR dquat v = { { 1.2, 3.4, 5.6 }, 7.8 };
+        test_assert(v[0] == 1.2);
+        test_assert(v[1] == 3.4);
+        test_assert(v[2] == 5.6);
+        test_assert(v[3] == 7.8);
+    }
+
     TEST_CASE(subscript_operator)
     {
         CONST_OR_CONSTEXPR dquat ceq(1.2, 3.4, 5.6, 7.8);

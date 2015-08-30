@@ -8,11 +8,16 @@
 
 #pragma once
 
+#include "vec.hpp"
+
 namespace tue
 {
     /*!
      * \brief     A quaternion.
      * \details   `quat` has the same size and alignment requirements as `T[4]`.
+     *            The first three components represent the vector part of the
+     *            quaternion. The fourth component represents the scalar part.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -62,6 +67,17 @@ namespace tue
         constexpr quat(
             const T& x, const T& y, const T& z, const T& w) noexcept :
             impl_({{ x, y, z, w }})
+        {
+        }
+
+        /*!
+         * \brief    Constructs each component with the value of the
+         *           corresponding argument.
+         * \param v  The values to construct the first three components with.
+         * \param s  The value to construct the fourth component with.
+         */
+        constexpr quat(const vec3<T>& v, const T& s) noexcept :
+            impl_({{ v[0], v[1], v[2], s }})
         {
         }
 
