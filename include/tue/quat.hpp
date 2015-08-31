@@ -71,13 +71,25 @@ namespace tue
         }
 
         /*!
-         * \brief    Constructs each component with the value of the
-         *           corresponding argument.
-         * \param v  The values to construct the first three components with.
-         * \param s  The value to construct the fourth component with.
+         * \brief      Constructs each component with the value of the
+         *             corresponding argument.
+         *
+         * \param xyz  The values to construct the first three components with.
+         * \param w    The value to construct the fourth component with.
          */
-        constexpr quat(const vec3<T>& v, const T& s) noexcept :
-            impl_({{ v[0], v[1], v[2], s }})
+        constexpr quat(const vec3<T>& xyz, const T& w) noexcept :
+            impl_({{ xyz[0], xyz[1], xyz[2], w }})
+        {
+        }
+
+        /*!
+         * \brief       Explicitly casts a `vec4` to a `quat`.
+         * \tparam U    The component type of `xyzw`.
+         * \param xyzw  The `vec` to cast from.
+         */
+        template<typename U>
+        explicit constexpr quat(const vec4<U>& xyzw) noexcept :
+            impl_({{ T(xyzw[0]), T(xyzw[1]), T(xyzw[2]), T(xyzw[3]) }})
         {
         }
 
@@ -166,6 +178,228 @@ namespace tue
         T* data() noexcept
         {
             return this->impl_.data;
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s first component.
+         * \return  A copy of this `quat`'s first component.
+         */
+        constexpr T x() const noexcept
+        {
+            return this->impl_.data[0];
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s second component.
+         * \return  A copy of this `quat`'s second component.
+         */
+        constexpr T y() const noexcept
+        {
+            return this->impl_.data[1];
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s third component.
+         * \return  A copy of this `quat`'s third component.
+         */
+        constexpr T z() const noexcept
+        {
+            return this->impl_.data[2];
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s fourth component.
+         * \return  A copy of this `quat`'s fourth component.
+         */
+        constexpr T w() const noexcept
+        {
+            return this->impl_.data[3];
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s first three components.
+         * \return  A copy of this `quat`'s first three components.
+         */
+        constexpr vec3<T> xyz() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+            };
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s four components.
+         * \return  A copy of this `quat`'s four components.
+         */
+        constexpr vec4<T> xyzw() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+                this->impl_.data[3],
+            };
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s first three components.
+         * \return  A copy of this `quat`'s first three components.
+         */
+        constexpr vec3<T> v() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+            };
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s fourth component.
+         * \return  A copy of this `quat`'s fourth component.
+         */
+        constexpr T s() const noexcept
+        {
+            return this->impl_.data[3];
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s first component.
+         * \param x  The new value for the first component.
+         */
+        void set_x(const T& x) noexcept
+        {
+            this->impl_.data[0] = x;
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s second component.
+         * \param y  The new value for the second component.
+         */
+        void set_y(const T& y) noexcept
+        {
+            this->impl_.data[1] = y;
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s third component.
+         * \param z  The new value for the third component.
+         */
+        void set_z(const T& z) noexcept
+        {
+            this->impl_.data[2] = z;
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s fourth component.
+         * \param w  The new value for the fourth component.
+         */
+        void set_w(const T& w) noexcept
+        {
+            this->impl_.data[3] = w;
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s first three components.
+         *
+         * \param x  The new value for the first component.
+         * \param y  The new value for the second component.
+         * \param z  The new value for the third component.
+         */
+        void set_xyz(const T& x, const T& y, const T& z) noexcept
+        {
+            this->impl_.data[0] = x;
+            this->impl_.data[1] = y;
+            this->impl_.data[2] = z;
+        }
+
+        /*!
+         * \brief      Sets this `quat`'s first three components.
+         * \param xyz  The new values for the first three components.
+         */
+        void set_xyz(const vec3<T>& xyz) noexcept
+        {
+            this->impl_.data[0] = xyz[0];
+            this->impl_.data[1] = xyz[1];
+            this->impl_.data[2] = xyz[2];
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s four components.
+         *
+         * \param x  The new value for the first component.
+         * \param y  The new value for the second component.
+         * \param z  The new value for the third component.
+         * \param w  The new value for the fourth component.
+         */
+        void set_xyzw(const T& x, const T& y, const T& z, const T& w) noexcept
+        {
+            this->impl_.data[0] = x;
+            this->impl_.data[1] = y;
+            this->impl_.data[2] = z;
+            this->impl_.data[3] = w;
+        }
+
+        /*!
+         * \brief      Sets this `quat`'s four components.
+         *
+         * \param xyz  The new values for the first three components.
+         * \param w    The new value for the fourth component.
+         */
+        void set_xyzw(const vec3<T>& xyz, const T& w) noexcept
+        {
+            this->impl_.data[0] = xyz[0];
+            this->impl_.data[1] = xyz[1];
+            this->impl_.data[2] = xyz[2];
+            this->impl_.data[3] = w;
+        }
+
+        /*!
+         * \brief       Sets this `quat`'s four components.
+         * \param xyzw  The new values for the four components.
+         */
+        void set_xyzw(const vec4<T>& xyzw) noexcept
+        {
+            this->impl_.data[0] = xyzw[0];
+            this->impl_.data[1] = xyzw[1];
+            this->impl_.data[2] = xyzw[2];
+            this->impl_.data[3] = xyzw[3];
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s first three components.
+         *
+         * \param x  The new value for the first component.
+         * \param y  The new value for the second component.
+         * \param z  The new value for the third component.
+         */
+        void set_v(const T& x, const T& y, const T& z) noexcept
+        {
+            this->impl_.data[0] = x;
+            this->impl_.data[1] = y;
+            this->impl_.data[2] = z;
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s first three components.
+         * \param v  The new values for the first three components.
+         */
+        void set_v(const vec3<T>& v) noexcept
+        {
+            this->impl_.data[0] = v[0];
+            this->impl_.data[1] = v[1];
+            this->impl_.data[2] = v[2];
+        }
+
+        /*!
+         * \brief    Sets this `quat`'s fourth component.
+         * \param s  The new value for the fourth component.
+         */
+        void set_s(const T& s) noexcept
+        {
+            this->impl_.data[3] = s;
         }
     };
 

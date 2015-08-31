@@ -70,6 +70,16 @@ namespace
         test_assert(q[3] == 7.8);
     }
 
+    TEST_CASE(vec4_constructor)
+    {
+        CONST_OR_CONSTEXPR dvec4 v(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR fquat q(v);
+        test_assert(q[0] == 1.2f);
+        test_assert(q[1] == 3.4f);
+        test_assert(q[2] == 5.6f);
+        test_assert(q[3] == 7.8f);
+    }
+
     TEST_CASE(explicit_conversion_constructor)
     {
         CONST_OR_CONSTEXPR dquat dq(1.2, 3.4, 5.6, 7.8);
@@ -136,6 +146,127 @@ namespace
 
         dquat q;
         test_assert(q.data() == static_cast<void*>(&q));
+    }
+
+    TEST_CASE(x_y_z_w)
+    {
+        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto x = q.x();
+        CONST_OR_CONSTEXPR auto y = q.y();
+        CONST_OR_CONSTEXPR auto z = q.z();
+        CONST_OR_CONSTEXPR auto w = q.w();
+        test_assert(x == 1.2);
+        test_assert(y == 3.4);
+        test_assert(z == 5.6);
+        test_assert(w == 7.8);
+    }
+
+    TEST_CASE(xyz)
+    {
+        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto xyz = q.xyz();
+        test_assert(xyz == dvec3(1.2, 3.4, 5.6));
+    }
+
+    TEST_CASE(xyzw)
+    {
+        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto xyzw = q.xyzw();
+        test_assert(xyzw == dvec4(1.2, 3.4, 5.6, 7.8));
+    }
+
+    TEST_CASE(v)
+    {
+        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto v = q.v();
+        test_assert(v == dvec3(1.2, 3.4, 5.6));
+    }
+
+    TEST_CASE(s)
+    {
+        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto s = q.s();
+        test_assert(s == 7.8);
+    }
+
+    TEST_CASE(set_x_y_z_w)
+    {
+        dquat q(1.2, 3.4, 5.6, 7.8);
+        q.set_x(9.10);
+        q.set_y(11.12);
+        q.set_z(13.14);
+        q.set_w(15.16);
+        test_assert(q[0] == 9.10);
+        test_assert(q[1] == 11.12);
+        test_assert(q[2] == 13.14);
+        test_assert(q[3] == 15.16);
+    }
+
+    TEST_CASE(set_xyz)
+    {
+        dquat q(1.2, 3.4, 5.6, 7.8);
+
+        q.set_xyz(9.10, 11.12, 13.14);
+        test_assert(q[0] == 9.10);
+        test_assert(q[1] == 11.12);
+        test_assert(q[2] == 13.14);
+        test_assert(q[3] == 7.8);
+
+        q.set_xyz(dvec3(15.16, 17.18, 19.20));
+        test_assert(q[0] == 15.16);
+        test_assert(q[1] == 17.18);
+        test_assert(q[2] == 19.20);
+        test_assert(q[3] == 7.8);
+    }
+
+    TEST_CASE(set_xyzw)
+    {
+        dquat q(1.2, 3.4, 5.6, 7.8);
+
+        q.set_xyzw(9.10, 11.12, 13.14, 15.16);
+        test_assert(q[0] == 9.10);
+        test_assert(q[1] == 11.12);
+        test_assert(q[2] == 13.14);
+        test_assert(q[3] == 15.16);
+
+        q.set_xyzw(dvec3(17.18, 19.20, 21.22), 23.24);
+        test_assert(q[0] == 17.18);
+        test_assert(q[1] == 19.20);
+        test_assert(q[2] == 21.22);
+        test_assert(q[3] == 23.24);
+
+        q.set_xyzw(dvec4(25.26, 27.28, 29.30, 31.32));
+        test_assert(q[0] == 25.26);
+        test_assert(q[1] == 27.28);
+        test_assert(q[2] == 29.30);
+        test_assert(q[3] == 31.32);
+    }
+
+    TEST_CASE(set_v)
+    {
+        dquat q(1.2, 3.4, 5.6, 7.8);
+
+        q.set_v(9.10, 11.12, 13.14);
+        test_assert(q[0] == 9.10);
+        test_assert(q[1] == 11.12);
+        test_assert(q[2] == 13.14);
+        test_assert(q[3] == 7.8);
+
+        q.set_v(dvec3(15.16, 17.18, 19.20));
+        test_assert(q[0] == 15.16);
+        test_assert(q[1] == 17.18);
+        test_assert(q[2] == 19.20);
+        test_assert(q[3] == 7.8);
+    }
+
+    TEST_CASE(set_s)
+    {
+        dquat q(1.2, 3.4, 5.6, 7.8);
+        q.set_s(9.10);
+        test_assert(q[0] == 1.2);
+        test_assert(q[1] == 3.4);
+        test_assert(q[2] == 5.6);
+        test_assert(q[3] == 9.10);
     }
 
     TEST_CASE(equality_operator)
