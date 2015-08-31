@@ -209,7 +209,7 @@ namespace
     TEST_CASE(set_xy)
     {
         dvec2 v(1.2, 3.4);
-        
+
         v.set_xy(5.6, 7.8);
         test_assert(v[0] == 5.6);
         test_assert(v[1] == 7.8);
@@ -222,7 +222,7 @@ namespace
     TEST_CASE(set_rg)
     {
         dvec2 v(1.2, 3.4);
-        
+
         v.set_rg(5.6, 7.8);
         test_assert(v[0] == 5.6);
         test_assert(v[1] == 7.8);

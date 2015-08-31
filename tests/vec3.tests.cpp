@@ -244,7 +244,7 @@ namespace
     TEST_CASE(set_xy)
     {
         dvec3 v(1.2, 3.4, 5.6);
-        
+
         v.set_xy(7.8, 9.10);
         test_assert(v[0] == 7.8);
         test_assert(v[1] == 9.10);
@@ -259,7 +259,7 @@ namespace
     TEST_CASE(set_rg)
     {
         dvec3 v(1.2, 3.4, 5.6);
-        
+
         v.set_rg(7.8, 9.10);
         test_assert(v[0] == 7.8);
         test_assert(v[1] == 9.10);
@@ -274,7 +274,7 @@ namespace
     TEST_CASE(set_xyz)
     {
         dvec3 v(1.2, 3.4, 5.6);
-        
+
         v.set_xyz(7.8, 9.10, 11.12);
         test_assert(v[0] == 7.8);
         test_assert(v[1] == 9.10);
@@ -294,7 +294,7 @@ namespace
     TEST_CASE(set_rgb)
     {
         dvec3 v(1.2, 3.4, 5.6);
-        
+
         v.set_rgb(7.8, 9.10, 11.12);
         test_assert(v[0] == 7.8);
         test_assert(v[1] == 9.10);
