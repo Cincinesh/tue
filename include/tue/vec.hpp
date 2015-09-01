@@ -15,6 +15,9 @@
 
 namespace tue
 {
+    template<typename T>
+    class quat;
+
     /*!
      * \brief     An `N`-dimensional vector.
      * \details   `vec` has the same size and alignment requirements as `T[N]`.
@@ -759,6 +762,20 @@ namespace tue
          */
         template<typename U>
         inline vec<T, N>& operator*=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Rotates this `vec` by `q`.
+         * \details   This overload is only available when `N` is equal to `3`.
+         *            The operand order may be reversed from what you expect;
+         *            this library generally prefers compound transformations be
+         *            written from left-to-right instead of right-to-left.
+         *
+         * \tparam U  The component type of `q`.
+         * \param q   A rotation `quat`.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator*=(const quat<U>& q) noexcept;
 
         /*!
          * \brief     Divides each component of this `vec` by `x`.

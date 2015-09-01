@@ -292,6 +292,14 @@ namespace
                     - math::dot(q2.v(), q1.v()));
     }
 
+    TEST_CASE(vec_multiplication_operator)
+    {
+        CONST_OR_CONSTEXPR dvec3 v1(1.2, 3.4, 5.6);
+        CONST_OR_CONSTEXPR fquat q(7.8f, 9.10f, 11.12f, 13.14f);
+        CONST_OR_CONSTEXPR auto v2 = v1 * q;
+        test_assert(v2 == (q * dquat(v1, 0.0) * dquat(-q.v(), q.s())).v());
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fquat q1(1.2f, 3.4f, 5.6f, 7.8f);

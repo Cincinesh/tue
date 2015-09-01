@@ -406,6 +406,10 @@ namespace tue
 
         /*!
          * \brief     Rotates this `quat` by `q`.
+         * \details   The operand order may be reversed from what you expect;
+         *            this library generally prefers compound transformations be
+         *            written from left-to-right instead of right-to-left.
+         *
          * \tparam U  The component type of `q`.
          * \param q   A rotation `quat`.
          * \return    A reference to this `quat`.
@@ -416,9 +420,9 @@ namespace tue
 
     /*!
      * \brief      Computes a copy of `lhs` rotated by `rhs`.
-     * \details    The operand order maybe be reversed from what you expect.
-     *             This library generally prefers compound transformations
-     *             be read from left-to-right instead of right-to-left.
+     * \details    The operand order may be reversed from what you expect; this
+     *             library generally prefers compound transformations be written
+     *             from left-to-right instead of right-to-left.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -444,6 +448,35 @@ namespace tue
     template<typename T>
     template<typename U>
     inline quat<T>& quat<T>::operator*=(const quat<U>& q) noexcept
+    {
+        return (*this) = (*this) * q;
+    }
+
+    /*!
+     * \brief      Computes a copy of `lhs` rotated by `rhs`.
+     * \details    The operand order may be reversed from what you expect; this
+     *             library generally prefers compound transformations be written
+     *             from left-to-right instead of right-to-left.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A copy of `lhs` rotated by `rhs`.
+     */
+    template<typename T, typename U>
+    inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
+    operator*(const vec3<T>& lhs, const quat<U>& rhs) noexcept
+    {
+        return (rhs * quat<T>(lhs, T(0)) * quat<U>(-rhs.v(), rhs.s())).v();
+    }
+
+    /**/
+    template<typename T>
+    template<typename U>
+    inline vec<T, 3>& vec<T, 3>::operator*=(const quat<U>& q) noexcept
     {
         return (*this) = (*this) * q;
     }

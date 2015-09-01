@@ -355,6 +355,9 @@ namespace tue
         }
 
         template<typename U>
+        inline vec3<T>& operator*=(const quat<U>& q) noexcept;
+
+        template<typename U>
         vec3<T>& operator/=(const U& x) noexcept
         {
             this->impl_.data[0] /= x;

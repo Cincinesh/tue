@@ -11,6 +11,7 @@
 
 #include <type_traits>
 #include <tue/math.hpp>
+#include <tue/quat.hpp>
 #include <tue/unused.hpp>
 
 namespace
@@ -400,6 +401,16 @@ namespace
         test_assert(v2[0] == 1.2 * 7);
         test_assert(v2[1] == 3.4 * 8);
         test_assert(v2[2] == 5.6 * 9);
+    }
+
+    TEST_CASE(quat_multiplication_assignment_operator)
+    {
+        const dvec3 v1(1.2, 3.4, 5.6);
+        const fquat q(7.8f, 9.10f, 11.12f, 13.14f);
+
+        auto v2 = v1;
+        test_assert(&(v2 *= q) == &v2);
+        test_assert(v2 == v1 * q);
     }
 
     TEST_CASE(division_assignment_operator)
