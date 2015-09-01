@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <utility>
+
 #include "vec.hpp"
 
 namespace tue
@@ -95,7 +97,7 @@ namespace tue
 
         /*!
          * \brief     Explicitly casts another `quat` to a new component type.
-         * \tparam U  The component type of parameter `q`.
+         * \tparam U  The component type of `q`.
          * \param q   The `quat` to cast from.
          */
         template<typename U>
@@ -401,7 +403,50 @@ namespace tue
         {
             this->impl_.data[3] = s;
         }
+
+        /*!
+         * \brief     Rotates this `quat` by `q`.
+         * \tparam U  The component type of `q`.
+         * \param q   A rotation `quat`.
+         * \return    A reference to this `quat`.
+         */
+        template<typename U>
+        inline quat<T>& operator*=(const quat<U>& q) noexcept;
     };
+
+    /*!
+     * \brief      Computes a copy of `lhs` rotated by `rhs`.
+     * \details    The operand order maybe be reversed from what you expect.
+     *             This library generally prefers compound transformations
+     *             be read from left-to-right instead of right-to-left.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A copy of `lhs` rotated by `rhs`.
+     */
+    template<typename T, typename U>
+    inline constexpr quat<decltype(std::declval<T>() * std::declval<U>())>
+    operator*(const quat<T>& lhs, const quat<U>& rhs) noexcept
+    {
+        return {
+            rhs.s()*lhs.v() + lhs.s()*rhs.v()
+                + tue::math::cross(rhs.v(), lhs.v()),
+            rhs.s()*lhs.s()
+                - tue::math::dot(rhs.v(), lhs.v()),
+        };
+    }
+
+    /**/
+    template<typename T>
+    template<typename U>
+    inline quat<T>& quat<T>::operator*=(const quat<U>& q) noexcept
+    {
+        return (*this) = (*this) * q;
+    }
 
     /*!
      * \brief      Determines whether or not two `quat`'s compare equal.

@@ -10,6 +10,7 @@
 #include <mon/test_case.hpp>
 
 #include <tue/unused.hpp>
+#include <tue/vec.hpp>
 
 namespace
 {
@@ -267,6 +268,28 @@ namespace
         test_assert(q[1] == 3.4);
         test_assert(q[2] == 5.6);
         test_assert(q[3] == 9.10);
+    }
+
+    TEST_CASE(multiplication_assignment_operator)
+    {
+        const dquat q1(1.2, 3.4, 5.6, 7.8);
+        const fquat q2(9.10f, 11.12f, 13.14f, 15.16f);
+
+        auto q3 = q1;
+        test_assert(&(q3 *= q2) == &q3);
+        test_assert(q3 == q1 * q2);
+    }
+
+    TEST_CASE(multiplication_operator)
+    {
+        CONST_OR_CONSTEXPR dquat q1(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR fquat q2(9.10f, 11.12f, 13.14f, 15.16f);
+        CONST_OR_CONSTEXPR auto q3 = q1 * q2;
+
+        test_assert(q3.v() == q2.s()*q1.v() + q1.s()*q2.v()
+                    + math::cross(q2.v(), q1.v()));
+        test_assert(q3.s() == q2.s()*q1.s()
+                    - math::dot(q2.v(), q1.v()));
     }
 
     TEST_CASE(equality_operator)
