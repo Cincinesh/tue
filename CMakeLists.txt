@@ -23,6 +23,7 @@ set(TUE_SOURCES
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp
+    include/tue/mat.hpp
     include/tue/math.hpp
     include/tue/quat.hpp
     include/tue/unused.hpp
@@ -30,6 +31,9 @@ set(TUE_SOURCES
 
 # tue.tests
 set(TUE_TEST_SOURCES
+    tests/mat2xR.tests.cpp
+    tests/mat3xR.tests.cpp
+    tests/mat4xR.tests.cpp
     tests/math.tests.cpp
     tests/quat.tests.cpp
     tests/unused.tests.cpp
