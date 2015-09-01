@@ -524,4 +524,28 @@ namespace tue
             || lhs[2] != rhs[2]
             || lhs[3] != rhs[3];
     }
+
+    /**/
+    namespace math
+    {
+        /*!
+         * \brief     Computes a normalized copy of `q`.
+         * \tparam T  The component type of `q`.
+         * \param q   A `quat`.
+         * \return    A normalized copy of `q`.
+         */
+        template<typename T>
+        inline quat<decltype(tue::math::sqrt(std::declval<T>()))>
+        normalize(const quat<T>& q) noexcept
+        {
+            const auto length2 = q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3];
+            const auto length = tue::math::sqrt(length2);
+            return {
+                q[0] / length,
+                q[1] / length,
+                q[2] / length,
+                q[3] / length,
+            };
+        }
+    }
 }

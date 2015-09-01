@@ -339,4 +339,10 @@ namespace
         test_assert(result4 == true);
         test_assert(result5 == true);
     }
+
+    TEST_CASE(normalize)
+    {
+        const dquat q(1.2, 3.4, 5.6, 7.8);
+        test_assert(math::normalize(q) == dquat(math::normalize(q.xyzw())));
+    }
 }

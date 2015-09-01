@@ -2025,8 +2025,7 @@ namespace tue
          * \return    A normalized copy of `v`.
          */
         template<typename T, int N>
-        inline decltype(std::declval<vec<T, N>>()
-                      / tue::math::length(std::declval<vec<T, N>>()))
+        inline vec<decltype(tue::math::sqrt(std::declval<T>())), N>
         normalize(const vec<T, N>& v) noexcept
         {
             return v / tue::math::length(v);
