@@ -110,6 +110,14 @@ namespace tue
             return this->impl_.data[1];
         }
 
+        constexpr vec2<T> xy() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+            };
+        }
+
         constexpr T r() const noexcept
         {
             return this->impl_.data[0];
@@ -118,14 +126,6 @@ namespace tue
         constexpr T g() const noexcept
         {
             return this->impl_.data[1];
-        }
-
-        constexpr vec2<T> xy() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-            };
         }
 
         constexpr vec2<T> rg() const noexcept
@@ -146,16 +146,6 @@ namespace tue
             this->impl_.data[1] = y;
         }
 
-        void set_r(const T& r) noexcept
-        {
-            this->impl_.data[0] = r;
-        }
-
-        void set_g(const T& g) noexcept
-        {
-            this->impl_.data[1] = g;
-        }
-
         void set_xy(const T& x, const T& y) noexcept
         {
             this->impl_.data[0] = x;
@@ -166,6 +156,16 @@ namespace tue
         {
             this->impl_.data[0] = xy[0];
             this->impl_.data[1] = xy[1];
+        }
+
+        void set_r(const T& r) noexcept
+        {
+            this->impl_.data[0] = r;
+        }
+
+        void set_g(const T& g) noexcept
+        {
+            this->impl_.data[1] = g;
         }
 
         void set_rg(const T& r, const T& g) noexcept

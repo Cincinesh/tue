@@ -366,6 +366,30 @@ namespace tue
         inline constexpr T w() const noexcept;
 
         /*!
+         * \brief    Returns a copy of this `vec`'s first two components.
+         * \return   A copy of this `vec`'s first two components.
+         */
+        inline constexpr vec2<T> xy() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s first three components.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \return   A copy of this `vec`'s first three components.
+         */
+        inline constexpr vec3<T> xyz() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s first four components.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `4`.
+         *
+         * \return   A copy of this `vec`'s first four components.
+         */
+        inline constexpr vec4<T> xyzw() const noexcept;
+
+        /*!
          * \brief   Returns a copy of this `vec`'s first component.
          * \return  A copy of this `vec`'s first component.
          */
@@ -399,12 +423,6 @@ namespace tue
          * \brief    Returns a copy of this `vec`'s first two components.
          * \return   A copy of this `vec`'s first two components.
          */
-        inline constexpr vec2<T> xy() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s first two components.
-         * \return   A copy of this `vec`'s first two components.
-         */
         inline constexpr vec2<T> rg() const noexcept;
 
         /*!
@@ -414,25 +432,7 @@ namespace tue
          *
          * \return   A copy of this `vec`'s first three components.
          */
-        inline constexpr vec3<T> xyz() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s first three components.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `3`.
-         *
-         * \return   A copy of this `vec`'s first three components.
-         */
         inline constexpr vec3<T> rgb() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s first four components.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `4`.
-         *
-         * \return   A copy of this `vec`'s first four components.
-         */
-        inline constexpr vec4<T> xyzw() const noexcept;
 
         /*!
          * \brief    Returns a copy of this `vec`'s first four components.
@@ -474,36 +474,6 @@ namespace tue
         inline void set_w(const T& w) noexcept;
 
         /*!
-         * \brief    Sets this `vec`'s first component.
-         * \param r  The new value for the first component.
-         */
-        inline void set_r(const T& r) noexcept;
-
-        /*!
-         * \brief    Sets this `vec`'s second component.
-         * \param g  The new value for the second component.
-         */
-        inline void set_g(const T& g) noexcept;
-
-        /*!
-         * \brief    Sets this `vec`'s third component.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `3`.
-         *
-         * \param b  The new value for the third component.
-         */
-        inline void set_b(const T& b) noexcept;
-
-        /*!
-         * \brief    Sets this `vec`'s fourth component.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `4`.
-         *
-         * \param a  The new value for the fourth component.
-         */
-        inline void set_a(const T& a) noexcept;
-
-        /*!
          * \brief    Sets this `vec`'s first two components.
          *
          * \param x  The new value for the first component.
@@ -516,20 +486,6 @@ namespace tue
          * \param xy  The new values for the first two components.
          */
         inline void set_xy(const vec2<T>& xy) noexcept;
-
-        /*!
-         * \brief    Sets this `vec`'s first two components.
-         *
-         * \param r  The new value for the first component.
-         * \param g  The new value for the second component.
-         */
-        inline void set_rg(const T& r, const T& g) noexcept;
-
-        /*!
-         * \brief     Sets this `vec`'s first two components.
-         * \param rg  The new values for the first two components.
-         */
-        inline void set_rg(const vec2<T>& rg) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first three components.
@@ -560,36 +516,6 @@ namespace tue
          * \param xyz  The new values for the first three components.
          */
         inline void set_xyz(const vec3<T>& xyz) noexcept;
-
-        /*!
-         * \brief    Sets this `vec`'s first three components.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `3`.
-         *
-         * \param r  The new value for the first component.
-         * \param g  The new value for the second component.
-         * \param b  The new value for the third component.
-         */
-        inline void set_rgb(const T& r, const T& g, const T& b) noexcept;
-
-        /*!
-         * \brief     Sets this `vec`'s first three components.
-         * \details   This overload is only available when `N` is greater than
-         *            or equal to `3`.
-         *
-         * \param rg  The new values for the first two components.
-         * \param b   The new value for the third component.
-         */
-        inline void set_rgb(const vec2<T>& rg, const T& b) noexcept;
-
-        /*!
-         * \brief      Sets this `vec`'s first three components.
-         * \details    This overload is only available when `N` is greater than
-         *             or equal to `3`.
-         *
-         * \param rgb  The new values for the first three components.
-         */
-        inline void set_rgb(const vec3<T>& rgb) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first four components.
@@ -634,6 +560,80 @@ namespace tue
          * \param xyzw  The new values for the first four components.
          */
         inline void set_xyzw(const vec4<T>& xyzw) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s first component.
+         * \param r  The new value for the first component.
+         */
+        inline void set_r(const T& r) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s second component.
+         * \param g  The new value for the second component.
+         */
+        inline void set_g(const T& g) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s third component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \param b  The new value for the third component.
+         */
+        inline void set_b(const T& b) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s fourth component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `4`.
+         *
+         * \param a  The new value for the fourth component.
+         */
+        inline void set_a(const T& a) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s first two components.
+         *
+         * \param r  The new value for the first component.
+         * \param g  The new value for the second component.
+         */
+        inline void set_rg(const T& r, const T& g) noexcept;
+
+        /*!
+         * \brief     Sets this `vec`'s first two components.
+         * \param rg  The new values for the first two components.
+         */
+        inline void set_rg(const vec2<T>& rg) noexcept;
+
+        /*!
+         * \brief    Sets this `vec`'s first three components.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \param r  The new value for the first component.
+         * \param g  The new value for the second component.
+         * \param b  The new value for the third component.
+         */
+        inline void set_rgb(const T& r, const T& g, const T& b) noexcept;
+
+        /*!
+         * \brief     Sets this `vec`'s first three components.
+         * \details   This overload is only available when `N` is greater than
+         *            or equal to `3`.
+         *
+         * \param rg  The new values for the first two components.
+         * \param b   The new value for the third component.
+         */
+        inline void set_rgb(const vec2<T>& rg, const T& b) noexcept;
+
+        /*!
+         * \brief      Sets this `vec`'s first three components.
+         * \details    This overload is only available when `N` is greater than
+         *             or equal to `3`.
+         *
+         * \param rgb  The new values for the first three components.
+         */
+        inline void set_rgb(const vec3<T>& rgb) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first four components.
