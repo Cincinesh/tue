@@ -342,7 +342,13 @@ namespace
 
     TEST_CASE(normalize)
     {
-        const dquat q(1.2, 3.4, 5.6, 7.8);
-        test_assert(math::normalize(q) == dquat(math::normalize(q.xyzw())));
+        const auto q = math::normalize(dquat(1.2, 3.4, 5.6, 7.8));
+        test_assert(q == dquat(math::normalize(q.xyzw())));
+    }
+
+    TEST_CASE(conjugate)
+    {
+        CONST_OR_CONSTEXPR auto q = math::conjugate(dquat(1.2, 3.4, 5.6, 7.8));
+        test_assert(q == dquat(-1.2, -3.4, -5.6, 7.8));
     }
 }

@@ -547,5 +547,17 @@ namespace tue
                 q[3] / length,
             };
         }
+
+        /*!
+         * \brief     Computes a the conjugate of `q`.
+         * \tparam T  The component type of `q`.
+         * \param q   A `quat`.
+         * \return    The conjugate of `q`.
+         */
+        template<typename T>
+        inline constexpr quat<T> conjugate(const quat<T>& q) noexcept
+        {
+            return { -q[0], -q[1], -q[2], q[3] };
+        }
     }
 }
