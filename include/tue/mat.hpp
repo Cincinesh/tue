@@ -89,6 +89,96 @@ namespace tue
     template<typename T>
     using mat4x4 = mat<T, 4, 4>;
 
+    /*!
+     * \brief  A 2x2 matrix with `float` components.
+     */
+    using fmat2x2 = mat2x2<float>;
+
+    /*!
+     * \brief  A 2x3 matrix with `float` components.
+     */
+    using fmat2x3 = mat2x3<float>;
+
+    /*!
+     * \brief  A 2x4 matrix with `float` components.
+     */
+    using fmat2x4 = mat2x4<float>;
+
+    /*!
+     * \brief  A 3x2 matrix with `float` components.
+     */
+    using fmat3x2 = mat3x2<float>;
+
+    /*!
+     * \brief  A 3x3 matrix with `float` components.
+     */
+    using fmat3x3 = mat3x3<float>;
+
+    /*!
+     * \brief  A 3x4 matrix with `float` components.
+     */
+    using fmat3x4 = mat3x4<float>;
+
+    /*!
+     * \brief  A 4x2 matrix with `float` components.
+     */
+    using fmat4x2 = mat4x2<float>;
+
+    /*!
+     * \brief  A 4x3 matrix with `float` components.
+     */
+    using fmat4x3 = mat4x3<float>;
+
+    /*!
+     * \brief  A 4x4 matrix with `float` components.
+     */
+    using fmat4x4 = mat4x4<float>;
+
+    /*!
+     * \brief  A 2x2 matrix with `double` components.
+     */
+    using dmat2x2 = mat2x2<double>;
+
+    /*!
+     * \brief  A 2x3 matrix with `double` components.
+     */
+    using dmat2x3 = mat2x3<double>;
+
+    /*!
+     * \brief  A 2x4 matrix with `double` components.
+     */
+    using dmat2x4 = mat2x4<double>;
+
+    /*!
+     * \brief  A 3x2 matrix with `double` components.
+     */
+    using dmat3x2 = mat3x2<double>;
+
+    /*!
+     * \brief  A 3x3 matrix with `double` components.
+     */
+    using dmat3x3 = mat3x3<double>;
+
+    /*!
+     * \brief  A 3x4 matrix with `double` components.
+     */
+    using dmat3x4 = mat3x4<double>;
+
+    /*!
+     * \brief  A 4x2 matrix with `double` components.
+     */
+    using dmat4x2 = mat4x2<double>;
+
+    /*!
+     * \brief  A 4x3 matrix with `double` components.
+     */
+    using dmat4x3 = mat4x3<double>;
+
+    /*!
+     * \brief  A 4x4 matrix with `double` components.
+     */
+    using dmat4x4 = mat4x4<double>;
+
     /**/
     template<typename T, int C, int R>
     class mat
