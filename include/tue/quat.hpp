@@ -465,7 +465,8 @@ namespace tue
     inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
     operator*(const vec3<T>& lhs, const quat<U>& rhs) noexcept
     {
-        return (rhs * quat<T>(lhs, T(0)) * quat<U>(-rhs.v(), rhs.s())).v();
+        return (rhs * quat<T>(lhs, T(0))
+            * quat<U>(-rhs[0], -rhs[1], -rhs[2], rhs[3])).v();
     }
 
     /*!
