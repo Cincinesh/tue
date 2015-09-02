@@ -514,3 +514,5 @@ namespace tue
         inline mat<T, C, R>& operator>>=(const mat<U, C, R>& m) noexcept;
     };
 }
+
+#include "detail_/mat4xR.hpp"

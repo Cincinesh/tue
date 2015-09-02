@@ -20,6 +20,7 @@ set(MON_SOURCES
 
 # tue
 set(TUE_SOURCES
+    include/tue/detail_/mat4xR.hpp
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp
