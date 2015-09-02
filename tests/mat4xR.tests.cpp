@@ -130,7 +130,7 @@ namespace
         tue::unused(m);
     }
 
-    TEST_CASE(main_diagonal)
+    TEST_CASE(main_diagonal_constructor)
     {
         CONST_OR_CONSTEXPR dmat4x2 m1(1.2);
         test_assert(m1[0] == dvec2(1.2, 0.0));
