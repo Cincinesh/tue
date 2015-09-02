@@ -355,7 +355,10 @@ namespace tue
         }
 
         template<typename U>
-        inline vec3<T>& operator*=(const quat<U>& q) noexcept;
+        vec3<T>& operator*=(const quat<U>& q) noexcept
+        {
+            return (*this) = (*this) * q;
+        }
 
         template<typename U>
         vec3<T>& operator/=(const U& x) noexcept

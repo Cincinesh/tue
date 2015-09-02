@@ -415,7 +415,10 @@ namespace tue
          * \return    A reference to this `quat`.
          */
         template<typename U>
-        inline quat<T>& operator*=(const quat<U>& q) noexcept;
+        quat<T>& operator*=(const quat<U>& q) noexcept
+        {
+            return (*this) = (*this) * q;
+        }
     };
 
     /*!
@@ -444,14 +447,6 @@ namespace tue
         };
     }
 
-    /**/
-    template<typename T>
-    template<typename U>
-    inline quat<T>& quat<T>::operator*=(const quat<U>& q) noexcept
-    {
-        return (*this) = (*this) * q;
-    }
-
     /*!
      * \brief      Computes a copy of `lhs` rotated by `rhs`.
      * \details    The operand order may be reversed from what you expect; this
@@ -471,14 +466,6 @@ namespace tue
     operator*(const vec3<T>& lhs, const quat<U>& rhs) noexcept
     {
         return (rhs * quat<T>(lhs, T(0)) * quat<U>(-rhs.v(), rhs.s())).v();
-    }
-
-    /**/
-    template<typename T>
-    template<typename U>
-    inline vec<T, 3>& vec<T, 3>::operator*=(const quat<U>& q) noexcept
-    {
-        return (*this) = (*this) * q;
     }
 
     /*!
