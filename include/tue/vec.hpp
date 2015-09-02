@@ -946,6 +946,13 @@ namespace tue
         template<typename U>
         inline vec<T, N>& operator>>=(const vec<U, N>& v) noexcept;
     };
+
+    /**/
+    namespace detail_
+    {
+        template<typename T, int N>
+        struct vec_utils;
+    }
 }
 
 #include "detail_/vec2.hpp"

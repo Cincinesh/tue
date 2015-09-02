@@ -1310,5 +1310,37 @@ namespace tue
                 tue::math::not_equal(lhs[3], rhs[3]),
             };
         }
+
+        template<typename T>
+        struct vec_utils<T, 4>
+        {
+            template<typename X, typename Y, typename Z, typename W>
+            static constexpr vec4<T> create(
+                const X& x, const Y& y, const Z& z, const W& w) noexcept
+            {
+                return { T(x), T(y), T(z), T(w) };
+            }
+
+            template<typename U, typename Z, typename W>
+            static constexpr vec4<T> create(
+                const vec2<U>& v, const Z& z, const W& w) noexcept
+            {
+                return { vec2<T>(v), T(z), T(w) };
+            }
+
+            template<typename U, typename Z, typename W>
+            static constexpr vec4<T> create(
+                const vec3<U>& v, const Z&, const W& w) noexcept
+            {
+                return { vec3<T>(v), T(w) };
+            }
+
+            template<typename U, typename Z, typename W>
+            static constexpr vec4<T> create(
+                const vec4<U>& v, const Z&, const W&) noexcept
+            {
+                return vec4<T>(v);
+            }
+        };
     }
 }
