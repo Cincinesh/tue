@@ -690,7 +690,7 @@ namespace tue
 
         /*!
          * \brief   Post-increments each component of this `vec`.
-         * \return  A copy this `vec` before being incremented.
+         * \return  A copy of this `vec` before being incremented.
          */
         inline vec<T, N> operator++(int) noexcept;
 
@@ -702,7 +702,7 @@ namespace tue
 
         /*!
          * \brief   Post-decrements each component of this `vec`.
-         * \return  A copy this `vec` before being decremented.
+         * \return  A copy of this `vec` before being decremented.
          */
         inline vec<T, N> operator--(int) noexcept;
 
