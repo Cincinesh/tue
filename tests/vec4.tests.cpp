@@ -39,18 +39,18 @@ namespace
 
     TEST_CASE(component_type)
     {
-        test_assert((
-            std::is_same<typename vec4<short>::component_type, short>::value));
-        test_assert((
-            std::is_same<typename fvec4::component_type, float>::value));
-        test_assert((
-            std::is_same<typename dvec4::component_type, double>::value));
-        test_assert((
-            std::is_same<typename ivec4::component_type, int>::value));
-        test_assert((
-            std::is_same<typename uvec4::component_type, unsigned int>::value));
-        test_assert((
-            std::is_same<typename bvec4::component_type, bool>::value));
+        test_assert((std::is_same<
+            typename vec4<short>::component_type, short>::value));
+        test_assert((std::is_same<
+            typename fvec4::component_type, float>::value));
+        test_assert((std::is_same<
+            typename dvec4::component_type, double>::value));
+        test_assert((std::is_same<
+            typename ivec4::component_type, int>::value));
+        test_assert((std::is_same<
+            typename uvec4::component_type, unsigned int>::value));
+        test_assert((std::is_same<
+            typename bvec4::component_type, bool>::value));
     }
 
     TEST_CASE(component_count)

@@ -1325,21 +1325,21 @@ namespace tue
             static constexpr vec4<T> create(
                 const vec2<U>& v, const Z& z, const W& w) noexcept
             {
-                return { vec2<T>(v), T(z), T(w) };
+                return { T(v[0]), T(v[1]), T(z), T(w) };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec4<T> create(
                 const vec3<U>& v, const Z&, const W& w) noexcept
             {
-                return { vec3<T>(v), T(w) };
+                return { T(v[0]), T(v[1]), T(v[2]), T(w) };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec4<T> create(
                 const vec4<U>& v, const Z&, const W&) noexcept
             {
-                return vec4<T>(v);
+                return { T(v[0]), T(v[1]), T(v[2]), T(v[3]) };
             }
         };
     }
