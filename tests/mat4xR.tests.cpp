@@ -656,4 +656,56 @@ namespace
         test_assert(m2[2] == (im42[2] >> sm42[2]));
         test_assert(m2[3] == (im42[3] >> sm42[3]));
     }
+
+    TEST_CASE(equality_operator)
+    {
+        CONST_OR_CONSTEXPR fmat4x2 m1(
+            fvec2(1.2f), fvec2(3.4f), fvec2(5.6f), fvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m2(
+            dvec2(1.2f), dvec2(3.4f), dvec2(5.6f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m3(
+            dvec2(1.2f), dvec2(3.4f), dvec2(5.6f), dvec2(0.0f));
+        CONST_OR_CONSTEXPR dmat4x2 m4(
+            dvec2(1.2f), dvec2(3.4f), dvec2(0.0f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m5(
+            dvec2(1.2f), dvec2(0.0f), dvec2(5.6f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m6(
+            dvec2(0.0f), dvec2(3.4f), dvec2(5.6f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR auto result1 = (m1 == m2);
+        CONST_OR_CONSTEXPR auto result2 = (m1 == m3);
+        CONST_OR_CONSTEXPR auto result3 = (m1 == m4);
+        CONST_OR_CONSTEXPR auto result4 = (m1 == m5);
+        CONST_OR_CONSTEXPR auto result5 = (m1 == m6);
+        test_assert(result1 == true);
+        test_assert(result2 == false);
+        test_assert(result3 == false);
+        test_assert(result4 == false);
+        test_assert(result5 == false);
+    }
+
+    TEST_CASE(inequality_operator)
+    {
+        CONST_OR_CONSTEXPR fmat4x2 m1(
+            fvec2(1.2f), fvec2(3.4f), fvec2(5.6f), fvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m2(
+            dvec2(1.2f), dvec2(3.4f), dvec2(5.6f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m3(
+            dvec2(1.2f), dvec2(3.4f), dvec2(5.6f), dvec2(0.0f));
+        CONST_OR_CONSTEXPR dmat4x2 m4(
+            dvec2(1.2f), dvec2(3.4f), dvec2(0.0f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m5(
+            dvec2(1.2f), dvec2(0.0f), dvec2(5.6f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR dmat4x2 m6(
+            dvec2(0.0f), dvec2(3.4f), dvec2(5.6f), dvec2(7.8f));
+        CONST_OR_CONSTEXPR auto result1 = (m1 != m2);
+        CONST_OR_CONSTEXPR auto result2 = (m1 != m3);
+        CONST_OR_CONSTEXPR auto result3 = (m1 != m4);
+        CONST_OR_CONSTEXPR auto result4 = (m1 != m5);
+        CONST_OR_CONSTEXPR auto result5 = (m1 != m6);
+        test_assert(result1 == false);
+        test_assert(result2 == true);
+        test_assert(result3 == true);
+        test_assert(result4 == true);
+        test_assert(result5 == true);
+    }
 }
