@@ -376,6 +376,7 @@ namespace tue
 
         /*!
          * \brief     Sets the values of the column at the given index.
+         * \details   No bounds checking is performed.
          *
          * \tparam I  The index type.
          *
@@ -387,6 +388,7 @@ namespace tue
 
         /*!
          * \brief     Sets the values of the row at the given index.
+         * \details   No bounds checking is performed.
          *
          * \tparam J  The index type.
          *

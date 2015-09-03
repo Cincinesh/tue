@@ -174,10 +174,12 @@ namespace
     TEST_CASE(data)
     {
         const dvec3 cv(1.2);
-        test_assert(cv.data() == static_cast<const void*>(&cv));
+        const double* cdata = cv.data();
+        test_assert(cdata == static_cast<const void*>(&cv));
 
         dvec3 v;
-        test_assert(v.data() == static_cast<void*>(&v));
+        double* data = v.data();
+        test_assert(data == static_cast<void*>(&v));
     }
 
     TEST_CASE(x_y_z)
