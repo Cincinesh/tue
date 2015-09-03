@@ -375,4 +375,64 @@ namespace
         test_assert(dm440.row(3) ==
             dvec4(dm440[0][3], dm440[1][3], dm440[2][3], dm440[3][3]));
     }
+
+    TEST_CASE(set_column)
+    {
+        dmat4x2 m42 = dm420;
+        m42.set_column(0, dvec2(20.0, 20.1));
+        m42.set_column(1, dvec2(21.0, 21.1));
+        m42.set_column(2, dvec2(22.0, 22.1));
+        m42.set_column(3, dvec2(23.0, 23.1));
+        test_assert(m42.column(0) == dvec2(20.0, 20.1));
+        test_assert(m42.column(1) == dvec2(21.0, 21.1));
+        test_assert(m42.column(2) == dvec2(22.0, 22.1));
+        test_assert(m42.column(3) == dvec2(23.0, 23.1));
+        
+        dmat4x3 m43 = dm430;
+        m43.set_column(0, dvec3(20.0, 20.1, 20.2));
+        m43.set_column(1, dvec3(21.0, 21.1, 21.2));
+        m43.set_column(2, dvec3(22.0, 22.1, 22.2));
+        m43.set_column(3, dvec3(23.0, 23.1, 23.2));
+        test_assert(m43.column(0) == dvec3(20.0, 20.1, 20.2));
+        test_assert(m43.column(1) == dvec3(21.0, 21.1, 21.2));
+        test_assert(m43.column(2) == dvec3(22.0, 22.1, 22.2));
+        test_assert(m43.column(3) == dvec3(23.0, 23.1, 23.2));
+        
+        dmat4x4 m44;
+        m44.set_column(0, dvec4(0.0, 0.1, 0.2, 0.3));
+        m44.set_column(1, dvec4(1.0, 1.1, 1.2, 1.3));
+        m44.set_column(2, dvec4(2.0, 2.1, 2.2, 2.3));
+        m44.set_column(3, dvec4(3.0, 3.1, 3.2, 3.3));
+        test_assert(m44.column(0) == dvec4(0.0, 0.1, 0.2, 0.3));
+        test_assert(m44.column(1) == dvec4(1.0, 1.1, 1.2, 1.3));
+        test_assert(m44.column(2) == dvec4(2.0, 2.1, 2.2, 2.3));
+        test_assert(m44.column(3) == dvec4(3.0, 3.1, 3.2, 3.3));
+    }
+
+    TEST_CASE(set_row)
+    {
+        dmat4x2 m42;
+        m42.set_row(0, dvec4(0.0, 0.1, 0.2, 0.3));
+        m42.set_row(1, dvec4(1.0, 1.1, 1.2, 1.3));
+        test_assert(m42.row(0) == dvec4(0.0, 0.1, 0.2, 0.3));
+        test_assert(m42.row(1) == dvec4(1.0, 1.1, 1.2, 1.3));
+        
+        dmat4x3 m43;
+        m43.set_row(0, dvec4(0.0, 0.1, 0.2, 0.3));
+        m43.set_row(1, dvec4(1.0, 1.1, 1.2, 1.3));
+        m43.set_row(2, dvec4(2.0, 2.1, 2.2, 2.3));
+        test_assert(m43.row(0) == dvec4(0.0, 0.1, 0.2, 0.3));
+        test_assert(m43.row(1) == dvec4(1.0, 1.1, 1.2, 1.3));
+        test_assert(m43.row(2) == dvec4(2.0, 2.1, 2.2, 2.3));
+        
+        dmat4x4 m44;
+        m44.set_row(0, dvec4(0.0, 0.1, 0.2, 0.3));
+        m44.set_row(1, dvec4(1.0, 1.1, 1.2, 1.3));
+        m44.set_row(2, dvec4(2.0, 2.1, 2.2, 2.3));
+        m44.set_row(3, dvec4(3.0, 3.1, 3.2, 3.3));
+        test_assert(m44.row(0) == dvec4(0.0, 0.1, 0.2, 0.3));
+        test_assert(m44.row(1) == dvec4(1.0, 1.1, 1.2, 1.3));
+        test_assert(m44.row(2) == dvec4(2.0, 2.1, 2.2, 2.3));
+        test_assert(m44.row(3) == dvec4(3.0, 3.1, 3.2, 3.3));
+    }
 }
