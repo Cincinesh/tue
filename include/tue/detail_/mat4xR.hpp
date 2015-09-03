@@ -162,6 +162,21 @@ namespace tue
             };
         }
 
+        template<typename I>
+        void set_column(const I& i, const vec<T, R>& v) noexcept
+        {
+            this->impl_.columns[i] = v;
+        }
+
+        template<typename J>
+        void set_row(const J& j, const vec<T, 4>& v) noexcept
+        {
+            this->impl_.columns[0][j] = v[0];
+            this->impl_.columns[1][j] = v[1];
+            this->impl_.columns[2][j] = v[2];
+            this->impl_.columns[3][j] = v[3];
+        }
+
         mat<T, 4, R>& operator++() noexcept
         {
             ++this->impl_.columns[0];

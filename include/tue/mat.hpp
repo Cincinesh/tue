@@ -375,6 +375,28 @@ namespace tue
         inline constexpr vec<T, C> row(const J& j) const noexcept;
 
         /*!
+         * \brief     Sets the values of the column at the given index.
+         *
+         * \tparam I  The index type.
+         *
+         * \param i   The index.
+         * \param v   The new values for the column.
+         */
+        template<typename I>
+        inline void set_column(const I& i, const vec<T, R>& v) noexcept;
+
+        /*!
+         * \brief     Sets the values of the row at the given index.
+         *
+         * \tparam J  The index type.
+         *
+         * \param j   The index.
+         * \param v   The new values for the row.
+         */
+        template<typename J>
+        inline void set_row(const J& j, const vec<T, C>& v) noexcept;
+
+        /*!
          * \brief   Pre-increments each column of this `mat`.
          * \return  A reference to this `mat`.
          */
