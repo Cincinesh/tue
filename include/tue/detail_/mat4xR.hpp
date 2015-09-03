@@ -411,4 +411,27 @@ namespace tue
             return *this;
         }
     };
+
+    namespace detail_
+    {
+        template<typename T, typename U, int R>
+        inline constexpr bool equality_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return lhs[0] == rhs[0]
+                && lhs[1] == rhs[1]
+                && lhs[2] == rhs[2]
+                && lhs[3] == rhs[3];
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr bool inequality_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return lhs[0] != rhs[0]
+                || lhs[1] != rhs[1]
+                || lhs[2] != rhs[2]
+                || lhs[3] != rhs[3];
+        }
+    }
 }

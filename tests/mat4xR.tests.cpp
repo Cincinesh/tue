@@ -58,6 +58,13 @@ namespace
         { 3.0, 3.1, 3.2, 3.3 },
     };
 
+    CONST_OR_CONSTEXPR mat4x2<int> im420 = {
+        { 00, 01 },
+        { 10, 11 },
+        { 20, 21 },
+        { 30, 31 },
+    };
+
     TEST_CASE(size)
     {
         test_assert(sizeof(mat<short, 4, 2>) == sizeof(short) * 4 * 2);
@@ -434,5 +441,26 @@ namespace
         test_assert(m44.row(1) == dvec4(1.0, 1.1, 1.2, 1.3));
         test_assert(m44.row(2) == dvec4(2.0, 2.1, 2.2, 2.3));
         test_assert(m44.row(3) == dvec4(3.0, 3.1, 3.2, 3.3));
+    }
+
+    TEST_CASE(pre_increment_operator)
+    {
+        mat4x2<int> m = im420;
+        test_assert(&(++m) == &m);
+        test_assert(m[0] == im420[0] + 1);
+        test_assert(m[1] == im420[1] + 1);
+        test_assert(m[2] == im420[2] + 1);
+        test_assert(m[3] == im420[3] + 1);
+    }
+
+    TEST_CASE(post_increment_operator)
+    {
+        mat4x2<int> m1 = im420;
+        const mat4x2<int> m2 = m1++;
+        test_assert(m1[0] == im420[0] + 1);
+        test_assert(m1[1] == im420[1] + 1);
+        test_assert(m1[2] == im420[2] + 1);
+        test_assert(m1[3] == im420[3] + 1);
+        test_assert(m2 == im420);
     }
 }

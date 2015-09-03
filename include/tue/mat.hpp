@@ -630,3 +630,48 @@ namespace tue
 }
 
 #include "detail_/mat4xR.hpp"
+
+namespace tue
+{
+    /*!
+     * \brief      Determines whether or not two `mat`'s compare equal.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     `true` if all the corresponding pairs of columns compare
+     *             equal and `false` otherwise.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr bool operator==(
+        const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::equality_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Determines whether or not two `mat`'s compare not equal.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     `true` if at least one of the corresponding pairs of
+     *             columns compares not equal and `false` otherwise.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr bool operator!=(
+        const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::inequality_operator(lhs, rhs);
+    }
+}
