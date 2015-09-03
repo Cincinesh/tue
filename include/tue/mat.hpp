@@ -462,12 +462,19 @@ namespace tue
 
         /*!
          * \brief     Multiplies each column of this `mat` by `x`.
+         * \details   Note: Unlike `mat`'s other assignment operators, `x`
+         *            cannot be a `vec` since `mat * vec` has a special meaning.
+         *
          * \tparam U  The type of parameter `x`.
          * \param x   The value to multiply each column of this `mat` by.
          * \return    A reference to this `mat`.
          */
         template<typename U>
         inline mat<T, C, R>& operator*=(const U& x) noexcept;
+
+        /**/
+        template<typename U, int N>
+        void operator*=(const vec<U, N>&) = delete;
 
         /*!
          * \brief     Multiplies this mat by `m`.
