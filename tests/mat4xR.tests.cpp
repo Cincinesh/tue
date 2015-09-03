@@ -58,11 +58,18 @@ namespace
         { 3.0, 3.1, 3.2, 3.3 },
     };
 
+    CONST_OR_CONSTEXPR mat4x2<short> sm42 = {
+        { 1, 2 },
+        { 3, 4 },
+        { 5, 6 },
+        { 7, 8 },
+    };
+
     CONST_OR_CONSTEXPR mat4x2<int> im42 = {
-        { 00, 01 },
-        { 10, 11 },
-        { 20, 21 },
-        { 30, 31 },
+        { 100, 101 },
+        { 110, 111 },
+        { 120, 121 },
+        { 130, 131 },
     };
 
     TEST_CASE(size)
@@ -529,5 +536,124 @@ namespace
         test_assert(m1[3] == dm42[3] * 12);
 
         // TODO
+    }
+
+    TEST_CASE(division_assignment_operator)
+    {
+        dmat4x2 m1 = dm42;
+        test_assert(&(m1 /= 12) == &m1);
+        test_assert(m1[0] == dm42[0] / 12);
+        test_assert(m1[1] == dm42[1] / 12);
+        test_assert(m1[2] == dm42[2] / 12);
+        test_assert(m1[3] == dm42[3] / 12);
+
+        dmat4x2 m2 = dm42;
+        test_assert(&(m2 /= im42) == &m2);
+        test_assert(m2[0] == dm42[0] / im42[0]);
+        test_assert(m2[1] == dm42[1] / im42[1]);
+        test_assert(m2[2] == dm42[2] / im42[2]);
+        test_assert(m2[3] == dm42[3] / im42[3]);
+    }
+
+    TEST_CASE(modulo_assignment_operator)
+    {
+        mat4x2<int> m1 = im42;
+        test_assert(&(m1 %= 12) == &m1);
+        test_assert(m1[0] == im42[0] % 12);
+        test_assert(m1[1] == im42[1] % 12);
+        test_assert(m1[2] == im42[2] % 12);
+        test_assert(m1[3] == im42[3] % 12);
+
+        mat4x2<int> m2 = im42;
+        test_assert(&(m2 %= sm42) == &m2);
+        test_assert(m2[0] == im42[0] % sm42[0]);
+        test_assert(m2[1] == im42[1] % sm42[1]);
+        test_assert(m2[2] == im42[2] % sm42[2]);
+        test_assert(m2[3] == im42[3] % sm42[3]);
+    }
+
+    TEST_CASE(bitwise_and_assignment_operator)
+    {
+        mat4x2<int> m1 = im42;
+        test_assert(&(m1 &= 12) == &m1);
+        test_assert(m1[0] == (im42[0] & 12));
+        test_assert(m1[1] == (im42[1] & 12));
+        test_assert(m1[2] == (im42[2] & 12));
+        test_assert(m1[3] == (im42[3] & 12));
+
+        mat4x2<int> m2 = im42;
+        test_assert(&(m2 &= sm42) == &m2);
+        test_assert(m2[0] == (im42[0] & sm42[0]));
+        test_assert(m2[1] == (im42[1] & sm42[1]));
+        test_assert(m2[2] == (im42[2] & sm42[2]));
+        test_assert(m2[3] == (im42[3] & sm42[3]));
+    }
+
+    TEST_CASE(bitwise_or_assignment_operator)
+    {
+        mat4x2<int> m1 = im42;
+        test_assert(&(m1 |= 12) == &m1);
+        test_assert(m1[0] == (im42[0] | 12));
+        test_assert(m1[1] == (im42[1] | 12));
+        test_assert(m1[2] == (im42[2] | 12));
+        test_assert(m1[3] == (im42[3] | 12));
+
+        mat4x2<int> m2 = im42;
+        test_assert(&(m2 |= sm42) == &m2);
+        test_assert(m2[0] == (im42[0] | sm42[0]));
+        test_assert(m2[1] == (im42[1] | sm42[1]));
+        test_assert(m2[2] == (im42[2] | sm42[2]));
+        test_assert(m2[3] == (im42[3] | sm42[3]));
+    }
+
+    TEST_CASE(bitwise_xor_assignment_operator)
+    {
+        mat4x2<int> m1 = im42;
+        test_assert(&(m1 ^= 12) == &m1);
+        test_assert(m1[0] == (im42[0] ^ 12));
+        test_assert(m1[1] == (im42[1] ^ 12));
+        test_assert(m1[2] == (im42[2] ^ 12));
+        test_assert(m1[3] == (im42[3] ^ 12));
+
+        mat4x2<int> m2 = im42;
+        test_assert(&(m2 ^= sm42) == &m2);
+        test_assert(m2[0] == (im42[0] ^ sm42[0]));
+        test_assert(m2[1] == (im42[1] ^ sm42[1]));
+        test_assert(m2[2] == (im42[2] ^ sm42[2]));
+        test_assert(m2[3] == (im42[3] ^ sm42[3]));
+    }
+
+    TEST_CASE(bitwise_shift_left_assignment_operator)
+    {
+        mat4x2<int> m1 = im42;
+        test_assert(&(m1 <<= 12) == &m1);
+        test_assert(m1[0] == (im42[0] << 12));
+        test_assert(m1[1] == (im42[1] << 12));
+        test_assert(m1[2] == (im42[2] << 12));
+        test_assert(m1[3] == (im42[3] << 12));
+
+        mat4x2<int> m2 = im42;
+        test_assert(&(m2 <<= sm42) == &m2);
+        test_assert(m2[0] == (im42[0] << sm42[0]));
+        test_assert(m2[1] == (im42[1] << sm42[1]));
+        test_assert(m2[2] == (im42[2] << sm42[2]));
+        test_assert(m2[3] == (im42[3] << sm42[3]));
+    }
+
+    TEST_CASE(bitwise_shift_right_assignment_operator)
+    {
+        mat4x2<int> m1 = im42;
+        test_assert(&(m1 >>= 12) == &m1);
+        test_assert(m1[0] == (im42[0] >> 12));
+        test_assert(m1[1] == (im42[1] >> 12));
+        test_assert(m1[2] == (im42[2] >> 12));
+        test_assert(m1[3] == (im42[3] >> 12));
+
+        mat4x2<int> m2 = im42;
+        test_assert(&(m2 >>= sm42) == &m2);
+        test_assert(m2[0] == (im42[0] >> sm42[0]));
+        test_assert(m2[1] == (im42[1] >> sm42[1]));
+        test_assert(m2[2] == (im42[2] >> sm42[2]));
+        test_assert(m2[3] == (im42[3] >> sm42[3]));
     }
 }
