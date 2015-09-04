@@ -405,6 +405,11 @@ namespace
         test_assert(v2[2] == 5.6 * 9);
     }
 
+    TEST_CASE(mat_multiplication_assignment_operator)
+    {
+        // TODO
+    }
+
     TEST_CASE(quat_multiplication_assignment_operator)
     {
         const dvec3 v1(1.2, 3.4, 5.6);

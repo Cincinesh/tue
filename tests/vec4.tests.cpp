@@ -522,6 +522,11 @@ namespace
         test_assert(v2[3] == 7.8 * 12);
     }
 
+    TEST_CASE(mat_multiplication_assignment_operator)
+    {
+        // TODO
+    }
+
     TEST_CASE(division_assignment_operator)
     {
         dvec4 v1(1.2, 3.4, 5.6, 7.8);

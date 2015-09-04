@@ -355,6 +355,12 @@ namespace tue
         }
 
         template<typename U>
+        vec3<T>& operator*=(const mat<U, 3, 3>& m) noexcept
+        {
+            return (*this) = (*this) * m;
+        }
+
+        template<typename U>
         vec3<T>& operator*=(const quat<U>& q) noexcept
         {
             return (*this) = (*this) * q;

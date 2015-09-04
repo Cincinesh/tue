@@ -475,6 +475,12 @@ namespace tue
         }
 
         template<typename U>
+        vec4<T>& operator*=(const mat<U, 4, 4>& m) noexcept
+        {
+            return (*this) = (*this) * m;
+        }
+
+        template<typename U>
         vec4<T>& operator/=(const U& x) noexcept
         {
             this->impl_.data[0] /= x;

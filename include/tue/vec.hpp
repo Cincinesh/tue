@@ -15,6 +15,9 @@
 
 namespace tue
 {
+    template<typename T, int C, int R>
+    class mat;
+
     template<typename T>
     class quat;
 
@@ -762,6 +765,16 @@ namespace tue
          */
         template<typename U>
         inline vec<T, N>& operator*=(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Matrix multiplies this `vec` by `m`.
+         * \details   This `vec` is treated as a matrix with a single row.
+         * \tparam U  The component type of `m`.
+         * \param m   A `mat`.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator*=(const mat<U, N, N>& m) noexcept;
 
         /*!
          * \brief     Rotates this `vec` by `q`.

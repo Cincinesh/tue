@@ -9,6 +9,7 @@
 #pragma once
 
 #include <type_traits>
+#include <utility>
 
 #include "vec.hpp"
 
@@ -452,7 +453,7 @@ namespace tue
 
         /*!
          * \brief     Subtracts each column of `m` from the corresponding
-         *            component of this `mat`.
+         *            column of this `mat`.
          * \tparam U  The component type of `m`.
          * \param m   The columns to subtract from each column of this `mat`.
          * \return    A reference to this `mat`.
@@ -496,7 +497,7 @@ namespace tue
 
         /*!
          * \brief     Divides each column of this `mat` by the corresponding
-         *            component from `m`.
+         *            column from `m`.
          * \tparam U  The component type of `m`.
          * \param m   The columns to divide each column of this `mat` by.
          * \return    A reference to this `mat`.
@@ -515,7 +516,7 @@ namespace tue
 
         /*!
          * \brief     Modulos each column of this `mat` by the corresponding
-         *            component from `m`.
+         *            column from `m`.
          * \tparam U  The component type of `m`.
          * \param m   The columns to modulo each column of this `mat` by.
          * \return    A reference to this `mat`.
@@ -534,7 +535,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise ANDs each column of this `mat` with the
-         *            corresponding component from `m`.
+         *            corresponding column from `m`.
          * \tparam U  The component type of `m`.
          * \param m   The columns to bitwise AND each column of this `mat` with.
          * \return    A reference to this `mat`.
@@ -553,7 +554,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise ORs each column of this `mat` with the
-         *            corresponding component from `m`.
+         *            corresponding column from `m`.
          * \tparam U  The component type of `m`.
          * \param m   The columns to bitwise OR each column of this `mat` with.
          * \return    A reference to this `mat`.
@@ -572,7 +573,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise XORs each column of this `mat` with the
-         *            corresponding component from `m`.
+         *            corresponding column from `m`.
          * \tparam U  The component type of `m`.
          * \param m   The columns to bitwise XOR each column of this `mat` with.
          * \return    A reference to this `mat`.
@@ -595,7 +596,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise shifts left each column of this `mat` by the
-         *            corresponding component from `m`.
+         *            corresponding column from `m`.
          *
          * \tparam U  The component type of `m`.
          *
@@ -622,7 +623,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise shifts right each column of this `mat` by the
-         *            corresponding component from `m`.
+         *            corresponding column from `m`.
          *
          * \tparam U  The component type of `m`.
          *
@@ -711,6 +712,684 @@ namespace tue
     {
         return tue::detail_::logical_not_operator(m);
     }
+
+    /*!
+     * \brief      Computes the sums of `lhs` and each column of `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The sums of `lhs` and each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
+    operator+(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::addition_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the sums of each column of `lhs` and `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The sums of each column of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
+    operator+(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::addition_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the sums of each column of `lhs` and each
+     *             corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The sums of each column of `lhs` and each corresponding
+     *             column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
+    operator+(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::addition_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the differences between `lhs` and each column of
+     *             `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The differences between `lhs` and each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
+    operator-(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::subtraction_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the differences between each column of `lhs` and
+     *             `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The differences between each column of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
+    operator-(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::subtraction_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the differences between each column of `lhs` and
+     *             each corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The differences between each column of `lhs` and each
+     *             corresponding column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
+    operator-(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::subtraction_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the products of `lhs` and each column of `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The products of `lhs` and each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
+    operator*(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the matrix product of `lhs` and `rhs`.
+     * \details    `lhs` is treated like a matrix with a single row.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The column count of `lhs` and row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The matrix product of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), C>
+    operator*(const vec<T, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the products of each column of `lhs` and `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The products of each column of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
+    operator*(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the matrix product of `lhs` and `rhs`.
+     * \details    `rhs` is treated like a matrix with a single column.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `lhs` and row count of `rhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The matrix product of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), R>
+    operator*(const mat<T, C, R>& lhs, const vec<U, C>& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the matrix product of `lhs` and `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The matrix product of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int N, int R>
+    inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
+    operator*(const mat<T, N, R>& lhs, const mat<U, C, N>& rhs) noexcept
+    {
+        return tue::detail_::multiplication_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the quotients of `lhs` over each column of `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The quotients of `lhs` over each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
+    operator/(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::division_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the quotients of each column of `lhs` over `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The quotients of each column of `lhs` over `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
+    operator/(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::division_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the quotients of each column of `lhs` over each
+     *             corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The quotients of each column of `lhs` over each corresponding
+     *             column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
+    operator/(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::division_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the modulos of `lhs` over each column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The modulos of `lhs` over each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
+    operator%(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::modulo_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the modulos of each column of `lhs` over `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The modulos of each column of `lhs` over `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
+    operator%(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::modulo_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the modulos of each column of `lhs` over each
+     *             corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The modulos of each column of `lhs` over each corresponding
+     *             column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
+    operator%(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::modulo_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise AND of `lhs` and each column of `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise AND of `lhs` and each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
+    operator&(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_and_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise AND of each column of `lhs` and `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise AND of each column of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
+    operator&(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_and_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise AND of each column of `lhs` and each
+     *             corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise AND of each column of `lhs` and each
+     *             corresponding column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
+    operator&(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_and_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise OR of `lhs` and each column of `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise OR of `lhs` and each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
+    operator|(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_or_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise OR of each column of `lhs` and `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise OR of each column of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
+    operator|(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_or_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise OR of each column of `lhs` and each
+     *             corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise OR of each column of `lhs` and each corresponding
+     *             column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
+    operator|(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_or_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise XOR of `lhs` and each column of `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise XOR of `lhs` and each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
+    operator^(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise XOR of each column of `lhs` and `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise XOR of each column of `lhs` and `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
+    operator^(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise XOR of each column of `lhs` and each
+     *             corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise XOR of each column of `lhs` and each
+     *             corresponding column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
+    operator^(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+    }
+
+#define shift_left <<
+#define shift_right >> // Because ">>" inside template args confuses Doxygen
+
+    /*!
+     * \brief      Computes the bitwise shifts left of `lhs` by each column of
+     *             `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise shift left of `lhs` by each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(
+        std::declval<T>() shift_left std::declval<U>()), C, R>
+    operator<<(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shifts left of each column of `lhs` by
+     *             `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise shift left of each column of `lhs` by `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(
+        std::declval<T>() shift_left std::declval<U>()), C, R>
+    operator<<(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shifts left of each column of `lhs` by
+     *             each corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise shift left of each column of `lhs` by each
+     *             corresponding column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(
+        std::declval<T>() shift_left std::declval<U>()), C, R>
+    operator<<(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shifts right of `lhs` by each column of
+     *             `rhs`.
+     *
+     * \tparam T   The type of parameter `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of `rhs`.
+     * \tparam R   The row count of `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise shift right of `lhs` by each column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(
+        std::declval<T>() shift_right std::declval<U>()), C, R>
+    operator>>(const T& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shifts right of each column of `lhs` by
+     *             `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The type of parameter `rhs`.
+     * \tparam C   The column count of `lhs`.
+     * \tparam R   The row count of `lhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise shift right of each column of `lhs` by `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(
+        std::declval<T>() shift_right std::declval<U>()), C, R>
+    operator>>(const mat<T, C, R>& lhs, const U& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise shifts right of each column of `lhs` by
+     *             each corresponding column of `rhs`.
+     *
+     * \tparam T   The component type of `lhs`.
+     * \tparam U   The component type of `rhs`.
+     * \tparam C   The column count of both `lhs` and `rhs`.
+     * \tparam R   The row count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise shift right of each column of `lhs` by each
+     *             corresponding column of `rhs`.
+     */
+    template<typename T, typename U, int C, int R>
+    inline constexpr mat<decltype(
+        std::declval<T>() shift_right std::declval<U>()), C, R>
+    operator>>(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    {
+        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+    }
+
+#undef shift_right
+#undef shift_left
 
     /*!
      * \brief      Determines whether or not two `mat`'s compare equal.
