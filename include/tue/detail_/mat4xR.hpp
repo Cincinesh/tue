@@ -446,6 +446,412 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() + std::declval<U>()), 4, R>
+        addition_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs + rhs[0],
+                lhs + rhs[1],
+                lhs + rhs[2],
+                lhs + rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() + std::declval<U>()), 4, R>
+        addition_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] + rhs,
+                lhs[1] + rhs,
+                lhs[2] + rhs,
+                lhs[3] + rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() + std::declval<U>()), 4, R>
+        addition_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] + rhs[0],
+                lhs[1] + rhs[1],
+                lhs[2] + rhs[2],
+                lhs[3] + rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() - std::declval<U>()), 4, R>
+        subtraction_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs - rhs[0],
+                lhs - rhs[1],
+                lhs - rhs[2],
+                lhs - rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() - std::declval<U>()), 4, R>
+        subtraction_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] - rhs,
+                lhs[1] - rhs,
+                lhs[2] - rhs,
+                lhs[3] - rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() - std::declval<U>()), 4, R>
+        subtraction_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] - rhs[0],
+                lhs[1] - rhs[1],
+                lhs[2] - rhs[2],
+                lhs[3] - rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() * std::declval<U>()), 4, R>
+        multiplication_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs * rhs[0],
+                lhs * rhs[1],
+                lhs * rhs[2],
+                lhs * rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() * std::declval<U>()), 4, R>
+        multiplication_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] * rhs,
+                lhs[1] * rhs,
+                lhs[2] * rhs,
+                lhs[3] * rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() / std::declval<U>()), 4, R>
+        division_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs / rhs[0],
+                lhs / rhs[1],
+                lhs / rhs[2],
+                lhs / rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() / std::declval<U>()), 4, R>
+        division_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] / rhs,
+                lhs[1] / rhs,
+                lhs[2] / rhs,
+                lhs[3] / rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() / std::declval<U>()), 4, R>
+        division_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] / rhs[0],
+                lhs[1] / rhs[1],
+                lhs[2] / rhs[2],
+                lhs[3] / rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() % std::declval<U>()), 4, R>
+        modulo_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs % rhs[0],
+                lhs % rhs[1],
+                lhs % rhs[2],
+                lhs % rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() % std::declval<U>()), 4, R>
+        modulo_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] % rhs,
+                lhs[1] % rhs,
+                lhs[2] % rhs,
+                lhs[3] % rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() % std::declval<U>()), 4, R>
+        modulo_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] % rhs[0],
+                lhs[1] % rhs[1],
+                lhs[2] % rhs[2],
+                lhs[3] % rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() & std::declval<U>()), 4, R>
+        bitwise_and_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs & rhs[0],
+                lhs & rhs[1],
+                lhs & rhs[2],
+                lhs & rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() & std::declval<U>()), 4, R>
+        bitwise_and_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] & rhs,
+                lhs[1] & rhs,
+                lhs[2] & rhs,
+                lhs[3] & rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() & std::declval<U>()), 4, R>
+        bitwise_and_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] & rhs[0],
+                lhs[1] & rhs[1],
+                lhs[2] & rhs[2],
+                lhs[3] & rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() | std::declval<U>()), 4, R>
+        bitwise_or_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs | rhs[0],
+                lhs | rhs[1],
+                lhs | rhs[2],
+                lhs | rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() | std::declval<U>()), 4, R>
+        bitwise_or_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] | rhs,
+                lhs[1] | rhs,
+                lhs[2] | rhs,
+                lhs[3] | rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() | std::declval<U>()), 4, R>
+        bitwise_or_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] | rhs[0],
+                lhs[1] | rhs[1],
+                lhs[2] | rhs[2],
+                lhs[3] | rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() ^ std::declval<U>()), 4, R>
+        bitwise_xor_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs ^ rhs[0],
+                lhs ^ rhs[1],
+                lhs ^ rhs[2],
+                lhs ^ rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() ^ std::declval<U>()), 4, R>
+        bitwise_xor_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] ^ rhs,
+                lhs[1] ^ rhs,
+                lhs[2] ^ rhs,
+                lhs[3] ^ rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() ^ std::declval<U>()), 4, R>
+        bitwise_xor_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] ^ rhs[0],
+                lhs[1] ^ rhs[1],
+                lhs[2] ^ rhs[2],
+                lhs[3] ^ rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() << std::declval<U>()), 4, R>
+        bitwise_shift_left_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs << rhs[0],
+                lhs << rhs[1],
+                lhs << rhs[2],
+                lhs << rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() << std::declval<U>()), 4, R>
+        bitwise_shift_left_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] << rhs,
+                lhs[1] << rhs,
+                lhs[2] << rhs,
+                lhs[3] << rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() << std::declval<U>()), 4, R>
+        bitwise_shift_left_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] << rhs[0],
+                lhs[1] << rhs[1],
+                lhs[2] << rhs[2],
+                lhs[3] << rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() >> std::declval<U>()), 4, R>
+        bitwise_shift_right_operator(
+            const T& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs >> rhs[0],
+                lhs >> rhs[1],
+                lhs >> rhs[2],
+                lhs >> rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() >> std::declval<U>()), 4, R>
+        bitwise_shift_right_operator(
+            const mat<T, 4, R>& lhs, const U& rhs) noexcept
+        {
+            return {
+                lhs[0] >> rhs,
+                lhs[1] >> rhs,
+                lhs[2] >> rhs,
+                lhs[3] >> rhs,
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() >> std::declval<U>()), 4, R>
+        bitwise_shift_right_operator(
+            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] >> rhs[0],
+                lhs[1] >> rhs[1],
+                lhs[2] >> rhs[2],
+                lhs[3] >> rhs[3],
+            };
+        }
+
+        template<typename T, typename U, int R>
         inline constexpr bool equality_operator(
             const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
         {

@@ -681,6 +681,27 @@ namespace
         test_assert(m == mat4x2<int>(!im42[0], !im42[1], !im42[2], !im42[3]));
     }
 
+    TEST_CASE(addition_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 1 + dm42;
+        test_assert(m1[0] == 1 + dm42[0]);
+        test_assert(m1[1] == 1 + dm42[1]);
+        test_assert(m1[2] == 1 + dm42[2]);
+        test_assert(m1[3] == 1 + dm42[3]);
+
+        CONST_OR_CONSTEXPR auto m2 = dm42 + 9;
+        test_assert(m2[0] == dm42[0] + 9);
+        test_assert(m2[1] == dm42[1] + 9);
+        test_assert(m2[2] == dm42[2] + 9);
+        test_assert(m2[3] == dm42[3] + 9);
+
+        CONST_OR_CONSTEXPR auto m3 = dm42 + im42;
+        test_assert(m3[0] == dm42[0] + im42[0]);
+        test_assert(m3[1] == dm42[1] + im42[1]);
+        test_assert(m3[2] == dm42[2] + im42[2]);
+        test_assert(m3[3] == dm42[3] + im42[3]);
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fmat4x2 m1(
