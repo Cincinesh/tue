@@ -641,6 +641,78 @@ namespace tue
 namespace tue
 {
     /*!
+     * \brief     Computes the unary plus of each column of `m`.
+     *
+     * \tparam T  The component type of `m`.
+     * \tparam C  The column count of `m`.
+     * \tparam R  The row count of `m`.
+     *
+     * \param m   A `mat`.
+     *
+     * \return    The unary plus of each column of `m`.
+     */
+    template<typename T, int C, int R>
+    inline constexpr mat<decltype(+std::declval<T>()), C, R>
+    operator+(const mat<T, C, R>& m) noexcept
+    {
+        return tue::detail_::unary_plus_operator(m);
+    }
+
+    /*!
+     * \brief     Computes the unary minus of each column of `m`.
+     *
+     * \tparam T  The component type of `m`.
+     * \tparam C  The column count of `m`.
+     * \tparam R  The row count of `m`.
+     *
+     * \param m   A `mat`.
+     *
+     * \return    The unary minus of each column of `m`.
+     */
+    template<typename T, int C, int R>
+    inline constexpr mat<decltype(-std::declval<T>()), C, R>
+    operator-(const mat<T, C, R>& m) noexcept
+    {
+        return tue::detail_::unary_minus_operator(m);
+    }
+
+    /*!
+     * \brief     Computes the bitwise NOT of each column of `m`.
+     *
+     * \tparam T  The component type of `m`.
+     * \tparam C  The column count of `m`.
+     * \tparam R  The row count of `m`.
+     *
+     * \param m   A `mat`.
+     *
+     * \return    The bitwise NOT of each column of `m`.
+     */
+    template<typename T, int C, int R>
+    inline constexpr mat<decltype(~std::declval<T>()), C, R>
+    operator~(const mat<T, C, R>& m) noexcept
+    {
+        return tue::detail_::bitwise_not_operator(m);
+    }
+
+    /*!
+     * \brief     Computes the logical NOT of each column of `m`.
+     *
+     * \tparam T  The component type of `m`.
+     * \tparam C  The column count of `m`.
+     * \tparam R  The row count of `m`.
+     *
+     * \param m   A `mat`.
+     *
+     * \return    The logical NOT of each column of `m`.
+     */
+    template<typename T, int C, int R>
+    inline constexpr mat<decltype(!std::declval<T>()), C, R>
+    operator!(const mat<T, C, R>& m) noexcept
+    {
+        return tue::detail_::logical_not_operator(m);
+    }
+
+    /*!
      * \brief      Determines whether or not two `mat`'s compare equal.
      *
      * \tparam T   The component type of `lhs`.

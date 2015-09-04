@@ -417,6 +417,34 @@ namespace tue
 
     namespace detail_
     {
+        template<typename T, int R>
+        inline constexpr mat<decltype(+std::declval<T>()), 4, R>
+        unary_plus_operator(const mat<T, 4, R>& m) noexcept
+        {
+            return { +m[0], +m[1], +m[2], +m[3] };
+        }
+
+        template<typename T, int R>
+        inline constexpr mat<decltype(-std::declval<T>()), 4, R>
+        unary_minus_operator(const mat<T, 4, R>& m) noexcept
+        {
+            return { -m[0], -m[1], -m[2], -m[3] };
+        }
+
+        template<typename T, int R>
+        inline constexpr mat<decltype(~std::declval<T>()), 4, R>
+        bitwise_not_operator(const mat<T, 4, R>& m) noexcept
+        {
+            return { ~m[0], ~m[1], ~m[2], ~m[3] };
+        }
+
+        template<typename T, int R>
+        inline constexpr mat<decltype(!std::declval<T>()), 4, R>
+        logical_not_operator(const mat<T, 4, R>& m) noexcept
+        {
+            return { !m[0], !m[1], !m[2], !m[3] };
+        }
+
         template<typename T, typename U, int R>
         inline constexpr bool equality_operator(
             const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept

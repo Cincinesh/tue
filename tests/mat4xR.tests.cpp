@@ -657,6 +657,30 @@ namespace
         test_assert(m2[3] == (im42[3] >> sm42[3]));
     }
 
+    TEST_CASE(unary_plus_operator)
+    {
+        CONST_OR_CONSTEXPR dmat4x2 m = +dm42;
+        test_assert(m == dmat4x2(+dm42[0], +dm42[1], +dm42[2], +dm42[3]));
+    }
+
+    TEST_CASE(unary_minus_operator)
+    {
+        CONST_OR_CONSTEXPR dmat4x2 m = -dm42;
+        test_assert(m == dmat4x2(-dm42[0], -dm42[1], -dm42[2], -dm42[3]));
+    }
+
+    TEST_CASE(bitwise_not_operator)
+    {
+        CONST_OR_CONSTEXPR mat4x2<int> m = ~im42;
+        test_assert(m == mat4x2<int>(~im42[0], ~im42[1], ~im42[2], ~im42[3]));
+    }
+
+    TEST_CASE(logical_not_operator)
+    {
+        CONST_OR_CONSTEXPR mat4x2<int> m = !im42;
+        test_assert(m == mat4x2<int>(!im42[0], !im42[1], !im42[2], !im42[3]));
+    }
+
     TEST_CASE(equality_operator)
     {
         CONST_OR_CONSTEXPR fmat4x2 m1(
