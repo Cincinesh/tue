@@ -138,38 +138,6 @@ namespace tue
             };
         }
 
-        constexpr T r() const noexcept
-        {
-            return this->impl_.data[0];
-        }
-
-        constexpr T g() const noexcept
-        {
-            return this->impl_.data[1];
-        }
-
-        constexpr T b() const noexcept
-        {
-            return this->impl_.data[2];
-        }
-
-        constexpr vec2<T> rg() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-            };
-        }
-
-        constexpr vec3<T> rgb() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-                this->impl_.data[2],
-            };
-        }
-
         void set_x(const T& x) noexcept
         {
             this->impl_.data[0] = x;
@@ -216,6 +184,38 @@ namespace tue
             this->impl_.data[0] = xyz[0];
             this->impl_.data[1] = xyz[1];
             this->impl_.data[2] = xyz[2];
+        }
+
+        constexpr T r() const noexcept
+        {
+            return this->impl_.data[0];
+        }
+
+        constexpr T g() const noexcept
+        {
+            return this->impl_.data[1];
+        }
+
+        constexpr T b() const noexcept
+        {
+            return this->impl_.data[2];
+        }
+
+        constexpr vec2<T> rg() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+            };
+        }
+
+        constexpr vec3<T> rgb() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+            };
         }
 
         void set_r(const T& r) noexcept

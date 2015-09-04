@@ -366,30 +366,6 @@ namespace
         test_assert(dm44.column(3) == dm44[3]);
     }
 
-    TEST_CASE(row)
-    {
-        test_assert(dm42.row(0) ==
-            dvec4(dm42[0][0], dm42[1][0], dm42[2][0], dm42[3][0]));
-        test_assert(dm42.row(1) ==
-            dvec4(dm42[0][1], dm42[1][1], dm42[2][1], dm42[3][1]));
-
-        test_assert(dm43.row(0) ==
-            dvec4(dm43[0][0], dm43[1][0], dm43[2][0], dm43[3][0]));
-        test_assert(dm43.row(1) ==
-            dvec4(dm43[0][1], dm43[1][1], dm43[2][1], dm43[3][1]));
-        test_assert(dm43.row(2) ==
-            dvec4(dm43[0][2], dm43[1][2], dm43[2][2], dm43[3][2]));
-
-        test_assert(dm44.row(0) ==
-            dvec4(dm44[0][0], dm44[1][0], dm44[2][0], dm44[3][0]));
-        test_assert(dm44.row(1) ==
-            dvec4(dm44[0][1], dm44[1][1], dm44[2][1], dm44[3][1]));
-        test_assert(dm44.row(2) ==
-            dvec4(dm44[0][2], dm44[1][2], dm44[2][2], dm44[3][2]));
-        test_assert(dm44.row(3) ==
-            dvec4(dm44[0][3], dm44[1][3], dm44[2][3], dm44[3][3]));
-    }
-
     TEST_CASE(set_column)
     {
         dmat4x2 m42 = dm42;
@@ -421,6 +397,30 @@ namespace
         test_assert(m44.column(1) == dvec4(1.0, 1.1, 1.2, 1.3));
         test_assert(m44.column(2) == dvec4(2.0, 2.1, 2.2, 2.3));
         test_assert(m44.column(3) == dvec4(3.0, 3.1, 3.2, 3.3));
+    }
+
+    TEST_CASE(row)
+    {
+        test_assert(dm42.row(0) ==
+            dvec4(dm42[0][0], dm42[1][0], dm42[2][0], dm42[3][0]));
+        test_assert(dm42.row(1) ==
+            dvec4(dm42[0][1], dm42[1][1], dm42[2][1], dm42[3][1]));
+
+        test_assert(dm43.row(0) ==
+            dvec4(dm43[0][0], dm43[1][0], dm43[2][0], dm43[3][0]));
+        test_assert(dm43.row(1) ==
+            dvec4(dm43[0][1], dm43[1][1], dm43[2][1], dm43[3][1]));
+        test_assert(dm43.row(2) ==
+            dvec4(dm43[0][2], dm43[1][2], dm43[2][2], dm43[3][2]));
+
+        test_assert(dm44.row(0) ==
+            dvec4(dm44[0][0], dm44[1][0], dm44[2][0], dm44[3][0]));
+        test_assert(dm44.row(1) ==
+            dvec4(dm44[0][1], dm44[1][1], dm44[2][1], dm44[3][1]));
+        test_assert(dm44.row(2) ==
+            dvec4(dm44[0][2], dm44[1][2], dm44[2][2], dm44[3][2]));
+        test_assert(dm44.row(3) ==
+            dvec4(dm44[0][3], dm44[1][3], dm44[2][3], dm44[3][3]));
     }
 
     TEST_CASE(set_row)

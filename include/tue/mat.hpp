@@ -366,16 +366,6 @@ namespace tue
         inline constexpr vec<T, R> column(const I& i) const noexcept;
 
         /*!
-         * \brief     Returns a copy of the row at the given index.
-         * \details   No bounds checking is performed.
-         * \tparam J  The index type.
-         * \param j   The index.
-         * \return    A copy of the row at the given index.
-         */
-        template<typename J>
-        inline constexpr vec<T, C> row(const J& j) const noexcept;
-
-        /*!
          * \brief     Sets the values of the column at the given index.
          * \details   No bounds checking is performed.
          *
@@ -386,6 +376,16 @@ namespace tue
          */
         template<typename I>
         inline void set_column(const I& i, const vec<T, R>& v) noexcept;
+
+        /*!
+         * \brief     Returns a copy of the row at the given index.
+         * \details   No bounds checking is performed.
+         * \tparam J  The index type.
+         * \param j   The index.
+         * \return    A copy of the row at the given index.
+         */
+        template<typename J>
+        inline constexpr vec<T, C> row(const J& j) const noexcept;
 
         /*!
          * \brief     Sets the values of the row at the given index.

@@ -179,22 +179,6 @@ namespace
         test_assert(xy == dvec2(1.2, 3.4));
     }
 
-    TEST_CASE(r_g_b)
-    {
-        CONST_OR_CONSTEXPR dvec2 v(1.2, 3.4);
-        CONST_OR_CONSTEXPR auto r = v.r();
-        CONST_OR_CONSTEXPR auto g = v.g();
-        test_assert(r == 1.2);
-        test_assert(g == 3.4);
-    }
-
-    TEST_CASE(rg)
-    {
-        CONST_OR_CONSTEXPR dvec2 v(1.2, 3.4);
-        CONST_OR_CONSTEXPR auto rg = v.rg();
-        test_assert(rg == dvec2(1.2, 3.4));
-    }
-
     TEST_CASE(set_x_y)
     {
         dvec2 v(1.2, 3.4);
@@ -215,6 +199,22 @@ namespace
         v.set_xy(dvec2(9.10, 11.12));
         test_assert(v[0] == 9.10);
         test_assert(v[1] == 11.12);
+    }
+
+    TEST_CASE(r_g_b)
+    {
+        CONST_OR_CONSTEXPR dvec2 v(1.2, 3.4);
+        CONST_OR_CONSTEXPR auto r = v.r();
+        CONST_OR_CONSTEXPR auto g = v.g();
+        test_assert(r == 1.2);
+        test_assert(g == 3.4);
+    }
+
+    TEST_CASE(rg)
+    {
+        CONST_OR_CONSTEXPR dvec2 v(1.2, 3.4);
+        CONST_OR_CONSTEXPR auto rg = v.rg();
+        test_assert(rg == dvec2(1.2, 3.4));
     }
 
     TEST_CASE(set_r_g)

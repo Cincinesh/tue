@@ -396,60 +396,6 @@ namespace tue
         inline constexpr vec4<T> xyzw() const noexcept;
 
         /*!
-         * \brief   Returns a copy of this `vec`'s first component.
-         * \return  A copy of this `vec`'s first component.
-         */
-        inline constexpr T r() const noexcept;
-
-        /*!
-         * \brief   Returns a copy of this `vec`'s second component.
-         * \return  A copy of this `vec`'s second component.
-         */
-        inline constexpr T g() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s third component.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `3`.
-         *
-         * \return   A copy of this `vec`'s third component.
-         */
-        inline constexpr T b() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s fourth component.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `4`.
-         *
-         * \return   A copy of this `vec`'s fourth component.
-         */
-        inline constexpr T a() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s first two components.
-         * \return   A copy of this `vec`'s first two components.
-         */
-        inline constexpr vec2<T> rg() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s first three components.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `3`.
-         *
-         * \return   A copy of this `vec`'s first three components.
-         */
-        inline constexpr vec3<T> rgb() const noexcept;
-
-        /*!
-         * \brief    Returns a copy of this `vec`'s first four components.
-         * \details  This overload is only available when `N` is greater than or
-         *           equal to `4`.
-         *
-         * \return   A copy of this `vec`'s first four components.
-         */
-        inline constexpr vec4<T> rgba() const noexcept;
-
-        /*!
          * \brief    Sets this `vec`'s first component.
          * \param x  The new value for the first component.
          */
@@ -566,6 +512,60 @@ namespace tue
          * \param xyzw  The new values for the first four components.
          */
         inline void set_xyzw(const vec4<T>& xyzw) noexcept;
+
+        /*!
+         * \brief   Returns a copy of this `vec`'s first component.
+         * \return  A copy of this `vec`'s first component.
+         */
+        inline constexpr T r() const noexcept;
+
+        /*!
+         * \brief   Returns a copy of this `vec`'s second component.
+         * \return  A copy of this `vec`'s second component.
+         */
+        inline constexpr T g() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s third component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \return   A copy of this `vec`'s third component.
+         */
+        inline constexpr T b() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s fourth component.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `4`.
+         *
+         * \return   A copy of this `vec`'s fourth component.
+         */
+        inline constexpr T a() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s first two components.
+         * \return   A copy of this `vec`'s first two components.
+         */
+        inline constexpr vec2<T> rg() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s first three components.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `3`.
+         *
+         * \return   A copy of this `vec`'s first three components.
+         */
+        inline constexpr vec3<T> rgb() const noexcept;
+
+        /*!
+         * \brief    Returns a copy of this `vec`'s first four components.
+         * \details  This overload is only available when `N` is greater than or
+         *           equal to `4`.
+         *
+         * \return   A copy of this `vec`'s first four components.
+         */
+        inline constexpr vec4<T> rgba() const noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first component.

@@ -176,20 +176,6 @@ namespace
         test_assert(xyzw == dvec4(1.2, 3.4, 5.6, 7.8));
     }
 
-    TEST_CASE(v)
-    {
-        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
-        CONST_OR_CONSTEXPR auto v = q.v();
-        test_assert(v == dvec3(1.2, 3.4, 5.6));
-    }
-
-    TEST_CASE(s)
-    {
-        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
-        CONST_OR_CONSTEXPR auto s = q.s();
-        test_assert(s == 7.8);
-    }
-
     TEST_CASE(set_x_y_z_w)
     {
         dquat q(1.2, 3.4, 5.6, 7.8);
@@ -241,6 +227,20 @@ namespace
         test_assert(q[1] == 27.28);
         test_assert(q[2] == 29.30);
         test_assert(q[3] == 31.32);
+    }
+
+    TEST_CASE(v)
+    {
+        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto v = q.v();
+        test_assert(v == dvec3(1.2, 3.4, 5.6));
+    }
+
+    TEST_CASE(s)
+    {
+        CONST_OR_CONSTEXPR dquat q(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR auto s = q.s();
+        test_assert(s == 7.8);
     }
 
     TEST_CASE(set_v)

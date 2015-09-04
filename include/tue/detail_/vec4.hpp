@@ -159,53 +159,6 @@ namespace tue
             };
         }
 
-        constexpr T r() const noexcept
-        {
-            return this->impl_.data[0];
-        }
-
-        constexpr T g() const noexcept
-        {
-            return this->impl_.data[1];
-        }
-
-        constexpr T b() const noexcept
-        {
-            return this->impl_.data[2];
-        }
-
-        constexpr T a() const noexcept
-        {
-            return this->impl_.data[3];
-        }
-
-        constexpr vec2<T> rg() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-            };
-        }
-
-        constexpr vec3<T> rgb() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-                this->impl_.data[2],
-            };
-        }
-
-        constexpr vec4<T> rgba() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-                this->impl_.data[2],
-                this->impl_.data[3],
-            };
-        }
-
         void set_x(const T& x) noexcept
         {
             this->impl_.data[0] = x;
@@ -289,6 +242,53 @@ namespace tue
             this->impl_.data[1] = xyzw[1];
             this->impl_.data[2] = xyzw[2];
             this->impl_.data[3] = xyzw[3];
+        }
+
+        constexpr T r() const noexcept
+        {
+            return this->impl_.data[0];
+        }
+
+        constexpr T g() const noexcept
+        {
+            return this->impl_.data[1];
+        }
+
+        constexpr T b() const noexcept
+        {
+            return this->impl_.data[2];
+        }
+
+        constexpr T a() const noexcept
+        {
+            return this->impl_.data[3];
+        }
+
+        constexpr vec2<T> rg() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+            };
+        }
+
+        constexpr vec3<T> rgb() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+            };
+        }
+
+        constexpr vec4<T> rgba() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+                this->impl_.data[3],
+            };
         }
 
         void set_r(const T& r) noexcept

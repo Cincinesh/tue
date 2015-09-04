@@ -207,31 +207,6 @@ namespace
         test_assert(xyz == dvec3(1.2, 3.4, 5.6));
     }
 
-    TEST_CASE(r_g_b)
-    {
-        CONST_OR_CONSTEXPR dvec3 v(1.2, 3.4, 5.6);
-        CONST_OR_CONSTEXPR auto r = v.r();
-        CONST_OR_CONSTEXPR auto g = v.g();
-        CONST_OR_CONSTEXPR auto b = v.b();
-        test_assert(r == 1.2);
-        test_assert(g == 3.4);
-        test_assert(b == 5.6);
-    }
-
-    TEST_CASE(rg)
-    {
-        CONST_OR_CONSTEXPR dvec3 v(1.2, 3.4, 5.6);
-        CONST_OR_CONSTEXPR auto rg = v.rg();
-        test_assert(rg == dvec2(1.2, 3.4));
-    }
-
-    TEST_CASE(rgb)
-    {
-        CONST_OR_CONSTEXPR dvec3 v(1.2, 3.4, 5.6);
-        CONST_OR_CONSTEXPR auto rgb = v.rgb();
-        test_assert(rgb == dvec3(1.2, 3.4, 5.6));
-    }
-
     TEST_CASE(set_x_y_z)
     {
         dvec3 v(1.2, 3.4, 5.6);
@@ -276,6 +251,31 @@ namespace
         test_assert(v[0] == 19.20);
         test_assert(v[1] == 21.22);
         test_assert(v[2] == 23.24);
+    }
+
+    TEST_CASE(r_g_b)
+    {
+        CONST_OR_CONSTEXPR dvec3 v(1.2, 3.4, 5.6);
+        CONST_OR_CONSTEXPR auto r = v.r();
+        CONST_OR_CONSTEXPR auto g = v.g();
+        CONST_OR_CONSTEXPR auto b = v.b();
+        test_assert(r == 1.2);
+        test_assert(g == 3.4);
+        test_assert(b == 5.6);
+    }
+
+    TEST_CASE(rg)
+    {
+        CONST_OR_CONSTEXPR dvec3 v(1.2, 3.4, 5.6);
+        CONST_OR_CONSTEXPR auto rg = v.rg();
+        test_assert(rg == dvec2(1.2, 3.4));
+    }
+
+    TEST_CASE(rgb)
+    {
+        CONST_OR_CONSTEXPR dvec3 v(1.2, 3.4, 5.6);
+        CONST_OR_CONSTEXPR auto rgb = v.rgb();
+        test_assert(rgb == dvec3(1.2, 3.4, 5.6));
     }
 
     TEST_CASE(set_r_g_b)

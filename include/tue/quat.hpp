@@ -246,28 +246,6 @@ namespace tue
         }
 
         /*!
-         * \brief   Returns a copy of this `quat`'s first three components.
-         * \return  A copy of this `quat`'s first three components.
-         */
-        constexpr vec3<T> v() const noexcept
-        {
-            return {
-                this->impl_.data[0],
-                this->impl_.data[1],
-                this->impl_.data[2],
-            };
-        }
-
-        /*!
-         * \brief   Returns a copy of this `quat`'s fourth component.
-         * \return  A copy of this `quat`'s fourth component.
-         */
-        constexpr T s() const noexcept
-        {
-            return this->impl_.data[3];
-        }
-
-        /*!
          * \brief    Sets this `quat`'s first component.
          * \param x  The new value for the first component.
          */
@@ -368,6 +346,28 @@ namespace tue
             this->impl_.data[1] = xyzw[1];
             this->impl_.data[2] = xyzw[2];
             this->impl_.data[3] = xyzw[3];
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s first three components.
+         * \return  A copy of this `quat`'s first three components.
+         */
+        constexpr vec3<T> v() const noexcept
+        {
+            return {
+                this->impl_.data[0],
+                this->impl_.data[1],
+                this->impl_.data[2],
+            };
+        }
+
+        /*!
+         * \brief   Returns a copy of this `quat`'s fourth component.
+         * \return  A copy of this `quat`'s fourth component.
+         */
+        constexpr T s() const noexcept
+        {
+            return this->impl_.data[3];
         }
 
         /*!

@@ -151,6 +151,12 @@ namespace tue
             return this->impl_.columns[i];
         }
 
+        template<typename I>
+        void set_column(const I& i, const vec<T, R>& v) noexcept
+        {
+            this->impl_.columns[i] = v;
+        }
+
         template<typename J>
         constexpr vec<T, 4> row(const J& j) const noexcept
         {
@@ -160,12 +166,6 @@ namespace tue
                 this->impl_.columns[2][j],
                 this->impl_.columns[3][j],
             };
-        }
-
-        template<typename I>
-        void set_column(const I& i, const vec<T, R>& v) noexcept
-        {
-            this->impl_.columns[i] = v;
         }
 
         template<typename J>
