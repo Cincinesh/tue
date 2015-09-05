@@ -721,11 +721,11 @@ namespace
     TEST_CASE(multiplication_operator)
     {
         CONST_OR_CONSTEXPR auto v1 =
-            1 * dvec4(2.3, 4.5, 6.7, 8.9);
-        test_assert(v1[0] == 1 * 2.3);
-        test_assert(v1[1] == 1 * 4.5);
-        test_assert(v1[2] == 1 * 6.7);
-        test_assert(v1[3] == 1 * 8.9);
+            12 * dvec4(2.3, 4.5, 6.7, 8.9);
+        test_assert(v1[0] == 12 * 2.3);
+        test_assert(v1[1] == 12 * 4.5);
+        test_assert(v1[2] == 12 * 6.7);
+        test_assert(v1[3] == 12 * 8.9);
 
         CONST_OR_CONSTEXPR auto v2 =
             dvec4(1.2, 3.4, 5.6, 7.8) * 9;

@@ -462,9 +462,9 @@ namespace
 
     TEST_CASE(multiplication_operator)
     {
-        CONST_OR_CONSTEXPR auto v1 = 1 * dvec2(2.3, 4.5);
-        test_assert(v1[0] == 1 * 2.3);
-        test_assert(v1[1] == 1 * 4.5);
+        CONST_OR_CONSTEXPR auto v1 = 12 * dvec2(2.3, 4.5);
+        test_assert(v1[0] == 12 * 2.3);
+        test_assert(v1[1] == 12 * 4.5);
 
         CONST_OR_CONSTEXPR auto v2 = dvec2(1.2, 3.4) * 5;
         test_assert(v2[0] == 1.2 * 5);

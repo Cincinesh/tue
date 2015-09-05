@@ -17,45 +17,45 @@ namespace
     using namespace tue;
 
     CONST_OR_CONSTEXPR fmat4x2 fm42 = {
-        { 0.0f, 0.1f },
-        { 1.0f, 1.1f },
-        { 2.0f, 2.1f },
-        { 3.0f, 3.1f },
+        { 1.1f, 1.2f },
+        { 2.1f, 2.2f },
+        { 3.1f, 3.2f },
+        { 4.1f, 4.2f },
     };
 
     CONST_OR_CONSTEXPR fmat4x3 fm43 = {
-        { 0.0f, 0.1f, 0.2f },
-        { 1.0f, 1.1f, 1.2f },
-        { 2.0f, 2.1f, 2.2f },
-        { 3.0f, 3.1f, 3.2f },
+        { 1.1f, 1.2f, 1.3f },
+        { 2.1f, 2.2f, 2.3f },
+        { 3.1f, 3.2f, 3.3f },
+        { 4.1f, 4.2f, 4.3f },
     };
 
     CONST_OR_CONSTEXPR fmat4x4 fm44 = {
-        { 0.0f, 0.1f, 0.2f, 0.3f },
-        { 1.0f, 1.1f, 1.2f, 1.3f },
-        { 2.0f, 2.1f, 2.2f, 2.3f },
-        { 3.0f, 3.1f, 3.2f, 3.3f },
+        { 1.1f, 1.2f, 1.3f, 1.4f },
+        { 2.1f, 2.2f, 2.3f, 2.4f },
+        { 3.1f, 3.2f, 3.3f, 3.4f },
+        { 4.1f, 4.2f, 4.3f, 4.4f },
     };
 
     CONST_OR_CONSTEXPR dmat4x2 dm42 = {
-        { 0.0, 0.1 },
-        { 1.0, 1.1 },
-        { 2.0, 2.1 },
-        { 3.0, 3.1 },
+        { 1.1, 1.2 },
+        { 2.1, 2.2 },
+        { 3.1, 3.2 },
+        { 4.1, 4.2 },
     };
 
     CONST_OR_CONSTEXPR dmat4x3 dm43 = {
-        { 0.0, 0.1, 0.2 },
-        { 1.0, 1.1, 1.2 },
-        { 2.0, 2.1, 2.2 },
-        { 3.0, 3.1, 3.2 },
+        { 1.1, 1.2, 1.3 },
+        { 2.1, 2.2, 2.3 },
+        { 3.1, 3.2, 3.3 },
+        { 4.1, 4.2, 4.3 },
     };
 
     CONST_OR_CONSTEXPR dmat4x4 dm44 = {
-        { 0.0, 0.1, 0.2, 0.3 },
-        { 1.0, 1.1, 1.2, 1.3 },
-        { 2.0, 2.1, 2.2, 2.3 },
-        { 3.0, 3.1, 3.2, 3.3 },
+        { 1.1, 1.2, 1.3, 1.4 },
+        { 2.1, 2.2, 2.3, 2.4 },
+        { 3.1, 3.2, 3.3, 3.4 },
+        { 4.1, 4.2, 4.3, 4.4 },
     };
 
     CONST_OR_CONSTEXPR mat4x2<short> sm42 = {
@@ -209,20 +209,20 @@ namespace
 
     TEST_CASE(individual_columns_constructor)
     {
-        test_assert(dm42[0] == dvec2(0.0, 0.1));
-        test_assert(dm42[1] == dvec2(1.0, 1.1));
-        test_assert(dm42[2] == dvec2(2.0, 2.1));
-        test_assert(dm42[3] == dvec2(3.0, 3.1));
+        test_assert(dm42[0] == dvec2(1.1, 1.2));
+        test_assert(dm42[1] == dvec2(2.1, 2.2));
+        test_assert(dm42[2] == dvec2(3.1, 3.2));
+        test_assert(dm42[3] == dvec2(4.1, 4.2));
 
-        test_assert(dm43[0] == dvec3(0.0, 0.1, 0.2));
-        test_assert(dm43[1] == dvec3(1.0, 1.1, 1.2));
-        test_assert(dm43[2] == dvec3(2.0, 2.1, 2.2));
-        test_assert(dm43[3] == dvec3(3.0, 3.1, 3.2));
+        test_assert(dm43[0] == dvec3(1.1, 1.2, 1.3));
+        test_assert(dm43[1] == dvec3(2.1, 2.2, 2.3));
+        test_assert(dm43[2] == dvec3(3.1, 3.2, 3.3));
+        test_assert(dm43[3] == dvec3(4.1, 4.2, 4.3));
 
-        test_assert(dm44[0] == dvec4(0.0, 0.1, 0.2, 0.3));
-        test_assert(dm44[1] == dvec4(1.0, 1.1, 1.2, 1.3));
-        test_assert(dm44[2] == dvec4(2.0, 2.1, 2.2, 2.3));
-        test_assert(dm44[3] == dvec4(3.0, 3.1, 3.2, 3.3));
+        test_assert(dm44[0] == dvec4(1.1, 1.2, 1.3, 1.4));
+        test_assert(dm44[1] == dvec4(2.1, 2.2, 2.3, 2.4));
+        test_assert(dm44[2] == dvec4(3.1, 3.2, 3.3, 3.4));
+        test_assert(dm44[3] == dvec4(4.1, 4.2, 4.3, 4.4));
     }
 
     TEST_CASE(explicit_conversion_constructor)
@@ -300,10 +300,10 @@ namespace
         CONST_OR_CONSTEXPR auto cem1 = cem[1];
         CONST_OR_CONSTEXPR auto cem2 = cem[2];
         CONST_OR_CONSTEXPR auto cem3 = cem[3];
-        test_assert(cem0 == dvec2(0.0, 0.1));
-        test_assert(cem1 == dvec2(1.0, 1.1));
-        test_assert(cem2 == dvec2(2.0, 2.1));
-        test_assert(cem3 == dvec2(3.0, 3.1));
+        test_assert(cem0 == dvec2(1.1, 1.2));
+        test_assert(cem1 == dvec2(2.1, 2.2));
+        test_assert(cem2 == dvec2(3.1, 3.2));
+        test_assert(cem3 == dvec2(4.1, 4.2));
 
         const auto cm = dm42;
         const auto& cm0 = cm[0];
@@ -368,25 +368,25 @@ namespace
 
     TEST_CASE(set_column)
     {
-        dmat4x2 m42 = dm42;
-        m42.set_column(0, dvec2(20.0, 20.1));
-        m42.set_column(1, dvec2(21.0, 21.1));
-        m42.set_column(2, dvec2(22.0, 22.1));
-        m42.set_column(3, dvec2(23.0, 23.1));
-        test_assert(m42.column(0) == dvec2(20.0, 20.1));
-        test_assert(m42.column(1) == dvec2(21.0, 21.1));
-        test_assert(m42.column(2) == dvec2(22.0, 22.1));
-        test_assert(m42.column(3) == dvec2(23.0, 23.1));
+        dmat4x2 m42;
+        m42.set_column(0, dvec2(0.0, 0.1));
+        m42.set_column(1, dvec2(1.0, 1.1));
+        m42.set_column(2, dvec2(2.0, 2.1));
+        m42.set_column(3, dvec2(3.0, 3.1));
+        test_assert(m42.column(0) == dvec2(0.0, 0.1));
+        test_assert(m42.column(1) == dvec2(1.0, 1.1));
+        test_assert(m42.column(2) == dvec2(2.0, 2.1));
+        test_assert(m42.column(3) == dvec2(3.0, 3.1));
         
-        dmat4x3 m43 = dm43;
-        m43.set_column(0, dvec3(20.0, 20.1, 20.2));
-        m43.set_column(1, dvec3(21.0, 21.1, 21.2));
-        m43.set_column(2, dvec3(22.0, 22.1, 22.2));
-        m43.set_column(3, dvec3(23.0, 23.1, 23.2));
-        test_assert(m43.column(0) == dvec3(20.0, 20.1, 20.2));
-        test_assert(m43.column(1) == dvec3(21.0, 21.1, 21.2));
-        test_assert(m43.column(2) == dvec3(22.0, 22.1, 22.2));
-        test_assert(m43.column(3) == dvec3(23.0, 23.1, 23.2));
+        dmat4x3 m43;
+        m43.set_column(0, dvec3(0.0, 0.1, 0.2));
+        m43.set_column(1, dvec3(1.0, 1.1, 1.2));
+        m43.set_column(2, dvec3(2.0, 2.1, 2.2));
+        m43.set_column(3, dvec3(3.0, 3.1, 3.2));
+        test_assert(m43.column(0) == dvec3(0.0, 0.1, 0.2));
+        test_assert(m43.column(1) == dvec3(1.0, 1.1, 1.2));
+        test_assert(m43.column(2) == dvec3(2.0, 2.1, 2.2));
+        test_assert(m43.column(3) == dvec3(3.0, 3.1, 3.2));
         
         dmat4x4 m44;
         m44.set_column(0, dvec4(0.0, 0.1, 0.2, 0.3));
@@ -452,7 +452,7 @@ namespace
 
     TEST_CASE(pre_increment_operator)
     {
-        mat4x2<int> m = im42;
+        auto m = im42;
         test_assert(&(++m) == &m);
         test_assert(m[0] == im42[0] + 1);
         test_assert(m[1] == im42[1] + 1);
@@ -462,8 +462,8 @@ namespace
 
     TEST_CASE(post_increment_operator)
     {
-        mat4x2<int> m1 = im42;
-        const mat4x2<int> m2 = m1++;
+        auto m1 = im42;
+        const auto m2 = m1++;
         test_assert(m1[0] == im42[0] + 1);
         test_assert(m1[1] == im42[1] + 1);
         test_assert(m1[2] == im42[2] + 1);
@@ -473,7 +473,7 @@ namespace
 
     TEST_CASE(pre_decrement_operator)
     {
-        mat4x2<int> m = im42;
+        auto m = im42;
         test_assert(&(--m) == &m);
         test_assert(m[0] == im42[0] - 1);
         test_assert(m[1] == im42[1] - 1);
@@ -483,8 +483,8 @@ namespace
 
     TEST_CASE(post_decrement_operator)
     {
-        mat4x2<int> m1 = im42;
-        const mat4x2<int> m2 = m1--;
+        auto m1 = im42;
+        const auto m2 = m1--;
         test_assert(m1[0] == im42[0] - 1);
         test_assert(m1[1] == im42[1] - 1);
         test_assert(m1[2] == im42[2] - 1);
@@ -494,14 +494,14 @@ namespace
 
     TEST_CASE(addition_assignment_operator)
     {
-        dmat4x2 m1 = dm42;
+        auto m1 = dm42;
         test_assert(&(m1 += 12) == &m1);
         test_assert(m1[0] == dm42[0] + 12);
         test_assert(m1[1] == dm42[1] + 12);
         test_assert(m1[2] == dm42[2] + 12);
         test_assert(m1[3] == dm42[3] + 12);
 
-        dmat4x2 m2 = dm42;
+        auto m2 = dm42;
         test_assert(&(m2 += im42) == &m2);
         test_assert(m2[0] == dm42[0] + im42[0]);
         test_assert(m2[1] == dm42[1] + im42[1]);
@@ -511,14 +511,14 @@ namespace
 
     TEST_CASE(subtraction_assignment_operator)
     {
-        dmat4x2 m1 = dm42;
+        auto m1 = dm42;
         test_assert(&(m1 -= 12) == &m1);
         test_assert(m1[0] == dm42[0] - 12);
         test_assert(m1[1] == dm42[1] - 12);
         test_assert(m1[2] == dm42[2] - 12);
         test_assert(m1[3] == dm42[3] - 12);
 
-        dmat4x2 m2 = dm42;
+        auto m2 = dm42;
         test_assert(&(m2 -= im42) == &m2);
         test_assert(m2[0] == dm42[0] - im42[0]);
         test_assert(m2[1] == dm42[1] - im42[1]);
@@ -528,7 +528,7 @@ namespace
 
     TEST_CASE(multiplication_assignment_operator)
     {
-        dmat4x2 m1 = dm42;
+        auto m1 = dm42;
         test_assert(&(m1 *= 12) == &m1);
         test_assert(m1[0] == dm42[0] * 12);
         test_assert(m1[1] == dm42[1] * 12);
@@ -540,14 +540,14 @@ namespace
 
     TEST_CASE(division_assignment_operator)
     {
-        dmat4x2 m1 = dm42;
+        auto m1 = dm42;
         test_assert(&(m1 /= 12) == &m1);
         test_assert(m1[0] == dm42[0] / 12);
         test_assert(m1[1] == dm42[1] / 12);
         test_assert(m1[2] == dm42[2] / 12);
         test_assert(m1[3] == dm42[3] / 12);
 
-        dmat4x2 m2 = dm42;
+        auto m2 = dm42;
         test_assert(&(m2 /= im42) == &m2);
         test_assert(m2[0] == dm42[0] / im42[0]);
         test_assert(m2[1] == dm42[1] / im42[1]);
@@ -557,14 +557,14 @@ namespace
 
     TEST_CASE(modulo_assignment_operator)
     {
-        mat4x2<int> m1 = im42;
+        auto m1 = im42;
         test_assert(&(m1 %= 12) == &m1);
         test_assert(m1[0] == im42[0] % 12);
         test_assert(m1[1] == im42[1] % 12);
         test_assert(m1[2] == im42[2] % 12);
         test_assert(m1[3] == im42[3] % 12);
 
-        mat4x2<int> m2 = im42;
+        auto m2 = im42;
         test_assert(&(m2 %= sm42) == &m2);
         test_assert(m2[0] == im42[0] % sm42[0]);
         test_assert(m2[1] == im42[1] % sm42[1]);
@@ -574,14 +574,14 @@ namespace
 
     TEST_CASE(bitwise_and_assignment_operator)
     {
-        mat4x2<int> m1 = im42;
+        auto m1 = im42;
         test_assert(&(m1 &= 12) == &m1);
         test_assert(m1[0] == (im42[0] & 12));
         test_assert(m1[1] == (im42[1] & 12));
         test_assert(m1[2] == (im42[2] & 12));
         test_assert(m1[3] == (im42[3] & 12));
 
-        mat4x2<int> m2 = im42;
+        auto m2 = im42;
         test_assert(&(m2 &= sm42) == &m2);
         test_assert(m2[0] == (im42[0] & sm42[0]));
         test_assert(m2[1] == (im42[1] & sm42[1]));
@@ -591,14 +591,14 @@ namespace
 
     TEST_CASE(bitwise_or_assignment_operator)
     {
-        mat4x2<int> m1 = im42;
+        auto m1 = im42;
         test_assert(&(m1 |= 12) == &m1);
         test_assert(m1[0] == (im42[0] | 12));
         test_assert(m1[1] == (im42[1] | 12));
         test_assert(m1[2] == (im42[2] | 12));
         test_assert(m1[3] == (im42[3] | 12));
 
-        mat4x2<int> m2 = im42;
+        auto m2 = im42;
         test_assert(&(m2 |= sm42) == &m2);
         test_assert(m2[0] == (im42[0] | sm42[0]));
         test_assert(m2[1] == (im42[1] | sm42[1]));
@@ -608,14 +608,14 @@ namespace
 
     TEST_CASE(bitwise_xor_assignment_operator)
     {
-        mat4x2<int> m1 = im42;
+        auto m1 = im42;
         test_assert(&(m1 ^= 12) == &m1);
         test_assert(m1[0] == (im42[0] ^ 12));
         test_assert(m1[1] == (im42[1] ^ 12));
         test_assert(m1[2] == (im42[2] ^ 12));
         test_assert(m1[3] == (im42[3] ^ 12));
 
-        mat4x2<int> m2 = im42;
+        auto m2 = im42;
         test_assert(&(m2 ^= sm42) == &m2);
         test_assert(m2[0] == (im42[0] ^ sm42[0]));
         test_assert(m2[1] == (im42[1] ^ sm42[1]));
@@ -625,14 +625,14 @@ namespace
 
     TEST_CASE(bitwise_shift_left_assignment_operator)
     {
-        mat4x2<int> m1 = im42;
+        auto m1 = im42;
         test_assert(&(m1 <<= 12) == &m1);
         test_assert(m1[0] == (im42[0] << 12));
         test_assert(m1[1] == (im42[1] << 12));
         test_assert(m1[2] == (im42[2] << 12));
         test_assert(m1[3] == (im42[3] << 12));
 
-        mat4x2<int> m2 = im42;
+        auto m2 = im42;
         test_assert(&(m2 <<= sm42) == &m2);
         test_assert(m2[0] == (im42[0] << sm42[0]));
         test_assert(m2[1] == (im42[1] << sm42[1]));
@@ -642,14 +642,14 @@ namespace
 
     TEST_CASE(bitwise_shift_right_assignment_operator)
     {
-        mat4x2<int> m1 = im42;
+        auto m1 = im42;
         test_assert(&(m1 >>= 12) == &m1);
         test_assert(m1[0] == (im42[0] >> 12));
         test_assert(m1[1] == (im42[1] >> 12));
         test_assert(m1[2] == (im42[2] >> 12));
         test_assert(m1[3] == (im42[3] >> 12));
 
-        mat4x2<int> m2 = im42;
+        auto m2 = im42;
         test_assert(&(m2 >>= sm42) == &m2);
         test_assert(m2[0] == (im42[0] >> sm42[0]));
         test_assert(m2[1] == (im42[1] >> sm42[1]));
@@ -659,47 +659,230 @@ namespace
 
     TEST_CASE(unary_plus_operator)
     {
-        CONST_OR_CONSTEXPR dmat4x2 m = +dm42;
+        CONST_OR_CONSTEXPR auto m = +dm42;
         test_assert(m == dmat4x2(+dm42[0], +dm42[1], +dm42[2], +dm42[3]));
     }
 
     TEST_CASE(unary_minus_operator)
     {
-        CONST_OR_CONSTEXPR dmat4x2 m = -dm42;
+        CONST_OR_CONSTEXPR auto m = -dm42;
         test_assert(m == dmat4x2(-dm42[0], -dm42[1], -dm42[2], -dm42[3]));
     }
 
     TEST_CASE(bitwise_not_operator)
     {
-        CONST_OR_CONSTEXPR mat4x2<int> m = ~im42;
+        CONST_OR_CONSTEXPR auto m = ~im42;
         test_assert(m == mat4x2<int>(~im42[0], ~im42[1], ~im42[2], ~im42[3]));
     }
 
     TEST_CASE(logical_not_operator)
     {
-        CONST_OR_CONSTEXPR mat4x2<int> m = !im42;
+        CONST_OR_CONSTEXPR auto m = !im42;
         test_assert(m == mat4x2<int>(!im42[0], !im42[1], !im42[2], !im42[3]));
     }
 
     TEST_CASE(addition_operator)
     {
-        CONST_OR_CONSTEXPR auto m1 = 1 + dm42;
-        test_assert(m1[0] == 1 + dm42[0]);
-        test_assert(m1[1] == 1 + dm42[1]);
-        test_assert(m1[2] == 1 + dm42[2]);
-        test_assert(m1[3] == 1 + dm42[3]);
+        CONST_OR_CONSTEXPR auto m1 = 12 + dm42;
+        test_assert(m1[0] == 12 + dm42[0]);
+        test_assert(m1[1] == 12 + dm42[1]);
+        test_assert(m1[2] == 12 + dm42[2]);
+        test_assert(m1[3] == 12 + dm42[3]);
 
-        CONST_OR_CONSTEXPR auto m2 = dm42 + 9;
-        test_assert(m2[0] == dm42[0] + 9);
-        test_assert(m2[1] == dm42[1] + 9);
-        test_assert(m2[2] == dm42[2] + 9);
-        test_assert(m2[3] == dm42[3] + 9);
+        CONST_OR_CONSTEXPR auto m2 = dm42 + 12;
+        test_assert(m2[0] == dm42[0] + 12);
+        test_assert(m2[1] == dm42[1] + 12);
+        test_assert(m2[2] == dm42[2] + 12);
+        test_assert(m2[3] == dm42[3] + 12);
 
         CONST_OR_CONSTEXPR auto m3 = dm42 + im42;
         test_assert(m3[0] == dm42[0] + im42[0]);
         test_assert(m3[1] == dm42[1] + im42[1]);
         test_assert(m3[2] == dm42[2] + im42[2]);
         test_assert(m3[3] == dm42[3] + im42[3]);
+    }
+
+    TEST_CASE(subtraction_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 12 - dm42;
+        test_assert(m1[0] == 12 - dm42[0]);
+        test_assert(m1[1] == 12 - dm42[1]);
+        test_assert(m1[2] == 12 - dm42[2]);
+        test_assert(m1[3] == 12 - dm42[3]);
+
+        CONST_OR_CONSTEXPR auto m2 = dm42 - 12;
+        test_assert(m2[0] == dm42[0] - 12);
+        test_assert(m2[1] == dm42[1] - 12);
+        test_assert(m2[2] == dm42[2] - 12);
+        test_assert(m2[3] == dm42[3] - 12);
+
+        CONST_OR_CONSTEXPR auto m3 = dm42 - im42;
+        test_assert(m3[0] == dm42[0] - im42[0]);
+        test_assert(m3[1] == dm42[1] - im42[1]);
+        test_assert(m3[2] == dm42[2] - im42[2]);
+        test_assert(m3[3] == dm42[3] - im42[3]);
+    }
+
+    TEST_CASE(multiplication_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 12 * dm42;
+        test_assert(m1[0] == 12 * dm42[0]);
+        test_assert(m1[1] == 12 * dm42[1]);
+        test_assert(m1[2] == 12 * dm42[2]);
+        test_assert(m1[3] == 12 * dm42[3]);
+
+        CONST_OR_CONSTEXPR auto m2 = dm42 * 12;
+        test_assert(m2[0] == dm42[0] * 12);
+        test_assert(m2[1] == dm42[1] * 12);
+        test_assert(m2[2] == dm42[2] * 12);
+        test_assert(m2[3] == dm42[3] * 12);
+    }
+
+    TEST_CASE(division_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 12 / dm42;
+        test_assert(m1[0] == 12 / dm42[0]);
+        test_assert(m1[1] == 12 / dm42[1]);
+        test_assert(m1[2] == 12 / dm42[2]);
+        test_assert(m1[3] == 12 / dm42[3]);
+
+        CONST_OR_CONSTEXPR auto m2 = dm42 / 12;
+        test_assert(m2[0] == dm42[0] / 12);
+        test_assert(m2[1] == dm42[1] / 12);
+        test_assert(m2[2] == dm42[2] / 12);
+        test_assert(m2[3] == dm42[3] / 12);
+
+        CONST_OR_CONSTEXPR auto m3 = dm42 / im42;
+        test_assert(m3[0] == dm42[0] / im42[0]);
+        test_assert(m3[1] == dm42[1] / im42[1]);
+        test_assert(m3[2] == dm42[2] / im42[2]);
+        test_assert(m3[3] == dm42[3] / im42[3]);
+    }
+
+    TEST_CASE(modulo_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 123 % sm42;
+        test_assert(m1[0] == 123 % sm42[0]);
+        test_assert(m1[1] == 123 % sm42[1]);
+        test_assert(m1[2] == 123 % sm42[2]);
+        test_assert(m1[3] == 123 % sm42[3]);
+
+        CONST_OR_CONSTEXPR auto m2 = im42 % 12;
+        test_assert(m2[0] == im42[0] % 12);
+        test_assert(m2[1] == im42[1] % 12);
+        test_assert(m2[2] == im42[2] % 12);
+        test_assert(m2[3] == im42[3] % 12);
+
+        CONST_OR_CONSTEXPR auto m3 = im42 % sm42;
+        test_assert(m3[0] == im42[0] % sm42[0]);
+        test_assert(m3[1] == im42[1] % sm42[1]);
+        test_assert(m3[2] == im42[2] % sm42[2]);
+        test_assert(m3[3] == im42[3] % sm42[3]);
+    }
+
+    TEST_CASE(bitwise_and_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 123 & sm42;
+        test_assert(m1[0] == (123 & sm42[0]));
+        test_assert(m1[1] == (123 & sm42[1]));
+        test_assert(m1[2] == (123 & sm42[2]));
+        test_assert(m1[3] == (123 & sm42[3]));
+
+        CONST_OR_CONSTEXPR auto m2 = im42 & 12;
+        test_assert(m2[0] == (im42[0] & 12));
+        test_assert(m2[1] == (im42[1] & 12));
+        test_assert(m2[2] == (im42[2] & 12));
+        test_assert(m2[3] == (im42[3] & 12));
+
+        CONST_OR_CONSTEXPR auto m3 = im42 & sm42;
+        test_assert(m3[0] == (im42[0] & sm42[0]));
+        test_assert(m3[1] == (im42[1] & sm42[1]));
+        test_assert(m3[2] == (im42[2] & sm42[2]));
+        test_assert(m3[3] == (im42[3] & sm42[3]));
+    }
+
+    TEST_CASE(bitwise_or_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 123 | sm42;
+        test_assert(m1[0] == (123 | sm42[0]));
+        test_assert(m1[1] == (123 | sm42[1]));
+        test_assert(m1[2] == (123 | sm42[2]));
+        test_assert(m1[3] == (123 | sm42[3]));
+
+        CONST_OR_CONSTEXPR auto m2 = im42 | 12;
+        test_assert(m2[0] == (im42[0] | 12));
+        test_assert(m2[1] == (im42[1] | 12));
+        test_assert(m2[2] == (im42[2] | 12));
+        test_assert(m2[3] == (im42[3] | 12));
+
+        CONST_OR_CONSTEXPR auto m3 = im42 | sm42;
+        test_assert(m3[0] == (im42[0] | sm42[0]));
+        test_assert(m3[1] == (im42[1] | sm42[1]));
+        test_assert(m3[2] == (im42[2] | sm42[2]));
+        test_assert(m3[3] == (im42[3] | sm42[3]));
+    }
+
+    TEST_CASE(bitwise_xor_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 123 ^ sm42;
+        test_assert(m1[0] == (123 ^ sm42[0]));
+        test_assert(m1[1] == (123 ^ sm42[1]));
+        test_assert(m1[2] == (123 ^ sm42[2]));
+        test_assert(m1[3] == (123 ^ sm42[3]));
+
+        CONST_OR_CONSTEXPR auto m2 = im42 ^ 12;
+        test_assert(m2[0] == (im42[0] ^ 12));
+        test_assert(m2[1] == (im42[1] ^ 12));
+        test_assert(m2[2] == (im42[2] ^ 12));
+        test_assert(m2[3] == (im42[3] ^ 12));
+
+        CONST_OR_CONSTEXPR auto m3 = im42 ^ sm42;
+        test_assert(m3[0] == (im42[0] ^ sm42[0]));
+        test_assert(m3[1] == (im42[1] ^ sm42[1]));
+        test_assert(m3[2] == (im42[2] ^ sm42[2]));
+        test_assert(m3[3] == (im42[3] ^ sm42[3]));
+    }
+
+    TEST_CASE(bitwise_shift_left_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 123 << sm42;
+        test_assert(m1[0] == (123 << sm42[0]));
+        test_assert(m1[1] == (123 << sm42[1]));
+        test_assert(m1[2] == (123 << sm42[2]));
+        test_assert(m1[3] == (123 << sm42[3]));
+
+        CONST_OR_CONSTEXPR auto m2 = im42 << 1;
+        test_assert(m2[0] == (im42[0] << 1));
+        test_assert(m2[1] == (im42[1] << 1));
+        test_assert(m2[2] == (im42[2] << 1));
+        test_assert(m2[3] == (im42[3] << 1));
+
+        CONST_OR_CONSTEXPR auto m3 = im42 << sm42;
+        test_assert(m3[0] == (im42[0] << sm42[0]));
+        test_assert(m3[1] == (im42[1] << sm42[1]));
+        test_assert(m3[2] == (im42[2] << sm42[2]));
+        test_assert(m3[3] == (im42[3] << sm42[3]));
+    }
+
+    TEST_CASE(bitwise_shift_right_operator)
+    {
+        CONST_OR_CONSTEXPR auto m1 = 123 >> sm42;
+        test_assert(m1[0] == (123 >> sm42[0]));
+        test_assert(m1[1] == (123 >> sm42[1]));
+        test_assert(m1[2] == (123 >> sm42[2]));
+        test_assert(m1[3] == (123 >> sm42[3]));
+
+        CONST_OR_CONSTEXPR auto m2 = im42 >> 1;
+        test_assert(m2[0] == (im42[0] >> 1));
+        test_assert(m2[1] == (im42[1] >> 1));
+        test_assert(m2[2] == (im42[2] >> 1));
+        test_assert(m2[3] == (im42[3] >> 1));
+
+        CONST_OR_CONSTEXPR auto m3 = im42 >> sm42;
+        test_assert(m3[0] == (im42[0] >> sm42[0]));
+        test_assert(m3[1] == (im42[1] >> sm42[1]));
+        test_assert(m3[2] == (im42[2] >> sm42[2]));
+        test_assert(m3[3] == (im42[3] >> sm42[3]));
     }
 
     TEST_CASE(equality_operator)
