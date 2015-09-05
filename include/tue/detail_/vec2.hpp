@@ -925,21 +925,6 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr decltype(std::declval<T>() * std::declval<U>())
-        dot(const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
-        {
-            return lhs[0] * rhs[0]
-                 + lhs[1] * rhs[1];
-        }
-
-        template<typename T>
-        inline constexpr T length2(const vec<T, 2>& v) noexcept
-        {
-            return v[0] * v[0]
-                 + v[1] * v[1];
-        }
-
-        template<typename T, typename U>
         inline constexpr vec<U, 2> select(
             const vec<T, 2>& conditions,
             const vec<U, 2>& values,
@@ -1015,6 +1000,21 @@ namespace tue
                 tue::math::not_equal(lhs[0], rhs[0]),
                 tue::math::not_equal(lhs[1], rhs[1]),
             };
+        }
+
+        template<typename T, typename U>
+        inline constexpr decltype(std::declval<T>() * std::declval<U>())
+        dot(const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+        {
+            return lhs[0] * rhs[0]
+                 + lhs[1] * rhs[1];
+        }
+
+        template<typename T>
+        inline constexpr T length2(const vec<T, 2>& v) noexcept
+        {
+            return v[0] * v[0]
+                 + v[1] * v[1];
         }
 
         template<typename T>

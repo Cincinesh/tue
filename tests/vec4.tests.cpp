@@ -1085,31 +1085,6 @@ namespace
         test_assert(v[3] == math::max(7.8, -15.16));
     }
 
-    TEST_CASE(dot)
-    {
-        CONST_OR_CONSTEXPR auto x = math::dot(
-            dvec4(1.2, 3.4, 5.6, 7.8), ivec4(9, 10, 11, 12));
-        test_assert(x == 1.2*9 + 3.4*10 + 5.6*11 + 7.8*12);
-    }
-
-    TEST_CASE(length)
-    {
-        test_assert(math::length(dvec4(1.2, 3.4, 5.6, 7.8))
-                    == math::sqrt(math::length2(dvec4(1.2, 3.4, 5.6, 7.8))));
-    }
-
-    TEST_CASE(length2)
-    {
-        CONST_OR_CONSTEXPR auto x = math::length2(dvec4(1.2, 3.4, 5.6, 7.8));
-        test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6 + 7.8*7.8);
-    }
-
-    TEST_CASE(normalize)
-    {
-        const dvec4 v(1.2, 3.4, 5.6, 7.8);
-        test_assert(math::normalize(v) == v / math::length(v));
-    }
-
     TEST_CASE(select)
     {
         CONST_OR_CONSTEXPR auto v1 = math::select(
@@ -1164,5 +1139,30 @@ namespace
         CONST_OR_CONSTEXPR auto v = math::not_equal(
             ivec4(1, 2, 3, 4), dvec4(2.1, 2.0, 1.9, 1.8));
         test_assert(v == bvec4(true, false, true, true));
+    }
+
+    TEST_CASE(dot)
+    {
+        CONST_OR_CONSTEXPR auto x = math::dot(
+            dvec4(1.2, 3.4, 5.6, 7.8), ivec4(9, 10, 11, 12));
+        test_assert(x == 1.2*9 + 3.4*10 + 5.6*11 + 7.8*12);
+    }
+
+    TEST_CASE(length)
+    {
+        test_assert(math::length(dvec4(1.2, 3.4, 5.6, 7.8))
+                    == math::sqrt(math::length2(dvec4(1.2, 3.4, 5.6, 7.8))));
+    }
+
+    TEST_CASE(length2)
+    {
+        CONST_OR_CONSTEXPR auto x = math::length2(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6 + 7.8*7.8);
+    }
+
+    TEST_CASE(normalize)
+    {
+        const dvec4 v(1.2, 3.4, 5.6, 7.8);
+        test_assert(math::normalize(v) == v / math::length(v));
     }
 }

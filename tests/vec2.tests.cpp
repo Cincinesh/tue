@@ -714,30 +714,6 @@ namespace
         test_assert(v[1] == math::max(3.4, -7.8));
     }
 
-    TEST_CASE(dot)
-    {
-        CONST_OR_CONSTEXPR auto x = math::dot(dvec2(1.2, 3.4), dvec2(7, 8));
-        test_assert(x == 1.2*7 + 3.4*8);
-    }
-
-    TEST_CASE(length)
-    {
-        test_assert(math::length(dvec2(1.2, 3.4))
-                    == math::sqrt(math::length2(dvec2(1.2, 3.4))));
-    }
-
-    TEST_CASE(length2)
-    {
-        CONST_OR_CONSTEXPR auto x = math::length2(dvec2(1.2, 3.4));
-        test_assert(x == 1.2*1.2 + 3.4*3.4);
-    }
-
-    TEST_CASE(normalize)
-    {
-        const dvec2 v(1.2, 3.4);
-        test_assert(math::normalize(v) == v / math::length(v));
-    }
-
     TEST_CASE(select)
     {
         CONST_OR_CONSTEXPR auto v1 = math::select(
@@ -807,5 +783,29 @@ namespace
             ivec2(3, 4), dvec2(1.9, 1.8));
         test_assert(v1 == bvec2(true, false));
         test_assert(v2 == bvec2(true, true));
+    }
+
+    TEST_CASE(dot)
+    {
+        CONST_OR_CONSTEXPR auto x = math::dot(dvec2(1.2, 3.4), dvec2(7, 8));
+        test_assert(x == 1.2*7 + 3.4*8);
+    }
+
+    TEST_CASE(length)
+    {
+        test_assert(math::length(dvec2(1.2, 3.4))
+                    == math::sqrt(math::length2(dvec2(1.2, 3.4))));
+    }
+
+    TEST_CASE(length2)
+    {
+        CONST_OR_CONSTEXPR auto x = math::length2(dvec2(1.2, 3.4));
+        test_assert(x == 1.2*1.2 + 3.4*3.4);
+    }
+
+    TEST_CASE(normalize)
+    {
+        const dvec2 v(1.2, 3.4);
+        test_assert(math::normalize(v) == v / math::length(v));
     }
 }

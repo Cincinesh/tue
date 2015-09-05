@@ -895,40 +895,6 @@ namespace
         test_assert(v[2] == math::max(5.6, 11.12));
     }
 
-    TEST_CASE(dot)
-    {
-        CONST_OR_CONSTEXPR auto x = math::dot(
-            dvec3(1.2, 3.4, 5.6), dvec3(7, 8, 9));
-        test_assert(x == 1.2*7 + 3.4*8 + 5.6*9);
-    }
-
-    TEST_CASE(cross)
-    {
-        CONST_OR_CONSTEXPR auto v = math::cross(
-            dvec3(1.2, 3.4, 5.6), dvec3(7, 8, 9));
-        test_assert(v[0] == 3.4*9 - 5.6*8);
-        test_assert(v[1] == 5.6*7 - 1.2*9);
-        test_assert(v[2] == 1.2*8 - 3.4*7);
-    }
-
-    TEST_CASE(length)
-    {
-        test_assert(math::length(dvec3(1.2, 3.4, 5.6))
-                    == math::sqrt(math::length2(dvec3(1.2, 3.4, 5.6))));
-    }
-
-    TEST_CASE(length2)
-    {
-        CONST_OR_CONSTEXPR auto x = math::length2(dvec3(1.2, 3.4, 5.6));
-        test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6);
-    }
-
-    TEST_CASE(normalize)
-    {
-        const dvec3 v(1.2, 3.4, 5.6);
-        test_assert(math::normalize(v) == v / math::length(v));
-    }
-
     TEST_CASE(select)
     {
         CONST_OR_CONSTEXPR auto v1 = math::select(
@@ -983,5 +949,39 @@ namespace
         CONST_OR_CONSTEXPR auto v = math::not_equal(
             ivec3(1, 2, 3), dvec3(2.1, 2.0, 1.9));
         test_assert(v == bvec3(true, false, true));
+    }
+
+    TEST_CASE(dot)
+    {
+        CONST_OR_CONSTEXPR auto x = math::dot(
+            dvec3(1.2, 3.4, 5.6), dvec3(7, 8, 9));
+        test_assert(x == 1.2*7 + 3.4*8 + 5.6*9);
+    }
+
+    TEST_CASE(cross)
+    {
+        CONST_OR_CONSTEXPR auto v = math::cross(
+            dvec3(1.2, 3.4, 5.6), dvec3(7, 8, 9));
+        test_assert(v[0] == 3.4*9 - 5.6*8);
+        test_assert(v[1] == 5.6*7 - 1.2*9);
+        test_assert(v[2] == 1.2*8 - 3.4*7);
+    }
+
+    TEST_CASE(length)
+    {
+        test_assert(math::length(dvec3(1.2, 3.4, 5.6))
+                    == math::sqrt(math::length2(dvec3(1.2, 3.4, 5.6))));
+    }
+
+    TEST_CASE(length2)
+    {
+        CONST_OR_CONSTEXPR auto x = math::length2(dvec3(1.2, 3.4, 5.6));
+        test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6);
+    }
+
+    TEST_CASE(normalize)
+    {
+        const dvec3 v(1.2, 3.4, 5.6);
+        test_assert(math::normalize(v) == v / math::length(v));
     }
 }
