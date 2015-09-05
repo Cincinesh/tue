@@ -1432,4 +1432,460 @@ namespace tue
     {
         return tue::detail_::inequality_operator(lhs, rhs);
     }
+
+    /**/
+    namespace math
+    {
+        /*!
+         * \brief     Computes `tue::math::sin()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::sin()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::sin(std::declval<T>())), C, R>
+        sin(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::sin(m);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::cos()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::cos()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::cos(std::declval<T>())), C, R>
+        cos(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::cos(m);
+        }
+
+        /*!
+         * \brief          Computes `tue::math::sincos()` for each column of
+         *                 `m`.
+         *
+         * \tparam T       The component type of `m`.
+         * \tparam C       The column count of `m`.
+         * \tparam R       The row count of `m`.
+         *
+         * \param m        A `mat`.
+         * \param sin_out  A reference to the `mat` to store the `sin()` results
+         *                 in.
+         * \param cos_out  A reference to the `mat` to store the `cos()` results
+         *                 in.
+         */
+        template<typename T, int C, int R>
+        inline void
+        sincos(
+            const mat<T, C, R>& m,
+            decltype(tue::math::sin(m))& sin_out,
+            decltype(tue::math::sin(m))& cos_out) noexcept
+        {
+            tue::detail_::sincos(m, sin_out, cos_out);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::exp()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::exp()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::exp(std::declval<T>())), C, R>
+        exp(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::exp(m);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::log()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::log()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::log(std::declval<T>())), C, R>
+        log(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::log(m);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::abs()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::abs()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::abs(std::declval<T>())), C, R>
+        abs(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::abs(m);
+        }
+
+        /*!
+         * \brief            Computes `tue::math::pow()` for `base` and each
+         *                   column of `exponents`.
+         *
+         * \tparam T         The type of parameter `base`.
+         * \tparam U         The component type of `exponents`.
+         * \tparam C         The column count of `exponents`.
+         * \tparam R         The row count of `exponents`.
+         *
+         * \param base       The base.
+         * \param exponents  The exponents.
+         *
+         * \return           `tue::math::pow()` for `base` and each column of
+         *                   `exponents`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline mat<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
+        pow(const T& base, const mat<U, C, R>& exponents) noexcept
+        {
+            return tue::detail_::pow(base, exponents);
+        }
+
+        /*!
+         * \brief           Computes `tue::math::pow()` for each column of
+         *                  `bases` and `exponent`.
+         *
+         * \tparam T        The component type of `bases`.
+         * \tparam U        The type of parameter `exponent`.
+         * \tparam C        The column count of `bases`.
+         * \tparam R        The row count of `bases`.
+         *
+         * \param bases     The bases.
+         * \param exponent  The exponent.
+         *
+         * \return          `tue::math::pow()` for each column of `bases` and
+         *                  `exponent`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline mat<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
+        pow(const mat<T, C, R>& bases, const U& exponent) noexcept
+        {
+            return tue::detail_::pow(bases, exponent);
+        }
+
+        /*!
+         * \brief            Computes `tue::math::pow()` for each column of
+         *                   `bases` and each corresponding column of
+         *                   `exponents`.
+         *
+         * \tparam T         The component type of `bases`.
+         * \tparam U         The component type of `exponents`.
+         * \tparam C         The column count of `bases` and `exponents`.
+         * \tparam R         The row count of `bases` and `exponents`.
+         *
+         * \param bases      The bases.
+         * \param exponents  The exponents.
+         *
+         * \return           `tue::math::pow()` for each column of `bases` and
+         *                   each corresponding column of `exponents`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline mat<decltype(
+            tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
+        pow(const mat<T, C, R>& bases, const mat<U, C, R>& exponents) noexcept
+        {
+            return tue::detail_::pow(bases, exponents);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::recip()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::recip()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::recip(std::declval<T>())), C, R>
+        recip(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::recip(m);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::sqrt()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::sqrt()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::sqrt(std::declval<T>())), C, R>
+        sqrt(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::sqrt(m);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::rsqrt()` for each column of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    `tue::math::rsqrt()` for each column of `m`.
+         */
+        template<typename T, int C, int R>
+        inline mat<decltype(tue::math::rsqrt(std::declval<T>())), C, R>
+        rsqrt(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::rsqrt(m);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::min()` for each corresponding pair of
+         *            columns of `m1` and `m2`.
+         *
+         * \tparam T  The component type of `m1` and `m2`.
+         * \tparam C  The column count of `m1` and `m2`.
+         * \tparam R  The row count of `m1` and `m2`.
+         *
+         * \param m1  A `mat`.
+         * \param m2  Another `mat`.
+         *
+         * \return    `tue::math::min()` for each corresponding pair of columns
+         *            of `m1` and `m2`.
+         */
+        template<typename T, int C, int R>
+        inline mat<T, C, R>
+        min(const mat<T, C, R>& m1, const mat<T, C, R>& m2) noexcept
+        {
+            return tue::detail_::min(m1, m2);
+        }
+
+        /*!
+         * \brief     Computes `tue::math::max()` for each corresponding pair of
+         *            columns of `m1` and `m2`.
+         *
+         * \tparam T  The component type of `m1` and `m2`.
+         * \tparam C  The column count of `m1` and `m2`.
+         * \tparam R  The row count of `m1` and `m2`.
+         *
+         * \param m1  A `mat`.
+         * \param m2  Another `mat`.
+         *
+         * \return    `tue::math::max()` for each corresponding pair of columns
+         *            of `m1` and `m2`.
+         */
+        template<typename T, int C, int R>
+        inline mat<T, C, R>
+        max(const mat<T, C, R>& m1, const mat<T, C, R>& m2) noexcept
+        {
+            return tue::detail_::max(m1, m2);
+        }
+
+        /*!
+         * \brief             Computes `tue::math::select()` for each
+         *                    corresponding triple of columns from `conditions`,
+         *                    `values`, and `otherwise`.
+         *
+         * \tparam T          The component type of `conditions`.
+         * \tparam U          The component type of `values` and `otherwise`.
+         * \tparam C          The column count of all three parameters.
+         * \tparam R          The row count of all three parameters.
+         *
+         * \param conditions  A `mat`.
+         * \param values      Another `mat`.
+         * \param otherwise   Another `mat`.
+         *
+         * \return            `tue::math::select()` for each corresponding
+         *                    triple of columns from `conditions`, `values`, and
+         *                    `otherwise`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<U, C, R>
+        select(
+            const mat<T, C, R>& conditions,
+            const mat<U, C, R>& values,
+            const mat<U, C, R>& otherwise = mat<U, C, R>(0)) noexcept
+        {
+            return tue::detail_::select(conditions, values, otherwise);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::less()` for each corresponding pair
+         *             of columns of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam C   The column count of `lhs` and `rhs`.
+         * \tparam R   The row count of `lhs` and `rhs`.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `tue::math::less()` for each corresponding pair of
+         *             columns of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<decltype(
+            tue::math::less(std::declval<T>(), std::declval<U>())),
+            C, R>
+        less(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        {
+            return tue::detail_::less(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::less_equal()` for each corresponding
+         *             pair of columns of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam C   The column count of `lhs` and `rhs`.
+         * \tparam R   The row count of `lhs` and `rhs`.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `tue::math::less_equal()` for each corresponding pair of
+         *             columns of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<decltype(
+            tue::math::less_equal(std::declval<T>(), std::declval<U>())),
+            C, R>
+        less_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        {
+            return tue::detail_::less_equal(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::greater()` for each corresponding
+         *             pair of columns of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam C   The column count of `lhs` and `rhs`.
+         * \tparam R   The row count of `lhs` and `rhs`.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `tue::math::greater()` for each corresponding pair of
+         *             columns of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<decltype(
+            tue::math::greater(std::declval<T>(), std::declval<U>())),
+            C, R>
+        greater(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        {
+            return tue::detail_::greater(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::greater_equal()` for each
+         *             corresponding pair of columns of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam C   The column count of `lhs` and `rhs`.
+         * \tparam R   The row count of `lhs` and `rhs`.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `tue::math::greater_equal()` for each corresponding pair
+         *             of columns of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<decltype(
+            tue::math::greater_equal(std::declval<T>(), std::declval<U>())),
+            C, R>
+        greater_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        {
+            return tue::detail_::greater_equal(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::equal()` for each corresponding pair
+         *             of columns of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam C   The column count of `lhs` and `rhs`.
+         * \tparam R   The row count of `lhs` and `rhs`.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `tue::math::equal()` for each corresponding pair of
+         *             columns of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<decltype(
+            tue::math::equal(std::declval<T>(), std::declval<U>())),
+            C, R>
+        equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        {
+            return tue::detail_::equal(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes `tue::math::not_equal()` for each corresponding
+         *             pair of columns of `lhs` and `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam C   The column count of `lhs` and `rhs`.
+         * \tparam R   The row count of `lhs` and `rhs`.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `tue::math::not_equal()` for each corresponding pair of
+         *             columns of `lhs` and `rhs`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<decltype(
+            tue::math::not_equal(std::declval<T>(), std::declval<U>())),
+            C, R>
+        not_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        {
+            return tue::detail_::not_equal(lhs, rhs);
+        }
+    }
 }
