@@ -768,16 +768,16 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr bool equality_operator(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+        inline constexpr bool
+        equality_operator(const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
         {
             return lhs[0] == rhs[0]
                 && lhs[1] == rhs[1];
         }
 
         template<typename T, typename U>
-        inline constexpr bool inequality_operator(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+        inline constexpr bool
+        inequality_operator(const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
         {
             return lhs[0] != rhs[0]
                 || lhs[1] != rhs[1];
@@ -804,7 +804,8 @@ namespace tue
         }
 
         template<typename T>
-        inline void sincos(
+        inline void
+        sincos(
             const vec<T, 2>& v,
             decltype(tue::detail_::sin(v))& sin_out,
             decltype(tue::detail_::cos(v))& cos_out) noexcept
@@ -907,7 +908,8 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<T, 2> min(const vec<T, 2>& v1, const vec<T, 2>& v2) noexcept
+        inline vec<T, 2>
+        min(const vec<T, 2>& v1, const vec<T, 2>& v2) noexcept
         {
             return {
                 tue::math::min(v1[0], v2[0]),
@@ -916,7 +918,8 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<T, 2> max(const vec<T, 2>& v1, const vec<T, 2>& v2) noexcept
+        inline vec<T, 2>
+        max(const vec<T, 2>& v1, const vec<T, 2>& v2) noexcept
         {
             return {
                 tue::math::max(v1[0], v2[0]),
@@ -925,7 +928,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<U, 2> select(
+        inline constexpr vec<U, 2>
+        select(
             const vec<T, 2>& conditions,
             const vec<U, 2>& values,
             const vec<U, 2>& otherwise) noexcept
@@ -1011,7 +1015,8 @@ namespace tue
         }
 
         template<typename T>
-        inline constexpr T length2(const vec<T, 2>& v) noexcept
+        inline constexpr T
+        length2(const vec<T, 2>& v) noexcept
         {
             return v[0] * v[0]
                  + v[1] * v[1];

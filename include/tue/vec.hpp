@@ -1668,8 +1668,8 @@ namespace tue
      *             equal and `false` otherwise.
      */
     template<typename T, typename U, int N>
-    inline constexpr bool operator==(
-        const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    inline constexpr bool
+    operator==(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::equality_operator(lhs, rhs);
     }
@@ -1688,8 +1688,8 @@ namespace tue
      *             components compares not equal and `false` otherwise.
      */
     template<typename T, typename U, int N>
-    inline constexpr bool operator!=(
-        const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+    inline constexpr bool
+    operator!=(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::inequality_operator(lhs, rhs);
     }
@@ -1745,7 +1745,8 @@ namespace tue
          *                 in.
          */
         template<typename T, int N>
-        inline void sincos(
+        inline void
+        sincos(
             const vec<T, N>& v,
             decltype(tue::math::sin(v))& sin_out,
             decltype(tue::math::sin(v))& cos_out) noexcept
@@ -1936,7 +1937,8 @@ namespace tue
          *            components of `v1` and `v2`.
          */
         template<typename T, int N>
-        inline vec<T, N> min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
+        inline vec<T, N>
+        min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
             return tue::detail_::min(v1, v2);
         }
@@ -1955,7 +1957,8 @@ namespace tue
          *            components of `v1` and `v2`.
          */
         template<typename T, int N>
-        inline vec<T, N> max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
+        inline vec<T, N>
+        max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
             return tue::detail_::max(v1, v2);
         }
@@ -1978,7 +1981,8 @@ namespace tue
          *                    and `otherwise`.
          */
         template<typename T, typename U, int N>
-        inline constexpr vec<U, N> select(
+        inline constexpr vec<U, N>
+        select(
             const vec<T, N>& conditions,
             const vec<U, N>& values,
             const vec<U, N>& otherwise = vec<U, N>(0)) noexcept
@@ -2187,7 +2191,8 @@ namespace tue
          * \return    The vector length squared of `v`.
          */
         template<typename T, int N>
-        inline constexpr T length2(const vec<T, N>& v) noexcept
+        inline constexpr T
+        length2(const vec<T, N>& v) noexcept
         {
             return tue::detail_::length2(v);
         }

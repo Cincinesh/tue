@@ -852,7 +852,8 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
-        inline constexpr bool equality_operator(
+        inline constexpr bool
+        equality_operator(
             const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
         {
             return lhs[0] == rhs[0]
@@ -862,7 +863,8 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
-        inline constexpr bool inequality_operator(
+        inline constexpr bool
+        inequality_operator(
             const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
         {
             return lhs[0] != rhs[0]

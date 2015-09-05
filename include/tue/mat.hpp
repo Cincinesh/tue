@@ -1406,8 +1406,8 @@ namespace tue
      *             equal and `false` otherwise.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr bool operator==(
-        const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    inline constexpr bool
+    operator==(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::equality_operator(lhs, rhs);
     }
@@ -1427,8 +1427,8 @@ namespace tue
      *             columns compares not equal and `false` otherwise.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr bool operator!=(
-        const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+    inline constexpr bool
+    operator!=(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::inequality_operator(lhs, rhs);
     }
