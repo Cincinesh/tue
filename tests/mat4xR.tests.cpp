@@ -10,7 +10,9 @@
 #include <mon/test_case.hpp>
 
 #include <type_traits>
+#include <tue/math.hpp>
 #include <tue/unused.hpp>
+#include <tue/vec.hpp>
 
 namespace
 {
@@ -44,6 +46,13 @@ namespace
         { 4.1, 4.2 },
     };
 
+    CONST_OR_CONSTEXPR dmat4x2 dm422 = {
+        { -1.1, 1.2 },
+        { 22.1, -2.2 },
+        { -3.1, 3.2 },
+        { 24.1, -4.2 },
+    };
+
     CONST_OR_CONSTEXPR dmat4x3 dm43 = {
         { 1.1, 1.2, 1.3 },
         { 2.1, 2.2, 2.3 },
@@ -70,6 +79,13 @@ namespace
         { 110, 111 },
         { 120, 121 },
         { 130, 131 },
+    };
+
+    CONST_OR_CONSTEXPR mat4x2<bool> bm42 = {
+        { true, false },
+        { false, true },
+        { true, false },
+        { false, true },
     };
 
     TEST_CASE(size)
@@ -942,5 +958,201 @@ namespace
         test_assert(result3 == true);
         test_assert(result4 == true);
         test_assert(result5 == true);
+    }
+
+    TEST_CASE(sin)
+    {
+        const auto m = math::sin(dm42);
+        test_assert(m[0] == math::sin(dm42[0]));
+        test_assert(m[1] == math::sin(dm42[1]));
+        test_assert(m[2] == math::sin(dm42[2]));
+        test_assert(m[3] == math::sin(dm42[3]));
+    }
+
+    TEST_CASE(cos)
+    {
+        const auto m = math::cos(dm42);
+        test_assert(m[0] == math::cos(dm42[0]));
+        test_assert(m[1] == math::cos(dm42[1]));
+        test_assert(m[2] == math::cos(dm42[2]));
+        test_assert(m[3] == math::cos(dm42[3]));
+    }
+
+    TEST_CASE(sincos)
+    {
+        dmat4x2 s, c;
+        math::sincos(dm42, s, c);
+
+        test_assert(s[0] == math::sin(dm42[0]));
+        test_assert(s[1] == math::sin(dm42[1]));
+        test_assert(s[2] == math::sin(dm42[2]));
+        test_assert(s[3] == math::sin(dm42[3]));
+
+        test_assert(c[0] == math::cos(dm42[0]));
+        test_assert(c[1] == math::cos(dm42[1]));
+        test_assert(c[2] == math::cos(dm42[2]));
+        test_assert(c[3] == math::cos(dm42[3]));
+    }
+
+    TEST_CASE(exp)
+    {
+        const auto m = math::exp(dm42);
+        test_assert(m[0] == math::exp(dm42[0]));
+        test_assert(m[1] == math::exp(dm42[1]));
+        test_assert(m[2] == math::exp(dm42[2]));
+        test_assert(m[3] == math::exp(dm42[3]));
+    }
+
+    TEST_CASE(log)
+    {
+        const auto m = math::log(dm42);
+        test_assert(m[0] == math::log(dm42[0]));
+        test_assert(m[1] == math::log(dm42[1]));
+        test_assert(m[2] == math::log(dm42[2]));
+        test_assert(m[3] == math::log(dm42[3]));
+    }
+
+    TEST_CASE(abs)
+    {
+        const auto m = math::abs(dm422);
+        test_assert(m[0] == math::abs(dm422[0]));
+        test_assert(m[1] == math::abs(dm422[1]));
+        test_assert(m[2] == math::abs(dm422[2]));
+        test_assert(m[3] == math::abs(dm422[3]));
+    }
+
+    TEST_CASE(pow)
+    {
+        const auto m1 = math::pow(2, dm42);
+        test_assert(m1[0] == math::pow(2, dm42[0]));
+        test_assert(m1[1] == math::pow(2, dm42[1]));
+        test_assert(m1[2] == math::pow(2, dm42[2]));
+        test_assert(m1[3] == math::pow(2, dm42[3]));
+
+        const auto m2 = math::pow(dm42, 9);
+        test_assert(m2[0] == math::pow(dm42[0], 9));
+        test_assert(m2[1] == math::pow(dm42[1], 9));
+        test_assert(m2[2] == math::pow(dm42[2], 9));
+        test_assert(m2[3] == math::pow(dm42[3], 9));
+
+        const auto m3 = math::pow(dm42, im42);
+        test_assert(m3[0] == math::pow(dm42[0], im42[0]));
+        test_assert(m3[1] == math::pow(dm42[1], im42[1]));
+        test_assert(m3[2] == math::pow(dm42[2], im42[2]));
+        test_assert(m3[3] == math::pow(dm42[3], im42[3]));
+    }
+
+    TEST_CASE(recip)
+    {
+        const auto m = math::recip(dm42);
+        test_assert(m[0] == math::recip(dm42[0]));
+        test_assert(m[1] == math::recip(dm42[1]));
+        test_assert(m[2] == math::recip(dm42[2]));
+        test_assert(m[3] == math::recip(dm42[3]));
+    }
+
+    TEST_CASE(sqrt)
+    {
+        const auto m = math::sqrt(dm42);
+        test_assert(m[0] == math::sqrt(dm42[0]));
+        test_assert(m[1] == math::sqrt(dm42[1]));
+        test_assert(m[2] == math::sqrt(dm42[2]));
+        test_assert(m[3] == math::sqrt(dm42[3]));
+    }
+
+    TEST_CASE(rsqrt)
+    {
+        const auto m = math::rsqrt(dm42);
+        test_assert(m[0] == math::rsqrt(dm42[0]));
+        test_assert(m[1] == math::rsqrt(dm42[1]));
+        test_assert(m[2] == math::rsqrt(dm42[2]));
+        test_assert(m[3] == math::rsqrt(dm42[3]));
+    }
+
+    TEST_CASE(min)
+    {
+        const auto m = math::min(dm42, dm422);
+        test_assert(m[0] == math::min(dm42[0], dm422[0]));
+        test_assert(m[1] == math::min(dm42[1], dm422[1]));
+        test_assert(m[2] == math::min(dm42[2], dm422[2]));
+        test_assert(m[3] == math::min(dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(max)
+    {
+        const auto m = math::max(dm42, dm422);
+        test_assert(m[0] == math::max(dm42[0], dm422[0]));
+        test_assert(m[1] == math::max(dm42[1], dm422[1]));
+        test_assert(m[2] == math::max(dm42[2], dm422[2]));
+        test_assert(m[3] == math::max(dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(select)
+    {
+        CONST_OR_CONSTEXPR auto m1 = math::select(bm42, dm42);
+        test_assert(m1[0] == math::select(bm42[0], dm42[0]));
+        test_assert(m1[1] == math::select(bm42[1], dm42[1]));
+        test_assert(m1[2] == math::select(bm42[2], dm42[2]));
+        test_assert(m1[3] == math::select(bm42[3], dm42[3]));
+
+        CONST_OR_CONSTEXPR auto m2 = math::select(bm42, dm42, dm422);
+        test_assert(m2[0] == math::select(bm42[0], dm42[0], dm422[0]));
+        test_assert(m2[1] == math::select(bm42[1], dm42[1], dm422[1]));
+        test_assert(m2[2] == math::select(bm42[2], dm42[2], dm422[2]));
+        test_assert(m2[3] == math::select(bm42[3], dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(less)
+    {
+        CONST_OR_CONSTEXPR auto m = math::less(dm42, dm422);
+        test_assert(m[0] == math::less(dm42[0], dm422[0]));
+        test_assert(m[1] == math::less(dm42[1], dm422[1]));
+        test_assert(m[2] == math::less(dm42[2], dm422[2]));
+        test_assert(m[3] == math::less(dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(less_equal)
+    {
+        CONST_OR_CONSTEXPR auto m = math::less_equal(dm42, dm422);
+        test_assert(m[0] == math::less_equal(dm42[0], dm422[0]));
+        test_assert(m[1] == math::less_equal(dm42[1], dm422[1]));
+        test_assert(m[2] == math::less_equal(dm42[2], dm422[2]));
+        test_assert(m[3] == math::less_equal(dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(greater)
+    {
+        CONST_OR_CONSTEXPR auto m = math::greater(dm42, dm422);
+        test_assert(m[0] == math::greater(dm42[0], dm422[0]));
+        test_assert(m[1] == math::greater(dm42[1], dm422[1]));
+        test_assert(m[2] == math::greater(dm42[2], dm422[2]));
+        test_assert(m[3] == math::greater(dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(greater_equal)
+    {
+        CONST_OR_CONSTEXPR auto m = math::greater_equal(dm42, dm422);
+        test_assert(m[0] == math::greater_equal(dm42[0], dm422[0]));
+        test_assert(m[1] == math::greater_equal(dm42[1], dm422[1]));
+        test_assert(m[2] == math::greater_equal(dm42[2], dm422[2]));
+        test_assert(m[3] == math::greater_equal(dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(equal)
+    {
+        CONST_OR_CONSTEXPR auto m = math::equal(dm42, dm422);
+        test_assert(m[0] == math::equal(dm42[0], dm422[0]));
+        test_assert(m[1] == math::equal(dm42[1], dm422[1]));
+        test_assert(m[2] == math::equal(dm42[2], dm422[2]));
+        test_assert(m[3] == math::equal(dm42[3], dm422[3]));
+    }
+
+    TEST_CASE(not_equal)
+    {
+        CONST_OR_CONSTEXPR auto m = math::not_equal(dm42, dm422);
+        test_assert(m[0] == math::not_equal(dm42[0], dm422[0]));
+        test_assert(m[1] == math::not_equal(dm42[1], dm422[1]));
+        test_assert(m[2] == math::not_equal(dm42[2], dm422[2]));
+        test_assert(m[3] == math::not_equal(dm42[3], dm422[3]));
     }
 }
