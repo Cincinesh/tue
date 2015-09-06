@@ -1155,4 +1155,13 @@ namespace
         test_assert(m[2] == math::not_equal(dm42[2], dm422[2]));
         test_assert(m[3] == math::not_equal(dm42[3], dm422[3]));
     }
+
+    TEST_CASE(comp_mult)
+    {
+        CONST_OR_CONSTEXPR auto m = math::comp_mult(dm42, im42);
+        test_assert(m[0] == dm42[0] * im42[0]);
+        test_assert(m[1] == dm42[1] * im42[1]);
+        test_assert(m[2] == dm42[2] * im42[2]);
+        test_assert(m[3] == dm42[3] * im42[3]);
+    }
 }

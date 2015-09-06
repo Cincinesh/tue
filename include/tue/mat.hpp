@@ -923,6 +923,8 @@ namespace tue
 
     /*!
      * \brief      Computes the matrix product of `lhs` and `rhs`.
+     * \details    To compute the component-wise product, use
+     *             `tue::math::comp_mult()` instead.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1886,6 +1888,29 @@ namespace tue
         not_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
             return tue::detail_::not_equal(lhs, rhs);
+        }
+
+        /*!
+         * \brief      Computes the products of each column of `lhs` and each
+         *             corresponding column of `rhs`.
+         *
+         * \tparam T   The component type of `lhs`.
+         * \tparam U   The component type of `rhs`.
+         * \tparam C   The column count of both `lhs` and `rhs`.
+         * \tparam R   The row count of both `lhs` and `rhs`.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     The products of each column of `lhs` and each
+         *             corresponding column of `rhs`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() * std::declval<U>()), C, R>
+        comp_mult(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        {
+            return tue::detail_::comp_mult(lhs, rhs);
         }
     }
 }

@@ -1143,5 +1143,18 @@ namespace tue
                 tue::math::not_equal(lhs[3], rhs[3]),
             };
         }
+
+        template<typename T, typename U, int R>
+        inline constexpr mat<decltype(
+            std::declval<T>() * std::declval<U>()), 4, R>
+        comp_mult(const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+        {
+            return {
+                lhs[0] * rhs[0],
+                lhs[1] * rhs[1],
+                lhs[2] * rhs[2],
+                lhs[3] * rhs[3],
+            };
+        }
     }
 }
