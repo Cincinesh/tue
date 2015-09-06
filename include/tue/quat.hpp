@@ -10,6 +10,7 @@
 
 #include <utility>
 
+#include "math.hpp"
 #include "vec.hpp"
 
 namespace tue

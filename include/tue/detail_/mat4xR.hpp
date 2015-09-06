@@ -8,7 +8,10 @@
 
 #pragma once
 
+#include <utility>
+
 #include "../mat.hpp"
+#include "../math.hpp"
 #include "../vec.hpp"
 
 namespace tue

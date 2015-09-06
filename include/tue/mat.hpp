@@ -11,6 +11,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "math.hpp"
 #include "vec.hpp"
 
 namespace tue
