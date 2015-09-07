@@ -242,7 +242,7 @@ namespace tue
         template<typename U>
         mat<T, 2, R>& operator*=(const mat<U, 2, 2>& m) noexcept
         {
-            (*this) = (*this) * m;
+            return (*this) = (*this) * m;
         }
 
         template<typename U>

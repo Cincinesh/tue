@@ -103,6 +103,13 @@ namespace
         { 130, 131 },
     };
 
+    CONST_OR_CONSTEXPR mat4x4<int> im44 = {
+        { 100, 101, 102, 103 },
+        { 110, 111, 112, 113 },
+        { 120, 121, 122, 123 },
+        { 130, 131, 132, 133 },
+    };
+
     CONST_OR_CONSTEXPR mat4x2<bool> bm42 = {
         { true, false },
         { false, true },
@@ -634,7 +641,9 @@ namespace
         test_assert(m1[2] == dm42[2] * 12);
         test_assert(m1[3] == dm42[3] * 12);
 
-        // TODO
+        auto m2 = dm42;
+        test_assert(&(m2 *= im44) == &m2);
+        test_assert(m2 == dm42 * im44);
     }
 
     TEST_CASE(division_assignment_operator)

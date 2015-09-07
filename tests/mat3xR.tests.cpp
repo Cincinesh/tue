@@ -96,6 +96,12 @@ namespace
         { 120, 121 },
     };
 
+    CONST_OR_CONSTEXPR mat3x3<int> im33 = {
+        { 100, 101, 102 },
+        { 110, 111, 112 },
+        { 120, 121, 122 },
+    };
+
     CONST_OR_CONSTEXPR mat3x2<bool> bm32 = {
         { true, false },
         { false, true },
@@ -569,7 +575,9 @@ namespace
         test_assert(m1[1] == dm32[1] * 12);
         test_assert(m1[2] == dm32[2] * 12);
 
-        // TODO
+        auto m2 = dm32;
+        test_assert(&(m2 *= im33) == &m2);
+        test_assert(m2 == dm32 * im33);
     }
 
     TEST_CASE(division_assignment_operator)

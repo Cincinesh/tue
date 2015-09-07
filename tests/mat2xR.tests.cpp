@@ -513,7 +513,9 @@ namespace
         test_assert(m1[0] == dm22[0] * 12);
         test_assert(m1[1] == dm22[1] * 12);
 
-        // TODO
+        auto m2 = dm23;
+        test_assert(&(m2 *= im22) == &m2);
+        test_assert(m2 == dm23 * im22);
     }
 
     TEST_CASE(division_assignment_operator)
