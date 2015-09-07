@@ -686,6 +686,7 @@ namespace tue
 #include "detail_/mat2xR.hpp"
 #include "detail_/mat3xR.hpp"
 #include "detail_/mat4xR.hpp"
+#include "detail_/matmult.hpp"
 
 namespace tue
 {
