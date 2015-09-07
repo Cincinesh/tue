@@ -873,7 +873,7 @@ namespace
         CONST_OR_CONSTEXPR dmat3x2 m5(dvec2(0.0f), dvec2(3.4f), dvec2(5.6f));
         CONST_OR_CONSTEXPR auto result1 = (m1 == m2);
         CONST_OR_CONSTEXPR auto result2 = (m1 == m3);
-        CONST_OR_CONSTEXPR auto result3 = (m1 == m3);
+        CONST_OR_CONSTEXPR auto result3 = (m1 == m4);
         CONST_OR_CONSTEXPR auto result4 = (m1 == m5);
         test_assert(result1 == true);
         test_assert(result2 == false);
@@ -890,7 +890,7 @@ namespace
         CONST_OR_CONSTEXPR dmat3x2 m5(dvec2(0.0f), dvec2(3.4f), dvec2(5.6f));
         CONST_OR_CONSTEXPR auto result1 = (m1 != m2);
         CONST_OR_CONSTEXPR auto result2 = (m1 != m3);
-        CONST_OR_CONSTEXPR auto result3 = (m1 != m3);
+        CONST_OR_CONSTEXPR auto result3 = (m1 != m4);
         CONST_OR_CONSTEXPR auto result4 = (m1 != m5);
         test_assert(result1 == false);
         test_assert(result2 == true);
