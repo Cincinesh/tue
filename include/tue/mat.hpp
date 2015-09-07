@@ -705,7 +705,7 @@ namespace tue
     inline constexpr mat<decltype(+std::declval<T>()), C, R>
     operator+(const mat<T, C, R>& m) noexcept
     {
-        return tue::detail_::unary_plus_operator(m);
+        return tue::detail_::unary_plus_operator_m(m);
     }
 
     /*!
@@ -723,7 +723,7 @@ namespace tue
     inline constexpr mat<decltype(-std::declval<T>()), C, R>
     operator-(const mat<T, C, R>& m) noexcept
     {
-        return tue::detail_::unary_minus_operator(m);
+        return tue::detail_::unary_minus_operator_m(m);
     }
 
     /*!
@@ -741,7 +741,7 @@ namespace tue
     inline constexpr mat<decltype(~std::declval<T>()), C, R>
     operator~(const mat<T, C, R>& m) noexcept
     {
-        return tue::detail_::bitwise_not_operator(m);
+        return tue::detail_::bitwise_not_operator_m(m);
     }
 
     /*!
@@ -759,7 +759,7 @@ namespace tue
     inline constexpr mat<decltype(!std::declval<T>()), C, R>
     operator!(const mat<T, C, R>& m) noexcept
     {
-        return tue::detail_::logical_not_operator(m);
+        return tue::detail_::logical_not_operator_m(m);
     }
 
     /*!
@@ -779,7 +779,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
     operator+(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::addition_operator(lhs, rhs);
+        return tue::detail_::addition_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -799,7 +799,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
     operator+(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::addition_operator(lhs, rhs);
+        return tue::detail_::addition_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -821,7 +821,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
     operator+(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::addition_operator(lhs, rhs);
+        return tue::detail_::addition_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -842,7 +842,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
     operator-(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::subtraction_operator(lhs, rhs);
+        return tue::detail_::subtraction_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -863,7 +863,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
     operator-(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::subtraction_operator(lhs, rhs);
+        return tue::detail_::subtraction_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -885,7 +885,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
     operator-(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::subtraction_operator(lhs, rhs);
+        return tue::detail_::subtraction_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -905,7 +905,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
     operator*(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -926,7 +926,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), C>
     operator*(const vec<T, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_vm(lhs, rhs);
     }
 
     /*!
@@ -946,7 +946,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
     operator*(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -967,7 +967,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), R>
     operator*(const mat<T, C, R>& lhs, const vec<U, C>& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_mv(lhs, rhs);
     }
 
     /*!
@@ -989,7 +989,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
     operator*(const mat<T, N, R>& lhs, const mat<U, C, N>& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -1009,7 +1009,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
     operator/(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::division_operator(lhs, rhs);
+        return tue::detail_::division_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -1029,7 +1029,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
     operator/(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::division_operator(lhs, rhs);
+        return tue::detail_::division_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -1051,7 +1051,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
     operator/(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::division_operator(lhs, rhs);
+        return tue::detail_::division_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -1071,7 +1071,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
     operator%(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::modulo_operator(lhs, rhs);
+        return tue::detail_::modulo_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -1091,7 +1091,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
     operator%(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::modulo_operator(lhs, rhs);
+        return tue::detail_::modulo_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -1113,7 +1113,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
     operator%(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::modulo_operator(lhs, rhs);
+        return tue::detail_::modulo_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -1133,7 +1133,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
     operator&(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator(lhs, rhs);
+        return tue::detail_::bitwise_and_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -1153,7 +1153,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
     operator&(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator(lhs, rhs);
+        return tue::detail_::bitwise_and_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -1175,7 +1175,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
     operator&(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator(lhs, rhs);
+        return tue::detail_::bitwise_and_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -1195,7 +1195,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
     operator|(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator(lhs, rhs);
+        return tue::detail_::bitwise_or_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -1215,7 +1215,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
     operator|(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator(lhs, rhs);
+        return tue::detail_::bitwise_or_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -1237,7 +1237,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
     operator|(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator(lhs, rhs);
+        return tue::detail_::bitwise_or_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -1257,7 +1257,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
     operator^(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+        return tue::detail_::bitwise_xor_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -1277,7 +1277,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
     operator^(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+        return tue::detail_::bitwise_xor_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -1299,7 +1299,7 @@ namespace tue
     inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
     operator^(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+        return tue::detail_::bitwise_xor_operator_mm(lhs, rhs);
     }
 
 #define shift_left <<
@@ -1324,7 +1324,7 @@ namespace tue
         std::declval<T>() shift_left std::declval<U>()), C, R>
     operator<<(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_left_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -1346,7 +1346,7 @@ namespace tue
         std::declval<T>() shift_left std::declval<U>()), C, R>
     operator<<(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_left_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -1369,7 +1369,7 @@ namespace tue
         std::declval<T>() shift_left std::declval<U>()), C, R>
     operator<<(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_left_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -1391,7 +1391,7 @@ namespace tue
         std::declval<T>() shift_right std::declval<U>()), C, R>
     operator>>(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_right_operator_xm(lhs, rhs);
     }
 
     /*!
@@ -1413,7 +1413,7 @@ namespace tue
         std::declval<T>() shift_right std::declval<U>()), C, R>
     operator>>(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_right_operator_mx(lhs, rhs);
     }
 
     /*!
@@ -1436,7 +1436,7 @@ namespace tue
         std::declval<T>() shift_right std::declval<U>()), C, R>
     operator>>(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_right_operator_mm(lhs, rhs);
     }
 
 #undef shift_right
@@ -1460,7 +1460,7 @@ namespace tue
     inline constexpr bool
     operator==(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::equality_operator(lhs, rhs);
+        return tue::detail_::equality_operator_mm(lhs, rhs);
     }
 
     /*!
@@ -1481,7 +1481,7 @@ namespace tue
     inline constexpr bool
     operator!=(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
-        return tue::detail_::inequality_operator(lhs, rhs);
+        return tue::detail_::inequality_operator_mm(lhs, rhs);
     }
 
     /**/
@@ -1502,7 +1502,7 @@ namespace tue
         inline mat<decltype(tue::math::sin(std::declval<T>())), C, R>
         sin(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::sin(m);
+            return tue::detail_::sin_m(m);
         }
 
         /*!
@@ -1520,7 +1520,7 @@ namespace tue
         inline mat<decltype(tue::math::cos(std::declval<T>())), C, R>
         cos(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::cos(m);
+            return tue::detail_::cos_m(m);
         }
 
         /*!
@@ -1544,7 +1544,7 @@ namespace tue
             decltype(tue::math::sin(m))& sin_out,
             decltype(tue::math::sin(m))& cos_out) noexcept
         {
-            tue::detail_::sincos(m, sin_out, cos_out);
+            tue::detail_::sincos_m(m, sin_out, cos_out);
         }
 
         /*!
@@ -1562,7 +1562,7 @@ namespace tue
         inline mat<decltype(tue::math::exp(std::declval<T>())), C, R>
         exp(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::exp(m);
+            return tue::detail_::exp_m(m);
         }
 
         /*!
@@ -1580,7 +1580,7 @@ namespace tue
         inline mat<decltype(tue::math::log(std::declval<T>())), C, R>
         log(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::log(m);
+            return tue::detail_::log_m(m);
         }
 
         /*!
@@ -1598,7 +1598,7 @@ namespace tue
         inline mat<decltype(tue::math::abs(std::declval<T>())), C, R>
         abs(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::abs(m);
+            return tue::detail_::abs_m(m);
         }
 
         /*!
@@ -1621,7 +1621,7 @@ namespace tue
             tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
         pow(const T& base, const mat<U, C, R>& exponents) noexcept
         {
-            return tue::detail_::pow(base, exponents);
+            return tue::detail_::pow_xm(base, exponents);
         }
 
         /*!
@@ -1644,7 +1644,7 @@ namespace tue
             tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
         pow(const mat<T, C, R>& bases, const U& exponent) noexcept
         {
-            return tue::detail_::pow(bases, exponent);
+            return tue::detail_::pow_mx(bases, exponent);
         }
 
         /*!
@@ -1668,7 +1668,7 @@ namespace tue
             tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
         pow(const mat<T, C, R>& bases, const mat<U, C, R>& exponents) noexcept
         {
-            return tue::detail_::pow(bases, exponents);
+            return tue::detail_::pow_mm(bases, exponents);
         }
 
         /*!
@@ -1686,7 +1686,7 @@ namespace tue
         inline mat<decltype(tue::math::recip(std::declval<T>())), C, R>
         recip(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::recip(m);
+            return tue::detail_::recip_m(m);
         }
 
         /*!
@@ -1704,7 +1704,7 @@ namespace tue
         inline mat<decltype(tue::math::sqrt(std::declval<T>())), C, R>
         sqrt(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::sqrt(m);
+            return tue::detail_::sqrt_m(m);
         }
 
         /*!
@@ -1722,7 +1722,7 @@ namespace tue
         inline mat<decltype(tue::math::rsqrt(std::declval<T>())), C, R>
         rsqrt(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::rsqrt(m);
+            return tue::detail_::rsqrt_m(m);
         }
 
         /*!
@@ -1743,7 +1743,7 @@ namespace tue
         inline mat<T, C, R>
         min(const mat<T, C, R>& m1, const mat<T, C, R>& m2) noexcept
         {
-            return tue::detail_::min(m1, m2);
+            return tue::detail_::min_mm(m1, m2);
         }
 
         /*!
@@ -1764,7 +1764,7 @@ namespace tue
         inline mat<T, C, R>
         max(const mat<T, C, R>& m1, const mat<T, C, R>& m2) noexcept
         {
-            return tue::detail_::max(m1, m2);
+            return tue::detail_::max_mm(m1, m2);
         }
 
         /*!
@@ -1792,7 +1792,7 @@ namespace tue
             const mat<U, C, R>& values,
             const mat<U, C, R>& otherwise = mat<U, C, R>(0)) noexcept
         {
-            return tue::detail_::select(conditions, values, otherwise);
+            return tue::detail_::select_mm(conditions, values, otherwise);
         }
 
         /*!
@@ -1816,7 +1816,7 @@ namespace tue
             C, R>
         less(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
-            return tue::detail_::less(lhs, rhs);
+            return tue::detail_::less_mm(lhs, rhs);
         }
 
         /*!
@@ -1840,7 +1840,7 @@ namespace tue
             C, R>
         less_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
-            return tue::detail_::less_equal(lhs, rhs);
+            return tue::detail_::less_equal_mm(lhs, rhs);
         }
 
         /*!
@@ -1864,7 +1864,7 @@ namespace tue
             C, R>
         greater(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
-            return tue::detail_::greater(lhs, rhs);
+            return tue::detail_::greater_mm(lhs, rhs);
         }
 
         /*!
@@ -1888,7 +1888,7 @@ namespace tue
             C, R>
         greater_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
-            return tue::detail_::greater_equal(lhs, rhs);
+            return tue::detail_::greater_equal_mm(lhs, rhs);
         }
 
         /*!
@@ -1912,7 +1912,7 @@ namespace tue
             C, R>
         equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
-            return tue::detail_::equal(lhs, rhs);
+            return tue::detail_::equal_mm(lhs, rhs);
         }
 
         /*!
@@ -1936,7 +1936,7 @@ namespace tue
             C, R>
         not_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
-            return tue::detail_::not_equal(lhs, rhs);
+            return tue::detail_::not_equal_mm(lhs, rhs);
         }
 
         /*!
@@ -1959,7 +1959,7 @@ namespace tue
             std::declval<T>() * std::declval<U>()), C, R>
         comp_mult(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
-            return tue::detail_::comp_mult(lhs, rhs);
+            return tue::detail_::comp_mult_mm(lhs, rhs);
         }
 
         /*!
@@ -1977,7 +1977,7 @@ namespace tue
         inline constexpr mat<T, R, C>
         transpose(const mat<T, C, R>& m) noexcept
         {
-            return tue::detail_::transpose(m);
+            return tue::detail_::transpose_m(m);
         }
     }
 }

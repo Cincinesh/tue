@@ -10,6 +10,7 @@
 #include <mon/test_case.hpp>
 
 #include <type_traits>
+#include <tue/mat.hpp>
 #include <tue/math.hpp>
 #include <tue/quat.hpp>
 #include <tue/unused.hpp>
@@ -407,7 +408,12 @@ namespace
 
     TEST_CASE(mat_multiplication_assignment_operator)
     {
-        // TODO
+        const dvec3 v1(1.2, 3.4, 5.6);
+        const fmat3x3 m(7.8f);
+
+        auto v2 = v1;
+        test_assert(&(v2 *= m) == &v2);
+        test_assert(v2 == v1 * m);
     }
 
     TEST_CASE(quat_multiplication_assignment_operator)

@@ -10,6 +10,7 @@
 #include <mon/test_case.hpp>
 
 #include <type_traits>
+#include <tue/mat.hpp>
 #include <tue/math.hpp>
 #include <tue/unused.hpp>
 
@@ -524,7 +525,12 @@ namespace
 
     TEST_CASE(mat_multiplication_assignment_operator)
     {
-        // TODO
+        const dvec4 v1(1.2, 3.4, 5.6, 7.8);
+        const fmat4x4 m(9.10f);
+
+        auto v2 = v1;
+        test_assert(&(v2 *= m) == &v2);
+        test_assert(v2 == v1 * m);
     }
 
     TEST_CASE(division_assignment_operator)
