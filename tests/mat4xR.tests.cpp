@@ -410,7 +410,7 @@ namespace
         const double* cdata = cm.data();
         test_assert(cdata == static_cast<const void*>(&cm));
 
-        dvec4 m;
+        dmat4x2 m;
         double* data = m.data();
         test_assert(data == static_cast<void*>(&m));
     }
@@ -418,12 +418,12 @@ namespace
     TEST_CASE(columns)
     {
         const dmat4x2 cm(1.2);
-        const dvec2* cdata = cm.columns();
-        test_assert(cdata == static_cast<const void*>(&cm));
+        const dvec2* ccolumns = cm.columns();
+        test_assert(ccolumns == static_cast<const void*>(&cm));
 
         dmat4x2 m;
-        dvec2* data = m.columns();
-        test_assert(data == static_cast<void*>(&m));
+        dvec2* columns = m.columns();
+        test_assert(columns == static_cast<void*>(&m));
     }
 
     TEST_CASE(column)
@@ -455,7 +455,7 @@ namespace
         test_assert(m42.column(1) == dvec2(1.0, 1.1));
         test_assert(m42.column(2) == dvec2(2.0, 2.1));
         test_assert(m42.column(3) == dvec2(3.0, 3.1));
-        
+
         dmat4x3 m43;
         m43.set_column(0, dvec3(0.0, 0.1, 0.2));
         m43.set_column(1, dvec3(1.0, 1.1, 1.2));
@@ -465,7 +465,7 @@ namespace
         test_assert(m43.column(1) == dvec3(1.0, 1.1, 1.2));
         test_assert(m43.column(2) == dvec3(2.0, 2.1, 2.2));
         test_assert(m43.column(3) == dvec3(3.0, 3.1, 3.2));
-        
+
         dmat4x4 m44;
         m44.set_column(0, dvec4(0.0, 0.1, 0.2, 0.3));
         m44.set_column(1, dvec4(1.0, 1.1, 1.2, 1.3));
@@ -508,7 +508,7 @@ namespace
         m42.set_row(1, dvec4(1.0, 1.1, 1.2, 1.3));
         test_assert(m42.row(0) == dvec4(0.0, 0.1, 0.2, 0.3));
         test_assert(m42.row(1) == dvec4(1.0, 1.1, 1.2, 1.3));
-        
+
         dmat4x3 m43;
         m43.set_row(0, dvec4(0.0, 0.1, 0.2, 0.3));
         m43.set_row(1, dvec4(1.0, 1.1, 1.2, 1.3));
@@ -516,7 +516,7 @@ namespace
         test_assert(m43.row(0) == dvec4(0.0, 0.1, 0.2, 0.3));
         test_assert(m43.row(1) == dvec4(1.0, 1.1, 1.2, 1.3));
         test_assert(m43.row(2) == dvec4(2.0, 2.1, 2.2, 2.3));
-        
+
         dmat4x4 m44;
         m44.set_row(0, dvec4(0.0, 0.1, 0.2, 0.3));
         m44.set_row(1, dvec4(1.0, 1.1, 1.2, 1.3));
