@@ -329,6 +329,27 @@ namespace
         test_assert(m44[3] == fm44[3]);
     }
 
+    TEST_CASE(fill)
+    {
+        CONST_OR_CONSTEXPR auto m42 = dmat4x2::fill(1.2);
+        test_assert(m42[0] == dvec2(1.2));
+        test_assert(m42[1] == dvec2(1.2));
+        test_assert(m42[2] == dvec2(1.2));
+        test_assert(m42[3] == dvec2(1.2));
+
+        CONST_OR_CONSTEXPR auto m43 = dmat4x3::fill(1.2);
+        test_assert(m43[0] == dvec3(1.2));
+        test_assert(m43[1] == dvec3(1.2));
+        test_assert(m43[2] == dvec3(1.2));
+        test_assert(m43[3] == dvec3(1.2));
+
+        CONST_OR_CONSTEXPR auto m44 = dmat4x4::fill(1.2);
+        test_assert(m44[0] == dvec4(1.2));
+        test_assert(m44[1] == dvec4(1.2));
+        test_assert(m44[2] == dvec4(1.2));
+        test_assert(m44[3] == dvec4(1.2));
+    }
+
     TEST_CASE(identity)
     {
         CONST_OR_CONSTEXPR auto m42 = dmat4x2::identity();

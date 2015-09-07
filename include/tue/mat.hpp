@@ -329,6 +329,16 @@ namespace tue
         inline constexpr operator mat<U, C, R>() const noexcept;
 
         /*!
+         * \brief     Returns a `mat` with each column constructed with the same
+         *            value.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to construct each column with.
+         * \return    A `mat` with each column constructed with the same value.
+         */
+        template<typename U>
+        inline static constexpr mat<T, C, R> fill(const U& x) noexcept;
+
+        /*!
          * \brief   Returns a `mat` with the main diagonal set to `1` and all
          *          other components set to `0`.
          *

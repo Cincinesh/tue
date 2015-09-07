@@ -90,6 +90,12 @@ namespace tue
             };
         }
 
+        template<typename U>
+        static constexpr mat<T, 3, R> fill(const U& x) noexcept
+        {
+            return { vec<T, R>(x), vec<T, R>(x), vec<T, R>(x) };
+        }
+
         static constexpr mat<T, 3, R> identity() noexcept
         {
             return {
