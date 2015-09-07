@@ -105,7 +105,7 @@ namespace
         test_assert(v[3] == 7.8);
     }
 
-    TEST_CASE(explicit_conversion_constructor)
+    TEST_CASE(vec4_explicit_conversion_constructor)
     {
         CONST_OR_CONSTEXPR dvec4 dv(1.2, 3.4, 5.6, 7.8);
         CONST_OR_CONSTEXPR fvec4 fv(dv);

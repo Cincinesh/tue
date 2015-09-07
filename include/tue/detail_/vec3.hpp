@@ -43,13 +43,14 @@ namespace tue
         {
         }
 
-        explicit constexpr vec(const vec4<T>& v) noexcept :
-            impl_({{ v[0], v[1], v[2] }})
+        template<typename U>
+        explicit constexpr vec(const vec<U, 3>& v) noexcept :
+            impl_({{ T(v[0]), T(v[1]), T(v[2]) }})
         {
         }
 
         template<typename U>
-        explicit constexpr vec(const vec<U, 3>& v) noexcept :
+        explicit constexpr vec(const vec<U, 4>& v) noexcept :
             impl_({{ T(v[0]), T(v[1]), T(v[2]) }})
         {
         }

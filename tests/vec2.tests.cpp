@@ -83,23 +83,25 @@ namespace
         test_assert(v[1] == 3.4);
     }
 
-    TEST_CASE(truncate_vec3_constructor)
-    {
-        CONST_OR_CONSTEXPR dvec2 v(dvec3(1.2, 3.4, 5.6));
-        test_assert(v[0] == 1.2);
-        test_assert(v[1] == 3.4);
-    }
-
-    TEST_CASE(truncate_vec4_constructor)
-    {
-        CONST_OR_CONSTEXPR dvec2 v(dvec4(1.2, 3.4, 5.6, 7.8));
-        test_assert(v[0] == 1.2);
-        test_assert(v[1] == 3.4);
-    }
-
-    TEST_CASE(explicit_conversion_constructor)
+    TEST_CASE(vec2_explicit_conversion_constructor)
     {
         CONST_OR_CONSTEXPR dvec2 dv(1.2, 3.4);
+        CONST_OR_CONSTEXPR fvec2 fv(dv);
+        test_assert(fv[0] == 1.2f);
+        test_assert(fv[1] == 3.4f);
+    }
+
+    TEST_CASE(vec3_explicit_conversion_constructor)
+    {
+        CONST_OR_CONSTEXPR dvec3 dv(1.2, 3.4, 5.6);
+        CONST_OR_CONSTEXPR fvec2 fv(dv);
+        test_assert(fv[0] == 1.2f);
+        test_assert(fv[1] == 3.4f);
+    }
+
+    TEST_CASE(vec4_explicit_conversion_constructor)
+    {
+        CONST_OR_CONSTEXPR dvec4 dv(1.2, 3.4, 5.6, 7.8);
         CONST_OR_CONSTEXPR fvec2 fv(dv);
         test_assert(fv[0] == 1.2f);
         test_assert(fv[1] == 3.4f);

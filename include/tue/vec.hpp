@@ -224,32 +224,34 @@ namespace tue
         inline constexpr vec(const vec3<T>& xyz, const T& w) noexcept;
 
         /*!
-         * \brief    Truncates a larger `vec`.
-         * \details  This overload is only available when `N` is less than `3`.
-         *           When `N` equals `3`, it is replaced by the automatically
-         *           generated copy constructor.
-         *
-         * \param v  The larger `vec` to truncate.
-         */
-        inline explicit constexpr vec(const vec3<T>& v) noexcept;
-
-        /*!
-         * \brief    Truncates a larger `vec`.
-         * \details  This overload is only available when `N` is less than `4`.
-         *           When `N` equals `4`, it is replaced by the automatically
-         *           generated copy constructor.
-         *
-         * \param v  The larger `vec` to truncate.
-         */
-        inline explicit constexpr vec(const vec4<T>& v) noexcept;
-
-        /*!
          * \brief     Explicitly casts another `vec` to a new component type.
          * \tparam U  The component type of `v`.
          * \param v   The `vec` to cast from.
          */
         template<typename U>
         inline explicit constexpr vec(const vec<U, N>& v) noexcept;
+
+        /*!
+         * \brief     Truncates a larger `vec` and optionally explicitly casts
+         *            to a new component type.
+         * \details   This overload is only available when `N` is less than `3`.
+         *
+         * \tparam U  The component type of `v`.
+         * \param v   The larger `vec` to truncate.
+         */
+        template<typename U>
+        inline explicit constexpr vec(const vec<U, 3>& v) noexcept;
+
+        /*!
+         * \brief     Truncates a larger `vec` and optionally explicitly casts
+         *            to a new component type.
+         * \details   This overload is only available when `N` is less than `4`.
+         *
+         * \tparam U  The component type of `v`.
+         * \param v   The larger `vec` to truncate.
+         */
+        template<typename U>
+        inline explicit constexpr vec(const vec<U, 4>& v) noexcept;
 
         /*!
          * \brief     Implicitly casts this `vec` to a new component type.
