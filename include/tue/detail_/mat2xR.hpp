@@ -987,5 +987,38 @@ namespace tue
                 lhs[1] * rhs[1],
             };
         }
+
+        template<typename T>
+        inline constexpr mat<T, 2, 2>
+        transpose(const mat<T, 2, 2>& m) noexcept
+        {
+            return {
+                { m[0][0], m[1][0] },
+                { m[0][1], m[1][1] },
+            };
+        }
+
+        template<typename T>
+        inline constexpr mat<T, 3, 2>
+        transpose(const mat<T, 2, 3>& m) noexcept
+        {
+            return {
+                { m[0][0], m[1][0] },
+                { m[0][1], m[1][1] },
+                { m[0][2], m[1][2] },
+            };
+        }
+
+        template<typename T>
+        inline constexpr mat<T, 4, 2>
+        transpose(const mat<T, 2, 4>& m) noexcept
+        {
+            return {
+                { m[0][0], m[1][0] },
+                { m[0][1], m[1][1] },
+                { m[0][2], m[1][2] },
+                { m[0][3], m[1][3] },
+            };
+        }
     }
 }

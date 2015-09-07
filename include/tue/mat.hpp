@@ -1950,5 +1950,23 @@ namespace tue
         {
             return tue::detail_::comp_mult(lhs, rhs);
         }
+
+        /*!
+         * \brief     Computes the transpose of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam C  The column count of `m`.
+         * \tparam R  The row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    The transpose of `m`.
+         */
+        template<typename T, int C, int R>
+        inline constexpr mat<T, R, C>
+        transpose(const mat<T, C, R>& m) noexcept
+        {
+            return tue::detail_::transpose(m);
+        }
     }
 }

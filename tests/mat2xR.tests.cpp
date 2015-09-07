@@ -951,4 +951,22 @@ namespace
         test_assert(m[0] == dm22[0] * im22[0]);
         test_assert(m[1] == dm22[1] * im22[1]);
     }
+
+    TEST_CASE(transpose)
+    {
+        CONST_OR_CONSTEXPR auto m1 = math::transpose(dm22);
+        test_assert(m1[0] == dm22.row(0));
+        test_assert(m1[1] == dm22.row(1));
+
+        CONST_OR_CONSTEXPR auto m2 = math::transpose(dm23);
+        test_assert(m2[0] == dm23.row(0));
+        test_assert(m2[1] == dm23.row(1));
+        test_assert(m2[2] == dm23.row(2));
+
+        CONST_OR_CONSTEXPR auto m3 = math::transpose(dm24);
+        test_assert(m3[0] == dm24.row(0));
+        test_assert(m3[1] == dm24.row(1));
+        test_assert(m3[2] == dm24.row(2));
+        test_assert(m3[3] == dm24.row(3));
+    }
 }

@@ -1078,4 +1078,22 @@ namespace
         test_assert(m[1] == dm32[1] * im32[1]);
         test_assert(m[2] == dm32[2] * im32[2]);
     }
+
+    TEST_CASE(transpose)
+    {
+        CONST_OR_CONSTEXPR auto m1 = math::transpose(dm32);
+        test_assert(m1[0] == dm32.row(0));
+        test_assert(m1[1] == dm32.row(1));
+
+        CONST_OR_CONSTEXPR auto m2 = math::transpose(dm33);
+        test_assert(m2[0] == dm33.row(0));
+        test_assert(m2[1] == dm33.row(1));
+        test_assert(m2[2] == dm33.row(2));
+
+        CONST_OR_CONSTEXPR auto m3 = math::transpose(dm34);
+        test_assert(m3[0] == dm34.row(0));
+        test_assert(m3[1] == dm34.row(1));
+        test_assert(m3[2] == dm34.row(2));
+        test_assert(m3[3] == dm34.row(3));
+    }
 }
