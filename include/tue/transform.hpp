@@ -39,7 +39,7 @@ namespace tue
             const auto angle = tue::math::length(v);
             const auto axis = tue::math::select(
                 tue::math::not_equal(angle, U(0)),
-                vec3<U>(v) / angle,
+                v / angle,
                 vec3<U>::z_axis());
 
             return { axis, angle };
@@ -140,8 +140,8 @@ namespace tue
         {
             using U = decltype(tue::math::sin(angle));
             U s, c;
-            tue::math::sincos(U(angle) / U(2), s, c);
-            return { vec3<U>(axis) * s, c };
+            tue::math::sincos(angle / U(2), s, c);
+            return { axis * s, c };
         }
 
         /*!
@@ -163,7 +163,7 @@ namespace tue
         {
             using U = decltype(tue::math::sin(angle));
             U s, c;
-            tue::math::sincos(U(angle) / U(2), s, c);
+            tue::math::sincos(angle / U(2), s, c);
             return { x*s, y*s, z*s, c };
         }
 
@@ -177,9 +177,9 @@ namespace tue
         inline quat<decltype(tue::math::sin(std::declval<T>()))>
         rotation_quat(const vec4<T>& v) noexcept
         {
-            using U = decltype(tue::math::sin(angle));
+            using U = decltype(tue::math::sin(v[3]));
             U s, c;
-            tue::math::sincos(U(angle) / U(2), s, c);
+            tue::math::sincos(v[3] / U(2), s, c);
             return { v[0]*s, v[1]*s, v[2]*s, c };
         }
 
@@ -218,7 +218,7 @@ namespace tue
         rotation_quat(const T& x, const T& y, const T& z) noexcept
         {
             return tue::transform::rotation_quat(
-                tue::transform::axis_angle(v));
+                tue::transform::axis_angle(x, y, z));
         }
     }
 }
