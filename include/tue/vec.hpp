@@ -990,7 +990,7 @@ namespace tue
     inline constexpr vec<decltype(+std::declval<T>()), N>
     operator+(const vec<T, N>& v) noexcept
     {
-        return tue::detail_::unary_plus_operator(v);
+        return tue::detail_::unary_plus_operator_v(v);
     }
 
     /*!
@@ -1007,7 +1007,7 @@ namespace tue
     inline constexpr vec<decltype(-std::declval<T>()), N>
     operator-(const vec<T, N>& v) noexcept
     {
-        return tue::detail_::unary_minus_operator(v);
+        return tue::detail_::unary_minus_operator_v(v);
     }
 
     /*!
@@ -1024,7 +1024,7 @@ namespace tue
     inline constexpr vec<decltype(~std::declval<T>()), N>
     operator~(const vec<T, N>& v) noexcept
     {
-        return tue::detail_::bitwise_not_operator(v);
+        return tue::detail_::bitwise_not_operator_v(v);
     }
 
     /*!
@@ -1041,7 +1041,7 @@ namespace tue
     inline constexpr vec<decltype(!std::declval<T>()), N>
     operator!(const vec<T, N>& v) noexcept
     {
-        return tue::detail_::logical_not_operator(v);
+        return tue::detail_::logical_not_operator_v(v);
     }
 
     /*!
@@ -1060,7 +1060,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() + std::declval<U>()), N>
     operator+(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::addition_operator(lhs, rhs);
+        return tue::detail_::addition_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1079,7 +1079,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() + std::declval<U>()), N>
     operator+(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::addition_operator(lhs, rhs);
+        return tue::detail_::addition_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1100,7 +1100,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() + std::declval<U>()), N>
     operator+(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::addition_operator(lhs, rhs);
+        return tue::detail_::addition_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1120,7 +1120,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() - std::declval<U>()), N>
     operator-(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::subtraction_operator(lhs, rhs);
+        return tue::detail_::subtraction_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1140,7 +1140,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() - std::declval<U>()), N>
     operator-(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::subtraction_operator(lhs, rhs);
+        return tue::detail_::subtraction_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1161,7 +1161,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() - std::declval<U>()), N>
     operator-(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::subtraction_operator(lhs, rhs);
+        return tue::detail_::subtraction_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1180,7 +1180,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
     operator*(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1199,7 +1199,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
     operator*(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1220,7 +1220,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
     operator*(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator(lhs, rhs);
+        return tue::detail_::multiplication_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1239,7 +1239,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
     operator/(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::division_operator(lhs, rhs);
+        return tue::detail_::division_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1258,7 +1258,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
     operator/(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::division_operator(lhs, rhs);
+        return tue::detail_::division_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1279,7 +1279,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
     operator/(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::division_operator(lhs, rhs);
+        return tue::detail_::division_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1298,7 +1298,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() % std::declval<U>()), N>
     operator%(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::modulo_operator(lhs, rhs);
+        return tue::detail_::modulo_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1317,7 +1317,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() % std::declval<U>()), N>
     operator%(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::modulo_operator(lhs, rhs);
+        return tue::detail_::modulo_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1338,7 +1338,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() % std::declval<U>()), N>
     operator%(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::modulo_operator(lhs, rhs);
+        return tue::detail_::modulo_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1358,7 +1358,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
     operator&(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator(lhs, rhs);
+        return tue::detail_::bitwise_and_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1378,7 +1378,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
     operator&(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator(lhs, rhs);
+        return tue::detail_::bitwise_and_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1399,7 +1399,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
     operator&(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator(lhs, rhs);
+        return tue::detail_::bitwise_and_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1418,7 +1418,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
     operator|(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator(lhs, rhs);
+        return tue::detail_::bitwise_or_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1437,7 +1437,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
     operator|(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator(lhs, rhs);
+        return tue::detail_::bitwise_or_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1458,7 +1458,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
     operator|(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator(lhs, rhs);
+        return tue::detail_::bitwise_or_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1478,7 +1478,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
     operator^(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+        return tue::detail_::bitwise_xor_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1498,7 +1498,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
     operator^(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+        return tue::detail_::bitwise_xor_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1519,7 +1519,7 @@ namespace tue
     inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
     operator^(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator(lhs, rhs);
+        return tue::detail_::bitwise_xor_operator_vv(lhs, rhs);
     }
 
 #define shift_left <<
@@ -1543,7 +1543,7 @@ namespace tue
         std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_left_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1564,7 +1564,7 @@ namespace tue
         std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_left_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1586,7 +1586,7 @@ namespace tue
         std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_left_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1607,7 +1607,7 @@ namespace tue
         std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const T& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_right_operator_xv(lhs, rhs);
     }
 
     /*!
@@ -1628,7 +1628,7 @@ namespace tue
         std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const vec<T, N>& lhs, const U& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_right_operator_vx(lhs, rhs);
     }
 
     /*!
@@ -1650,7 +1650,7 @@ namespace tue
         std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator(lhs, rhs);
+        return tue::detail_::bitwise_shift_right_operator_vv(lhs, rhs);
     }
 
 #undef shift_right
@@ -1673,7 +1673,7 @@ namespace tue
     inline constexpr bool
     operator==(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::equality_operator(lhs, rhs);
+        return tue::detail_::equality_operator_vv(lhs, rhs);
     }
 
     /*!
@@ -1693,7 +1693,7 @@ namespace tue
     inline constexpr bool
     operator!=(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
-        return tue::detail_::inequality_operator(lhs, rhs);
+        return tue::detail_::inequality_operator_vv(lhs, rhs);
     }
 
     /**/
@@ -1713,7 +1713,7 @@ namespace tue
         inline vec<decltype(tue::math::sin(std::declval<T>())), N>
         sin(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::sin(v);
+            return tue::detail_::sin_v(v);
         }
 
         /*!
@@ -1730,7 +1730,7 @@ namespace tue
         inline vec<decltype(tue::math::cos(std::declval<T>())), N>
         cos(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::cos(v);
+            return tue::detail_::cos_v(v);
         }
 
         /*!
@@ -1753,7 +1753,7 @@ namespace tue
             decltype(tue::math::sin(v))& sin_out,
             decltype(tue::math::sin(v))& cos_out) noexcept
         {
-            tue::detail_::sincos(v, sin_out, cos_out);
+            tue::detail_::sincos_v(v, sin_out, cos_out);
         }
 
         /*!
@@ -1770,7 +1770,7 @@ namespace tue
         inline vec<decltype(tue::math::exp(std::declval<T>())), N>
         exp(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::exp(v);
+            return tue::detail_::exp_v(v);
         }
 
         /*!
@@ -1787,7 +1787,7 @@ namespace tue
         inline vec<decltype(tue::math::log(std::declval<T>())), N>
         log(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::log(v);
+            return tue::detail_::log_v(v);
         }
 
         /*!
@@ -1804,7 +1804,7 @@ namespace tue
         inline vec<decltype(tue::math::abs(std::declval<T>())), N>
         abs(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::abs(v);
+            return tue::detail_::abs_v(v);
         }
 
         /*!
@@ -1826,7 +1826,7 @@ namespace tue
             tue::math::pow(std::declval<T>(), std::declval<U>())), N>
         pow(const T& base, const vec<U, N>& exponents) noexcept
         {
-            return tue::detail_::pow(base, exponents);
+            return tue::detail_::pow_xv(base, exponents);
         }
 
         /*!
@@ -1848,7 +1848,7 @@ namespace tue
             tue::math::pow(std::declval<T>(), std::declval<U>())), N>
         pow(const vec<T, N>& bases, const U& exponent) noexcept
         {
-            return tue::detail_::pow(bases, exponent);
+            return tue::detail_::pow_vx(bases, exponent);
         }
 
         /*!
@@ -1871,7 +1871,7 @@ namespace tue
             tue::math::pow(std::declval<T>(), std::declval<U>())), N>
         pow(const vec<T, N>& bases, const vec<U, N>& exponents) noexcept
         {
-            return tue::detail_::pow(bases, exponents);
+            return tue::detail_::pow_vv(bases, exponents);
         }
 
         /*!
@@ -1888,7 +1888,7 @@ namespace tue
         inline vec<decltype(tue::math::recip(std::declval<T>())), N>
         recip(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::recip(v);
+            return tue::detail_::recip_v(v);
         }
 
         /*!
@@ -1905,7 +1905,7 @@ namespace tue
         inline vec<decltype(tue::math::sqrt(std::declval<T>())), N>
         sqrt(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::sqrt(v);
+            return tue::detail_::sqrt_v(v);
         }
 
         /*!
@@ -1922,7 +1922,7 @@ namespace tue
         inline vec<decltype(tue::math::rsqrt(std::declval<T>())), N>
         rsqrt(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::rsqrt(v);
+            return tue::detail_::rsqrt_v(v);
         }
 
         /*!
@@ -1942,7 +1942,7 @@ namespace tue
         inline vec<T, N>
         min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
-            return tue::detail_::min(v1, v2);
+            return tue::detail_::min_vv(v1, v2);
         }
 
         /*!
@@ -1962,7 +1962,7 @@ namespace tue
         inline vec<T, N>
         max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
-            return tue::detail_::max(v1, v2);
+            return tue::detail_::max_vv(v1, v2);
         }
 
         /*!
@@ -1989,7 +1989,7 @@ namespace tue
             const vec<U, N>& values,
             const vec<U, N>& otherwise = vec<U, N>(0)) noexcept
         {
-            return tue::detail_::select(conditions, values, otherwise);
+            return tue::detail_::select_vv(conditions, values, otherwise);
         }
 
         /*!
@@ -2011,7 +2011,7 @@ namespace tue
             tue::math::less(std::declval<T>(), std::declval<U>())), N>
         less(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
-            return tue::detail_::less(lhs, rhs);
+            return tue::detail_::less_vv(lhs, rhs);
         }
 
         /*!
@@ -2033,7 +2033,7 @@ namespace tue
             tue::math::less_equal(std::declval<T>(), std::declval<U>())), N>
         less_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
-            return tue::detail_::less_equal(lhs, rhs);
+            return tue::detail_::less_equal_vv(lhs, rhs);
         }
 
         /*!
@@ -2055,7 +2055,7 @@ namespace tue
             tue::math::greater(std::declval<T>(), std::declval<U>())), N>
         greater(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
-            return tue::detail_::greater(lhs, rhs);
+            return tue::detail_::greater_vv(lhs, rhs);
         }
 
         /*!
@@ -2077,7 +2077,7 @@ namespace tue
             tue::math::greater_equal(std::declval<T>(), std::declval<U>())), N>
         greater_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
-            return tue::detail_::greater_equal(lhs, rhs);
+            return tue::detail_::greater_equal_vv(lhs, rhs);
         }
 
         /*!
@@ -2099,7 +2099,7 @@ namespace tue
             tue::math::equal(std::declval<T>(), std::declval<U>())), N>
         equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
-            return tue::detail_::equal(lhs, rhs);
+            return tue::detail_::equal_vv(lhs, rhs);
         }
 
         /*!
@@ -2121,7 +2121,7 @@ namespace tue
             tue::math::not_equal(std::declval<T>(), std::declval<U>())), N>
         not_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
-            return tue::detail_::not_equal(lhs, rhs);
+            return tue::detail_::not_equal_vv(lhs, rhs);
         }
 
         /*!
@@ -2140,7 +2140,7 @@ namespace tue
         inline constexpr decltype(std::declval<T>() * std::declval<U>())
         dot(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
-            return tue::detail_::dot(lhs, rhs);
+            return tue::detail_::dot_vv(lhs, rhs);
         }
 
         /*!
@@ -2179,7 +2179,7 @@ namespace tue
         inline decltype(tue::math::sqrt(std::declval<T>()))
         length(const vec<T, N>& v) noexcept
         {
-            return tue::math::sqrt(tue::detail_::length2(v));
+            return tue::math::sqrt(tue::detail_::length2_v(v));
         }
 
         /*!
@@ -2196,7 +2196,7 @@ namespace tue
         inline constexpr T
         length2(const vec<T, N>& v) noexcept
         {
-            return tue::detail_::length2(v);
+            return tue::detail_::length2_v(v);
         }
 
         /*!

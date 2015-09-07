@@ -122,8 +122,8 @@ namespace tue
             const vec<T, N>& lhs, const mat<U, 2, N>& rhs) noexcept
         {
             return {
-                tue::detail_::dot(lhs, rhs[0]),
-                tue::detail_::dot(lhs, rhs[1]),
+                tue::detail_::dot_vv(lhs, rhs[0]),
+                tue::detail_::dot_vv(lhs, rhs[1]),
             };
         }
 
@@ -133,9 +133,9 @@ namespace tue
             const vec<T, N>& lhs, const mat<U, 3, N>& rhs) noexcept
         {
             return {
-                tue::detail_::dot(lhs, rhs[0]),
-                tue::detail_::dot(lhs, rhs[1]),
-                tue::detail_::dot(lhs, rhs[2]),
+                tue::detail_::dot_vv(lhs, rhs[0]),
+                tue::detail_::dot_vv(lhs, rhs[1]),
+                tue::detail_::dot_vv(lhs, rhs[2]),
             };
         }
 
@@ -145,10 +145,10 @@ namespace tue
             const vec<T, N>& lhs, const mat<U, 4, N>& rhs) noexcept
         {
             return {
-                tue::detail_::dot(lhs, rhs[0]),
-                tue::detail_::dot(lhs, rhs[1]),
-                tue::detail_::dot(lhs, rhs[2]),
-                tue::detail_::dot(lhs, rhs[3]),
+                tue::detail_::dot_vv(lhs, rhs[0]),
+                tue::detail_::dot_vv(lhs, rhs[1]),
+                tue::detail_::dot_vv(lhs, rhs[2]),
+                tue::detail_::dot_vv(lhs, rhs[3]),
             };
         }
 
