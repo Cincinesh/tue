@@ -778,8 +778,8 @@ namespace tue
         inline void
         sincos_m(
             const mat<T, 2, R>& m,
-            decltype(tue::math::sin(m))& sin_out,
-            decltype(tue::math::sin(m))& cos_out) noexcept
+            decltype(tue::detail_::sin_m(m))& sin_out,
+            decltype(tue::detail_::cos_m(m))& cos_out) noexcept
         {
             tue::math::sincos(m[0], sin_out[0], cos_out[0]);
             tue::math::sincos(m[1], sin_out[1], cos_out[1]);
