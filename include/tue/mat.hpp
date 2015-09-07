@@ -277,13 +277,48 @@ namespace tue
          *             components in the new `mat` will be ignored.
          *
          * \tparam MT  The component type of `m`.
-         * \tparam MC  The column count of `m`.
          * \tparam MR  The row count of `m`.
          *
          * \param m    The `mat` to cast from.
          */
-        template<typename MT, int MC, int MR>
-        inline explicit constexpr mat(const mat<MT, MC, MR>& m) noexcept;
+        template<typename MT, int MR>
+        inline explicit constexpr mat(const mat<MT, 2, MR>& m) noexcept;
+
+        /*!
+         * \brief      Explicitly casts another `mat` to a new size and/or
+         *             component type.
+         * \details    If the new `mat` is larger than `m` in either dimension,
+         *             the new components without corresponding components in
+         *             `m` will be constructed with `1` along the main diagonal
+         *             and `0` otherwise. If the new `mat` is smaller in either
+         *             dimension, the components from `m` without corresponding
+         *             components in the new `mat` will be ignored.
+         *
+         * \tparam MT  The component type of `m`.
+         * \tparam MR  The row count of `m`.
+         *
+         * \param m    The `mat` to cast from.
+         */
+        template<typename MT, int MR>
+        inline explicit constexpr mat(const mat<MT, 3, MR>& m) noexcept;
+
+        /*!
+         * \brief      Explicitly casts another `mat` to a new size and/or
+         *             component type.
+         * \details    If the new `mat` is larger than `m` in either dimension,
+         *             the new components without corresponding components in
+         *             `m` will be constructed with `1` along the main diagonal
+         *             and `0` otherwise. If the new `mat` is smaller in either
+         *             dimension, the components from `m` without corresponding
+         *             components in the new `mat` will be ignored.
+         *
+         * \tparam MT  The component type of `m`.
+         * \tparam MR  The row count of `m`.
+         *
+         * \param m    The `mat` to cast from.
+         */
+        template<typename MT, int MR>
+        inline explicit constexpr mat(const mat<MT, 4, MR>& m) noexcept;
 
         /*!
          * \brief     Implicitly casts this `mat` to a new component type.
@@ -638,6 +673,8 @@ namespace tue
     };
 }
 
+#include "detail_/mat2xR.hpp"
+#include "detail_/mat3xR.hpp"
 #include "detail_/mat4xR.hpp"
 
 namespace tue
