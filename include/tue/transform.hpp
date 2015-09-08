@@ -8,8 +8,10 @@
 
 #pragma once
 
+#include <type_traits>
 #include <utility>
 
+#include "mat.hpp"
 #include "math.hpp"
 #include "quat.hpp"
 #include "vec.hpp"
@@ -219,6 +221,73 @@ namespace tue
         {
             return tue::transform::rotation_quat(
                 tue::transform::axis_angle(x, y, z));
+        }
+
+        /*!
+         * \brief     Computes a 2D translation matrix.
+         * \details   The return matrix dimensions can be specified via
+         *            template arguments. `C` must be 2, 3, or 4 and `R` must be
+         *            3 or 4.
+         *
+         * \tparam T  The type of parameters `x` and `y`.
+         * \tparam C  The column count of the returned matrix.
+         * \tparam R  The row count of the returned matrix.
+         *
+         * \param x   The translation along the `x` dimension.
+         * \param y   The translation along the `y` dimension.
+         *
+         * \return    A 2D translation matrix. Values beyond the size of the
+         *            requested matrix will be truncated.
+         *
+         *            \code
+         *            [ 1,  0,  R == 3 ? x : 0,  x ]
+         *            [ 0,  1,  R == 3 ? y : 0,  y ]
+         *            [ 0,  0,               1,  0 ]
+         *            [ 0,  0,               0,  1 ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline constexpr std::enable_if_t<(C >= 2 && R >= 3), mat<T, C, R>>
+        translation_mat(const T& x, const T& y) noexcept
+        {
+            return tue::detail_::mat_utils<T, C, R>::create(
+                1, 0, R == 3 ? x : 0, x,
+                0, 1, R == 3 ? y : 0, y,
+                0, 0,              1, 0,
+                0, 0,              0, 1);
+        }
+
+        /*!
+         * \brief     Computes a 2D translation matrix.
+         * \details   The return matrix dimensions can be specified via
+         *            template arguments. `C` must be 2, 3, or 4 and `R` must be
+         *            3 or 4.
+         *
+         * \tparam T  The component type of `v`.
+         * \tparam C  The column count of the returned matrix.
+         * \tparam R  The row count of the returned matrix.
+         *
+         * \param v   The translation vector.
+         *
+         * \return    A 2D translation matrix. Values beyond the size of the
+         *            requested matrix will be truncated.
+         *
+         *            \code
+         *            [ 1,  0,  R == 3 ? v[0] : 0,  v[0] ]
+         *            [ 0,  1,  R == 3 ? v[1] : 0,  v[1] ]
+         *            [ 0,  0,                  1,    0  ]
+         *            [ 0,  0,                  0,    1  ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline constexpr std::enable_if_t<(C >= 2 && R >= 3), mat<T, C, R>>
+        translation_mat(const vec2<T>& v) noexcept
+        {
+            return tue::detail_::mat_utils<T, C, R>::create(
+                1, 0, R == 3 ? v[0] : 0, v[0],
+                0, 1, R == 3 ? v[1] : 0, v[1],
+                0, 0,                 1,   0,
+                0, 0,                 0,   1);
         }
     }
 }

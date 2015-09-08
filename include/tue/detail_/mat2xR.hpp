@@ -1035,5 +1035,27 @@ namespace tue
                 { m[0][3], m[1][3] },
             };
         }
+
+        template<typename T, int R>
+        struct mat_utils<T, 2, R>
+        {
+            template<
+                typename M00, typename M01, typename M02, typename M03,
+                typename M10, typename M11, typename M12, typename M13,
+                typename M20, typename M21, typename M22, typename M23,
+                typename M30, typename M31, typename M32, typename M33>
+            static constexpr mat<T, 2, R> create(
+                const M00& m00, const M01& m01, const M02& m02, const M03& m03,
+                const M10& m10, const M11& m11, const M12& m12, const M13& m13,
+                const M20&, const M21&, const M22&, const M23&,
+                const M30&, const M31&, const M32&, const M33&)
+                noexcept
+            {
+                return {
+                    tue::detail_::vec_utils<T, R>::create(m00, m01, m02, m03),
+                    tue::detail_::vec_utils<T, R>::create(m10, m11, m12, m13),
+                };
+            }
+        };
     }
 }

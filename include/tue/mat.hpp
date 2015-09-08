@@ -681,6 +681,13 @@ namespace tue
         template<typename U>
         inline mat<T, C, R>& operator>>=(const mat<U, C, R>& m) noexcept;
     };
+
+    /**/
+    namespace detail_
+    {
+        template<typename T, int C, int R>
+        struct mat_utils;
+    }
 }
 
 #include "detail_/mat2xR.hpp"
