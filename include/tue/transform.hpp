@@ -369,5 +369,45 @@ namespace tue
                 0, 0, 1, v[2],
                 0, 0, 0,   1);
         }
+
+        /*!
+         * \brief     Computes a 2D rotation matrix.
+         * \details   The returned matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The type of parameter `angle`.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 2, 3, or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 2, 3, or 4. Defaults to 4.
+         *
+         * \param v   The rotation (measured in radians counter-clockwise).
+         *
+         * \return    A 2D rotation matrix. Values beyond the requested matrix
+         *            dimensions are truncated.
+         *
+         *            \code
+         *            [  cos(angle),  sin(angle),  0,  0 ]
+         *            [ -sin(angle),  cos(angle),  0,  0 ]
+         *            [           0,           0,  1,  0 ]
+         *            [           0,           0,  0,  1 ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline std::enable_if_t<(C >= 2 && R >= 2),
+            mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
+        rotation_mat(const T& angle) noexcept
+        {
+            using U = decltype(tue::math::sin(angle));
+            U s, c;
+            tue::math::sincos(angle, s, c);
+            return tue::detail_::mat_utils<U, C, R>::create(
+                c, -s, 0, 0,
+                s,  c, 0, 0,
+                0,  0, 1, 0,
+                0,  0, 0, 1);
+        }
     }
 }

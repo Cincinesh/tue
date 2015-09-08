@@ -55,17 +55,17 @@ namespace
 
     TEST_CASE(axis_angle_to_rotation_quat)
     {
-        const auto rq1 = transform::rotation_quat(ivec3(1, 2, 3), 4);
-        test_assert(rq1.v() == ivec3(1, 2, 3) * math::sin(4/2));
-        test_assert(rq1.s() == math::cos(4/2));
+        const auto rq1 = transform::rotation_quat(ivec3(1, 2, 3), 5);
+        test_assert(rq1.v() == ivec3(1, 2, 3) * math::sin(5/2.0));
+        test_assert(rq1.s() == math::cos(5/2.0));
 
-        const auto rq2 = transform::rotation_quat(1, 2, 3, 4);
-        test_assert(rq2.v() == ivec3(1, 2, 3) * math::sin(4/2));
-        test_assert(rq2.s() == math::cos(4/2));
+        const auto rq2 = transform::rotation_quat(1, 2, 3, 5);
+        test_assert(rq2.v() == ivec3(1, 2, 3) * math::sin(5/2.0));
+        test_assert(rq2.s() == math::cos(5/2.0));
 
-        const auto rq3 = transform::rotation_quat(ivec4(1, 2, 3, 4));
-        test_assert(rq3.v() == ivec3(1, 2, 3) * math::sin(4/2));
-        test_assert(rq3.s() == math::cos(4/2));
+        const auto rq3 = transform::rotation_quat(ivec4(1, 2, 3, 5));
+        test_assert(rq3.v() == ivec3(1, 2, 3) * math::sin(5/2.0));
+        test_assert(rq3.s() == math::cos(5/2.0));
     }
 
     TEST_CASE(rotation_vec_to_rotation_quat)
@@ -139,5 +139,14 @@ namespace
         test_assert(m4[0] == dvec4(1.0, 0.0, 0.0, 1.2));
         test_assert(m4[1] == dvec4(0.0, 1.0, 0.0, 3.4));
         test_assert(m4[2] == dvec4(0.0, 0.0, 1.0, 5.6));
+    }
+
+    TEST_CASE(rotation_mat_2d)
+    {
+        const auto m = transform::rotation_mat(12);
+        test_assert(m[0] == dvec4(math::cos(12), -math::sin(12), 0.0, 0.0));
+        test_assert(m[1] == dvec4(math::sin(12),  math::cos(12), 0.0, 0.0));
+        test_assert(m[2] == dvec4(          0.0,            0.0, 1.0, 0.0));
+        test_assert(m[3] == dvec4(          0.0,            0.0, 0.0, 1.0));
     }
 }
