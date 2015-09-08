@@ -85,27 +85,27 @@ namespace tue
         }
 
         /*!
-         * \brief        Converts an axis-angle pair to a rotation vector.
+         * \brief         Converts an axis-angle pair to a rotation vector.
          *
-         * \tparam T     The axis-angle component type.
+         * \tparam T      The axis-angle component type.
          *
-         * \param x      The axis' first component.
-         * \param y      The axis' second component.
-         * \param z      The axis' third component.
-         * \param angle  The angle.
+         * \param axis_x  The axis' first component.
+         * \param axis_y  The axis' second component.
+         * \param axis_z  The axis' third component.
+         * \param angle   The angle.
          *
-         * \return       The rotation vector.
+         * \return        The rotation vector.
          */
         template<typename T>
         inline constexpr vec3<T>
         rotation_vec(
-            const T& x, const T& y, const T& z,
+            const T& axis_x, const T& axis_y, const T& axis_z,
             const T& angle) noexcept
         {
             return {
-                x * angle,
-                y * angle,
-                z * angle,
+                axis_x * angle,
+                axis_y * angle,
+                axis_z * angle,
             };
         }
 
@@ -147,26 +147,27 @@ namespace tue
         }
 
         /*!
-         * \brief        Converts an axis-angle pair to a rotation quaternion.
+         * \brief         Converts an axis-angle pair to a rotation quaternion.
          *
-         * \tparam T     The axis-angle component type.
+         * \tparam T      The axis-angle component type.
          *
-         * \param x      The axis' first component.
-         * \param y      The axis' second component.
-         * \param z      The axis' third component.
-         * \param angle  The angle.
+         * \param axis_x  The axis' first component.
+         * \param axis_y  The axis' second component.
+         * \param axis_z  The axis' third component.
+         * \param angle   The angle.
          *
-         * \return       The rotation quaternion.
+         * \return        The rotation quaternion.
          */
         template<typename T>
         inline quat<decltype(tue::math::sin(std::declval<T>()))>
         rotation_quat(
-            const T& x, const T& y, const T& z, const T& angle) noexcept
+            const T& axis_x, const T& axis_y, const T& axis_z,
+            const T& angle) noexcept
         {
             using U = decltype(tue::math::sin(angle));
             U s, c;
             tue::math::sincos(angle / U(2), s, c);
-            return { x*s, y*s, z*s, c };
+            return { axis_x*s, axis_y*s, axis_z*s, c };
         }
 
         /*!
@@ -371,29 +372,29 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes a 2D rotation matrix.
-         * \details   The returned matrix might be the tranpose of what you
-         *            expect from other libraries. This library generally
-         *            prefers compound transformations be written from
-         *            left-to-right instead of right-to-left.
+         * \brief        Computes a 2D rotation matrix.
+         * \details      The returned matrix might be the tranpose of what you
+         *               expect from other libraries. This library generally
+         *               prefers compound transformations be written from
+         *               left-to-right instead of right-to-left.
          *
-         * \tparam T  The type of parameter `angle`.
-         * \tparam C  The column count of the returned matrix.
-         *            Must be 2, 3, or 4. Defaults to 4.
-         * \tparam R  The row count of the returned matrix.
-         *            Must be 2, 3, or 4. Defaults to 4.
+         * \tparam T     The type of parameter `angle`.
+         * \tparam C     The column count of the returned matrix.
+         *               Must be 2, 3, or 4. Defaults to 4.
+         * \tparam R     The row count of the returned matrix.
+         *               Must be 2, 3, or 4. Defaults to 4.
          *
-         * \param v   The rotation (measured in radians counter-clockwise).
+         * \param angle  The rotation (measured in radians counter-clockwise).
          *
-         * \return    A 2D rotation matrix. Values beyond the requested matrix
-         *            dimensions are truncated.
+         * \return       A 2D rotation matrix. Values beyond the requested
+         *               matrix dimensions are truncated.
          *
-         *            \code
-         *            [  cos(angle),  sin(angle),  0,  0 ]
-         *            [ -sin(angle),  cos(angle),  0,  0 ]
-         *            [           0,           0,  1,  0 ]
-         *            [           0,           0,  0,  1 ]
-         *            \endcode
+         *               \code
+         *               [  cos(angle),  sin(angle),  0,  0 ]
+         *               [ -sin(angle),  cos(angle),  0,  0 ]
+         *               [           0,           0,  1,  0 ]
+         *               [           0,           0,  0,  1 ]
+         *               \endcode
          */
         template<typename T, int C = 4, int R = 4>
         inline std::enable_if_t<(C >= 2 && R >= 2),
