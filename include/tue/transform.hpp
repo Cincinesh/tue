@@ -231,16 +231,16 @@ namespace tue
          *            left-to-right instead of right-to-left.
          *
          * \tparam T  The type of parameters `x` and `y`.
-         * \tparam C  The column count of the returned matrix. Must be 2, 3,
-         *            or 4. Defaults to 4.
-         * \tparam R  The row count of the returned matrix. Must be 3 or 4.
-         *            Defaults to 4.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 2, 3, or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
          *
          * \param x   The translation along the `x` dimension.
          * \param y   The translation along the `y` dimension.
          *
          * \return    A 2D translation matrix. Values beyond the requested
-         *            dimensions will be truncated.
+         *            matrix dimensions are truncated.
          *
          *            \code
          *            [              1,               0,  0,  0 ]
@@ -268,15 +268,15 @@ namespace tue
          *            left-to-right instead of right-to-left.
          *
          * \tparam T  The component type of `v`.
-         * \tparam C  The column count of the returned matrix. Must be 2, 3,
-         *            or 4. Defaults to 4.
-         * \tparam R  The row count of the returned matrix. Must be 3 or 4.
-         *            Defaults to 4.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 2, 3, or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
          *
          * \param v   The translation vector.
          *
          * \return    A 2D translation matrix. Values beyond the requested
-         *            dimensions will be truncated.
+         *            matrix dimensions are truncated.
          *
          *            \code
          *            [                 1,                  0,  0,  0 ]
@@ -294,6 +294,80 @@ namespace tue
                 0, 1, R == 3 ? v[1] : 0, R == 4 ? v[1] : 0,
                 0, 0,                 1,                 0,
                 0, 0,                 0,                 1);
+        }
+
+        /*!
+         * \brief     Computes a 3D translation matrix.
+         * \details   The returned matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The type of parameters `x`, `y`, and `z`.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 4. Defaults to 4.
+         *
+         * \param x   The translation along the `x` dimension.
+         * \param y   The translation along the `y` dimension.
+         * \param z   The translation along the `z` dimension.
+         *
+         * \return    A 3D translation matrix. Values beyond the requested
+         *            matrix dimensions are truncated.
+         *
+         *            \code
+         *            [ 1,  0,  0,  0 ]
+         *            [ 0,  1,  0,  0 ]
+         *            [ 0,  0,  1,  0 ]
+         *            [ x,  y,  z,  1 ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline constexpr std::enable_if_t<(C >= 3 && R >= 4), mat<T, C, R>>
+        translation_mat(const T& x, const T& y, const T& z) noexcept
+        {
+            return tue::detail_::mat_utils<T, C, R>::create(
+                1, 0, 0, x,
+                0, 1, 0, y,
+                0, 0, 1, z,
+                0, 0, 0, 1);
+        }
+
+        /*!
+         * \brief     Computes a 3D translation matrix.
+         * \details   The returned matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The component type of `v`.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 4. Defaults to 4.
+         *
+         * \param v   The translation vector.
+         *
+         * \return    A 3D translation matrix. Values beyond the requested
+         *            matrix dimensions are truncated.
+         *
+         *            \code
+         *            [   1 ,    0 ,    0 ,  0 ]
+         *            [   0 ,    1 ,    0 ,  0 ]
+         *            [   0 ,    0 ,    1 ,  0 ]
+         *            [ v[0],  v[1],  v[2],  1 ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline constexpr std::enable_if_t<(C >= 3 && R >= 4), mat<T, C, R>>
+        translation_mat(const vec3<T>& v) noexcept
+        {
+            return tue::detail_::mat_utils<T, C, R>::create(
+                1, 0, 0, v[0],
+                0, 1, 0, v[1],
+                0, 0, 1, v[2],
+                0, 0, 0,   1);
         }
     }
 }

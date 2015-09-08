@@ -111,4 +111,33 @@ namespace
         test_assert(m4[0] == dvec3(1.0, 0.0, 1.2));
         test_assert(m4[1] == dvec3(0.0, 1.0, 3.4));
     }
+
+    TEST_CASE(translation_mat_3d)
+    {
+        CONST_OR_CONSTEXPR auto m1 =
+            transform::translation_mat(1.2, 3.4, 5.6);
+        test_assert(m1[0] == dvec4(1.0, 0.0, 0.0, 1.2));
+        test_assert(m1[1] == dvec4(0.0, 1.0, 0.0, 3.4));
+        test_assert(m1[2] == dvec4(0.0, 0.0, 1.0, 5.6));
+        test_assert(m1[3] == dvec4(0.0, 0.0, 0.0, 1.0));
+
+        CONST_OR_CONSTEXPR auto m2 =
+            transform::translation_mat<double, 3, 4>(1.2, 3.4, 5.6);
+        test_assert(m2[0] == dvec4(1.0, 0.0, 0.0, 1.2));
+        test_assert(m2[1] == dvec4(0.0, 1.0, 0.0, 3.4));
+        test_assert(m2[2] == dvec4(0.0, 0.0, 1.0, 5.6));
+
+        CONST_OR_CONSTEXPR auto m3 =
+            transform::translation_mat(dvec3(1.2, 3.4, 5.6));
+        test_assert(m3[0] == dvec4(1.0, 0.0, 0.0, 1.2));
+        test_assert(m3[1] == dvec4(0.0, 1.0, 0.0, 3.4));
+        test_assert(m3[2] == dvec4(0.0, 0.0, 1.0, 5.6));
+        test_assert(m3[3] == dvec4(0.0, 0.0, 0.0, 1.0));
+
+        CONST_OR_CONSTEXPR auto m4 =
+            transform::translation_mat<double, 3, 4>(dvec3(1.2, 3.4, 5.6));
+        test_assert(m4[0] == dvec4(1.0, 0.0, 0.0, 1.2));
+        test_assert(m4[1] == dvec4(0.0, 1.0, 0.0, 3.4));
+        test_assert(m4[2] == dvec4(0.0, 0.0, 1.0, 5.6));
+    }
 }
