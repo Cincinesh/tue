@@ -225,15 +225,16 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D translation matrix.
-         * \details   The return matrix might be the tranpose of what you
+         * \details   The returned matrix might be the tranpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
          *
          * \tparam T  The type of parameters `x` and `y`.
-         * \tparam C  The column count of the returned matrix. Must be 2, 3, or
-         *            4.
+         * \tparam C  The column count of the returned matrix. Must be 2, 3,
+         *            or 4. Defaults to 4.
          * \tparam R  The row count of the returned matrix. Must be 3 or 4.
+         *            Defaults to 4.
          *
          * \param x   The translation along the `x` dimension.
          * \param y   The translation along the `y` dimension.
@@ -261,15 +262,16 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D translation matrix.
-         * \details   The return matrix might be the tranpose of what you
+         * \details   The returned matrix might be the tranpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
          *
          * \tparam T  The component type of `v`.
-         * \tparam C  The column count of the returned matrix. Must be 2, 3, or
-         *            4.
+         * \tparam C  The column count of the returned matrix. Must be 2, 3,
+         *            or 4. Defaults to 4.
          * \tparam R  The row count of the returned matrix. Must be 3 or 4.
+         *            Defaults to 4.
          *
          * \param v   The translation vector.
          *
