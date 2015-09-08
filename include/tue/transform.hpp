@@ -195,7 +195,7 @@ namespace tue
          * \return    The rotation quaternion.
          */
         template<typename T>
-        inline quat<decltype(tue::math::sqrt(std::declval<T>()))>
+        inline quat<decltype(tue::math::sin(std::declval<T>()))>
         rotation_quat(const vec3<T>& v) noexcept
         {
             return tue::transform::rotation_quat(
@@ -216,7 +216,7 @@ namespace tue
          * \return    The rotation quaternion.
          */
         template<typename T>
-        inline quat<decltype(tue::math::sqrt(std::declval<T>()))>
+        inline quat<decltype(tue::math::sin(std::declval<T>()))>
         rotation_quat(const T& x, const T& y, const T& z) noexcept
         {
             return tue::transform::rotation_quat(
