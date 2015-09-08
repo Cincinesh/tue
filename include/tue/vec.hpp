@@ -781,9 +781,10 @@ namespace tue
         /*!
          * \brief     Rotates this `vec` by `q`.
          * \details   This overload is only available when `N` is equal to `3`.
-         *            The operand order may be reversed from what you expect;
-         *            this library generally prefers compound transformations be
-         *            written from left-to-right instead of right-to-left.
+         *            The operand order might be the reverse of what you expect
+         *            from other libraries. This library generally prefers
+         *            compound transformations be written from left-to-right
+         *            instead of right-to-left.
          *
          * \tparam U  The component type of `q`.
          * \param q   A rotation `quat`.

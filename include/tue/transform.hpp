@@ -225,8 +225,10 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D translation matrix.
-         * \details   The return matrix dimensions can be specified via
-         *            template arguments.
+         * \details   The return matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
          *
          * \tparam T  The type of parameters `x` and `y`.
          * \tparam C  The column count of the returned matrix. Must be 2, 3, or
@@ -259,8 +261,10 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D translation matrix.
-         * \details   The return matrix dimensions can be specified via
-         *            template arguments.
+         * \details   The return matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
          *
          * \tparam T  The component type of `v`.
          * \tparam C  The column count of the returned matrix. Must be 2, 3, or

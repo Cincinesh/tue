@@ -407,9 +407,10 @@ namespace tue
 
         /*!
          * \brief     Rotates this `quat` by `q`.
-         * \details   The operand order may be reversed from what you expect;
-         *            this library generally prefers compound transformations be
-         *            written from left-to-right instead of right-to-left.
+         * \details   The operand order might be the reverse of what you expect
+         *            from other libraries. This library generally prefers
+         *            compound transformations be written from left-to-right
+         *            instead of right-to-left.
          *
          * \tparam U  The component type of `q`.
          * \param q   A rotation `quat`.
@@ -424,9 +425,10 @@ namespace tue
 
     /*!
      * \brief      Computes a copy of `lhs` rotated by `rhs`.
-     * \details    The operand order may be reversed from what you expect; this
-     *             library generally prefers compound transformations be written
-     *             from left-to-right instead of right-to-left.
+     * \details    The operand order might be the reverse of what you expect
+     *             from other libraries. This library generally prefers compound
+     *             transformations be written from left-to-right instead of
+     *             right-to-left.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -450,9 +452,10 @@ namespace tue
 
     /*!
      * \brief      Computes a copy of `lhs` rotated by `rhs`.
-     * \details    The operand order may be reversed from what you expect; this
-     *             library generally prefers compound transformations be written
-     *             from left-to-right instead of right-to-left.
+     * \details    The operand order might be the reverse of what you expect
+     *             from other libraries. This library generally prefers compound
+     *             transformations be written from left-to-right instead of
+     *             right-to-left.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
