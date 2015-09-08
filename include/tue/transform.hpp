@@ -143,7 +143,7 @@ namespace tue
             using U = decltype(tue::math::sin(angle));
             U s, c;
             tue::math::sincos(angle / U(2), s, c);
-            return { axis * s, c };
+            return { axis[0]*s, axis[1]*s, axis[2]*s, c };
         }
 
         /*!
