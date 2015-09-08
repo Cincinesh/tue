@@ -226,24 +226,24 @@ namespace tue
         /*!
          * \brief     Computes a 2D translation matrix.
          * \details   The return matrix dimensions can be specified via
-         *            template arguments. `C` must be 2, 3, or 4 and `R` must be
-         *            3 or 4.
+         *            template arguments.
          *
          * \tparam T  The type of parameters `x` and `y`.
-         * \tparam C  The column count of the returned matrix.
-         * \tparam R  The row count of the returned matrix.
+         * \tparam C  The column count of the returned matrix. Must be 2, 3, or
+         *            4.
+         * \tparam R  The row count of the returned matrix. Must be 3 or 4.
          *
          * \param x   The translation along the `x` dimension.
          * \param y   The translation along the `y` dimension.
          *
-         * \return    A 2D translation matrix. Values beyond the size of the
-         *            requested matrix will be truncated.
+         * \return    A 2D translation matrix. Values beyond the requested
+         *            dimensions will be truncated.
          *
          *            \code
-         *            [ 1,  0,  R == 3 ? x : 0,  x ]
-         *            [ 0,  1,  R == 3 ? y : 0,  y ]
-         *            [ 0,  0,               1,  0 ]
-         *            [ 0,  0,               0,  1 ]
+         *            [              1,               0,  0,  0 ]
+         *            [              0,               1,  0,  0 ]
+         *            [ R == 3 ? x : 0,  R == 3 ? y : 0,  1,  0 ]
+         *            [ R == 4 ? x : 0,  R == 4 ? y : 0,  0,  1 ]
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
@@ -251,32 +251,32 @@ namespace tue
         translation_mat(const T& x, const T& y) noexcept
         {
             return tue::detail_::mat_utils<T, C, R>::create(
-                1, 0, R == 3 ? x : 0, x,
-                0, 1, R == 3 ? y : 0, y,
-                0, 0,              1, 0,
-                0, 0,              0, 1);
+                1, 0, R == 3 ? x : 0, R == 4 ? x : 0,
+                0, 1, R == 3 ? y : 0, R == 4 ? y : 0,
+                0, 0,              1,              0,
+                0, 0,              0,              1);
         }
 
         /*!
          * \brief     Computes a 2D translation matrix.
          * \details   The return matrix dimensions can be specified via
-         *            template arguments. `C` must be 2, 3, or 4 and `R` must be
-         *            3 or 4.
+         *            template arguments.
          *
          * \tparam T  The component type of `v`.
-         * \tparam C  The column count of the returned matrix.
-         * \tparam R  The row count of the returned matrix.
+         * \tparam C  The column count of the returned matrix. Must be 2, 3, or
+         *            4.
+         * \tparam R  The row count of the returned matrix. Must be 3 or 4.
          *
          * \param v   The translation vector.
          *
-         * \return    A 2D translation matrix. Values beyond the size of the
-         *            requested matrix will be truncated.
+         * \return    A 2D translation matrix. Values beyond the requested
+         *            dimensions will be truncated.
          *
          *            \code
-         *            [ 1,  0,  R == 3 ? v[0] : 0,  v[0] ]
-         *            [ 0,  1,  R == 3 ? v[1] : 0,  v[1] ]
-         *            [ 0,  0,                  1,    0  ]
-         *            [ 0,  0,                  0,    1  ]
+         *            [                 1,                  0,  0,  0 ]
+         *            [                 0,                  1,  0,  0 ]
+         *            [ R == 3 ? v[0] : 0,  R == 3 ? v[1] : 0,  1,  0 ]
+         *            [ R == 4 ? v[0] : 0,  R == 4 ? v[1] : 0,  0,  1 ]
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
@@ -284,10 +284,10 @@ namespace tue
         translation_mat(const vec2<T>& v) noexcept
         {
             return tue::detail_::mat_utils<T, C, R>::create(
-                1, 0, R == 3 ? v[0] : 0, v[0],
-                0, 1, R == 3 ? v[1] : 0, v[1],
-                0, 0,                 1,   0,
-                0, 0,                 0,   1);
+                1, 0, R == 3 ? v[0] : 0, R == 4 ? v[0] : 0,
+                0, 1, R == 3 ? v[1] : 0, R == 4 ? v[1] : 0,
+                0, 0,                 1,                 0,
+                0, 0,                 0,                 1);
         }
     }
 }
