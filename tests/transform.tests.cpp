@@ -149,4 +149,24 @@ namespace
         test_assert(m[2] == dvec4(          0.0,            0.0, 1.0, 0.0));
         test_assert(m[3] == dvec4(          0.0,            0.0, 0.0, 1.0));
     }
+
+    TEST_CASE(rotation_mat_3d)
+    {
+        const auto m = transform::rotation_mat(12, 34, 56, 78);
+        double s, c;
+        math::sincos(78, s, c);
+        test_assert(m[0][0] == 12*12*(1-c) + c);
+        test_assert(m[0][1] == 12*34*(1-c) - 56*s);
+        test_assert(m[0][2] == 12*56*(1-c) + 34*s);
+        test_assert(m[0][3] == 0.0);
+        test_assert(m[1][0] == 12*34*(1-c) + 56*s);
+        test_assert(m[1][1] == 34*34*(1-c) + c);
+        test_assert(m[1][2] == 34*56*(1-c) - 12*s);
+        test_assert(m[1][3] == 0.0);
+        test_assert(m[2][0] == 12*56*(1-c) - 34*s);
+        test_assert(m[2][1] == 34*56*(1-c) + 12*s);
+        test_assert(m[2][2] == 56*56*(1-c) + c);
+        test_assert(m[2][3] == 0.0);
+        test_assert(m[3] == dvec4(0.0, 0.0, 0.0, 1.0));
+    }
 }

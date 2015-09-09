@@ -410,5 +410,44 @@ namespace tue
                 0,  0, 1, 0,
                 0,  0, 0, 1);
         }
+
+        template<typename T, int C = 4, int R = 4>
+        inline std::enable_if_t<(C >= 3 && R >= 3),
+            mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
+        rotation_mat(
+            const T& axis_x, const T& axis_y, const T& axis_z,
+            const T& angle) noexcept
+        {
+            using U = decltype(tue::math::sin(angle));
+            const auto x = U(axis_x);
+            const auto y = U(axis_y);
+            const auto z = U(axis_z);
+
+            U s, c;
+            tue::math::sincos(angle, s, c);
+            const U omc = U(1) - c;
+
+            const auto xx = x * x;
+            const auto xy = x * y;
+            const auto xz = x * z;
+            const auto xs = x * s;
+            const auto yy = y * y;
+            const auto yz = y * z;
+            const auto ys = y * s;
+            const auto zz = z * z;
+            const auto zs = z * s;
+            const auto xxomc = xx * omc;
+            const auto xyomc = xy * omc;
+            const auto xzomc = xz * omc;
+            const auto yyomc = yy * omc;
+            const auto yzomc = yz * omc;
+            const auto zzomc = zz * omc;
+
+            return tue::detail_::mat_utils<U, C, R>::create(
+                xxomc + c, xyomc - zs, xzomc + ys, 0,
+                xyomc + zs, yyomc + c, yzomc - xs, 0,
+                xzomc - ys, yzomc + xs, zzomc + c, 0,
+                                          0, 0, 0, 1);
+        }
     }
 }
