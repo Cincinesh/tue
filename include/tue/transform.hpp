@@ -45,9 +45,9 @@ namespace tue
             using U = decltype(angle);
 
             const auto nzmask = tue::math::not_equal(angle, U(0));
-            const auto axis_x = tue::math::select(nzmask, x / angle, U(0));
-            const auto axis_y = tue::math::select(nzmask, y / angle, U(0));
-            const auto axis_z = tue::math::select(nzmask, z / angle, U(1));
+            const auto axis_x = tue::math::select(nzmask, U(x) / angle, U(0));
+            const auto axis_y = tue::math::select(nzmask, U(y) / angle, U(0));
+            const auto axis_z = tue::math::select(nzmask, U(z) / angle, U(1));
             return { axis_x, axis_y, axis_z, angle };
         }
 
@@ -144,8 +144,8 @@ namespace tue
         {
             using U = decltype(tue::math::sin(angle));
             U s, c;
-            tue::math::sincos(angle / U(2), s, c);
-            return { axis_x*s, axis_y*s, axis_z*s, c };
+            tue::math::sincos(U(angle) / U(2), s, c);
+            return { U(axis_x)*s, U(axis_y)*s, U(axis_z)*s, c };
         }
 
         /*!
@@ -284,11 +284,7 @@ namespace tue
         inline constexpr std::enable_if_t<(C >= 2 && R >= 3), mat<T, C, R>>
         translation_mat(const vec2<T>& v) noexcept
         {
-            return tue::detail_::mat_utils<T, C, R>::create(
-                1, 0, R == 3 ? v[0] : 0, R == 4 ? v[0] : 0,
-                0, 1, R == 3 ? v[1] : 0, R == 4 ? v[1] : 0,
-                0, 0,                 1,                 0,
-                0, 0,                 0,                 1);
+            return tue::transform::translation_mat<T, C, R>(v[0], v[1]);
         }
 
         /*!
@@ -358,11 +354,7 @@ namespace tue
         inline constexpr std::enable_if_t<(C >= 3 && R >= 4), mat<T, C, R>>
         translation_mat(const vec3<T>& v) noexcept
         {
-            return tue::detail_::mat_utils<T, C, R>::create(
-                1, 0, 0, v[0],
-                0, 1, 0, v[1],
-                0, 0, 1, v[2],
-                0, 0, 0,   1);
+            return tue::transform::translation_mat<T, C, R>(v[0], v[1], v[2]);
         }
 
         /*!
@@ -419,7 +411,7 @@ namespace tue
 
             U s, c;
             tue::math::sincos(angle, s, c);
-            const U omc = U(1) - c;
+            const auto omc = U(1) - c;
 
             const auto xx = x * x;
             const auto xy = x * y;
