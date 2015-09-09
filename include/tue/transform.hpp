@@ -397,6 +397,37 @@ namespace tue
                 0,  0, 0, 1);
         }
 
+        /*!
+         * \brief         Computes a 3D rotation matrix from an axis-angle pair.
+         * \details       The returned matrix might be the tranpose of what you
+         *                expect from other libraries. This library generally
+         *                prefers compound transformations be written from
+         *                left-to-right instead of right-to-left.
+         *
+         * \tparam T      The axis-angle component type.
+         * \tparam C      The column count of the returned matrix.
+         *                Must be 2, 3, or 4. Defaults to 4.
+         * \tparam R      The row count of the returned matrix.
+         *                Must be 2, 3, or 4. Defaults to 4.
+         *
+         * \param axis_x  The axis' first component.
+         * \param axis_y  The axis' second component.
+         * \param axis_z  The axis' third component.
+         * \param angle   The angle.
+         *
+         * \return        A 3D rotation matrix. Values beyond the requested
+         *                matrix dimensions are truncated.
+         *
+         *                \code
+         *                // Where x, y, and z make the axis of rotation
+         *                // and s and c are sin(angle) and cos(angle).
+         *
+         *                [ xx(1-c) +  c,  xy(1-c) + zs,  xz(1-c) - ys,  0 ]
+         *                [ xy(1-c) - zs,  yy(1-c) +  c,  yz(1-c) - xs,  0 ]
+         *                [ xz(1-c) + ys,  yz(1-c) - xs,  zz(1-c) +  c,  0 ]
+         *                [            0,             0,             0,  1 ]
+         *                \endcode
+         */
         template<typename T, int C = 4, int R = 4>
         inline std::enable_if_t<(C >= 3 && R >= 3),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
@@ -430,10 +461,10 @@ namespace tue
             const auto zzomc = zz * omc;
 
             return tue::detail_::mat_utils<U, C, R>::create(
-                xxomc + c, xyomc - zs, xzomc + ys, 0,
-                xyomc + zs, yyomc + c, yzomc - xs, 0,
-                xzomc - ys, yzomc + xs, zzomc + c, 0,
-                                          0, 0, 0, 1);
+                xxomc +  c, xyomc - zs, xzomc + ys, 0,
+                xyomc + zs, yyomc +  c, yzomc - xs, 0,
+                xzomc - ys, yzomc + xs, zzomc +  c, 0,
+                                           0, 0, 0, 1);
         }
     }
 }
