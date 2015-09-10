@@ -541,5 +541,73 @@ namespace tue
             return tue::transform::rotation_mat<T, C, R>(
                 v[0], v[1], v[2], v[3]);
         }
+
+        /*!
+         * \brief     Computes a 3D rotation matrix from a rotation vector.
+         * \details   The returned matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The rotation vector's component type.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         *
+         * \param x   The rotation vector's first component.
+         * \param y   The rotation vector's second component.
+         * \param z   The rotation vector's third component.
+         *
+         * \return    A 3D rotation matrix.
+         *
+         *            \code
+         *            const auto aa = tue::transform::axis_angle(x, y, z);
+         *            using U = typename decltype(aa)::component_type;
+         *            return tue::transform::rotation_mat<U, C, R>(aa);
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline std::enable_if_t<(C >= 3 && R >= 3),
+            mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
+        rotation_mat(const T& x, const T& y, const T& z) noexcept
+        {
+            const auto aa = tue::transform::axis_angle(x, y, z);
+            using U = typename decltype(aa)::component_type;
+            return tue::transform::rotation_mat<U, C, R>(aa);
+        }
+
+        /*!
+         * \brief     Computes a 3D rotation matrix from a rotation vector.
+         * \details   The returned matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The rotation vector's component type.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         *
+         * \param v   The rotation vector.
+         *
+         * \return    A 3D rotation matrix.
+         *
+         *            \code
+         *            const auto aa = tue::transform::axis_angle(v);
+         *            using U = typename decltype(aa)::component_type;
+         *            return tue::transform::rotation_mat<U, C, R>(aa);
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline std::enable_if_t<(C >= 3 && R >= 3),
+            mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
+        rotation_mat(const vec3<T>& v) noexcept
+        {
+            const auto aa = tue::transform::axis_angle(v);
+            using U = typename decltype(aa)::component_type;
+            return tue::transform::rotation_mat<U, C, R>(aa);
+        }
     }
 }

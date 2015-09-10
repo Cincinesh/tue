@@ -176,4 +176,20 @@ namespace
             ivec4(12, 34, 56, 78));
         test_assert(m6 == m2);
     }
+
+    TEST_CASE(rotation_mat_from_rotation_vec)
+    {
+        const auto m1 = transform::rotation_mat(12, 34, 56);
+        test_assert(m1 ==
+            transform::rotation_mat(transform::axis_angle(12, 34, 56)));
+
+        const auto m2 = transform::rotation_mat<int, 3, 3>(12, 34, 56);
+        test_assert(m2 == dmat3x3(m1));
+
+        const auto m3 = transform::rotation_mat(ivec3(12, 34, 56));
+        test_assert(m3 == m1);
+
+        const auto m4 = transform::rotation_mat<int, 3, 3>(ivec3(12, 34, 56));
+        test_assert(m4 == m2);
+    }
 }
