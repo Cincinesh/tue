@@ -192,4 +192,28 @@ namespace
         const auto m4 = transform::rotation_mat<int, 3, 3>(ivec3(12, 34, 56));
         test_assert(m4 == m2);
     }
+
+    TEST_CASE(rotation_mat_from_rotation_quat)
+    {
+        CONST_OR_CONSTEXPR auto x = 1.2, y = 3.4, z = 5.6, w = 7.8;
+        CONST_OR_CONSTEXPR auto m1 =
+            transform::rotation_mat(dquat(x, y, z, w));
+        test_assert(m1[0][0] == 1 - 2*y*y - 2*z*z);
+        test_assert(m1[0][1] == 2*x*y - 2*z*w);
+        test_assert(m1[0][2] == 2*x*z + 2*y*w);
+        test_assert(m1[0][3] == 0.0);
+        test_assert(m1[1][0] == 2*x*y + 2*z*w);
+        test_assert(m1[1][1] == 1 - 2*x*x - 2*z*z);
+        test_assert(m1[1][2] == 2*y*z - 2*x*w);
+        test_assert(m1[1][3] == 0.0);
+        test_assert(m1[2][0] == 2*x*z - 2*y*w);
+        test_assert(m1[2][1] == 2*y*z + 2*x*w);
+        test_assert(m1[2][2] == 1 - 2*x*x - 2*y*y);
+        test_assert(m1[2][3] == 0.0);
+        test_assert(m1[3] == dvec4(0.0, 0.0, 0.0, 1.0));
+
+        CONST_OR_CONSTEXPR auto m2 =
+            transform::rotation_mat<double, 3, 3>(dquat(x, y, z, w));
+        test_assert(m2 == dmat3x3(m1));
+    }
 }

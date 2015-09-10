@@ -609,5 +609,53 @@ namespace tue
             using U = typename decltype(aa)::component_type;
             return tue::transform::rotation_mat<U, C, R>(aa);
         }
+
+        /*!
+         * \brief     Computes a 3D rotation matrix from a rotation quaternion.
+         * \details   The returned matrix might be the tranpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The rotation quaternion's component type.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         *
+         * \param q   The rotation quaternion.
+         *
+         * \return    A 3D rotation matrix. Values beyond the requested matrix
+         *            dimensions are truncated.
+         *
+         *            \code
+         *            // Where x, y, z, and w are the components of the rotation
+         *            // quaternion.
+         *
+         *            [ 1 - 2yy - 2zz,      2xy + 2zw,      2xz - 2yw,  0 ]
+         *            [     2xy - 2zw,  1 - 2xx - 2zz,      2yz + 2xw,  0 ]
+         *            [     2xz + 2yw,      2yz - 2xw,  1 - 2xx - 2yy,  0 ]
+         *            [             0,              0,              0,  1 ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline constexpr std::enable_if_t<(C >= 3 && R >= 3), mat<T, C, R>>
+        rotation_mat(const quat<T>& q) noexcept
+        {
+            return tue::detail_::mat_utils<T, C, R>::create(
+                T(1) - T(2)*q[1]*q[1] - T(2)*q[2]*q[2],
+                T(2)*q[0]*q[1] - T(2)*q[2]*q[3],
+                T(2)*q[0]*q[2] + T(2)*q[1]*q[3],
+                0,
+                T(2)*q[0]*q[1] + T(2)*q[2]*q[3],
+                T(1) - T(2)*q[0]*q[0] - T(2)*q[2]*q[2],
+                T(2)*q[1]*q[2] - T(2)*q[0]*q[3],
+                0,
+                T(2)*q[0]*q[2] - T(2)*q[1]*q[3],
+                T(2)*q[1]*q[2] + T(2)*q[0]*q[3],
+                T(1) - T(2)*q[0]*q[0] - T(2)*q[1]*q[1],
+                0,
+                0, 0, 0, 1);
+        }
     }
 }
