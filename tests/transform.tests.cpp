@@ -216,4 +216,48 @@ namespace
             transform::rotation_mat<double, 3, 3>(dquat(x, y, z, w));
         test_assert(m2 == dmat3x3(m1));
     }
+
+    TEST_CASE(scale_mat_2d)
+    {
+        CONST_OR_CONSTEXPR auto m1 =
+            transform::scale_mat(1.2, 3.4);
+        test_assert(m1[0] == dvec4(1.2, 0.0, 0.0, 0.0));
+        test_assert(m1[1] == dvec4(0.0, 3.4, 0.0, 0.0));
+        test_assert(m1[2] == dvec4(0.0, 0.0, 1.0, 0.0));
+        test_assert(m1[3] == dvec4(0.0, 0.0, 0.0, 1.0));
+
+        CONST_OR_CONSTEXPR auto m2 =
+            transform::scale_mat<double, 2, 2>(1.2, 3.4);
+        test_assert(m2 == dmat2x2(m2));
+
+        CONST_OR_CONSTEXPR auto m3 =
+            transform::scale_mat(dvec2(1.2, 3.4));
+        test_assert(m3 == m1);
+
+        CONST_OR_CONSTEXPR auto m4 =
+            transform::scale_mat<double, 2, 2>(dvec2(1.2, 3.4));
+        test_assert(m4 == m2);
+    }
+
+    TEST_CASE(scale_mat_3d)
+    {
+        CONST_OR_CONSTEXPR auto m1 =
+            transform::scale_mat(1.2, 3.4, 5.6);
+        test_assert(m1[0] == dvec4(1.2, 0.0, 0.0, 0.0));
+        test_assert(m1[1] == dvec4(0.0, 3.4, 0.0, 0.0));
+        test_assert(m1[2] == dvec4(0.0, 0.0, 5.6, 0.0));
+        test_assert(m1[3] == dvec4(0.0, 0.0, 0.0, 1.0));
+
+        CONST_OR_CONSTEXPR auto m2 =
+            transform::scale_mat<double, 3, 3>(1.2, 3.4, 5.6);
+        test_assert(m2 == dmat3x3(m1));
+
+        CONST_OR_CONSTEXPR auto m3 =
+            transform::scale_mat(dvec3(1.2, 3.4, 5.6));
+        test_assert(m3 == m1);
+
+        CONST_OR_CONSTEXPR auto m4 =
+            transform::scale_mat<double, 3, 3>(dvec3(1.2, 3.4, 5.6));
+        test_assert(m4 == m2);
+    }
 }
