@@ -280,5 +280,32 @@ namespace
         test_assert(m1[3][1] == 0.0);
         test_assert(m1[3][2] == -1.0);
         test_assert(m1[3][3] == 0.0);
+
+        const auto m2 = transform::perspective_mat<int, 4, 4>(1, 3, 5, 7);
+        test_assert(m2 == m1);
+    }
+
+    TEST_CASE(ortho_mat)
+    {
+        CONST_OR_CONSTEXPR auto m1 = transform::ortho_mat(3, 5, 7, 9);
+        test_assert(m1[0][0] == 2.0 / 3);
+        test_assert(m1[0][1] == 0.0);
+        test_assert(m1[0][2] == 0.0);
+        test_assert(m1[0][3] == 0.0);
+        test_assert(m1[1][0] == 0.0);
+        test_assert(m1[1][1] == 2.0 / 5);
+        test_assert(m1[1][2] == 0.0);
+        test_assert(m1[1][3] == 0.0);
+        test_assert(m1[2][0] == 0.0);
+        test_assert(m1[2][1] == 0.0);
+        test_assert(m1[2][2] == (2.0) / (7-9));
+        test_assert(m1[2][3] == (7+9) / (7-9));
+        test_assert(m1[3][0] == 0.0);
+        test_assert(m1[3][1] == 0.0);
+        test_assert(m1[3][2] == 0.0);
+        test_assert(m1[3][3] == 1.0);
+
+        const auto m2 = transform::ortho_mat<int, 3, 4>(3, 5, 7, 9);
+        test_assert(m2 == dmat3x4(m2));
     }
 }

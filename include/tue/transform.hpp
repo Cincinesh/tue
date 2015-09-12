@@ -811,7 +811,7 @@ namespace tue
          *                Must be 4. Defaults to 4.
          *
          * \param fovy    The vertical field of view (measured in radians).
-         * \param aspect  The aspect ratio (width / height)
+         * \param aspect  The aspect ratio (width / height).
          * \param n       The distance to the near view plane.
          * \param f       The distance to the far view plane.
          *
@@ -846,6 +846,50 @@ namespace tue
                 0, cot,                      0, 0,
                 0, 0, U(n+f)/nmf, U(2)*U(n*f)/nmf,
                 0, 0, -1,                       0);
+        }
+
+        /*!
+         * \brief         Computes an orthographic projection matrix.
+         * \details       The returned matrix might be the tranpose of what you
+         *                expect from other libraries. This library generally
+         *                prefers compound transformations be written from
+         *                left-to-right instead of right-to-left.
+         *
+         * \tparam T      The type of all four parameters.
+         * \tparam C      The column count of the returned matrix.
+         *                Must be 3 or 4. Defaults to 4.
+         * \tparam R      The row count of the returned matrix.
+         *                Must be 4. Defaults to 4.
+         *
+         * \param width   The orthographic projection width.
+         * \param height  The orthographic projection height.
+         * \param n       The distance to the near view plane.
+         * \param f       The distance to the far view plane.
+         *
+         * \return        An orthographic projection matrix.
+         *
+         *                \code
+         *                [ 2/width,         0,            0,  0 ]
+         *                [       0,  2/height,            0,  0 ]
+         *                [       0,         0,    (2)/(n-f),  0 ]
+         *                [       0,         0,  (n+f)/(n-f),  1 ]
+         *                \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline constexpr std::enable_if_t<(C >= 3 && R >= 4),
+            mat<decltype(tue::math::recip(std::declval<T>())), C, R>>
+        ortho_mat(
+            const T& width,
+            const T& height,
+            const T& n /* "near" conflicts with a WIN32 macro */,
+            const T& f /* "far" conflicts with a WIN32 macro */) noexcept
+        {
+            using U = decltype(tue::math::recip(width));
+            return tue::detail_::mat_utils<U, C, R>::create(
+                U(2) / U(width),             0, 0, 0,
+                0, U(2) / U(height),            0, 0,
+                0, 0, U(2) / U(n-f), U(n+f) / U(n-f),
+                0, 0, 0,                          1);
         }
     }
 }
