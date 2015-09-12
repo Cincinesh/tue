@@ -10,6 +10,7 @@
 #include <mon/test_case.hpp>
 
 #include <cstdint>
+#include <type_traits>
 
 namespace
 {
@@ -57,5 +58,50 @@ namespace
             == static_cast<std::uint64_t>(~0LL));
         test_assert(static_cast<std::uint64_t>(false64)
             == static_cast<std::uint64_t>(0LL));
+    }
+
+    TEST_CASE(sized_bool_type)
+    {
+        test_assert((std::is_same<
+            typename sized_bool<1>::type, bool8>::value));
+        test_assert((std::is_same<
+            typename sized_bool<2>::type, bool16>::value));
+        test_assert((std::is_same<
+            typename sized_bool<4>::type, bool32>::value));
+        test_assert((std::is_same<
+            typename sized_bool<8>::type, bool64>::value));
+    }
+
+    TEST_CASE(sized_bool_true_value)
+    {
+        test_assert(sized_bool<1>::true_value == true8);
+        test_assert(sized_bool<2>::true_value == true16);
+        test_assert(sized_bool<4>::true_value == true32);
+        test_assert(sized_bool<8>::true_value == true64);
+    }
+
+    TEST_CASE(sized_bool_false_value)
+    {
+        test_assert(sized_bool<1>::false_value == false8);
+        test_assert(sized_bool<2>::false_value == false16);
+        test_assert(sized_bool<4>::false_value == false32);
+        test_assert(sized_bool<8>::false_value == false64);
+    }
+
+    TEST_CASE(sized_bool_t)
+    {
+        test_assert((std::is_same<sized_bool_t<1>, bool8>::value));
+        test_assert((std::is_same<sized_bool_t<2>, bool16>::value));
+        test_assert((std::is_same<sized_bool_t<4>, bool32>::value));
+        test_assert((std::is_same<sized_bool_t<8>, bool64>::value));
+    }
+
+    TEST_CASE(is_sized_bool)
+    {
+        test_assert(is_sized_bool<std::uint32_t>::value == false);
+        test_assert(is_sized_bool<bool8>::value == true);
+        test_assert(is_sized_bool<bool16>::value == true);
+        test_assert(is_sized_bool<bool32>::value == true);
+        test_assert(is_sized_bool<bool64>::value == true);
     }
 }

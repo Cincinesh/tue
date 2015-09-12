@@ -8,7 +8,9 @@
 
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
+#include <type_traits>
 
 namespace tue
 {
@@ -75,4 +77,66 @@ namespace tue
          */
         false64 = UINT64_C(0x0000000000000000),
     };
+
+    /*!
+     * \brief        Provides a type alias and values for the sized boolean type
+     *               (`bool8`, `bool16`, `bool32`, or `bool64`) with the given
+     *               size.
+     *
+     * \tparam Size  The desired sized boolean type size (in bytes).
+     */
+    template<std::size_t Size>
+    struct sized_bool
+    {
+    private:
+        std::enable_if_t<Size == 1 || Size == 2 || Size == 4 || Size == 8>
+        impl_;
+
+        using boolX = bool;
+        static constexpr bool trueX = true;
+        static constexpr bool falseX = false;
+
+    public:
+        /*!
+         * \brief    The sized boolean type with the given size.
+         * \details  See `tue::sized_bool_t` for an easier way to access this
+         *           type alias.
+         */
+        using type = boolX;
+
+        /*!
+         * \brief  The `true` value for the sized boolean type with the given
+         *         size.
+         */
+        static constexpr boolX true_value = trueX;
+
+        /*!
+         * \brief  The `false` value for the sized boolean type with the given
+         *         size.
+         */
+        static constexpr boolX false_value = falseX;
+    };
+
+    /*!
+     * \brief        A type alias for the sized boolean type (`bool8`, `bool16`,
+     *               `bool32`, or `bool64`) with the given size.
+     *
+     * \tparam Size  The desired sized boolean type size (in bytes).
+     */
+    template<std::size_t Size>
+    using sized_bool_t = typename sized_bool<Size>::type;
+
+    /*!
+     * \brief     Checks if a type is a sized boolean type (`bool8`, `bool16`,
+     *            `bool32`, or `bool64`).
+     * \details   Extends `std::integral_constant<bool, true>` if true and
+     *            `std::integral_constant<bool, false>` otherwise.
+     *
+     * \tparam T  The type to check.
+     */
+    template<typename T>
+    struct is_sized_bool;
 }
+
+#include "detail_/sized_boolX.hpp"
+#include "detail_/is_sized_boolX.hpp"
