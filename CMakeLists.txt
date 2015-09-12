@@ -30,6 +30,7 @@ set(TUE_SOURCES
     include/tue/mat.hpp
     include/tue/math.hpp
     include/tue/quat.hpp
+    include/tue/simd.hpp
     include/tue/sized_bool.hpp
     include/tue/transform.hpp
     include/tue/unused.hpp
