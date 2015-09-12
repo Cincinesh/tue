@@ -260,4 +260,25 @@ namespace
             transform::scale_mat<double, 3, 3>(dvec3(1.2, 3.4, 5.6));
         test_assert(m4 == m2);
     }
+
+    TEST_CASE(perspective_mat)
+    {
+        const auto m1 = transform::perspective_mat(1, 3, 5, 7);
+        test_assert(m1[0][0] == math::cos(1 / 2.0) / math::sin(1 / 2.0) / 3);
+        test_assert(m1[0][1] == 0.0);
+        test_assert(m1[0][2] == 0.0);
+        test_assert(m1[0][3] == 0.0);
+        test_assert(m1[1][0] == 0.0);
+        test_assert(m1[1][1] == math::cos(1 / 2.0) / math::sin(1 / 2.0));
+        test_assert(m1[1][2] == 0.0);
+        test_assert(m1[1][3] == 0.0);
+        test_assert(m1[2][0] == 0.0);
+        test_assert(m1[2][1] == 0.0);
+        test_assert(m1[2][2] == double(5+7) / double(5-7));
+        test_assert(m1[2][3] == 2.0 * double(5*7) / double(5-7));
+        test_assert(m1[3][0] == 0.0);
+        test_assert(m1[3][1] == 0.0);
+        test_assert(m1[3][2] == -1.0);
+        test_assert(m1[3][3] == 0.0);
+    }
 }

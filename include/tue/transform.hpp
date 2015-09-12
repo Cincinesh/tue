@@ -796,5 +796,56 @@ namespace tue
         {
             return tue::transform::scale_mat<T, C, R>(v[0], v[1], v[2]);
         }
+
+        /*!
+         * \brief         Computes a 3D perspective matrix.
+         * \details       The returned matrix might be the tranpose of what you
+         *                expect from other libraries. This library generally
+         *                prefers compound transformations be written from
+         *                left-to-right instead of right-to-left.
+         *
+         * \tparam T      The type of all four parameters.
+         * \tparam C      The column count of the returned matrix.
+         *                Must be 4. Defaults to 4.
+         * \tparam R      The row count of the returned matrix.
+         *                Must be 4. Defaults to 4.
+         *
+         * \param fovy    The vertical field of view (measured in radians).
+         * \param aspect  The aspect ratio (width / height)
+         * \param n       The distance to the near view plane.
+         * \param f       The distance to the far view plane.
+         *
+         * \return        A 3D perspective matrix.
+         *
+         *                \code
+         *                // Where s and c are sin(fovy/2) and cos(fovy/2)
+         *
+         *                [ c/s/aspect,    0,            0,   0 ]
+         *                [          0,  c/s,            0,   0 ]
+         *                [          0,    0,  (n+f)/(n-f),  -1 ]
+         *                [          0,    0,  (2nf)/(n-f),   0 ]
+         *                \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline std::enable_if_t<(C >= 4 && R >= 4),
+            mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
+        perspective_mat(
+            const T& fovy,
+            const T& aspect,
+            const T& n /* "near" conflicts with a WIN32 macro */,
+            const T& f /* "far" conflicts with a WIN32 macro */) noexcept
+        {
+            using U = decltype(tue::math::sin(fovy));
+            U s, c;
+            tue::math::sincos(U(fovy) / U(2), s, c);
+            const auto cot = c / s;
+            const auto nmf = U(n - f);
+
+            return tue::detail_::mat_utils<U, C, R>::create(
+                cot / U(aspect),          0, 0, 0,
+                0, cot,                      0, 0,
+                0, 0, U(n+f)/nmf, U(2)*U(n*f)/nmf,
+                0, 0, -1,                       0);
+        }
     }
 }
