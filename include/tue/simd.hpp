@@ -156,10 +156,13 @@ namespace tue
          * \tparam U  The type of parameter `x`.
          * \param x   The value to construct each component with.
          */
-        template<typename U>
+        template<
+            typename U,
+            typename = std::enable_if_t<
+                !is_sized_bool<T>::value || std::is_same<T, U>::value>>
         explicit simd(const U& x) noexcept
         {
-            const auto y = simd<T, N/2>(x)
+            const auto y = simd<T, N/2>(x);
             this->impl_[0] = y;
             this->impl_[1] = y;
         }
@@ -172,7 +175,8 @@ namespace tue
          * \param x  The value to construct the first component with.
          * \param y  The value to construct the second component with.
          */
-        inline simd(std::enable_if_t<N == 2, T> x, T y) noexcept;
+        template<typename = std::enable_if_t<N == 2>>
+        inline simd(T x, T y) noexcept;
 
         /*!
          * \brief    Constructs each component with the value of the
@@ -184,7 +188,8 @@ namespace tue
          * \param z  The value to construct the third component with.
          * \param w  The value to construct the fourth component with.
          */
-        simd(std::enable_if_t<N == 4, T> x, T y, T z, T w) noexcept
+        template<typename = std::enable_if_t<N == 4>>
+        simd(T x, T y, T z, T w) noexcept
         {
             this->impl_[0] = simd<T, 2>(x, y);
             this->impl_[1] = simd<T, 2>(z, w);

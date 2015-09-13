@@ -32,7 +32,10 @@ namespace tue
 
         simd() noexcept = default;
 
-        template<typename U>
+        template<
+            typename U,
+            typename = std::enable_if_t<
+                !is_sized_bool<T>::value || std::is_same<T, U>::value>>
         explicit simd(const U& x) noexcept
         {
             const auto y = static_cast<T>(x);
