@@ -280,18 +280,76 @@ namespace
 
     FLOAT_SIMD_TEST_CASES(float32x2, float, 2)
     FLOAT_SIMD_TEST_CASES(float32x4, float, 4)
+    FLOAT_SIMD_TEST_CASES(float32x8, float, 8)
+    FLOAT_SIMD_TEST_CASES(float32x16, float, 16)
+
     FLOAT_SIMD_TEST_CASES(float64x2, double, 2)
     FLOAT_SIMD_TEST_CASES(float64x4, double, 4)
+    FLOAT_SIMD_TEST_CASES(float64x8, double, 8)
+
+    INT_SIMD_TEST_CASES(int8x2, std::int8_t, 2)
+    INT_SIMD_TEST_CASES(int8x4, std::int8_t, 4)
+    INT_SIMD_TEST_CASES(int8x8, std::int8_t, 8)
+    INT_SIMD_TEST_CASES(int8x16, std::int8_t, 16)
+    INT_SIMD_TEST_CASES(int8x32, std::int8_t, 32)
+    INT_SIMD_TEST_CASES(int8x64, std::int8_t, 64)
+
+    INT_SIMD_TEST_CASES(int16x2, std::int16_t, 2)
+    INT_SIMD_TEST_CASES(int16x4, std::int16_t, 4)
+    INT_SIMD_TEST_CASES(int16x8, std::int16_t, 8)
+    INT_SIMD_TEST_CASES(int16x16, std::int16_t, 16)
+    INT_SIMD_TEST_CASES(int16x32, std::int16_t, 32)
+
     INT_SIMD_TEST_CASES(int32x2, std::int32_t, 2)
     INT_SIMD_TEST_CASES(int32x4, std::int32_t, 4)
+    INT_SIMD_TEST_CASES(int32x8, std::int32_t, 8)
+    INT_SIMD_TEST_CASES(int32x16, std::int32_t, 16)
+
     INT_SIMD_TEST_CASES(int64x2, std::int64_t, 2)
     INT_SIMD_TEST_CASES(int64x4, std::int64_t, 4)
+    INT_SIMD_TEST_CASES(int64x8, std::int64_t, 8)
+
+    INT_SIMD_TEST_CASES(uint8x2, std::uint8_t, 2)
+    INT_SIMD_TEST_CASES(uint8x4, std::uint8_t, 4)
+    INT_SIMD_TEST_CASES(uint8x8, std::uint8_t, 8)
+    INT_SIMD_TEST_CASES(uint8x16, std::uint8_t, 16)
+    INT_SIMD_TEST_CASES(uint8x32, std::uint8_t, 32)
+    INT_SIMD_TEST_CASES(uint8x64, std::uint8_t, 64)
+
+    INT_SIMD_TEST_CASES(uint16x2, std::uint16_t, 2)
+    INT_SIMD_TEST_CASES(uint16x4, std::uint16_t, 4)
+    INT_SIMD_TEST_CASES(uint16x8, std::uint16_t, 8)
+    INT_SIMD_TEST_CASES(uint16x16, std::uint16_t, 16)
+    INT_SIMD_TEST_CASES(uint16x32, std::uint16_t, 32)
+
     INT_SIMD_TEST_CASES(uint32x2, std::uint32_t, 2)
     INT_SIMD_TEST_CASES(uint32x4, std::uint32_t, 4)
+    INT_SIMD_TEST_CASES(uint32x8, std::uint32_t, 8)
+    INT_SIMD_TEST_CASES(uint32x16, std::uint32_t, 16)
+
     INT_SIMD_TEST_CASES(uint64x2, std::uint64_t, 2)
     INT_SIMD_TEST_CASES(uint64x4, std::uint64_t, 4)
+    INT_SIMD_TEST_CASES(uint64x8, std::uint64_t, 8)
+
+    BOOL_SIMD_TEST_CASES(bool8x2, bool8, 2)
+    BOOL_SIMD_TEST_CASES(bool8x4, bool8, 4)
+    BOOL_SIMD_TEST_CASES(bool8x8, bool8, 8)
+    BOOL_SIMD_TEST_CASES(bool8x16, bool8, 16)
+    BOOL_SIMD_TEST_CASES(bool8x32, bool8, 32)
+    BOOL_SIMD_TEST_CASES(bool8x64, bool8, 64)
+
+    BOOL_SIMD_TEST_CASES(bool16x2, bool16, 2)
+    BOOL_SIMD_TEST_CASES(bool16x4, bool16, 4)
+    BOOL_SIMD_TEST_CASES(bool16x8, bool16, 8)
+    BOOL_SIMD_TEST_CASES(bool16x16, bool16, 16)
+    BOOL_SIMD_TEST_CASES(bool16x32, bool16, 32)
+
     BOOL_SIMD_TEST_CASES(bool32x2, bool32, 2)
     BOOL_SIMD_TEST_CASES(bool32x4, bool32, 4)
+    BOOL_SIMD_TEST_CASES(bool32x8, bool32, 8)
+    BOOL_SIMD_TEST_CASES(bool32x16, bool32, 16)
+
     BOOL_SIMD_TEST_CASES(bool64x2, bool64, 2)
     BOOL_SIMD_TEST_CASES(bool64x4, bool64, 4)
+    BOOL_SIMD_TEST_CASES(bool64x8, bool64, 8)
 }

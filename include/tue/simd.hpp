@@ -24,7 +24,7 @@ namespace tue
      *
      * \tparam T  The component type. Must be a sized boolean type or an
      *            arithmetic type other than `bool`.
-     * \tparam N  The component count. Must be 2 or 4.
+     * \tparam N  The component count. Must be 2, 4, 8, 16, 32, or 64.
      */
     template<typename T, int N>
     class simd;
@@ -44,6 +44,34 @@ namespace tue
     using simd4 = simd<T, 4>;
 
     /*!
+     * \brief     An 8-component SIMD vector.
+     * \tparam T  The component type.
+     */
+    template<typename T>
+    using simd8 = simd<T, 8>;
+
+    /*!
+     * \brief     A 16-component SIMD vector.
+     * \tparam T  The component type.
+     */
+    template<typename T>
+    using simd16 = simd<T, 16>;
+
+    /*!
+     * \brief     A 32-component SIMD vector.
+     * \tparam T  The component type.
+     */
+    template<typename T>
+    using simd32 = simd<T, 32>;
+
+    /*!
+     * \brief     A 64-component SIMD vector.
+     * \tparam T  The component type.
+     */
+    template<typename T>
+    using simd64 = simd<T, 64>;
+
+    /*!
      * \brief  A 2-component SIMD vector with `float` components.
      */
     using float32x2 = simd2<float>;
@@ -52,6 +80,16 @@ namespace tue
      * \brief  A 4-component SIMD vector with `float` components.
      */
     using float32x4 = simd4<float>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `float` components.
+     */
+    using float32x8 = simd8<float>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `float` components.
+     */
+    using float32x16 = simd16<float>;
 
     /*!
      * \brief  A 2-component SIMD vector with `double` components.
@@ -64,6 +102,66 @@ namespace tue
     using float64x4 = simd4<double>;
 
     /*!
+     * \brief  An 8-component SIMD vector with `double` components.
+     */
+    using float64x8 = simd8<double>;
+
+    /*!
+     * \brief  A 2-component SIMD vector with `std::int8_t` components.
+     */
+    using int8x2 = simd2<std::int8_t>;
+
+    /*!
+     * \brief  A 4-component SIMD vector with `std::int8_t` components.
+     */
+    using int8x4 = simd4<std::int8_t>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `std::int8_t` components.
+     */
+    using int8x8 = simd8<std::int8_t>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `std::int8_t` components.
+     */
+    using int8x16 = simd16<std::int8_t>;
+
+    /*!
+     * \brief  A 32-component SIMD vector with `std::int8_t` components.
+     */
+    using int8x32 = simd32<std::int8_t>;
+
+    /*!
+     * \brief  A 64-component SIMD vector with `std::int8_t` components.
+     */
+    using int8x64 = simd64<std::int8_t>;
+
+    /*!
+     * \brief  A 2-component SIMD vector with `std::int16_t` components.
+     */
+    using int16x2 = simd2<std::int16_t>;
+
+    /*!
+     * \brief  A 4-component SIMD vector with `std::int16_t` components.
+     */
+    using int16x4 = simd4<std::int16_t>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `std::int16_t` components.
+     */
+    using int16x8 = simd8<std::int16_t>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `std::int16_t` components.
+     */
+    using int16x16 = simd16<std::int16_t>;
+
+    /*!
+     * \brief  A 32-component SIMD vector with `std::int16_t` components.
+     */
+    using int16x32 = simd32<std::int16_t>;
+
+    /*!
      * \brief  A 2-component SIMD vector with `std::int32_t` components.
      */
     using int32x2 = simd2<std::int32_t>;
@@ -72,6 +170,16 @@ namespace tue
      * \brief  A 4-component SIMD vector with `std::int32_t` components.
      */
     using int32x4 = simd4<std::int32_t>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `std::int32_t` components.
+     */
+    using int32x8 = simd8<std::int32_t>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `std::int32_t` components.
+     */
+    using int32x16 = simd16<std::int32_t>;
 
     /*!
      * \brief  A 2-component SIMD vector with `std::int64_t` components.
@@ -84,6 +192,66 @@ namespace tue
     using int64x4 = simd4<std::int64_t>;
 
     /*!
+     * \brief  An 8-component SIMD vector with `std::int64_t` components.
+     */
+    using int64x8 = simd8<std::int64_t>;
+
+    /*!
+     * \brief  A 2-component SIMD vector with `std::uint8_t` components.
+     */
+    using uint8x2 = simd2<std::uint8_t>;
+
+    /*!
+     * \brief  A 4-component SIMD vector with `std::uint8_t` components.
+     */
+    using uint8x4 = simd4<std::uint8_t>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `std::uint8_t` components.
+     */
+    using uint8x8 = simd8<std::uint8_t>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `std::uint8_t` components.
+     */
+    using uint8x16 = simd16<std::uint8_t>;
+
+    /*!
+     * \brief  A 32-component SIMD vector with `std::uint8_t` components.
+     */
+    using uint8x32 = simd32<std::uint8_t>;
+
+    /*!
+     * \brief  A 64-component SIMD vector with `std::uint8_t` components.
+     */
+    using uint8x64 = simd64<std::uint8_t>;
+
+    /*!
+     * \brief  A 2-component SIMD vector with `std::uint16_t` components.
+     */
+    using uint16x2 = simd2<std::uint16_t>;
+
+    /*!
+     * \brief  A 4-component SIMD vector with `std::uint16_t` components.
+     */
+    using uint16x4 = simd4<std::uint16_t>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `std::uint16_t` components.
+     */
+    using uint16x8 = simd8<std::uint16_t>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `std::uint16_t` components.
+     */
+    using uint16x16 = simd16<std::uint16_t>;
+
+    /*!
+     * \brief  A 32-component SIMD vector with `std::uint16_t` components.
+     */
+    using uint16x32 = simd32<std::uint16_t>;
+
+    /*!
      * \brief  A 2-component SIMD vector with `std::uint32_t` components.
      */
     using uint32x2 = simd2<std::uint32_t>;
@@ -92,6 +260,16 @@ namespace tue
      * \brief  A 4-component SIMD vector with `std::uint32_t` components.
      */
     using uint32x4 = simd4<std::uint32_t>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `std::uint32_t` components.
+     */
+    using uint32x8 = simd8<std::uint32_t>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `std::uint32_t` components.
+     */
+    using uint32x16 = simd16<std::uint32_t>;
 
     /*!
      * \brief  A 2-component SIMD vector with `std::uint64_t` components.
@@ -104,6 +282,66 @@ namespace tue
     using uint64x4 = simd4<std::uint64_t>;
 
     /*!
+     * \brief  An 8-component SIMD vector with `std::uint64_t` components.
+     */
+    using uint64x8 = simd8<std::uint64_t>;
+
+    /*!
+     * \brief  A 2-component SIMD vector with `bool8` components.
+     */
+    using bool8x2 = simd2<bool8>;
+
+    /*!
+     * \brief  A 4-component SIMD vector with `bool8` components.
+     */
+    using bool8x4 = simd4<bool8>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `bool8` components.
+     */
+    using bool8x8 = simd8<bool8>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `bool8` components.
+     */
+    using bool8x16 = simd16<bool8>;
+
+    /*!
+     * \brief  A 32-component SIMD vector with `bool8` components.
+     */
+    using bool8x32 = simd32<bool8>;
+
+    /*!
+     * \brief  A 64-component SIMD vector with `bool8` components.
+     */
+    using bool8x64 = simd64<bool8>;
+
+    /*!
+     * \brief  A 2-component SIMD vector with `bool16` components.
+     */
+    using bool16x2 = simd2<bool16>;
+
+    /*!
+     * \brief  A 4-component SIMD vector with `bool16` components.
+     */
+    using bool16x4 = simd4<bool16>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `bool16` components.
+     */
+    using bool16x8 = simd8<bool16>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `bool16` components.
+     */
+    using bool16x16 = simd16<bool16>;
+
+    /*!
+     * \brief  A 32-component SIMD vector with `bool16` components.
+     */
+    using bool16x32 = simd32<bool16>;
+
+    /*!
      * \brief  A 2-component SIMD vector with `bool32` components.
      */
     using bool32x2 = simd2<bool32>;
@@ -112,6 +350,16 @@ namespace tue
      * \brief  A 4-component SIMD vector with `bool32` components.
      */
     using bool32x4 = simd4<bool32>;
+
+    /*!
+     * \brief  An 8-component SIMD vector with `bool32` components.
+     */
+    using bool32x8 = simd8<bool32>;
+
+    /*!
+     * \brief  A 16-component SIMD vector with `bool32` components.
+     */
+    using bool32x16 = simd16<bool32>;
 
     /*!
      * \brief  A 2-component SIMD vector with `bool64` components.
@@ -123,6 +371,11 @@ namespace tue
      */
     using bool64x4 = simd4<bool64>;
 
+    /*!
+     * \brief  An 8-component SIMD vector with `bool64` components.
+     */
+    using bool64x8 = simd8<bool64>;
+
     /**/
     template<typename T, int N>
     class alignas(sizeof(T) * N) simd
@@ -131,7 +384,7 @@ namespace tue
             (is_sized_bool<T>::value
                 || (std::is_arithmetic<T>::value
                     && !std::is_same<T, bool>::value))
-            && N == 4,
+            && N == 4 || N == 8 || N == 16 || N == 32 || N == 64,
             simd<T, N/2>[2]>
         impl_;
 
