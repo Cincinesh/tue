@@ -114,6 +114,20 @@ namespace tue
 namespace tue
 {
     /*!
+     * \brief     Computes the bitwise NOT of `b`.
+     * \tparam T  The type of parameter 'b'.
+     * \param b   A sized boolean value.
+     * \return    The bitwise XOR of `lhs` and `rhs`.
+     */
+    template<typename T>
+    inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
+    operator~(T b) noexcept
+    {
+        using U = std::underlying_type_t<T>;
+        return T(~U(b));
+    }
+
+    /*!
      * \brief      Computes the bitwise AND of `lhs` and `rhs`.
      *
      * \tparam T   The type of the parameters.

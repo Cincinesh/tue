@@ -117,6 +117,29 @@ namespace
         test_assert(is_sized_bool<bool64>::value == true);
     }
 
+    TEST_CASE(bitwise_not_operator)
+    {
+        CONST_OR_CONSTEXPR auto nt8 = ~true8;
+        CONST_OR_CONSTEXPR auto nf8 = ~false8;
+        test_assert(nt8 == false8);
+        test_assert(nf8 == true8);
+
+        CONST_OR_CONSTEXPR auto nt16 = ~true16;
+        CONST_OR_CONSTEXPR auto nf16 = ~false16;
+        test_assert(nt16 == false16);
+        test_assert(nf16 == true16);
+
+        CONST_OR_CONSTEXPR auto nt32 = ~true32;
+        CONST_OR_CONSTEXPR auto nf32 = ~false32;
+        test_assert(nt32 == false32);
+        test_assert(nf32 == true32);
+
+        CONST_OR_CONSTEXPR auto nt64 = ~true64;
+        CONST_OR_CONSTEXPR auto nf64 = ~false64;
+        test_assert(nt64 == false64);
+        test_assert(nf64 == true64);
+    }
+
     TEST_CASE(bitwise_and_operator)
     {
         CONST_OR_CONSTEXPR auto tt8 =  true8 &  true8;
