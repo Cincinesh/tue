@@ -157,7 +157,12 @@ namespace tue
          * \param x   The value to construct each component with.
          */
         template<typename U>
-        inline explicit simd(const U& x) noexcept;
+        explicit simd(const U& x) noexcept
+        {
+            const auto y = simd<T, N/2>(x)
+            this->impl_[0] = y;
+            this->impl_[1] = y;
+        }
 
         /*!
          * \brief    Constructs each component with the value of the
@@ -179,7 +184,11 @@ namespace tue
          * \param z  The value to construct the third component with.
          * \param w  The value to construct the fourth component with.
          */
-        inline simd(std::enable_if_t<N == 4, T> x, T y, T z, T w) noexcept;
+        simd(std::enable_if_t<N == 4, T> x, T y, T z, T w) noexcept
+        {
+            this->impl_[0] = simd<T, 2>(x, y);
+            this->impl_[1] = simd<T, 2>(z, w);
+        }
 
         /*!
          * \brief     Explicitly casts another `simd` to a new component type.
@@ -187,13 +196,26 @@ namespace tue
          * \param s   The `simd` to cast from.
          */
         template<typename U>
-        inline explicit simd(const simd<U, N>& s) noexcept;
+        explicit simd(const simd<U, N>& s) noexcept
+        {
+            const auto data = this->impl_[0].data();
+            for (int i = 0; i < N; ++i)
+            {
+                data[i] = static_cast<T>(s.data()[i]);
+            }
+        }
 
         /*!
          * \brief   Returns an `simd` with each component set to `0`.
          * \return  An `simd` with each component set to `0`.
          */
-        inline static simd<T, N> zero() noexcept;
+        static simd<T, N> zero() noexcept
+        {
+            simd<T, N> s;
+            s.impl_[0] = simd<T, N/2>::zero();
+            s.impl_[1] = simd<T, N/2>::zero();
+            return s;
+        }
 
         /*!
          * \brief       Loads the given aligned component array into a new
@@ -206,7 +228,13 @@ namespace tue
          * \param data  The source component array.
          * \return      The new `simd`.
          */
-        inline static simd<T, N> load(const T* data) noexcept;
+        static simd<T, N> load(const T* data) noexcept
+        {
+            simd<T, N> s;
+            s.impl_[0] = simd<T, N/2>::load(data);
+            s.impl_[1] = simd<T, N/2>::load(data + N/2);
+            return s;
+        }
 
         /*!
          * \brief       Loads the given unaligned component array into a new
@@ -217,7 +245,13 @@ namespace tue
          * \param data  The source component array.
          * \return      The new `simd`.
          */
-        inline static simd<T, N> loadu(const T* data) noexcept;
+        static simd<T, N> loadu(const T* data) noexcept
+        {
+            simd<T, N> s;
+            s.impl_[0] = simd<T, N/2>::loadu(data);
+            s.impl_[1] = simd<T, N/2>::loadu(data + N/2);
+            return s;
+        }
 
         /*!
          * \brief       Store's this `simd`'s underlying component array in
@@ -229,7 +263,11 @@ namespace tue
          *
          * \param data  The destination component array.
          */
-        inline void store(T* data) const noexcept;
+        void store(T* data) const noexcept
+        {
+            this->impl_[0].store(data);
+            this->impl_[1].store(data + N/2);
+        }
 
         /*!
          * \brief       Store's this `simd`'s underlying component array in
@@ -239,7 +277,11 @@ namespace tue
          *
          * \param data  The destination component array.
          */
-        inline void storeu(T* data) const noexcept;
+        void storeu(T* data) const noexcept
+        {
+            this->impl_[0].storeu(data);
+            this->impl_[1].storeu(data + N/2);
+        }
 
         /*!
          * \brief   Returns a pointer to this `simd`'s underlying component
@@ -247,7 +289,10 @@ namespace tue
          *
          * \return  A pointer to this `simd`'s underlying component array.
          */
-        inline const T* data() const noexcept;
+        const T* data() const noexcept
+        {
+            return this->impl_[0].data();
+        }
 
         /*!
          * \brief   Returns a pointer to this `simd`'s underlying component
@@ -255,7 +300,10 @@ namespace tue
          *
          * \return  A pointer to this `simd`'s underlying component array.
          */
-        inline T* data() noexcept;
+        T* data() noexcept
+        {
+            return this->impl_[0].data();
+        }
     };
 }
 
