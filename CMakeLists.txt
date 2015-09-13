@@ -25,6 +25,7 @@ set(TUE_SOURCES
     include/tue/detail_/mat3xR.hpp
     include/tue/detail_/mat4xR.hpp
     include/tue/detail_/matmult.hpp
+    include/tue/detail_/simd2.hpp
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp

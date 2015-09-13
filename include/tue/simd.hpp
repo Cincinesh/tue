@@ -125,17 +125,13 @@ namespace tue
     template<typename T, int N>
     class alignas(sizeof(T) * N) simd
     {
-        struct
-        {
-            std::enable_if_t<
-                (is_sized_bool<T>::value
-                    || (std::is_arithmetic<T>::value
-                        && !std::is_same<T, bool>::value))
-                && (N == 2 || N == 4),
-                T>
-                data[N];
-        }
-        impl_;
+        std::enable_if_t<
+            (is_sized_bool<T>::value
+                || (std::is_arithmetic<T>::value
+                    && !std::is_same<T, bool>::value))
+            && N == 4,
+            simd<T, N/2>[2]>
+        underlying_;
 
     public:
         /*!
@@ -154,10 +150,12 @@ namespace tue
         simd() noexcept = default;
 
         /*!
-         * \brief    Constructs each component with the same value.
-         * \param x  The value to construct each component with.
+         * \brief     Constructs each component with the same value.
+         * \tparam U  The type of parameter `x`.
+         * \param x   The value to construct each component with.
          */
-        inline explicit simd(T x) noexcept;
+        template<typename U>
+        inline explicit simd(const U& x) noexcept;
 
         /*!
          * \brief    Constructs each component with the value of the
@@ -194,6 +192,51 @@ namespace tue
          * \return  An `simd` with each component set to `0`.
          */
         inline static simd<T, N> zero() noexcept;
+
+        /*!
+         * \brief       Loads the given aligned component array into a new
+         *              `simd`.
+         * \details     The source array must have the same alignment as this
+         *              `simd` type. If the source array is unaligned or doesn't
+         *              contain at least `N` components, behavior is undefined.
+         *
+         * \param data  The source component array.
+         * \return      The new `simd`.
+         */
+        inline static simd<T, N> load(const T* data) noexcept;
+
+        /*!
+         * \brief       Loads the given unaligned component array into a new
+         *              `simd`.
+         * \details     If the source array doesn't contain at least `N`
+         *              components, behavior is undefined.
+         *
+         * \param data  The source component array.
+         * \return      The new `simd`.
+         */
+        inline static simd<T, N> loadu(const T* data) noexcept;
+
+        /*!
+         * \brief       Store's this `simd`'s underlying component array in
+         *              the given aligned component array.
+         * \details     The destination array must have the same alignment as
+         *              this `simd` type. If the destination array is unaligned
+         *              or doesn't contain room for all `N` components, behavior
+         *              is undefined.
+         *
+         * \param data  The destination component array.
+         */
+        inline void store(T* data) const noexcept;
+
+        /*!
+         * \brief       Store's this `simd`'s underlying component array in
+         *              the given unaligned component array.
+         * \details     If the destination array doesn't contain room for all
+         *              `N` components, behavior is undefined.
+         *
+         * \param data  The destination component array.
+         */
+        inline void storeu(T* data) const noexcept;
 
         /*!
          * \brief   Returns a pointer to this `simd`'s underlying component
