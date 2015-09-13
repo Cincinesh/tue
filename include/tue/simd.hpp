@@ -396,24 +396,6 @@ namespace tue
             simd<T, N/2>[2]>
         impl_;
 
-        template<typename U>
-        std::enable_if_t<!simd<U, N>::is_accelerated>
-        explicit_cast_construct(const simd<U, N>& s) noexcept
-        {
-            this->impl_[0] = simd<T, N/2>(s.impl_[0]);
-            this->impl_[1] = simd<T, N/2>(s.impl_[1]);
-        }
-
-        template<typename U>
-        std::enable_if_t<simd<U, N>::is_accelerated>
-        explicit_cast_construct(const simd<U, N>& s) noexcept
-        {
-            this->impl_[0] = simd<T, N/2>(
-                simd<U, N/2>::load(s.data()));
-            this->impl_[1] = simd<T, N/2>(
-                simd<U, N/2>::load(s.data() + N/2));
-        }
-
     public:
         /*!
          * \brief  This `simd` type's component type.
@@ -487,7 +469,9 @@ namespace tue
         template<typename U>
         explicit simd(const simd<U, N>& s) noexcept
         {
-            explicit_cast_construct(s);
+            const auto simpl = reinterpret_cast<const simd<U, N/2>*>(&s);
+            this->impl_[0] = simd<T, N/2>(simpl[0]);
+            this->impl_[1] = simd<T, N/2>(simpl[1]);
         }
 
         /*!
