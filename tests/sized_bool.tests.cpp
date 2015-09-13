@@ -25,6 +25,16 @@ namespace
             == static_cast<std::uint8_t>(~0LL));
         test_assert(static_cast<std::uint8_t>(false8)
             == static_cast<std::uint8_t>(0LL));
+
+        if (!true8)
+        {
+            test_fail("true8 wasn't cast to bool true");
+        }
+
+        if (false8)
+        {
+            test_fail("false8 wasn't cast to bool false");
+        }
     }
 
     TEST_CASE(bool16)
@@ -36,6 +46,16 @@ namespace
             == static_cast<std::uint16_t>(~0LL));
         test_assert(static_cast<std::uint16_t>(false16)
             == static_cast<std::uint16_t>(0LL));
+
+        if (!true16)
+        {
+            test_fail("true16 wasn't cast to bool true");
+        }
+
+        if (false16)
+        {
+            test_fail("false16 wasn't cast to bool false");
+        }
     }
 
     TEST_CASE(bool32)
@@ -47,6 +67,16 @@ namespace
             == static_cast<std::uint32_t>(~0LL));
         test_assert(static_cast<std::uint32_t>(false32)
             == static_cast<std::uint32_t>(0LL));
+
+        if (!true32)
+        {
+            test_fail("true32 wasn't cast to bool true");
+        }
+
+        if (false32)
+        {
+            test_fail("false32 wasn't cast to bool false");
+        }
     }
 
     TEST_CASE(bool64)
@@ -58,6 +88,16 @@ namespace
             == static_cast<std::uint64_t>(~0LL));
         test_assert(static_cast<std::uint64_t>(false64)
             == static_cast<std::uint64_t>(0LL));
+
+        if (!true64)
+        {
+            test_fail("true64 wasn't cast to bool true");
+        }
+
+        if (false64)
+        {
+            test_fail("false64 wasn't cast to bool false");
+        }
     }
 
     TEST_CASE(sized_bool_t)
