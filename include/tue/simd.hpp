@@ -375,7 +375,12 @@ namespace tue
      * \brief  An 8-component SIMD vector with `bool64` components.
      */
     using bool64x8 = simd8<bool64>;
+}
 
+#include "detail_/simd2.hpp"
+
+namespace tue
+{
     /**/
     template<typename T, int N>
     class alignas(sizeof(T) * N) simd
@@ -563,13 +568,7 @@ namespace tue
             return this->impl_[0].data();
         }
     };
-}
 
-#include "detail_/simd2.hpp"
-//#include "detail_/simdN.hpp"
-
-namespace tue
-{
     /*!
      * \brief     Computes the unary plus of each component of `s`.
      *
