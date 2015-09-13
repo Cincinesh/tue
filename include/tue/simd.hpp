@@ -389,7 +389,7 @@ namespace tue
             (is_sized_bool<T>::value
                 || (std::is_arithmetic<T>::value
                     && !std::is_same<T, bool>::value))
-            && N == 4 || N == 8 || N == 16 || N == 32 || N == 64,
+            && (N == 4 || N == 8 || N == 16 || N == 32 || N == 64),
             simd<T, N/2>[2]>
         impl_;
 
@@ -433,7 +433,7 @@ namespace tue
          * \param x  The value to construct the first component with.
          * \param y  The value to construct the second component with.
          */
-        template<typename = std::enable_if_t<N == 2>>
+        template<int M = N, typename = std::enable_if_t<M == 2>>
         inline simd(T x, T y) noexcept;
 
         /*!
@@ -446,7 +446,7 @@ namespace tue
          * \param z  The value to construct the third component with.
          * \param w  The value to construct the fourth component with.
          */
-        template<typename = std::enable_if_t<N == 4>>
+        template<int M = N, typename = std::enable_if_t<M == 4>>
         simd(T x, T y, T z, T w) noexcept
         {
             this->impl_[0] = simd<T, 2>(x, y);
@@ -582,7 +582,7 @@ namespace tue
     template<typename T, int N>
     inline simd<T, N> operator+(const simd<T, N>& s) noexcept
     {
-        return tue::detail_::unary_plus_operator_s(s);
+        //return tue::detail_::unary_plus_operator_s(s);
     }
 
     /*!
@@ -598,7 +598,7 @@ namespace tue
     template<typename T, int N>
     inline simd<T, N>& operator++(simd<T, N>& s) noexcept
     {
-        return tue::detail_::pre_increment_operator_s(s);
+        //return tue::detail_::pre_increment_operator_s(s);
     }
 
     /*!
@@ -614,7 +614,7 @@ namespace tue
     template<typename T, int N>
     inline simd<T, N> operator++(simd<T, N>& s, int) noexcept
     {
-        return tue::detail_::post_increment_operator_s(s);
+        //return tue::detail_::post_increment_operator_s(s);
     }
 
     /*!
@@ -630,7 +630,7 @@ namespace tue
     template<typename T, int N>
     inline simd<T, N> operator-(const simd<T, N>& s) noexcept
     {
-        return tue::detail_::unary_minus_operator_s(s);
+        //return tue::detail_::unary_minus_operator_s(s);
     }
 
     /*!
@@ -646,7 +646,7 @@ namespace tue
     template<typename T, int N>
     inline simd<T, N>& operator--(simd<T, N>& s) noexcept
     {
-        return tue::detail_::pre_decrement_operator_s(s);
+        //return tue::detail_::pre_decrement_operator_s(s);
     }
 
     /*!
@@ -662,7 +662,7 @@ namespace tue
     template<typename T, int N>
     inline simd<T, N> operator--(simd<T, N>& s, int) noexcept
     {
-        return tue::detail_::post_decrement_operator_s(s);
+        //return tue::detail_::post_decrement_operator_s(s);
     }
 
     /*!
@@ -678,7 +678,7 @@ namespace tue
     template<typename T, int N>
     inline simd<T, N> operator~(const simd<T, N>& s) noexcept
     {
-        return tue::detail_::bitwise_not_operator_s(s);
+        //return tue::detail_::bitwise_not_operator_s(s);
     }
 
     /*!
@@ -698,7 +698,7 @@ namespace tue
     inline simd<T, N> operator+(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::addition_operator_ss(lhs, rhs);
+        //return tue::detail_::addition_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -718,7 +718,7 @@ namespace tue
     inline simd<T, N> operator-(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::subtraction_operator_ss(lhs, rhs);
+        //return tue::detail_::subtraction_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -738,7 +738,7 @@ namespace tue
     inline simd<T, N> operator*(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::multiplication_operator_ss(lhs, rhs);
+        //return tue::detail_::multiplication_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -758,7 +758,7 @@ namespace tue
     inline simd<T, N> operator/(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::division_operator_ss(lhs, rhs);
+        //return tue::detail_::division_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -778,7 +778,7 @@ namespace tue
     inline simd<T, N> operator%(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::modulo_operator_ss(lhs, rhs);
+        //return tue::detail_::modulo_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -798,7 +798,7 @@ namespace tue
     inline simd<T, N> operator&(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator_ss(lhs, rhs);
+        //return tue::detail_::bitwise_and_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -818,7 +818,7 @@ namespace tue
     inline simd<T, N> operator|(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator_ss(lhs, rhs);
+        //return tue::detail_::bitwise_or_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -838,7 +838,7 @@ namespace tue
     inline simd<T, N> operator^(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator_ss(lhs, rhs);
+        //return tue::detail_::bitwise_xor_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -858,7 +858,7 @@ namespace tue
     inline simd<T, N> operator<<(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator_ss(lhs, rhs);
+        //return tue::detail_::bitwise_shift_left_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -878,7 +878,7 @@ namespace tue
     inline simd<T, N> operator>>(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator_ss(lhs, rhs);
+        //return tue::detail_::bitwise_shift_right_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -897,7 +897,7 @@ namespace tue
     inline simd<T, N>& operator+=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs + rhs;
+        //return lhs = lhs + rhs;
     }
 
     /*!
@@ -916,7 +916,7 @@ namespace tue
     inline simd<T, N>& operator-=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs - rhs;
+        //return lhs = lhs - rhs;
     }
 
     /*!
@@ -935,7 +935,7 @@ namespace tue
     inline simd<T, N>& operator*=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs * rhs;
+        //return lhs = lhs * rhs;
     }
 
     /*!
@@ -954,7 +954,7 @@ namespace tue
     inline simd<T, N>& operator/=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs / rhs;
+        //return lhs = lhs / rhs;
     }
 
     /*!
@@ -973,7 +973,7 @@ namespace tue
     inline simd<T, N>& operator%=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs % rhs;
+        //return lhs = lhs % rhs;
     }
 
     /*!
@@ -992,7 +992,7 @@ namespace tue
     inline simd<T, N>& operator&=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs & rhs;
+        //return lhs = lhs & rhs;
     }
 
     /*!
@@ -1011,7 +1011,7 @@ namespace tue
     inline simd<T, N>& operator|=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs | rhs;
+        //return lhs = lhs | rhs;
     }
 
     /*!
@@ -1030,7 +1030,7 @@ namespace tue
     inline simd<T, N>& operator^=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs ^ rhs;
+        //return lhs = lhs ^ rhs;
     }
 
     /*!
@@ -1049,7 +1049,7 @@ namespace tue
     inline simd<T, N>& operator<<=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs << rhs;
+        //return lhs = lhs << rhs;
     }
 
     /*!
@@ -1068,7 +1068,7 @@ namespace tue
     inline simd<T, N>& operator>>=(
         simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return lhs = lhs >> rhs;
+        //return lhs = lhs >> rhs;
     }
 
     /*!
@@ -1087,7 +1087,7 @@ namespace tue
     inline bool operator==(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::equality_operator_ss(lhs, rhs);
+        //return tue::detail_::equality_operator_ss(lhs, rhs);
     }
 
     /*!
@@ -1106,7 +1106,7 @@ namespace tue
     inline bool operator!=(
         const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
-        return tue::detail_::inequality_operator_ss(lhs, rhs);
+        //return tue::detail_::inequality_operator_ss(lhs, rhs);
     }
 
     /**/
@@ -1128,7 +1128,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         sin(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::sin_s(s);
+            //return tue::detail_::sin_s(s);
         }
 
         /*!
@@ -1147,7 +1147,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         cos(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::cos_s(s);
+            //return tue::detail_::cos_s(s);
         }
 
         /*!
@@ -1173,7 +1173,7 @@ namespace tue
             simd<T, N>& sin_out,
             simd<T, N>& cos_out) noexcept
         {
-            tue::detail_::sincos_s(s, sin_out, cos_out);
+            //tue::detail_::sincos_s(s, sin_out, cos_out);
         }
 
         /*!
@@ -1192,7 +1192,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         exp(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::exp_s(s);
+            //return tue::detail_::exp_s(s);
         }
 
         /*!
@@ -1211,7 +1211,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         log(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::log_s(s);
+            //return tue::detail_::log_s(s);
         }
 
         /*!
@@ -1228,7 +1228,7 @@ namespace tue
         inline simd<T, N>
         abs(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::simd_s(s);
+            //return tue::detail_::simd_s(s);
         }
 
         /*!
@@ -1253,7 +1253,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         pow(const simd<T, N>& bases, const simd<T, N>& exponents) noexcept
         {
-            return tue::detail_::pow_ss(bases, exponents);
+            //return tue::detail_::pow_ss(bases, exponents);
         }
 
         /*!
@@ -1272,7 +1272,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         recip(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::recip_s(s);
+            //return tue::detail_::recip_s(s);
         }
 
         /*!
@@ -1291,7 +1291,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         sqrt(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::sqrt_s(s);
+            //return tue::detail_::sqrt_s(s);
         }
 
         /*!
@@ -1310,7 +1310,7 @@ namespace tue
         inline std::enable_if_t<std::is_floating_point<T>::value, simd<T, N>>
         rsqrt(const simd<T, N>& s) noexcept
         {
-            return tue::detail_::rsqrt_s(s);
+            //return tue::detail_::rsqrt_s(s);
         }
 
         /*!
@@ -1330,7 +1330,7 @@ namespace tue
         inline simd<T, N>
         min(const simd<T, N>& s1, const simd<T, N>& s2) noexcept
         {
-            return tue::detail_::min_ss(s1, s2);
+            //return tue::detail_::min_ss(s1, s2);
         }
 
         /*!
@@ -1350,7 +1350,7 @@ namespace tue
         inline simd<T, N>
         max(const simd<T, N>& s1, const simd<T, N>& s2) noexcept
         {
-            return tue::detail_::max_ss(s1, s2);
+            //return tue::detail_::max_ss(s1, s2);
         }
 
         /*!
@@ -1376,7 +1376,7 @@ namespace tue
             const simd<T, N>& conditions,
             const simd<U, N>& values) noexcept
         {
-            return tue::detail_::select_ss(conditions, values);
+            //return tue::detail_::select_ss(conditions, values);
         }
 
         /*!
@@ -1404,7 +1404,7 @@ namespace tue
             const simd<U, N>& values,
             const simd<U, N>& otherwise) noexcept
         {
-            return tue::detail_::select_sss(conditions, values, otherwise);
+            //return tue::detail_::select_sss(conditions, values, otherwise);
         }
 
         /*!
@@ -1424,7 +1424,7 @@ namespace tue
         inline simd<T, N>
         less(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
-            return tue::detail_::less_ss(lhs, rhs);
+            //return tue::detail_::less_ss(lhs, rhs);
         }
 
         /*!
@@ -1444,7 +1444,7 @@ namespace tue
         inline simd<T, N>
         less_equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
-            return tue::detail_::less_equal_ss(lhs, rhs);
+            //return tue::detail_::less_equal_ss(lhs, rhs);
         }
 
         /*!
@@ -1464,7 +1464,7 @@ namespace tue
         inline simd<T, N>
         greater(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
-            return tue::detail_::greater_ss(lhs, rhs);
+            //return tue::detail_::greater_ss(lhs, rhs);
         }
 
         /*!
@@ -1484,7 +1484,7 @@ namespace tue
         inline simd<T, N>
         greater_equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
-            return tue::detail_::greater_equal_ss(lhs, rhs);
+            //return tue::detail_::greater_equal_ss(lhs, rhs);
         }
 
         /*!
@@ -1504,7 +1504,7 @@ namespace tue
         inline simd<T, N>
         equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
-            return tue::detail_::equal_ss(lhs, rhs);
+            //return tue::detail_::equal_ss(lhs, rhs);
         }
 
         /*!
@@ -1524,7 +1524,7 @@ namespace tue
         inline simd<T, N>
         not_equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
-            return tue::detail_::not_equal_ss(lhs, rhs);
+            //return tue::detail_::not_equal_ss(lhs, rhs);
         }
     }
 }

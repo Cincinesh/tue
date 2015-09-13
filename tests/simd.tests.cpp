@@ -130,7 +130,7 @@ namespace
 
         static void TEST_CASE_data()
         {
-            const simd<T, N> cs(0);
+            const auto cs = simd<T, N>::zero();
             const T* cdata = cs.data();
             test_assert(cdata == static_cast<const void*>(&cs));
 
@@ -202,7 +202,7 @@ namespace
 
         static void run_all()
         {
-            common_simd_tests<Alias, T, N>;
+            common_simd_tests<Alias, T, N>::run_all();
             TEST_CASE_scalar_constructor();
             TEST_CASE_component_constructor();
         }
@@ -254,7 +254,7 @@ namespace
 
         static void run_all()
         {
-            common_simd_tests<Alias, T, N>;
+            common_simd_tests<Alias, T, N>::run_all();
             TEST_CASE_scalar_constructor();
             TEST_CASE_component_constructor();
         }
