@@ -56,12 +56,18 @@ namespace
 
     TEST_CASE(component_count)
     {
-        test_assert(vec2<short>::component_count == 2);
-        test_assert(fvec2::component_count == 2);
-        test_assert(dvec2::component_count == 2);
-        test_assert(ivec2::component_count == 2);
-        test_assert(uvec2::component_count == 2);
-        test_assert(bvec2::component_count == 2);
+        constexpr auto v2s = vec2<short>::component_count;
+        constexpr auto fv2 = fvec2::component_count;
+        constexpr auto dv2 = dvec2::component_count;
+        constexpr auto iv2 = ivec2::component_count;
+        constexpr auto uv2 = uvec2::component_count;
+        constexpr auto bv2 = bvec2::component_count;
+        test_assert(v2s == 2);
+        test_assert(fv2 == 2);
+        test_assert(dv2 == 2);
+        test_assert(iv2 == 2);
+        test_assert(uv2 == 2);
+        test_assert(bv2 == 2);
     }
 
     TEST_CASE(default_constructor)

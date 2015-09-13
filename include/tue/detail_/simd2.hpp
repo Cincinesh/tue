@@ -33,6 +33,8 @@ namespace tue
 
         static constexpr int component_count = 2;
 
+        static constexpr bool is_accelerated = false;
+
         simd() noexcept = default;
 
         template<

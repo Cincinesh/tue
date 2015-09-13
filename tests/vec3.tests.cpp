@@ -57,12 +57,18 @@ namespace
 
     TEST_CASE(component_count)
     {
-        test_assert(vec3<short>::component_count == 3);
-        test_assert(fvec3::component_count == 3);
-        test_assert(dvec3::component_count == 3);
-        test_assert(ivec3::component_count == 3);
-        test_assert(uvec3::component_count == 3);
-        test_assert(bvec3::component_count == 3);
+        constexpr auto v3s = vec3<short>::component_count;
+        constexpr auto fv3 = fvec3::component_count;
+        constexpr auto dv3 = dvec3::component_count;
+        constexpr auto iv3 = ivec3::component_count;
+        constexpr auto uv3 = uvec3::component_count;
+        constexpr auto bv3 = bvec3::component_count;
+        test_assert(v3s == 3);
+        test_assert(fv3 == 3);
+        test_assert(dv3 == 3);
+        test_assert(iv3 == 3);
+        test_assert(uv3 == 3);
+        test_assert(bv3 == 3);
     }
 
     TEST_CASE(default_constructor)

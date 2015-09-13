@@ -44,7 +44,14 @@ namespace
 
         static void TEST_CASE_component_count()
         {
-            test_assert((simd<T, N>::component_count == N));
+            constexpr auto component_count = simd<T, N>::component_count;
+            test_assert(component_count == N);
+        }
+
+        static void TEST_CASE_is_accelerated()
+        {
+            constexpr auto is_accelerated = simd<T, N>::is_accelerated;
+            test_assert((std::is_same<decltype(is_accelerated), bool>::value));
         }
 
         static void TEST_CASE_default_constructor()

@@ -170,50 +170,89 @@ namespace
 
     TEST_CASE(column_count)
     {
-        test_assert((mat<short, 3, 2>::column_count == 3));
-        test_assert((mat<short, 3, 3>::column_count == 3));
-        test_assert((mat<short, 3, 4>::column_count == 3));
-        test_assert((mat3x2<short>::column_count == 3));
-        test_assert((mat3x3<short>::column_count == 3));
-        test_assert((mat3x4<short>::column_count == 3));
-        test_assert((fmat3x2::column_count == 3));
-        test_assert((fmat3x3::column_count == 3));
-        test_assert((fmat3x4::column_count == 3));
-        test_assert((dmat3x2::column_count == 3));
-        test_assert((dmat3x3::column_count == 3));
-        test_assert((dmat3x4::column_count == 3));
+        constexpr auto ms32 = mat<short, 3, 2>::column_count;
+        constexpr auto ms33 = mat<short, 3, 3>::column_count;
+        constexpr auto ms34 = mat<short, 3, 4>::column_count;
+        constexpr auto m32s = mat3x2<short>::column_count;
+        constexpr auto m33s = mat3x3<short>::column_count;
+        constexpr auto m34s = mat3x4<short>::column_count;
+        constexpr auto fm32 = fmat3x2::column_count;
+        constexpr auto fm33 = fmat3x3::column_count;
+        constexpr auto fm34 = fmat3x4::column_count;
+        constexpr auto dm32 = dmat3x2::column_count;
+        constexpr auto dm33 = dmat3x3::column_count;
+        constexpr auto dm34 = dmat3x4::column_count;
+
+        test_assert(ms32 == 3);
+        test_assert(ms33 == 3);
+        test_assert(ms34 == 3);
+        test_assert(m32s == 3);
+        test_assert(m33s == 3);
+        test_assert(m34s == 3);
+        test_assert(fm32 == 3);
+        test_assert(fm33 == 3);
+        test_assert(fm34 == 3);
+        test_assert(dm32 == 3);
+        test_assert(dm33 == 3);
+        test_assert(dm34 == 3);
     }
 
     TEST_CASE(row_count)
     {
-        test_assert((mat<short, 3, 2>::row_count == 2));
-        test_assert((mat<short, 3, 3>::row_count == 3));
-        test_assert((mat<short, 3, 4>::row_count == 4));
-        test_assert((mat3x2<short>::row_count == 2));
-        test_assert((mat3x3<short>::row_count == 3));
-        test_assert((mat3x4<short>::row_count == 4));
-        test_assert((fmat3x2::row_count == 2));
-        test_assert((fmat3x3::row_count == 3));
-        test_assert((fmat3x4::row_count == 4));
-        test_assert((dmat3x2::row_count == 2));
-        test_assert((dmat3x3::row_count == 3));
-        test_assert((dmat3x4::row_count == 4));
+        constexpr auto ms32 = mat<short, 3, 2>::row_count;
+        constexpr auto ms33 = mat<short, 3, 3>::row_count;
+        constexpr auto ms34 = mat<short, 3, 4>::row_count;
+        constexpr auto m32s = mat3x2<short>::row_count;
+        constexpr auto m33s = mat3x3<short>::row_count;
+        constexpr auto m34s = mat3x4<short>::row_count;
+        constexpr auto fm32 = fmat3x2::row_count;
+        constexpr auto fm33 = fmat3x3::row_count;
+        constexpr auto fm34 = fmat3x4::row_count;
+        constexpr auto dm32 = dmat3x2::row_count;
+        constexpr auto dm33 = dmat3x3::row_count;
+        constexpr auto dm34 = dmat3x4::row_count;
+
+        test_assert(ms32 == 2);
+        test_assert(ms33 == 3);
+        test_assert(ms34 == 4);
+        test_assert(m32s == 2);
+        test_assert(m33s == 3);
+        test_assert(m34s == 4);
+        test_assert(fm32 == 2);
+        test_assert(fm33 == 3);
+        test_assert(fm34 == 4);
+        test_assert(dm32 == 2);
+        test_assert(dm33 == 3);
+        test_assert(dm34 == 4);
     }
 
     TEST_CASE(component_count)
     {
-        test_assert((mat<short, 3, 2>::component_count == 3 * 2));
-        test_assert((mat<short, 3, 3>::component_count == 3 * 3));
-        test_assert((mat<short, 3, 4>::component_count == 3 * 4));
-        test_assert((mat3x2<short>::component_count == 3 * 2));
-        test_assert((mat3x3<short>::component_count == 3 * 3));
-        test_assert((mat3x4<short>::component_count == 3 * 4));
-        test_assert((fmat3x2::component_count == 3 * 2));
-        test_assert((fmat3x3::component_count == 3 * 3));
-        test_assert((fmat3x4::component_count == 3 * 4));
-        test_assert((dmat3x2::component_count == 3 * 2));
-        test_assert((dmat3x3::component_count == 3 * 3));
-        test_assert((dmat3x4::component_count == 3 * 4));
+        constexpr auto ms32 = mat<short, 3, 2>::component_count;
+        constexpr auto ms33 = mat<short, 3, 3>::component_count;
+        constexpr auto ms34 = mat<short, 3, 4>::component_count;
+        constexpr auto m32s = mat3x2<short>::component_count;
+        constexpr auto m33s = mat3x3<short>::component_count;
+        constexpr auto m34s = mat3x4<short>::component_count;
+        constexpr auto fm32 = fmat3x2::component_count;
+        constexpr auto fm33 = fmat3x3::component_count;
+        constexpr auto fm34 = fmat3x4::component_count;
+        constexpr auto dm32 = dmat3x2::component_count;
+        constexpr auto dm33 = dmat3x3::component_count;
+        constexpr auto dm34 = dmat3x4::component_count;
+
+        test_assert(ms32 == 3 * 2);
+        test_assert(ms33 == 3 * 3);
+        test_assert(ms34 == 3 * 4);
+        test_assert(m32s == 3 * 2);
+        test_assert(m33s == 3 * 3);
+        test_assert(m34s == 3 * 4);
+        test_assert(fm32 == 3 * 2);
+        test_assert(fm33 == 3 * 3);
+        test_assert(fm34 == 3 * 4);
+        test_assert(dm32 == 3 * 2);
+        test_assert(dm33 == 3 * 3);
+        test_assert(dm34 == 3 * 4);
     }
 
     TEST_CASE(default_constructor)

@@ -156,50 +156,89 @@ namespace
 
     TEST_CASE(column_count)
     {
-        test_assert((mat<short, 2, 2>::column_count == 2));
-        test_assert((mat<short, 2, 3>::column_count == 2));
-        test_assert((mat<short, 2, 4>::column_count == 2));
-        test_assert((mat2x2<short>::column_count == 2));
-        test_assert((mat2x3<short>::column_count == 2));
-        test_assert((mat2x4<short>::column_count == 2));
-        test_assert((fmat2x2::column_count == 2));
-        test_assert((fmat2x3::column_count == 2));
-        test_assert((fmat2x4::column_count == 2));
-        test_assert((dmat2x2::column_count == 2));
-        test_assert((dmat2x3::column_count == 2));
-        test_assert((dmat2x4::column_count == 2));
+        constexpr auto ms22 = mat<short, 2, 2>::column_count;
+        constexpr auto ms23 = mat<short, 2, 3>::column_count;
+        constexpr auto ms24 = mat<short, 2, 4>::column_count;
+        constexpr auto m22s = mat2x2<short>::column_count;
+        constexpr auto m23s = mat2x3<short>::column_count;
+        constexpr auto m24s = mat2x4<short>::column_count;
+        constexpr auto fm22 = fmat2x2::column_count;
+        constexpr auto fm23 = fmat2x3::column_count;
+        constexpr auto fm24 = fmat2x4::column_count;
+        constexpr auto dm22 = dmat2x2::column_count;
+        constexpr auto dm23 = dmat2x3::column_count;
+        constexpr auto dm24 = dmat2x4::column_count;
+
+        test_assert(ms22 == 2);
+        test_assert(ms23 == 2);
+        test_assert(ms24 == 2);
+        test_assert(m22s == 2);
+        test_assert(m23s == 2);
+        test_assert(m24s == 2);
+        test_assert(fm22 == 2);
+        test_assert(fm23 == 2);
+        test_assert(fm24 == 2);
+        test_assert(dm22 == 2);
+        test_assert(dm23 == 2);
+        test_assert(dm24 == 2);
     }
 
     TEST_CASE(row_count)
     {
-        test_assert((mat<short, 2, 2>::row_count == 2));
-        test_assert((mat<short, 2, 3>::row_count == 3));
-        test_assert((mat<short, 2, 4>::row_count == 4));
-        test_assert((mat2x2<short>::row_count == 2));
-        test_assert((mat2x3<short>::row_count == 3));
-        test_assert((mat2x4<short>::row_count == 4));
-        test_assert((fmat2x2::row_count == 2));
-        test_assert((fmat2x3::row_count == 3));
-        test_assert((fmat2x4::row_count == 4));
-        test_assert((dmat2x2::row_count == 2));
-        test_assert((dmat2x3::row_count == 3));
-        test_assert((dmat2x4::row_count == 4));
+        constexpr auto ms22 = mat<short, 2, 2>::row_count;
+        constexpr auto ms23 = mat<short, 2, 3>::row_count;
+        constexpr auto ms24 = mat<short, 2, 4>::row_count;
+        constexpr auto m22s = mat2x2<short>::row_count;
+        constexpr auto m23s = mat2x3<short>::row_count;
+        constexpr auto m24s = mat2x4<short>::row_count;
+        constexpr auto fm22 = fmat2x2::row_count;
+        constexpr auto fm23 = fmat2x3::row_count;
+        constexpr auto fm24 = fmat2x4::row_count;
+        constexpr auto dm22 = dmat2x2::row_count;
+        constexpr auto dm23 = dmat2x3::row_count;
+        constexpr auto dm24 = dmat2x4::row_count;
+
+        test_assert(ms22 == 2);
+        test_assert(ms23 == 3);
+        test_assert(ms24 == 4);
+        test_assert(m22s == 2);
+        test_assert(m23s == 3);
+        test_assert(m24s == 4);
+        test_assert(fm22 == 2);
+        test_assert(fm23 == 3);
+        test_assert(fm24 == 4);
+        test_assert(dm22 == 2);
+        test_assert(dm23 == 3);
+        test_assert(dm24 == 4);
     }
 
     TEST_CASE(component_count)
     {
-        test_assert((mat<short, 2, 2>::component_count == 2 * 2));
-        test_assert((mat<short, 2, 3>::component_count == 2 * 3));
-        test_assert((mat<short, 2, 4>::component_count == 2 * 4));
-        test_assert((mat2x2<short>::component_count == 2 * 2));
-        test_assert((mat2x3<short>::component_count == 2 * 3));
-        test_assert((mat2x4<short>::component_count == 2 * 4));
-        test_assert((fmat2x2::component_count == 2 * 2));
-        test_assert((fmat2x3::component_count == 2 * 3));
-        test_assert((fmat2x4::component_count == 2 * 4));
-        test_assert((dmat2x2::component_count == 2 * 2));
-        test_assert((dmat2x3::component_count == 2 * 3));
-        test_assert((dmat2x4::component_count == 2 * 4));
+        constexpr auto ms22 = mat<short, 2, 2>::component_count;
+        constexpr auto ms23 = mat<short, 2, 3>::component_count;
+        constexpr auto ms24 = mat<short, 2, 4>::component_count;
+        constexpr auto m22s = mat2x2<short>::component_count;
+        constexpr auto m23s = mat2x3<short>::component_count;
+        constexpr auto m24s = mat2x4<short>::component_count;
+        constexpr auto fm22 = fmat2x2::component_count;
+        constexpr auto fm23 = fmat2x3::component_count;
+        constexpr auto fm24 = fmat2x4::component_count;
+        constexpr auto dm22 = dmat2x2::component_count;
+        constexpr auto dm23 = dmat2x3::component_count;
+        constexpr auto dm24 = dmat2x4::component_count;
+
+        test_assert(ms22 == 2 * 2);
+        test_assert(ms23 == 2 * 3);
+        test_assert(ms24 == 2 * 4);
+        test_assert(m22s == 2 * 2);
+        test_assert(m23s == 2 * 3);
+        test_assert(m24s == 2 * 4);
+        test_assert(fm22 == 2 * 2);
+        test_assert(fm23 == 2 * 3);
+        test_assert(fm24 == 2 * 4);
+        test_assert(dm22 == 2 * 2);
+        test_assert(dm23 == 2 * 3);
+        test_assert(dm24 == 2 * 4);
     }
 
     TEST_CASE(default_constructor)

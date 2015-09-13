@@ -56,12 +56,18 @@ namespace
 
     TEST_CASE(component_count)
     {
-        test_assert(vec4<short>::component_count == 4);
-        test_assert(fvec4::component_count == 4);
-        test_assert(dvec4::component_count == 4);
-        test_assert(ivec4::component_count == 4);
-        test_assert(uvec4::component_count == 4);
-        test_assert(bvec4::component_count == 4);
+        constexpr auto v4s = vec4<short>::component_count;
+        constexpr auto fv4 = fvec4::component_count;
+        constexpr auto dv4 = dvec4::component_count;
+        constexpr auto iv4 = ivec4::component_count;
+        constexpr auto uv4 = uvec4::component_count;
+        constexpr auto bv4 = bvec4::component_count;
+        test_assert(v4s == 4);
+        test_assert(fv4 == 4);
+        test_assert(dv4 == 4);
+        test_assert(iv4 == 4);
+        test_assert(uv4 == 4);
+        test_assert(bv4 == 4);
     }
 
     TEST_CASE(default_constructor)

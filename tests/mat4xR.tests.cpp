@@ -179,50 +179,89 @@ namespace
 
     TEST_CASE(column_count)
     {
-        test_assert((mat<short, 4, 2>::column_count == 4));
-        test_assert((mat<short, 4, 3>::column_count == 4));
-        test_assert((mat<short, 4, 4>::column_count == 4));
-        test_assert((mat4x2<short>::column_count == 4));
-        test_assert((mat4x3<short>::column_count == 4));
-        test_assert((mat4x4<short>::column_count == 4));
-        test_assert((fmat4x2::column_count == 4));
-        test_assert((fmat4x3::column_count == 4));
-        test_assert((fmat4x4::column_count == 4));
-        test_assert((dmat4x2::column_count == 4));
-        test_assert((dmat4x3::column_count == 4));
-        test_assert((dmat4x4::column_count == 4));
+        constexpr auto ms42 = mat<short, 4, 2>::column_count;
+        constexpr auto ms43 = mat<short, 4, 3>::column_count;
+        constexpr auto ms44 = mat<short, 4, 4>::column_count;
+        constexpr auto m42s = mat4x2<short>::column_count;
+        constexpr auto m43s = mat4x3<short>::column_count;
+        constexpr auto m44s = mat4x4<short>::column_count;
+        constexpr auto fm42 = fmat4x2::column_count;
+        constexpr auto fm43 = fmat4x3::column_count;
+        constexpr auto fm44 = fmat4x4::column_count;
+        constexpr auto dm42 = dmat4x2::column_count;
+        constexpr auto dm43 = dmat4x3::column_count;
+        constexpr auto dm44 = dmat4x4::column_count;
+
+        test_assert(ms42 == 4);
+        test_assert(ms43 == 4);
+        test_assert(ms44 == 4);
+        test_assert(m42s == 4);
+        test_assert(m43s == 4);
+        test_assert(m44s == 4);
+        test_assert(fm42 == 4);
+        test_assert(fm43 == 4);
+        test_assert(fm44 == 4);
+        test_assert(dm42 == 4);
+        test_assert(dm43 == 4);
+        test_assert(dm44 == 4);
     }
 
     TEST_CASE(row_count)
     {
-        test_assert((mat<short, 4, 2>::row_count == 2));
-        test_assert((mat<short, 4, 3>::row_count == 3));
-        test_assert((mat<short, 4, 4>::row_count == 4));
-        test_assert((mat4x2<short>::row_count == 2));
-        test_assert((mat4x3<short>::row_count == 3));
-        test_assert((mat4x4<short>::row_count == 4));
-        test_assert((fmat4x2::row_count == 2));
-        test_assert((fmat4x3::row_count == 3));
-        test_assert((fmat4x4::row_count == 4));
-        test_assert((dmat4x2::row_count == 2));
-        test_assert((dmat4x3::row_count == 3));
-        test_assert((dmat4x4::row_count == 4));
+        constexpr auto ms42 = mat<short, 4, 2>::row_count;
+        constexpr auto ms43 = mat<short, 4, 3>::row_count;
+        constexpr auto ms44 = mat<short, 4, 4>::row_count;
+        constexpr auto m42s = mat4x2<short>::row_count;
+        constexpr auto m43s = mat4x3<short>::row_count;
+        constexpr auto m44s = mat4x4<short>::row_count;
+        constexpr auto fm42 = fmat4x2::row_count;
+        constexpr auto fm43 = fmat4x3::row_count;
+        constexpr auto fm44 = fmat4x4::row_count;
+        constexpr auto dm42 = dmat4x2::row_count;
+        constexpr auto dm43 = dmat4x3::row_count;
+        constexpr auto dm44 = dmat4x4::row_count;
+
+        test_assert(ms42 == 2);
+        test_assert(ms43 == 3);
+        test_assert(ms44 == 4);
+        test_assert(m42s == 2);
+        test_assert(m43s == 3);
+        test_assert(m44s == 4);
+        test_assert(fm42 == 2);
+        test_assert(fm43 == 3);
+        test_assert(fm44 == 4);
+        test_assert(dm42 == 2);
+        test_assert(dm43 == 3);
+        test_assert(dm44 == 4);
     }
 
     TEST_CASE(component_count)
     {
-        test_assert((mat<short, 4, 2>::component_count == 4 * 2));
-        test_assert((mat<short, 4, 3>::component_count == 4 * 3));
-        test_assert((mat<short, 4, 4>::component_count == 4 * 4));
-        test_assert((mat4x2<short>::component_count == 4 * 2));
-        test_assert((mat4x3<short>::component_count == 4 * 3));
-        test_assert((mat4x4<short>::component_count == 4 * 4));
-        test_assert((fmat4x2::component_count == 4 * 2));
-        test_assert((fmat4x3::component_count == 4 * 3));
-        test_assert((fmat4x4::component_count == 4 * 4));
-        test_assert((dmat4x2::component_count == 4 * 2));
-        test_assert((dmat4x3::component_count == 4 * 3));
-        test_assert((dmat4x4::component_count == 4 * 4));
+        constexpr auto ms42 = mat<short, 4, 2>::component_count;
+        constexpr auto ms43 = mat<short, 4, 3>::component_count;
+        constexpr auto ms44 = mat<short, 4, 4>::component_count;
+        constexpr auto m42s = mat4x2<short>::component_count;
+        constexpr auto m43s = mat4x3<short>::component_count;
+        constexpr auto m44s = mat4x4<short>::component_count;
+        constexpr auto fm42 = fmat4x2::component_count;
+        constexpr auto fm43 = fmat4x3::component_count;
+        constexpr auto fm44 = fmat4x4::component_count;
+        constexpr auto dm42 = dmat4x2::component_count;
+        constexpr auto dm43 = dmat4x3::component_count;
+        constexpr auto dm44 = dmat4x4::component_count;
+
+        test_assert(ms42 == 4 * 2);
+        test_assert(ms43 == 4 * 3);
+        test_assert(ms44 == 4 * 4);
+        test_assert(m42s == 4 * 2);
+        test_assert(m43s == 4 * 3);
+        test_assert(m44s == 4 * 4);
+        test_assert(fm42 == 4 * 2);
+        test_assert(fm43 == 4 * 3);
+        test_assert(fm44 == 4 * 4);
+        test_assert(dm42 == 4 * 2);
+        test_assert(dm43 == 4 * 3);
+        test_assert(dm44 == 4 * 4);
     }
 
     TEST_CASE(default_constructor)

@@ -42,9 +42,12 @@ namespace
 
     TEST_CASE(component_count)
     {
-        test_assert(quat<short>::component_count == 4);
-        test_assert(fquat::component_count == 4);
-        test_assert(dquat::component_count == 4);
+        constexpr auto qs = quat<short>::component_count;
+        constexpr auto fq = fquat::component_count;
+        constexpr auto dq = dquat::component_count;
+        test_assert(qs == 4);
+        test_assert(fq == 4);
+        test_assert(dq == 4);
     }
 
     TEST_CASE(default_constructor)

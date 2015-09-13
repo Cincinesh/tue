@@ -408,6 +408,11 @@ namespace tue
         static constexpr int component_count = N;
 
         /*!
+         * \brief  Whether or not this type is accelerated by SIMD intrinsics.
+         */
+        static constexpr bool is_accelerated = false;
+
+        /*!
          * \brief  Default constructs each component.
          */
         simd() noexcept = default;
