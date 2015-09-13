@@ -49,8 +49,8 @@ namespace tue
         template<typename U>
         explicit simd(const simd<U, 2>& s) noexcept
         {
-            this->data_[0] = static_cast<U>(s.data()[0]);
-            this->data_[1] = static_cast<U>(s.data()[1]);
+            this->data_[0] = static_cast<T>(s.data()[0]);
+            this->data_[1] = static_cast<T>(s.data()[1]);
         }
 
         static simd<T, 2> zero() noexcept
@@ -64,16 +64,16 @@ namespace tue
         static simd<T, 2> load(const T* data) noexcept
         {
             simd<T, 2> s;
-            s.data[0] = data[0];
-            s.data[1] = data[1];
+            s.data_[0] = data[0];
+            s.data_[1] = data[1];
             return s;
         }
 
         static simd<T, 2> loadu(const T* data) noexcept
         {
             simd<T, 2> s;
-            s.data[0] = data[0];
-            s.data[1] = data[1];
+            s.data_[0] = data[0];
+            s.data_[1] = data[1];
             return s;
         }
 

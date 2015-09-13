@@ -133,7 +133,7 @@ namespace tue
                     && !std::is_same<T, bool>::value))
             && N == 4,
             simd<T, N/2>[2]>
-        underlying_;
+        impl_;
 
     public:
         /*!
