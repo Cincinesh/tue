@@ -257,6 +257,63 @@ namespace
         test_assert(ff64 == false64);
     }
 
+    TEST_CASE(bitwise_and_assignment_operator)
+    {
+        auto tt = true8;
+        test_assert(&(tt &= true8) == &tt);
+        test_assert(tt == true8);
+
+        auto tf = true8;
+        test_assert(&(tf &= false8) == &tf);
+        test_assert(tf == false8);
+
+        auto ft = false8;
+        test_assert(&(ft &= true8) == &ft);
+        test_assert(ft == false8);
+
+        auto ff = false8;
+        test_assert(&(ff &= false8) == &ff);
+        test_assert(ff == false8);
+    }
+
+    TEST_CASE(bitwise_or_assignment_operator)
+    {
+        auto tt = true8;
+        test_assert(&(tt |= true8) == &tt);
+        test_assert(tt == true8);
+
+        auto tf = true8;
+        test_assert(&(tf |= false8) == &tf);
+        test_assert(tf == true8);
+
+        auto ft = false8;
+        test_assert(&(ft |= true8) == &ft);
+        test_assert(ft == true8);
+
+        auto ff = false8;
+        test_assert(&(ff |= false8) == &ff);
+        test_assert(ff == false8);
+    }
+
+    TEST_CASE(bitwise_xor_assignment_operator)
+    {
+        auto tt = true8;
+        test_assert(&(tt ^= true8) == &tt);
+        test_assert(tt == false8);
+
+        auto tf = true8;
+        test_assert(&(tf ^= false8) == &tf);
+        test_assert(tf == true8);
+
+        auto ft = false8;
+        test_assert(&(ft ^= true8) == &ft);
+        test_assert(ft == true8);
+
+        auto ff = false8;
+        test_assert(&(ff ^= false8) == &ff);
+        test_assert(ff == false8);
+    }
+
     TEST_CASE(select)
     {
         constexpr auto x8 = math::select(

@@ -181,6 +181,58 @@ namespace tue
         return T(U(lhs) ^ U(rhs));
     }
 
+    /*!
+     * \brief      Bitwise ANDs `lhs` with `rhs`.
+     *
+     * \tparam T   The type of the parameters.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T>
+    inline std::enable_if_t<is_sized_bool<T>::value, T&>
+    operator&=(T& lhs, T rhs) noexcept
+    {
+        return lhs = lhs & rhs;
+    }
+
+    /*!
+     * \brief      Bitwise ORs `lhs` with `rhs`.
+     *
+     * \tparam T   The type of the parameters.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T>
+    inline std::enable_if_t<is_sized_bool<T>::value, T&>
+    operator|=(T& lhs, T rhs) noexcept
+    {
+        return lhs = lhs | rhs;
+    }
+
+    /*!
+     * \brief      Bitwise XORs `lhs` with `rhs`.
+     *
+     * \tparam T   The type of the parameters.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T>
+    inline std::enable_if_t<is_sized_bool<T>::value, T&>
+    operator^=(T& lhs, T rhs) noexcept
+    {
+        return lhs = lhs ^ rhs;
+    }
+
+    /**/
     namespace math
     {
         /*!
