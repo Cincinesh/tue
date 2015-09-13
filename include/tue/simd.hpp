@@ -18,7 +18,9 @@ namespace tue
     /*!
      * \brief     An `N`-component SIMD vector.
      * \details   `simd` has the same size requirements as `T[N]` and its
-     *            alignment equals its size.
+     *            alignment equals its size. It's accelerated by compiler and
+     *            architecture-specific SIMD intrinsics where possible, but
+     *            standards-compliant fallbacks are always available otherwise.
      *
      * \tparam T  The component type. Must be a sized boolean type or an
      *            arithmetic type other than `bool`.
@@ -197,8 +199,9 @@ namespace tue
          * \brief       Loads the given aligned component array into a new
          *              `simd`.
          * \details     The source array must have the same alignment as this
-         *              `simd` type. If the source array is unaligned or doesn't
-         *              contain at least `N` components, behavior is undefined.
+         *              `simd` type. If the source array null, unaligned, or
+         *              doesn't contain at least `N` components, behavior is
+         *              undefined.
          *
          * \param data  The source component array.
          * \return      The new `simd`.
@@ -208,8 +211,8 @@ namespace tue
         /*!
          * \brief       Loads the given unaligned component array into a new
          *              `simd`.
-         * \details     If the source array doesn't contain at least `N`
-         *              components, behavior is undefined.
+         * \details     If the source array is null or doesn't contain at least
+         *              `N` components, behavior is undefined.
          *
          * \param data  The source component array.
          * \return      The new `simd`.
@@ -220,9 +223,9 @@ namespace tue
          * \brief       Store's this `simd`'s underlying component array in
          *              the given aligned component array.
          * \details     The destination array must have the same alignment as
-         *              this `simd` type. If the destination array is unaligned
-         *              or doesn't contain room for all `N` components, behavior
-         *              is undefined.
+         *              this `simd` type. If the destination array is null,
+         *              unaligned, or doesn't contain room for all `N`
+         *              components, behavior is undefined.
          *
          * \param data  The destination component array.
          */
@@ -231,8 +234,8 @@ namespace tue
         /*!
          * \brief       Store's this `simd`'s underlying component array in
          *              the given unaligned component array.
-         * \details     If the destination array doesn't contain room for all
-         *              `N` components, behavior is undefined.
+         * \details     If the destination array is null or doesn't contain room
+         *              for all `N` components, behavior is undefined.
          *
          * \param data  The destination component array.
          */
@@ -256,7 +259,7 @@ namespace tue
     };
 }
 
-//#include "detail_/simd2.hpp"
+#include "detail_/simd2.hpp"
 //#include "detail_/simdN.hpp"
 
 namespace tue
