@@ -210,102 +210,11 @@ namespace tue
          * \return  A pointer to this `simd`'s underlying component array.
          */
         inline T* data() noexcept;
-
-        /*!
-         * \brief   Pre-increments each component of this `simd`.
-         * \return  A reference to this `simd`.
-         */
-        inline simd<T, N>& operator++() noexcept;
-
-        /*!
-         * \brief   Post-increments each component of this `simd`.
-         * \return  A copy of this `simd` before being incremented.
-         */
-        inline simd<T, N> operator++(int) noexcept;
-
-        /*!
-         * \brief   Pre-decrements each component of this `simd`.
-         * \return  A reference to this `simd`.
-         */
-        inline simd<T, N>& operator--() noexcept;
-
-        /*!
-         * \brief   Post-decrements each component of this `simd`.
-         * \return  A copy of this `simd` before being decremented.
-         */
-        inline simd<T, N> operator--(int) noexcept;
-
-        /*!
-         * \brief     Adds each component of `s` to the corresponding component
-         *            of this `simd`.
-         * \param s   The values to add to each component of this `simd`.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator+=(const simd<T, N>& s) noexcept;
-
-        /*!
-         * \brief     Subtracts each component of `s` from the corresponding
-         *            component of this `simd`.
-         * \param s   The values to subtract from each component of this `simd`.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator-=(const simd<T, N>& s) noexcept;
-
-        /*!
-         * \brief     Multiplies each component of this `simd` by the
-         *            corresponding component of `s`.
-         * \param s   The values to multiply each component of this `simd` by.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator*=(const simd<T, N>& s) noexcept;
-
-        /*!
-         * \brief     Divides each component of this `simd` by the corresponding
-         *            component of `s`.
-         * \param s   The values to divide each component of this `simd` by.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator/=(const simd<T, N>& s) noexcept;
-
-        /*!
-         * \brief     Modulos each component of this `simd` by the corresponding
-         *            component of `s`.
-         * \param s   The values to modulo each component of this `simd` by.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator%=(const simd<T, N>& s) noexcept;
-
-        /*!
-         * \brief     Bitwise ANDs each component of this `simd` with the
-         *            corresponding component from `s`.
-         * \param s   The values to bitwise AND each component of this `simd`
-         *            with.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator&=(const simd<T, N>& s) noexcept;
-
-        /*!
-         * \brief     Bitwise ORs each component of this `simd` with the
-         *            corresponding component from `s`.
-         * \param s   The values to bitwise OR each component of this `simd`
-         *            with.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator|=(const simd<T, N>& s) noexcept;
-
-        /*!
-         * \brief     Bitwise XORs each component of this `simd` with the
-         *            corresponding component from `s`.
-         * \param s   The values to bitwise XOR each component of this `simd`
-         *            with.
-         * \return    A reference to this `simd`.
-         */
-        inline simd<T, N>& operator^=(const simd<T, N>& s) noexcept;
     };
 }
 
-#include "detail_/simd2.hpp"
-#include "detail_/simdN.hpp"
+//#include "detail_/simd2.hpp"
+//#include "detail_/simdN.hpp"
 
 namespace tue
 {
@@ -326,6 +235,38 @@ namespace tue
     }
 
     /*!
+     * \brief     Pre-increments each component of `s`.
+     *
+     * \tparam T  The component type of `s`.
+     * \tparam N  The component count of `s`.
+     *
+     * \param s   An `simd`.
+     *
+     * \return    A reference to `s`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator++(simd<T, N>& s) noexcept
+    {
+        return tue::detail_::pre_increment_operator_s(s);
+    }
+
+    /*!
+     * \brief     Post-increments each component of `s`.
+     *
+     * \tparam T  The component type of `s`.
+     * \tparam N  The component count of `s`.
+     *
+     * \param s   An `simd`.
+     *
+     * \return    A copy of `s` before being incremented.
+     */
+    template<typename T, int N>
+    inline simd<T, N> operator++(simd<T, N>& s, int) noexcept
+    {
+        return tue::detail_::post_increment_operator_s(s);
+    }
+
+    /*!
      * \brief     Computes the unary minus of each component of `s`.
      *
      * \tparam T  The component type of `s`.
@@ -339,6 +280,38 @@ namespace tue
     inline simd<T, N> operator-(const simd<T, N>& s) noexcept
     {
         return tue::detail_::unary_minus_operator_s(s);
+    }
+
+    /*!
+     * \brief     Pre-decrements each component of `s`.
+     *
+     * \tparam T  The component type of `s`.
+     * \tparam N  The component count of `s`.
+     *
+     * \param s   An `simd`.
+     *
+     * \return    A reference to `s`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator--(simd<T, N>& s) noexcept
+    {
+        return tue::detail_::pre_decrement_operator_s(s);
+    }
+
+    /*!
+     * \brief     Post-decrements each component of `s`.
+     *
+     * \tparam T  The component type of `s`.
+     * \tparam N  The component count of `s`.
+     *
+     * \param s   An `simd`.
+     *
+     * \return    A copy of `s` before being decremented.
+     */
+    template<typename T, int N>
+    inline simd<T, N> operator--(simd<T, N>& s, int) noexcept
+    {
+        return tue::detail_::post_decrement_operator_s(s);
     }
 
     /*!
@@ -558,6 +531,196 @@ namespace tue
     }
 
     /*!
+     * \brief      Adds each component of `rhs` to each corresponding component
+     *             of `lhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator+=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs + rhs;
+    }
+
+    /*!
+     * \brief      Subtracts each component of `rhs` from each corresponding
+     *             component of `lhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator-=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs - rhs;
+    }
+
+    /*!
+     * \brief      Multiplies each component of `lhs` by each corresponding
+     *             component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator*=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs * rhs;
+    }
+
+    /*!
+     * \brief      Divides each component of `lhs` by each corresponding
+     *             component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator/=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs / rhs;
+    }
+
+    /*!
+     * \brief      Modulos each component of `lhs` by each corresponding
+     *             component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator%=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs % rhs;
+    }
+
+    /*!
+     * \brief      Bitwise ANDs each component of `lhs` with each corresponding
+     *             component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator&=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs & rhs;
+    }
+
+    /*!
+     * \brief      Bitwise ORs each component of `lhs` with each corresponding
+     *             component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator|=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs | rhs;
+    }
+
+    /*!
+     * \brief      Bitwise XORs each component of `lhs` with each corresponding
+     *             component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator^=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs ^ rhs;
+    }
+
+    /*!
+     * \brief      Bitwise shifts left each component of `lhs` by each
+     *             corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator<<=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs << rhs;
+    }
+
+    /*!
+     * \brief      Bitwise shifts right each component of `lhs` by each
+     *             corresponding component of `rhs`.
+     *
+     * \tparam T   The component type of both `lhs` and `rhs`.
+     * \tparam N   The component count of both `lhs` and `rhs`.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     A reference to `lhs`.
+     */
+    template<typename T, int N>
+    inline simd<T, N>& operator>>=(
+        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+    {
+        return lhs = lhs >> rhs;
+    }
+
+    /*!
      * \brief      Determines whether or not two `simd`'s compare equal.
      *
      * \tparam T   The component type of both `lhs` and `rhs`.
@@ -571,7 +734,7 @@ namespace tue
      */
     template<typename T, int N>
     inline bool operator==(
-        const simd<T, N>& lhs, const simd<U, N>& rhs) noexcept
+        const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
         return tue::detail_::equality_operator_ss(lhs, rhs);
     }
@@ -590,7 +753,7 @@ namespace tue
      */
     template<typename T, int N>
     inline bool operator!=(
-        const simd<T, N>& lhs, const simd<U, N>& rhs) noexcept
+        const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
     {
         return tue::detail_::inequality_operator_ss(lhs, rhs);
     }

@@ -45,6 +45,7 @@ set(TUE_TEST_SOURCES
     tests/matmult.tests.cpp
     tests/math.tests.cpp
     tests/quat.tests.cpp
+    tests/simd2.tests.cpp
     tests/sized_bool.tests.cpp
     tests/transform.tests.cpp
     tests/unused.tests.cpp
