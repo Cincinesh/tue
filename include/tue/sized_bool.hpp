@@ -280,7 +280,8 @@ namespace tue
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     `true` if `lhs` is not equal to `rhs` and `false` otherwise.
+         * \return     `true` if `lhs` is not equal to `rhs` and `false`
+         *             otherwise.
          */
         template<typename T>
         inline constexpr std::enable_if_t<is_sized_bool<T>::value, bool>
