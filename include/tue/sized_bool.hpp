@@ -198,10 +198,44 @@ namespace tue
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
             is_sized_bool<T>::value && sizeof(T) == sizeof(U), U>
-        select(T condition, U value, U otherwise = U(0)) noexcept
+        select(T condition, const U& value, const U& otherwise = U(0)) noexcept
         {
             using Underlying = std::underlying_type_t<T>;
             return Underlying(condition) ? value : otherwise;
+        }
+
+        /*!
+         * \brief      Computes whether or not `lhs` is equal to `rhs`.
+         *
+         * \tparam T   The type of the parameters.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `true` if `lhs` is equal to `rhs` and `false` otherwise.
+         */
+        template<typename T>
+        inline constexpr std::enable_if_t<is_sized_bool<T>::value, bool>
+        equal(T lhs, T rhs) noexcept
+        {
+            return lhs == rhs;
+        }
+
+        /*!
+         * \brief      Computes whether or not `lhs` is not equal to `rhs`.
+         *
+         * \tparam T   The type of the parameters.
+         *
+         * \param lhs  The left-hand side operand.
+         * \param rhs  The right-hand side operand.
+         *
+         * \return     `true` if `lhs` is not equal to `rhs` and `false` otherwise.
+         */
+        template<typename T>
+        inline constexpr std::enable_if_t<is_sized_bool<T>::value, bool>
+        not_equal(T lhs, T rhs) noexcept
+        {
+            return lhs != rhs;
         }
     }
 }

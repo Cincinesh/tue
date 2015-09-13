@@ -119,60 +119,60 @@ namespace
 
     TEST_CASE(bitwise_not_operator)
     {
-        CONST_OR_CONSTEXPR auto nt8 = ~true8;
-        CONST_OR_CONSTEXPR auto nf8 = ~false8;
+        constexpr auto nt8 = ~true8;
+        constexpr auto nf8 = ~false8;
         test_assert(nt8 == false8);
         test_assert(nf8 == true8);
 
-        CONST_OR_CONSTEXPR auto nt16 = ~true16;
-        CONST_OR_CONSTEXPR auto nf16 = ~false16;
+        constexpr auto nt16 = ~true16;
+        constexpr auto nf16 = ~false16;
         test_assert(nt16 == false16);
         test_assert(nf16 == true16);
 
-        CONST_OR_CONSTEXPR auto nt32 = ~true32;
-        CONST_OR_CONSTEXPR auto nf32 = ~false32;
+        constexpr auto nt32 = ~true32;
+        constexpr auto nf32 = ~false32;
         test_assert(nt32 == false32);
         test_assert(nf32 == true32);
 
-        CONST_OR_CONSTEXPR auto nt64 = ~true64;
-        CONST_OR_CONSTEXPR auto nf64 = ~false64;
+        constexpr auto nt64 = ~true64;
+        constexpr auto nf64 = ~false64;
         test_assert(nt64 == false64);
         test_assert(nf64 == true64);
     }
 
     TEST_CASE(bitwise_and_operator)
     {
-        CONST_OR_CONSTEXPR auto tt8 =  true8 &  true8;
-        CONST_OR_CONSTEXPR auto tf8 =  true8 & false8;
-        CONST_OR_CONSTEXPR auto ft8 = false8 &  true8;
-        CONST_OR_CONSTEXPR auto ff8 = false8 & false8;
+        constexpr auto tt8 =  true8 &  true8;
+        constexpr auto tf8 =  true8 & false8;
+        constexpr auto ft8 = false8 &  true8;
+        constexpr auto ff8 = false8 & false8;
         test_assert(tt8 == true8);
         test_assert(tf8 == false8);
         test_assert(ft8 == false8);
         test_assert(ff8 == false8);
 
-        CONST_OR_CONSTEXPR auto tt16 =  true16 &  true16;
-        CONST_OR_CONSTEXPR auto tf16 =  true16 & false16;
-        CONST_OR_CONSTEXPR auto ft16 = false16 &  true16;
-        CONST_OR_CONSTEXPR auto ff16 = false16 & false16;
+        constexpr auto tt16 =  true16 &  true16;
+        constexpr auto tf16 =  true16 & false16;
+        constexpr auto ft16 = false16 &  true16;
+        constexpr auto ff16 = false16 & false16;
         test_assert(tt16 == true16);
         test_assert(tf16 == false16);
         test_assert(ft16 == false16);
         test_assert(ff16 == false16);
 
-        CONST_OR_CONSTEXPR auto tt32 =  true32 &  true32;
-        CONST_OR_CONSTEXPR auto tf32 =  true32 & false32;
-        CONST_OR_CONSTEXPR auto ft32 = false32 &  true32;
-        CONST_OR_CONSTEXPR auto ff32 = false32 & false32;
+        constexpr auto tt32 =  true32 &  true32;
+        constexpr auto tf32 =  true32 & false32;
+        constexpr auto ft32 = false32 &  true32;
+        constexpr auto ff32 = false32 & false32;
         test_assert(tt32 == true32);
         test_assert(tf32 == false32);
         test_assert(ft32 == false32);
         test_assert(ff32 == false32);
 
-        CONST_OR_CONSTEXPR auto tt64 =  true64 &  true64;
-        CONST_OR_CONSTEXPR auto tf64 =  true64 & false64;
-        CONST_OR_CONSTEXPR auto ft64 = false64 &  true64;
-        CONST_OR_CONSTEXPR auto ff64 = false64 & false64;
+        constexpr auto tt64 =  true64 &  true64;
+        constexpr auto tf64 =  true64 & false64;
+        constexpr auto ft64 = false64 &  true64;
+        constexpr auto ff64 = false64 & false64;
         test_assert(tt64 == true64);
         test_assert(tf64 == false64);
         test_assert(ft64 == false64);
@@ -181,37 +181,37 @@ namespace
 
     TEST_CASE(bitwise_or_operator)
     {
-        CONST_OR_CONSTEXPR auto tt8 =  true8 |  true8;
-        CONST_OR_CONSTEXPR auto tf8 =  true8 | false8;
-        CONST_OR_CONSTEXPR auto ft8 = false8 |  true8;
-        CONST_OR_CONSTEXPR auto ff8 = false8 | false8;
+        constexpr auto tt8 =  true8 |  true8;
+        constexpr auto tf8 =  true8 | false8;
+        constexpr auto ft8 = false8 |  true8;
+        constexpr auto ff8 = false8 | false8;
         test_assert(tt8 == true8);
         test_assert(tf8 == true8);
         test_assert(ft8 == true8);
         test_assert(ff8 == false8);
 
-        CONST_OR_CONSTEXPR auto tt16 =  true16 |  true16;
-        CONST_OR_CONSTEXPR auto tf16 =  true16 | false16;
-        CONST_OR_CONSTEXPR auto ft16 = false16 |  true16;
-        CONST_OR_CONSTEXPR auto ff16 = false16 | false16;
+        constexpr auto tt16 =  true16 |  true16;
+        constexpr auto tf16 =  true16 | false16;
+        constexpr auto ft16 = false16 |  true16;
+        constexpr auto ff16 = false16 | false16;
         test_assert(tt16 == true16);
         test_assert(tf16 == true16);
         test_assert(ft16 == true16);
         test_assert(ff16 == false16);
 
-        CONST_OR_CONSTEXPR auto tt32 =  true32 |  true32;
-        CONST_OR_CONSTEXPR auto tf32 =  true32 | false32;
-        CONST_OR_CONSTEXPR auto ft32 = false32 |  true32;
-        CONST_OR_CONSTEXPR auto ff32 = false32 | false32;
+        constexpr auto tt32 =  true32 |  true32;
+        constexpr auto tf32 =  true32 | false32;
+        constexpr auto ft32 = false32 |  true32;
+        constexpr auto ff32 = false32 | false32;
         test_assert(tt32 == true32);
         test_assert(tf32 == true32);
         test_assert(ft32 == true32);
         test_assert(ff32 == false32);
 
-        CONST_OR_CONSTEXPR auto tt64 =  true64 |  true64;
-        CONST_OR_CONSTEXPR auto tf64 =  true64 | false64;
-        CONST_OR_CONSTEXPR auto ft64 = false64 |  true64;
-        CONST_OR_CONSTEXPR auto ff64 = false64 | false64;
+        constexpr auto tt64 =  true64 |  true64;
+        constexpr auto tf64 =  true64 | false64;
+        constexpr auto ft64 = false64 |  true64;
+        constexpr auto ff64 = false64 | false64;
         test_assert(tt64 == true64);
         test_assert(tf64 == true64);
         test_assert(ft64 == true64);
@@ -220,37 +220,37 @@ namespace
 
     TEST_CASE(bitwise_xor_operator)
     {
-        CONST_OR_CONSTEXPR auto tt8 =  true8 ^  true8;
-        CONST_OR_CONSTEXPR auto tf8 =  true8 ^ false8;
-        CONST_OR_CONSTEXPR auto ft8 = false8 ^  true8;
-        CONST_OR_CONSTEXPR auto ff8 = false8 ^ false8;
+        constexpr auto tt8 =  true8 ^  true8;
+        constexpr auto tf8 =  true8 ^ false8;
+        constexpr auto ft8 = false8 ^  true8;
+        constexpr auto ff8 = false8 ^ false8;
         test_assert(tt8 == false8);
         test_assert(tf8 == true8);
         test_assert(ft8 == true8);
         test_assert(ff8 == false8);
 
-        CONST_OR_CONSTEXPR auto tt16 =  true16 ^  true16;
-        CONST_OR_CONSTEXPR auto tf16 =  true16 ^ false16;
-        CONST_OR_CONSTEXPR auto ft16 = false16 ^  true16;
-        CONST_OR_CONSTEXPR auto ff16 = false16 ^ false16;
+        constexpr auto tt16 =  true16 ^  true16;
+        constexpr auto tf16 =  true16 ^ false16;
+        constexpr auto ft16 = false16 ^  true16;
+        constexpr auto ff16 = false16 ^ false16;
         test_assert(tt16 == false16);
         test_assert(tf16 == true16);
         test_assert(ft16 == true16);
         test_assert(ff16 == false16);
 
-        CONST_OR_CONSTEXPR auto tt32 =  true32 ^  true32;
-        CONST_OR_CONSTEXPR auto tf32 =  true32 ^ false32;
-        CONST_OR_CONSTEXPR auto ft32 = false32 ^  true32;
-        CONST_OR_CONSTEXPR auto ff32 = false32 ^ false32;
+        constexpr auto tt32 =  true32 ^  true32;
+        constexpr auto tf32 =  true32 ^ false32;
+        constexpr auto ft32 = false32 ^  true32;
+        constexpr auto ff32 = false32 ^ false32;
         test_assert(tt32 == false32);
         test_assert(tf32 == true32);
         test_assert(ft32 == true32);
         test_assert(ff32 == false32);
 
-        CONST_OR_CONSTEXPR auto tt64 =  true64 ^  true64;
-        CONST_OR_CONSTEXPR auto tf64 =  true64 ^ false64;
-        CONST_OR_CONSTEXPR auto ft64 = false64 ^  true64;
-        CONST_OR_CONSTEXPR auto ff64 = false64 ^ false64;
+        constexpr auto tt64 =  true64 ^  true64;
+        constexpr auto tf64 =  true64 ^ false64;
+        constexpr auto ft64 = false64 ^  true64;
+        constexpr auto ff64 = false64 ^ false64;
         test_assert(tt64 == false64);
         test_assert(tf64 == true64);
         test_assert(ft64 == true64);
@@ -310,5 +310,83 @@ namespace
         test_assert(y64 == std::int64_t(0));
         test_assert(z64 == std::int64_t(1));
         test_assert(w64 == std::int64_t(2));
+    }
+
+    TEST_CASE(equal)
+    {
+        constexpr auto tt8 = math::equal( true8,  true8);
+        constexpr auto tf8 = math::equal( true8, false8);
+        constexpr auto ft8 = math::equal(false8,  true8);
+        constexpr auto ff8 = math::equal(false8, false8);
+        test_assert(tt8 == true);
+        test_assert(tf8 == false);
+        test_assert(ft8 == false);
+        test_assert(ff8 == true);
+
+        constexpr auto tt16 = math::equal( true16,  true16);
+        constexpr auto tf16 = math::equal( true16, false16);
+        constexpr auto ft16 = math::equal(false16,  true16);
+        constexpr auto ff16 = math::equal(false16, false16);
+        test_assert(tt16 == true);
+        test_assert(tf16 == false);
+        test_assert(ft16 == false);
+        test_assert(ff16 == true);
+
+        constexpr auto tt32 = math::equal( true32,  true32);
+        constexpr auto tf32 = math::equal( true32, false32);
+        constexpr auto ft32 = math::equal(false32,  true32);
+        constexpr auto ff32 = math::equal(false32, false32);
+        test_assert(tt32 == true);
+        test_assert(tf32 == false);
+        test_assert(ft32 == false);
+        test_assert(ff32 == true);
+
+        constexpr auto tt64 = math::equal( true64,  true64);
+        constexpr auto tf64 = math::equal( true64, false64);
+        constexpr auto ft64 = math::equal(false64,  true64);
+        constexpr auto ff64 = math::equal(false64, false64);
+        test_assert(tt64 == true);
+        test_assert(tf64 == false);
+        test_assert(ft64 == false);
+        test_assert(ff64 == true);
+    }
+
+    TEST_CASE(not_equal)
+    {
+        constexpr auto tt8 = math::not_equal( true8,  true8);
+        constexpr auto tf8 = math::not_equal( true8, false8);
+        constexpr auto ft8 = math::not_equal(false8,  true8);
+        constexpr auto ff8 = math::not_equal(false8, false8);
+        test_assert(tt8 == false);
+        test_assert(tf8 == true);
+        test_assert(ft8 == true);
+        test_assert(ff8 == false);
+
+        constexpr auto tt16 = math::not_equal( true16,  true16);
+        constexpr auto tf16 = math::not_equal( true16, false16);
+        constexpr auto ft16 = math::not_equal(false16,  true16);
+        constexpr auto ff16 = math::not_equal(false16, false16);
+        test_assert(tt16 == false);
+        test_assert(tf16 == true);
+        test_assert(ft16 == true);
+        test_assert(ff16 == false);
+
+        constexpr auto tt32 = math::not_equal( true32,  true32);
+        constexpr auto tf32 = math::not_equal( true32, false32);
+        constexpr auto ft32 = math::not_equal(false32,  true32);
+        constexpr auto ff32 = math::not_equal(false32, false32);
+        test_assert(tt32 == false);
+        test_assert(tf32 == true);
+        test_assert(ft32 == true);
+        test_assert(ff32 == false);
+
+        constexpr auto tt64 = math::not_equal( true64,  true64);
+        constexpr auto tf64 = math::not_equal( true64, false64);
+        constexpr auto ft64 = math::not_equal(false64,  true64);
+        constexpr auto ff64 = math::not_equal(false64, false64);
+        test_assert(tt64 == false);
+        test_assert(tf64 == true);
+        test_assert(ft64 == true);
+        test_assert(ff64 == false);
     }
 }
