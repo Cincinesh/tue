@@ -74,18 +74,26 @@ namespace
 
     TEST_CASE(sized_bool_true_value)
     {
-        test_assert(sized_bool<1>::true_value == true8);
-        test_assert(sized_bool<2>::true_value == true16);
-        test_assert(sized_bool<4>::true_value == true32);
-        test_assert(sized_bool<8>::true_value == true64);
+        CONST_OR_CONSTEXPR auto b1 = sized_bool<1>::true_value;
+        CONST_OR_CONSTEXPR auto b2 = sized_bool<2>::true_value;
+        CONST_OR_CONSTEXPR auto b4 = sized_bool<4>::true_value;
+        CONST_OR_CONSTEXPR auto b8 = sized_bool<8>::true_value;
+        test_assert(b1 == true8);
+        test_assert(b2 == true16);
+        test_assert(b4 == true32);
+        test_assert(b8 == true64);
     }
 
     TEST_CASE(sized_bool_false_value)
     {
-        test_assert(sized_bool<1>::false_value == false8);
-        test_assert(sized_bool<2>::false_value == false16);
-        test_assert(sized_bool<4>::false_value == false32);
-        test_assert(sized_bool<8>::false_value == false64);
+        CONST_OR_CONSTEXPR auto b1 = sized_bool<1>::false_value;
+        CONST_OR_CONSTEXPR auto b2 = sized_bool<2>::false_value;
+        CONST_OR_CONSTEXPR auto b4 = sized_bool<4>::false_value;
+        CONST_OR_CONSTEXPR auto b8 = sized_bool<8>::false_value;
+        test_assert(b1 == false8);
+        test_assert(b2 == false16);
+        test_assert(b4 == false32);
+        test_assert(b8 == false64);
     }
 
     TEST_CASE(sized_bool_t)
