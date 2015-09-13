@@ -140,3 +140,105 @@ namespace tue
 
 #include "detail_/sized_boolX.hpp"
 #include "detail_/is_sized_boolX.hpp"
+
+namespace tue
+{
+    /*!
+     * \brief      Computes the bitwise AND of `lhs` and `rhs`.
+     *
+     * \tparam T   The type of the parameters.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise AND of `lhs` and `rhs`.
+     */
+    template<typename T>
+    inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
+    operator&(T lhs, T rhs) noexcept
+    {
+        return tue::detail_::bitwise_and_operator_bb(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise OR of `lhs` and `rhs`.
+     *
+     * \tparam T   The type of the parameters.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise OR of `lhs` and `rhs`.
+     */
+    template<typename T>
+    inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
+    operator|(T lhs, T rhs) noexcept
+    {
+        return tue::detail_::bitwise_or_operator_bb(lhs, rhs);
+    }
+
+    /*!
+     * \brief      Computes the bitwise XOR of `lhs` and `rhs`.
+     *
+     * \tparam T   The type of the parameters.
+     *
+     * \param lhs  The left-hand side operand.
+     * \param rhs  The right-hand side operand.
+     *
+     * \return     The bitwise XOR of `lhs` and `rhs`.
+     */
+    template<typename T>
+    inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
+    operator^(T lhs, T rhs) noexcept
+    {
+        return tue::detail_::bitwise_xor_operator_bb(lhs, rhs);
+    }
+
+    namespace math
+    {
+        /*!
+         * \brief            Selects a return value based on `condition`.
+         *
+         * \tparam T         The condition type.
+         * \tparam U         The return type.
+         *
+         * \param condition  The condition.
+         * \param value      The return value when condition is `true`.
+         *
+         * \return           `value` or `0` depending on `condition`.
+         */
+        template<typename T, typename U>
+        inline constexpr std::enable_if_t<
+            is_sized_bool<T>::value
+                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+                && sizeof(T) == sizeof(U),
+            U>
+        select(T condition, U value) noexcept
+        {
+            return tue::detail_::select_bx(condition, value);
+        }
+
+        /*!
+         * \brief            Selects a return value based on `condition`.
+         *
+         * \tparam T         The condition type.
+         * \tparam U         The return type.
+         *
+         * \param condition  The condition.
+         * \param value      The return value when condition is `true`.
+         * \param otherwise  The return value when condition is `false`.
+         *
+         * \return           `value` or `otherwise` depending on `condition`.
+         */
+        template<typename T, typename U>
+        inline constexpr std::enable_if_t<
+            is_sized_bool<T>::value
+                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+                && sizeof(T) == sizeof(U),
+            U>
+        select(T condition, U value, U otherwise) noexcept
+        {
+            return tue::detail_::select_bxx(condition, value, otherwise);
+        }
+    }
+}
