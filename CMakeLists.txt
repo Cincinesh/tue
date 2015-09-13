@@ -20,12 +20,12 @@ set(MON_SOURCES
 
 # tue
 set(TUE_SOURCES
-    include/tue/detail_/is_sized_boolX.hpp
+    include/tue/detail_/is_sized_bool.hpp
     include/tue/detail_/mat2xR.hpp
     include/tue/detail_/mat3xR.hpp
     include/tue/detail_/mat4xR.hpp
     include/tue/detail_/matmult.hpp
-    include/tue/detail_/sized_boolX.hpp
+    include/tue/detail_/sized_bool_traits.hpp
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp

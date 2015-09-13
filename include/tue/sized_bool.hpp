@@ -79,22 +79,24 @@ namespace tue
     };
 
     /*!
-     * \brief        Provides a type alias and values for the sized boolean type
-     *               (`bool8`, `bool16`, `bool32`, or `bool64`) with the given
-     *               size.
+     * \brief        Provides type aliases and constants for the sized boolean
+     *               type (`bool8`, `bool16`, `bool32`, or `bool64`) with the
+     *               given size.
      *
      * \tparam Size  The desired sized boolean type size (in bytes).
      */
     template<std::size_t Size>
-    struct sized_bool
+    struct sized_bool_traits
     {
     private:
-        std::enable_if_t<Size == 1 || Size == 2 || Size == 4 || Size == 8>
-        impl_;
-
         using boolX = bool;
+        using uintX_t = unsigned int;
+
         static constexpr bool trueX = true;
         static constexpr bool falseX = false;
+
+        std::enable_if_t<Size == 1 || Size == 2 || Size == 4 || Size == 8>
+        impl_;
 
     public:
         /*!
@@ -103,6 +105,16 @@ namespace tue
          *           type alias.
          */
         using type = boolX;
+
+        /*!
+         * \brief  The exact-width unsigned integral type with the given size.
+         */
+        using uint_t = uintX_t;
+
+        /*!
+         * \brief  The given size.
+         */
+        static constexpr std::size_t size = Size;
 
         /*!
          * \brief  The `true` value for the sized boolean type with the given
@@ -124,7 +136,7 @@ namespace tue
      * \tparam Size  The desired sized boolean type size (in bytes).
      */
     template<std::size_t Size>
-    using sized_bool_t = typename sized_bool<Size>::type;
+    using sized_bool_t = typename sized_bool_traits<Size>::type;
 
     /*!
      * \brief     Checks if a type is a sized boolean type (`bool8`, `bool16`,
@@ -138,8 +150,8 @@ namespace tue
     struct is_sized_bool;
 }
 
-#include "detail_/sized_boolX.hpp"
-#include "detail_/is_sized_boolX.hpp"
+#include "detail_/sized_bool_traits.hpp"
+#include "detail_/is_sized_bool.hpp"
 
 namespace tue
 {
