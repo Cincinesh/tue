@@ -127,7 +127,8 @@ namespace tue
     inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
     operator&(T lhs, T rhs) noexcept
     {
-        return tue::detail_::bitwise_and_operator_bb(lhs, rhs);
+        using U = std::underlying_type_t<T>;
+        return T(U(lhs) & U(rhs));
     }
 
     /*!
@@ -144,7 +145,8 @@ namespace tue
     inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
     operator|(T lhs, T rhs) noexcept
     {
-        return tue::detail_::bitwise_or_operator_bb(lhs, rhs);
+        using U = std::underlying_type_t<T>;
+        return T(U(lhs) | U(rhs));
     }
 
     /*!
@@ -161,33 +163,12 @@ namespace tue
     inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
     operator^(T lhs, T rhs) noexcept
     {
-        return tue::detail_::bitwise_xor_operator_bb(lhs, rhs);
+        using U = std::underlying_type_t<T>;
+        return T(U(lhs) ^ U(rhs));
     }
 
     namespace math
     {
-        /*!
-         * \brief            Selects a return value based on `condition`.
-         *
-         * \tparam T         The condition type.
-         * \tparam U         The return type.
-         *
-         * \param condition  The condition.
-         * \param value      The return value when condition is `true`.
-         *
-         * \return           `value` or `0` depending on `condition`.
-         */
-        template<typename T, typename U>
-        inline constexpr std::enable_if_t<
-            is_sized_bool<T>::value
-                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
-                && sizeof(T) == sizeof(U),
-            U>
-        select(T condition, U value) noexcept
-        {
-            return tue::detail_::select_bx(condition, value);
-        }
-
         /*!
          * \brief            Selects a return value based on `condition`.
          *
@@ -202,13 +183,11 @@ namespace tue
          */
         template<typename T, typename U>
         inline constexpr std::enable_if_t<
-            is_sized_bool<T>::value
-                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
-                && sizeof(T) == sizeof(U),
-            U>
-        select(T condition, U value, U otherwise) noexcept
+            is_sized_bool<T>::value && sizeof(T) == sizeof(U), U>
+        select(T condition, U value, U otherwise = U(0)) noexcept
         {
-            return tue::detail_::select_bxx(condition, value, otherwise);
+            using Underlying = std::underlying_type_t<T>;
+            return Underlying(condition) ? value : otherwise;
         }
     }
 }
