@@ -385,6 +385,9 @@ namespace tue
     template<typename T, int N>
     class alignas(sizeof(T) * N) simd
     {
+        template<typename U, int M>
+        friend class simd;
+
         std::enable_if_t<
             (is_sized_bool<T>::value
                 || (std::is_arithmetic<T>::value
@@ -461,11 +464,8 @@ namespace tue
         template<typename U>
         explicit simd(const simd<U, N>& s) noexcept
         {
-            const auto data = this->impl_[0].data();
-            for (int i = 0; i < N; ++i)
-            {
-                data[i] = static_cast<T>(s.data()[i]);
-            }
+            this->impl_[0] = simd<T, N/2>(s.impl_[0]);
+            this->impl_[1] = simd<T, N/2>(s.impl_[1]);
         }
 
         /*!
