@@ -25,16 +25,6 @@ namespace
             == static_cast<std::uint8_t>(~0LL));
         test_assert(static_cast<std::uint8_t>(false8)
             == static_cast<std::uint8_t>(0LL));
-
-        if (!true8)
-        {
-            test_fail("true8 wasn't cast to bool true");
-        }
-
-        if (false8)
-        {
-            test_fail("false8 wasn't cast to bool false");
-        }
     }
 
     TEST_CASE(bool16)
@@ -46,16 +36,6 @@ namespace
             == static_cast<std::uint16_t>(~0LL));
         test_assert(static_cast<std::uint16_t>(false16)
             == static_cast<std::uint16_t>(0LL));
-
-        if (!true16)
-        {
-            test_fail("true16 wasn't cast to bool true");
-        }
-
-        if (false16)
-        {
-            test_fail("false16 wasn't cast to bool false");
-        }
     }
 
     TEST_CASE(bool32)
@@ -67,16 +47,6 @@ namespace
             == static_cast<std::uint32_t>(~0LL));
         test_assert(static_cast<std::uint32_t>(false32)
             == static_cast<std::uint32_t>(0LL));
-
-        if (!true32)
-        {
-            test_fail("true32 wasn't cast to bool true");
-        }
-
-        if (false32)
-        {
-            test_fail("false32 wasn't cast to bool false");
-        }
     }
 
     TEST_CASE(bool64)
@@ -88,15 +58,15 @@ namespace
             == static_cast<std::uint64_t>(~0LL));
         test_assert(static_cast<std::uint64_t>(false64)
             == static_cast<std::uint64_t>(0LL));
+    }
 
-        if (!true64)
+    TEST_CASE(implicit_cast_to_bool)
+    {
+        if (!true8 || !true16 || !true32 || !true64
+            || false8 || false16 || false32 || false64)
         {
-            test_fail("true64 wasn't cast to bool true");
-        }
-
-        if (false64)
-        {
-            test_fail("false64 wasn't cast to bool false");
+            test_fail(
+                "Sized bool types didn't implicitly cast to bool as expected");
         }
     }
 
@@ -119,331 +89,142 @@ namespace
 
     TEST_CASE(bitwise_not_operator)
     {
-        constexpr auto nt8 = ~true8;
-        constexpr auto nf8 = ~false8;
-        test_assert(nt8 == false8);
-        test_assert(nf8 == true8);
-
-        constexpr auto nt16 = ~true16;
-        constexpr auto nf16 = ~false16;
-        test_assert(nt16 == false16);
-        test_assert(nf16 == true16);
-
-        constexpr auto nt32 = ~true32;
-        constexpr auto nf32 = ~false32;
-        test_assert(nt32 == false32);
-        test_assert(nf32 == true32);
-
-        constexpr auto nt64 = ~true64;
-        constexpr auto nf64 = ~false64;
-        test_assert(nt64 == false64);
-        test_assert(nf64 == true64);
+        constexpr auto nt = ~true32;
+        constexpr auto nf = ~false32;
+        test_assert(nt == false32);
+        test_assert(nf == true32);
     }
 
     TEST_CASE(bitwise_and_operator)
     {
-        constexpr auto tt8 =  true8 &  true8;
-        constexpr auto tf8 =  true8 & false8;
-        constexpr auto ft8 = false8 &  true8;
-        constexpr auto ff8 = false8 & false8;
-        test_assert(tt8 == true8);
-        test_assert(tf8 == false8);
-        test_assert(ft8 == false8);
-        test_assert(ff8 == false8);
-
-        constexpr auto tt16 =  true16 &  true16;
-        constexpr auto tf16 =  true16 & false16;
-        constexpr auto ft16 = false16 &  true16;
-        constexpr auto ff16 = false16 & false16;
-        test_assert(tt16 == true16);
-        test_assert(tf16 == false16);
-        test_assert(ft16 == false16);
-        test_assert(ff16 == false16);
-
-        constexpr auto tt32 =  true32 &  true32;
-        constexpr auto tf32 =  true32 & false32;
-        constexpr auto ft32 = false32 &  true32;
-        constexpr auto ff32 = false32 & false32;
-        test_assert(tt32 == true32);
-        test_assert(tf32 == false32);
-        test_assert(ft32 == false32);
-        test_assert(ff32 == false32);
-
-        constexpr auto tt64 =  true64 &  true64;
-        constexpr auto tf64 =  true64 & false64;
-        constexpr auto ft64 = false64 &  true64;
-        constexpr auto ff64 = false64 & false64;
-        test_assert(tt64 == true64);
-        test_assert(tf64 == false64);
-        test_assert(ft64 == false64);
-        test_assert(ff64 == false64);
+        constexpr auto tt =  true32 &  true32;
+        constexpr auto tf =  true32 & false32;
+        constexpr auto ft = false32 &  true32;
+        constexpr auto ff = false32 & false32;
+        test_assert(tt == true32);
+        test_assert(tf == false32);
+        test_assert(ft == false32);
+        test_assert(ff == false32);
     }
 
     TEST_CASE(bitwise_or_operator)
     {
-        constexpr auto tt8 =  true8 |  true8;
-        constexpr auto tf8 =  true8 | false8;
-        constexpr auto ft8 = false8 |  true8;
-        constexpr auto ff8 = false8 | false8;
-        test_assert(tt8 == true8);
-        test_assert(tf8 == true8);
-        test_assert(ft8 == true8);
-        test_assert(ff8 == false8);
-
-        constexpr auto tt16 =  true16 |  true16;
-        constexpr auto tf16 =  true16 | false16;
-        constexpr auto ft16 = false16 |  true16;
-        constexpr auto ff16 = false16 | false16;
-        test_assert(tt16 == true16);
-        test_assert(tf16 == true16);
-        test_assert(ft16 == true16);
-        test_assert(ff16 == false16);
-
-        constexpr auto tt32 =  true32 |  true32;
-        constexpr auto tf32 =  true32 | false32;
-        constexpr auto ft32 = false32 |  true32;
-        constexpr auto ff32 = false32 | false32;
-        test_assert(tt32 == true32);
-        test_assert(tf32 == true32);
-        test_assert(ft32 == true32);
-        test_assert(ff32 == false32);
-
-        constexpr auto tt64 =  true64 |  true64;
-        constexpr auto tf64 =  true64 | false64;
-        constexpr auto ft64 = false64 |  true64;
-        constexpr auto ff64 = false64 | false64;
-        test_assert(tt64 == true64);
-        test_assert(tf64 == true64);
-        test_assert(ft64 == true64);
-        test_assert(ff64 == false64);
+        constexpr auto tt =  true32 |  true32;
+        constexpr auto tf =  true32 | false32;
+        constexpr auto ft = false32 |  true32;
+        constexpr auto ff = false32 | false32;
+        test_assert(tt == true32);
+        test_assert(tf == true32);
+        test_assert(ft == true32);
+        test_assert(ff == false32);
     }
 
     TEST_CASE(bitwise_xor_operator)
     {
-        constexpr auto tt8 =  true8 ^  true8;
-        constexpr auto tf8 =  true8 ^ false8;
-        constexpr auto ft8 = false8 ^  true8;
-        constexpr auto ff8 = false8 ^ false8;
-        test_assert(tt8 == false8);
-        test_assert(tf8 == true8);
-        test_assert(ft8 == true8);
-        test_assert(ff8 == false8);
-
-        constexpr auto tt16 =  true16 ^  true16;
-        constexpr auto tf16 =  true16 ^ false16;
-        constexpr auto ft16 = false16 ^  true16;
-        constexpr auto ff16 = false16 ^ false16;
-        test_assert(tt16 == false16);
-        test_assert(tf16 == true16);
-        test_assert(ft16 == true16);
-        test_assert(ff16 == false16);
-
-        constexpr auto tt32 =  true32 ^  true32;
-        constexpr auto tf32 =  true32 ^ false32;
-        constexpr auto ft32 = false32 ^  true32;
-        constexpr auto ff32 = false32 ^ false32;
-        test_assert(tt32 == false32);
-        test_assert(tf32 == true32);
-        test_assert(ft32 == true32);
-        test_assert(ff32 == false32);
-
-        constexpr auto tt64 =  true64 ^  true64;
-        constexpr auto tf64 =  true64 ^ false64;
-        constexpr auto ft64 = false64 ^  true64;
-        constexpr auto ff64 = false64 ^ false64;
-        test_assert(tt64 == false64);
-        test_assert(tf64 == true64);
-        test_assert(ft64 == true64);
-        test_assert(ff64 == false64);
+        constexpr auto tt =  true32 ^  true32;
+        constexpr auto tf =  true32 ^ false32;
+        constexpr auto ft = false32 ^  true32;
+        constexpr auto ff = false32 ^ false32;
+        test_assert(tt == false32);
+        test_assert(tf == true32);
+        test_assert(ft == true32);
+        test_assert(ff == false32);
     }
 
     TEST_CASE(bitwise_and_assignment_operator)
     {
-        auto tt = true8;
-        test_assert(&(tt &= true8) == &tt);
-        test_assert(tt == true8);
+        auto tt = true32;
+        test_assert(&(tt &= true32) == &tt);
+        test_assert(tt == true32);
 
-        auto tf = true8;
-        test_assert(&(tf &= false8) == &tf);
-        test_assert(tf == false8);
+        auto tf = true32;
+        test_assert(&(tf &= false32) == &tf);
+        test_assert(tf == false32);
 
-        auto ft = false8;
-        test_assert(&(ft &= true8) == &ft);
-        test_assert(ft == false8);
+        auto ft = false32;
+        test_assert(&(ft &= true32) == &ft);
+        test_assert(ft == false32);
 
-        auto ff = false8;
-        test_assert(&(ff &= false8) == &ff);
-        test_assert(ff == false8);
+        auto ff = false32;
+        test_assert(&(ff &= false32) == &ff);
+        test_assert(ff == false32);
     }
 
     TEST_CASE(bitwise_or_assignment_operator)
     {
-        auto tt = true8;
-        test_assert(&(tt |= true8) == &tt);
-        test_assert(tt == true8);
+        auto tt = true32;
+        test_assert(&(tt |= true32) == &tt);
+        test_assert(tt == true32);
 
-        auto tf = true8;
-        test_assert(&(tf |= false8) == &tf);
-        test_assert(tf == true8);
+        auto tf = true32;
+        test_assert(&(tf |= false32) == &tf);
+        test_assert(tf == true32);
 
-        auto ft = false8;
-        test_assert(&(ft |= true8) == &ft);
-        test_assert(ft == true8);
+        auto ft = false32;
+        test_assert(&(ft |= true32) == &ft);
+        test_assert(ft == true32);
 
-        auto ff = false8;
-        test_assert(&(ff |= false8) == &ff);
-        test_assert(ff == false8);
+        auto ff = false32;
+        test_assert(&(ff |= false32) == &ff);
+        test_assert(ff == false32);
     }
 
     TEST_CASE(bitwise_xor_assignment_operator)
     {
-        auto tt = true8;
-        test_assert(&(tt ^= true8) == &tt);
-        test_assert(tt == false8);
+        auto tt = true32;
+        test_assert(&(tt ^= true32) == &tt);
+        test_assert(tt == false32);
 
-        auto tf = true8;
-        test_assert(&(tf ^= false8) == &tf);
-        test_assert(tf == true8);
+        auto tf = true32;
+        test_assert(&(tf ^= false32) == &tf);
+        test_assert(tf == true32);
 
-        auto ft = false8;
-        test_assert(&(ft ^= true8) == &ft);
-        test_assert(ft == true8);
+        auto ft = false32;
+        test_assert(&(ft ^= true32) == &ft);
+        test_assert(ft == true32);
 
-        auto ff = false8;
-        test_assert(&(ff ^= false8) == &ff);
-        test_assert(ff == false8);
+        auto ff = false32;
+        test_assert(&(ff ^= false32) == &ff);
+        test_assert(ff == false32);
     }
 
     TEST_CASE(select)
     {
-        constexpr auto x8 = math::select(
-            true8, std::int8_t(1));
-        constexpr auto y8 = math::select(
-            false8, std::int8_t(1));
-        constexpr auto z8 = math::select(
-            true8, std::int8_t(1), std::int8_t(2));
-        constexpr auto w8 = math::select(
-            false8, std::int8_t(1), std::int8_t(2));
-        test_assert(x8 == std::int8_t(1));
-        test_assert(y8 == std::int8_t(0));
-        test_assert(z8 == std::int8_t(1));
-        test_assert(w8 == std::int8_t(2));
-
-        constexpr auto x16 = math::select(
-            true16, std::int16_t(1));
-        constexpr auto y16 = math::select(
-            false16, std::int16_t(1));
-        constexpr auto z16 = math::select(
-            true16, std::int16_t(1), std::int16_t(2));
-        constexpr auto w16 = math::select(
-            false16, std::int16_t(1), std::int16_t(2));
-        test_assert(x16 == std::int16_t(1));
-        test_assert(y16 == std::int16_t(0));
-        test_assert(z16 == std::int16_t(1));
-        test_assert(w16 == std::int16_t(2));
-
-        constexpr auto x32 = math::select(
+        constexpr auto x = math::select(
             true32, std::int32_t(1));
-        constexpr auto y32 = math::select(
+        constexpr auto y = math::select(
             false32, std::int32_t(1));
-        constexpr auto z32 = math::select(
+        constexpr auto z = math::select(
             true32, std::int32_t(1), std::int32_t(2));
-        constexpr auto w32 = math::select(
+        constexpr auto w = math::select(
             false32, std::int32_t(1), std::int32_t(2));
-        test_assert(x32 == std::int32_t(1));
-        test_assert(y32 == std::int32_t(0));
-        test_assert(z32 == std::int32_t(1));
-        test_assert(w32 == std::int32_t(2));
-
-        constexpr auto x64 = math::select(
-            true64, std::int64_t(1));
-        constexpr auto y64 = math::select(
-            false64, std::int64_t(1));
-        constexpr auto z64 = math::select(
-            true64, std::int64_t(1), std::int64_t(2));
-        constexpr auto w64 = math::select(
-            false64, std::int64_t(1), std::int64_t(2));
-        test_assert(x64 == std::int64_t(1));
-        test_assert(y64 == std::int64_t(0));
-        test_assert(z64 == std::int64_t(1));
-        test_assert(w64 == std::int64_t(2));
+        test_assert(x == std::int32_t(1));
+        test_assert(y == std::int32_t(0));
+        test_assert(z == std::int32_t(1));
+        test_assert(w == std::int32_t(2));
     }
 
     TEST_CASE(equal)
     {
-        constexpr auto tt8 = math::equal( true8,  true8);
-        constexpr auto tf8 = math::equal( true8, false8);
-        constexpr auto ft8 = math::equal(false8,  true8);
-        constexpr auto ff8 = math::equal(false8, false8);
-        test_assert(tt8 == true);
-        test_assert(tf8 == false);
-        test_assert(ft8 == false);
-        test_assert(ff8 == true);
-
-        constexpr auto tt16 = math::equal( true16,  true16);
-        constexpr auto tf16 = math::equal( true16, false16);
-        constexpr auto ft16 = math::equal(false16,  true16);
-        constexpr auto ff16 = math::equal(false16, false16);
-        test_assert(tt16 == true);
-        test_assert(tf16 == false);
-        test_assert(ft16 == false);
-        test_assert(ff16 == true);
-
-        constexpr auto tt32 = math::equal( true32,  true32);
-        constexpr auto tf32 = math::equal( true32, false32);
-        constexpr auto ft32 = math::equal(false32,  true32);
-        constexpr auto ff32 = math::equal(false32, false32);
-        test_assert(tt32 == true);
-        test_assert(tf32 == false);
-        test_assert(ft32 == false);
-        test_assert(ff32 == true);
-
-        constexpr auto tt64 = math::equal( true64,  true64);
-        constexpr auto tf64 = math::equal( true64, false64);
-        constexpr auto ft64 = math::equal(false64,  true64);
-        constexpr auto ff64 = math::equal(false64, false64);
-        test_assert(tt64 == true);
-        test_assert(tf64 == false);
-        test_assert(ft64 == false);
-        test_assert(ff64 == true);
+        constexpr auto tt = math::equal( true32,  true32);
+        constexpr auto tf = math::equal( true32, false32);
+        constexpr auto ft = math::equal(false32,  true32);
+        constexpr auto ff = math::equal(false32, false32);
+        test_assert(tt == true);
+        test_assert(tf == false);
+        test_assert(ft == false);
+        test_assert(ff == true);
     }
 
     TEST_CASE(not_equal)
     {
-        constexpr auto tt8 = math::not_equal( true8,  true8);
-        constexpr auto tf8 = math::not_equal( true8, false8);
-        constexpr auto ft8 = math::not_equal(false8,  true8);
-        constexpr auto ff8 = math::not_equal(false8, false8);
-        test_assert(tt8 == false);
-        test_assert(tf8 == true);
-        test_assert(ft8 == true);
-        test_assert(ff8 == false);
-
-        constexpr auto tt16 = math::not_equal( true16,  true16);
-        constexpr auto tf16 = math::not_equal( true16, false16);
-        constexpr auto ft16 = math::not_equal(false16,  true16);
-        constexpr auto ff16 = math::not_equal(false16, false16);
-        test_assert(tt16 == false);
-        test_assert(tf16 == true);
-        test_assert(ft16 == true);
-        test_assert(ff16 == false);
-
-        constexpr auto tt32 = math::not_equal( true32,  true32);
-        constexpr auto tf32 = math::not_equal( true32, false32);
-        constexpr auto ft32 = math::not_equal(false32,  true32);
-        constexpr auto ff32 = math::not_equal(false32, false32);
-        test_assert(tt32 == false);
-        test_assert(tf32 == true);
-        test_assert(ft32 == true);
-        test_assert(ff32 == false);
-
-        constexpr auto tt64 = math::not_equal( true64,  true64);
-        constexpr auto tf64 = math::not_equal( true64, false64);
-        constexpr auto ft64 = math::not_equal(false64,  true64);
-        constexpr auto ff64 = math::not_equal(false64, false64);
-        test_assert(tt64 == false);
-        test_assert(tf64 == true);
-        test_assert(ft64 == true);
-        test_assert(ff64 == false);
+        constexpr auto tt = math::not_equal( true32,  true32);
+        constexpr auto tf = math::not_equal( true32, false32);
+        constexpr auto ft = math::not_equal(false32,  true32);
+        constexpr auto ff = math::not_equal(false32, false32);
+        test_assert(tt == false);
+        test_assert(tf == true);
+        test_assert(ft == true);
+        test_assert(ff == false);
     }
 }
