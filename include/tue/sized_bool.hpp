@@ -252,8 +252,7 @@ namespace tue
             is_sized_bool<T>::value && sizeof(T) == sizeof(U), U>
         select(T condition, const U& value, const U& otherwise = U(0)) noexcept
         {
-            using Underlying = std::underlying_type_t<T>;
-            return Underlying(condition) ? value : otherwise;
+            return condition ? value : otherwise;
         }
 
         /*!
