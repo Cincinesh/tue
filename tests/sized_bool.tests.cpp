@@ -21,10 +21,8 @@ namespace
         test_assert(sizeof(bool8) == 1);
         test_assert(sizeof(true8) == 1);
         test_assert(sizeof(false8) == 1);
-        test_assert(static_cast<std::uint8_t>(true8)
-            == static_cast<std::uint8_t>(~0LL));
-        test_assert(static_cast<std::uint8_t>(false8)
-            == static_cast<std::uint8_t>(0LL));
+        test_assert(true8 == static_cast<bool8>(~0LL));
+        test_assert(false8 == static_cast<bool8>(0LL));
     }
 
     TEST_CASE(bool16)
@@ -32,10 +30,8 @@ namespace
         test_assert(sizeof(bool16) == 2);
         test_assert(sizeof(true16) == 2);
         test_assert(sizeof(false16) == 2);
-        test_assert(static_cast<std::uint16_t>(true16)
-            == static_cast<std::uint16_t>(~0LL));
-        test_assert(static_cast<std::uint16_t>(false16)
-            == static_cast<std::uint16_t>(0LL));
+        test_assert(true16 == static_cast<bool16>(~0LL));
+        test_assert(false16 == static_cast<bool16>(0LL));
     }
 
     TEST_CASE(bool32)
@@ -43,10 +39,8 @@ namespace
         test_assert(sizeof(bool32) == 4);
         test_assert(sizeof(true32) == 4);
         test_assert(sizeof(false32) == 4);
-        test_assert(static_cast<std::uint32_t>(true32)
-            == static_cast<std::uint32_t>(~0LL));
-        test_assert(static_cast<std::uint32_t>(false32)
-            == static_cast<std::uint32_t>(0LL));
+        test_assert(true32 == static_cast<bool32>(~0LL));
+        test_assert(false32 == static_cast<bool32>(0LL));
     }
 
     TEST_CASE(bool64)
@@ -54,10 +48,8 @@ namespace
         test_assert(sizeof(bool64) == 8);
         test_assert(sizeof(true64) == 8);
         test_assert(sizeof(false64) == 8);
-        test_assert(static_cast<std::uint64_t>(true64)
-            == static_cast<std::uint64_t>(~0LL));
-        test_assert(static_cast<std::uint64_t>(false64)
-            == static_cast<std::uint64_t>(0LL));
+        test_assert(true64 == static_cast<bool64>(~0LL));
+        test_assert(false64 == static_cast<bool64>(0LL));
     }
 
     TEST_CASE(implicit_cast_to_bool)

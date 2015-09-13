@@ -1441,7 +1441,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline simd<sized_bool_t<sizeof(T)>, N>
         less_equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
             //return tue::detail_::less_equal_ss(lhs, rhs);
@@ -1461,7 +1461,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline simd<sized_bool_t<sizeof(T)>, N>
         greater(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
             //return tue::detail_::greater_ss(lhs, rhs);
@@ -1481,7 +1481,7 @@ namespace tue
          *             of components of `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline simd<sized_bool_t<sizeof(T)>, N>
         greater_equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
             //return tue::detail_::greater_equal_ss(lhs, rhs);
@@ -1501,7 +1501,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline simd<sized_bool_t<sizeof(T)>, N>
         equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
             //return tue::detail_::equal_ss(lhs, rhs);
@@ -1521,7 +1521,7 @@ namespace tue
          *             components of `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline simd<sized_bool_t<sizeof(T)>, N>
         not_equal(const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
             //return tue::detail_::not_equal_ss(lhs, rhs);
