@@ -1799,7 +1799,7 @@ namespace tue
             const mat<U, C, R>& values,
             const mat<U, C, R>& otherwise = mat<U, C, R>(0)) noexcept
         {
-            return tue::detail_::select_mm(conditions, values, otherwise);
+            return tue::detail_::select_mmm(conditions, values, otherwise);
         }
 
         /*!
@@ -1808,8 +1808,8 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam C   The column count of `lhs` and `rhs`.
-         * \tparam R   The row count of `lhs` and `rhs`.
+         * \tparam C   The column count of both `lhs` and `rhs`.
+         * \tparam R   The row count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -1832,8 +1832,8 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam C   The column count of `lhs` and `rhs`.
-         * \tparam R   The row count of `lhs` and `rhs`.
+         * \tparam C   The column count of both `lhs` and `rhs`.
+         * \tparam R   The row count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -1856,8 +1856,8 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam C   The column count of `lhs` and `rhs`.
-         * \tparam R   The row count of `lhs` and `rhs`.
+         * \tparam C   The column count of both `lhs` and `rhs`.
+         * \tparam R   The row count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -1880,8 +1880,8 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam C   The column count of `lhs` and `rhs`.
-         * \tparam R   The row count of `lhs` and `rhs`.
+         * \tparam C   The column count of both `lhs` and `rhs`.
+         * \tparam R   The row count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -1904,8 +1904,8 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam C   The column count of `lhs` and `rhs`.
-         * \tparam R   The row count of `lhs` and `rhs`.
+         * \tparam C   The column count of both `lhs` and `rhs`.
+         * \tparam R   The row count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -1928,8 +1928,8 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam C   The column count of `lhs` and `rhs`.
-         * \tparam R   The row count of `lhs` and `rhs`.
+         * \tparam C   The column count of both `lhs` and `rhs`.
+         * \tparam R   The row count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.

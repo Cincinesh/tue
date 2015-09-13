@@ -903,7 +903,7 @@ namespace tue
 
         template<typename T, typename U, int R>
         inline constexpr mat<U, 2, R>
-        select_mm(
+        select_mmm(
             const mat<T, 2, R>& conditions,
             const mat<U, 2, R>& values,
             const mat<U, 2, R>& otherwise = mat<U, 2, R>(0)) noexcept

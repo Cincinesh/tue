@@ -1537,7 +1537,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift left of `lhs` by each component of `rhs`.
+     * \return     The bitwise shifts left of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
     inline constexpr vec<decltype(
@@ -1558,7 +1558,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift left of each component of `lhs` by `rhs`.
+     * \return     The bitwise shifts left of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
     inline constexpr vec<decltype(
@@ -1579,7 +1579,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift left of each component of `lhs` by each
+     * \return     The bitwise shifts left of each component of `lhs` by each
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1601,7 +1601,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift right of `lhs` by each component of `rhs`.
+     * \return     The bitwise shifts right of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
     inline constexpr vec<decltype(
@@ -1622,7 +1622,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift right of each component of `lhs` by `rhs`.
+     * \return     The bitwise shifts right of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
     inline constexpr vec<decltype(
@@ -1643,7 +1643,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift right of each component of `lhs` by each
+     * \return     The bitwise shifts right of each component of `lhs` by each
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
@@ -1859,7 +1859,8 @@ namespace tue
          *
          * \tparam T         The component type of `bases`.
          * \tparam U         The component type of `exponents`.
-         * \tparam N         The component count of `bases` and `exponents`.
+         * \tparam N         The component count of both `bases` and
+         *                   `exponents`.
          *
          * \param bases      The bases.
          * \param exponents  The exponents.
@@ -1930,8 +1931,8 @@ namespace tue
          * \brief     Computes `tue::math::min()` for each corresponding pair of
          *            components of `v1` and `v2`.
          *
-         * \tparam T  The component type of `v1` and `v2`.
-         * \tparam N  The component count of `v1` and `v2`.
+         * \tparam T  The component type of both `v1` and `v2`.
+         * \tparam N  The component count of both `v1` and `v2`.
          *
          * \param v1  A `vec`.
          * \param v2  Another `vec`.
@@ -1950,8 +1951,8 @@ namespace tue
          * \brief     Computes `tue::math::max()` for each corresponding pair of
          *            components of `v1` and `v2`.
          *
-         * \tparam T  The component type of `v1` and `v2`.
-         * \tparam N  The component count of `v1` and `v2`.
+         * \tparam T  The component type of both `v1` and `v2`.
+         * \tparam N  The component count of both `v1` and `v2`.
          *
          * \param v1  A `vec`.
          * \param v2  Another `vec`.
@@ -1990,7 +1991,7 @@ namespace tue
             const vec<U, N>& values,
             const vec<U, N>& otherwise = vec<U, N>(0)) noexcept
         {
-            return tue::detail_::select_vv(conditions, values, otherwise);
+            return tue::detail_::select_vvv(conditions, values, otherwise);
         }
 
         /*!
@@ -1999,7 +2000,7 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam N   The component count of `lhs` and `rhs`.
+         * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -2021,7 +2022,7 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam N   The component count of `lhs` and `rhs`.
+         * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -2043,7 +2044,7 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam N   The component count of `lhs` and `rhs`.
+         * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -2065,7 +2066,7 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam N   The component count of `lhs` and `rhs`.
+         * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -2087,7 +2088,7 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam N   The component count of `lhs` and `rhs`.
+         * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
@@ -2109,7 +2110,7 @@ namespace tue
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
-         * \tparam N   The component count of `lhs` and `rhs`.
+         * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.

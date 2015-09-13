@@ -933,7 +933,7 @@ namespace tue
 
         template<typename T, typename U>
         inline constexpr vec<U, 2>
-        select_vv(
+        select_vvv(
             const vec<T, 2>& conditions,
             const vec<U, 2>& values,
             const vec<U, 2>& otherwise) noexcept
