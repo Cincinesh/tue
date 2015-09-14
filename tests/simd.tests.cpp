@@ -32,6 +32,16 @@ namespace
             return s;
         }
 
+        static simd<T, N> test_simd2() noexcept
+        {
+            simd<T, N> s;
+            for (int i = 0; i < N; ++i)
+            {
+                s.data()[i] = static_cast<T>((i+1)*2);
+            }
+            return s;
+        }
+
         static void TEST_CASE_alias()
         {
             test_assert((std::is_same<Alias, simd<T, N>>::value));
@@ -177,6 +187,36 @@ namespace
             }
         }
 
+        static void TEST_CASE_select()
+        {
+            simd<sized_bool_t<sizeof(T)>, N> c;
+            for (int i = 0; i < N; ++i)
+            {
+                c.data()[i] = static_cast<sized_bool_t<sizeof(T)>>(
+                    i%2==0 ? 0LL : ~0LL);
+            }
+            const auto& conditions = c;
+
+            const auto values = test_simd();
+            const auto s1 = math::select(conditions, values);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] == math::select(
+                    conditions.data()[i],
+                    values.data()[i]));
+            }
+
+            const auto otherwise = test_simd2();
+            const auto s2 = math::select(conditions, values, otherwise);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::select(
+                    conditions.data()[i],
+                    values.data()[i],
+                    otherwise.data()[i]));
+            }
+        }
+
         static void run_all()
         {
             TEST_CASE_alias();
@@ -193,6 +233,7 @@ namespace
             TEST_CASE_data();
             TEST_CASE_equality_operator();
             TEST_CASE_inequality_operator();
+            TEST_CASE_select();
         }
     };
 

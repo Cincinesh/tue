@@ -587,7 +587,7 @@ namespace tue
             const simd<T, 2>& conditions,
             const simd<U, 2>& values) noexcept
         {
-            simd<T, 2> result;
+            simd<U, 2> result;
             const auto rdata = result.data();
             const auto cdata = conditions.data();
             const auto vdata = values.data();
@@ -602,7 +602,7 @@ namespace tue
             const simd<U, 2>& values,
             const simd<U, 2>& otherwise) noexcept
         {
-            simd<T, 2> result;
+            simd<U, 2> result;
             const auto rdata = result.data();
             const auto cdata = conditions.data();
             const auto vdata = values.data();

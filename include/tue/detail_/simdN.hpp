@@ -546,8 +546,8 @@ namespace tue
             const simd<T, N>& conditions,
             const simd<U, N>& values) noexcept
         {
-            simd<T, N> result;
-            const auto rimpl = reinterpret_cast<simd<T, N/2>*>(
+            simd<U, N> result;
+            const auto rimpl = reinterpret_cast<simd<U, N/2>*>(
                 &result);
             const auto cimpl = reinterpret_cast<const simd<T, N/2>*>(
                 &conditions);
@@ -565,8 +565,8 @@ namespace tue
             const simd<U, N>& values,
             const simd<U, N>& otherwise) noexcept
         {
-            simd<T, N> result;
-            const auto rimpl = reinterpret_cast<simd<T, N/2>*>(
+            simd<U, N> result;
+            const auto rimpl = reinterpret_cast<simd<U, N/2>*>(
                 &result);
             const auto cimpl = reinterpret_cast<const simd<T, N/2>*>(
                 &conditions);
