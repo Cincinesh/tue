@@ -11,6 +11,7 @@
 
 #include <cstdint>
 #include <type_traits>
+#include <tue/math.hpp>
 #include <tue/sized_bool.hpp>
 #include <tue/unused.hpp>
 
@@ -26,7 +27,7 @@ namespace
             simd<T, N> s;
             for (int i = 0; i < N; ++i)
             {
-                s.data()[i] = static_cast<T>(i);
+                s.data()[i] = static_cast<T>(i+1);
             }
             return s;
         }
@@ -144,6 +145,38 @@ namespace
             test_assert(data == static_cast<void*>(&s));
         }
 
+        static void TEST_CASE_equality_operator()
+        {
+            const simd<T, N> cs1 = test_simd();
+
+            simd<T, N> s2 = cs1;
+            const auto& cs2 = s2;
+            test_assert((cs1 == cs2) == true);
+
+            for (int i = 0; i < N; ++i)
+            {
+                s2 = cs1;
+                s2.data()[i] = static_cast<T>(0);
+                test_assert((cs1 == cs2) == false);
+            }
+        }
+
+        static void TEST_CASE_inequality_operator()
+        {
+            const simd<T, N> cs1 = test_simd();
+
+            simd<T, N> s2 = cs1;
+            const auto& cs2 = s2;
+            test_assert((cs1 != cs2) == false);
+
+            for (int i = 0; i < N; ++i)
+            {
+                s2 = cs1;
+                s2.data()[i] = static_cast<T>(0);
+                test_assert((cs1 != cs2) == true);
+            }
+        }
+
         static void run_all()
         {
             TEST_CASE_alias();
@@ -158,11 +191,13 @@ namespace
             TEST_CASE_store();
             TEST_CASE_storeu();
             TEST_CASE_data();
+            TEST_CASE_equality_operator();
+            TEST_CASE_inequality_operator();
         }
     };
 
     template<typename Alias, typename T, int N>
-    struct arithmetic_simd_tests
+    struct arithmetic_simd_tests : public common_simd_tests<Alias, T, N>
     {
         static simd<T, N> test_simd() noexcept
         {
@@ -330,6 +365,88 @@ namespace
             }
         }
 
+        static void TEST_CASE_addition_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            test_assert(&(s1 += s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] + s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_subtraction_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            test_assert(&(s1 -= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] - s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_multiplication_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            test_assert(&(s1 *= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] * s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_division_assignment_operator()
+        {
+            auto s1 = test_simd2();
+            const auto s2 = test_simd();
+            test_assert(&(s1 /= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd2().data()[i] / s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_abs()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = math::abs(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::abs(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_min()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::min(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    math::min(s1.data()[i], s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_max()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::max(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    math::max(s1.data()[i], s2.data()[i]));
+            }
+        }
+
         static void run_all()
         {
             common_simd_tests<Alias, T, N>::run_all();
@@ -345,11 +462,138 @@ namespace
             TEST_CASE_subtraction_operator();
             TEST_CASE_multiplication_operator();
             TEST_CASE_division_operator();
+            TEST_CASE_addition_assignment_operator();
+            TEST_CASE_subtraction_assignment_operator();
+            TEST_CASE_multiplication_assignment_operator();
+            TEST_CASE_division_assignment_operator();
+            TEST_CASE_abs();
+            TEST_CASE_min();
+            TEST_CASE_max();
         }
     };
 
     template<typename Alias, typename T, int N>
-    struct bool_simd_tests
+    struct float_simd_tests : public arithmetic_simd_tests<Alias, T, N>
+    {
+        using arithmetic_simd_tests<Alias, T, N>::test_simd;
+        using arithmetic_simd_tests<Alias, T, N>::test_simd2;
+
+        static simd<T, N> test_simd_abs() noexcept
+        {
+            return math::abs(test_simd());
+        }
+
+        static void TEST_CASE_sin()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = math::sin(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::sin(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_cos()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = math::cos(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::cos(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_sincos()
+        {
+            const auto s = test_simd();
+            simd<T, N> sin_out, cos_out;
+            math::sincos(s, sin_out, cos_out);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(sin_out.data()[i] == math::sin(s.data()[i]));
+                test_assert(cos_out.data()[i] == math::cos(s.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_exp()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = math::exp(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::exp(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_log()
+        {
+            const auto s1 = test_simd_abs();
+            const auto s2 = math::log(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::log(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_pow()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::pow(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    math::pow(s1.data()[i], s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_recip()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = math::recip(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::recip(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_sqrt()
+        {
+            const auto s1 = test_simd_abs();
+            const auto s2 = math::sqrt(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::sqrt(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_rsqrt()
+        {
+            const auto s1 = test_simd_abs();
+            const auto s2 = math::rsqrt(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == math::rsqrt(s1.data()[i]));
+            }
+        }
+
+        static void run_all()
+        {
+            arithmetic_simd_tests<Alias, T, N>::run_all();
+            TEST_CASE_sin();
+            TEST_CASE_cos();
+            TEST_CASE_sincos();
+            TEST_CASE_exp();
+            TEST_CASE_log();
+            TEST_CASE_pow();
+            TEST_CASE_recip();
+            TEST_CASE_sqrt();
+            TEST_CASE_rsqrt();
+        }
+    };
+
+    template<typename Alias, typename T, int N>
+    struct bool_simd_tests : public common_simd_tests<Alias, T, N>
     {
         static void TEST_CASE_scalar_constructor()
         {
@@ -402,7 +646,7 @@ namespace
 #define FLOAT_SIMD_TEST_CASES(Alias, T, N) \
     TEST_CASE(Alias) \
     { \
-        arithmetic_simd_tests<Alias, T, N>::run_all(); \
+        float_simd_tests<Alias, T, N>::run_all(); \
     }
 
 #define INT_SIMD_TEST_CASES(Alias, T, N) \
