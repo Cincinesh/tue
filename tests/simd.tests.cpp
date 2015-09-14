@@ -113,7 +113,7 @@ namespace
 
         static void TEST_CASE_store()
         {
-            simd<T, N> s = test_simd();
+            auto s = test_simd();
             alignas(simd<T, N>) T data[N];
             s.store(data);
             for (int i = 0; i < N; ++i)
@@ -124,7 +124,7 @@ namespace
 
         static void TEST_CASE_storeu()
         {
-            simd<T, N> s = test_simd();
+            auto s = test_simd();
             alignas(simd<T, N>) T data[N + 1];
             s.store(data + 1);
             for (int i = 0; i < N; ++i)
@@ -135,7 +135,7 @@ namespace
 
         static void TEST_CASE_data()
         {
-            const simd<T, N> cs = test_simd();
+            const auto cs = test_simd();
             const T* cdata = cs.data();
             test_assert(cdata == static_cast<const void*>(&cs));
 
@@ -169,7 +169,17 @@ namespace
             simd<T, N> s;
             for (int i = 0; i < N; ++i)
             {
-                s.data()[i] = static_cast<T>(i * (i%2==0 ? 1 : -1));
+                s.data()[i] = static_cast<T>((i+1) * (i%2==0 ? 1 : -1));
+            }
+            return s;
+        }
+
+        static simd<T, N> test_simd2() noexcept
+        {
+            simd<T, N> s;
+            for (int i = 0; i < N; ++i)
+            {
+                s.data()[i] = static_cast<T>((i+1) * 2 * (i%2==0 ? -1 : 1));
             }
             return s;
         }
@@ -216,8 +226,8 @@ namespace
 
         static void TEST_CASE_unary_plus_operator()
         {
-            const simd<T, N> s1 = test_simd();
-            const simd<T, N> s2 = +s1;
+            const auto s1 = test_simd();
+            const auto s2 = +s1;
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s2.data()[i] == +s1.data()[i]);
@@ -226,15 +236,15 @@ namespace
 
         static void TEST_CASE_pre_increment_operator()
         {
-            simd<T, N> s = test_simd();
+            auto s = test_simd();
             test_assert(&(++s) == &s);
             test_assert((s == test_simd() + simd<T, N>(1)));
         }
 
         static void TEST_CASE_post_increment_operator()
         {
-            simd<T, N> s1 = test_simd();
-            const simd<T, N> s2 = s1++;
+            auto s1 = test_simd();
+            const auto s2 = s1++;
             test_assert((s1 == test_simd() + simd<T, N>(1)));
             test_assert((s2 == test_simd()));
         }
@@ -243,8 +253,8 @@ namespace
         static std::enable_if_t<std::is_signed<U>::value>
         TEST_CASE_unary_minus_operator()
         {
-            const simd<T, N> s1 = test_simd();
-            const simd<T, N> s2 = -s1;
+            const auto s1 = test_simd();
+            const auto s2 = -s1;
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s2.data()[i] == -s1.data()[i]);
@@ -259,17 +269,65 @@ namespace
 
         static void TEST_CASE_pre_decrement_operator()
         {
-            simd<T, N> s = test_simd();
+            auto s = test_simd();
             test_assert(&(--s) == &s);
             test_assert((s == test_simd() - simd<T, N>(1)));
         }
 
         static void TEST_CASE_post_decrement_operator()
         {
-            simd<T, N> s1 = test_simd();
-            const simd<T, N> s2 = s1--;
+            auto s1 = test_simd();
+            const auto s2 = s1--;
             test_assert((s1 == test_simd() - simd<T, N>(1)));
             test_assert((s2 == test_simd()));
+        }
+
+        static void TEST_CASE_addition_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = s1 + s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] + s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_subtraction_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = s1 - s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] - s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_multiplication_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = s1 * s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] * s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_division_operator()
+        {
+            const auto s1 = test_simd2();
+            const auto s2 = test_simd();
+            const auto s3 = s1 / s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] / s2.data()[i]));
+            }
         }
 
         static void run_all()
@@ -283,13 +341,16 @@ namespace
             TEST_CASE_unary_minus_operator();
             TEST_CASE_pre_decrement_operator();
             TEST_CASE_post_decrement_operator();
+            TEST_CASE_addition_operator();
+            TEST_CASE_subtraction_operator();
+            TEST_CASE_multiplication_operator();
+            TEST_CASE_division_operator();
         }
     };
 
     template<typename Alias, typename T, int N>
     struct bool_simd_tests
     {
-
         static void TEST_CASE_scalar_constructor()
         {
             const simd<T, N> s(static_cast<T>(12LL));
