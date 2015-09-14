@@ -28,18 +28,18 @@ namespace tue
         template<typename T, int N>
         inline simd<T, N>& pre_increment_operator_s(simd<T, N>& s) noexcept
         {
-            const auto simpl = reinterpret_cast<const simd<T, N/2>*>(&s);
+            const auto simpl = reinterpret_cast<simd<T, N/2>*>(&s);
             tue::detail_::pre_increment_operator_s(simpl[0]);
             tue::detail_::pre_increment_operator_s(simpl[1]);
             return s;
         }
 
         template<typename T, int N>
-        inline simd<T, N> post_increment_operator_s(simd<T, N>& s, int) noexcept
+        inline simd<T, N> post_increment_operator_s(simd<T, N>& s) noexcept
         {
             simd<T, N> result;
             const auto rimpl = reinterpret_cast<simd<T, N/2>*>(&result);
-            const auto simpl = reinterpret_cast<const simd<T, N/2>*>(&s);
+            const auto simpl = reinterpret_cast<simd<T, N/2>*>(&s);
             rimpl[0] = tue::detail_::post_increment_operator_s(simpl[0]);
             rimpl[1] = tue::detail_::post_increment_operator_s(simpl[1]);
             return result;
@@ -59,18 +59,18 @@ namespace tue
         template<typename T, int N>
         inline simd<T, N>& pre_decrement_operator_s(simd<T, N>& s) noexcept
         {
-            const auto simpl = reinterpret_cast<const simd<T, N/2>*>(&s);
+            const auto simpl = reinterpret_cast<simd<T, N/2>*>(&s);
             tue::detail_::pre_decrement_operator_s(simpl[0]);
             tue::detail_::pre_decrement_operator_s(simpl[1]);
             return s;
         }
 
         template<typename T, int N>
-        inline simd<T, N> post_decrement_operator_s(simd<T, N>& s, int) noexcept
+        inline simd<T, N> post_decrement_operator_s(simd<T, N>& s) noexcept
         {
             simd<T, N> result;
             const auto rimpl = reinterpret_cast<simd<T, N/2>*>(&result);
-            const auto simpl = reinterpret_cast<const simd<T, N/2>*>(&s);
+            const auto simpl = reinterpret_cast<simd<T, N/2>*>(&s);
             rimpl[0] = tue::detail_::post_decrement_operator_s(simpl[0]);
             rimpl[1] = tue::detail_::post_decrement_operator_s(simpl[1]);
             return result;

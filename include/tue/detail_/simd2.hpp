@@ -132,7 +132,7 @@ namespace tue
         }
 
         template<typename T>
-        inline simd<T, 2> post_increment_operator_s(simd<T, 2>& s, int) noexcept
+        inline simd<T, 2> post_increment_operator_s(simd<T, 2>& s) noexcept
         {
             simd<T, 2> result;
             const auto rdata = result.data();
@@ -163,7 +163,7 @@ namespace tue
         }
 
         template<typename T>
-        inline simd<T, 2> post_decrement_operator_s(simd<T, 2>& s, int) noexcept
+        inline simd<T, 2> post_decrement_operator_s(simd<T, 2>& s) noexcept
         {
             simd<T, 2> result;
             const auto rdata = result.data();
