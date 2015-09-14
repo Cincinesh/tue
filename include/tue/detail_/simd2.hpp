@@ -315,7 +315,7 @@ namespace tue
         }
 
         template<typename T>
-        inline simd<T, 2>& additon_assignment_operator_ss(
+        inline simd<T, 2>& addition_assignment_operator_ss(
             simd<T, 2>& lhs, const simd<T, 2>& rhs) noexcept
         {
             const auto ldata = lhs.data();

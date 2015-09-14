@@ -248,14 +248,14 @@ namespace tue
         }
 
         template<typename T, int N>
-        inline simd<T, N>& additon_assignment_operator_ss(
+        inline simd<T, N>& addition_assignment_operator_ss(
             simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
         {
             const auto limpl = reinterpret_cast<simd<T, N/2>*>(&lhs);
             const auto rimpl = reinterpret_cast<const simd<T, N/2>*>(&rhs);
-            tue::detail_::additon_assignment_operator_ss(
+            tue::detail_::addition_assignment_operator_ss(
                 limpl[0], rimpl[0]);
-            tue::detail_::additon_assignment_operator_ss(
+            tue::detail_::addition_assignment_operator_ss(
                 limpl[1], rimpl[1]);
             return lhs;
         }
