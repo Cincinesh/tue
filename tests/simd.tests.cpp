@@ -22,22 +22,32 @@ namespace
     template<typename Alias, typename T, int N>
     struct common_simd_tests
     {
-        static simd<T, N> test_simd() noexcept
+        static const simd<T, N>& test_simd() noexcept
         {
-            simd<T, N> s;
-            for (int i = 0; i < N; ++i)
+            static bool initialized = false;
+            static simd<T, N> s;
+            if (!initialized)
             {
-                s.data()[i] = static_cast<T>(i+1);
+                for (int i = 0; i < N; ++i)
+                {
+                    s.data()[i] = static_cast<T>(i+1);
+                }
+                initialized = true;
             }
             return s;
         }
 
-        static simd<T, N> test_simd2() noexcept
+        static const simd<T, N>& test_simd2() noexcept
         {
-            simd<T, N> s;
-            for (int i = 0; i < N; ++i)
+            static bool initialized = false;
+            static simd<T, N> s;
+            if (!initialized)
             {
-                s.data()[i] = static_cast<T>((i+1)*2);
+                for (int i = 0; i < N; ++i)
+                {
+                    s.data()[i] = static_cast<T>((i+1)*2);
+                }
+                initialized = true;
             }
             return s;
         }
@@ -268,22 +278,32 @@ namespace
     template<typename Alias, typename T, int N>
     struct arithmetic_simd_tests : public common_simd_tests<Alias, T, N>
     {
-        static simd<T, N> test_simd() noexcept
+        static const simd<T, N>& test_simd() noexcept
         {
-            simd<T, N> s;
-            for (int i = 0; i < N; ++i)
+            static bool initialized = false;
+            static simd<T, N> s;
+            if (!initialized)
             {
-                s.data()[i] = static_cast<T>((i+1) * (i%2==0 ? 1 : -1));
+                for (int i = 0; i < N; ++i)
+                {
+                    s.data()[i] = static_cast<T>((i+1) * (i%2==0 ? 1 : -1));
+                }
+                initialized = true;
             }
             return s;
         }
 
-        static simd<T, N> test_simd2() noexcept
+        static const simd<T, N>& test_simd2() noexcept
         {
-            simd<T, N> s;
-            for (int i = 0; i < N; ++i)
+            static bool initialized = false;
+            static simd<T, N> s;
+            if (!initialized)
             {
-                s.data()[i] = static_cast<T>((i+1) * 2 * (i%2==0 ? -1 : 1));
+                for (int i = 0; i < N; ++i)
+                {
+                    s.data()[i] = static_cast<T>((i+1)*2 * (i%2==0 ? -1 : 1));
+                }
+                initialized = true;
             }
             return s;
         }
@@ -595,9 +615,16 @@ namespace
         using arithmetic_simd_tests<Alias, T, N>::test_simd;
         using arithmetic_simd_tests<Alias, T, N>::test_simd2;
 
-        static simd<T, N> test_simd_abs() noexcept
+        static const simd<T, N>& test_simd_abs() noexcept
         {
-            return math::abs(test_simd());
+            static bool initialized = false;
+            static simd<T, N> s;
+            if (!initialized)
+            {
+                s = math::abs(test_simd());
+                initialized = true;
+            }
+            return s;
         }
 
         static void TEST_CASE_sin()
@@ -715,12 +742,17 @@ namespace
         using arithmetic_simd_tests<Alias, T, N>::test_simd;
         using arithmetic_simd_tests<Alias, T, N>::test_simd2;
 
-        static simd<T, N> test_simd_shift() noexcept
+        static const simd<T, N>& test_simd_shift() noexcept
         {
-            simd<T, N> s;
-            for (int i = 0; i < N; ++i)
+            static bool initialized = false;
+            static simd<T, N> s;
+            if (!initialized)
             {
-                s.data()[i] = i+1;
+                for (int i = 0; i < N; ++i)
+                {
+                    s.data()[i] = i+1;
+                }
+                initialized = true;
             }
             return s;
         }
