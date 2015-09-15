@@ -388,9 +388,6 @@ namespace tue
     template<typename T, int N>
     class alignas(sizeof(T) * N) simd
     {
-        template<typename U, int M>
-        friend class simd;
-
         std::enable_if_t<
             (is_sized_bool<T>::value
                 || (std::is_arithmetic<T>::value
