@@ -81,11 +81,11 @@ namespace tue
     /**/
     namespace detail_
     {
-        template<std::size_t Size> struct sized_bool_t;
-        template<> struct sized_bool_t<1> { using type = bool8; };
-        template<> struct sized_bool_t<2> { using type = bool16; };
-        template<> struct sized_bool_t<4> { using type = bool32; };
-        template<> struct sized_bool_t<8> { using type = bool64; };
+        template<std::size_t Size> struct sized_bool_utils;
+        template<> struct sized_bool_utils<1> { using type = bool8; };
+        template<> struct sized_bool_utils<2> { using type = bool16; };
+        template<> struct sized_bool_utils<4> { using type = bool32; };
+        template<> struct sized_bool_utils<8> { using type = bool64; };
     }
 
     /*!
@@ -95,7 +95,7 @@ namespace tue
      * \tparam Size  The desired sized boolean type size (in bytes).
      */
     template<std::size_t Size>
-    using sized_bool_t = typename detail_::sized_bool_t<Size>::type;
+    using sized_bool_t = typename detail_::sized_bool_utils<Size>::type;
 
     /*!
      * \brief     Checks if a type is a sized boolean type (`bool8`, `bool16`,

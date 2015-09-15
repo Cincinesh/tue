@@ -217,6 +217,32 @@ namespace
             }
         }
 
+        static void TEST_CASE_equal()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::equal(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<sized_bool_t<sizeof(T)>>(
+                        s1.data()[i] == s2.data()[i] ? ~0LL : 0LL));
+            }
+        }
+
+        static void TEST_CASE_not_equal()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::not_equal(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<sized_bool_t<sizeof(T)>>(
+                        s1.data()[i] != s2.data()[i] ? ~0LL : 0LL));
+            }
+        }
+
         static void run_all()
         {
             TEST_CASE_alias();
@@ -234,6 +260,8 @@ namespace
             TEST_CASE_equality_operator();
             TEST_CASE_inequality_operator();
             TEST_CASE_select();
+            TEST_CASE_equal();
+            TEST_CASE_not_equal();
         }
     };
 
@@ -488,6 +516,58 @@ namespace
             }
         }
 
+        static void TEST_CASE_less()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::less(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<sized_bool_t<sizeof(T)>>(
+                        s1.data()[i] < s2.data()[i] ? ~0LL : 0LL));
+            }
+        }
+
+        static void TEST_CASE_less_equal()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::less_equal(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<sized_bool_t<sizeof(T)>>(
+                        s1.data()[i] <= s2.data()[i] ? ~0LL : 0LL));
+            }
+        }
+
+        static void TEST_CASE_greater()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::greater(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<sized_bool_t<sizeof(T)>>(
+                        s1.data()[i] > s2.data()[i] ? ~0LL : 0LL));
+            }
+        }
+
+        static void TEST_CASE_greater_equal()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = math::greater_equal(s1, s2);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<sized_bool_t<sizeof(T)>>(
+                        s1.data()[i] >= s2.data()[i] ? ~0LL : 0LL));
+            }
+        }
+
         static void run_all()
         {
             common_simd_tests<Alias, T, N>::run_all();
@@ -510,6 +590,10 @@ namespace
             TEST_CASE_abs();
             TEST_CASE_min();
             TEST_CASE_max();
+            TEST_CASE_less();
+            TEST_CASE_less_equal();
+            TEST_CASE_greater();
+            TEST_CASE_greater_equal();
         }
     };
 
