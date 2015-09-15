@@ -353,22 +353,14 @@ namespace
             test_assert((s2 == test_simd()));
         }
 
-        template<typename U = T>
-        static std::enable_if_t<std::is_signed<U>::value>
-        TEST_CASE_unary_minus_operator()
+        static void TEST_CASE_unary_minus_operator()
         {
             const auto s1 = test_simd();
             const auto s2 = -s1;
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == -s1.data()[i]);
+                test_assert(s2.data()[i] == static_cast<T>(-s1.data()[i]));
             }
-        }
-
-        template<typename U = T>
-        static std::enable_if_t<!std::is_signed<U>::value>
-        TEST_CASE_unary_minus_operator()
-        {
         }
 
         static void TEST_CASE_pre_decrement_operator()
@@ -718,6 +710,195 @@ namespace
     };
 
     template<typename Alias, typename T, int N>
+    struct int_simd_tests : public arithmetic_simd_tests<Alias, T, N>
+    {
+        using arithmetic_simd_tests<Alias, T, N>::test_simd;
+        using arithmetic_simd_tests<Alias, T, N>::test_simd2;
+
+        static simd<T, N> test_simd_shift() noexcept
+        {
+            simd<T, N> s;
+            for (int i = 0; i < N; ++i)
+            {
+                s.data()[i] = i+1;
+            }
+            return s;
+        }
+
+        static void TEST_CASE_bitwise_not_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = ~s1;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == static_cast<T>(~s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_modulo_operator()
+        {
+            const auto s1 = test_simd2();
+            const auto s2 = test_simd();
+            const auto s3 = s1 % s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] % s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_and_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = s1 & s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] & s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_or_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = s1 | s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] | s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_xor_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            const auto s3 = s1 ^ s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] ^ s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_shift_left_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd_shift();
+            const auto s3 = s1 << s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] << s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_shift_right_operator()
+        {
+            const auto s1 = test_simd();
+            const auto s2 = test_simd_shift();
+            const auto s3 = s1 >> s2;
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s3.data()[i] ==
+                    static_cast<T>(s1.data()[i] >> s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_modulo_assignment_operator()
+        {
+            auto s1 = test_simd2();
+            const auto s2 = test_simd();
+            test_assert(&(s1 %= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd2().data()[i] % s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_and_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            test_assert(&(s1 &= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] & s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_or_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            test_assert(&(s1 |= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] | s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_xor_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd2();
+            test_assert(&(s1 ^= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] ^ s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_shift_left_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd_shift();
+            test_assert(&(s1 <<= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] << s2.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_bitwise_shift_right_assignment_operator()
+        {
+            auto s1 = test_simd();
+            const auto s2 = test_simd_shift();
+            test_assert(&(s1 >>= s2) == &s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] ==
+                    static_cast<T>(test_simd().data()[i] >> s2.data()[i]));
+            }
+        }
+
+        static void run_all()
+        {
+            arithmetic_simd_tests<Alias, T, N>::run_all();
+            TEST_CASE_bitwise_not_operator();
+            TEST_CASE_modulo_operator();
+            TEST_CASE_bitwise_and_operator();
+            TEST_CASE_bitwise_or_operator();
+            TEST_CASE_bitwise_xor_operator();
+            TEST_CASE_bitwise_shift_left_operator();
+            TEST_CASE_bitwise_shift_right_operator();
+            TEST_CASE_modulo_assignment_operator();
+            TEST_CASE_bitwise_and_assignment_operator();
+            TEST_CASE_bitwise_or_assignment_operator();
+            TEST_CASE_bitwise_xor_assignment_operator();
+            TEST_CASE_bitwise_shift_left_assignment_operator();
+            TEST_CASE_bitwise_shift_right_assignment_operator();
+        }
+    };
+
+    template<typename Alias, typename T, int N>
     struct bool_simd_tests : public common_simd_tests<Alias, T, N>
     {
         static void TEST_CASE_scalar_constructor()
@@ -777,7 +958,7 @@ namespace
 #define INT_SIMD_TEST_CASES(Alias, T, N) \
     TEST_CASE(Alias) \
     { \
-        arithmetic_simd_tests<Alias, T, N>::run_all(); \
+        int_simd_tests<Alias, T, N>::run_all(); \
     }
 
 #define BOOL_SIMD_TEST_CASES(Alias, T, N) \

@@ -642,8 +642,7 @@ namespace tue
      * \return    The unary minus of each component of `s`.
      */
     template<typename T, int N>
-    inline std::enable_if_t<std::is_signed<T>::value, simd<T, N>>
-    operator-(const simd<T, N>& s) noexcept
+    inline simd<T, N> operator-(const simd<T, N>& s) noexcept
     {
         return tue::detail_::unary_minus_operator_s(s);
     }
