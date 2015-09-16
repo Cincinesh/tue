@@ -87,12 +87,10 @@ namespace tue
 
         /*!
          * \brief       Explicitly casts a `vec4` to a `quat`.
-         * \tparam U    The component type of `xyzw`.
          * \param xyzw  The `vec` to cast from.
          */
-        template<typename U>
-        explicit constexpr quat(const vec4<U>& xyzw) noexcept :
-            impl_({{ T(xyzw[0]), T(xyzw[1]), T(xyzw[2]), T(xyzw[3]) }})
+        explicit constexpr quat(const vec4<T>& xyzw) noexcept :
+            impl_({{ xyzw[0], xyzw[1], xyzw[2], xyzw[3] }})
         {
         }
 

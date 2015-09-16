@@ -77,11 +77,11 @@ namespace
     TEST_CASE(vec4_constructor)
     {
         CONST_OR_CONSTEXPR dvec4 v(1.2, 3.4, 5.6, 7.8);
-        CONST_OR_CONSTEXPR fquat q(v);
-        test_assert(q[0] == 1.2f);
-        test_assert(q[1] == 3.4f);
-        test_assert(q[2] == 5.6f);
-        test_assert(q[3] == 7.8f);
+        CONST_OR_CONSTEXPR dquat q(v);
+        test_assert(q[0] == 1.2);
+        test_assert(q[1] == 3.4);
+        test_assert(q[2] == 5.6);
+        test_assert(q[3] == 7.8);
     }
 
     TEST_CASE(explicit_conversion_constructor)
