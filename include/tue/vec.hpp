@@ -222,8 +222,10 @@ namespace tue
         inline constexpr vec(const vec3<T>& xyz, const T& w) noexcept;
 
         /*!
-         * \brief     Truncates a larger `vec` with the same component type.
-         * \param v   The larger `vec` to truncate.
+         * \brief          Truncates a larger `vec` with the same component
+         *                 type.
+         * \tparam OtherN  The component count of `v`.
+         * \param v        The larger `vec` to truncate.
          */
         template<int OtherN, typename = std::enable_if_t<(OtherN > N)>>
         inline explicit constexpr vec(const vec<T, OtherN>& v) noexcept;
