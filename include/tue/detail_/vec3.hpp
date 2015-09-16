@@ -43,8 +43,8 @@ namespace tue
         {
         }
 
-        template<int OtherN, typename = std::enable_if_t<(OtherN > 3)>>
-        explicit constexpr vec(const vec<T, OtherN>& v) noexcept :
+        template<int VN, typename = std::enable_if_t<(VN > 3)>>
+        explicit constexpr vec(const vec<T, VN>& v) noexcept :
             impl_({{ v[0], v[1], v[2] }})
         {
         }
