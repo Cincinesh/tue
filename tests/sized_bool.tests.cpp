@@ -182,18 +182,36 @@ namespace
 
     TEST_CASE(select)
     {
-        constexpr auto x = math::select(
-            true32, std::int32_t(1));
-        constexpr auto y = math::select(
-            false32, std::int32_t(1));
-        constexpr auto z = math::select(
-            true32, std::int32_t(1), std::int32_t(2));
-        constexpr auto w = math::select(
-            false32, std::int32_t(1), std::int32_t(2));
-        test_assert(x == std::int32_t(1));
-        test_assert(y == std::int32_t(0));
-        test_assert(z == std::int32_t(1));
-        test_assert(w == std::int32_t(2));
+        const auto x = math::select(true32, 1);
+        const auto y = math::select(false32, 1);
+        const auto z = math::select(true32, 1, 2);
+        const auto w = math::select(false32, 1, 2);
+        test_assert(x == 1);
+        test_assert(y == 0);
+        test_assert(z == 1);
+        test_assert(w == 2);
+
+        const auto r = math::select(true32, 1.2f);
+        const auto g = math::select(false32, 1.2f);
+        const auto b = math::select(true32, 1.2f, 3.4f);
+        const auto a = math::select(false32, 1.2f, 3.4f);
+        test_assert(r == 1.2f);
+        test_assert(g == 0.0f);
+        test_assert(b == 1.2f);
+        test_assert(a == 3.4f);
+
+        const auto s = math::select(
+            true32, static_cast<bool32>(1));
+        const auto t = math::select(
+            false32, static_cast<bool32>(1));
+        const auto p = math::select(
+            true32, static_cast<bool32>(1), static_cast<bool32>(2));
+        const auto q = math::select(
+            false32, static_cast<bool32>(1), static_cast<bool32>(2));
+        test_assert(s == static_cast<bool32>(1));
+        test_assert(t == static_cast<bool32>(0));
+        test_assert(p == static_cast<bool32>(1));
+        test_assert(q == static_cast<bool32>(2));
     }
 
     TEST_CASE(equal)

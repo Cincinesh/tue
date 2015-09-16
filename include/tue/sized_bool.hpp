@@ -243,16 +243,46 @@ namespace tue
          *
          * \param condition  The condition.
          * \param value      The return value when condition is `true`.
+         *
+         * \return           `value` or `0` depending on `condition`.
+         */
+        template<typename T, typename U>
+        inline std::enable_if_t<
+            is_sized_bool<T>::value
+            && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+            && sizeof(U) == sizeof(T), U>
+        select(T condition, U value) noexcept
+        {
+            using V = std::underlying_type_t<T>;
+            const auto result =
+                V(condition) & reinterpret_cast<const V&>(value);
+            return reinterpret_cast<const U&>(result);
+        }
+
+        /*!
+         * \brief            Selects a return value based on `condition`.
+         *
+         * \tparam T         The condition type.
+         * \tparam U         The return type.
+         *
+         * \param condition  The condition.
+         * \param value      The return value when condition is `true`.
          * \param otherwise  The return value when condition is `false`.
          *
          * \return           `value` or `otherwise` depending on `condition`.
          */
         template<typename T, typename U>
-        inline constexpr std::enable_if_t<
-            is_sized_bool<T>::value && sizeof(T) == sizeof(U), U>
-        select(T condition, const U& value, const U& otherwise = U(0)) noexcept
+        inline std::enable_if_t<
+            is_sized_bool<T>::value
+            && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+            && sizeof(U) == sizeof(T), U>
+        select(T condition, U value, U otherwise) noexcept
         {
-            return condition ? value : otherwise;
+            using V = std::underlying_type_t<T>;
+            const auto result =
+                (V(condition) & reinterpret_cast<const V&>(value))
+                | (~V(condition) & reinterpret_cast<const V&>(otherwise));
+            return reinterpret_cast<const U&>(result);
         }
 
         /*!
