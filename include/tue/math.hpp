@@ -74,7 +74,7 @@ namespace tue
          * \param x   An angle (measured in radians).
          * \return    The cosine of `x`.
          */
-        template<typename T>
+        template<typename F>
         inline std::enable_if_t<std::is_floating_point<F>::value, F>
         cos(F x) noexcept
         {

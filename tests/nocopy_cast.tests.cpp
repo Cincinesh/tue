@@ -24,7 +24,7 @@ namespace
         {
         }
 
-        constexpr A(const A& other) noexcept :
+        A(const A& other) noexcept :
             was_copied(false)
         {
             other.was_copied = true;
