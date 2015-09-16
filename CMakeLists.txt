@@ -32,6 +32,7 @@ set(TUE_SOURCES
     include/tue/detail_/vec4.hpp
     include/tue/mat.hpp
     include/tue/math.hpp
+    include/tue/nocopy_cast.hpp
     include/tue/quat.hpp
     include/tue/simd.hpp
     include/tue/sized_bool.hpp
@@ -46,6 +47,7 @@ set(TUE_TEST_SOURCES
     tests/mat4xR.tests.cpp
     tests/matmult.tests.cpp
     tests/math.tests.cpp
+    tests/nocopy_cast.tests.cpp
     tests/quat.tests.cpp
     tests/simd.tests.cpp
     tests/sized_bool.tests.cpp
