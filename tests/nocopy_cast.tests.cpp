@@ -19,12 +19,12 @@ namespace
     {
         mutable bool was_copied;
 
-        A() noexcept :
+        constexpr A() noexcept :
             was_copied(false)
         {
         }
 
-        A(const A& other) noexcept :
+        constexpr A(const A& other) noexcept :
             was_copied(false)
         {
             other.was_copied = true;
@@ -35,23 +35,28 @@ namespace
     {
         B() = delete;
 
-        explicit B(const A&) noexcept
+        constexpr explicit B(const A&) noexcept
         {
         }
     };
 
     TEST_CASE(nocopy_cast_same_type)
     {
-        const A a;
-        const A& a2 = nocopy_cast<A>(a);
-        test_assert(&a2 == &a);
-        test_assert(!a.was_copied);
+        const A a1;
+        const A& a2 = nocopy_cast<A>(a1);
+        test_assert(&a2 == &a1);
+        test_assert(!a1.was_copied);
+
+        CONST_OR_CONSTEXPR A a3;
+        CONST_OR_CONSTEXPR B b1(a3);
+        CONST_OR_CONSTEXPR B b2 = nocopy_cast<B>(b1);
+        unused(b2);
     }
 
     TEST_CASE(nocopy_cast_different_type)
     {
-        const A a;
-        const B b = nocopy_cast<B>(a);
+        CONST_OR_CONSTEXPR A a;
+        CONST_OR_CONSTEXPR B b = nocopy_cast<B>(a);
         test_assert(!a.was_copied);
         unused(b);
     }

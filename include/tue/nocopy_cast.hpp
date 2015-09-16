@@ -24,7 +24,7 @@ namespace tue
      *            new value otherwise.
      */
     template<typename T, typename U>
-    std::enable_if_t<std::is_same<T, U>::value, const T&>
+    constexpr std::enable_if_t<std::is_same<T, U>::value, const T&>
     nocopy_cast(const U& x) noexcept
     {
         return x;
@@ -42,7 +42,7 @@ namespace tue
      *            new value otherwise.
      */
     template<typename T, typename U>
-    std::enable_if_t<!std::is_same<T, U>::value, T>
+    constexpr std::enable_if_t<!std::is_same<T, U>::value, T>
     nocopy_cast(const U& x) noexcept
     {
         return static_cast<T>(x);

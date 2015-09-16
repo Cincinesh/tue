@@ -12,6 +12,7 @@
 #include <utility>
 
 #include "../math.hpp"
+#include "../nocopy_cast.hpp"
 #include "../vec.hpp"
 
 namespace tue
@@ -1397,28 +1398,48 @@ namespace tue
             static constexpr vec<T, 4> create(
                 const X& x, const Y& y, const Z& z, const W& w) noexcept
             {
-                return { T(x), T(y), T(z), T(w) };
+                return {
+                    tue::nocopy_cast<T>(x),
+                    tue::nocopy_cast<T>(y),
+                    tue::nocopy_cast<T>(z),
+                    tue::nocopy_cast<T>(w),
+                };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec<T, 4> create(
                 const vec2<U>& v, const Z& z, const W& w) noexcept
             {
-                return { T(v[0]), T(v[1]), T(z), T(w) };
+                return {
+                    tue::nocopy_cast<T>(v[0]),
+                    tue::nocopy_cast<T>(v[1]),
+                    tue::nocopy_cast<T>(z),
+                    tue::nocopy_cast<T>(w),
+                };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec<T, 4> create(
                 const vec3<U>& v, const Z&, const W& w) noexcept
             {
-                return { T(v[0]), T(v[1]), T(v[2]), T(w) };
+                return {
+                    tue::nocopy_cast<T>(v[0]),
+                    tue::nocopy_cast<T>(v[1]),
+                    tue::nocopy_cast<T>(v[2]),
+                    tue::nocopy_cast<T>(w),
+                };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec<T, 4> create(
                 const vec<U, 4>& v, const Z&, const W&) noexcept
             {
-                return { T(v[0]), T(v[1]), T(v[2]), T(v[3]) };
+                return {
+                    tue::nocopy_cast<T>(v[0]),
+                    tue::nocopy_cast<T>(v[1]),
+                    tue::nocopy_cast<T>(v[2]),
+                    tue::nocopy_cast<T>(v[3]),
+                };
             }
         };
     }

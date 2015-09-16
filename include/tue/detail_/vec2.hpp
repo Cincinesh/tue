@@ -12,6 +12,7 @@
 #include <utility>
 
 #include "../math.hpp"
+#include "../nocopy_cast.hpp"
 #include "../vec.hpp"
 
 namespace tue
@@ -1033,28 +1034,40 @@ namespace tue
             static constexpr vec<T, 2> create(
                 const X& x, const Y& y, const Z&, const W&) noexcept
             {
-                return { T(x), T(y) };
+                return {
+                    tue::nocopy_cast<T>(x),
+                    tue::nocopy_cast<T>(y),
+                };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec<T, 2> create(
                 const vec<U, 2>& v, const Z&, const W&) noexcept
             {
-                return { T(v[0]), T(v[1]) };
+                return {
+                    tue::nocopy_cast<T>(v[0]),
+                    tue::nocopy_cast<T>(v[1]),
+                };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec<T, 2> create(
                 const vec3<U>& v, const Z&, const W&) noexcept
             {
-                return { T(v[0]), T(v[1]) };
+                return {
+                    tue::nocopy_cast<T>(v[0]),
+                    tue::nocopy_cast<T>(v[1]),
+                };
             }
 
             template<typename U, typename Z, typename W>
             static constexpr vec<T, 2> create(
                 const vec4<U>& v, const Z&, const W&) noexcept
             {
-                return { T(v[0]), T(v[1]) };
+                return {
+                    tue::nocopy_cast<T>(v[0]),
+                    tue::nocopy_cast<T>(v[1]),
+                };
             }
         };
     }
