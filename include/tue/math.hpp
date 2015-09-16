@@ -13,9 +13,6 @@
 #include <cstdlib>
 #include <type_traits>
 
-/*!
- * \brief The Tuesday namespace.
- */
 namespace tue
 {
     /**/
@@ -36,11 +33,14 @@ namespace tue
             tue::detail_::pow_promote_t<U, T>()));
     }
 
-    /*!
-     * \brief Math functions.
-     */
+    /**/
     namespace math
     {
+        /*!
+         * \defgroup  math_hpp math.hpp
+         * @{
+         */
+
         /*!
          * \brief     Computes the sine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
@@ -493,5 +493,7 @@ namespace tue
         {
             return lhs != rhs;
         }
+
+        /*/!@}*/
     }
 }

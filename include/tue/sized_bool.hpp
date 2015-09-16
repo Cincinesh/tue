@@ -8,12 +8,21 @@
 
 #pragma once
 
+/*!
+ * \defgroup  sized_bool_hpp sized_bool.hpp
+ */
+
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>
 
 namespace tue
 {
+    /*!
+     * \addtogroup  sized_bool_hpp
+     * @{
+     */
+
     /*!
      * \brief  An 8-bit boolean value.
      */
@@ -107,12 +116,19 @@ namespace tue
      */
     template<typename T>
     struct is_sized_bool;
+
+    /*!@}*/
 }
 
 #include "detail_/is_sized_bool.hpp"
 
 namespace tue
 {
+    /*!
+     * \addtogroup  sized_bool_hpp
+     * @{
+     */
+
     /*!
      * \brief     Computes the bitwise NOT of `b`.
      * \tparam T  The type of parameter 'b'.
@@ -232,9 +248,14 @@ namespace tue
         return lhs = lhs ^ rhs;
     }
 
-    /**/
+    /*!@}*/
     namespace math
     {
+        /*!
+         * \addtogroup  sized_bool_hpp
+         * @{
+         */
+
         /*!
          * \brief            Selects a return value based on `condition`.
          *
@@ -319,5 +340,7 @@ namespace tue
         {
             return lhs != rhs;
         }
+
+        /*!@}*/
     }
 }

@@ -11,6 +11,11 @@
 namespace tue
 {
     /*!
+     * \defgroup  unused_hpp unused.hpp
+     * @{
+     */
+
+    /*!
      * \brief        Suppresses unused variable warnings.
      * \tparam Args  The parameter types with reference qualifiers removed.
      */
@@ -18,4 +23,6 @@ namespace tue
     inline void unused(Args&&...) noexcept
     {
     }
+
+    /*!@}*/
 }

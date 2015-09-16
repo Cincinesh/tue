@@ -8,6 +8,10 @@
 
 #pragma once
 
+/*!
+ * \defgroup  simd_hpp simd.hpp
+ */
+
 #include <cstdint>
 #include <type_traits>
 
@@ -18,6 +22,11 @@ static_assert(sizeof(double) == 8, "double is not 64-bits wide");
 
 namespace tue
 {
+    /*!
+     * \addtogroup  simd_hpp
+     * @{
+     */
+
     /*!
      * \brief     An `N`-component SIMD vector.
      * \details   `simd` has the same size requirements as `T[N]` and its
@@ -378,13 +387,18 @@ namespace tue
      * \brief  An 8-component SIMD vector with `bool64` components.
      */
     using bool64x8 = simd8<bool64>;
+
+    /*!@}*/
 }
 
 #include "detail_/simd2.hpp"
 
 namespace tue
 {
-    /**/
+    /*!
+     * \addtogroup  simd_hpp
+     * @{
+     */
     template<typename T, int N>
     class alignas(sizeof(T) * N) simd
     {
@@ -571,12 +585,19 @@ namespace tue
             return this->impl_[0].data();
         }
     };
+
+    /*!@}*/
 }
 
 #include "detail_/simdN.hpp"
 
 namespace tue
 {
+    /*!
+     * \addtogroup  simd_hpp
+     * @{
+     */
+
     /*!
      * \brief     Computes the unary plus of each component of `s`.
      *
@@ -1120,9 +1141,14 @@ namespace tue
         return tue::detail_::inequality_operator_ss(lhs, rhs);
     }
 
-    /**/
+    /*!@}*/
     namespace math
     {
+        /*!
+         * \addtogroup  simd_hpp
+         * @{
+         */
+
         /*!
          * \brief     Computes `tue::math::sin()` for each component of `s`.
          * \details   The results may not match `tue::math::sin()` exactly, but
@@ -1537,5 +1563,7 @@ namespace tue
         {
             return tue::detail_::not_equal_ss(lhs, rhs);
         }
+
+        /*!@}*/
     }
 }

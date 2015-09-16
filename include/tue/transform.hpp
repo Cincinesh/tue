@@ -19,12 +19,13 @@
 
 namespace tue
 {
-    /*!
-     * \brief  Functions for generating and converting between different types
-     *         of transformations.
-     */
     namespace transform
     {
+        /*!
+         * \defgroup  transform_hpp transform.hpp
+         * @{
+         */
+
         /*!
          * \brief     Converts a rotation vector to an axis-angle vector.
          * \details   If the rotation vector's length is `0`, returns
@@ -916,5 +917,7 @@ namespace tue
 
                 0, 0, 0, 1);
         }
+
+        /*!@}*/
     }
 }

@@ -8,6 +8,10 @@
 
 #pragma once
 
+/*!
+ * \defgroup  vec_hpp vec.hpp
+ */
+
 #include <type_traits>
 #include <utility>
 
@@ -20,6 +24,11 @@ namespace tue
 
     template<typename T>
     class quat;
+
+    /*!
+     * \addtogroup  vec_hpp
+     * @{
+     */
 
     /*!
      * \brief     An `N`-dimensional vector.
@@ -947,7 +956,7 @@ namespace tue
         inline vec<T, N>& operator>>=(const vec<U, N>& v) noexcept;
     };
 
-    /**/
+    /*!@}*/
     namespace detail_
     {
         template<typename T, int N>
@@ -959,8 +968,16 @@ namespace tue
 #include "detail_/vec3.hpp"
 #include "detail_/vec4.hpp"
 
+#define shift_left <<
+#define shift_right >> // Because ">>" inside template args confuses Doxygen
+
 namespace tue
 {
+    /*!
+     * \addtogroup  vec_hpp
+     * @{
+     */
+
     /*!
      * \brief     Computes the unary plus of each component of `v`.
      *
@@ -1507,9 +1524,6 @@ namespace tue
         return tue::detail_::bitwise_xor_operator_vv(lhs, rhs);
     }
 
-#define shift_left <<
-#define shift_right >> // Because ">>" inside template args confuses Doxygen
-
     /*!
      * \brief      Computes the bitwise shifts left of `lhs` by each component
      *             of `rhs`.
@@ -1638,9 +1652,6 @@ namespace tue
         return tue::detail_::bitwise_shift_right_operator_vv(lhs, rhs);
     }
 
-#undef shift_right
-#undef shift_left
-
     /*!
      * \brief      Determines whether or not two `vec`'s compare equal.
      *
@@ -1681,9 +1692,14 @@ namespace tue
         return tue::detail_::inequality_operator_vv(lhs, rhs);
     }
 
-    /**/
+    /*!@}*/
     namespace math
     {
+        /*!
+         * \addtogroup  vec_hpp
+         * @{
+         */
+
         /*!
          * \brief     Computes `tue::math::sin()` for each component of `v`.
          *
@@ -2201,5 +2217,10 @@ namespace tue
         {
             return v / tue::math::length(v);
         }
+
+        /*!@}*/
     }
 }
+
+#undef shift_right
+#undef shift_left

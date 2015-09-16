@@ -13,6 +13,11 @@
 namespace tue
 {
     /*!
+     * \defgroup  nocopy_cast_hpp nocopy_cast.hpp
+     * @{
+     */
+
+    /*!
      * \brief     Casts `x` to type `T`, avoiding a copy if possible.
      *
      * \tparam T  The return type.
@@ -47,4 +52,6 @@ namespace tue
     {
         return static_cast<T>(x);
     }
+
+    /*!@}*/
 }

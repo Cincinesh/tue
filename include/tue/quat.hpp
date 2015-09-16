@@ -8,6 +8,10 @@
 
 #pragma once
 
+/*!
+ * \defgroup  quat_hpp quat.hpp
+ */
+
 #include <utility>
 
 #include "math.hpp"
@@ -15,6 +19,11 @@
 
 namespace tue
 {
+    /*!
+     * \addtogroup  quat_hpp
+     * @{
+     */
+
     /*!
      * \brief     A quaternion.
      * \details   `quat` has the same size and alignment requirements as `T[4]`.
@@ -515,9 +524,14 @@ namespace tue
             || lhs[3] != rhs[3];
     }
 
-    /**/
+    /*!@}*/
     namespace math
     {
+        /*!
+         * \addtogroup  quat_hpp
+         * @{
+         */
+
         /*!
          * \brief     Computes a normalized copy of `q`.
          * \tparam T  The component type of `q`.
@@ -549,5 +563,7 @@ namespace tue
         {
             return { -q[0], -q[1], -q[2], q[3] };
         }
+
+        /*!@}*/
     }
 }

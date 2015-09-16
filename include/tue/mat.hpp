@@ -8,6 +8,10 @@
 
 #pragma once
 
+/*!
+ * \defgroup  mat_hpp mat.hpp
+ */
+
 #include <type_traits>
 #include <utility>
 
@@ -16,6 +20,11 @@
 
 namespace tue
 {
+    /*!
+     * \addtogroup  mat_hpp
+     * @{
+     */
+
     /*!
      * \brief     A 2-dimensional matrix.
      * \details   `mat`'s are laid out in column-major order. They have the same
@@ -679,7 +688,7 @@ namespace tue
         inline mat<T, C, R>& operator>>=(const mat<U, C, R>& m) noexcept;
     };
 
-    /**/
+    /*!@}*/
     namespace detail_
     {
         template<typename T, int C, int R>
@@ -692,8 +701,16 @@ namespace tue
 #include "detail_/mat4xR.hpp"
 #include "detail_/matmult.hpp"
 
+#define shift_left <<
+#define shift_right >> // Because ">>" inside template args confuses Doxygen
+
 namespace tue
 {
+    /*!
+     * \addtogroup  mat_hpp
+     * @{
+     */
+
     /*!
      * \brief     Computes the unary plus of each column of `m`.
      *
@@ -1306,9 +1323,6 @@ namespace tue
         return tue::detail_::bitwise_xor_operator_mm(lhs, rhs);
     }
 
-#define shift_left <<
-#define shift_right >> // Because ">>" inside template args confuses Doxygen
-
     /*!
      * \brief      Computes the bitwise shifts left of `lhs` by each column of
      *             `rhs`.
@@ -1443,9 +1457,6 @@ namespace tue
         return tue::detail_::bitwise_shift_right_operator_mm(lhs, rhs);
     }
 
-#undef shift_right
-#undef shift_left
-
     /*!
      * \brief      Determines whether or not two `mat`'s compare equal.
      *
@@ -1488,9 +1499,14 @@ namespace tue
         return tue::detail_::inequality_operator_mm(lhs, rhs);
     }
 
-    /**/
+    /*!@}*/
     namespace math
     {
+        /*!
+         * \addtogroup  mat_hpp
+         * @{
+         */
+
         /*!
          * \brief     Computes `tue::math::sin()` for each column of `m`.
          *
@@ -1983,5 +1999,10 @@ namespace tue
         {
             return tue::detail_::transpose_m(m);
         }
+
+        /*!@}*/
     }
 }
+
+#undef shift_right
+#undef shift_left
