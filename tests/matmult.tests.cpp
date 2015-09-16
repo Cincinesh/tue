@@ -38,14 +38,14 @@ namespace
         { 24.1, 24.2, 24.3, 24.4 },
     };
 
-    CONST_OR_CONSTEXPR dmat4x3 dm43(fm44);
-    CONST_OR_CONSTEXPR dmat4x2 dm42(fm44);
-    CONST_OR_CONSTEXPR dmat3x4 dm34(fm44);
-    CONST_OR_CONSTEXPR dmat3x3 dm33(fm44);
-    CONST_OR_CONSTEXPR dmat3x2 dm32(fm44);
-    CONST_OR_CONSTEXPR dmat2x4 dm24(fm44);
-    CONST_OR_CONSTEXPR dmat2x3 dm23(fm44);
-    CONST_OR_CONSTEXPR dmat2x2 dm22(fm44);
+    CONST_OR_CONSTEXPR dmat4x3 dm43(dm44);
+    CONST_OR_CONSTEXPR dmat4x2 dm42(dm44);
+    CONST_OR_CONSTEXPR dmat3x4 dm34(dm44);
+    CONST_OR_CONSTEXPR dmat3x3 dm33(dm44);
+    CONST_OR_CONSTEXPR dmat3x2 dm32(dm44);
+    CONST_OR_CONSTEXPR dmat2x4 dm24(dm44);
+    CONST_OR_CONSTEXPR dmat2x3 dm23(dm44);
+    CONST_OR_CONSTEXPR dmat2x2 dm22(dm44);
 
     CONST_OR_CONSTEXPR fvec4 fv4(11.1f, 11.2f, 11.3f, 11.4f);
     CONST_OR_CONSTEXPR fvec3 fv3(fv4);

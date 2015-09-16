@@ -221,11 +221,9 @@ namespace tue
         /*!
          * \brief     Constructs each component along the main diagonal with the
          *            same value, and all other components with `0`.
-         * \tparam U  The type of parameter `x`.
          * \param x   The value to construct the main diagonal with.
          */
-        template<typename U>
-        inline explicit constexpr mat(const U& x) noexcept;
+        inline explicit constexpr mat(const T& x) noexcept;
 
         /*!
          * \brief     Constructs a `mat` with the given columns.
@@ -267,8 +265,7 @@ namespace tue
             const vec<T, R>& c3) noexcept;
 
         /*!
-         * \brief      Explicitly casts another `mat` to a new size and/or
-         *             component type.
+         * \brief      Explicitly casts another `mat` to a new size.
          * \details    If the new `mat` is larger than `m` in either dimension,
          *             the new components without corresponding components in
          *             `m` will be constructed with `1` along the main diagonal
@@ -276,17 +273,14 @@ namespace tue
          *             dimension, the components from `m` without corresponding
          *             components in the new `mat` will be ignored.
          *
-         * \tparam MT  The component type of `m`.
          * \tparam MR  The row count of `m`.
-         *
          * \param m    The `mat` to cast from.
          */
-        template<typename MT, int MR>
-        inline explicit constexpr mat(const mat<MT, 2, MR>& m) noexcept;
+        template<int MR>
+        inline explicit constexpr mat(const mat<T, 2, MR>& m) noexcept;
 
         /*!
-         * \brief      Explicitly casts another `mat` to a new size and/or
-         *             component type.
+         * \brief      Explicitly casts another `mat` to a new size.
          * \details    If the new `mat` is larger than `m` in either dimension,
          *             the new components without corresponding components in
          *             `m` will be constructed with `1` along the main diagonal
@@ -294,17 +288,14 @@ namespace tue
          *             dimension, the components from `m` without corresponding
          *             components in the new `mat` will be ignored.
          *
-         * \tparam MT  The component type of `m`.
          * \tparam MR  The row count of `m`.
-         *
          * \param m    The `mat` to cast from.
          */
-        template<typename MT, int MR>
-        inline explicit constexpr mat(const mat<MT, 3, MR>& m) noexcept;
+        template<int MR>
+        inline explicit constexpr mat(const mat<T, 3, MR>& m) noexcept;
 
         /*!
-         * \brief      Explicitly casts another `mat` to a new size and/or
-         *             component type.
+         * \brief      Explicitly casts another `mat` to a new size.
          * \details    If the new `mat` is larger than `m` in either dimension,
          *             the new components without corresponding components in
          *             `m` will be constructed with `1` along the main diagonal
@@ -312,13 +303,19 @@ namespace tue
          *             dimension, the components from `m` without corresponding
          *             components in the new `mat` will be ignored.
          *
-         * \tparam MT  The component type of `m`.
          * \tparam MR  The row count of `m`.
-         *
          * \param m    The `mat` to cast from.
          */
-        template<typename MT, int MR>
-        inline explicit constexpr mat(const mat<MT, 4, MR>& m) noexcept;
+        template<int MR>
+        inline explicit constexpr mat(const mat<T, 4, MR>& m) noexcept;
+
+        /*!
+         * \brief     Explicitly casts another `mat` to a new component type.
+         * \tparam U  The component type of `m`.
+         * \param m   The `mat` to cast from.
+         */
+        template<typename U>
+        inline explicit constexpr mat(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Implicitly casts this `mat` to a new component type.

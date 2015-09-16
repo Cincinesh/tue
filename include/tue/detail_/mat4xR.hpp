@@ -32,8 +32,7 @@ namespace tue
 
         mat() noexcept = default;
 
-        template<typename U>
-        explicit constexpr mat(const U& x) noexcept :
+        explicit constexpr mat(const T& x) noexcept :
             impl_({{
                 tue::detail_::vec_utils<T, R>::create(x, 0, 0, 0),
                 tue::detail_::vec_utils<T, R>::create(0, x, 0, 0),
@@ -52,8 +51,8 @@ namespace tue
         {
         }
 
-        template<typename MT, int MR>
-        explicit constexpr mat(const mat<MT, 2, MR>& m) noexcept :
+        template<int MR>
+        explicit constexpr mat(const mat<T, 2, MR>& m) noexcept :
             impl_({{
                 tue::detail_::vec_utils<T, R>::create(m[0], 0, 0),
                 tue::detail_::vec_utils<T, R>::create(m[1], 0, 0),
@@ -63,8 +62,8 @@ namespace tue
         {
         }
 
-        template<typename MT, int MR>
-        explicit constexpr mat(const mat<MT, 3, MR>& m) noexcept :
+        template<int MR>
+        explicit constexpr mat(const mat<T, 3, MR>& m) noexcept :
             impl_({{
                 tue::detail_::vec_utils<T, R>::create(m[0], 0, 0),
                 tue::detail_::vec_utils<T, R>::create(m[1], 0, 0),
@@ -74,13 +73,24 @@ namespace tue
         {
         }
 
-        template<typename MT, int MR>
-        explicit constexpr mat(const mat<MT, 4, MR>& m) noexcept :
+        template<int MR>
+        explicit constexpr mat(const mat<T, 4, MR>& m) noexcept :
             impl_({{
                 tue::detail_::vec_utils<T, R>::create(m[0], 0, 0),
                 tue::detail_::vec_utils<T, R>::create(m[1], 0, 0),
                 tue::detail_::vec_utils<T, R>::create(m[2], 1, 0),
                 tue::detail_::vec_utils<T, R>::create(m[3], 0, 1),
+            }})
+        {
+        }
+
+        template<typename U>
+        explicit constexpr mat(const mat<U, 4, R>& m) noexcept :
+            impl_({{
+                vec<T, R>(m[0]),
+                vec<T, R>(m[1]),
+                vec<T, R>(m[2]),
+                vec<T, R>(m[3]),
             }})
         {
         }

@@ -309,49 +309,58 @@ namespace
         test_assert(dm44[3] == dvec4(4.1, 4.2, 4.3, 4.4));
     }
 
-    TEST_CASE(mat2xR_explicit_conversion_constructor)
+    TEST_CASE(mat2xR_conversion_constructor)
     {
-        CONST_OR_CONSTEXPR fmat4x2 m1(dm24);
-        test_assert(m1[0] == fvec2(dm24[0]));
-        test_assert(m1[1] == fvec2(dm24[1]));
-        test_assert(m1[2] == fvec2(0.0f, 0.0f));
-        test_assert(m1[3] == fvec2(0.0f, 0.0f));
+        CONST_OR_CONSTEXPR dmat4x2 m1(dm24);
+        test_assert(m1[0] == dvec2(dm24[0]));
+        test_assert(m1[1] == dvec2(dm24[1]));
+        test_assert(m1[2] == dvec2(0.0, 0.0));
+        test_assert(m1[3] == dvec2(0.0, 0.0));
 
-        CONST_OR_CONSTEXPR fmat4x4 m2(dm22);
-        test_assert(m2[0] == fvec4(fvec2(dm22[0]), 0.0f, 0.0f));
-        test_assert(m2[1] == fvec4(fvec2(dm22[1]), 0.0f, 0.0f));
-        test_assert(m2[2] == fvec4(0.0f, 0.0f, 1.0f, 0.0f));
-        test_assert(m2[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
+        CONST_OR_CONSTEXPR dmat4x4 m2(dm22);
+        test_assert(m2[0] == dvec4(dm22[0], 0.0, 0.0));
+        test_assert(m2[1] == dvec4(dm22[1], 0.0, 0.0));
+        test_assert(m2[2] == dvec4(0.0, 0.0, 1.0, 0.0));
+        test_assert(m2[3] == dvec4(0.0, 0.0, 0.0, 1.0));
     }
 
-    TEST_CASE(mat3xR_explicit_conversion_constructor)
+    TEST_CASE(mat3xR_conversion_constructor)
     {
-        CONST_OR_CONSTEXPR fmat4x2 m1(dm34);
-        test_assert(m1[0] == fvec2(dm34[0]));
-        test_assert(m1[1] == fvec2(dm34[1]));
-        test_assert(m1[2] == fvec2(dm34[2]));
-        test_assert(m1[3] == fvec2(0.0f, 0.0f));
+        CONST_OR_CONSTEXPR dmat4x2 m1(dm34);
+        test_assert(m1[0] == dvec2(dm34[0]));
+        test_assert(m1[1] == dvec2(dm34[1]));
+        test_assert(m1[2] == dvec2(dm34[2]));
+        test_assert(m1[3] == dvec2(0.0, 0.0));
 
-        CONST_OR_CONSTEXPR fmat4x4 m2(dm32);
-        test_assert(m2[0] == fvec4(fvec2(dm32[0]), 0.0f, 0.0f));
-        test_assert(m2[1] == fvec4(fvec2(dm32[1]), 0.0f, 0.0f));
-        test_assert(m2[2] == fvec4(fvec2(dm32[2]), 1.0f, 0.0f));
-        test_assert(m2[3] == fvec4(0.0f, 0.0f, 0.0f, 1.0f));
+        CONST_OR_CONSTEXPR dmat4x4 m2(dm32);
+        test_assert(m2[0] == dvec4(dm32[0], 0.0, 0.0));
+        test_assert(m2[1] == dvec4(dm32[1], 0.0, 0.0));
+        test_assert(m2[2] == dvec4(dm32[2], 1.0, 0.0));
+        test_assert(m2[3] == dvec4(0.0, 0.0, 0.0, 1.0));
     }
 
-    TEST_CASE(mat4xR_explicit_conversion_constructor)
+    TEST_CASE(mat4xR_conversion_constructor)
     {
-        CONST_OR_CONSTEXPR fmat4x2 m1(dm44);
-        test_assert(m1[0] == fvec2(dm44[0]));
-        test_assert(m1[1] == fvec2(dm44[1]));
-        test_assert(m1[2] == fvec2(dm44[2]));
-        test_assert(m1[3] == fvec2(dm44[3]));
+        CONST_OR_CONSTEXPR dmat4x2 m1(dm44);
+        test_assert(m1[0] == dvec2(dm44[0]));
+        test_assert(m1[1] == dvec2(dm44[1]));
+        test_assert(m1[2] == dvec2(dm44[2]));
+        test_assert(m1[3] == dvec2(dm44[3]));
 
-        CONST_OR_CONSTEXPR fmat4x4 m2(dm42);
-        test_assert(m2[0] == fvec4(fvec2(dm42[0]), 0.0f, 0.0f));
-        test_assert(m2[1] == fvec4(fvec2(dm42[1]), 0.0f, 0.0f));
-        test_assert(m2[2] == fvec4(fvec2(dm42[2]), 1.0f, 0.0f));
-        test_assert(m2[3] == fvec4(fvec2(dm42[3]), 0.0f, 1.0f));
+        CONST_OR_CONSTEXPR dmat4x4 m2(dm42);
+        test_assert(m2[0] == dvec4(dm42[0], 0.0, 0.0));
+        test_assert(m2[1] == dvec4(dm42[1], 0.0, 0.0));
+        test_assert(m2[2] == dvec4(dm42[2], 1.0, 0.0));
+        test_assert(m2[3] == dvec4(dm42[3], 0.0, 1.0));
+    }
+
+    TEST_CASE(explicit_conversion_constructor)
+    {
+        CONST_OR_CONSTEXPR fmat4x2 m(dm42);
+        test_assert(m[0] == fvec2(dm42[0]));
+        test_assert(m[1] == fvec2(dm42[1]));
+        test_assert(m[2] == fvec2(dm42[2]));
+        test_assert(m[3] == fvec2(dm42[3]));
     }
 
     TEST_CASE(implicit_conversion_operator)

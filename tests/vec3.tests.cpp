@@ -79,10 +79,10 @@ namespace
 
     TEST_CASE(scalar_constructor)
     {
-        CONST_OR_CONSTEXPR fvec3 v(1.2);
-        test_assert(v[0] == 1.2f);
-        test_assert(v[1] == 1.2f);
-        test_assert(v[2] == 1.2f);
+        CONST_OR_CONSTEXPR dvec3 v(1.2);
+        test_assert(v[0] == 1.2);
+        test_assert(v[1] == 1.2);
+        test_assert(v[2] == 1.2);
     }
 
     TEST_CASE(individual_components_constructor)
@@ -101,21 +101,22 @@ namespace
         test_assert(v[2] == 5.6);
     }
 
-    TEST_CASE(vec3_explicit_conversion_constructor)
+    TEST_CASE(truncate_constructor)
+    {
+        CONST_OR_CONSTEXPR dvec4 v1(1.2, 3.4, 5.6, 7.8);
+        CONST_OR_CONSTEXPR dvec3 v2(v1);
+        test_assert(v2[0] == 1.2);
+        test_assert(v2[1] == 3.4);
+        test_assert(v2[2] == 5.6);
+    }
+
+    TEST_CASE(explicit_conversion_constructor)
     {
         CONST_OR_CONSTEXPR dvec3 dv(1.2, 3.4, 5.6);
         CONST_OR_CONSTEXPR fvec3 fv(dv);
         test_assert(fv[0] == 1.2f);
         test_assert(fv[1] == 3.4f);
         test_assert(fv[2] == 5.6f);
-    }
-
-    TEST_CASE(vec4_explicit_conversion_constructor)
-    {
-        CONST_OR_CONSTEXPR dvec4 dv(1.2, 3.4, 5.6, 7.8);
-        CONST_OR_CONSTEXPR fvec2 fv(dv);
-        test_assert(fv[0] == 1.2f);
-        test_assert(fv[1] == 3.4f);
     }
 
     TEST_CASE(implicit_conversion_operator)

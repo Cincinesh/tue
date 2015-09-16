@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <type_traits>
 #include <utility>
 
 #include "../math.hpp"
@@ -27,9 +28,8 @@ namespace tue
 
         vec() noexcept = default;
 
-        template<typename U>
-        explicit constexpr vec(const U& x) noexcept :
-            impl_({{ T(x), T(x) }})
+        explicit constexpr vec(const T& x) noexcept :
+            impl_({{ x, x }})
         {
         }
 
@@ -38,20 +38,14 @@ namespace tue
         {
         }
 
+        template<int OtherN, typename = std::enable_if_t<(OtherN > 2)>>
+        explicit constexpr vec(const vec<T, OtherN>& v) noexcept :
+            impl_({{ v[0], v[1] }})
+        {
+        }
+
         template<typename U>
         explicit constexpr vec(const vec<U, 2>& v) noexcept :
-            impl_({{ T(v[0]), T(v[1]) }})
-        {
-        }
-
-        template<typename U>
-        explicit constexpr vec(const vec<U, 3>& v) noexcept :
-            impl_({{ T(v[0]), T(v[1]) }})
-        {
-        }
-
-        template<typename U>
-        explicit constexpr vec(const vec<U, 4>& v) noexcept :
             impl_({{ T(v[0]), T(v[1]) }})
         {
         }
