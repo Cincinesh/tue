@@ -373,14 +373,22 @@ namespace
             test_assert((s2 == test_simd()));
         }
 
-        static void TEST_CASE_unary_minus_operator()
+        template<typename U = T>
+        static std::enable_if_t<std::is_signed<U>::value>
+        TEST_CASE_unary_minus_operator()
         {
             const auto s1 = test_simd();
             const auto s2 = -s1;
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == static_cast<T>(-s1.data()[i]));
+                test_assert(s2.data()[i] == -s1.data()[i]);
             }
+        }
+
+        template<typename U = T>
+        static std::enable_if_t<!std::is_signed<U>::value>
+        TEST_CASE_unary_minus_operator()
+        {
         }
 
         static void TEST_CASE_pre_decrement_operator()
