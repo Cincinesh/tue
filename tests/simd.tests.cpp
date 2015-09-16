@@ -91,6 +91,44 @@ namespace
             unused(s);
         }
 
+        static void TEST_CASE_scalar_constructor()
+        {
+            const simd<T, N> s(static_cast<T>(12LL));
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s.data()[i] == static_cast<T>(12LL));
+            }
+        }
+
+        template<int M = N>
+        static std::enable_if_t<M == 2> TEST_CASE_component_constructor()
+        {
+            const simd<T, N> s = { static_cast<T>(12LL), static_cast<T>(34LL) };
+            test_assert(s.data()[0] == static_cast<T>(12LL));
+            test_assert(s.data()[1] == static_cast<T>(34LL));
+        }
+
+        template<int M = N>
+        static std::enable_if_t<M == 4> TEST_CASE_component_constructor()
+        {
+            const simd<T, N> s = {
+                static_cast<T>(12LL),
+                static_cast<T>(34LL),
+                static_cast<T>(56LL),
+                static_cast<T>(78LL),
+            };
+
+            test_assert(s.data()[0] == static_cast<T>(12LL));
+            test_assert(s.data()[1] == static_cast<T>(34LL));
+            test_assert(s.data()[2] == static_cast<T>(56LL));
+            test_assert(s.data()[3] == static_cast<T>(78LL));
+        }
+
+        template<int M = N>
+        static std::enable_if_t<(M > 4)> TEST_CASE_component_constructor()
+        {
+        }
+
         static void TEST_CASE_zero()
         {
             const auto s = simd<T, N>::zero();
@@ -261,6 +299,8 @@ namespace
             TEST_CASE_component_type();
             TEST_CASE_component_count();
             TEST_CASE_default_constructor();
+            TEST_CASE_scalar_constructor();
+            TEST_CASE_component_constructor();
             TEST_CASE_zero();
             TEST_CASE_load();
             TEST_CASE_loadu();
@@ -306,44 +346,6 @@ namespace
                 initialized = true;
             }
             return s;
-        }
-
-        static void TEST_CASE_scalar_constructor()
-        {
-            const simd<T, N> s(1.2L);
-            for (int i = 0; i < N; ++i)
-            {
-                test_assert(s.data()[i] == static_cast<T>(1.2L));
-            }
-        }
-
-        template<int M = N>
-        static std::enable_if_t<M == 2> TEST_CASE_component_constructor()
-        {
-            const simd<T, N> s = { static_cast<T>(1.2L), static_cast<T>(3.4L) };
-            test_assert(s.data()[0] == static_cast<T>(1.2L));
-            test_assert(s.data()[1] == static_cast<T>(3.4L));
-        }
-
-        template<int M = N>
-        static std::enable_if_t<M == 4> TEST_CASE_component_constructor()
-        {
-            const simd<T, N> s = {
-                static_cast<T>(1.2L),
-                static_cast<T>(3.4L),
-                static_cast<T>(5.6L),
-                static_cast<T>(7.8L),
-            };
-
-            test_assert(s.data()[0] == static_cast<T>(1.2L));
-            test_assert(s.data()[1] == static_cast<T>(3.4L));
-            test_assert(s.data()[2] == static_cast<T>(5.6L));
-            test_assert(s.data()[3] == static_cast<T>(7.8L));
-        }
-
-        template<int M = N>
-        static std::enable_if_t<(M > 4)> TEST_CASE_component_constructor()
-        {
         }
 
         // TODO: Explicit cast tests
@@ -591,8 +593,6 @@ namespace
         static void run_all()
         {
             common_simd_tests<Alias, T, N>::run_all();
-            TEST_CASE_scalar_constructor();
-            TEST_CASE_component_constructor();
             TEST_CASE_unary_plus_operator();
             TEST_CASE_pre_increment_operator();
             TEST_CASE_post_increment_operator();
@@ -941,51 +941,11 @@ namespace
     template<typename Alias, typename T, int N>
     struct bool_simd_tests : public common_simd_tests<Alias, T, N>
     {
-        static void TEST_CASE_scalar_constructor()
-        {
-            const simd<T, N> s(static_cast<T>(12LL));
-            for (int i = 0; i < N; ++i)
-            {
-                test_assert(s.data()[i] == static_cast<T>(12LL));
-            }
-        }
-
-        template<int M = N>
-        static std::enable_if_t<M == 2> TEST_CASE_component_constructor()
-        {
-            const simd<T, N> s = { static_cast<T>(12LL), static_cast<T>(34LL) };
-            test_assert(s.data()[0] == static_cast<T>(12LL));
-            test_assert(s.data()[1] == static_cast<T>(34LL));
-        }
-
-        template<int M = N>
-        static std::enable_if_t<M == 4> TEST_CASE_component_constructor()
-        {
-            const simd<T, N> s = {
-                static_cast<T>(12LL),
-                static_cast<T>(34LL),
-                static_cast<T>(56LL),
-                static_cast<T>(78LL),
-            };
-
-            test_assert(s.data()[0] == static_cast<T>(12LL));
-            test_assert(s.data()[1] == static_cast<T>(34LL));
-            test_assert(s.data()[2] == static_cast<T>(56LL));
-            test_assert(s.data()[3] == static_cast<T>(78LL));
-        }
-
-        template<int M = N>
-        static std::enable_if_t<(M > 4)> TEST_CASE_component_constructor()
-        {
-        }
-
         // TODO: Explicit cast tests
 
         static void run_all()
         {
             common_simd_tests<Alias, T, N>::run_all();
-            TEST_CASE_scalar_constructor();
-            TEST_CASE_component_constructor();
         }
     };
 

@@ -419,14 +419,9 @@ namespace tue
 
         /*!
          * \brief     Constructs each component with the same value.
-         * \tparam U  The type of parameter `x`.
          * \param x   The value to construct each component with.
          */
-        template<
-            typename U,
-            typename = std::enable_if_t<
-                !is_sized_bool<T>::value || std::is_same<T, U>::value>>
-        explicit simd(const U& x) noexcept
+        explicit simd(T x) noexcept
         {
             const auto y = simd<T, N/2>(x);
             this->impl_[0] = y;
@@ -466,7 +461,9 @@ namespace tue
          * \tparam U  The component type of `s`.
          * \param s   The `simd` to cast from.
          */
-        template<typename U>
+        template<
+            typename U,
+            typename = std::enable_if_t<sizeof(U) == sizeof(T)>>
         explicit simd(const simd<U, N>& s) noexcept
         {
             const auto simpl = reinterpret_cast<const simd<U, N/2>*>(&s);

@@ -35,15 +35,10 @@ namespace tue
 
         simd() noexcept = default;
 
-        template<
-            typename U,
-            typename = std::enable_if_t<
-                !is_sized_bool<T>::value || std::is_same<T, U>::value>>
-        explicit simd(const U& x) noexcept
+        explicit simd(const T& x) noexcept
         {
-            const auto y = static_cast<T>(x);
-            this->data_[0] = y;
-            this->data_[1] = y;
+            this->data_[0] = x;
+            this->data_[1] = x;
         }
 
         simd(T x, T y) noexcept
@@ -52,7 +47,9 @@ namespace tue
             this->data_[1] = y;
         }
 
-        template<typename U>
+        template<
+            typename U,
+            typename = std::enable_if_t<sizeof(U) == sizeof(T)>>
         explicit simd(const simd<U, 2>& s) noexcept
         {
             const auto sdata = reinterpret_cast<const U*>(&s);
