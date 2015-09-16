@@ -13,7 +13,8 @@
 namespace tue
 {
     /*!
-     * \defgroup  nocopy_cast_hpp nocopy_cast.hpp
+     * \defgroup  nocopy_cast_hpp <tue/nocopy_cast.hpp>
+     * \brief     The `nocopy_cast<T>()` function template.
      * @{
      */
 
@@ -39,16 +40,16 @@ namespace tue
      * \brief     Casts `x` to type `T`, avoiding a copy if possible.
      *
      * \tparam T  The return type.
-     * \tparam U  The type of parameter `x`.
+     * \tparam V  The type of parameter `x`.
      *
      * \param x   The value to cast.
      *
      * \return    A const reference to `x` if `x` is already of type `T`. The
      *            new value otherwise.
      */
-    template<typename T, typename U>
-    constexpr std::enable_if_t<!std::is_same<T, U>::value, T>
-    nocopy_cast(const U& x) noexcept
+    template<typename T, typename V>
+    constexpr std::enable_if_t<!std::is_same<T, V>::value, T>
+    nocopy_cast(const V& x) noexcept
     {
         return static_cast<T>(x);
     }

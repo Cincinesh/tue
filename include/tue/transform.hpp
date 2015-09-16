@@ -22,7 +22,9 @@ namespace tue
     namespace transform
     {
         /*!
-         * \defgroup  transform_hpp transform.hpp
+         * \defgroup  transform_hpp <tue/transform.hpp>
+         * \brief     Functions for generating and converting between different
+         *            types of transformations.
          * @{
          */
 

@@ -22,7 +22,8 @@ namespace tue
     class quat;
 
     /*!
-     * \defgroup  vec_hpp vec.hpp
+     * \defgroup  vec_hpp <tue/vec.hpp>
+     * \brief     The `vec` class template and its associate functions.
      * @{
      */
 

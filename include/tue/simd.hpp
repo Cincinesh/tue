@@ -19,7 +19,8 @@ static_assert(sizeof(double) == 8, "double is not 64-bits wide");
 namespace tue
 {
     /*!
-     * \defgroup  simd_hpp simd.hpp
+     * \defgroup  simd_hpp <tue/simd.hpp>
+     * \brief     The `simd` class template and its associated functions.
      * @{
      */
 
