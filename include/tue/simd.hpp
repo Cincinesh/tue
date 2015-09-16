@@ -8,22 +8,18 @@
 
 #pragma once
 
-/*!
- * \defgroup  simd_hpp simd.hpp
- */
+static_assert(sizeof(float) == 4, "float is not 32-bits wide");
+static_assert(sizeof(double) == 8, "double is not 64-bits wide");
 
 #include <cstdint>
 #include <type_traits>
 
 #include "sized_bool.hpp"
 
-static_assert(sizeof(float) == 4, "float is not 32-bits wide");
-static_assert(sizeof(double) == 8, "double is not 64-bits wide");
-
 namespace tue
 {
     /*!
-     * \addtogroup  simd_hpp
+     * \defgroup  simd_hpp simd.hpp
      * @{
      */
 

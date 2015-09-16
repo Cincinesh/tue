@@ -8,10 +8,6 @@
 
 #pragma once
 
-/*!
- * \defgroup  vec_hpp vec.hpp
- */
-
 #include <type_traits>
 #include <utility>
 
@@ -26,7 +22,7 @@ namespace tue
     class quat;
 
     /*!
-     * \addtogroup  vec_hpp
+     * \defgroup  vec_hpp vec.hpp
      * @{
      */
 

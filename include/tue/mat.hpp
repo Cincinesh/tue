@@ -8,10 +8,6 @@
 
 #pragma once
 
-/*!
- * \defgroup  mat_hpp mat.hpp
- */
-
 #include <type_traits>
 #include <utility>
 
@@ -21,7 +17,7 @@
 namespace tue
 {
     /*!
-     * \addtogroup  mat_hpp
+     * \defgroup  mat_hpp mat.hpp
      * @{
      */
 

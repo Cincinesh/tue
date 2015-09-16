@@ -182,6 +182,7 @@ namespace
 
     TEST_CASE(select)
     {
+        static_assert(sizeof(int) == 4, "int is not 32-bits wide");
         const auto x = math::select(true32, 1);
         const auto y = math::select(false32, 1);
         const auto z = math::select(true32, 1, 2);
@@ -191,6 +192,7 @@ namespace
         test_assert(z == 1);
         test_assert(w == 2);
 
+        static_assert(sizeof(float) == 4, "float is not 32-bits wide");
         const auto r = math::select(true32, 1.2f);
         const auto g = math::select(false32, 1.2f);
         const auto b = math::select(true32, 1.2f, 3.4f);

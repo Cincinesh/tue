@@ -8,10 +8,6 @@
 
 #pragma once
 
-/*!
- * \defgroup  quat_hpp quat.hpp
- */
-
 #include <utility>
 
 #include "math.hpp"
@@ -20,7 +16,7 @@
 namespace tue
 {
     /*!
-     * \addtogroup  quat_hpp
+     * \defgroup  quat_hpp quat.hpp
      * @{
      */
 

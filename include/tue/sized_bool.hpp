@@ -8,10 +8,6 @@
 
 #pragma once
 
-/*!
- * \defgroup  sized_bool_hpp sized_bool.hpp
- */
-
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>
@@ -19,7 +15,7 @@
 namespace tue
 {
     /*!
-     * \addtogroup  sized_bool_hpp
+     * \defgroup  sized_bool_hpp sized_bool.hpp
      * @{
      */
 
