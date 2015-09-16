@@ -9,6 +9,7 @@
 #include <tue/simd.hpp>
 #include <mon/test_case.hpp>
 
+#include <cstddef>
 #include <cstdint>
 #include <type_traits>
 #include <tue/math.hpp>
@@ -19,18 +20,47 @@ namespace
 {
     using namespace tue;
 
+    template<std::size_t Size> struct sized_float_utils;
+    template<> struct sized_float_utils<4> { using type = float; };
+    template<> struct sized_float_utils<8> { using type = double; };
+
+    template<std::size_t Size> struct sized_int_utils;
+    template<> struct sized_int_utils<1> { using type = std::int8_t; };
+    template<> struct sized_int_utils<2> { using type = std::int16_t; };
+    template<> struct sized_int_utils<4> { using type = std::int32_t; };
+    template<> struct sized_int_utils<8> { using type = std::int64_t; };
+
+    template<std::size_t Size> struct sized_uint_utils;
+    template<> struct sized_uint_utils<1> { using type = std::uint8_t; };
+    template<> struct sized_uint_utils<2> { using type = std::uint16_t; };
+    template<> struct sized_uint_utils<4> { using type = std::uint32_t; };
+    template<> struct sized_uint_utils<8> { using type = std::uint64_t; };
+
+    template<std::size_t Size>
+    using sized_float_t = typename sized_float_utils<Size>::type;
+
+    template<std::size_t Size>
+    using sized_int_t = typename sized_int_utils<Size>::type;
+
+    template<std::size_t Size>
+    using sized_uint_t = typename sized_uint_utils<Size>::type;
+
+    /*
+     * Common SIMD Tests
+     */
     template<typename Alias, typename T, int N>
     struct common_simd_tests
     {
-        static const simd<T, N>& test_simd() noexcept
+        template<typename U = T>
+        static const simd<U, N>& test_simd() noexcept
         {
             static bool initialized = false;
-            static simd<T, N> s;
+            static simd<U, N> s;
             if (!initialized)
             {
                 for (int i = 0; i < N; ++i)
                 {
-                    s.data()[i] = static_cast<T>(i+1);
+                    s.data()[i] = static_cast<U>(i+1);
                 }
                 initialized = true;
             }
@@ -126,6 +156,62 @@ namespace
 
         template<int M = N>
         static std::enable_if_t<(M > 4)> TEST_CASE_component_constructor()
+        {
+        }
+
+        template<typename U = T>
+        static std::enable_if_t<(sizeof(U) >= 4) && !is_sized_bool<U>::value>
+        TEST_CASE_explicit_cast_from_float_simd()
+        {
+            const auto s1 = test_simd<sized_float_t<sizeof(T)>>();
+            const simd<T, N> s2(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
+            }
+        }
+
+        template<typename U = T>
+        static std::enable_if_t<(sizeof(U) < 4) || is_sized_bool<U>::value>
+        TEST_CASE_explicit_cast_from_float_simd()
+        {
+        }
+
+        static void TEST_CASE_explicit_cast_from_int_simd()
+        {
+            const auto s1 = test_simd<sized_int_t<sizeof(T)>>();
+            const simd<T, N> s2(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
+            }
+        }
+
+        static void TEST_CASE_explicit_cast_from_uint_simd()
+        {
+            const auto s1 = test_simd<sized_uint_t<sizeof(T)>>();
+            const simd<T, N> s2(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
+            }
+        }
+
+        template<typename U = T>
+        static std::enable_if_t<!std::is_floating_point<U>::value>
+        TEST_CASE_explicit_cast_from_bool_simd()
+        {
+            const auto s1 = test_simd<sized_bool_t<sizeof(T)>>();
+            const simd<T, N> s2(s1);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
+            }
+        }
+
+        template<typename U = T>
+        static std::enable_if_t<std::is_floating_point<U>::value>
+        TEST_CASE_explicit_cast_from_bool_simd()
         {
         }
 
@@ -301,6 +387,10 @@ namespace
             TEST_CASE_default_constructor();
             TEST_CASE_scalar_constructor();
             TEST_CASE_component_constructor();
+            TEST_CASE_explicit_cast_from_float_simd();
+            TEST_CASE_explicit_cast_from_int_simd();
+            TEST_CASE_explicit_cast_from_uint_simd();
+            TEST_CASE_explicit_cast_from_bool_simd();
             TEST_CASE_zero();
             TEST_CASE_load();
             TEST_CASE_loadu();
@@ -315,6 +405,9 @@ namespace
         }
     };
 
+    /*
+     * Arithmetic SIMD Tests
+     */
     template<typename Alias, typename T, int N>
     struct arithmetic_simd_tests : public common_simd_tests<Alias, T, N>
     {
@@ -347,8 +440,6 @@ namespace
             }
             return s;
         }
-
-        // TODO: Explicit cast tests
 
         static void TEST_CASE_unary_plus_operator()
         {
@@ -617,6 +708,9 @@ namespace
         }
     };
 
+    /*
+     * Floating-point SIMD Tests
+     */
     template<typename Alias, typename T, int N>
     struct float_simd_tests : public arithmetic_simd_tests<Alias, T, N>
     {
@@ -744,6 +838,9 @@ namespace
         }
     };
 
+    /*
+     * Integral SIMD Tests
+     */
     template<typename Alias, typename T, int N>
     struct int_simd_tests : public arithmetic_simd_tests<Alias, T, N>
     {
@@ -938,17 +1035,6 @@ namespace
         }
     };
 
-    template<typename Alias, typename T, int N>
-    struct bool_simd_tests : public common_simd_tests<Alias, T, N>
-    {
-        // TODO: Explicit cast tests
-
-        static void run_all()
-        {
-            common_simd_tests<Alias, T, N>::run_all();
-        }
-    };
-
 #define FLOAT_SIMD_TEST_CASES(Alias, T, N) \
     TEST_CASE(Alias) \
     { \
@@ -964,7 +1050,7 @@ namespace
 #define BOOL_SIMD_TEST_CASES(Alias, T, N) \
     TEST_CASE(Alias) \
     { \
-        bool_simd_tests<Alias, T, N>::run_all(); \
+        common_simd_tests<Alias, T, N>::run_all(); \
     }
 
     FLOAT_SIMD_TEST_CASES(float32x2, float, 2)
