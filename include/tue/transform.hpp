@@ -25,6 +25,51 @@ namespace tue
          * \defgroup  transform_hpp <tue/transform.hpp>
          * \brief     Functions for generating and converting between different
          *            types of transformations.
+         *
+         * \details   This library has a few different ways of representing
+         *            3-dimensional rotations specifically:
+         *            - <b>An axis-angle pair</b><br/>
+         *              An axis-angle pair is just as the name implies: it's a
+         *              rotation around a given axis. It can be represented by
+         *              three scalars (the axis) and a fourth scalar (the angle)
+         *              or by a `vec3` (the axis) and a scalar (the angle). All
+         *              functions which take an axis-angle pair as their
+         *              arguments assume the axis is normalized and the angle is
+         *              measured in radians counter-clockwise around the axis.
+         *            - <b>An axis-angle vector</b><br/>
+         *              An axis-angle vector is just an axis-angle pair grouped
+         *              together into a single `vec4`. The first three
+         *              components make up the axis and the fourth component
+         *              represents the angle.
+         *            - <b>A rotation vector</b><br/>
+         *              There are a couple ways to think about a rotation
+         *              vector. It's represented by three separate scalars or a
+         *              single `vec3`. You could imagine it as a more-compact
+         *              verison of an axis-angle pair: its direction represents
+         *              the axis of rotation and its magnitude the angle (again,
+         *              radians counter-clockwise around the axis). You could
+         *              also imagine it as the composite of three separate
+         *              rotations with each component representing an angle
+         *              around the corresponding principal axis. Rotation
+         *              vectors are most useful when rotations need to be
+         *              interpolated and/or multiplied, such as when
+         *              representing angular velocity.
+         *            - <b>A rotation quaternion</b><br/>
+         *              A rotation quaternion is a little more complicated. It's
+         *              a four-component composite type (a `quat`). It's kind of
+         *              like an axis-angle vector, but the entire vector is
+         *              assumed to be normalized instead of just the axis. This
+         *              is achieved by multiplying the normalized axis by
+         *              `sin(angle/2)` and storing `cos(angle/2)` instead of the
+         *              angle itself in the fourth component. Rotation
+         *              quaternions are best used when representing an
+         *              orientation in 3-dimensional space or when composing
+         *              multiple rotations into one.
+         *            - <b>A rotation matrix</b><br/>
+         *              A rotation matrix is just a specific type of
+         *              transformation matrix that can rotate vectors using
+         *              matrix multiplication. It's useful for composing with
+         *              other types of transformation matrices.
          * @{
          */
 
