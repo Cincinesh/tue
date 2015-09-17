@@ -1,5 +1,5 @@
-The Tuesday C++ Math and Template Library
-=========================================
+The Tuesday C++ Vector Math and Template Library
+================================================
 The Tuesday C++ Vector Math and Template Library is a library of template
 classes and math functions with a focus on physics and graphics applications.
 It provides data types commonly used in games and other simulations such as
