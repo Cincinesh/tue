@@ -117,7 +117,7 @@ void SimdUpdatePoses(
 
 Documentation
 -------------
-http://cincinesh.github.io/tue/1.0/docs/modules.html
+http://cincinesh.github.io/tue/master/docs/modules.html
 
 Testing
 -------
