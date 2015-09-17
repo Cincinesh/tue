@@ -97,7 +97,8 @@ void UpdatePose(
 {
     translation += linearVelocity * deltaTime;
     rotation *= transform::rotation_quat(angularVelocity * deltaTime);
-    matrix = transform::pose_mat<float, 3, 4>(translation, rotation);
+    matrix = transform::rotation_mat<float, 3, 3>(rotation)
+        * transform::translation_mat<float, 3, 4>(translation);
 }
 
 void SimdUpdatePoses(
@@ -111,7 +112,8 @@ void SimdUpdatePoses(
     const float32x4 deltaTimes(deltaTime);
     translations += linearVelocities * deltaTimes;
     rotations *= transform::rotation_quat(angularVelocities * deltaTimes);
-    matrices = transform::pose_mat<float32x4, 3, 4>(translations, rotations);
+    matrices = transform::rotation_mat<float32x4, 3, 3>(rotations)
+        * transform::translation_mat<float32x4, 3, 4>(translations);
 }
 ~~~
 
