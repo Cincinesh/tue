@@ -78,7 +78,7 @@ the root of this project is on your include path. For GCC and Clang, you might
 have to provide the compiler option `-std=c++14` or higher as well.
 
 Here's a small usage example:
-```c++
+~~~{.cpp}
 #include <tue/mat.hpp>
 #include <tue/quat.hpp>
 #include <tue/simd.hpp>
@@ -115,7 +115,7 @@ void SimdUpdatePoses(
     matrices = transform::rotation_mat<float32x4, 3, 3>(rotations)
         * transform::translation_mat<float32x4, 3, 4>(translations);
 }
-```
+~~~
 
 Documentation
 -------------
