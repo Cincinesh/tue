@@ -38,7 +38,9 @@ set(TUE_SOURCES
     include/tue/sized_bool.hpp
     include/tue/transform.hpp
     include/tue/unused.hpp
-    include/tue/vec.hpp)
+    include/tue/vec.hpp
+    index.md
+    README.md)
 
 # tue.tests
 set(TUE_TEST_SOURCES
