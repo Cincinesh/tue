@@ -832,19 +832,6 @@ namespace
         test_assert(m == mat4x2<int>(~im42[0], ~im42[1], ~im42[2], ~im42[3]));
     }
 
-    TEST_CASE(logical_not_operator)
-    {
-        CONST_OR_CONSTEXPR mat4x2<int> m1 = {
-            { 0, 1 },
-            { 2, 0 },
-            { 0, 3 },
-            { 4, 0 },
-        };
-
-        CONST_OR_CONSTEXPR auto m2 = !m1;
-        test_assert(m2 == mat4x2<bool>(!m1[0], !m1[1], !m1[2], !m1[3]));
-    }
-
     TEST_CASE(addition_operator)
     {
         CONST_OR_CONSTEXPR auto m1 = 12 + dm42;

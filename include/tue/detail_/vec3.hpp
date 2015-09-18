@@ -518,13 +518,6 @@ namespace tue
             return { ~v[0], ~v[1], ~v[2] };
         }
 
-        template<typename T>
-        inline constexpr vec<decltype(!std::declval<T>()), 3>
-        logical_not_operator_v(const vec<T, 3>& v) noexcept
-        {
-            return { !v[0], !v[1], !v[2] };
-        }
-
         template<typename T, typename U>
         inline constexpr vec<decltype(
             std::declval<T>() + std::declval<U>()), 3>

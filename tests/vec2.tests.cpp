@@ -430,12 +430,6 @@ namespace
         test_assert(v == ivec2(~1, ~2));
     }
 
-    TEST_CASE(logical_not_operator)
-    {
-        CONST_OR_CONSTEXPR auto v = !ivec2(0, 1);
-        test_assert(v == vec2<bool>(!0, !1));
-    }
-
     TEST_CASE(addition_operator)
     {
         CONST_OR_CONSTEXPR auto v1 = 1 + dvec2(2.3, 4.5);

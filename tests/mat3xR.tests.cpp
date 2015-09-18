@@ -751,18 +751,6 @@ namespace
         test_assert(m == mat3x2<int>(~im32[0], ~im32[1], ~im32[2]));
     }
 
-    TEST_CASE(logical_not_operator)
-    {
-        CONST_OR_CONSTEXPR mat3x2<int> m1 = {
-            { 0, 1 },
-            { 2, 0 },
-            { 0, 3 },
-        };
-
-        CONST_OR_CONSTEXPR auto m2 = !m1;
-        test_assert(m2 == mat3x2<bool>(!m1[0], !m1[1], !m1[2]));
-    }
-
     TEST_CASE(addition_operator)
     {
         CONST_OR_CONSTEXPR auto m1 = 12 + dm32;

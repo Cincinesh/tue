@@ -674,17 +674,6 @@ namespace
         test_assert(m == mat2x2<int>(~im22[0], ~im22[1]));
     }
 
-    TEST_CASE(logical_not_operator)
-    {
-        CONST_OR_CONSTEXPR mat2x2<int> m1 = {
-            { 0, 1 },
-            { 2, 0 },
-        };
-
-        CONST_OR_CONSTEXPR auto m2 = !m1;
-        test_assert(m2 == mat2x2<bool>(!m1[0], !m1[1]));
-    }
-
     TEST_CASE(addition_operator)
     {
         CONST_OR_CONSTEXPR auto m1 = 12 + dm22;

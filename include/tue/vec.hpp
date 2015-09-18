@@ -1012,23 +1012,6 @@ namespace tue
     }
 
     /*!
-     * \brief     Computes the logical NOT of each component of `v`.
-     *
-     * \tparam T  The component type of `v`.
-     * \tparam N  The component count of `v`.
-     *
-     * \param v   A `vec`.
-     *
-     * \return    The logical NOT of each component of `v`.
-     */
-    template<typename T, int N>
-    inline constexpr vec<decltype(!std::declval<T>()), N>
-    operator!(const vec<T, N>& v) noexcept
-    {
-        return tue::detail_::logical_not_operator_v(v);
-    }
-
-    /*!
      * \brief      Computes the sums of `lhs` and each component of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.

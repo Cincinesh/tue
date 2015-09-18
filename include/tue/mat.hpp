@@ -763,24 +763,6 @@ namespace tue
     }
 
     /*!
-     * \brief     Computes the logical NOT of each column of `m`.
-     *
-     * \tparam T  The component type of `m`.
-     * \tparam C  The column count of `m`.
-     * \tparam R  The row count of `m`.
-     *
-     * \param m   A `mat`.
-     *
-     * \return    The logical NOT of each column of `m`.
-     */
-    template<typename T, int C, int R>
-    inline constexpr mat<decltype(!std::declval<T>()), C, R>
-    operator!(const mat<T, C, R>& m) noexcept
-    {
-        return tue::detail_::logical_not_operator_m(m);
-    }
-
-    /*!
      * \brief      Computes the sums of `lhs` and each column of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.

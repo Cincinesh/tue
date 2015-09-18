@@ -389,13 +389,6 @@ namespace tue
             return { ~m[0], ~m[1] };
         }
 
-        template<typename T, int R>
-        inline constexpr mat<decltype(!std::declval<T>()), 2, R>
-        logical_not_operator_m(const mat<T, 2, R>& m) noexcept
-        {
-            return { !m[0], !m[1] };
-        }
-
         template<typename T, typename U, int R>
         inline constexpr mat<decltype(
             std::declval<T>() + std::declval<U>()), 2, R>
