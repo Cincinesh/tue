@@ -41,6 +41,7 @@ set(TUE_SOURCES
     include/tue/unused.hpp
     include/tue/vec.hpp
     Doxyfile
+    LICENSE_1_0.txt
     README.md)
 
 # tue.tests
