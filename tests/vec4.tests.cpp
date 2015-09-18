@@ -1107,42 +1107,42 @@ namespace
 
     TEST_CASE(less)
     {
-        CONST_OR_CONSTEXPR auto v = math::less(
+        const auto v = math::less(
             dvec4(1.0, 2.0, 3.0, 4.0), dvec4(2.1, 2.0, 1.9, 1.8));
         test_assert(v == vec4<bool64>(true64, false64, false64, false64));
     }
 
     TEST_CASE(less_equal)
     {
-        CONST_OR_CONSTEXPR auto v = math::less_equal(
+        const auto v = math::less_equal(
             dvec4(1.0, 2.0, 3.0, 4.0), dvec4(2.1, 2.0, 1.9, 1.8));
         test_assert(v == vec4<bool64>(true64, true64, false64, false64));
     }
 
     TEST_CASE(greater)
     {
-        CONST_OR_CONSTEXPR auto v = math::greater(
+        const auto v = math::greater(
             dvec4(1.0, 2.0, 3.0, 4.0), dvec4(2.1, 2.0, 1.9, 1.8));
         test_assert(v == vec4<bool64>(false64, false64, true64, true64));
     }
 
     TEST_CASE(greater_equal)
     {
-        CONST_OR_CONSTEXPR auto v = math::greater_equal(
+        const auto v = math::greater_equal(
             dvec4(1.0, 2.0, 3.0, 4.0), dvec4(2.1, 2.0, 1.9, 1.8));
         test_assert(v == vec4<bool64>(false64, true64, true64, true64));
     }
 
     TEST_CASE(equal)
     {
-        CONST_OR_CONSTEXPR auto v = math::equal(
+        const auto v = math::equal(
             dvec4(1.0, 2.0, 3.0, 4.0), dvec4(2.1, 2.0, 1.9, 1.8));
         test_assert(v == vec4<bool64>(false64, true64, false64, false64));
     }
 
     TEST_CASE(not_equal)
     {
-        CONST_OR_CONSTEXPR auto v = math::not_equal(
+        const auto v = math::not_equal(
             dvec4(1.0, 2.0, 3.0, 4.0), dvec4(2.1, 2.0, 1.9, 1.8));
         test_assert(v == vec4<bool64>(true64, false64, true64, true64));
     }

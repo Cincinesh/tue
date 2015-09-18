@@ -28,7 +28,6 @@ namespace
     TEST_CASE(sincos)
     {
         double s, c;
-
         math::sincos(1.2, s, c);
         test_assert(s == std::sin(1.2));
         test_assert(c == std::cos(1.2));
@@ -119,79 +118,53 @@ namespace
 
     TEST_CASE(less)
     {
-        constexpr auto x = math::less(1, 2);
-        constexpr auto y = math::less(2, 2);
-        constexpr auto z = math::less(3, 2);
-        test_assert(x == true32);
-        test_assert(y == false32);
-        test_assert(z == false32);
+        test_assert(math::less(1, 2) == true32);
+        test_assert(math::less(2, 2) == false32);
+        test_assert(math::less(3, 2) == false32);
     }
 
     TEST_CASE(less_equal)
     {
-        constexpr auto x = math::less_equal(1, 2);
-        constexpr auto y = math::less_equal(2, 2);
-        constexpr auto z = math::less_equal(3, 2);
-        test_assert(x == true32);
-        test_assert(y == true32);
-        test_assert(z == false32);
+        test_assert(math::less_equal(1, 2) == true32);
+        test_assert(math::less_equal(2, 2) == true32);
+        test_assert(math::less_equal(3, 2) == false32);
     }
 
     TEST_CASE(greater)
     {
-        constexpr auto x = math::greater(1, 2);
-        constexpr auto y = math::greater(2, 2);
-        constexpr auto z = math::greater(3, 2);
-        test_assert(x == false32);
-        test_assert(y == false32);
-        test_assert(z == true32);
+        test_assert(math::greater(1, 2) == false32);
+        test_assert(math::greater(2, 2) == false32);
+        test_assert(math::greater(3, 2) == true32);
     }
 
     TEST_CASE(greater_equal)
     {
-        constexpr auto x = math::greater_equal(1, 2);
-        constexpr auto y = math::greater_equal(2, 2);
-        constexpr auto z = math::greater_equal(3, 2);
-        test_assert(x == false32);
-        test_assert(y == true32);
-        test_assert(z == true32);
+        test_assert(math::greater_equal(1, 2) == false32);
+        test_assert(math::greater_equal(2, 2) == true32);
+        test_assert(math::greater_equal(3, 2) == true32);
     }
 
     TEST_CASE(equal)
     {
-        constexpr auto x = math::equal(1, 2);
-        constexpr auto y = math::equal(2, 2);
-        constexpr auto z = math::equal(3, 2);
-        test_assert(x == false32);
-        test_assert(y == true32);
-        test_assert(z == false32);
+        test_assert(math::equal(1, 2) == false32);
+        test_assert(math::equal(2, 2) == true32);
+        test_assert(math::equal(3, 2) == false32);
 
-        constexpr auto tt = math::equal(true32, true32);
-        constexpr auto tf = math::equal(true32, false32);
-        constexpr auto ft = math::equal(false32, true32);
-        constexpr auto ff = math::equal(false32, false32);
-        test_assert(tt == true32);
-        test_assert(tf == false32);
-        test_assert(ft == false32);
-        test_assert(ff == true32);
+        test_assert(math::equal(true32, true32) == true32);
+        test_assert(math::equal(true32, false32) == false32);
+        test_assert(math::equal(false32, true32) == false32);
+        test_assert(math::equal(false32, false32) == true32);
     }
 
     TEST_CASE(not_equal)
     {
-        constexpr auto x = math::not_equal(1, 2);
-        constexpr auto y = math::not_equal(2, 2);
-        constexpr auto z = math::not_equal(3, 2);
-        test_assert(x == true32);
-        test_assert(y == false32);
-        test_assert(z == true32);
+        test_assert(math::not_equal(1, 2) == true32);
+        test_assert(math::not_equal(2, 2) == false32);
+        test_assert(math::not_equal(3, 2) == true32);
 
-        constexpr auto tt = math::not_equal(true32, true32);
-        constexpr auto tf = math::not_equal(true32, false32);
-        constexpr auto ft = math::not_equal(false32, true32);
-        constexpr auto ff = math::not_equal(false32, false32);
-        test_assert(tt == false32);
-        test_assert(tf == true32);
-        test_assert(ft == true32);
-        test_assert(ff == false32);
+        test_assert(math::not_equal(true32, true32) == false32);
+        test_assert(math::not_equal(true32, false32) == true32);
+        test_assert(math::not_equal(false32, true32) == true32);
+        test_assert(math::not_equal(false32, false32) == false32);
     }
 }

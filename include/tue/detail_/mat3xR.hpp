@@ -1017,7 +1017,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::less(std::declval<T>(), std::declval<T>())),
             3, R>
         less_mm(
@@ -1031,7 +1031,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::less_equal(std::declval<T>(), std::declval<T>())),
             3, R>
         less_equal_mm(
@@ -1045,7 +1045,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::greater(std::declval<T>(), std::declval<T>())),
             3, R>
         greater_mm(
@@ -1059,7 +1059,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::greater_equal(std::declval<T>(), std::declval<T>())),
             3, R>
         greater_equal_mm(
@@ -1073,7 +1073,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::equal(std::declval<T>(), std::declval<T>())),
             3, R>
         equal_mm(
@@ -1087,7 +1087,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::not_equal(std::declval<T>(), std::declval<T>())),
             3, R>
         not_equal_mm(

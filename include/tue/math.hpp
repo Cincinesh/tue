@@ -293,7 +293,7 @@ namespace tue
          *             otherwise (where `X` is the number of bits in `T`).
          */
         template<typename T>
-        inline constexpr std::enable_if_t<
+        inline std::enable_if_t<
             std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
         less(T lhs, T rhs) noexcept
         {
@@ -315,7 +315,7 @@ namespace tue
          *             `T`).
          */
         template<typename T>
-        inline constexpr std::enable_if_t<
+        inline std::enable_if_t<
             std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
         less_equal(T lhs, T rhs) noexcept
         {
@@ -335,7 +335,7 @@ namespace tue
          *             otherwise (where `X` is the number of bits in `T`).
          */
         template<typename T>
-        inline constexpr std::enable_if_t<
+        inline std::enable_if_t<
             std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
         greater(T lhs, T rhs) noexcept
         {
@@ -357,7 +357,7 @@ namespace tue
          *             `T`).
          */
         template<typename T>
-        inline constexpr std::enable_if_t<
+        inline std::enable_if_t<
             std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
         greater_equal(T lhs, T rhs) noexcept
         {
@@ -377,7 +377,7 @@ namespace tue
          *             (where `X` is the number of bits in `T`).
          */
         template<typename T>
-        inline constexpr std::enable_if_t<
+        inline std::enable_if_t<
             std::is_arithmetic<T>::value || is_sized_bool<T>::value,
             sized_bool_t<sizeof(T)>>
         equal(T lhs, T rhs) noexcept
@@ -398,7 +398,7 @@ namespace tue
          *             otherwise (where `X` is the number of bits in `T`).
          */
         template<typename T>
-        inline constexpr std::enable_if_t<
+        inline std::enable_if_t<
             std::is_arithmetic<T>::value || is_sized_bool<T>::value,
             sized_bool_t<sizeof(T)>>
         not_equal(T lhs, T rhs) noexcept

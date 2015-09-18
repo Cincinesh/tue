@@ -1232,7 +1232,7 @@ namespace
 
     TEST_CASE(less)
     {
-        CONST_OR_CONSTEXPR auto m = math::less(dm42, dm422);
+        const auto m = math::less(dm42, dm422);
         test_assert(m[0] == math::less(dm42[0], dm422[0]));
         test_assert(m[1] == math::less(dm42[1], dm422[1]));
         test_assert(m[2] == math::less(dm42[2], dm422[2]));
@@ -1241,7 +1241,7 @@ namespace
 
     TEST_CASE(less_equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::less_equal(dm42, dm422);
+        const auto m = math::less_equal(dm42, dm422);
         test_assert(m[0] == math::less_equal(dm42[0], dm422[0]));
         test_assert(m[1] == math::less_equal(dm42[1], dm422[1]));
         test_assert(m[2] == math::less_equal(dm42[2], dm422[2]));
@@ -1250,7 +1250,7 @@ namespace
 
     TEST_CASE(greater)
     {
-        CONST_OR_CONSTEXPR auto m = math::greater(dm42, dm422);
+        const auto m = math::greater(dm42, dm422);
         test_assert(m[0] == math::greater(dm42[0], dm422[0]));
         test_assert(m[1] == math::greater(dm42[1], dm422[1]));
         test_assert(m[2] == math::greater(dm42[2], dm422[2]));
@@ -1259,7 +1259,7 @@ namespace
 
     TEST_CASE(greater_equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::greater_equal(dm42, dm422);
+        const auto m = math::greater_equal(dm42, dm422);
         test_assert(m[0] == math::greater_equal(dm42[0], dm422[0]));
         test_assert(m[1] == math::greater_equal(dm42[1], dm422[1]));
         test_assert(m[2] == math::greater_equal(dm42[2], dm422[2]));
@@ -1268,7 +1268,7 @@ namespace
 
     TEST_CASE(equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::equal(dm42, dm422);
+        const auto m = math::equal(dm42, dm422);
         test_assert(m[0] == math::equal(dm42[0], dm422[0]));
         test_assert(m[1] == math::equal(dm42[1], dm422[1]));
         test_assert(m[2] == math::equal(dm42[2], dm422[2]));
@@ -1277,7 +1277,7 @@ namespace
 
     TEST_CASE(not_equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::not_equal(dm42, dm422);
+        const auto m = math::not_equal(dm42, dm422);
         test_assert(m[0] == math::not_equal(dm42[0], dm422[0]));
         test_assert(m[1] == math::not_equal(dm42[1], dm422[1]));
         test_assert(m[2] == math::not_equal(dm42[2], dm422[2]));

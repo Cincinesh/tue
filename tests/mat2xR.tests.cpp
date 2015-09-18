@@ -958,42 +958,42 @@ namespace
 
     TEST_CASE(less)
     {
-        CONST_OR_CONSTEXPR auto m = math::less(dm22, dm222);
+        const auto m = math::less(dm22, dm222);
         test_assert(m[0] == math::less(dm22[0], dm222[0]));
         test_assert(m[1] == math::less(dm22[1], dm222[1]));
     }
 
     TEST_CASE(less_equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::less_equal(dm22, dm222);
+        const auto m = math::less_equal(dm22, dm222);
         test_assert(m[0] == math::less_equal(dm22[0], dm222[0]));
         test_assert(m[1] == math::less_equal(dm22[1], dm222[1]));
     }
 
     TEST_CASE(greater)
     {
-        CONST_OR_CONSTEXPR auto m = math::greater(dm22, dm222);
+        const auto m = math::greater(dm22, dm222);
         test_assert(m[0] == math::greater(dm22[0], dm222[0]));
         test_assert(m[1] == math::greater(dm22[1], dm222[1]));
     }
 
     TEST_CASE(greater_equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::greater_equal(dm22, dm222);
+        const auto m = math::greater_equal(dm22, dm222);
         test_assert(m[0] == math::greater_equal(dm22[0], dm222[0]));
         test_assert(m[1] == math::greater_equal(dm22[1], dm222[1]));
     }
 
     TEST_CASE(equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::equal(dm22, dm222);
+        const auto m = math::equal(dm22, dm222);
         test_assert(m[0] == math::equal(dm22[0], dm222[0]));
         test_assert(m[1] == math::equal(dm22[1], dm222[1]));
     }
 
     TEST_CASE(not_equal)
     {
-        CONST_OR_CONSTEXPR auto m = math::not_equal(dm22, dm222);
+        const auto m = math::not_equal(dm22, dm222);
         test_assert(m[0] == math::not_equal(dm22[0], dm222[0]));
         test_assert(m[1] == math::not_equal(dm22[1], dm222[1]));
     }

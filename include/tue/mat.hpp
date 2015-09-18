@@ -1852,7 +1852,7 @@ namespace tue
          *             columns of `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::less(std::declval<T>(), std::declval<T>())),
             C, R>
         less(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
@@ -1875,7 +1875,7 @@ namespace tue
          *             columns of `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::less_equal(std::declval<T>(), std::declval<T>())),
             C, R>
         less_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
@@ -1898,7 +1898,7 @@ namespace tue
          *             columns of `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::greater(std::declval<T>(), std::declval<T>())),
             C, R>
         greater(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
@@ -1921,7 +1921,7 @@ namespace tue
          *             of columns of `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::greater_equal(std::declval<T>(), std::declval<T>())),
             C, R>
         greater_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
@@ -1944,7 +1944,7 @@ namespace tue
          *             columns of `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::equal(std::declval<T>(), std::declval<T>())),
             C, R>
         equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
@@ -1967,7 +1967,7 @@ namespace tue
          *             columns of `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline constexpr mat<decltype(
+        inline mat<decltype(
             tue::math::not_equal(std::declval<T>(), std::declval<T>())),
             C, R>
         not_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept

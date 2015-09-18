@@ -1122,7 +1122,7 @@ namespace tue
         }
 
         template<typename T>
-        inline constexpr vec<decltype(
+        inline vec<decltype(
             tue::math::less(std::declval<T>(), std::declval<T>())), 3>
         less_vv(
             const vec<T, 3>& lhs, const vec<T, 3>& rhs) noexcept
@@ -1135,7 +1135,7 @@ namespace tue
         }
 
         template<typename T>
-        inline constexpr vec<decltype(
+        inline vec<decltype(
             tue::math::less_equal(std::declval<T>(), std::declval<T>())), 3>
         less_equal_vv(
             const vec<T, 3>& lhs, const vec<T, 3>& rhs) noexcept
@@ -1148,7 +1148,7 @@ namespace tue
         }
 
         template<typename T>
-        inline constexpr vec<decltype(
+        inline vec<decltype(
             tue::math::greater(std::declval<T>(), std::declval<T>())), 3>
         greater_vv(
             const vec<T, 3>& lhs, const vec<T, 3>& rhs) noexcept
@@ -1161,7 +1161,7 @@ namespace tue
         }
 
         template<typename T>
-        inline constexpr vec<decltype(
+        inline vec<decltype(
             tue::math::greater_equal(std::declval<T>(), std::declval<T>())), 3>
         greater_equal_vv(
             const vec<T, 3>& lhs, const vec<T, 3>& rhs) noexcept
@@ -1174,7 +1174,7 @@ namespace tue
         }
 
         template<typename T>
-        inline constexpr vec<decltype(
+        inline vec<decltype(
             tue::math::equal(std::declval<T>(), std::declval<T>())), 3>
         equal_vv(
             const vec<T, 3>& lhs, const vec<T, 3>& rhs) noexcept
@@ -1187,7 +1187,7 @@ namespace tue
         }
 
         template<typename T>
-        inline constexpr vec<decltype(
+        inline vec<decltype(
             tue::math::not_equal(std::declval<T>(), std::declval<T>())), 3>
         not_equal_vv(
             const vec<T, 3>& lhs, const vec<T, 3>& rhs) noexcept
