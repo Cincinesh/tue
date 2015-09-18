@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <type_traits>
 
+#include "detail_/is_simd_component.hpp"
 #include "sized_bool.hpp"
 
 namespace tue
@@ -238,7 +239,7 @@ namespace tue
         template<typename T, typename U>
         inline std::enable_if_t<
             is_sized_bool<T>::value
-                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+                && is_simd_component<U>::value
                 && sizeof(U) == sizeof(T),
             U>
         select(T condition, U value) noexcept
@@ -267,7 +268,7 @@ namespace tue
         template<typename T, typename U>
         inline std::enable_if_t<
             is_sized_bool<T>::value
-                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+                && is_simd_component<U>::value
                 && sizeof(U) == sizeof(T),
             U>
         select(T condition, U value, U otherwise) noexcept
