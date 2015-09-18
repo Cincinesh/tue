@@ -13,6 +13,8 @@
 
 #include "math.hpp"
 
+#define greater_than > // Because ">" inside template params confuses Doxygen
+
 namespace tue
 {
     template<typename T, int C, int R>
@@ -217,7 +219,7 @@ namespace tue
          * \tparam VN  The component count of `v`.
          * \param v    The larger `vec` to truncate.
          */
-        template<int VN, typename = std::enable_if_t<(VN > N)>>
+        template<int VN, typename = std::enable_if_t<(VN greater_than N)>>
         inline explicit constexpr vec(const vec<T, VN>& v) noexcept;
 
         /*!
@@ -945,6 +947,8 @@ namespace tue
         struct vec_utils;
     }
 }
+
+#undef greater_than
 
 #include "detail_/vec2.hpp"
 #include "detail_/vec3.hpp"
