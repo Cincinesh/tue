@@ -17,25 +17,6 @@
 
 namespace tue
 {
-    /**/
-    namespace detail_
-    {
-        template<typename T, typename U>
-        using pow_promote_t =
-            std::conditional_t<
-                std::is_floating_point<T>::value, T,
-                std::conditional_t<
-                    std::is_integral<U>::value, double,
-                    std::conditional_t<
-                        (sizeof(U) <= sizeof(double)), double, U>>>;
-
-        template<typename T, typename U>
-        using pow_return_t = decltype(std::pow(
-            tue::detail_::pow_promote_t<T, U>(),
-            tue::detail_::pow_promote_t<U, T>()));
-    }
-
-    /**/
     namespace math
     {
         /*!
@@ -46,61 +27,35 @@ namespace tue
 
         /*!
          * \brief     Computes the sine of `x` (measured in radians).
-         * \tparam F  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   An angle (measured in radians).
          * \return    The sine of `x`.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value, F>
-        sin(F x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        sin(T x) noexcept
         {
             return std::sin(x);
         }
 
         /*!
-         * \brief     Computes the sine of `x` (measured in radians).
-         * \tparam I  The type of parameter `x`.
-         * \param x   An angle (measured in radians).
-         * \return    The sine of `static_cast<double>(x)`.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value, double>
-        sin(I x) noexcept
-        {
-            return std::sin(static_cast<double>(x));
-        }
-
-        /*!
          * \brief     Computes the cosine of `x` (measured in radians).
-         * \tparam F  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   An angle (measured in radians).
          * \return    The cosine of `x`.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value, F>
-        cos(F x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        cos(T x) noexcept
         {
             return std::cos(x);
-        }
-
-        /*!
-         * \brief     Computes the cosine of `x` (measured in radians).
-         * \tparam I  The type of parameter `x`.
-         * \param x   An angle (measured in radians).
-         * \return    The cosine of `static_cast<double>(x)`.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value, double>
-        cos(I x) noexcept
-        {
-            return std::cos(static_cast<double>(x));
         }
 
         /*!
          * \brief          Computes the sine and cosine of `x` (measured in
          *                 radians).
          *
-         * \tparam F       The type of parameter `x`.
+         * \tparam T       The type of parameter `x`.
          *
          * \param x        An angle (measured in radians).
          * \param sin_out  A reference to the value where the sine of `x` will
@@ -108,59 +63,25 @@ namespace tue
          * \param cos_out  A reference to the value where the cosine of `x` will
          *                 be stored.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value>
-        sincos(F x, F& sin_out, F& cos_out) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value>
+        sincos(T x, T& sin_out, T& cos_out) noexcept
         {
             sin_out = std::sin(x);
             cos_out = std::cos(x);
         }
 
         /*!
-         * \brief          Computes the sine and cosine of `x` (measured in
-         *                 radians).
-         *
-         * \tparam I       The type of parameter `x`.
-         *
-         * \param x        An angle (measured in radians).
-         * \param sin_out  A reference to the value where the sine of
-         *                 `static_cast<double>(x)` will be stored.
-         * \param cos_out  A reference to the value where the cosine of
-         *                 `static_cast<double>(x)` will be stored.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value>
-        sincos(I x, double& sin_out, double& cos_out) noexcept
-        {
-            const auto dx = static_cast<double>(x);
-            sin_out = std::sin(dx);
-            cos_out = std::cos(dx);
-        }
-
-        /*!
          * \brief     Computes the base-e exponential of `x`.
-         * \tparam F  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
          * \return    The base-e exponential of `x`.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value, F>
-        exp(F x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        exp(T x) noexcept
         {
             return std::exp(x);
-        }
-
-        /*!
-         * \brief     Computes the base-e exponential of `x`.
-         * \tparam I  The type of parameter `x`.
-         * \param x   An integral number.
-         * \return    The base-e exponential of `static_cast<double>(x)`.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value, double>
-        exp(I x) noexcept
-        {
-            return std::exp(static_cast<double>(x));
         }
 
         /*!
@@ -169,36 +90,22 @@ namespace tue
          * \param x   A floating-point number.
          * \return    The base-e (natural) logarithm of `x`.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value, F>
-        log(F x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        log(T x) noexcept
         {
             return std::log(x);
         }
 
         /*!
-         * \brief     Computes the base-e (natural) logarithm of `x`.
-         * \tparam I  The type of parameter `x`.
-         * \param x   An integral number.
-         * \return    The base-e (natural) logarithm of
-         *            `static_cast<double>(x)`.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value, double>
-        log(I x) noexcept
-        {
-            return std::log(static_cast<double>(x));
-        }
-
-        /*!
          * \brief     Computes the absolute value of `x`.
-         * \tparam S  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   A signed number.
          * \return    The absolute value of `x`.
          */
-        template<typename S>
-        inline std::enable_if_t<std::is_signed<S>::value, S>
-        abs(S x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_signed<T>::value, T>
+        abs(T x) noexcept
         {
             return std::abs(x);
         }
@@ -219,110 +126,57 @@ namespace tue
         /*!
          * \brief     Computes `x` raised to the power `y`.
          *
-         * \tparam T  The type of parameter `x`.
-         * \tparam U  The type of parameter `y`.
+         * \tparam T  The type of parameters `x` and `y`.
          *
          * \param x   A number.
          * \param y   Another number.
          *
-         * \return    `x` raised to the power `y`. If `T` and/or `U` are
-         *            integral types, `x` and/or `y` will be explicitly cast to
-         *            floating-point values as follows:
-         *            - If both types are integral types, cast both values to
-         *              `double`.
-         *            - If one type is an integral type and the other a
-         *              floating-point type, cast the integral value to `double`
-         *              or to the floating-point type of the other value
-         *              (whichever has higher-precision).
+         * \return    `x` raised to the power `y`.
          */
-        template<typename T, typename U>
-        inline std::enable_if_t<(
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value),
-            tue::detail_::pow_return_t<T, U>>
-        pow(T x, U y) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        pow(T x, T y) noexcept
         {
-            return std::pow(
-                static_cast<tue::detail_::pow_promote_t<T, U>>(x),
-                static_cast<tue::detail_::pow_promote_t<U, T>>(y));
+            return std::pow(x, y);
         }
 
         /*!
          * \brief     Computes the reciprocal of `x`.
-         * \tparam F  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
          * \return    The reciprocal of `x`.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value, F>
-        recip(F x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        recip(T x) noexcept
         {
             return 1 / x;
         }
 
         /*!
-         * \brief     Computes the reciprocal of `x`.
-         * \tparam I  The type of parameter `x`.
-         * \param x   An integral number.
-         * \return    The reciprocal of `static_cast<double>(x)`.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value, double>
-        recip(I x) noexcept
-        {
-            return 1 / static_cast<double>(x);
-        }
-
-        /*!
          * \brief     Computes the nonnegative square root of `x`.
-         * \tparam F  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
          * \return    The nonnegative square root of `x`.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value, F>
-        sqrt(F x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        sqrt(T x) noexcept
         {
             return std::sqrt(x);
         }
 
         /*!
-         * \brief     Computes the nonnegative square root of `x`.
-         * \tparam I  The type of parameter `x`.
-         * \param x   An integral number.
-         * \return    The nonnegative square root of `static_cast<double>(x)`.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value, double>
-        sqrt(I x) noexcept
-        {
-            return std::sqrt(static_cast<double>(x));
-        }
-
-        /*!
          * \brief     Computes the reciprocal nonnegative square root of `x`.
-         * \tparam F  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
          * \return    The reciprocal nonnegative square root of `x`.
          */
-        template<typename F>
-        inline std::enable_if_t<std::is_floating_point<F>::value, F>
-        rsqrt(F x) noexcept
+        template<typename T>
+        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        rsqrt(T x) noexcept
         {
             return 1 / std::sqrt(x);
-        }
-
-        /*!
-         * \brief     Computes the reciprocal nonnegative square root of `x`.
-         * \tparam I  The type of parameter `x`.
-         * \param x   An integral number.
-         * \return    The reciprocal nonnegative square root of
-         *            `static_cast<double>(x)`.
-         */
-        template<typename I>
-        inline std::enable_if_t<std::is_integral<I>::value, double>
-        rsqrt(I x) noexcept
-        {
-            return 1 / std::sqrt(static_cast<double>(x));
         }
 
         /*!
@@ -373,13 +227,15 @@ namespace tue
         template<typename T, typename U>
         inline std::enable_if_t<
             is_sized_bool<T>::value
-            && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
-            && sizeof(U) == sizeof(T), U>
+                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+                && sizeof(U) == sizeof(T),
+            U>
         select(T condition, U value) noexcept
         {
             using V = std::underlying_type_t<T>;
             const auto result =
                 V(condition) & reinterpret_cast<const V&>(value);
+
             return reinterpret_cast<const U&>(result);
         }
 
@@ -398,14 +254,16 @@ namespace tue
         template<typename T, typename U>
         inline std::enable_if_t<
             is_sized_bool<T>::value
-            && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
-            && sizeof(U) == sizeof(T), U>
+                && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+                && sizeof(U) == sizeof(T),
+            U>
         select(T condition, U value, U otherwise) noexcept
         {
             using V = std::underlying_type_t<T>;
             const auto result =
                 (V(condition) & reinterpret_cast<const V&>(value))
                 | (~V(condition) & reinterpret_cast<const V&>(otherwise));
+
             return reinterpret_cast<const U&>(result);
         }
 

@@ -19,18 +19,18 @@ namespace
 
     TEST_CASE(axis_angle_from_rotation_vec)
     {
-        const auto aa1 = transform::axis_angle(1, 2, 3);
-        test_assert(aa1.xyz() == math::normalize(ivec3(1, 2, 3)));
-        test_assert(aa1.a() == math::length(ivec3(1, 2, 3)));
+        const auto aa1 = transform::axis_angle(1.2, 3.4, 5.6);
+        test_assert(aa1.xyz() == math::normalize(dvec3(1.2, 3.4, 5.6)));
+        test_assert(aa1.a() == math::length(dvec3(1.2, 3.4, 5.6)));
 
-        const auto aa2 = transform::axis_angle(0, 0, 0);
+        const auto aa2 = transform::axis_angle(0.0, 0.0, 0.0);
         test_assert(aa2.xyz() == dvec3::z_axis());
         test_assert(aa2.a() == 0.0);
 
-        const auto aa3 = transform::axis_angle(ivec3(1, 2, 3));
+        const auto aa3 = transform::axis_angle(dvec3(1.2, 3.4, 5.6));
         test_assert(aa3 == aa1);
 
-        const auto aa4 = transform::axis_angle(ivec3(0, 0, 0));
+        const auto aa4 = transform::axis_angle(dvec3(0.0, 0.0, 0.0));
         test_assert(aa4 == aa2);
     }
 
@@ -51,30 +51,30 @@ namespace
 
     TEST_CASE(rotation_quat_from_axis_angle)
     {
-        const auto rq1 = transform::rotation_quat(ivec3(1, 2, 3), 5);
-        test_assert(rq1.v() == ivec3(1, 2, 3) * math::sin(5/2.0));
-        test_assert(rq1.s() == math::cos(5/2.0));
+        const auto rq1 = transform::rotation_quat(dvec3(1.2, 3.4, 5.6), 7.8);
+        test_assert(rq1.v() == dvec3(1.2, 3.4, 5.6) * math::sin(7.8/2));
+        test_assert(rq1.s() == math::cos(7.8/2));
 
-        const auto rq2 = transform::rotation_quat(1, 2, 3, 5);
+        const auto rq2 = transform::rotation_quat(1.2, 3.4, 5.6, 7.8);
         test_assert(rq2 == rq1);
 
-        const auto rq3 = transform::rotation_quat(ivec4(1, 2, 3, 5));
+        const auto rq3 = transform::rotation_quat(dvec4(1.2, 3.4, 5.6, 7.8));
         test_assert(rq3 == rq1);
     }
 
     TEST_CASE(rotation_quat_from_rotation_vec)
     {
-        const auto rq1 = transform::rotation_quat(1, 2, 3);
+        const auto rq1 = transform::rotation_quat(1.2, 3.4, 5.6);
         test_assert(rq1 ==
-            transform::rotation_quat(transform::axis_angle(1, 2, 3)));
+            transform::rotation_quat(transform::axis_angle(1.2, 3.4, 5.6)));
 
-        const auto rq2 = transform::rotation_quat(0, 0, 0);
+        const auto rq2 = transform::rotation_quat(0.0, 0.0, 0.0);
         test_assert(rq2 == dquat::identity());
 
-        const auto rq3 = transform::rotation_quat(ivec3(1, 2, 3));
+        const auto rq3 = transform::rotation_quat(dvec3(1.2, 3.4, 5.6));
         test_assert(rq3 == rq1);
 
-        const auto rq4 = transform::rotation_quat(ivec3(0, 0, 0));
+        const auto rq4 = transform::rotation_quat(dvec3(0.0, 0.0, 0.0));
         test_assert(rq4 == rq2);
     }
 
@@ -125,71 +125,74 @@ namespace
 
     TEST_CASE(rotation_mat_2d)
     {
-        const auto m1 = transform::rotation_mat(12);
-        test_assert(m1[0] == dvec4(math::cos(12), -math::sin(12), 0.0, 0.0));
-        test_assert(m1[1] == dvec4(math::sin(12),  math::cos(12), 0.0, 0.0));
-        test_assert(m1[2] == dvec4(          0.0,            0.0, 1.0, 0.0));
-        test_assert(m1[3] == dvec4(          0.0,            0.0, 0.0, 1.0));
+        const auto m1 = transform::rotation_mat(1.2);
+        test_assert(m1[0] == dvec4(math::cos(1.2), -math::sin(1.2), 0.0, 0.0));
+        test_assert(m1[1] == dvec4(math::sin(1.2),  math::cos(1.2), 0.0, 0.0));
+        test_assert(m1[2] == dvec4(          0.0 ,            0.0 , 1.0, 0.0));
+        test_assert(m1[3] == dvec4(          0.0 ,            0.0 , 0.0, 1.0));
 
-        const auto m2 = transform::rotation_mat<int, 2, 2>(12);
+        const auto m2 = transform::rotation_mat<double, 2, 2>(1.2);
         test_assert(m2 == dmat2x2(m1));
     }
 
     TEST_CASE(rotation_mat_from_axis_angle)
     {
         double s, c;
-        math::sincos(78, s, c);
+        math::sincos(7.8, s, c);
 
-        const auto m1 = transform::rotation_mat(
-            12, 34, 56, 78);
-        test_assert(m1[0][0] == 12*12*(1-c) + c);
-        test_assert(m1[0][1] == 12*34*(1-c) - 56*s);
-        test_assert(m1[0][2] == 12*56*(1-c) + 34*s);
+        const auto m1 = transform::rotation_mat(1.2, 3.4, 5.6, 7.8);
+        test_assert(m1[0][0] == 1.2*1.2*(1-c) + c);
+        test_assert(m1[0][1] == 1.2*3.4*(1-c) - 5.6*s);
+        test_assert(m1[0][2] == 1.2*5.6*(1-c) + 3.4*s);
         test_assert(m1[0][3] == 0.0);
-        test_assert(m1[1][0] == 12*34*(1-c) + 56*s);
-        test_assert(m1[1][1] == 34*34*(1-c) + c);
-        test_assert(m1[1][2] == 34*56*(1-c) - 12*s);
+        test_assert(m1[1][0] == 1.2*3.4*(1-c) + 5.6*s);
+        test_assert(m1[1][1] == 3.4*3.4*(1-c) + c);
+        test_assert(m1[1][2] == 3.4*5.6*(1-c) - 1.2*s);
         test_assert(m1[1][3] == 0.0);
-        test_assert(m1[2][0] == 12*56*(1-c) - 34*s);
-        test_assert(m1[2][1] == 34*56*(1-c) + 12*s);
-        test_assert(m1[2][2] == 56*56*(1-c) + c);
+        test_assert(m1[2][0] == 1.2*5.6*(1-c) - 3.4*s);
+        test_assert(m1[2][1] == 3.4*5.6*(1-c) + 1.2*s);
+        test_assert(m1[2][2] == 5.6*5.6*(1-c) + c);
         test_assert(m1[2][3] == 0.0);
         test_assert(m1[3] == dvec4(0.0, 0.0, 0.0, 1.0));
 
-        const auto m2 = transform::rotation_mat<int, 3, 3>(
-            12, 34, 56, 78);
+        const auto m2 = transform::rotation_mat<double, 3, 3>(
+            1.2, 3.4, 5.6, 7.8);
         test_assert(m2 == dmat3x3(m1));
 
         const auto m3 = transform::rotation_mat(
-            ivec3(12, 34, 56), 78);
+            dvec3(1.2, 3.4, 5.6), 7.8);
         test_assert(m3 == m1);
 
-        const auto m4 = transform::rotation_mat<int, 3, 3>(
-            ivec3(12, 34, 56), 78);
+        const auto m4 = transform::rotation_mat<double, 3, 3>(
+            dvec3(1.2, 3.4, 5.6), 7.8);
         test_assert(m4 == m2);
 
         const auto m5 = transform::rotation_mat(
-            ivec4(12, 34, 56, 78));
+            dvec4(1.2, 3.4, 5.6, 7.8));
         test_assert(m5 == m1);
 
-        const auto m6 = transform::rotation_mat<int, 3, 3>(
-            ivec4(12, 34, 56, 78));
+        const auto m6 = transform::rotation_mat<double, 3, 3>(
+            dvec4(1.2, 3.4, 5.6, 7.8));
         test_assert(m6 == m2);
     }
 
     TEST_CASE(rotation_mat_from_rotation_vec)
     {
-        const auto m1 = transform::rotation_mat(12, 34, 56);
+        const auto m1 = transform::rotation_mat(
+            1.2, 3.4, 5.6);
         test_assert(m1 ==
-            transform::rotation_mat(transform::axis_angle(12, 34, 56)));
+            transform::rotation_mat(transform::axis_angle(1.2, 3.4, 5.6)));
 
-        const auto m2 = transform::rotation_mat<int, 3, 3>(12, 34, 56);
+        const auto m2 = transform::rotation_mat<double, 3, 3>(
+            1.2, 3.4, 5.6);
         test_assert(m2 == dmat3x3(m1));
 
-        const auto m3 = transform::rotation_mat(ivec3(12, 34, 56));
+        const auto m3 = transform::rotation_mat(
+            dvec3(1.2, 3.4, 5.6));
         test_assert(m3 == m1);
 
-        const auto m4 = transform::rotation_mat<int, 3, 3>(ivec3(12, 34, 56));
+        const auto m4 = transform::rotation_mat<double, 3, 3>(
+            dvec3(1.2, 3.4, 5.6));
         test_assert(m4 == m2);
     }
 
@@ -263,49 +266,50 @@ namespace
 
     TEST_CASE(perspective_mat)
     {
-        const auto m1 = transform::perspective_mat(1, 3, 5, 7);
-        test_assert(m1[0][0] == math::cos(1 / 2.0) / math::sin(1 / 2.0) / 3);
+        const auto m1 = transform::perspective_mat(1.2, 3.4, 5.6, 7.8);
+        test_assert(m1[0][0] == math::cos(1.2/2) / math::sin(1.2/2) / 3.4);
         test_assert(m1[0][1] == 0.0);
         test_assert(m1[0][2] == 0.0);
         test_assert(m1[0][3] == 0.0);
         test_assert(m1[1][0] == 0.0);
-        test_assert(m1[1][1] == math::cos(1 / 2.0) / math::sin(1 / 2.0));
+        test_assert(m1[1][1] == math::cos(1.2/2) / math::sin(1.2/2));
         test_assert(m1[1][2] == 0.0);
         test_assert(m1[1][3] == 0.0);
         test_assert(m1[2][0] == 0.0);
         test_assert(m1[2][1] == 0.0);
-        test_assert(m1[2][2] == double(5+7) / double(5-7));
-        test_assert(m1[2][3] == 2.0 * double(5*7) / double(5-7));
+        test_assert(m1[2][2] ==     (5.6+7.8) / (5.6-7.8));
+        test_assert(m1[2][3] == 2 * (5.6*7.8) / (5.6-7.8));
         test_assert(m1[3][0] == 0.0);
         test_assert(m1[3][1] == 0.0);
         test_assert(m1[3][2] == -1.0);
         test_assert(m1[3][3] == 0.0);
 
-        const auto m2 = transform::perspective_mat<int, 4, 4>(1, 3, 5, 7);
+        const auto m2 = transform::perspective_mat<double, 4, 4>(
+            1.2, 3.4, 5.6, 7.8);
         test_assert(m2 == m1);
     }
 
     TEST_CASE(ortho_mat)
     {
-        CONST_OR_CONSTEXPR auto m1 = transform::ortho_mat(3, 5, 7, 9);
-        test_assert(m1[0][0] == 2.0 / 3);
+        CONST_OR_CONSTEXPR auto m1 = transform::ortho_mat(1.2, 3.4, 5.6, 7.8);
+        test_assert(m1[0][0] == 2 / 1.2);
         test_assert(m1[0][1] == 0.0);
         test_assert(m1[0][2] == 0.0);
         test_assert(m1[0][3] == 0.0);
         test_assert(m1[1][0] == 0.0);
-        test_assert(m1[1][1] == 2.0 / 5);
+        test_assert(m1[1][1] == 2 / 3.4);
         test_assert(m1[1][2] == 0.0);
         test_assert(m1[1][3] == 0.0);
         test_assert(m1[2][0] == 0.0);
         test_assert(m1[2][1] == 0.0);
-        test_assert(m1[2][2] == (2.0) / (7-9));
-        test_assert(m1[2][3] == (7+9) / (7-9));
+        test_assert(m1[2][2] ==        2  / (5.6-7.8));
+        test_assert(m1[2][3] == (5.6+7.8) / (5.6-7.8));
         test_assert(m1[3][0] == 0.0);
         test_assert(m1[3][1] == 0.0);
         test_assert(m1[3][2] == 0.0);
         test_assert(m1[3][3] == 1.0);
 
-        const auto m2 = transform::ortho_mat<int, 3, 4>(3, 5, 7, 9);
+        const auto m2 = transform::ortho_mat<double, 3, 4>(1.2, 3.4, 5.6, 7.8);
         test_assert(m2 == dmat3x4(m2));
     }
 }
