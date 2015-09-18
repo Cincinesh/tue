@@ -193,8 +193,9 @@ namespace tue
     {
         struct
         {
-            std::enable_if_t<(C >= 2 && C <= 4 && R >= 2 && R <= 4), vec<T, R>>
-            columns[C];
+            std::enable_if_t<
+                (C >= 2 && C <= 4 && R >= 2 && R <= 4), vec<T, R>[C]>
+            columns;
         }
         impl_;
 

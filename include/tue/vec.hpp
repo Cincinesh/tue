@@ -122,7 +122,7 @@ namespace tue
     template<typename T, int N>
     class vec
     {
-        struct { std::enable_if_t<(N >= 2 && N <= 4), T> data[N]; } impl_;
+        struct { std::enable_if_t<(N >= 2 && N <= 4), T[N]> data; } impl_;
 
     public:
         /*!
