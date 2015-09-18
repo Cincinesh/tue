@@ -294,7 +294,8 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            sized_bool_t<sizeof(T)>>
         less(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -316,7 +317,8 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            sized_bool_t<sizeof(T)>>
         less_equal(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -336,7 +338,8 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            sized_bool_t<sizeof(T)>>
         greater(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -358,7 +361,8 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            sized_bool_t<sizeof(T)>>
         greater_equal(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -378,7 +382,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            std::is_arithmetic<T>::value || is_sized_bool<T>::value,
+            is_simd_component<T>::value,
             sized_bool_t<sizeof(T)>>
         equal(T lhs, T rhs) noexcept
         {
@@ -399,7 +403,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            std::is_arithmetic<T>::value || is_sized_bool<T>::value,
+            is_simd_component<T>::value,
             sized_bool_t<sizeof(T)>>
         not_equal(T lhs, T rhs) noexcept
         {
