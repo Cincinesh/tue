@@ -899,8 +899,6 @@ namespace tue
             };
         }
 
-        
-
         template<typename T>
         inline vec<decltype(
             tue::math::min(std::declval<T>(), std::declval<T>())), 2>

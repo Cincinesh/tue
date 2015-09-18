@@ -20,7 +20,6 @@ set(MON_SOURCES
 
 # tue
 set(TUE_SOURCES
-    docs/Doxyfile
     docs/index.md
     include/tue/detail_/is_sized_bool.hpp
     include/tue/detail_/mat2xR.hpp
@@ -41,6 +40,7 @@ set(TUE_SOURCES
     include/tue/transform.hpp
     include/tue/unused.hpp
     include/tue/vec.hpp
+    Doxyfile
     README.md)
 
 # tue.tests

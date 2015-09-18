@@ -37,7 +37,7 @@ as [GLM](https://github.com/g-truc/glm):
   `length` function, `dot` product, or `cross` product) would be horribly
   inefficient with SIMD intrinsics. Instead, SIMD instructions should be used to
   perform the same logic on multiple vectors in parallel. Tuesday is designed
-  for this use case. For example, `vec3<float32x4> v` could be thought of as 4 
+  for this use case. For example, `vec3<float32x4> v` could be thought of as 4
   parallel 3D vectors (4 x-values, followed by 4 y-values, and finally 4
   z-values). Something like `math::dot(v)` would then compute a single
   `float32x4` containing the dot products of those 4 parallel vectors without
