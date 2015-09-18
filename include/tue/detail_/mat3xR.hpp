@@ -894,11 +894,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), 3, R>
+            tue::math::pow(std::declval<T>(), std::declval<T>())), 3, R>
         pow_xm(
-            const T& base, const mat<U, 3, R>& exponents) noexcept
+            const T& base, const mat<T, 3, R>& exponents) noexcept
         {
             return {
                 tue::math::pow(base, exponents[0]),
@@ -907,11 +907,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), 3, R>
+            tue::math::pow(std::declval<T>(), std::declval<T>())), 3, R>
         pow_mx(
-            const mat<T, 3, R>& bases, const U& exponent) noexcept
+            const mat<T, 3, R>& bases, const T& exponent) noexcept
         {
             return {
                 tue::math::pow(bases[0], exponent),
@@ -920,11 +920,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), 3, R>
+            tue::math::pow(std::declval<T>(), std::declval<T>())), 3, R>
         pow_mm(
-            const mat<T, 3, R>& bases, const mat<U, 3, R>& exponents) noexcept
+            const mat<T, 3, R>& bases, const mat<T, 3, R>& exponents) noexcept
         {
             return {
                 tue::math::pow(bases[0], exponents[0]),
@@ -967,7 +967,8 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<T, 3, R>
+        inline mat<decltype(
+            tue::math::min(std::declval<T>(), std::declval<T>())), 3, R>
         min_mm(const mat<T, 3, R>& m1, const mat<T, 3, R>& m2) noexcept
         {
             return {
@@ -978,7 +979,8 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<T, 3, R>
+        inline mat<decltype(
+            tue::math::max(std::declval<T>(), std::declval<T>())), 3, R>
         max_mm(const mat<T, 3, R>& m1, const mat<T, 3, R>& m2) noexcept
         {
             return {
@@ -989,7 +991,8 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
-        inline mat<U, 3, R>
+        inline mat<decltype(
+            tue::math::select(std::declval<T>(), std::declval<U>())), 3, R>
         select_mm(
             const mat<T, 3, R>& conditions,
             const mat<U, 3, R>& values) noexcept
@@ -1002,7 +1005,12 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
-        inline mat<U, 3, R>
+        inline mat<
+            decltype(tue::math::select(
+                std::declval<T>(),
+                std::declval<U>(),
+                std::declval<U>())),
+            3, R>
         select_mmm(
             const mat<T, 3, R>& conditions,
             const mat<U, 3, R>& values,

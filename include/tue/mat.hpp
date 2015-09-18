@@ -1622,8 +1622,8 @@ namespace tue
          * \brief            Computes `tue::math::pow()` for `base` and each
          *                   column of `exponents`.
          *
-         * \tparam T         The type of parameter `base`.
-         * \tparam U         The component type of `exponents`.
+         * \tparam T         The type of parameter `base` and the component type
+         *                   of `exponents`.
          * \tparam C         The column count of `exponents`.
          * \tparam R         The row count of `exponents`.
          *
@@ -1633,10 +1633,10 @@ namespace tue
          * \return           `tue::math::pow()` for `base` and each column of
          *                   `exponents`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
-        pow(const T& base, const mat<U, C, R>& exponents) noexcept
+            tue::math::pow(std::declval<T>(), std::declval<T>())), C, R>
+        pow(const T& base, const mat<T, C, R>& exponents) noexcept
         {
             return tue::detail_::pow_xm(base, exponents);
         }
@@ -1645,8 +1645,8 @@ namespace tue
          * \brief           Computes `tue::math::pow()` for each column of
          *                  `bases` and `exponent`.
          *
-         * \tparam T        The component type of `bases`.
-         * \tparam U        The type of parameter `exponent`.
+         * \tparam T        The component type of `bases` and the type of
+         *                  parameter `exponent`.
          * \tparam C        The column count of `bases`.
          * \tparam R        The row count of `bases`.
          *
@@ -1656,10 +1656,10 @@ namespace tue
          * \return          `tue::math::pow()` for each column of `bases` and
          *                  `exponent`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
-        pow(const mat<T, C, R>& bases, const U& exponent) noexcept
+            tue::math::pow(std::declval<T>(), std::declval<T>())), C, R>
+        pow(const mat<T, C, R>& bases, const T& exponent) noexcept
         {
             return tue::detail_::pow_mx(bases, exponent);
         }
@@ -1669,10 +1669,9 @@ namespace tue
          *                   `bases` and each corresponding column of
          *                   `exponents`.
          *
-         * \tparam T         The component type of `bases`.
-         * \tparam U         The component type of `exponents`.
-         * \tparam C         The column count of `bases` and `exponents`.
-         * \tparam R         The row count of `bases` and `exponents`.
+         * \tparam T         The component type of both `bases` `exponents`.
+         * \tparam C         The column count of both `bases` and `exponents`.
+         * \tparam R         The row count of both `bases` and `exponents`.
          *
          * \param bases      The bases.
          * \param exponents  The exponents.
@@ -1680,10 +1679,10 @@ namespace tue
          * \return           `tue::math::pow()` for each column of `bases` and
          *                   each corresponding column of `exponents`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), C, R>
-        pow(const mat<T, C, R>& bases, const mat<U, C, R>& exponents) noexcept
+            tue::math::pow(std::declval<T>(), std::declval<T>())), C, R>
+        pow(const mat<T, C, R>& bases, const mat<T, C, R>& exponents) noexcept
         {
             return tue::detail_::pow_mm(bases, exponents);
         }
@@ -1757,7 +1756,8 @@ namespace tue
          *            of `m1` and `m2`.
          */
         template<typename T, int C, int R>
-        inline mat<T, C, R>
+        inline mat<decltype(
+            tue::math::min(std::declval<T>(), std::declval<T>())), C, R>
         min(const mat<T, C, R>& m1, const mat<T, C, R>& m2) noexcept
         {
             return tue::detail_::min_mm(m1, m2);
@@ -1778,7 +1778,8 @@ namespace tue
          *            of `m1` and `m2`.
          */
         template<typename T, int C, int R>
-        inline mat<T, C, R>
+        inline mat<decltype(
+            tue::math::max(std::declval<T>(), std::declval<T>())), C, R>
         max(const mat<T, C, R>& m1, const mat<T, C, R>& m2) noexcept
         {
             return tue::detail_::max_mm(m1, m2);
@@ -1802,7 +1803,8 @@ namespace tue
          *                    pair of columns from `conditions` and `values`.
          */
         template<typename T, typename U, int C, int R>
-        inline mat<U, C, R>
+        inline mat<decltype(
+            tue::math::select(std::declval<T>(), std::declval<U>())), C, R>
         select(
             const mat<T, C, R>& conditions,
             const mat<U, C, R>& values) noexcept
@@ -1829,7 +1831,12 @@ namespace tue
          *                    `otherwise`.
          */
         template<typename T, typename U, int C, int R>
-        inline mat<U, C, R>
+        inline mat<
+            decltype(tue::math::select(
+                std::declval<T>(),
+                std::declval<U>(),
+                std::declval<U>())),
+            C, R>
         select(
             const mat<T, C, R>& conditions,
             const mat<U, C, R>& values,
