@@ -23,9 +23,9 @@ namespace tue
      */
 
     /*!
-     * \brief     A 2-dimensional matrix.
-     * \details   `mat`'s are laid out in column-major order. They have the same
-     *            size and alignment requirements as `vec<T, R>[C]`.
+     * \brief     A column-major matrix.
+     * \details   `mat` have the same size and alignment requirements as
+     *            `vec<T, R>[C]`.
      *
      * \tparam T  The component type.
      * \tparam C  The column count. Must be 2, 3, or 4.

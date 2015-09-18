@@ -12,6 +12,23 @@
 
 namespace tue
 {
+    namespace detail_
+    {
+        template<typename T, typename U>
+        inline constexpr std::enable_if_t<std::is_same<T, U>::value, const T&>
+        nocopy_cast(const U& x) noexcept
+        {
+            return x;
+        }
+
+        template<typename T, typename U>
+        inline constexpr std::enable_if_t<!std::is_same<T, U>::value, T>
+        nocopy_cast(const U& x) noexcept
+        {
+            return static_cast<T>(x);
+        }
+    }
+
     /*!
      * \defgroup  nocopy_cast_hpp <tue/nocopy_cast.hpp>
      * \brief     The `nocopy_cast<T>()` function template.
@@ -26,32 +43,14 @@ namespace tue
      *
      * \param x   The value to cast.
      *
-     * \return    A const reference to `x` if `x` is already of type `T`. The
-     *            new value otherwise.
+     * \return    A const reference to `x` if `x` is already of type `T`.
+     *            `static_cast<T>(x)` otherwise.
      */
     template<typename T, typename U>
-    constexpr std::enable_if_t<std::is_same<T, U>::value, const T&>
+    inline constexpr std::conditional_t<std::is_same<T, U>::value, const T&, T>
     nocopy_cast(const U& x) noexcept
     {
-        return x;
-    }
-
-    /*!
-     * \brief     Casts `x` to type `T`, avoiding a copy if possible.
-     *
-     * \tparam T  The return type.
-     * \tparam V  The type of parameter `x`.
-     *
-     * \param x   The value to cast.
-     *
-     * \return    A const reference to `x` if `x` is already of type `T`. The
-     *            new value otherwise.
-     */
-    template<typename T, typename V>
-    constexpr std::enable_if_t<!std::is_same<T, V>::value, T>
-    nocopy_cast(const V& x) noexcept
-    {
-        return static_cast<T>(x);
+        return tue::detail_::nocopy_cast<T, U>(x);
     }
 
     /*!@}*/

@@ -17,6 +17,23 @@
 
 namespace tue
 {
+    namespace detail_
+    {
+        template<typename T>
+        inline std::enable_if_t<std::is_signed<T>::value, T>
+        abs(T x) noexcept
+        {
+            return std::abs(x);
+        }
+
+        template<typename U>
+        inline std::enable_if_t<std::is_unsigned<U>::value, U>
+        abs(U x) noexcept
+        {
+            return x;
+        }
+    }
+
     namespace math
     {
         /*!
@@ -28,8 +45,8 @@ namespace tue
         /*!
          * \brief     Computes the sine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
-         * \param x   An angle (measured in radians).
-         * \return    The sine of `x`.
+         * \param x   A floating-point number.
+         * \return    The sine of `x` (measured in radians).
          */
         template<typename T>
         inline std::enable_if_t<std::is_floating_point<T>::value, T>
@@ -41,8 +58,8 @@ namespace tue
         /*!
          * \brief     Computes the cosine of `x` (measured in radians).
          * \tparam T  The type of parameter `x`.
-         * \param x   An angle (measured in radians).
-         * \return    The cosine of `x`.
+         * \param x   A floating-point number.
+         * \return    The cosine of `x` (measured in radians).
          */
         template<typename T>
         inline std::enable_if_t<std::is_floating_point<T>::value, T>
@@ -57,11 +74,11 @@ namespace tue
          *
          * \tparam T       The type of parameter `x`.
          *
-         * \param x        An angle (measured in radians).
-         * \param sin_out  A reference to the value where the sine of `x` will
-         *                 be stored.
-         * \param cos_out  A reference to the value where the cosine of `x` will
-         *                 be stored.
+         * \param x        A floating-point number.
+         * \param sin_out  A reference to the value where the sine of `x`
+         *                 (measured in radians) will be stored.
+         * \param cos_out  A reference to the value where the cosine of `x`
+         *                 (measured in radians) will be stored.
          */
         template<typename T>
         inline std::enable_if_t<std::is_floating_point<T>::value>
@@ -86,7 +103,7 @@ namespace tue
 
         /*!
          * \brief     Computes the base-e (natural) logarithm of `x`.
-         * \tparam F  The type of parameter `x`.
+         * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
          * \return    The base-e (natural) logarithm of `x`.
          */
@@ -100,27 +117,14 @@ namespace tue
         /*!
          * \brief     Computes the absolute value of `x`.
          * \tparam T  The type of parameter `x`.
-         * \param x   A signed number.
+         * \param x   A number.
          * \return    The absolute value of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_signed<T>::value, T>
+        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
         abs(T x) noexcept
         {
-            return std::abs(x);
-        }
-
-        /*!
-         * \brief     Computes the absolute value of `x`.
-         * \tparam U  The type of parameter `x`.
-         * \param x   An unsigned number.
-         * \return    The absolute value of `x`.
-         */
-        template<typename U>
-        inline std::enable_if_t<std::is_unsigned<U>::value, U>
-        abs(U x) noexcept
-        {
-            return x;
+            return tue::detail_::abs(x);
         }
 
         /*!
@@ -128,8 +132,8 @@ namespace tue
          *
          * \tparam T  The type of parameters `x` and `y`.
          *
-         * \param x   A number.
-         * \param y   Another number.
+         * \param x   A floating-point number.
+         * \param y   Another floating-point number.
          *
          * \return    `x` raised to the power `y`.
          */
@@ -155,6 +159,8 @@ namespace tue
 
         /*!
          * \brief     Computes the nonnegative square root of `x`.
+         * \details   If `x` is negative, behavior is undefined.
+         *
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
          * \return    The nonnegative square root of `x`.
@@ -167,10 +173,14 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes the reciprocal nonnegative square root of `x`.
+         * \brief     Computes the reciprocal of the nonnegative square root of
+         *            `x`.
+
+         * \details   If `x` is negative, behavior is undefined.
+         *
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
-         * \return    The reciprocal nonnegative square root of `x`.
+         * \return    The reciprocal of the nonnegative square root of `x`.
          */
         template<typename T>
         inline std::enable_if_t<std::is_floating_point<T>::value, T>
@@ -220,7 +230,8 @@ namespace tue
          * \tparam U         The return type.
          *
          * \param condition  The condition.
-         * \param value      The return value when condition is `true`.
+         * \param value      The return value when condition is `trueX` (where
+         *                   `X` is the number of bits in `T`).
          *
          * \return           `value` or `0` depending on `condition`.
          */
@@ -246,8 +257,10 @@ namespace tue
          * \tparam U         The return type.
          *
          * \param condition  The condition.
-         * \param value      The return value when condition is `true`.
-         * \param otherwise  The return value when condition is `false`.
+         * \param value      The return value when condition is `trueX` (where
+         *                   `X` is the number of bits in `T`).
+         * \param value      The return value when condition is `falseX` (where
+         *                   `X` is the number of bits in `T`).
          *
          * \return           `value` or `otherwise` depending on `condition`.
          */

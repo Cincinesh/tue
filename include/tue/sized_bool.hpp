@@ -131,7 +131,7 @@ namespace tue
      * \brief     Computes the bitwise NOT of `b`.
      * \tparam T  The type of parameter 'b'.
      * \param b   A sized boolean value.
-     * \return    The bitwise XOR of `lhs` and `rhs`.
+     * \return    The bitwise NOT of `b`.
      */
     template<typename T>
     inline constexpr std::enable_if_t<is_sized_bool<T>::value, T>
@@ -144,7 +144,7 @@ namespace tue
     /*!
      * \brief      Computes the bitwise AND of `lhs` and `rhs`.
      *
-     * \tparam T   The type of the parameters.
+     * \tparam T   The type of parameters `lhs` and `rhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -162,7 +162,7 @@ namespace tue
     /*!
      * \brief      Computes the bitwise OR of `lhs` and `rhs`.
      *
-     * \tparam T   The type of the parameters.
+     * \tparam T   The type of parameters `lhs` and `rhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -180,7 +180,7 @@ namespace tue
     /*!
      * \brief      Computes the bitwise XOR of `lhs` and `rhs`.
      *
-     * \tparam T   The type of the parameters.
+     * \tparam T   The type of parameters `lhs` and `rhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -198,7 +198,7 @@ namespace tue
     /*!
      * \brief      Bitwise ANDs `lhs` with `rhs`.
      *
-     * \tparam T   The type of the parameters.
+     * \tparam T   The type of parameters `lhs` and `rhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -215,7 +215,7 @@ namespace tue
     /*!
      * \brief      Bitwise ORs `lhs` with `rhs`.
      *
-     * \tparam T   The type of the parameters.
+     * \tparam T   The type of parameters `lhs` and `rhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -232,7 +232,7 @@ namespace tue
     /*!
      * \brief      Bitwise XORs `lhs` with `rhs`.
      *
-     * \tparam T   The type of the parameters.
+     * \tparam T   The type of parameters `lhs` and `rhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
