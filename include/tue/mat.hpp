@@ -929,6 +929,9 @@ namespace tue
         return tue::detail_::multiplication_operator_vm(lhs, rhs);
     }
 
+    template<typename T, typename U, int N, int C, int R>
+    void operator*(const vec<T, N>&, const mat<U, C, R>&) = delete;
+
     /*!
      * \brief      Computes the products of each column of `lhs` and `rhs`.
      *
@@ -970,6 +973,9 @@ namespace tue
         return tue::detail_::multiplication_operator_mv(lhs, rhs);
     }
 
+    template<typename T, typename U, int C, int R, int N>
+    void operator*(const mat<T, C, R>&, const vec<U, N>&) = delete;
+
     /*!
      * \brief      Computes the matrix product of `lhs` and `rhs`.
      * \details    To compute the component-wise product, use
@@ -991,6 +997,9 @@ namespace tue
     {
         return tue::detail_::multiplication_operator_mm(lhs, rhs);
     }
+
+    template<typename T, typename U, int TC, int TR, int UC, int UR>
+    void operator*(const mat<T, TC, TR>&, const mat<U, UC, UR>&) = delete;
 
     /*!
      * \brief      Computes the quotients of `lhs` over each column of `rhs`.

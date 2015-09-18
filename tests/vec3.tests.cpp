@@ -408,16 +408,6 @@ namespace
         test_assert(v2[2] == 5.6 * 9);
     }
 
-    TEST_CASE(mat_multiplication_assignment_operator)
-    {
-        const dvec3 v1(1.2, 3.4, 5.6);
-        const fmat3x3 m(7.8f);
-
-        auto v2 = v1;
-        test_assert(&(v2 *= m) == &v2);
-        test_assert(v2 == v1 * m);
-    }
-
     TEST_CASE(quat_multiplication_assignment_operator)
     {
         const dvec3 v1(1.2, 3.4, 5.6);
@@ -426,6 +416,16 @@ namespace
         auto v2 = v1;
         test_assert(&(v2 *= q) == &v2);
         test_assert(v2 == v1 * q);
+    }
+
+    TEST_CASE(mat_multiplication_assignment_operator)
+    {
+        const dvec3 v1(1.2, 3.4, 5.6);
+        const fmat3x3 m(7.8f);
+
+        auto v2 = v1;
+        test_assert(&(v2 *= m) == &v2);
+        test_assert(v2 == v1 * m);
     }
 
     TEST_CASE(division_assignment_operator)

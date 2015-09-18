@@ -744,16 +744,6 @@ namespace tue
         inline vec<T, N>& operator*=(const vec<U, N>& v) noexcept;
 
         /*!
-         * \brief     Matrix multiplies this `vec` by `m`.
-         * \details   This `vec` is treated as a matrix with a single row.
-         * \tparam U  The component type of `m`.
-         * \param m   A `mat`.
-         * \return    A reference to this `vec`.
-         */
-        template<typename U>
-        inline vec<T, N>& operator*=(const mat<U, N, N>& m) noexcept;
-
-        /*!
          * \brief     Rotates this `vec` by `q`.
          * \details   This overload is only available when `N` is equal to `3`.
          *            The operand order might be the reverse of what you expect
@@ -767,6 +757,16 @@ namespace tue
          */
         template<typename U>
         inline vec<T, N>& operator*=(const quat<U>& q) noexcept;
+
+        /*!
+         * \brief     Matrix multiplies this `vec` by `m`.
+         * \details   This `vec` is treated as a matrix with a single row.
+         * \tparam U  The component type of `m`.
+         * \param m   A `mat`.
+         * \return    A reference to this `vec`.
+         */
+        template<typename U>
+        inline vec<T, N>& operator*=(const mat<U, N, N>& m) noexcept;
 
         /*!
          * \brief     Divides each component of this `vec` by `x`.
