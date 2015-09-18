@@ -13,7 +13,6 @@
 
 #include "../math.hpp"
 #include "../nocopy_cast.hpp"
-#include "../sized_bool.hpp"
 #include "../vec.hpp"
 
 namespace tue
