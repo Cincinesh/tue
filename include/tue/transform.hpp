@@ -194,7 +194,7 @@ namespace tue
             const T& angle) noexcept
         {
             T s, c;
-            tue::math::sincos(angle / 2, s, c);
+            tue::math::sincos(angle / T(2), s, c);
             return { axis_x * s, axis_y * s, axis_z * s, c };
         }
 
@@ -486,7 +486,7 @@ namespace tue
         {
             T s, c;
             tue::math::sincos(angle, s, c);
-            const auto omc = 1 - c;
+            const auto omc = T(1) - c;
 
             const auto xx = axis_x * axis_x;
             const auto xy = axis_x * axis_y;
@@ -683,17 +683,17 @@ namespace tue
         rotation_mat(const quat<T>& q) noexcept
         {
             return tue::detail_::mat_utils<T, C, R>::create(
-                1 - 2*q[1]*q[1] - 2*q[2]*q[2],
-                    2*q[0]*q[1] - 2*q[2]*q[3],
-                    2*q[0]*q[2] + 2*q[1]*q[3],
+                T(1) - T(2)*q[1]*q[1] - T(2)*q[2]*q[2],
+                       T(2)*q[0]*q[1] - T(2)*q[2]*q[3],
+                       T(2)*q[0]*q[2] + T(2)*q[1]*q[3],
                 0,
-                    2*q[0]*q[1] + 2*q[2]*q[3],
-                1 - 2*q[0]*q[0] - 2*q[2]*q[2],
-                    2*q[1]*q[2] - 2*q[0]*q[3],
+                       T(2)*q[0]*q[1] + T(2)*q[2]*q[3],
+                T(1) - T(2)*q[0]*q[0] - T(2)*q[2]*q[2],
+                       T(2)*q[1]*q[2] - T(2)*q[0]*q[3],
                 0,
-                    2*q[0]*q[2] - 2*q[1]*q[3],
-                    2*q[1]*q[2] + 2*q[0]*q[3],
-                1 - 2*q[0]*q[0] - 2*q[1]*q[1],
+                       T(2)*q[0]*q[2] - T(2)*q[1]*q[3],
+                       T(2)*q[1]*q[2] + T(2)*q[0]*q[3],
+                T(1) - T(2)*q[0]*q[0] - T(2)*q[1]*q[1],
                 0,
                 0, 0, 0, 1);
         }
@@ -876,7 +876,7 @@ namespace tue
             const T& f /* "far" conflicts with a WIN32 macro */) noexcept
         {
             T s, c;
-            tue::math::sincos(fovy / 2, s, c);
+            tue::math::sincos(fovy / T(2), s, c);
             const auto cot = c / s;
 
             const auto npf = n + f;
@@ -884,10 +884,10 @@ namespace tue
             const auto ntf = n * f;
 
             return tue::detail_::mat_utils<T, C, R>::create(
-                cot/aspect,      0, 0, 0,
-                0, cot,             0, 0,
-                0, 0, npf/nmf, 2*ntf/nmf,
-                0, 0, -1,              0);
+                cot/aspect,         0, 0, 0,
+                0, cot,                0, 0,
+                0, 0, npf/nmf, T(2)*ntf/nmf,
+                0, 0, -1,                 0);
         }
 
         /*!
@@ -927,10 +927,10 @@ namespace tue
             const T& f /* "far" conflicts with a WIN32 macro */) noexcept
         {
             return tue::detail_::mat_utils<T, C, R>::create(
-                2/width,           0, 0, 0,
-                0, 2/height,          0, 0,
-                0, 0, 2/(n-f), (n+f)/(n-f),
-                0, 0, 0,                 1);
+                T(2)/width,           0, 0, 0,
+                0, T(2)/height,          0, 0,
+                0, 0, T(2)/(n-f), (n+f)/(n-f),
+                0, 0, 0,                    1);
         }
 
         /*!@}*/
