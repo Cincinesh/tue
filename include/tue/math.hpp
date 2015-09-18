@@ -259,7 +259,7 @@ namespace tue
          * \param condition  The condition.
          * \param value      The return value when condition is `trueX` (where
          *                   `X` is the number of bits in `T`).
-         * \param value      The return value when condition is `falseX` (where
+         * \param otherwise  The return value when condition is `falseX` (where
          *                   `X` is the number of bits in `T`).
          *
          * \return           `value` or `otherwise` depending on `condition`.

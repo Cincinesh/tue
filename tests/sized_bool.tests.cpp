@@ -9,7 +9,6 @@
 #include <tue/sized_bool.hpp>
 #include <mon/test_case.hpp>
 
-#include <cstdint>
 #include <type_traits>
 
 namespace
@@ -72,7 +71,7 @@ namespace
 
     TEST_CASE(is_sized_bool)
     {
-        test_assert(is_sized_bool<std::uint32_t>::value == false);
+        test_assert(is_sized_bool<bool>::value == false);
         test_assert(is_sized_bool<bool8>::value == true);
         test_assert(is_sized_bool<bool16>::value == true);
         test_assert(is_sized_bool<bool32>::value == true);

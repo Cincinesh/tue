@@ -20,7 +20,43 @@ namespace tue
 {
     /*!
      * \defgroup  simd_hpp <tue/simd.hpp>
-     * \brief     The `simd` class template and its associated functions.
+     * \brief     The `simd` class template and its associated utility classes
+     *            and functions.
+     * @{
+     */
+
+    /*!
+     * \brief     Checks if a type can be used as the component type of an SIMD
+     *            vector.
+     * \details   Extends `std::integral_constant<bool, true>` for the following
+     *            types and `std::integral_constant<bool, false>` otherwise:
+     *            - `float`
+     *            - `double`
+     *            - `std::int8_t`
+     *            - `std::int16_t`
+     *            - `std::int32_t`
+     *            - `std::int64_t`
+     *            - `std::uint8_t`
+     *            - `std::uint16_t`
+     *            - `std::uint32_t`
+     *            - `std::uint64_t`
+     *            - `bool8`
+     *            - `bool16`
+     *            - `bool32`
+     *            - `bool64`
+     *
+     * \tparam T  The type to check.
+     */
+    template<typename T>
+    struct is_simd_component;
+}
+
+#include "detail_/is_simd_component.hpp"
+
+namespace tue
+{
+    /*!
+     * \addtogroup  simd_hpp
      * @{
      */
 
