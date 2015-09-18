@@ -1794,8 +1794,8 @@ namespace tue
          * \brief            Computes `tue::math::pow()` for `base` and each
          *                   component of `exponents`.
          *
-         * \tparam T         The type of parameter `base`.
-         * \tparam U         The component type of `exponents`.
+         * \tparam T         The type of parameter `base` and the component type
+         *                   of `exponents`.
          * \tparam N         The component count of `exponents`.
          *
          * \param base       The base.
@@ -1804,10 +1804,10 @@ namespace tue
          * \return           `tue::math::pow()` for `base` and each component of
          *                   `exponents`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), N>
-        pow(const T& base, const vec<U, N>& exponents) noexcept
+            tue::math::pow(std::declval<T>(), std::declval<T>())), N>
+        pow(const T& base, const vec<T, N>& exponents) noexcept
         {
             return tue::detail_::pow_xv(base, exponents);
         }
@@ -1816,8 +1816,8 @@ namespace tue
          * \brief           Computes `tue::math::pow()` for each component of
          *                  `bases` and `exponent`.
          *
-         * \tparam T        The component type of `bases`.
-         * \tparam U        The type of parameter `exponent`.
+         * \tparam T        The component type of `bases` and the type of
+         *                  parameter `exponent`.
          * \tparam N        The component count of `bases`.
          *
          * \param bases     The bases.
@@ -1826,10 +1826,10 @@ namespace tue
          * \return          `tue::math::pow()` for each component of `bases` and
          *                  `exponent`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), N>
-        pow(const vec<T, N>& bases, const U& exponent) noexcept
+            tue::math::pow(std::declval<T>(), std::declval<T>())), N>
+        pow(const vec<T, N>& bases, const T& exponent) noexcept
         {
             return tue::detail_::pow_vx(bases, exponent);
         }
@@ -1839,8 +1839,7 @@ namespace tue
          *                   `bases` and each corresponding component of
          *                   `exponents`.
          *
-         * \tparam T         The component type of `bases`.
-         * \tparam U         The component type of `exponents`.
+         * \tparam T         The component type of both `bases` and `exponents`.
          * \tparam N         The component count of both `bases` and
          *                   `exponents`.
          *
@@ -1850,10 +1849,10 @@ namespace tue
          * \return           `tue::math::pow()` for each component of `bases`
          *                   and each corresponding component of `exponents`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<U>())), N>
-        pow(const vec<T, N>& bases, const vec<U, N>& exponents) noexcept
+            tue::math::pow(std::declval<T>(), std::declval<T>())), N>
+        pow(const vec<T, N>& bases, const vec<T, N>& exponents) noexcept
         {
             return tue::detail_::pow_vv(bases, exponents);
         }
@@ -1923,7 +1922,8 @@ namespace tue
          *            components of `v1` and `v2`.
          */
         template<typename T, int N>
-        inline vec<T, N>
+        inline vec<decltype(
+            tue::math::min(std::declval<T>(), std::declval<T>())), N>
         min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
             return tue::detail_::min_vv(v1, v2);
@@ -1943,7 +1943,8 @@ namespace tue
          *            components of `v1` and `v2`.
          */
         template<typename T, int N>
-        inline vec<T, N>
+        inline vec<decltype(
+            tue::math::max(std::declval<T>(), std::declval<T>())), N>
         max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
             return tue::detail_::max_vv(v1, v2);
@@ -1966,7 +1967,8 @@ namespace tue
          *                    pair of components from `conditions` and `values`.
          */
         template<typename T, typename U, int N>
-        inline vec<U, N>
+        inline vec<decltype(
+            tue::math::select(std::declval<T>(), std::declval<U>())), N>
         select(
             const vec<T, N>& conditions,
             const vec<U, N>& values) noexcept
@@ -1992,7 +1994,12 @@ namespace tue
          *                    and `otherwise`.
          */
         template<typename T, typename U, int N>
-        inline vec<U, N>
+        inline vec<
+            decltype(tue::math::select(
+                std::declval<T>(),
+                std::declval<U>(),
+                std::declval<U>())),
+            N>
         select(
             const vec<T, N>& conditions,
             const vec<U, N>& values,
