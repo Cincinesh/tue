@@ -1259,7 +1259,7 @@ namespace tue
          * \return    `tue::math::abs()` for each component of `s`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline std::enable_if_t<std::is_arithmetic<T>::value, simd<T, N>>
         abs(const simd<T, N>& s) noexcept
         {
             return tue::detail_::abs_s(s);
@@ -1361,7 +1361,7 @@ namespace tue
          *            components of `s1` and `s2`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline std::enable_if_t<std::is_arithmetic<T>::value, simd<T, N>>
         min(const simd<T, N>& s1, const simd<T, N>& s2) noexcept
         {
             return tue::detail_::min_ss(s1, s2);
@@ -1381,7 +1381,7 @@ namespace tue
          *            components of `s1` and `s2`.
          */
         template<typename T, int N>
-        inline simd<T, N>
+        inline std::enable_if_t<std::is_arithmetic<T>::value, simd<T, N>>
         max(const simd<T, N>& s1, const simd<T, N>& s2) noexcept
         {
             return tue::detail_::max_ss(s1, s2);
