@@ -13,7 +13,6 @@
 
 #include "mat.hpp"
 #include "math.hpp"
-#include "nocopy_cast.hpp"
 #include "quat.hpp"
 #include "vec.hpp"
 
@@ -90,19 +89,15 @@ namespace tue
         inline vec4<decltype(tue::math::sqrt(std::declval<T>()))>
         axis_angle(const T& x, const T& y, const T& z) noexcept
         {
-            using U = decltype(tue::math::sqrt(x));
-            const auto u0 = U(0);
-            const auto u1 = U(1);
-
             const auto angle = tue::math::sqrt(x*x + y*y + z*z);
-            const auto nzmask = tue::math::not_equal(angle, u0);
+            const auto nzmask = tue::math::not_equal(angle, T(0));
 
             const auto axis_x = tue::math::select(
-                nzmask, tue::nocopy_cast<U>(x) / angle, u0);
+                nzmask, x / angle, T(0));
             const auto axis_y = tue::math::select(
-                nzmask, tue::nocopy_cast<U>(y) / angle, u0);
+                nzmask, y / angle, T(0));
             const auto axis_z = tue::math::select(
-                nzmask, tue::nocopy_cast<U>(z) / angle, u1);
+                nzmask, z / angle, T(1));
 
             return { axis_x, axis_y, axis_z, angle };
         }
@@ -198,16 +193,9 @@ namespace tue
             const T& axis_x, const T& axis_y, const T& axis_z,
             const T& angle) noexcept
         {
-            using U = decltype(tue::math::sin(angle));
-            U s, c;
-            tue::math::sincos(tue::nocopy_cast<U>(angle) / U(2), s, c);
-
-            return {
-                tue::nocopy_cast<U>(axis_x) * s,
-                tue::nocopy_cast<U>(axis_y) * s,
-                tue::nocopy_cast<U>(axis_z) * s,
-                c,
-            };
+            T s, c;
+            tue::math::sincos(angle / 2, s, c);
+            return { axis_x * s, axis_y * s, axis_z * s, c };
         }
 
         /*!
@@ -449,10 +437,9 @@ namespace tue
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const T& angle) noexcept
         {
-            using U = decltype(tue::math::sin(angle));
-            U s, c;
+            T s, c;
             tue::math::sincos(angle, s, c);
-            return tue::detail_::mat_utils<U, C, R>::create(
+            return tue::detail_::mat_utils<T, C, R>::create(
                 c, -s, 0, 0,
                 s,  c, 0, 0,
                 0,  0, 1, 0,
@@ -497,24 +484,19 @@ namespace tue
             const T& axis_x, const T& axis_y, const T& axis_z,
             const T& angle) noexcept
         {
-            using U = decltype(tue::math::sin(angle));
-            decltype(auto) x = tue::nocopy_cast<U>(axis_x);
-            decltype(auto) y = tue::nocopy_cast<U>(axis_y);
-            decltype(auto) z = tue::nocopy_cast<U>(axis_z);
-
-            U s, c;
+            T s, c;
             tue::math::sincos(angle, s, c);
-            const auto omc = U(1) - c;
+            const auto omc = 1 - c;
 
-            const auto xx = x * x;
-            const auto xy = x * y;
-            const auto xz = x * z;
-            const auto xs = x * s;
-            const auto yy = y * y;
-            const auto yz = y * z;
-            const auto ys = y * s;
-            const auto zz = z * z;
-            const auto zs = z * s;
+            const auto xx = axis_x * axis_x;
+            const auto xy = axis_x * axis_y;
+            const auto xz = axis_x * axis_z;
+            const auto xs = axis_x * s;
+            const auto yy = axis_y * axis_y;
+            const auto yz = axis_y * axis_z;
+            const auto ys = axis_y * s;
+            const auto zz = axis_z * axis_z;
+            const auto zs = axis_z * s;
             const auto xxomc = xx * omc;
             const auto xyomc = xy * omc;
             const auto xzomc = xz * omc;
@@ -522,7 +504,7 @@ namespace tue
             const auto yzomc = yz * omc;
             const auto zzomc = zz * omc;
 
-            return tue::detail_::mat_utils<U, C, R>::create(
+            return tue::detail_::mat_utils<T, C, R>::create(
                 xxomc +  c, xyomc - zs, xzomc + ys, 0,
                 xyomc + zs, yyomc +  c, yzomc - xs, 0,
                 xzomc - ys, yzomc + xs, zzomc +  c, 0,
@@ -624,9 +606,8 @@ namespace tue
          * \return    A 3D rotation matrix.
          *
          *            \code
-         *            const auto aa = tue::transform::axis_angle(x, y, z);
-         *            using U = typename decltype(aa)::component_type;
-         *            return tue::transform::rotation_mat<U, C, R>(aa);
+         *            return tue::transform::rotation_mat<T, C, R>(
+         *                tue::transform::axis_angle(x, y, z));
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
@@ -634,9 +615,8 @@ namespace tue
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const T& x, const T& y, const T& z) noexcept
         {
-            const auto aa = tue::transform::axis_angle(x, y, z);
-            using U = typename decltype(aa)::component_type;
-            return tue::transform::rotation_mat<U, C, R>(aa);
+            return tue::transform::rotation_mat<T, C, R>(
+                tue::transform::axis_angle(x, y, z));
         }
 
         /*!
@@ -657,9 +637,8 @@ namespace tue
          * \return    A 3D rotation matrix.
          *
          *            \code
-         *            const auto aa = tue::transform::axis_angle(v);
-         *            using U = typename decltype(aa)::component_type;
-         *            return tue::transform::rotation_mat<U, C, R>(aa);
+         *            return tue::transform::rotation_mat<T, C, R>(
+         *                tue::transform::axis_angle(v));
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
@@ -667,9 +646,8 @@ namespace tue
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const vec3<T>& v) noexcept
         {
-            const auto aa = tue::transform::axis_angle(v);
-            using U = typename decltype(aa)::component_type;
-            return tue::transform::rotation_mat<U, C, R>(aa);
+            return tue::transform::rotation_mat<T, C, R>(
+                tue::transform::axis_angle(v));
         }
 
         /*!
@@ -705,17 +683,17 @@ namespace tue
         rotation_mat(const quat<T>& q) noexcept
         {
             return tue::detail_::mat_utils<T, C, R>::create(
-                T(1) - T(2)*q[1]*q[1] - T(2)*q[2]*q[2],
-                T(2)*q[0]*q[1] - T(2)*q[2]*q[3],
-                T(2)*q[0]*q[2] + T(2)*q[1]*q[3],
+                1 - 2*q[1]*q[1] - 2*q[2]*q[2],
+                    2*q[0]*q[1] - 2*q[2]*q[3],
+                    2*q[0]*q[2] + 2*q[1]*q[3],
                 0,
-                T(2)*q[0]*q[1] + T(2)*q[2]*q[3],
-                T(1) - T(2)*q[0]*q[0] - T(2)*q[2]*q[2],
-                T(2)*q[1]*q[2] - T(2)*q[0]*q[3],
+                    2*q[0]*q[1] + 2*q[2]*q[3],
+                1 - 2*q[0]*q[0] - 2*q[2]*q[2],
+                    2*q[1]*q[2] - 2*q[0]*q[3],
                 0,
-                T(2)*q[0]*q[2] - T(2)*q[1]*q[3],
-                T(2)*q[1]*q[2] + T(2)*q[0]*q[3],
-                T(1) - T(2)*q[0]*q[0] - T(2)*q[1]*q[1],
+                    2*q[0]*q[2] - 2*q[1]*q[3],
+                    2*q[1]*q[2] + 2*q[0]*q[3],
+                1 - 2*q[0]*q[0] - 2*q[1]*q[1],
                 0,
                 0, 0, 0, 1);
         }
@@ -897,24 +875,19 @@ namespace tue
             const T& n /* "near" conflicts with a WIN32 macro */,
             const T& f /* "far" conflicts with a WIN32 macro */) noexcept
         {
-            using U = decltype(tue::math::sin(fovy));
-            const auto u2 = U(2);
-
-            U s, c;
-            tue::math::sincos(tue::nocopy_cast<U>(fovy) / u2, s, c);
-
+            T s, c;
+            tue::math::sincos(fovy / 2, s, c);
             const auto cot = c / s;
-            decltype(auto) a =  tue::nocopy_cast<U>(aspect);
 
-            const auto npf = tue::nocopy_cast<U>(n + f);
-            const auto nmf = tue::nocopy_cast<U>(n - f);
-            const auto ntf = tue::nocopy_cast<U>(n * f);
+            const auto npf = n + f;
+            const auto nmf = n - f;
+            const auto ntf = n * f;
 
-            return tue::detail_::mat_utils<U, C, R>::create(
-                cot / a,          0, 0, 0,
-                0, cot,              0, 0,
-                0, 0, npf/nmf, u2*ntf/nmf,
-                0, 0, -1,               0);
+            return tue::detail_::mat_utils<T, C, R>::create(
+                cot/aspect,      0, 0, 0,
+                0, cot,             0, 0,
+                0, 0, npf/nmf, 2*ntf/nmf,
+                0, 0, -1,              0);
         }
 
         /*!
@@ -953,16 +926,11 @@ namespace tue
             const T& n /* "near" conflicts with a WIN32 macro */,
             const T& f /* "far" conflicts with a WIN32 macro */) noexcept
         {
-            using U = decltype(tue::math::recip(width));
-            return tue::detail_::mat_utils<U, C, R>::create(
-                U(2) / tue::nocopy_cast<U>(width),  0, 0, 0,
-                0, U(2) / tue::nocopy_cast<U>(height), 0, 0,
-
-                0, 0,
-                U(2) / tue::nocopy_cast<U>(n-f),
-                tue::nocopy_cast<U>(n+f) / tue::nocopy_cast<U>(n-f),
-
-                0, 0, 0, 1);
+            return tue::detail_::mat_utils<T, C, R>::create(
+                2/width,           0, 0, 0,
+                0, 2/height,          0, 0,
+                0, 0, 2/(n-f), (n+f)/(n-f),
+                0, 0, 0,                 1);
         }
 
         /*!@}*/
