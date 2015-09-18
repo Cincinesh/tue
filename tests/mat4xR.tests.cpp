@@ -11,6 +11,7 @@
 
 #include <type_traits>
 #include <tue/math.hpp>
+#include <tue/sized_bool.hpp>
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
 
@@ -110,11 +111,11 @@ namespace
         { 130, 131, 132, 133 },
     };
 
-    CONST_OR_CONSTEXPR mat4x2<bool> bm42 = {
-        { true, false },
-        { false, true },
-        { true, false },
-        { false, true },
+    CONST_OR_CONSTEXPR mat4x2<bool64> bm42 = {
+        { true64, false64 },
+        { false64, true64 },
+        { true64, false64 },
+        { false64, true64 },
     };
 
     TEST_CASE(size)
@@ -1229,13 +1230,13 @@ namespace
 
     TEST_CASE(select)
     {
-        CONST_OR_CONSTEXPR auto m1 = math::select(bm42, dm42);
+        const auto m1 = math::select(bm42, dm42);
         test_assert(m1[0] == math::select(bm42[0], dm42[0]));
         test_assert(m1[1] == math::select(bm42[1], dm42[1]));
         test_assert(m1[2] == math::select(bm42[2], dm42[2]));
         test_assert(m1[3] == math::select(bm42[3], dm42[3]));
 
-        CONST_OR_CONSTEXPR auto m2 = math::select(bm42, dm42, dm422);
+        const auto m2 = math::select(bm42, dm42, dm422);
         test_assert(m2[0] == math::select(bm42[0], dm42[0], dm422[0]));
         test_assert(m2[1] == math::select(bm42[1], dm42[1], dm422[1]));
         test_assert(m2[2] == math::select(bm42[2], dm42[2], dm422[2]));

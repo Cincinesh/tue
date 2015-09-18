@@ -12,6 +12,7 @@
 #include <type_traits>
 #include <tue/mat.hpp>
 #include <tue/math.hpp>
+#include <tue/sized_bool.hpp>
 #include <tue/unused.hpp>
 
 namespace
@@ -25,7 +26,6 @@ namespace
         test_assert(sizeof(dvec2) == sizeof(double) * 2);
         test_assert(sizeof(ivec2) == sizeof(int) * 2);
         test_assert(sizeof(uvec2) == sizeof(unsigned int) * 2);
-        test_assert(sizeof(bvec2) == sizeof(bool) * 2);
     }
 
     TEST_CASE(alignment)
@@ -35,7 +35,6 @@ namespace
         test_assert(alignof(dvec2) == alignof(double));
         test_assert(alignof(ivec2) == alignof(int));
         test_assert(alignof(uvec2) == alignof(unsigned int));
-        test_assert(alignof(bvec2) == alignof(bool));
     }
 
     TEST_CASE(component_type)
@@ -50,8 +49,6 @@ namespace
             typename ivec2::component_type, int>::value));
         test_assert((std::is_same<
             typename uvec2::component_type, unsigned int>::value));
-        test_assert((std::is_same<
-            typename bvec2::component_type, bool>::value));
     }
 
     TEST_CASE(component_count)
@@ -61,13 +58,11 @@ namespace
         constexpr auto dv2 = dvec2::component_count;
         constexpr auto iv2 = ivec2::component_count;
         constexpr auto uv2 = uvec2::component_count;
-        constexpr auto bv2 = bvec2::component_count;
         test_assert(v2s == 2);
         test_assert(fv2 == 2);
         test_assert(dv2 == 2);
         test_assert(iv2 == 2);
         test_assert(uv2 == 2);
-        test_assert(bv2 == 2);
     }
 
     TEST_CASE(default_constructor)
@@ -438,7 +433,7 @@ namespace
     TEST_CASE(logical_not_operator)
     {
         CONST_OR_CONSTEXPR auto v = !ivec2(0, 1);
-        test_assert(v == bvec2(!0, !1));
+        test_assert(v == vec2<bool>(!0, !1));
     }
 
     TEST_CASE(addition_operator)
@@ -727,73 +722,73 @@ namespace
 
     TEST_CASE(select)
     {
-        CONST_OR_CONSTEXPR auto v1 = math::select(
-            bvec2(true, false), dvec2(1.2, 3.4));
+        const auto v1 = math::select(
+            vec2<bool64>(true64, false64), dvec2(1.2, 3.4));
         test_assert(v1 == dvec2(1.2, 0.0));
 
-        CONST_OR_CONSTEXPR auto v2 = math::select(
-            bvec2(true, false), dvec2(1.2, 3.4), dvec2(5.6, 7.8));
+        const auto v2 = math::select(
+            vec2<bool64>(true64, false64), dvec2(1.2, 3.4), dvec2(5.6, 7.8));
         test_assert(v2 == dvec2(1.2, 7.8));
     }
 
     TEST_CASE(less)
     {
         CONST_OR_CONSTEXPR auto v1 = math::less(
-            ivec2(1, 2), dvec2(2.1, 2.0));
+            dvec2(1.0, 2.0), dvec2(2.1, 2.0));
         CONST_OR_CONSTEXPR auto v2 = math::less(
-            ivec2(3, 4), dvec2(1.9, 1.8));
-        test_assert(v1 == bvec2(true, false));
-        test_assert(v2 == bvec2(false, false));
+            dvec2(3.0, 4.0), dvec2(1.9, 1.8));
+        test_assert(v1 == vec2<bool64>(true64, false64));
+        test_assert(v2 == vec2<bool64>(false64, false64));
     }
 
     TEST_CASE(less_equal)
     {
         CONST_OR_CONSTEXPR auto v1 = math::less_equal(
-            ivec2(1, 2), dvec2(2.1, 2.0));
+            dvec2(1.0, 2.0), dvec2(2.1, 2.0));
         CONST_OR_CONSTEXPR auto v2 = math::less_equal(
-            ivec2(3, 4), dvec2(1.9, 1.8));
-        test_assert(v1 == bvec2(true, true));
-        test_assert(v2 == bvec2(false, false));
+            dvec2(3.0, 4.0), dvec2(1.9, 1.8));
+        test_assert(v1 == vec2<bool64>(true64, true64));
+        test_assert(v2 == vec2<bool64>(false64, false64));
     }
 
     TEST_CASE(greater)
     {
         CONST_OR_CONSTEXPR auto v1 = math::greater(
-            ivec2(1, 2), dvec2(2.1, 2.0));
+            dvec2(1.0, 2.0), dvec2(2.1, 2.0));
         CONST_OR_CONSTEXPR auto v2 = math::greater(
-            ivec2(3, 4), dvec2(1.9, 1.8));
-        test_assert(v1 == bvec2(false, false));
-        test_assert(v2 == bvec2(true, true));
+            dvec2(3.0, 4.0), dvec2(1.9, 1.8));
+        test_assert(v1 == vec2<bool64>(false64, false64));
+        test_assert(v2 == vec2<bool64>(true64, true64));
     }
 
     TEST_CASE(greater_equal)
     {
         CONST_OR_CONSTEXPR auto v1 = math::greater_equal(
-            ivec2(1, 2), dvec2(2.1, 2.0));
+            dvec2(1.0, 2.0), dvec2(2.1, 2.0));
         CONST_OR_CONSTEXPR auto v2 = math::greater_equal(
-            ivec2(3, 4), dvec2(1.9, 1.8));
-        test_assert(v1 == bvec2(false, true));
-        test_assert(v2 == bvec2(true, true));
+            dvec2(3.0, 4.0), dvec2(1.9, 1.8));
+        test_assert(v1 == vec2<bool64>(false64, true64));
+        test_assert(v2 == vec2<bool64>(true64, true64));
     }
 
     TEST_CASE(equal)
     {
         CONST_OR_CONSTEXPR auto v1 = math::equal(
-            ivec2(1, 2), dvec2(2.1, 2.0));
+            dvec2(1.0, 2.0), dvec2(2.1, 2.0));
         CONST_OR_CONSTEXPR auto v2 = math::equal(
-            ivec2(3, 4), dvec2(1.9, 1.8));
-        test_assert(v1 == bvec2(false, true));
-        test_assert(v2 == bvec2(false, false));
+            dvec2(3.0, 4.0), dvec2(1.9, 1.8));
+        test_assert(v1 == vec2<bool64>(false64, true64));
+        test_assert(v2 == vec2<bool64>(false64, false64));
     }
 
     TEST_CASE(not_equal)
     {
         CONST_OR_CONSTEXPR auto v1 = math::not_equal(
-            ivec2(1, 2), dvec2(2.1, 2.0));
+            dvec2(1.0, 2.0), dvec2(2.1, 2.0));
         CONST_OR_CONSTEXPR auto v2 = math::not_equal(
-            ivec2(3, 4), dvec2(1.9, 1.8));
-        test_assert(v1 == bvec2(true, false));
-        test_assert(v2 == bvec2(true, true));
+            dvec2(3.0, 4.0), dvec2(1.9, 1.8));
+        test_assert(v1 == vec2<bool64>(true64, false64));
+        test_assert(v2 == vec2<bool64>(true64, true64));
     }
 
     TEST_CASE(dot)
@@ -804,8 +799,8 @@ namespace
 
     TEST_CASE(length)
     {
-        test_assert(math::length(dvec2(1.2, 3.4))
-                    == math::sqrt(math::length2(dvec2(1.2, 3.4))));
+        test_assert(math::length(dvec2(1.2, 3.4)) ==
+            math::sqrt(math::length2(dvec2(1.2, 3.4))));
     }
 
     TEST_CASE(length2)

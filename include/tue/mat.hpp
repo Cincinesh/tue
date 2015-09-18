@@ -1786,6 +1786,32 @@ namespace tue
 
         /*!
          * \brief             Computes `tue::math::select()` for each
+         *                    corresponding pair of columns from `conditions`
+         *                    and `values`.
+         *
+         * \tparam T          The component type of `conditions`.
+         * \tparam U          The component type of `values`.
+         * \tparam C          The column count of both `conditions` and
+         *                    `values`.
+         * \tparam R          The row count of both `conditions` and `values`.
+         *
+         * \param conditions  A `mat`.
+         * \param values      Another `mat`.
+         *
+         * \return            `tue::math::select()` for each corresponding
+         *                    pair of columns from `conditions` and `values`.
+         */
+        template<typename T, typename U, int C, int R>
+        inline mat<U, C, R>
+        select(
+            const mat<T, C, R>& conditions,
+            const mat<U, C, R>& values) noexcept
+        {
+            return tue::detail_::select_mm(conditions, values);
+        }
+
+        /*!
+         * \brief             Computes `tue::math::select()` for each
          *                    corresponding triple of columns from `conditions`,
          *                    `values`, and `otherwise`.
          *
@@ -1803,11 +1829,11 @@ namespace tue
          *                    `otherwise`.
          */
         template<typename T, typename U, int C, int R>
-        inline constexpr mat<U, C, R>
+        inline mat<U, C, R>
         select(
             const mat<T, C, R>& conditions,
             const mat<U, C, R>& values,
-            const mat<U, C, R>& otherwise = mat<U, C, R>(0)) noexcept
+            const mat<U, C, R>& otherwise) noexcept
         {
             return tue::detail_::select_mmm(conditions, values, otherwise);
         }
@@ -1816,8 +1842,7 @@ namespace tue
          * \brief      Computes `tue::math::less()` for each corresponding pair
          *             of columns of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
          * \tparam R   The row count of both `lhs` and `rhs`.
          *
@@ -1827,11 +1852,11 @@ namespace tue
          * \return     `tue::math::less()` for each corresponding pair of
          *             columns of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline constexpr mat<decltype(
-            tue::math::less(std::declval<T>(), std::declval<U>())),
+            tue::math::less(std::declval<T>(), std::declval<T>())),
             C, R>
-        less(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        less(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
             return tue::detail_::less_mm(lhs, rhs);
         }
@@ -1840,8 +1865,7 @@ namespace tue
          * \brief      Computes `tue::math::less_equal()` for each corresponding
          *             pair of columns of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
          * \tparam R   The row count of both `lhs` and `rhs`.
          *
@@ -1851,11 +1875,11 @@ namespace tue
          * \return     `tue::math::less_equal()` for each corresponding pair of
          *             columns of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline constexpr mat<decltype(
-            tue::math::less_equal(std::declval<T>(), std::declval<U>())),
+            tue::math::less_equal(std::declval<T>(), std::declval<T>())),
             C, R>
-        less_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        less_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
             return tue::detail_::less_equal_mm(lhs, rhs);
         }
@@ -1864,8 +1888,7 @@ namespace tue
          * \brief      Computes `tue::math::greater()` for each corresponding
          *             pair of columns of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
          * \tparam R   The row count of both `lhs` and `rhs`.
          *
@@ -1875,11 +1898,11 @@ namespace tue
          * \return     `tue::math::greater()` for each corresponding pair of
          *             columns of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline constexpr mat<decltype(
-            tue::math::greater(std::declval<T>(), std::declval<U>())),
+            tue::math::greater(std::declval<T>(), std::declval<T>())),
             C, R>
-        greater(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        greater(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
             return tue::detail_::greater_mm(lhs, rhs);
         }
@@ -1888,8 +1911,7 @@ namespace tue
          * \brief      Computes `tue::math::greater_equal()` for each
          *             corresponding pair of columns of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
          * \tparam R   The row count of both `lhs` and `rhs`.
          *
@@ -1899,11 +1921,11 @@ namespace tue
          * \return     `tue::math::greater_equal()` for each corresponding pair
          *             of columns of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline constexpr mat<decltype(
-            tue::math::greater_equal(std::declval<T>(), std::declval<U>())),
+            tue::math::greater_equal(std::declval<T>(), std::declval<T>())),
             C, R>
-        greater_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        greater_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
             return tue::detail_::greater_equal_mm(lhs, rhs);
         }
@@ -1912,8 +1934,7 @@ namespace tue
          * \brief      Computes `tue::math::equal()` for each corresponding pair
          *             of columns of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
          * \tparam R   The row count of both `lhs` and `rhs`.
          *
@@ -1923,11 +1944,11 @@ namespace tue
          * \return     `tue::math::equal()` for each corresponding pair of
          *             columns of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline constexpr mat<decltype(
-            tue::math::equal(std::declval<T>(), std::declval<U>())),
+            tue::math::equal(std::declval<T>(), std::declval<T>())),
             C, R>
-        equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
             return tue::detail_::equal_mm(lhs, rhs);
         }
@@ -1936,8 +1957,7 @@ namespace tue
          * \brief      Computes `tue::math::not_equal()` for each corresponding
          *             pair of columns of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
          * \tparam R   The row count of both `lhs` and `rhs`.
          *
@@ -1947,11 +1967,11 @@ namespace tue
          * \return     `tue::math::not_equal()` for each corresponding pair of
          *             columns of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int C, int R>
+        template<typename T, int C, int R>
         inline constexpr mat<decltype(
-            tue::math::not_equal(std::declval<T>(), std::declval<U>())),
+            tue::math::not_equal(std::declval<T>(), std::declval<T>())),
             C, R>
-        not_equal(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
+        not_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
             return tue::detail_::not_equal_mm(lhs, rhs);
         }

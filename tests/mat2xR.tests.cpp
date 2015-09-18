@@ -11,6 +11,7 @@
 
 #include <type_traits>
 #include <tue/math.hpp>
+#include <tue/sized_bool.hpp>
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
 
@@ -89,9 +90,9 @@ namespace
         { 110, 111 },
     };
 
-    CONST_OR_CONSTEXPR mat2x2<bool> bm22 = {
-        { true, false },
-        { false, true },
+    CONST_OR_CONSTEXPR mat2x2<bool64> bm22 = {
+        { true64, false64 },
+        { false64, true64 },
     };
 
     TEST_CASE(size)
@@ -957,11 +958,11 @@ namespace
 
     TEST_CASE(select)
     {
-        CONST_OR_CONSTEXPR auto m1 = math::select(bm22, dm22);
+        const auto m1 = math::select(bm22, dm22);
         test_assert(m1[0] == math::select(bm22[0], dm22[0]));
         test_assert(m1[1] == math::select(bm22[1], dm22[1]));
 
-        CONST_OR_CONSTEXPR auto m2 = math::select(bm22, dm22, dm222);
+        const auto m2 = math::select(bm22, dm22, dm222);
         test_assert(m2[0] == math::select(bm22[0], dm22[0], dm222[0]));
         test_assert(m2[1] == math::select(bm22[1], dm22[1], dm222[1]));
     }

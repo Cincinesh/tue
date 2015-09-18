@@ -13,6 +13,7 @@
 
 #include "../math.hpp"
 #include "../nocopy_cast.hpp"
+#include "../sized_bool.hpp"
 #include "../vec.hpp"
 
 namespace tue
@@ -927,7 +928,19 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<U, 2>
+        inline vec<U, 2>
+        select_vv(
+            const vec<T, 2>& conditions,
+            const vec<U, 2>& values) noexcept
+        {
+            return {
+                tue::math::select(conditions[0], values[0]),
+                tue::math::select(conditions[1], values[1]),
+            };
+        }
+
+        template<typename T, typename U>
+        inline vec<U, 2>
         select_vvv(
             const vec<T, 2>& conditions,
             const vec<U, 2>& values,
@@ -939,11 +952,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr vec<decltype(
-            tue::math::less(std::declval<T>(), std::declval<U>())), 2>
+            tue::math::less(std::declval<T>(), std::declval<T>())), 2>
         less_vv(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+            const vec<T, 2>& lhs, const vec<T, 2>& rhs) noexcept
         {
             return {
                 tue::math::less(lhs[0], rhs[0]),
@@ -951,11 +964,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr vec<decltype(
-            tue::math::less_equal(std::declval<T>(), std::declval<U>())), 2>
+            tue::math::less_equal(std::declval<T>(), std::declval<T>())), 2>
         less_equal_vv(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+            const vec<T, 2>& lhs, const vec<T, 2>& rhs) noexcept
         {
             return {
                 tue::math::less_equal(lhs[0], rhs[0]),
@@ -963,11 +976,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr vec<decltype(
-            tue::math::greater(std::declval<T>(), std::declval<U>())), 2>
+            tue::math::greater(std::declval<T>(), std::declval<T>())), 2>
         greater_vv(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+            const vec<T, 2>& lhs, const vec<T, 2>& rhs) noexcept
         {
             return {
                 tue::math::greater(lhs[0], rhs[0]),
@@ -975,11 +988,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr vec<decltype(
-            tue::math::greater_equal(std::declval<T>(), std::declval<U>())), 2>
+            tue::math::greater_equal(std::declval<T>(), std::declval<T>())), 2>
         greater_equal_vv(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+            const vec<T, 2>& lhs, const vec<T, 2>& rhs) noexcept
         {
             return {
                 tue::math::greater_equal(lhs[0], rhs[0]),
@@ -987,11 +1000,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr vec<decltype(
-            tue::math::equal(std::declval<T>(), std::declval<U>())), 2>
+            tue::math::equal(std::declval<T>(), std::declval<T>())), 2>
         equal_vv(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+            const vec<T, 2>& lhs, const vec<T, 2>& rhs) noexcept
         {
             return {
                 tue::math::equal(lhs[0], rhs[0]),
@@ -999,11 +1012,11 @@ namespace tue
             };
         }
 
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr vec<decltype(
-            tue::math::not_equal(std::declval<T>(), std::declval<U>())), 2>
+            tue::math::not_equal(std::declval<T>(), std::declval<T>())), 2>
         not_equal_vv(
-            const vec<T, 2>& lhs, const vec<U, 2>& rhs) noexcept
+            const vec<T, 2>& lhs, const vec<T, 2>& rhs) noexcept
         {
             return {
                 tue::math::not_equal(lhs[0], rhs[0]),

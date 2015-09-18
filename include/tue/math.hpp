@@ -13,6 +13,8 @@
 #include <cstdlib>
 #include <type_traits>
 
+#include "sized_bool.hpp"
+
 namespace tue
 {
     /**/
@@ -360,7 +362,32 @@ namespace tue
         /*!
          * \brief            Selects a return value based on `condition`.
          *
-         * \tparam T         The return type.
+         * \tparam T         The condition type.
+         * \tparam U         The return type.
+         *
+         * \param condition  The condition.
+         * \param value      The return value when condition is `true`.
+         *
+         * \return           `value` or `0` depending on `condition`.
+         */
+        template<typename T, typename U>
+        inline std::enable_if_t<
+            is_sized_bool<T>::value
+            && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+            && sizeof(U) == sizeof(T), U>
+        select(T condition, U value) noexcept
+        {
+            using V = std::underlying_type_t<T>;
+            const auto result =
+                V(condition) & reinterpret_cast<const V&>(value);
+            return reinterpret_cast<const U&>(result);
+        }
+
+        /*!
+         * \brief            Selects a return value based on `condition`.
+         *
+         * \tparam T         The condition type.
+         * \tparam U         The return type.
          *
          * \param condition  The condition.
          * \param value      The return value when condition is `true`.
@@ -368,131 +395,144 @@ namespace tue
          *
          * \return           `value` or `otherwise` depending on `condition`.
          */
-        template<typename T>
-        inline constexpr T select(
-            bool condition, const T& value, const T& otherwise = T(0)) noexcept
+        template<typename T, typename U>
+        inline std::enable_if_t<
+            is_sized_bool<T>::value
+            && (std::is_arithmetic<U>::value || is_sized_bool<U>::value)
+            && sizeof(U) == sizeof(T), U>
+        select(T condition, U value, U otherwise) noexcept
         {
-            return condition ? value : otherwise;
+            using V = std::underlying_type_t<T>;
+            const auto result =
+                (V(condition) & reinterpret_cast<const V&>(value))
+                | (~V(condition) & reinterpret_cast<const V&>(otherwise));
+            return reinterpret_cast<const U&>(result);
         }
 
         /*!
          * \brief      Computes whether or not `lhs` is less than `rhs`.
          *
-         * \tparam T   The type of parameter `lhs`.
-         * \tparam U   The type of parameter `rhs`.
+         * \tparam T   The type of parameters `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     `true` if `lhs` is less than `rhs` and `false` otherwise.
+         * \return     `trueX` if `lhs` is less than `rhs` and `falseX`
+         *             otherwise (where `X` is the number of bits in `T`).
          */
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
-        less(T lhs, U rhs) noexcept
+            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+        less(T lhs, T rhs) noexcept
         {
-            return lhs < rhs;
+            using U = sized_bool_t<sizeof(T)>;
+            return lhs < rhs ? U(~0LL) : U(0LL);
         }
 
         /*!
          * \brief      Computes whether or not `lhs` is less than or equal to
          *             `rhs`.
          *
-         * \tparam T   The type of parameter `lhs`.
-         * \tparam U   The type of parameter `rhs`.
+         * \tparam T   The type of parameters `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     `true` if `lhs` is less than or equal to `rhs` and
-         *             `false` otherwise.
+         * \return     `trueX` if `lhs` is less than or equal to `rhs` and
+         *             `falseX` otherwise (where `X` is the number of bits in
+         *             `T`).
          */
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
-        less_equal(T lhs, U rhs) noexcept
+            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+        less_equal(T lhs, T rhs) noexcept
         {
-            return lhs <= rhs;
+            using U = sized_bool_t<sizeof(T)>;
+            return lhs <= rhs ? U(~0LL) : U(0LL);
         }
 
         /*!
          * \brief      Computes whether or not `lhs` is greater than `rhs`.
          *
-         * \tparam T   The type of parameter `lhs`.
-         * \tparam U   The type of parameter `rhs`.
+         * \tparam T   The type of parameters `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     `true` if `lhs` is greater than `rhs` and `false`
-         *             otherwise.
+         * \return     `trueX` if `lhs` is greater than `rhs` and `falseX`
+         *             otherwise (where `X` is the number of bits in `T`).
          */
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
-        greater(T lhs, U rhs) noexcept
+            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+        greater(T lhs, T rhs) noexcept
         {
-            return lhs > rhs;
+            using U = sized_bool_t<sizeof(T)>;
+            return lhs > rhs ? U(~0LL) : U(0LL);
         }
 
         /*!
          * \brief      Computes whether or not `lhs` is greater than or equal to
          *             `rhs`.
          *
-         * \tparam T   The type of parameter `lhs`.
-         * \tparam U   The type of parameter `rhs`.
+         * \tparam T   The type of parameters `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     `true` if `lhs` is greater than or equal to `rhs` and
-         *             `false` otherwise.
+         * \return     `trueX` if `lhs` is greater than or equal to `rhs` and
+         *             `falseX` otherwise (where `X` is the number of bits in
+         *             `T`).
          */
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
-        greater_equal(T lhs, U rhs) noexcept
+            std::is_arithmetic<T>::value, sized_bool_t<sizeof(T)>>
+        greater_equal(T lhs, T rhs) noexcept
         {
-            return lhs >= rhs;
+            using U = sized_bool_t<sizeof(T)>;
+            return lhs >= rhs ? U(~0LL) : U(0LL);
         }
 
         /*!
          * \brief      Computes whether or not `lhs` is equal to `rhs`.
          *
-         * \tparam T   The type of parameter `lhs`.
-         * \tparam U   The type of parameter `rhs`.
+         * \tparam T   The type of parameters `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     `true` if `lhs` is equal to `rhs` and `false` otherwise.
+         * \return     `trueX` if `lhs` is equal to `rhs` and `falseX` otherwise
+         *             (where `X` is the number of bits in `T`).
          */
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
-        equal(T lhs, U rhs) noexcept
+            std::is_arithmetic<T>::value || is_sized_bool<T>::value,
+            sized_bool_t<sizeof(T)>>
+        equal(T lhs, T rhs) noexcept
         {
-            return lhs == rhs;
+            using U = sized_bool_t<sizeof(T)>;
+            return lhs == rhs ? U(~0LL) : U(0LL);
         }
 
         /*!
          * \brief      Computes whether or not `lhs` is not equal to `rhs`.
          *
-         * \tparam T   The type of parameter `lhs`.
-         * \tparam U   The type of parameter `rhs`.
+         * \tparam T   The type of parameters `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     `true` if `lhs` is not equal to `rhs` and `false`
-         *             otherwise.
+         * \return     `trueX` if `lhs` is not equal to `rhs` and `falseX`
+         *             otherwise (where `X` is the number of bits in `T`).
          */
-        template<typename T, typename U>
+        template<typename T>
         inline constexpr std::enable_if_t<
-            std::is_arithmetic<T>::value && std::is_arithmetic<U>::value, bool>
-        not_equal(T lhs, U rhs) noexcept
+            std::is_arithmetic<T>::value || is_sized_bool<T>::value,
+            sized_bool_t<sizeof(T)>>
+        not_equal(T lhs, T rhs) noexcept
         {
-            return lhs != rhs;
+            using U = sized_bool_t<sizeof(T)>;
+            return lhs != rhs ? U(~0LL) : U(0LL);
         }
 
         /*/!@}*/

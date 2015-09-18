@@ -1068,11 +1068,25 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
-        inline constexpr mat<U, 4, R>
+        inline mat<U, 4, R>
+        select_mm(
+            const mat<T, 4, R>& conditions,
+            const mat<U, 4, R>& values) noexcept
+        {
+            return {
+                tue::math::select(conditions[0], values[0]),
+                tue::math::select(conditions[1], values[1]),
+                tue::math::select(conditions[2], values[2]),
+                tue::math::select(conditions[3], values[3]),
+            };
+        }
+
+        template<typename T, typename U, int R>
+        inline mat<U, 4, R>
         select_mmm(
             const mat<T, 4, R>& conditions,
             const mat<U, 4, R>& values,
-            const mat<U, 4, R>& otherwise = mat<U, 4, R>(0)) noexcept
+            const mat<U, 4, R>& otherwise) noexcept
         {
             return {
                 tue::math::select(conditions[0], values[0], otherwise[0]),
@@ -1082,12 +1096,12 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline constexpr mat<decltype(
-            tue::math::less(std::declval<T>(), std::declval<U>())),
+            tue::math::less(std::declval<T>(), std::declval<T>())),
             4, R>
         less_mm(
-            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+            const mat<T, 4, R>& lhs, const mat<T, 4, R>& rhs) noexcept
         {
             return {
                 tue::math::less(lhs[0], rhs[0]),
@@ -1097,12 +1111,12 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline constexpr mat<decltype(
-            tue::math::less_equal(std::declval<T>(), std::declval<U>())),
+            tue::math::less_equal(std::declval<T>(), std::declval<T>())),
             4, R>
         less_equal_mm(
-            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+            const mat<T, 4, R>& lhs, const mat<T, 4, R>& rhs) noexcept
         {
             return {
                 tue::math::less_equal(lhs[0], rhs[0]),
@@ -1112,12 +1126,12 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline constexpr mat<decltype(
-            tue::math::greater(std::declval<T>(), std::declval<U>())),
+            tue::math::greater(std::declval<T>(), std::declval<T>())),
             4, R>
         greater_mm(
-            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+            const mat<T, 4, R>& lhs, const mat<T, 4, R>& rhs) noexcept
         {
             return {
                 tue::math::greater(lhs[0], rhs[0]),
@@ -1127,12 +1141,12 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline constexpr mat<decltype(
-            tue::math::greater_equal(std::declval<T>(), std::declval<U>())),
+            tue::math::greater_equal(std::declval<T>(), std::declval<T>())),
             4, R>
         greater_equal_mm(
-            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+            const mat<T, 4, R>& lhs, const mat<T, 4, R>& rhs) noexcept
         {
             return {
                 tue::math::greater_equal(lhs[0], rhs[0]),
@@ -1142,12 +1156,12 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline constexpr mat<decltype(
-            tue::math::equal(std::declval<T>(), std::declval<U>())),
+            tue::math::equal(std::declval<T>(), std::declval<T>())),
             4, R>
         equal_mm(
-            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+            const mat<T, 4, R>& lhs, const mat<T, 4, R>& rhs) noexcept
         {
             return {
                 tue::math::equal(lhs[0], rhs[0]),
@@ -1157,12 +1171,12 @@ namespace tue
             };
         }
 
-        template<typename T, typename U, int R>
+        template<typename T, int R>
         inline constexpr mat<decltype(
-            tue::math::not_equal(std::declval<T>(), std::declval<U>())),
+            tue::math::not_equal(std::declval<T>(), std::declval<T>())),
             4, R>
         not_equal_mm(
-            const mat<T, 4, R>& lhs, const mat<U, 4, R>& rhs) noexcept
+            const mat<T, 4, R>& lhs, const mat<T, 4, R>& rhs) noexcept
         {
             return {
                 tue::math::not_equal(lhs[0], rhs[0]),

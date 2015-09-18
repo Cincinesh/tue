@@ -118,21 +118,6 @@ namespace tue
      */
     using uvec4 = vec4<unsigned int>;
 
-    /*!
-     * \brief  A 2-dimensional vector with `bool` components.
-     */
-    using bvec2 = vec2<bool>;
-
-    /*!
-     * \brief  A 3-dimensional vector with `bool` components.
-     */
-    using bvec3 = vec3<bool>;
-
-    /*!
-     * \brief  A 4-dimensional vector with `bool` components.
-     */
-    using bvec4 = vec4<bool>;
-
     /**/
     template<typename T, int N>
     class vec
@@ -1966,6 +1951,31 @@ namespace tue
 
         /*!
          * \brief             Computes `tue::math::select()` for each
+         *                    corresponding pair of components from
+         *                    `conditions` and `values``.
+         *
+         * \tparam T          The component type of `conditions`.
+         * \tparam U          The component type of `values`.
+         * \tparam N          The component count of both `conditions` and
+         *                    `values`.
+         *
+         * \param conditions  A `vec`.
+         * \param values      Another `vec`.
+         *
+         * \return            `tue::math::select()` for each corresponding
+         *                    pair of components from `conditions` and `values`.
+         */
+        template<typename T, typename U, int N>
+        inline vec<U, N>
+        select(
+            const vec<T, N>& conditions,
+            const vec<U, N>& values) noexcept
+        {
+            return tue::detail_::select_vv(conditions, values);
+        }
+
+        /*!
+         * \brief             Computes `tue::math::select()` for each
          *                    corresponding triple of components from
          *                    `conditions`, `values`, and `otherwise`.
          *
@@ -1982,11 +1992,11 @@ namespace tue
          *                    and `otherwise`.
          */
         template<typename T, typename U, int N>
-        inline constexpr vec<U, N>
+        inline vec<U, N>
         select(
             const vec<T, N>& conditions,
             const vec<U, N>& values,
-            const vec<U, N>& otherwise = vec<U, N>(0)) noexcept
+            const vec<U, N>& otherwise) noexcept
         {
             return tue::detail_::select_vvv(conditions, values, otherwise);
         }
@@ -1995,8 +2005,7 @@ namespace tue
          * \brief      Computes `tue::math::less()` for each corresponding pair
          *             of components of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
@@ -2005,10 +2014,10 @@ namespace tue
          * \return     `tue::math::less()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline constexpr vec<decltype(
-            tue::math::less(std::declval<T>(), std::declval<U>())), N>
-        less(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+            tue::math::less(std::declval<T>(), std::declval<T>())), N>
+        less(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::less_vv(lhs, rhs);
         }
@@ -2017,8 +2026,7 @@ namespace tue
          * \brief      Computes `tue::math::less_equal()` for each corresponding
          *             pair of components of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
@@ -2027,10 +2035,10 @@ namespace tue
          * \return     `tue::math::less_equal()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline constexpr vec<decltype(
-            tue::math::less_equal(std::declval<T>(), std::declval<U>())), N>
-        less_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+            tue::math::less_equal(std::declval<T>(), std::declval<T>())), N>
+        less_equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::less_equal_vv(lhs, rhs);
         }
@@ -2039,8 +2047,7 @@ namespace tue
          * \brief      Computes `tue::math::greater()` for each corresponding
          *             pair of components of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
@@ -2049,10 +2056,10 @@ namespace tue
          * \return     `tue::math::greater()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline constexpr vec<decltype(
-            tue::math::greater(std::declval<T>(), std::declval<U>())), N>
-        greater(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+            tue::math::greater(std::declval<T>(), std::declval<T>())), N>
+        greater(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::greater_vv(lhs, rhs);
         }
@@ -2061,8 +2068,7 @@ namespace tue
          * \brief      Computes `tue::math::greater_equal()` for each
          *             corresponding pair of components of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
@@ -2071,10 +2077,10 @@ namespace tue
          * \return     `tue::math::greater_equal()` for each corresponding pair
          *             of components of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline constexpr vec<decltype(
-            tue::math::greater_equal(std::declval<T>(), std::declval<U>())), N>
-        greater_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+            tue::math::greater_equal(std::declval<T>(), std::declval<T>())), N>
+        greater_equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::greater_equal_vv(lhs, rhs);
         }
@@ -2083,8 +2089,7 @@ namespace tue
          * \brief      Computes `tue::math::equal()` for each corresponding pair
          *             of components of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
@@ -2093,10 +2098,10 @@ namespace tue
          * \return     `tue::math::equal()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline constexpr vec<decltype(
-            tue::math::equal(std::declval<T>(), std::declval<U>())), N>
-        equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+            tue::math::equal(std::declval<T>(), std::declval<T>())), N>
+        equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::equal_vv(lhs, rhs);
         }
@@ -2105,8 +2110,7 @@ namespace tue
          * \brief      Computes `tue::math::not_equal()` for each corresponding
          *             pair of components of `lhs` and `rhs`.
          *
-         * \tparam T   The component type of `lhs`.
-         * \tparam U   The component type of `rhs`.
+         * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
          *
          * \param lhs  The left-hand side operand.
@@ -2115,10 +2119,10 @@ namespace tue
          * \return     `tue::math::not_equal()` for each corresponding pair of
          *             components of `lhs` and `rhs`.
          */
-        template<typename T, typename U, int N>
+        template<typename T, int N>
         inline constexpr vec<decltype(
-            tue::math::not_equal(std::declval<T>(), std::declval<U>())), N>
-        not_equal(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
+            tue::math::not_equal(std::declval<T>(), std::declval<T>())), N>
+        not_equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::not_equal_vv(lhs, rhs);
         }

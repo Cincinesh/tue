@@ -11,6 +11,7 @@
 
 #include <type_traits>
 #include <tue/math.hpp>
+#include <tue/sized_bool.hpp>
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
 
@@ -102,10 +103,10 @@ namespace
         { 120, 121, 122 },
     };
 
-    CONST_OR_CONSTEXPR mat3x2<bool> bm32 = {
-        { true, false },
-        { false, true },
-        { true, false },
+    CONST_OR_CONSTEXPR mat3x2<bool64> bm32 = {
+        { true64, false64 },
+        { false64, true64 },
+        { true64, false64 },
     };
 
     TEST_CASE(size)
@@ -1085,12 +1086,12 @@ namespace
 
     TEST_CASE(select)
     {
-        CONST_OR_CONSTEXPR auto m1 = math::select(bm32, dm32);
+        const auto m1 = math::select(bm32, dm32);
         test_assert(m1[0] == math::select(bm32[0], dm32[0]));
         test_assert(m1[1] == math::select(bm32[1], dm32[1]));
         test_assert(m1[2] == math::select(bm32[2], dm32[2]));
 
-        CONST_OR_CONSTEXPR auto m2 = math::select(bm32, dm32, dm322);
+        const auto m2 = math::select(bm32, dm32, dm322);
         test_assert(m2[0] == math::select(bm32[0], dm32[0], dm322[0]));
         test_assert(m2[1] == math::select(bm32[1], dm32[1], dm322[1]));
         test_assert(m2[2] == math::select(bm32[2], dm32[2], dm322[2]));
