@@ -851,7 +851,7 @@ namespace tue
         inline mat<decltype(
             tue::math::pow(std::declval<T>(), std::declval<T>())), 2, R>
         pow_mm(
-            const mat<T, 2, R>& bases, const mat<T, 4, R>& exponents) noexcept
+            const mat<T, 2, R>& bases, const mat<T, 2, R>& exponents) noexcept
         {
             return {
                 tue::math::pow(bases[0], exponents[0]),

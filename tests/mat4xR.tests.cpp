@@ -1164,17 +1164,17 @@ namespace
 
     TEST_CASE(pow)
     {
-        const auto m1 = math::pow(2.0, dm42);
-        test_assert(m1[0] == math::pow(2.0, dm42[0]));
-        test_assert(m1[1] == math::pow(2.0, dm42[1]));
-        test_assert(m1[2] == math::pow(2.0, dm42[2]));
-        test_assert(m1[3] == math::pow(2.0, dm42[3]));
+        const auto m1 = math::pow(1.2, dm422);
+        test_assert(m1[0] == math::pow(1.2, dm422[0]));
+        test_assert(m1[1] == math::pow(1.2, dm422[1]));
+        test_assert(m1[2] == math::pow(1.2, dm422[2]));
+        test_assert(m1[3] == math::pow(1.2, dm422[3]));
 
-        const auto m2 = math::pow(dm42, 2.0);
-        test_assert(m2[0] == math::pow(dm42[0], 2.0));
-        test_assert(m2[1] == math::pow(dm42[1], 2.0));
-        test_assert(m2[2] == math::pow(dm42[2], 2.0));
-        test_assert(m2[3] == math::pow(dm42[3], 2.0));
+        const auto m2 = math::pow(dm42, 3.4);
+        test_assert(m2[0] == math::pow(dm42[0], 3.4));
+        test_assert(m2[1] == math::pow(dm42[1], 3.4));
+        test_assert(m2[2] == math::pow(dm42[2], 3.4));
+        test_assert(m2[3] == math::pow(dm42[3], 3.4));
 
         const auto m3 = math::pow(dm42, dm422);
         test_assert(m3[0] == math::pow(dm42[0], dm422[0]));
