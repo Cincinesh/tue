@@ -67,8 +67,8 @@ namespace tue
      *            architecture-specific SIMD intrinsics where possible, but
      *            standards-compliant fallbacks are always available otherwise.
      *
-     * \tparam T  The component type. Must be a sized boolean type or an
-     *            arithmetic type other than `bool`.
+     * \tparam T  The component type. `is_simd_component<T>::value` must be
+     *            `true`.
      * \tparam N  The component count. Must be 2, 4, 8, 16, 32, or 64.
      */
     template<typename T, int N>
@@ -436,10 +436,8 @@ namespace tue
     class alignas(sizeof(T) * N) simd
     {
         std::enable_if_t<
-            (is_sized_bool<T>::value
-                || (std::is_arithmetic<T>::value
-                    && !std::is_same<T, bool>::value))
-            && (N == 4 || N == 8 || N == 16 || N == 32 || N == 64),
+            is_simd_component<T>::value
+                && (N == 4 || N == 8 || N == 16 || N == 32 || N == 64),
             simd<T, N/2>[2]>
         impl_;
 

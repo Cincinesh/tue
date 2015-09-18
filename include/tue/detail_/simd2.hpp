@@ -19,12 +19,7 @@ namespace tue
     template<typename T>
     class alignas(sizeof(T) * 2) simd<T, 2>
     {
-        std::enable_if_t<
-            (is_sized_bool<T>::value
-                || (std::is_arithmetic<T>::value
-                    && !std::is_same<T, bool>::value)),
-            T[2]>
-        data_;
+        std::enable_if_t<is_simd_component<T>::value, T[2]> data_;
 
     public:
         using component_type = T;
