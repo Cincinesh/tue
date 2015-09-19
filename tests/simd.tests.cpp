@@ -46,7 +46,7 @@ namespace
     using sized_uint_t = typename sized_uint_utils<Size>::type;
 
     /*
-     * is_simd_component
+     * Utility classes
      */
     TEST_CASE(is_simd_component)
     {
@@ -65,6 +65,78 @@ namespace
         test_assert(is_simd_component<bool16>::value == true);
         test_assert(is_simd_component<bool32>::value == true);
         test_assert(is_simd_component<bool64>::value == true);
+    }
+
+    TEST_CASE(is_arithmetic_simd_component)
+    {
+        test_assert(is_arithmetic_simd_component<bool>::value == false);
+        test_assert(is_arithmetic_simd_component<float>::value == true);
+        test_assert(is_arithmetic_simd_component<double>::value == true);
+        test_assert(is_arithmetic_simd_component<std::int8_t>::value == true);
+        test_assert(is_arithmetic_simd_component<std::int16_t>::value == true);
+        test_assert(is_arithmetic_simd_component<std::int32_t>::value == true);
+        test_assert(is_arithmetic_simd_component<std::int64_t>::value == true);
+        test_assert(is_arithmetic_simd_component<std::uint8_t>::value == true);
+        test_assert(is_arithmetic_simd_component<std::uint16_t>::value == true);
+        test_assert(is_arithmetic_simd_component<std::uint32_t>::value == true);
+        test_assert(is_arithmetic_simd_component<std::uint64_t>::value == true);
+        test_assert(is_arithmetic_simd_component<bool8>::value == false);
+        test_assert(is_arithmetic_simd_component<bool16>::value == false);
+        test_assert(is_arithmetic_simd_component<bool32>::value == false);
+        test_assert(is_arithmetic_simd_component<bool64>::value == false);
+    }
+
+    TEST_CASE(is_floating_point_simd_component)
+    {
+        test_assert(
+            is_floating_point_simd_component<bool>::value == false);
+        test_assert(
+            is_floating_point_simd_component<float>::value == true);
+        test_assert(
+            is_floating_point_simd_component<double>::value == true);
+        test_assert(
+            is_floating_point_simd_component<std::int8_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<std::int16_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<std::int32_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<std::int64_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<std::uint8_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<std::uint16_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<std::uint32_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<std::uint64_t>::value == false);
+        test_assert(
+            is_floating_point_simd_component<bool8>::value == false);
+        test_assert(
+            is_floating_point_simd_component<bool16>::value == false);
+        test_assert(
+            is_floating_point_simd_component<bool32>::value == false);
+        test_assert(
+            is_floating_point_simd_component<bool64>::value == false);
+    }
+
+    TEST_CASE(is_integral_simd_component)
+    {
+        test_assert(is_integral_simd_component<bool>::value == false);
+        test_assert(is_integral_simd_component<float>::value == false);
+        test_assert(is_integral_simd_component<double>::value == false);
+        test_assert(is_integral_simd_component<std::int8_t>::value == true);
+        test_assert(is_integral_simd_component<std::int16_t>::value == true);
+        test_assert(is_integral_simd_component<std::int32_t>::value == true);
+        test_assert(is_integral_simd_component<std::int64_t>::value == true);
+        test_assert(is_integral_simd_component<std::uint8_t>::value == true);
+        test_assert(is_integral_simd_component<std::uint16_t>::value == true);
+        test_assert(is_integral_simd_component<std::uint32_t>::value == true);
+        test_assert(is_integral_simd_component<std::uint64_t>::value == true);
+        test_assert(is_integral_simd_component<bool8>::value == false);
+        test_assert(is_integral_simd_component<bool16>::value == false);
+        test_assert(is_integral_simd_component<bool32>::value == false);
+        test_assert(is_integral_simd_component<bool64>::value == false);
     }
 
     /*

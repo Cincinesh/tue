@@ -50,10 +50,66 @@ namespace tue
     template<typename T>
     struct is_simd_component;
 
+    /*!
+     * \brief     Checks if a type is an arithmetic type that can be used as the
+     *            component type of an SIMD vector.
+     * \details   Extends `std::integral_constant<bool, true>` for the following
+     *            types and `std::integral_constant<bool, false>` otherwise:
+     *            - `float`
+     *            - `double`
+     *            - `std::int8_t`
+     *            - `std::int16_t`
+     *            - `std::int32_t`
+     *            - `std::int64_t`
+     *            - `std::uint8_t`
+     *            - `std::uint16_t`
+     *            - `std::uint32_t`
+     *            - `std::uint64_t`
+     *
+     * \tparam T  The type to check.
+     */
+    template<typename T>
+    struct is_arithmetic_simd_component;
+
+    /*!
+     * \brief     Checks if a type is a floating-point type that can be used as
+     *            the component type of an SIMD vector.
+     * \details   Extends `std::integral_constant<bool, true>` for the following
+     *            types and `std::integral_constant<bool, false>` otherwise:
+     *            - `float`
+     *            - `double`
+     *
+     * \tparam T  The type to check.
+     */
+    template<typename T>
+    struct is_floating_point_simd_component;
+
+    /*!
+     * \brief     Checks if a type is an integral type that can be used as the
+     *            component type of an SIMD vector.
+     * \details   Extends `std::integral_constant<bool, true>` for the following
+     *            types and `std::integral_constant<bool, false>` otherwise:
+     *            - `std::int8_t`
+     *            - `std::int16_t`
+     *            - `std::int32_t`
+     *            - `std::int64_t`
+     *            - `std::uint8_t`
+     *            - `std::uint16_t`
+     *            - `std::uint32_t`
+     *            - `std::uint64_t`
+     *
+     * \tparam T  The type to check.
+     */
+    template<typename T>
+    struct is_integral_simd_component;
+
     /*!@}*/
 }
 
 #include "detail_/is_simd_component.hpp"
+#include "detail_/is_arithmetic_simd_component.hpp"
+#include "detail_/is_floating_point_simd_component.hpp"
+#include "detail_/is_integral_simd_component.hpp"
 
 namespace tue
 {
