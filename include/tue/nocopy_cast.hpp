@@ -53,5 +53,8 @@ namespace tue
         return tue::detail_::nocopy_cast<T, U>(x);
     }
 
+    template<typename T, typename U>
+    void nocopy_cast(U&& x) = delete;
+
     /*!@}*/
 }

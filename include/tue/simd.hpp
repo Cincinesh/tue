@@ -49,6 +49,8 @@ namespace tue
      */
     template<typename T>
     struct is_simd_component;
+
+    /*!@}*/
 }
 
 #include "detail_/is_simd_component.hpp"
