@@ -247,7 +247,7 @@ namespace tue
         inline std::enable_if_t<
             is_sized_bool<T>::value
                 && is_simd_component<U>::value
-                && sizeof(U) == sizeof(T),
+                && sizeof(T) == sizeof(U),
             U>
         mask(T condition, U value) noexcept
         {
@@ -276,7 +276,7 @@ namespace tue
         inline std::enable_if_t<
             is_sized_bool<T>::value
                 && is_simd_component<U>::value
-                && sizeof(U) == sizeof(T),
+                && sizeof(T) == sizeof(U),
             U>
         select(T condition, U value, U otherwise) noexcept
         {
