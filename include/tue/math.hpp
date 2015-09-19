@@ -13,6 +13,8 @@
 #include <cstdlib>
 #include <type_traits>
 
+#include "detail_/is_arithmetic_simd_component.hpp"
+#include "detail_/is_floating_point_simd_component.hpp"
 #include "detail_/is_simd_component.hpp"
 #include "sized_bool.hpp"
 
@@ -50,7 +52,7 @@ namespace tue
          * \return    The sine of `x` (measured in radians).
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         sin(T x) noexcept
         {
             return std::sin(x);
@@ -63,7 +65,7 @@ namespace tue
          * \return    The cosine of `x` (measured in radians).
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         cos(T x) noexcept
         {
             return std::cos(x);
@@ -82,7 +84,7 @@ namespace tue
          *                 (measured in radians) will be stored.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value>
         sincos(T x, T& sin_out, T& cos_out) noexcept
         {
             sin_out = std::sin(x);
@@ -96,7 +98,7 @@ namespace tue
          * \return    The base-e exponential of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         exp(T x) noexcept
         {
             return std::exp(x);
@@ -109,7 +111,7 @@ namespace tue
          * \return    The base-e (natural) logarithm of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         log(T x) noexcept
         {
             return std::log(x);
@@ -122,7 +124,7 @@ namespace tue
          * \return    The absolute value of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
+        inline std::enable_if_t<is_arithmetic_simd_component<T>::value, T>
         abs(T x) noexcept
         {
             return tue::detail_::abs(x);
@@ -139,7 +141,7 @@ namespace tue
          * \return    `x` raised to the power `y`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         pow(T x, T y) noexcept
         {
             return std::pow(x, y);
@@ -154,7 +156,7 @@ namespace tue
          * \return    The reciprocal of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         recip(T x) noexcept
         {
             return 1 / x;
@@ -169,7 +171,7 @@ namespace tue
          * \return    The nonnegative square root of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         sqrt(T x) noexcept
         {
             return std::sqrt(x);
@@ -186,7 +188,7 @@ namespace tue
          * \return    The reciprocal of the nonnegative square root of `x`.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_floating_point<T>::value, T>
+        inline std::enable_if_t<is_floating_point_simd_component<T>::value, T>
         rsqrt(T x) noexcept
         {
             return 1 / std::sqrt(x);
@@ -203,7 +205,7 @@ namespace tue
          * \return    The minimum numeric value of the arguments.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
+        inline std::enable_if_t<is_arithmetic_simd_component<T>::value, T>
         min(T x, T y) noexcept
         {
             return std::min(x, y);
@@ -220,7 +222,7 @@ namespace tue
          * \return    The maximum numeric value of the arguments.
          */
         template<typename T>
-        inline std::enable_if_t<std::is_arithmetic<T>::value, T>
+        inline std::enable_if_t<is_arithmetic_simd_component<T>::value, T>
         max(T x, T y) noexcept
         {
             return std::max(x, y);
@@ -296,7 +298,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            is_arithmetic_simd_component<T>::value,
             sized_bool_t<sizeof(T)>>
         less(T lhs, T rhs) noexcept
         {
@@ -319,7 +321,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            is_arithmetic_simd_component<T>::value,
             sized_bool_t<sizeof(T)>>
         less_equal(T lhs, T rhs) noexcept
         {
@@ -340,7 +342,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            is_arithmetic_simd_component<T>::value,
             sized_bool_t<sizeof(T)>>
         greater(T lhs, T rhs) noexcept
         {
@@ -363,7 +365,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_simd_component<T>::value && std::is_arithmetic<T>::value,
+            is_arithmetic_simd_component<T>::value,
             sized_bool_t<sizeof(T)>>
         greater_equal(T lhs, T rhs) noexcept
         {
