@@ -147,6 +147,8 @@ namespace tue
 
         /*!
          * \brief     Computes the reciprocal of `x`.
+         * \details   If `x` equals `0`, behavior is undefined.
+         *
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.
          * \return    The reciprocal of `x`.
@@ -177,7 +179,7 @@ namespace tue
          * \brief     Computes the reciprocal of the nonnegative square root of
          *            `x`.
 
-         * \details   If `x` is negative, behavior is undefined.
+         * \details   If `x <= 0`, behavior is undefined.
          *
          * \tparam T  The type of parameter `x`.
          * \param x   A floating-point number.

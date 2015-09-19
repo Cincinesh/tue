@@ -813,5 +813,6 @@ namespace
     {
         const dvec2 v(1.2, 3.4);
         test_assert(math::normalize(v) == v * math::rlength(v));
+        test_assert(math::normalize(dvec2::zero()) == dvec2::zero());
     }
 }

@@ -1176,5 +1176,6 @@ namespace
     {
         const dvec4 v(1.2, 3.4, 5.6, 7.8);
         test_assert(math::normalize(v) == v * math::rlength(v));
+        test_assert(math::normalize(dvec4::zero()) == dvec4::zero());
     }
 }
