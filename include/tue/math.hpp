@@ -41,7 +41,9 @@ namespace tue
     {
         /*!
          * \defgroup  math_hpp <tue/math.hpp>
-         * \brief     Global math functions for arithmetic types.
+         * \brief     Global math functions for basic scalar types.
+         * \details   The allowable types are restricted to those which can be
+         *            used as SIMD components.
          * @{
          */
 
