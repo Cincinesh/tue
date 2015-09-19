@@ -231,7 +231,7 @@ namespace tue
         }
 
         /*!
-         * \brief            Masks a return value using `condition`.
+         * \brief            Bitmasks the return value using `condition`.
          *
          * \tparam T         The condition type.
          * \tparam U         The return type.
