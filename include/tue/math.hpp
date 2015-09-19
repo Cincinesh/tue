@@ -231,7 +231,8 @@ namespace tue
         }
 
         /*!
-         * \brief            Bitmasks the return value using `condition`.
+         * \brief            Computes the bitwise AND of `condition` and
+         *                   `value`.
          *
          * \tparam T         The condition type.
          * \tparam U         The return type.
