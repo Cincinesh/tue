@@ -93,14 +93,12 @@ namespace tue
             const auto nzmask = tue::math::not_equal(length2, T(0));
             const auto rangle = tue::math::rsqrt(length2);
 
-            const auto axis_x = tue::math::select(
-                nzmask, x * rangle);
-            const auto axis_y = tue::math::select(
-                nzmask, y * rangle);
-            const auto axis_z = tue::math::select(
-                nzmask, z * rangle, T(1));
-            const auto angle = tue::math::select(
-                nzmask, tue::math::recip(rangle));
+            const auto axis_x = tue::math::mask(nzmask, x * rangle);
+            const auto axis_y = tue::math::mask(nzmask, y * rangle);
+            const auto axis_z = tue::math::select(nzmask, z * rangle, T(1));
+            
+            const auto angle =
+                tue::math::mask(nzmask, tue::math::recip(rangle));
 
             return { axis_x, axis_y, axis_z, angle };
         }

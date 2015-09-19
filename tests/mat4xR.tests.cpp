@@ -1215,19 +1215,22 @@ namespace
         test_assert(m[3] == math::max(dm42[3], dm422[3]));
     }
 
+    TEST_CASE(mask)
+    {
+        const auto m = math::mask(bm42, dm42);
+        test_assert(m[0] == math::mask(bm42[0], dm42[0]));
+        test_assert(m[1] == math::mask(bm42[1], dm42[1]));
+        test_assert(m[2] == math::mask(bm42[2], dm42[2]));
+        test_assert(m[3] == math::mask(bm42[3], dm42[3]));
+    }
+
     TEST_CASE(select)
     {
-        const auto m1 = math::select(bm42, dm42);
-        test_assert(m1[0] == math::select(bm42[0], dm42[0]));
-        test_assert(m1[1] == math::select(bm42[1], dm42[1]));
-        test_assert(m1[2] == math::select(bm42[2], dm42[2]));
-        test_assert(m1[3] == math::select(bm42[3], dm42[3]));
-
-        const auto m2 = math::select(bm42, dm42, dm422);
-        test_assert(m2[0] == math::select(bm42[0], dm42[0], dm422[0]));
-        test_assert(m2[1] == math::select(bm42[1], dm42[1], dm422[1]));
-        test_assert(m2[2] == math::select(bm42[2], dm42[2], dm422[2]));
-        test_assert(m2[3] == math::select(bm42[3], dm42[3], dm422[3]));
+        const auto m = math::select(bm42, dm42, dm422);
+        test_assert(m[0] == math::select(bm42[0], dm42[0], dm422[0]));
+        test_assert(m[1] == math::select(bm42[1], dm42[1], dm422[1]));
+        test_assert(m[2] == math::select(bm42[2], dm42[2], dm422[2]));
+        test_assert(m[3] == math::select(bm42[3], dm42[3], dm422[3]));
     }
 
     TEST_CASE(less)

@@ -1424,7 +1424,7 @@ namespace tue
         }
 
         /*!
-         * \brief             Computes `tue::math::select()` for each
+         * \brief             Computes `tue::math::mask()` for each
          *                    corresponding pair of components from `conditions`
          *                    and `values`.
          *
@@ -1436,17 +1436,17 @@ namespace tue
          * \param conditions  An `simd`.
          * \param values      Another `simd`.
          *
-         * \return            `tue::math::select()` for each corresponding
-         *                    pair of components from `conditions` and `values`.
+         * \return            `tue::math::mask()` for each corresponding pair of
+         *                    components from `conditions` and `values`.
          */
         template<typename T, typename U, int N>
         inline std::enable_if_t<
             is_sized_bool<T>::value && sizeof(T) == sizeof(U), simd<U, N>>
-        select(
+        mask(
             const simd<T, N>& conditions,
             const simd<U, N>& values) noexcept
         {
-            return tue::detail_::select_ss(conditions, values);
+            return tue::detail_::mask_ss(conditions, values);
         }
 
         /*!

@@ -573,7 +573,7 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline simd<U, 2> select_ss(
+        inline simd<U, 2> mask_ss(
             const simd<T, 2>& conditions,
             const simd<U, 2>& values) noexcept
         {

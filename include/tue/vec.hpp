@@ -1938,7 +1938,7 @@ namespace tue
         }
 
         /*!
-         * \brief             Computes `tue::math::select()` for each
+         * \brief             Computes `tue::math::mask()` for each
          *                    corresponding pair of components from
          *                    `conditions` and `values``.
          *
@@ -1950,17 +1950,17 @@ namespace tue
          * \param conditions  A `vec`.
          * \param values      Another `vec`.
          *
-         * \return            `tue::math::select()` for each corresponding
-         *                    pair of components from `conditions` and `values`.
+         * \return            `tue::math::mask()` for each corresponding pair of
+         *                    components from `conditions` and `values`.
          */
         template<typename T, typename U, int N>
         inline vec<decltype(
-            tue::math::select(std::declval<T>(), std::declval<U>())), N>
-        select(
+            tue::math::mask(std::declval<T>(), std::declval<U>())), N>
+        mask(
             const vec<T, N>& conditions,
             const vec<U, N>& values) noexcept
         {
-            return tue::detail_::select_vv(conditions, values);
+            return tue::detail_::mask_vv(conditions, values);
         }
 
         /*!
@@ -2232,7 +2232,7 @@ namespace tue
             const auto length2 = tue::detail_::length2_v(v);
             const auto nzmask = tue::math::not_equal(length2, T(0));
             const auto rlength = tue::math::rsqrt(length2);
-            return v * tue::math::select(nzmask, rlength);
+            return v * tue::math::mask(nzmask, rlength);
         }
 
         /*!@}*/

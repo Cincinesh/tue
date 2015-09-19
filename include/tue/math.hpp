@@ -227,7 +227,7 @@ namespace tue
         }
 
         /*!
-         * \brief            Selects a return value based on `condition`.
+         * \brief            Masks a return value using `condition`.
          *
          * \tparam T         The condition type.
          * \tparam U         The return type.
@@ -244,7 +244,7 @@ namespace tue
                 && is_simd_component<U>::value
                 && sizeof(U) == sizeof(T),
             U>
-        select(T condition, U value) noexcept
+        mask(T condition, U value) noexcept
         {
             using V = std::underlying_type_t<T>;
             const auto result =

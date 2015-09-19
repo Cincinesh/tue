@@ -985,15 +985,15 @@ namespace tue
 
         template<typename T, typename U, int R>
         inline mat<decltype(
-            tue::math::select(std::declval<T>(), std::declval<U>())), 3, R>
-        select_mm(
+            tue::math::mask(std::declval<T>(), std::declval<U>())), 3, R>
+        mask_mm(
             const mat<T, 3, R>& conditions,
             const mat<U, 3, R>& values) noexcept
         {
             return {
-                tue::math::select(conditions[0], values[0]),
-                tue::math::select(conditions[1], values[1]),
-                tue::math::select(conditions[2], values[2]),
+                tue::math::mask(conditions[0], values[0]),
+                tue::math::mask(conditions[1], values[1]),
+                tue::math::mask(conditions[2], values[2]),
             };
         }
 

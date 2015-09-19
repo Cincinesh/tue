@@ -542,7 +542,7 @@ namespace tue
         }
 
         template<typename T, typename U, int N>
-        inline simd<U, N> select_ss(
+        inline simd<U, N> mask_ss(
             const simd<T, N>& conditions,
             const simd<U, N>& values) noexcept
         {
@@ -554,8 +554,8 @@ namespace tue
             const auto vimpl = reinterpret_cast<const simd<U, N/2>*>(
                 &values);
 
-            rimpl[0] = tue::detail_::select_ss(cimpl[0], vimpl[0]);
-            rimpl[1] = tue::detail_::select_ss(cimpl[1], vimpl[1]);
+            rimpl[0] = tue::detail_::mask_ss(cimpl[0], vimpl[0]);
+            rimpl[1] = tue::detail_::mask_ss(cimpl[1], vimpl[1]);
             return result;
         }
 

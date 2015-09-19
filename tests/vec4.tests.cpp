@@ -1091,18 +1091,21 @@ namespace
         test_assert(v[3] == math::max(7.8, -15.16));
     }
 
-    TEST_CASE(select)
+    TEST_CASE(mask)
     {
-        const auto v1 = math::select(
+        const auto v = math::mask(
             vec4<bool64>(true64, false64, true64, false64),
             dvec4(1.2, 3.4, 5.6, 7.8));
-        test_assert(v1 == dvec4(1.2, 0.0, 5.6, 0.0));
+        test_assert(v == dvec4(1.2, 0.0, 5.6, 0.0));
+    }
 
-        const auto v2 = math::select(
+    TEST_CASE(select)
+    {
+        const auto v = math::select(
             vec4<bool64>(true64, false64, true64, false64),
             dvec4(1.2, 3.4, 5.6, 7.8),
             dvec4(9.10, 11.12, 13.14, 15.16));
-        test_assert(v2 == dvec4(1.2, 11.12, 5.6, 15.16));
+        test_assert(v == dvec4(1.2, 11.12, 5.6, 15.16));
     }
 
     TEST_CASE(less)

@@ -900,17 +900,20 @@ namespace
         test_assert(v[2] == math::max(5.6, 11.12));
     }
 
-    TEST_CASE(select)
+    TEST_CASE(mask)
     {
-        const auto v1 = math::select(
+        const auto v = math::mask(
             vec3<bool64>(true64, false64, true64),
             dvec3(1.2, 3.4, 5.6));
-        test_assert(v1 == dvec3(1.2, 0.0, 5.6));
+        test_assert(v == dvec3(1.2, 0.0, 5.6));
+    }
 
-        const auto v2 = math::select(
+    TEST_CASE(select)
+    {
+        const auto v = math::select(
             vec3<bool64>(true64, false64, true64),
             dvec3(1.2, 3.4, 5.6), dvec3(7.8, 9.10, 11.12));
-        test_assert(v2 == dvec3(1.2, 9.10, 5.6));
+        test_assert(v == dvec3(1.2, 9.10, 5.6));
     }
 
     TEST_CASE(less)

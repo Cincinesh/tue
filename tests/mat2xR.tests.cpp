@@ -945,15 +945,18 @@ namespace
         test_assert(m[1] == math::max(dm22[1], dm222[1]));
     }
 
+    TEST_CASE(mask)
+    {
+        const auto m = math::mask(bm22, dm22);
+        test_assert(m[0] == math::mask(bm22[0], dm22[0]));
+        test_assert(m[1] == math::mask(bm22[1], dm22[1]));
+    }
+
     TEST_CASE(select)
     {
-        const auto m1 = math::select(bm22, dm22);
-        test_assert(m1[0] == math::select(bm22[0], dm22[0]));
-        test_assert(m1[1] == math::select(bm22[1], dm22[1]));
-
-        const auto m2 = math::select(bm22, dm22, dm222);
-        test_assert(m2[0] == math::select(bm22[0], dm22[0], dm222[0]));
-        test_assert(m2[1] == math::select(bm22[1], dm22[1], dm222[1]));
+        const auto m = math::select(bm22, dm22, dm222);
+        test_assert(m[0] == math::select(bm22[0], dm22[0], dm222[0]));
+        test_assert(m[1] == math::select(bm22[1], dm22[1], dm222[1]));
     }
 
     TEST_CASE(less)

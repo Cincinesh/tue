@@ -343,6 +343,26 @@ namespace
             }
         }
 
+        static void TEST_CASE_mask()
+        {
+            simd<sized_bool_t<sizeof(T)>, N> c;
+            for (int i = 0; i < N; ++i)
+            {
+                c.data()[i] = static_cast<sized_bool_t<sizeof(T)>>(
+                    i%2==0 ? 0LL : ~0LL);
+            }
+            const auto& conditions = c;
+
+            const auto values = test_simd();
+            const auto s1 = math::mask(conditions, values);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s1.data()[i] == math::mask(
+                    conditions.data()[i],
+                    values.data()[i]));
+            }
+        }
+        
         static void TEST_CASE_select()
         {
             simd<sized_bool_t<sizeof(T)>, N> c;
@@ -354,14 +374,6 @@ namespace
             const auto& conditions = c;
 
             const auto values = test_simd();
-            const auto s1 = math::select(conditions, values);
-            for (int i = 0; i < N; ++i)
-            {
-                test_assert(s1.data()[i] == math::select(
-                    conditions.data()[i],
-                    values.data()[i]));
-            }
-
             const auto otherwise = test_simd2();
             const auto s2 = math::select(conditions, values, otherwise);
             for (int i = 0; i < N; ++i)
@@ -421,6 +433,7 @@ namespace
             TEST_CASE_data();
             TEST_CASE_equality_operator();
             TEST_CASE_inequality_operator();
+            TEST_CASE_mask();
             TEST_CASE_select();
             TEST_CASE_equal();
             TEST_CASE_not_equal();

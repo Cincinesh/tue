@@ -90,30 +90,36 @@ namespace
         test_assert(math::max(12, -34) == 12);
     }
 
+    TEST_CASE(mask)
+    {
+        test_assert(math::mask(true64, 1.2) == 1.2);
+        test_assert(math::mask(false64, 1.2) == 0.0);
+
+        test_assert(math::mask(true32, 1) == 1);
+        test_assert(math::mask(false32, 1) == 0);
+
+        const auto t = math::mask(
+            true16, static_cast<bool16>(1));
+        const auto f = math::mask(
+            false16, static_cast<bool16>(1));
+        test_assert(t == static_cast<bool16>(1));
+        test_assert(f == static_cast<bool16>(0));
+    }
+    
     TEST_CASE(select)
     {
-        test_assert(math::select(true64, 1.2) == 1.2);
-        test_assert(math::select(false64, 1.2) == 0.0);
         test_assert(math::select(true64, 1.2, 3.4) == 1.2);
         test_assert(math::select(false64, 1.2, 3.4) == 3.4);
 
-        test_assert(math::select(true32, 1) == 1);
-        test_assert(math::select(false32, 1) == 0);
         test_assert(math::select(true32, 1, 2) == 1);
         test_assert(math::select(false32, 1, 2) == 2);
 
-        const auto t1 = math::select(
-            true16, static_cast<bool16>(1));
-        const auto f1 = math::select(
-            false16, static_cast<bool16>(1));
-        const auto t2 = math::select(
+        const auto t = math::select(
             true16, static_cast<bool16>(1), static_cast<bool16>(2));
-        const auto f2 = math::select(
+        const auto f = math::select(
             false16, static_cast<bool16>(1), static_cast<bool16>(2));
-        test_assert(t1 == static_cast<bool16>(1));
-        test_assert(f1 == static_cast<bool16>(0));
-        test_assert(t2 == static_cast<bool16>(1));
-        test_assert(f2 == static_cast<bool16>(2));
+        test_assert(t == static_cast<bool16>(1));
+        test_assert(f == static_cast<bool16>(2));
     }
 
     TEST_CASE(less)

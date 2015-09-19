@@ -1072,17 +1072,20 @@ namespace
         test_assert(m[2] == math::max(dm32[2], dm322[2]));
     }
 
+    TEST_CASE(mask)
+    {
+        const auto m = math::mask(bm32, dm32);
+        test_assert(m[0] == math::mask(bm32[0], dm32[0]));
+        test_assert(m[1] == math::mask(bm32[1], dm32[1]));
+        test_assert(m[2] == math::mask(bm32[2], dm32[2]));
+    }
+
     TEST_CASE(select)
     {
-        const auto m1 = math::select(bm32, dm32);
-        test_assert(m1[0] == math::select(bm32[0], dm32[0]));
-        test_assert(m1[1] == math::select(bm32[1], dm32[1]));
-        test_assert(m1[2] == math::select(bm32[2], dm32[2]));
-
-        const auto m2 = math::select(bm32, dm32, dm322);
-        test_assert(m2[0] == math::select(bm32[0], dm32[0], dm322[0]));
-        test_assert(m2[1] == math::select(bm32[1], dm32[1], dm322[1]));
-        test_assert(m2[2] == math::select(bm32[2], dm32[2], dm322[2]));
+        const auto m = math::select(bm32, dm32, dm322);
+        test_assert(m[0] == math::select(bm32[0], dm32[0], dm322[0]));
+        test_assert(m[1] == math::select(bm32[1], dm32[1], dm322[1]));
+        test_assert(m[2] == math::select(bm32[2], dm32[2], dm322[2]));
     }
 
     TEST_CASE(less)

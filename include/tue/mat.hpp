@@ -1778,7 +1778,7 @@ namespace tue
         }
 
         /*!
-         * \brief             Computes `tue::math::select()` for each
+         * \brief             Computes `tue::math::mask()` for each
          *                    corresponding pair of columns from `conditions`
          *                    and `values`.
          *
@@ -1791,17 +1791,17 @@ namespace tue
          * \param conditions  A `mat`.
          * \param values      Another `mat`.
          *
-         * \return            `tue::math::select()` for each corresponding
-         *                    pair of columns from `conditions` and `values`.
+         * \return            `tue::math::mask()` for each corresponding pair of
+         *                    columns from `conditions` and `values`.
          */
         template<typename T, typename U, int C, int R>
         inline mat<decltype(
-            tue::math::select(std::declval<T>(), std::declval<U>())), C, R>
-        select(
+            tue::math::mask(std::declval<T>(), std::declval<U>())), C, R>
+        mask(
             const mat<T, C, R>& conditions,
             const mat<U, C, R>& values) noexcept
         {
-            return tue::detail_::select_mm(conditions, values);
+            return tue::detail_::mask_mm(conditions, values);
         }
 
         /*!

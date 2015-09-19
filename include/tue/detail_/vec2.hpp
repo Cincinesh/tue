@@ -926,14 +926,14 @@ namespace tue
 
         template<typename T, typename U>
         inline vec<decltype(
-            tue::math::select(std::declval<T>(), std::declval<U>())), 2>
-        select_vv(
+            tue::math::mask(std::declval<T>(), std::declval<U>())), 2>
+        mask_vv(
             const vec<T, 2>& conditions,
             const vec<U, 2>& values) noexcept
         {
             return {
-                tue::math::select(conditions[0], values[0]),
-                tue::math::select(conditions[1], values[1]),
+                tue::math::mask(conditions[0], values[0]),
+                tue::math::mask(conditions[1], values[1]),
             };
         }
 
