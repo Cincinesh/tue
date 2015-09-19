@@ -1,6 +1,6 @@
 Documentation
 -------------
-Tuesday documentation can be generated with
+_Tuesday_ documentation can be generated with
 [Doxygen](http://www.stack.nl/~dimitri/doxygen/) using the `Doxyfile` at the
 root of this project. A copy is also published at:
 

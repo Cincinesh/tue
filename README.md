@@ -1,6 +1,6 @@
 The Tuesday C++ Vector Math and SIMD Library
 ============================================
-The Tuesday C++ Vector Math and SIMD Library is a library of template classes
+_The Tuesday C++ Vector Math and SIMD Library_ is a library of template classes
 and math functions with a focus on physics and graphics applications. It
 provides data types commonly used in games and other simulations such as
 vectors, quaternions, and matrices, SIMD intrinsic wrapper classes completely
@@ -11,8 +11,8 @@ Library and uses modern C++ features (i.e., C++14) extensively.
 
 Major Features
 --------------
-Tuesday provides the following unique features over other similar libraries such
-as [GLM](https://github.com/g-truc/glm):
+_Tuesday_ provides the following unique features over other similar libraries
+such as [GLM](https://github.com/g-truc/glm):
 
 - The dimensions of vector and matrix types are template parameters,
   unlike GLM where, e.g., `tvec2`, `tvec3`, and `tvec4` are separate types. By
@@ -36,7 +36,7 @@ as [GLM](https://github.com/g-truc/glm):
   to waste, and functions where multiple components interact (such as the
   `length` function, `dot` product, or `cross` product) would be horribly
   inefficient with SIMD intrinsics. Instead, SIMD instructions should be used to
-  perform the same logic on multiple vectors in parallel. Tuesday is designed
+  perform the same logic on multiple vectors in parallel. _Tuesday_ is designed
   for this use case. For example, `vec3<float32x4> v` could be thought of as 4
   parallel 3D vectors (4 x-values, followed by 4 y-values, and finally 4
   z-values). Something like `math::dot(v)` would then compute a single
@@ -59,8 +59,9 @@ as [GLM](https://github.com/g-truc/glm):
 
 Status
 ------
-Tuesday is currently a work-in-progress and has no version numbering scheme. It
-is, however, well-tested with unit tests and already in a useful state.
+_Tuesday_ is currently a work-in-progress and has no release versions or
+* numbering scheme yet. It is, however, well-tested with unit tests and already
+in a useful state.
 
 See [issues I've opened]
 (https://github.com/Cincinesh/tue/issues/created_by/Cincinesh)
@@ -68,12 +69,12 @@ for a list of currently-planned additions.
 
 Requirements
 ------------
-Tuesday requires Visual Studio 2015 or a fully C++14 compliant compiler such as
-GCC 5 or Clang 3.4.
+_Tuesday_ requires Visual Studio 2015 or a fully C++14 compliant compiler such
+as GCC 5 or Clang 3.4.
 
 Usage
 -----
-Tuesday is a header-only library. Simply make sure the `include` directory in
+_Tuesday_ is a header-only library. Simply make sure the `include` directory in
 the root of this project is on your include path. For GCC and Clang, you might
 have to provide the compiler option `-std=c++14` or higher as well.
 
@@ -119,7 +120,7 @@ void SimdUpdatePoses(
 
 Documentation
 -------------
-Tuesday documentation can be generated with
+_Tuesday_ documentation can be generated with
 [Doxygen](http://www.stack.nl/~dimitri/doxygen/) using the `Doxyfile` at the
 root of this project. A copy is also published at:
 
