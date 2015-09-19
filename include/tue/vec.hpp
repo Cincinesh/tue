@@ -2197,6 +2197,23 @@ namespace tue
         }
 
         /*!
+         * \brief     Computes the reciprocal of the vector length of `v`.
+         *
+         * \tparam T  The component type of `v`.
+         * \tparam N  The component count of `v`.
+         *
+         * \param v   A `vec`.
+         *
+         * \return    The reciprocal of the vector length of `v`.
+         */
+        template<typename T, int N>
+        inline decltype(tue::math::rsqrt(std::declval<T>()))
+        rlength(const vec<T, N>& v) noexcept
+        {
+            return tue::math::rsqrt(tue::detail_::length2_v(v));
+        }
+
+        /*!
          * \brief     Computes a normalized copy of `v`.
          *
          * \tparam T  The component type of `v`.
@@ -2210,7 +2227,7 @@ namespace tue
         inline vec<decltype(tue::math::sqrt(std::declval<T>())), N>
         normalize(const vec<T, N>& v) noexcept
         {
-            return v / tue::math::length(v);
+            return v * tue::math::rlength(v);
         }
 
         /*!@}*/

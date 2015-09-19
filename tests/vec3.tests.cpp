@@ -983,9 +983,15 @@ namespace
         test_assert(x == 1.2*1.2 + 3.4*3.4 + 5.6*5.6);
     }
 
+    TEST_CASE(rlength)
+    {
+        test_assert(math::rlength(dvec3(1.2, 3.4, 5.6)) ==
+            math::rsqrt(math::length2(dvec3(1.2, 3.4, 5.6))));
+    }
+
     TEST_CASE(normalize)
     {
         const dvec3 v(1.2, 3.4, 5.6);
-        test_assert(math::normalize(v) == v / math::length(v));
+        test_assert(math::normalize(v) == v * math::rlength(v));
     }
 }

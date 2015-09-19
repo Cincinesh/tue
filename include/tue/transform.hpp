@@ -86,18 +86,21 @@ namespace tue
          * \return    The axis-angle vector.
          */
         template<typename T>
-        inline vec4<decltype(tue::math::sqrt(std::declval<T>()))>
+        inline vec4<decltype(tue::math::rsqrt(std::declval<T>()))>
         axis_angle(const T& x, const T& y, const T& z) noexcept
         {
-            const auto angle = tue::math::sqrt(x*x + y*y + z*z);
-            const auto nzmask = tue::math::not_equal(angle, T(0));
+            const auto length2 = x*x + y*y + z*z;
+            const auto nzmask = tue::math::not_equal(length2, T(0));
+            const auto rangle = tue::math::rsqrt(length2);
 
             const auto axis_x = tue::math::select(
-                nzmask, x / angle, T(0));
+                nzmask, x * rangle, T(0));
             const auto axis_y = tue::math::select(
-                nzmask, y / angle, T(0));
+                nzmask, y * rangle, T(0));
             const auto axis_z = tue::math::select(
-                nzmask, z / angle, T(1));
+                nzmask, z * rangle, T(1));
+            const auto angle = tue::math::select(
+                nzmask, tue::math::recip(rangle), T(0));
 
             return { axis_x, axis_y, axis_z, angle };
         }
@@ -112,7 +115,7 @@ namespace tue
          * \return    The axis-angle vector.
          */
         template<typename T>
-        inline vec4<decltype(tue::math::sqrt(std::declval<T>()))>
+        inline vec4<decltype(tue::math::rsqrt(std::declval<T>()))>
         axis_angle(const vec3<T>& v) noexcept
         {
             return tue::transform::axis_angle(v[0], v[1], v[2]);
