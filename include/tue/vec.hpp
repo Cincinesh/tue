@@ -748,7 +748,7 @@ namespace tue
         /*!
          * \brief     Rotates this `vec` by `q`.
          * \details   This overload is only available when `N` is equal to `3`.
-         *            The operand order might be the reverse of what you expect
+         *            The operand order might be the opposite of what you expect
          *            from other libraries. This library generally prefers
          *            compound transformations be written from left-to-right
          *            instead of right-to-left.

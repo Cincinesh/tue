@@ -411,7 +411,7 @@ namespace tue
 
         /*!
          * \brief     Rotates this `quat` by `q`.
-         * \details   The operand order might be the reverse of what you expect
+         * \details   The operand order might be the opposite of what you expect
          *            from other libraries. This library generally prefers
          *            compound transformations be written from left-to-right
          *            instead of right-to-left.
@@ -429,7 +429,7 @@ namespace tue
 
     /*!
      * \brief      Computes a copy of `lhs` rotated by `rhs`.
-     * \details    The operand order might be the reverse of what you expect
+     * \details    The operand order might be the opposite of what you expect
      *             from other libraries. This library generally prefers compound
      *             transformations be written from left-to-right instead of
      *             right-to-left.
@@ -456,7 +456,7 @@ namespace tue
 
     /*!
      * \brief      Computes a copy of `lhs` rotated by `rhs`.
-     * \details    The operand order might be the reverse of what you expect
+     * \details    The operand order might be the opposite of what you expect
      *             from other libraries. This library generally prefers compound
      *             transformations be written from left-to-right instead of
      *             right-to-left.
@@ -550,7 +550,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes a the conjugate of `q`.
+         * \brief     Computes the conjugate of `q`.
          * \tparam T  The component type of `q`.
          * \param q   A `quat`.
          * \return    The conjugate of `q`.
