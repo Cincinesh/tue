@@ -25,7 +25,7 @@ namespace tue
 
     /*!
      * \defgroup  vec_hpp <tue/vec.hpp>
-     * \brief     The `vec` class template and its associate functions.
+     * \brief     The `vec` class template and its associated functions.
      * @{
      */
 
@@ -737,7 +737,7 @@ namespace tue
 
         /*!
          * \brief     Multiplies each component of this `vec` by the
-         *            corresponding component from `v`.
+         *            corresponding component of `v`.
          * \tparam U  The component type of `v`.
          * \param v   The values to multiply each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -781,7 +781,7 @@ namespace tue
 
         /*!
          * \brief     Divides each component of this `vec` by the corresponding
-         *            component from `v`.
+         *            component of `v`.
          * \tparam U  The component type of `v`.
          * \param v   The values to divide each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -800,7 +800,7 @@ namespace tue
 
         /*!
          * \brief     Modulos each component of this `vec` by the corresponding
-         *            component from `v`.
+         *            component of `v`.
          * \tparam U  The component type of `v`.
          * \param v   The values to modulo each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -823,7 +823,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise ANDs each component of this `vec` with the
-         *            corresponding component from `v`.
+         *            corresponding component of `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -846,7 +846,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise ORs each component of this `vec` with the
-         *            corresponding component from `v`.
+         *            corresponding component of `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -873,7 +873,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise XORs each component of this `vec` with the
-         *            corresponding component from `v`.
+         *            corresponding component of `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -900,7 +900,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise shifts left each component of this `vec` by the
-         *            corresponding component from `v`.
+         *            corresponding component of `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -927,7 +927,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise shifts right each component of this `vec` by the
-         *            corresponding component from `v`.
+         *            corresponding component of `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -1897,7 +1897,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::min()` for each corresponding pair of
-         *            components of `v1` and `v2`.
+         *            components from `v1` and `v2`.
          *
          * \tparam T  The component type of both `v1` and `v2`.
          * \tparam N  The component count of both `v1` and `v2`.
@@ -1906,7 +1906,7 @@ namespace tue
          * \param v2  Another `vec`.
          *
          * \return    `tue::math::min()` for each corresponding pair of
-         *            components of `v1` and `v2`.
+         *            components from `v1` and `v2`.
          */
         template<typename T, int N>
         inline vec<decltype(
@@ -1918,7 +1918,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::max()` for each corresponding pair of
-         *            components of `v1` and `v2`.
+         *            components from `v1` and `v2`.
          *
          * \tparam T  The component type of both `v1` and `v2`.
          * \tparam N  The component count of both `v1` and `v2`.
@@ -1927,7 +1927,7 @@ namespace tue
          * \param v2  Another `vec`.
          *
          * \return    `tue::math::max()` for each corresponding pair of
-         *            components of `v1` and `v2`.
+         *            components from `v1` and `v2`.
          */
         template<typename T, int N>
         inline vec<decltype(
@@ -1939,8 +1939,8 @@ namespace tue
 
         /*!
          * \brief             Computes `tue::math::mask()` for each
-         *                    corresponding pair of components from
-         *                    `conditions` and `values``.
+         *                    corresponding pair of components from `conditions`
+         *                    and `values`.
          *
          * \tparam T          The component type of `conditions`.
          * \tparam U          The component type of `values`.
@@ -1997,7 +1997,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less()` for each corresponding pair
-         *             of components of `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -2006,7 +2006,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline vec<decltype(
@@ -2018,7 +2018,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less_equal()` for each corresponding
-         *             pair of components of `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -2027,7 +2027,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less_equal()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline vec<decltype(
@@ -2039,7 +2039,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater()` for each corresponding
-         *             pair of components of `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -2048,7 +2048,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline vec<decltype(
@@ -2060,7 +2060,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater_equal()` for each
-         *             corresponding pair of components of `lhs` and `rhs`.
+         *             corresponding pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -2069,7 +2069,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater_equal()` for each corresponding pair
-         *             of components of `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline vec<decltype(
@@ -2081,7 +2081,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::equal()` for each corresponding pair
-         *             of components of `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -2090,7 +2090,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::equal()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline vec<decltype(
@@ -2102,7 +2102,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::not_equal()` for each corresponding
-         *             pair of components of `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -2111,7 +2111,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::not_equal()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline vec<decltype(
