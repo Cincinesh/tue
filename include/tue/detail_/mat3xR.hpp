@@ -263,9 +263,6 @@ namespace tue
             return *this;
         }
 
-        template<typename U, int N>
-        void operator*=(const vec<U, N>&) = delete;
-
         template<typename U>
         mat<T, 3, R>& operator*=(const mat<U, 3, 3>& m) noexcept
         {

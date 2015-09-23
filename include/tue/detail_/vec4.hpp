@@ -482,9 +482,6 @@ namespace tue
         }
 
         template<typename U>
-        void operator*=(const quat<U>&) = delete;
-
-        template<typename U>
         vec<T, 4>& operator*=(const mat<U, 4, 4>& m) noexcept
         {
             return (*this) = (*this) * m;
