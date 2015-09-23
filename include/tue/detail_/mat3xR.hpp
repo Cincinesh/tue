@@ -19,7 +19,14 @@ namespace tue
     template<typename T, int R>
     class mat<T, 3, R>
     {
-        struct { vec<T, R> columns[3]; } impl_;
+        struct
+        {
+            std::enable_if_t<
+                is_vec_component<T>::value && (R >= 2 && R <= 4),
+                vec<T, R>[3]>
+            columns;
+        }
+        impl_;
 
     public:
         using component_type = T;

@@ -69,7 +69,8 @@ namespace tue
      * \brief     An `N`-dimensional vector.
      * \details   `vec` has the same size and alignment requirements as `T[N]`.
      *
-     * \tparam T  The component type.
+     * \tparam T  The component type. `is_vec_component<T>::value` must be
+     *            `true`.
      * \tparam N  The component count. Must be 2, 3, or 4.
      */
     template<typename T, int N>
@@ -160,7 +161,12 @@ namespace tue
     template<typename T, int N>
     class vec
     {
-        struct { std::enable_if_t<(N >= 2 && N <= 4), T[N]> data; } impl_;
+        struct
+        {
+            std::enable_if_t<
+                is_vec_component<T>::value && (N >= 2 && N <= 4), T[N]> data;
+        }
+        impl_;
 
     public:
         /*!

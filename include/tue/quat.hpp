@@ -27,7 +27,8 @@ namespace tue
      *            The first three components represent the vector part of the
      *            quaternion. The fourth component represents the scalar part.
      *
-     * \tparam T  The component type.
+     * \tparam T  The component type. `is_vec_component<T>::value` must be
+     *            `true`.
      */
     template<typename T>
     class quat;
@@ -46,7 +47,11 @@ namespace tue
     template<typename T>
     class quat
     {
-        struct { T data[4]; } impl_;
+        struct
+        {
+            std::enable_if_t<is_vec_component<T>::value, T[4]> data;
+        }
+        impl_;
 
     public:
         /*!

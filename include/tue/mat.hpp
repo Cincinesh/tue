@@ -27,7 +27,8 @@ namespace tue
      * \details   `mat` have the same size and alignment requirements as
      *            `vec<T, R>[C]`.
      *
-     * \tparam T  The component type.
+     * \tparam T  The component type. `is_vec_component<T>::value` must be
+     *            `true`.
      * \tparam C  The column count. Must be 2, 3, or 4.
      * \tparam R  The row count. Must be 2, 3, or 4.
      */
@@ -194,7 +195,9 @@ namespace tue
         struct
         {
             std::enable_if_t<
-                (C >= 2 && C <= 4 && R >= 2 && R <= 4), vec<T, R>[C]>
+                is_vec_component<T>::value
+                    && (C >= 2 && C <= 4 && R >= 2 && R <= 4),
+                vec<T, R>[C]>
             columns;
         }
         impl_;

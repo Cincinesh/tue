@@ -20,7 +20,11 @@ namespace tue
     template<typename T>
     class vec<T, 2>
     {
-        struct { T data[2]; } impl_;
+        struct
+        {
+            std::enable_if_t<is_vec_component<T>::value, T[2]> data;
+        }
+        impl_;
 
     public:
         using component_type = T;
