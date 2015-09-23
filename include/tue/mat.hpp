@@ -483,9 +483,6 @@ namespace tue
 
         /*!
          * \brief     Multiplies each column of this `mat` by `x`.
-         * \details   Note: Unlike `mat`'s other assignment operators, `x`
-         *            cannot be a `vec` since `mat * vec` has a special meaning.
-         *
          * \tparam U  The type of parameter `x`.
          * \param x   The value to multiply each column of this `mat` by.
          * \return    A reference to this `mat`.
@@ -1738,7 +1735,7 @@ namespace tue
          * \param m2  Another `mat`.
          *
          * \return    `tue::math::min()` for each corresponding pair of columns
-         *            of `m1` and `m2`.
+         *            from `m1` and `m2`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1760,7 +1757,7 @@ namespace tue
          * \param m2  Another `mat`.
          *
          * \return    `tue::math::max()` for each corresponding pair of columns
-         *            of `m1` and `m2`.
+         *            from `m1` and `m2`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(

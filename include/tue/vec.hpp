@@ -737,7 +737,7 @@ namespace tue
 
         /*!
          * \brief     Multiplies each component of this `vec` by the
-         *            corresponding component of `v`.
+         *            corresponding component from `v`.
          * \tparam U  The component type of `v`.
          * \param v   The values to multiply each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -781,7 +781,7 @@ namespace tue
 
         /*!
          * \brief     Divides each component of this `vec` by the corresponding
-         *            component of `v`.
+         *            component from `v`.
          * \tparam U  The component type of `v`.
          * \param v   The values to divide each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -800,7 +800,7 @@ namespace tue
 
         /*!
          * \brief     Modulos each component of this `vec` by the corresponding
-         *            component of `v`.
+         *            component from `v`.
          * \tparam U  The component type of `v`.
          * \param v   The values to modulo each component of this `vec` by.
          * \return    A reference to this `vec`.
@@ -823,7 +823,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise ANDs each component of this `vec` with the
-         *            corresponding component of `v`.
+         *            corresponding component from `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -846,7 +846,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise ORs each component of this `vec` with the
-         *            corresponding component of `v`.
+         *            corresponding component from `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -873,7 +873,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise XORs each component of this `vec` with the
-         *            corresponding component of `v`.
+         *            corresponding component from `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -900,7 +900,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise shifts left each component of this `vec` by the
-         *            corresponding component of `v`.
+         *            corresponding component from `v`.
          *
          * \tparam U  The component type of `v`.
          *
@@ -927,7 +927,7 @@ namespace tue
 
         /*!
          * \brief     Bitwise shifts right each component of this `vec` by the
-         *            corresponding component of `v`.
+         *            corresponding component from `v`.
          *
          * \tparam U  The component type of `v`.
          *
