@@ -105,10 +105,13 @@ namespace tue
     using sized_bool_t = typename detail_::sized_bool_utils<Size>::type;
 
     /*!
-     * \brief     Checks if a type is a sized boolean type (`bool8`, `bool16`,
-     *            `bool32`, or `bool64`).
-     * \details   Extends `std::integral_constant<bool, true>` if true and
-     *            `std::integral_constant<bool, false>` otherwise.
+     * \brief     Checks if a type is a sized boolean type.
+     * \details   Extends `std::integral_constant<bool, true>` for the following
+     *            types and `std::integral_constant<bool, false>` otherwise:
+     *            - `tue::bool8`
+     *            - `tue::bool16`
+     *            - `tue::bool32`
+     *            - `tue::bool64`
      *
      * \tparam T  The type to check.
      */

@@ -30,6 +30,41 @@ namespace tue
      */
 
     /*!
+     * \brief     Checks if a type can be used as the component type of a `vec`.
+     * \details   Extends `std::integral_constant<bool, true>` for the following
+     *            types and `std::integral_constant<bool, false>` otherwise:
+     *            - `float`
+     *            - `double`
+     *            - `std::int8_t`
+     *            - `std::int16_t`
+     *            - `std::int32_t`
+     *            - `std::int64_t`
+     *            - `std::uint8_t`
+     *            - `std::uint16_t`
+     *            - `std::uint32_t`
+     *            - `std::uint64_t`
+     *            - `tue::bool8`
+     *            - `tue::bool16`
+     *            - `tue::bool32`
+     *            - `tue::bool64`
+     *            - `tue::simd`
+     *
+     * \tparam T  The type to check.
+     */
+    template<typename T>
+    struct is_vec_component;
+}
+
+#include "detail_/is_vec_component.hpp"
+
+namespace tue
+{
+    /*!
+     * \addtogroup  vec_hpp
+     * @{
+     */
+
+    /*!
      * \brief     An `N`-dimensional vector.
      * \details   `vec` has the same size and alignment requirements as `T[N]`.
      *

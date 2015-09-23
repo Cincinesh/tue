@@ -40,10 +40,10 @@ namespace tue
      *            - `std::uint16_t`
      *            - `std::uint32_t`
      *            - `std::uint64_t`
-     *            - `bool8`
-     *            - `bool16`
-     *            - `bool32`
-     *            - `bool64`
+     *            - `tue::bool8`
+     *            - `tue::bool16`
+     *            - `tue::bool32`
+     *            - `tue::bool64`
      *
      * \tparam T  The type to check.
      */

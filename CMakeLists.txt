@@ -26,6 +26,7 @@ set(TUE_SOURCES
     include/tue/detail_/is_integral_simd_component.hpp
     include/tue/detail_/is_simd_component.hpp
     include/tue/detail_/is_sized_bool.hpp
+    include/tue/detail_/is_vec_component.hpp
     include/tue/detail_/mat2xR.hpp
     include/tue/detail_/mat3xR.hpp
     include/tue/detail_/mat4xR.hpp
