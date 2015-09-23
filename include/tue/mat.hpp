@@ -333,14 +333,13 @@ namespace tue
         inline constexpr operator mat<U, C, R>() const noexcept;
 
         /*!
-         * \brief     Returns a `mat` with each column constructed with the same
-         *            value.
-         * \tparam U  The type of parameter `x`.
-         * \param x   The value to construct each column with.
-         * \return    A `mat` with each column constructed with the same value.
+         * \brief    Returns a `mat` with each component constructed with the
+         *           same value.
+         * \param x  The value to construct each component with.
+         * \return   A `mat` with each component constructed with the same
+         *           value.
          */
-        template<typename U>
-        inline static constexpr mat<T, C, R> fill(const U& x) noexcept;
+        inline static constexpr mat<T, C, R> fill(const T& x) noexcept;
 
         /*!
          * \brief   Returns a `mat` with the main diagonal set to `1` and all
@@ -1735,7 +1734,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::min()` for each corresponding pair of
-         *            columns of `m1` and `m2`.
+         *            columns from `m1` and `m2`.
          *
          * \tparam T  The component type of `m1` and `m2`.
          * \tparam C  The column count of `m1` and `m2`.
@@ -1757,7 +1756,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::max()` for each corresponding pair of
-         *            columns of `m1` and `m2`.
+         *            columns from `m1` and `m2`.
          *
          * \tparam T  The component type of `m1` and `m2`.
          * \tparam C  The column count of `m1` and `m2`.
@@ -1839,7 +1838,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less()` for each corresponding pair
-         *             of columns of `lhs` and `rhs`.
+         *             of columns from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1849,7 +1848,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less()` for each corresponding pair of
-         *             columns of `lhs` and `rhs`.
+         *             columns from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1862,7 +1861,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less_equal()` for each corresponding
-         *             pair of columns of `lhs` and `rhs`.
+         *             pair of columns from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1872,7 +1871,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less_equal()` for each corresponding pair of
-         *             columns of `lhs` and `rhs`.
+         *             columns from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1885,7 +1884,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater()` for each corresponding
-         *             pair of columns of `lhs` and `rhs`.
+         *             pair of columns from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1895,7 +1894,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater()` for each corresponding pair of
-         *             columns of `lhs` and `rhs`.
+         *             columns from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1908,7 +1907,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater_equal()` for each
-         *             corresponding pair of columns of `lhs` and `rhs`.
+         *             corresponding pair of columns from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1918,7 +1917,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater_equal()` for each corresponding pair
-         *             of columns of `lhs` and `rhs`.
+         *             of columns from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1931,7 +1930,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::equal()` for each corresponding pair
-         *             of columns of `lhs` and `rhs`.
+         *             of columns from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1941,7 +1940,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::equal()` for each corresponding pair of
-         *             columns of `lhs` and `rhs`.
+         *             columns from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1954,7 +1953,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::not_equal()` for each corresponding
-         *             pair of columns of `lhs` and `rhs`.
+         *             pair of columns from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1964,7 +1963,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::not_equal()` for each corresponding pair of
-         *             columns of `lhs` and `rhs`.
+         *             columns from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
