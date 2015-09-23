@@ -65,6 +65,7 @@ namespace
         test_assert(is_simd_component<bool16>::value == true);
         test_assert(is_simd_component<bool32>::value == true);
         test_assert(is_simd_component<bool64>::value == true);
+        test_assert((is_simd_component<simd<float, 4>>::value == false));
     }
 
     TEST_CASE(is_arithmetic_simd_component)
@@ -84,6 +85,8 @@ namespace
         test_assert(is_arithmetic_simd_component<bool16>::value == false);
         test_assert(is_arithmetic_simd_component<bool32>::value == false);
         test_assert(is_arithmetic_simd_component<bool64>::value == false);
+        test_assert((
+            is_arithmetic_simd_component<simd<float, 4>>::value == false));
     }
 
     TEST_CASE(is_floating_point_simd_component)
@@ -118,6 +121,8 @@ namespace
             is_floating_point_simd_component<bool32>::value == false);
         test_assert(
             is_floating_point_simd_component<bool64>::value == false);
+        test_assert((
+            is_floating_point_simd_component<simd<float, 4>>::value == false));
     }
 
     TEST_CASE(is_integral_simd_component)
@@ -137,6 +142,8 @@ namespace
         test_assert(is_integral_simd_component<bool16>::value == false);
         test_assert(is_integral_simd_component<bool32>::value == false);
         test_assert(is_integral_simd_component<bool64>::value == false);
+        test_assert((
+            is_integral_simd_component<simd<float, 4>>::value == false));
     }
 
     /*

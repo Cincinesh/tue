@@ -25,7 +25,8 @@ namespace tue
 
     /*!
      * \defgroup  vec_hpp <tue/vec.hpp>
-     * \brief     The `vec` class template and its associated functions.
+     * \brief     The `vec` class template and its associated utility classes
+     *            and functions.
      * @{
      */
 

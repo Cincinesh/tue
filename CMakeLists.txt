@@ -62,6 +62,7 @@ set(TUE_TEST_SOURCES
     tests/sized_bool.tests.cpp
     tests/transform.tests.cpp
     tests/unused.tests.cpp
+    tests/vec.tests.cpp
     tests/vec2.tests.cpp
     tests/vec3.tests.cpp
     tests/vec4.tests.cpp)
