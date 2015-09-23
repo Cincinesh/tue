@@ -280,41 +280,12 @@ namespace tue
          *             dimension, the components from `m` without corresponding
          *             components in the new `mat` will be ignored.
          *
+         * \tparam MC  The column count of `m`.
          * \tparam MR  The row count of `m`.
          * \param m    The `mat` to cast from.
          */
-        template<int MR>
-        inline explicit constexpr mat(const mat<T, 2, MR>& m) noexcept;
-
-        /*!
-         * \brief      Explicitly casts another `mat` to a new size.
-         * \details    If the new `mat` is larger than `m` in either dimension,
-         *             the new components without corresponding components in
-         *             `m` will be constructed with `1` along the main diagonal
-         *             and `0` otherwise. If the new `mat` is smaller in either
-         *             dimension, the components from `m` without corresponding
-         *             components in the new `mat` will be ignored.
-         *
-         * \tparam MR  The row count of `m`.
-         * \param m    The `mat` to cast from.
-         */
-        template<int MR>
-        inline explicit constexpr mat(const mat<T, 3, MR>& m) noexcept;
-
-        /*!
-         * \brief      Explicitly casts another `mat` to a new size.
-         * \details    If the new `mat` is larger than `m` in either dimension,
-         *             the new components without corresponding components in
-         *             `m` will be constructed with `1` along the main diagonal
-         *             and `0` otherwise. If the new `mat` is smaller in either
-         *             dimension, the components from `m` without corresponding
-         *             components in the new `mat` will be ignored.
-         *
-         * \tparam MR  The row count of `m`.
-         * \param m    The `mat` to cast from.
-         */
-        template<int MR>
-        inline explicit constexpr mat(const mat<T, 4, MR>& m) noexcept;
+        template<int MC, int MR>
+        inline explicit constexpr mat(const mat<T, MC, MR>& m) noexcept;
 
         /*!
          * \brief     Explicitly casts another `mat` to a new component type.
@@ -684,6 +655,42 @@ namespace tue
     /*!@}*/
     namespace detail_
     {
+        template<typename T, int R, int MR>
+        inline constexpr vec<T, R> mat_column2(const mat<T, 2, MR>&) noexcept
+        {
+            return tue::detail_::vec_utils<T, R>::create(0, 0, 1, 0);
+        }
+
+        template<typename T, int R, int MR>
+        inline constexpr vec<T, R> mat_column2(const mat<T, 3, MR>& m) noexcept
+        {
+            return tue::detail_::vec_utils<T, R>::create(m[2], 1, 0);
+        }
+
+        template<typename T, int R, int MR>
+        inline constexpr vec<T, R> mat_column2(const mat<T, 4, MR>& m) noexcept
+        {
+            return tue::detail_::vec_utils<T, R>::create(m[2], 1, 0);
+        }
+
+        template<typename T, int R, int MR>
+        inline constexpr vec<T, R> mat_column3(const mat<T, 2, MR>&) noexcept
+        {
+            return tue::detail_::vec_utils<T, R>::create(0, 0, 0, 1);
+        }
+
+        template<typename T, int R, int MR>
+        inline constexpr vec<T, R> mat_column3(const mat<T, 3, MR>&) noexcept
+        {
+            return tue::detail_::vec_utils<T, R>::create(0, 0, 0, 1);
+        }
+
+        template<typename T, int R, int MR>
+        inline constexpr vec<T, R> mat_column3(const mat<T, 4, MR>& m) noexcept
+        {
+            return tue::detail_::vec_utils<T, R>::create(m[3], 0, 1);
+        }
+
         template<typename T, int C, int R>
         struct mat_utils;
     }

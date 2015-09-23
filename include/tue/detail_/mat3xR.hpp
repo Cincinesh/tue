@@ -49,32 +49,12 @@ namespace tue
         {
         }
 
-        template<int MR>
-        explicit constexpr mat(const mat<T, 2, MR>& m) noexcept :
+        template<int MC, int MR>
+        explicit constexpr mat(const mat<T, MC, MR>& m) noexcept :
             impl_({{
                 tue::detail_::vec_utils<T, R>::create(m[0], 0, 0),
                 tue::detail_::vec_utils<T, R>::create(m[1], 0, 0),
-                tue::detail_::vec_utils<T, R>::create(0, 0, 1, 0),
-            }})
-        {
-        }
-
-        template<int MR>
-        explicit constexpr mat(const mat<T, 3, MR>& m) noexcept :
-            impl_({{
-                tue::detail_::vec_utils<T, R>::create(m[0], 0, 0),
-                tue::detail_::vec_utils<T, R>::create(m[1], 0, 0),
-                tue::detail_::vec_utils<T, R>::create(m[2], 1, 0),
-            }})
-        {
-        }
-
-        template<int MR>
-        explicit constexpr mat(const mat<T, 4, MR>& m) noexcept :
-            impl_({{
-                tue::detail_::vec_utils<T, R>::create(m[0], 0, 0),
-                tue::detail_::vec_utils<T, R>::create(m[1], 0, 0),
-                tue::detail_::vec_utils<T, R>::create(m[2], 1, 0),
+                tue::detail_::mat_column2<T, R>(m),
             }})
         {
         }
