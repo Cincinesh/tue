@@ -737,7 +737,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator+=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator+=(const U& x) noexcept;
 
         /*!
          * \brief     Adds each component of `v` to the corresponding component
@@ -747,7 +748,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator+=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator+=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Subtracts `x` from each component of this `vec`.
@@ -756,7 +758,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator-=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator-=(const U& x) noexcept;
 
         /*!
          * \brief     Subtracts each component of `v` from the corresponding
@@ -766,7 +769,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator-=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator-=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Multiplies each component of this `vec` by `x`.
@@ -775,7 +779,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator*=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator*=(const U& x) noexcept;
 
         /*!
          * \brief     Multiplies each component of this `vec` by the
@@ -785,7 +790,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator*=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator*=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Rotates this `vec` by `q`.
@@ -800,7 +806,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator*=(const quat<U>& q) noexcept;
+        inline vec<T, N>&
+        operator*=(const quat<U>& q) noexcept;
 
         /*!
          * \brief     Matrix multiplies this `vec` by `m`.
@@ -810,7 +817,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator*=(const mat<U, N, N>& m) noexcept;
+        inline vec<T, N>&
+        operator*=(const mat<U, N, N>& m) noexcept;
 
         /*!
          * \brief     Divides each component of this `vec` by `x`.
@@ -819,7 +827,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator/=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator/=(const U& x) noexcept;
 
         /*!
          * \brief     Divides each component of this `vec` by the corresponding
@@ -829,7 +838,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator/=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator/=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Modulos each component of this `vec` by `x`.
@@ -838,7 +848,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator%=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator%=(const U& x) noexcept;
 
         /*!
          * \brief     Modulos each component of this `vec` by the corresponding
@@ -848,7 +859,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator%=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator%=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Bitwise ANDs each component of this `vec` with `x`.
@@ -861,7 +873,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator&=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator&=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise ANDs each component of this `vec` with the
@@ -875,7 +888,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator&=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator&=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Bitwise ORs each component of this `vec` with `x`.
@@ -884,7 +898,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator|=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator|=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise ORs each component of this `vec` with the
@@ -898,7 +913,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator|=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator|=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Bitwise XORs each component of this `vec` with `x`.
@@ -911,7 +927,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator^=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator^=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise XORs each component of this `vec` with the
@@ -925,7 +942,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator^=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator^=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Bitwise shifts left each component of this `vec` by `x`.
@@ -938,7 +956,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator<<=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator<<=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise shifts left each component of this `vec` by the
@@ -952,7 +971,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator<<=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator<<=(const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Bitwise shifts right each component of this `vec` by `x`.
@@ -965,7 +985,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator>>=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, vec<T, N>&>
+        operator>>=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise shifts right each component of this `vec` by the
@@ -979,7 +1000,8 @@ namespace tue
          * \return    A reference to this `vec`.
          */
         template<typename U>
-        inline vec<T, N>& operator>>=(const vec<U, N>& v) noexcept;
+        inline vec<T, N>&
+        operator>>=(const vec<U, N>& v) noexcept;
     };
 
     /*!@}*/
@@ -1070,7 +1092,9 @@ namespace tue
      * \return     The sums of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() + std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() + std::declval<U>()), N>>
     operator+(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::addition_operator_xv(lhs, rhs);
@@ -1089,7 +1113,9 @@ namespace tue
      * \return     The sums of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() + std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() + std::declval<U>()), N>>
     operator+(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::addition_operator_vx(lhs, rhs);
@@ -1130,7 +1156,9 @@ namespace tue
      * \return     The differences between `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() - std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() - std::declval<U>()), N>>
     operator-(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::subtraction_operator_xv(lhs, rhs);
@@ -1150,7 +1178,9 @@ namespace tue
      * \return     The differences between each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() - std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() - std::declval<U>()), N>>
     operator-(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::subtraction_operator_vx(lhs, rhs);
@@ -1190,7 +1220,9 @@ namespace tue
      * \return     The products of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() * std::declval<U>()), N>>
     operator*(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_xv(lhs, rhs);
@@ -1209,7 +1241,9 @@ namespace tue
      * \return     The products of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() * std::declval<U>()), N>>
     operator*(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_vx(lhs, rhs);
@@ -1249,7 +1283,9 @@ namespace tue
      * \return     The quotients of `lhs` over each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() / std::declval<U>()), N>>
     operator/(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::division_operator_xv(lhs, rhs);
@@ -1268,7 +1304,9 @@ namespace tue
      * \return     The quotients of each component of `lhs` over `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() / std::declval<U>()), N>>
     operator/(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::division_operator_vx(lhs, rhs);
@@ -1308,7 +1346,9 @@ namespace tue
      * \return     The modulos of `lhs` over each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() % std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() % std::declval<U>()), N>>
     operator%(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::modulo_operator_xv(lhs, rhs);
@@ -1327,7 +1367,9 @@ namespace tue
      * \return     The modulos of each component of `lhs` over `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() % std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() % std::declval<U>()), N>>
     operator%(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::modulo_operator_vx(lhs, rhs);
@@ -1368,7 +1410,9 @@ namespace tue
      * \return     The bitwise AND of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() & std::declval<U>()), N>>
     operator&(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_and_operator_xv(lhs, rhs);
@@ -1388,7 +1432,9 @@ namespace tue
      * \return     The bitwise AND of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() & std::declval<U>()), N>>
     operator&(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_and_operator_vx(lhs, rhs);
@@ -1428,7 +1474,9 @@ namespace tue
      * \return     The bitwise OR of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() | std::declval<U>()), N>>
     operator|(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_or_operator_xv(lhs, rhs);
@@ -1447,7 +1495,9 @@ namespace tue
      * \return     The bitwise OR of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() | std::declval<U>()), N>>
     operator|(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_or_operator_vx(lhs, rhs);
@@ -1488,7 +1538,9 @@ namespace tue
      * \return     The bitwise XOR of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() ^ std::declval<U>()), N>>
     operator^(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_xor_operator_xv(lhs, rhs);
@@ -1508,7 +1560,9 @@ namespace tue
      * \return     The bitwise XOR of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() ^ std::declval<U>()), N>>
     operator^(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_xor_operator_vx(lhs, rhs);
@@ -1549,8 +1603,9 @@ namespace tue
      * \return     The bitwise shifts left of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(
-        std::declval<T>() shift_left std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>>
     operator<<(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator_xv(lhs, rhs);
@@ -1570,8 +1625,9 @@ namespace tue
      * \return     The bitwise shifts left of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(
-        std::declval<T>() shift_left std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>>
     operator<<(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator_vx(lhs, rhs);
@@ -1613,8 +1669,9 @@ namespace tue
      * \return     The bitwise shifts right of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(
-        std::declval<T>() shift_right std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>>
     operator>>(const T& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator_xv(lhs, rhs);
@@ -1634,8 +1691,9 @@ namespace tue
      * \return     The bitwise shifts right of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(
-        std::declval<T>() shift_right std::declval<U>()), N>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>>
     operator>>(const vec<T, N>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator_vx(lhs, rhs);

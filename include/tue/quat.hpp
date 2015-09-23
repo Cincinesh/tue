@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <type_traits>
 #include <utility>
 
 #include "math.hpp"
