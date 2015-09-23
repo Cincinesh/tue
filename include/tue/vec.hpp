@@ -54,6 +54,8 @@ namespace tue
      */
     template<typename T>
     struct is_vec_component;
+
+    /*!@}*/
 }
 
 #include "detail_/is_vec_component.hpp"
