@@ -78,7 +78,7 @@ namespace
         test_assert(v[1] == 1.2);
     }
 
-    TEST_CASE(individual_components_constructor)
+    TEST_CASE(individual_component_constructor)
     {
         CONST_OR_CONSTEXPR dvec2 v = { 1.2, 3.4 };
         test_assert(v[0] == 1.2);

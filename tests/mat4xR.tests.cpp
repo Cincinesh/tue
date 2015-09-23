@@ -292,7 +292,28 @@ namespace
         test_assert(m44[3] == dvec4(0.0, 0.0, 0.0, 1.2));
     }
 
-    TEST_CASE(individual_columns_constructor)
+    TEST_CASE(single_column_constructor)
+    {
+        CONST_OR_CONSTEXPR dmat4x2 m42(dvec2(1.2, 3.4));
+        test_assert(m42[0] == dvec2(1.2, 3.4));
+        test_assert(m42[1] == dvec2(1.2, 3.4));
+        test_assert(m42[2] == dvec2(1.2, 3.4));
+        test_assert(m42[3] == dvec2(1.2, 3.4));
+
+        CONST_OR_CONSTEXPR dmat4x3 m43(dvec3(1.2, 3.4, 5.6));
+        test_assert(m43[0] == dvec3(1.2, 3.4, 5.6));
+        test_assert(m43[1] == dvec3(1.2, 3.4, 5.6));
+        test_assert(m43[2] == dvec3(1.2, 3.4, 5.6));
+        test_assert(m43[3] == dvec3(1.2, 3.4, 5.6));
+
+        CONST_OR_CONSTEXPR dmat4x4 m44(dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(m44[0] == dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(m44[1] == dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(m44[2] == dvec4(1.2, 3.4, 5.6, 7.8));
+        test_assert(m44[3] == dvec4(1.2, 3.4, 5.6, 7.8));
+    }
+
+    TEST_CASE(individual_column_constructor)
     {
         test_assert(dm42[0] == dvec2(1.1, 1.2));
         test_assert(dm42[1] == dvec2(2.1, 2.2));

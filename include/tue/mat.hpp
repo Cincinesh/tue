@@ -236,6 +236,12 @@ namespace tue
         inline explicit constexpr mat(const T& x) noexcept;
 
         /*!
+         * \brief     Constructs each column with the same values.
+         * \param x   The values to construct each column with.
+         */
+        inline explicit constexpr mat(const vec<T, R>& v) noexcept;
+
+        /*!
          * \brief     Constructs a `mat` with the given columns.
          * \details   This overload is only available when `C` equals `2`.
          *

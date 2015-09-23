@@ -49,6 +49,11 @@ namespace tue
         {
         }
 
+        explicit constexpr mat(const vec<T, R>& v) noexcept :
+            impl_({{ v, v, v }})
+        {
+        }
+
         constexpr mat(
             const vec<T, R>& c0,
             const vec<T, R>& c1,
