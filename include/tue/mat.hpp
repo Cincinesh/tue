@@ -453,7 +453,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator+=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator+=(const U& x) noexcept;
 
         /*!
          * \brief     Adds each column of `m` to the corresponding column of
@@ -463,7 +464,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator+=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator+=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Subtracts `x` from each column of this `mat`.
@@ -472,7 +474,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator-=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator-=(const U& x) noexcept;
 
         /*!
          * \brief     Subtracts each column of `m` from the corresponding
@@ -482,7 +485,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator-=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator-=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Multiplies each column of this `mat` by `x`.
@@ -491,7 +495,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator*=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator*=(const U& x) noexcept;
 
         /*!
          * \brief     Multiplies this mat by `m`.
@@ -500,7 +505,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator*=(const mat<U, C, C>& m) noexcept;
+        inline mat<T, C, R>&
+        operator*=(const mat<U, C, C>& m) noexcept;
 
         /*!
          * \brief     Divides each column of this `mat` by `x`.
@@ -509,7 +515,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator/=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator/=(const U& x) noexcept;
 
         /*!
          * \brief     Divides each column of this `mat` by the corresponding
@@ -519,7 +526,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator/=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator/=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Modulos each column of this `mat` by `x`.
@@ -528,7 +536,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator%=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator%=(const U& x) noexcept;
 
         /*!
          * \brief     Modulos each column of this `mat` by the corresponding
@@ -538,7 +547,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator%=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator%=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Bitwise ANDs each column of this `mat` with `x`.
@@ -547,7 +557,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator&=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator&=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise ANDs each column of this `mat` with the
@@ -557,7 +568,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator&=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator&=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Bitwise ORs each column of this `mat` with `x`.
@@ -566,7 +578,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator|=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator|=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise ORs each column of this `mat` with the
@@ -576,7 +589,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator|=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator|=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Bitwise XORs each column of this `mat` with `x`.
@@ -585,7 +599,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator^=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator^=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise XORs each column of this `mat` with the
@@ -595,7 +610,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator^=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator^=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Bitwise shifts left each column of this `mat` by `x`.
@@ -608,7 +624,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator<<=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator<<=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise shifts left each column of this `mat` by the
@@ -622,7 +639,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator<<=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator<<=(const mat<U, C, R>& m) noexcept;
 
         /*!
          * \brief     Bitwise shifts right each column of this `mat` by `x`.
@@ -635,7 +653,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator>>=(const U& x) noexcept;
+        inline std::enable_if_t<is_vec_component<U>::value, mat<T, C, R>&>
+        operator>>=(const U& x) noexcept;
 
         /*!
          * \brief     Bitwise shifts right each column of this `mat` by the
@@ -649,7 +668,8 @@ namespace tue
          * \return    A reference to this `mat`.
          */
         template<typename U>
-        inline mat<T, C, R>& operator>>=(const mat<U, C, R>& m) noexcept;
+        inline mat<T, C, R>&
+        operator>>=(const mat<U, C, R>& m) noexcept;
     };
 
     /*!@}*/
@@ -779,7 +799,9 @@ namespace tue
      * \return     The sums of `lhs` and each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() + std::declval<U>()), C, R>>
     operator+(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::addition_operator_xm(lhs, rhs);
@@ -799,7 +821,9 @@ namespace tue
      * \return     The sums of each column of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() + std::declval<U>()), C, R>>
     operator+(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::addition_operator_mx(lhs, rhs);
@@ -842,7 +866,9 @@ namespace tue
      * \return     The differences between `lhs` and each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() - std::declval<U>()), C, R>>
     operator-(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::subtraction_operator_xm(lhs, rhs);
@@ -863,7 +889,9 @@ namespace tue
      * \return     The differences between each column of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() - std::declval<U>()), C, R>>
     operator-(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::subtraction_operator_mx(lhs, rhs);
@@ -905,7 +933,9 @@ namespace tue
      * \return     The products of `lhs` and each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() * std::declval<U>()), C, R>>
     operator*(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_xm(lhs, rhs);
@@ -946,7 +976,9 @@ namespace tue
      * \return     The products of each column of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() * std::declval<U>()), C, R>>
     operator*(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_mx(lhs, rhs);
@@ -1009,7 +1041,9 @@ namespace tue
      * \return     The quotients of `lhs` over each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() / std::declval<U>()), C, R>>
     operator/(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::division_operator_xm(lhs, rhs);
@@ -1029,7 +1063,9 @@ namespace tue
      * \return     The quotients of each column of `lhs` over `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() / std::declval<U>()), C, R>>
     operator/(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::division_operator_mx(lhs, rhs);
@@ -1071,7 +1107,9 @@ namespace tue
      * \return     The modulos of `lhs` over each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() % std::declval<U>()), C, R>>
     operator%(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::modulo_operator_xm(lhs, rhs);
@@ -1091,7 +1129,9 @@ namespace tue
      * \return     The modulos of each column of `lhs` over `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() % std::declval<U>()), C, R>>
     operator%(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::modulo_operator_mx(lhs, rhs);
@@ -1133,7 +1173,9 @@ namespace tue
      * \return     The bitwise AND of `lhs` and each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() & std::declval<U>()), C, R>>
     operator&(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_and_operator_xm(lhs, rhs);
@@ -1153,7 +1195,9 @@ namespace tue
      * \return     The bitwise AND of each column of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() & std::declval<U>()), C, R>>
     operator&(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_and_operator_mx(lhs, rhs);
@@ -1195,7 +1239,9 @@ namespace tue
      * \return     The bitwise OR of `lhs` and each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() | std::declval<U>()), C, R>>
     operator|(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_or_operator_xm(lhs, rhs);
@@ -1215,7 +1261,9 @@ namespace tue
      * \return     The bitwise OR of each column of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() | std::declval<U>()), C, R>>
     operator|(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_or_operator_mx(lhs, rhs);
@@ -1257,7 +1305,9 @@ namespace tue
      * \return     The bitwise XOR of `lhs` and each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>>
     operator^(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_xor_operator_xm(lhs, rhs);
@@ -1277,7 +1327,9 @@ namespace tue
      * \return     The bitwise XOR of each column of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>>
     operator^(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_xor_operator_mx(lhs, rhs);
@@ -1320,8 +1372,9 @@ namespace tue
      * \return     The bitwise shift left of `lhs` by each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(
-        std::declval<T>() shift_left std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() shift_left std::declval<U>()), C, R>>
     operator<<(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator_xm(lhs, rhs);
@@ -1342,8 +1395,9 @@ namespace tue
      * \return     The bitwise shift left of each column of `lhs` by `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(
-        std::declval<T>() shift_left std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() shift_left std::declval<U>()), C, R>>
     operator<<(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator_mx(lhs, rhs);
@@ -1387,8 +1441,9 @@ namespace tue
      * \return     The bitwise shift right of `lhs` by each column of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(
-        std::declval<T>() shift_right std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<T>::value,
+        mat<decltype(std::declval<T>() shift_right std::declval<U>()), C, R>>
     operator>>(const T& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator_xm(lhs, rhs);
@@ -1409,8 +1464,9 @@ namespace tue
      * \return     The bitwise shift right of each column of `lhs` by `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(
-        std::declval<T>() shift_right std::declval<U>()), C, R>
+    inline constexpr std::enable_if_t<
+        is_vec_component<U>::value,
+        mat<decltype(std::declval<T>() shift_right std::declval<U>()), C, R>>
     operator>>(const mat<T, C, R>& lhs, const U& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator_mx(lhs, rhs);
