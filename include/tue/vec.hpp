@@ -187,8 +187,8 @@ namespace tue
         vec() noexcept = default;
 
         /*!
-         * \brief     Constructs each component with the same value.
-         * \param x   The value to construct each component with.
+         * \brief    Constructs each component with the same value.
+         * \param x  The value to construct each component with.
          */
         inline explicit constexpr vec(const T& x) noexcept;
 

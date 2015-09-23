@@ -229,15 +229,15 @@ namespace tue
         mat() noexcept = default;
 
         /*!
-         * \brief     Constructs each component along the main diagonal with the
-         *            same value, and all other components with `0`.
-         * \param x   The value to construct the main diagonal with.
+         * \brief    Constructs each component along the main diagonal with the
+         *           same value, and all other components with `0`.
+         * \param x  The value to construct the main diagonal with.
          */
         inline explicit constexpr mat(const T& x) noexcept;
 
         /*!
-         * \brief     Constructs each column with the same values.
-         * \param x   The values to construct each column with.
+         * \brief    Constructs each column with the same values.
+         * \param v  The values to construct each column with.
          */
         inline explicit constexpr mat(const vec<T, R>& v) noexcept;
 
