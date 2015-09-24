@@ -429,33 +429,33 @@ namespace tue
         inline void set_row(const J& j, const vec<T, C>& v) noexcept;
 
         /*!
-         * \brief   Pre-increments each column of this `mat`.
+         * \brief   Pre-increments each component of this `mat`.
          * \return  A reference to this `mat`.
          */
         inline mat<T, C, R>& operator++() noexcept;
 
         /*!
-         * \brief   Post-increments each column of this `mat`.
+         * \brief   Post-increments each component of this `mat`.
          * \return  A copy of this `mat` before being incremented.
          */
         inline mat<T, C, R> operator++(int) noexcept;
 
         /*!
-         * \brief   Pre-decrements each column of this `mat`.
+         * \brief   Pre-decrements each component of this `mat`.
          * \return  A reference to this `mat`.
          */
         inline mat<T, C, R>& operator--() noexcept;
 
         /*!
-         * \brief   Post-decrements each column of this `mat`.
+         * \brief   Post-decrements each component of this `mat`.
          * \return  A copy of this `mat` before being decremented.
          */
         inline mat<T, C, R> operator--(int) noexcept;
 
         /*!
-         * \brief     Adds `x` to each column of this `mat`.
+         * \brief     Adds `x` to each component of this `mat`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to add to each column of this `mat`.
+         * \param x   The value to add to each component of this `mat`.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -463,10 +463,10 @@ namespace tue
         operator+=(const U& x) noexcept;
 
         /*!
-         * \brief     Adds each column of `m` to the corresponding column of
-         *            this `mat`.
+         * \brief     Adds each component of `m` to the corresponding component
+         *            of this `mat`.
          * \tparam U  The component type of `m`.
-         * \param m   The columns to add to each column of this `mat`.
+         * \param m   The valuesto add to each component of this `mat`.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -474,9 +474,9 @@ namespace tue
         operator+=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Subtracts `x` from each column of this `mat`.
+         * \brief     Subtracts `x` from each component of this `mat`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to subtract from each column of this `mat`.
+         * \param x   The value to subtract from each component of this `mat`.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -484,10 +484,10 @@ namespace tue
         operator-=(const U& x) noexcept;
 
         /*!
-         * \brief     Subtracts each column of `m` from the corresponding
-         *            column of this `mat`.
+         * \brief     Subtracts each component of `m` from the corresponding
+         *            component of this `mat`.
          * \tparam U  The component type of `m`.
-         * \param m   The columns to subtract from each column of this `mat`.
+         * \param m   The valuesto subtract from each component of this `mat`.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -495,9 +495,9 @@ namespace tue
         operator-=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Multiplies each column of this `mat` by `x`.
+         * \brief     Multiplies each component of this `mat` by `x`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to multiply each column of this `mat` by.
+         * \param x   The value to multiply each component of this `mat` by.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -515,9 +515,9 @@ namespace tue
         operator*=(const mat<U, C, C>& m) noexcept;
 
         /*!
-         * \brief     Divides each column of this `mat` by `x`.
+         * \brief     Divides each component of this `mat` by `x`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to divide each column of this `mat` by.
+         * \param x   The value to divide each component of this `mat` by.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -525,10 +525,10 @@ namespace tue
         operator/=(const U& x) noexcept;
 
         /*!
-         * \brief     Divides each column of this `mat` by the corresponding
-         *            column from `m`.
+         * \brief     Divides each component of this `mat` by the corresponding
+         *            component from `m`.
          * \tparam U  The component type of `m`.
-         * \param m   The columns to divide each column of this `mat` by.
+         * \param m   The valuesto divide each component of this `mat` by.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -536,9 +536,9 @@ namespace tue
         operator/=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Modulos each column of this `mat` by `x`.
+         * \brief     Modulos each component of this `mat` by `x`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to modulo each column of this `mat` by.
+         * \param x   The value to modulo each component of this `mat` by.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -546,10 +546,10 @@ namespace tue
         operator%=(const U& x) noexcept;
 
         /*!
-         * \brief     Modulos each column of this `mat` by the corresponding
-         *            column from `m`.
+         * \brief     Modulos each component of this `mat` by the corresponding
+         *            component from `m`.
          * \tparam U  The component type of `m`.
-         * \param m   The columns to modulo each column of this `mat` by.
+         * \param m   The valuesto modulo each component of this `mat` by.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -557,9 +557,10 @@ namespace tue
         operator%=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Bitwise ANDs each column of this `mat` with `x`.
+         * \brief     Bitwise ANDs each component of this `mat` with `x`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to bitwise AND each column of this `mat` with.
+         * \param x   The value to bitwise AND each component of this `mat`
+         *            with.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -567,10 +568,11 @@ namespace tue
         operator&=(const U& x) noexcept;
 
         /*!
-         * \brief     Bitwise ANDs each column of this `mat` with the
-         *            corresponding column from `m`.
+         * \brief     Bitwise ANDs each component of this `mat` with the
+         *            corresponding component from `m`.
          * \tparam U  The component type of `m`.
-         * \param m   The columns to bitwise AND each column of this `mat` with.
+         * \param m   The valuesto bitwise AND each component of this `mat`
+         *            with.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -578,9 +580,9 @@ namespace tue
         operator&=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Bitwise ORs each column of this `mat` with `x`.
+         * \brief     Bitwise ORs each component of this `mat` with `x`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to bitwise OR each column of this `mat` with.
+         * \param x   The value to bitwise OR each component of this `mat` with.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -588,10 +590,10 @@ namespace tue
         operator|=(const U& x) noexcept;
 
         /*!
-         * \brief     Bitwise ORs each column of this `mat` with the
-         *            corresponding column from `m`.
+         * \brief     Bitwise ORs each component of this `mat` with the
+         *            corresponding component from `m`.
          * \tparam U  The component type of `m`.
-         * \param m   The columns to bitwise OR each column of this `mat` with.
+         * \param m   The valuesto bitwise OR each component of this `mat` with.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -599,9 +601,10 @@ namespace tue
         operator|=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Bitwise XORs each column of this `mat` with `x`.
+         * \brief     Bitwise XORs each component of this `mat` with `x`.
          * \tparam U  The type of parameter `x`.
-         * \param x   The value to bitwise XOR each column of this `mat` with.
+         * \param x   The value to bitwise XOR each component of this `mat`
+         *            with.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -609,10 +612,11 @@ namespace tue
         operator^=(const U& x) noexcept;
 
         /*!
-         * \brief     Bitwise XORs each column of this `mat` with the
-         *            corresponding column from `m`.
+         * \brief     Bitwise XORs each component of this `mat` with the
+         *            corresponding component from `m`.
          * \tparam U  The component type of `m`.
-         * \param m   The columns to bitwise XOR each column of this `mat` with.
+         * \param m   The valuesto bitwise XOR each component of this `mat`
+         *            with.
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -620,12 +624,12 @@ namespace tue
         operator^=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Bitwise shifts left each column of this `mat` by `x`.
+         * \brief     Bitwise shifts left each component of this `mat` by `x`.
          *
          * \tparam U  The type of parameter `x`.
          *
-         * \param x   The value to bitwise shift left each column of this `mat`
-         *            by.
+         * \param x   The value to bitwise shift left each component of this
+         *            `mat` by.
          *
          * \return    A reference to this `mat`.
          */
@@ -634,12 +638,12 @@ namespace tue
         operator<<=(const U& x) noexcept;
 
         /*!
-         * \brief     Bitwise shifts left each column of this `mat` by the
-         *            corresponding column from `m`.
+         * \brief     Bitwise shifts left each component of this `mat` by the
+         *            corresponding component from `m`.
          *
          * \tparam U  The component type of `m`.
          *
-         * \param m   The columns to bitwise shift left each column of this
+         * \param m   The valuesto bitwise shift left each component of this
          *            `mat` by.
          *
          * \return    A reference to this `mat`.
@@ -649,12 +653,12 @@ namespace tue
         operator<<=(const mat<U, C, R>& m) noexcept;
 
         /*!
-         * \brief     Bitwise shifts right each column of this `mat` by `x`.
+         * \brief     Bitwise shifts right each component of this `mat` by `x`.
          *
          * \tparam U  The type of parameter `x`.
          *
-         * \param x   The value to bitwise right left each column of this `mat`
-         *            by.
+         * \param x   The value to bitwise right left each component of this
+         *            `mat` by.
          *
          * \return    A reference to this `mat`.
          */
@@ -663,12 +667,12 @@ namespace tue
         operator>>=(const U& x) noexcept;
 
         /*!
-         * \brief     Bitwise shifts right each column of this `mat` by the
-         *            corresponding column from `m`.
+         * \brief     Bitwise shifts right each component of this `mat` by the
+         *            corresponding component from `m`.
          *
          * \tparam U  The component type of `m`.
          *
-         * \param m   The columns to bitwise shift right each column of this
+         * \param m   The valuesto bitwise shift right each component of this
          *            `mat` by.
          *
          * \return    A reference to this `mat`.
@@ -738,7 +742,7 @@ namespace tue
      */
 
     /*!
-     * \brief     Computes the unary plus of each column of `m`.
+     * \brief     Computes the unary plus of each component of `m`.
      *
      * \tparam T  The component type of `m`.
      * \tparam C  The column count of `m`.
@@ -746,7 +750,7 @@ namespace tue
      *
      * \param m   A `mat`.
      *
-     * \return    The unary plus of each column of `m`.
+     * \return    The unary plus of each component of `m`.
      */
     template<typename T, int C, int R>
     inline constexpr mat<decltype(+std::declval<T>()), C, R>
@@ -756,7 +760,7 @@ namespace tue
     }
 
     /*!
-     * \brief     Computes the unary minus of each column of `m`.
+     * \brief     Computes the unary minus of each component of `m`.
      *
      * \tparam T  The component type of `m`.
      * \tparam C  The column count of `m`.
@@ -764,7 +768,7 @@ namespace tue
      *
      * \param m   A `mat`.
      *
-     * \return    The unary minus of each column of `m`.
+     * \return    The unary minus of each component of `m`.
      */
     template<typename T, int C, int R>
     inline constexpr mat<decltype(-std::declval<T>()), C, R>
@@ -774,7 +778,7 @@ namespace tue
     }
 
     /*!
-     * \brief     Computes the bitwise NOT of each column of `m`.
+     * \brief     Computes the bitwise NOT of each component of `m`.
      *
      * \tparam T  The component type of `m`.
      * \tparam C  The column count of `m`.
@@ -782,7 +786,7 @@ namespace tue
      *
      * \param m   A `mat`.
      *
-     * \return    The bitwise NOT of each column of `m`.
+     * \return    The bitwise NOT of each component of `m`.
      */
     template<typename T, int C, int R>
     inline constexpr mat<decltype(~std::declval<T>()), C, R>
@@ -792,7 +796,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the sums of `lhs` and each column of `rhs`.
+     * \brief      Computes the sums of `lhs` and each component of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -802,7 +806,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The sums of `lhs` and each column of `rhs`.
+     * \return     The sums of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -814,7 +818,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the sums of each column of `lhs` and `rhs`.
+     * \brief      Computes the sums of each component of `lhs` and `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -824,7 +828,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The sums of each column of `lhs` and `rhs`.
+     * \return     The sums of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -836,8 +840,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the sums of each column of `lhs` and each
-     *             corresponding column of `rhs`.
+     * \brief      Computes the sums of each component of `lhs` and each
+     *             corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -847,8 +851,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The sums of each column of `lhs` and each corresponding
-     *             column of `rhs`.
+     * \return     The sums of each component of `lhs` and each corresponding
+     *             component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
@@ -858,7 +862,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the differences between `lhs` and each column of
+     * \brief      Computes the differences between `lhs` and each component of
      *             `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
@@ -869,7 +873,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The differences between `lhs` and each column of `rhs`.
+     * \return     The differences between `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -881,7 +885,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the differences between each column of `lhs` and
+     * \brief      Computes the differences between each component of `lhs` and
      *             `rhs`.
      *
      * \tparam T   The component type of `lhs`.
@@ -892,7 +896,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The differences between each column of `lhs` and `rhs`.
+     * \return     The differences between each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -904,8 +908,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the differences between each column of `lhs` and
-     *             each corresponding column of `rhs`.
+     * \brief      Computes the differences between each component of `lhs` and
+     *             each corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -915,8 +919,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The differences between each column of `lhs` and each
-     *             corresponding column of `rhs`.
+     * \return     The differences between each component of `lhs` and each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
@@ -926,7 +930,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the products of `lhs` and each column of `rhs`.
+     * \brief      Computes the products of `lhs` and each component of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -936,7 +940,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The products of `lhs` and each column of `rhs`.
+     * \return     The products of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -954,7 +958,7 @@ namespace tue
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
      * \tparam C   The column count of `rhs`.
-     * \tparam R   The column count of `lhs` and row count of `rhs`.
+     * \tparam R   The component count of `lhs` and row count of `rhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -969,7 +973,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the products of each column of `lhs` and `rhs`.
+     * \brief      Computes the products of each component of `lhs` and `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -979,7 +983,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The products of each column of `lhs` and `rhs`.
+     * \return     The products of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -992,11 +996,11 @@ namespace tue
 
     /*!
      * \brief      Computes the matrix product of `lhs` and `rhs`.
-     * \details    `rhs` is treated like a matrix with a single column.
+     * \details    `rhs` is treated like a matrix with a single component.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
-     * \tparam C   The column count of `lhs` and row count of `rhs`.
+     * \tparam C   The column count of `lhs` and component count of `rhs`.
      * \tparam R   The row count of `lhs`.
      *
      * \param lhs  The left-hand side operand.
@@ -1034,7 +1038,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the quotients of `lhs` over each column of `rhs`.
+     * \brief      Computes the quotients of `lhs` over each component of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1044,7 +1048,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The quotients of `lhs` over each column of `rhs`.
+     * \return     The quotients of `lhs` over each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1056,7 +1060,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the quotients of each column of `lhs` over `rhs`.
+     * \brief      Computes the quotients of each component of `lhs` over `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1066,7 +1070,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The quotients of each column of `lhs` over `rhs`.
+     * \return     The quotients of each component of `lhs` over `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1078,8 +1082,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the quotients of each column of `lhs` over each
-     *             corresponding column of `rhs`.
+     * \brief      Computes the quotients of each component of `lhs` over each
+     *             corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1089,8 +1093,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The quotients of each column of `lhs` over each corresponding
-     *             column of `rhs`.
+     * \return     The quotients of each component of `lhs` over each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
@@ -1100,7 +1104,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the modulos of `lhs` over each column of `rhs`.
+     * \brief      Computes the modulos of `lhs` over each component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1110,7 +1114,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The modulos of `lhs` over each column of `rhs`.
+     * \return     The modulos of `lhs` over each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1122,7 +1126,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the modulos of each column of `lhs` over `rhs`.
+     * \brief      Computes the modulos of each component of `lhs` over `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1132,7 +1136,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The modulos of each column of `lhs` over `rhs`.
+     * \return     The modulos of each component of `lhs` over `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1144,8 +1148,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the modulos of each column of `lhs` over each
-     *             corresponding column of `rhs`.
+     * \brief      Computes the modulos of each component of `lhs` over each
+     *             corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1155,8 +1159,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The modulos of each column of `lhs` over each corresponding
-     *             column of `rhs`.
+     * \return     The modulos of each component of `lhs` over each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
@@ -1166,7 +1170,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise AND of `lhs` and each column of `rhs`.
+     * \brief      Computes the bitwise AND of `lhs` and each component of
+     *             `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1176,7 +1181,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise AND of `lhs` and each column of `rhs`.
+     * \return     The bitwise AND of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1188,7 +1193,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise AND of each column of `lhs` and `rhs`.
+     * \brief      Computes the bitwise AND of each component of `lhs` and
+     *             `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1198,7 +1204,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise AND of each column of `lhs` and `rhs`.
+     * \return     The bitwise AND of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1210,8 +1216,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise AND of each column of `lhs` and each
-     *             corresponding column of `rhs`.
+     * \brief      Computes the bitwise AND of each component of `lhs` and each
+     *             corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1221,8 +1227,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise AND of each column of `lhs` and each
-     *             corresponding column of `rhs`.
+     * \return     The bitwise AND of each component of `lhs` and each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
@@ -1232,7 +1238,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise OR of `lhs` and each column of `rhs`.
+     * \brief      Computes the bitwise OR of `lhs` and each component of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1242,7 +1248,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise OR of `lhs` and each column of `rhs`.
+     * \return     The bitwise OR of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1254,7 +1260,7 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise OR of each column of `lhs` and `rhs`.
+     * \brief      Computes the bitwise OR of each component of `lhs` and `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1264,7 +1270,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise OR of each column of `lhs` and `rhs`.
+     * \return     The bitwise OR of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1276,8 +1282,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise OR of each column of `lhs` and each
-     *             corresponding column of `rhs`.
+     * \brief      Computes the bitwise OR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1287,8 +1293,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise OR of each column of `lhs` and each corresponding
-     *             column of `rhs`.
+     * \return     The bitwise OR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
@@ -1298,7 +1304,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise XOR of `lhs` and each column of `rhs`.
+     * \brief      Computes the bitwise XOR of `lhs` and each component of
+     *             `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1308,7 +1315,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise XOR of `lhs` and each column of `rhs`.
+     * \return     The bitwise XOR of `lhs` and each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1320,7 +1327,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise XOR of each column of `lhs` and `rhs`.
+     * \brief      Computes the bitwise XOR of each component of `lhs` and
+     *             `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1330,7 +1338,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise XOR of each column of `lhs` and `rhs`.
+     * \return     The bitwise XOR of each component of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1342,8 +1350,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise XOR of each column of `lhs` and each
-     *             corresponding column of `rhs`.
+     * \brief      Computes the bitwise XOR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1353,8 +1361,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise XOR of each column of `lhs` and each
-     *             corresponding column of `rhs`.
+     * \return     The bitwise XOR of each component of `lhs` and each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
@@ -1364,8 +1372,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shifts left of `lhs` by each column of
-     *             `rhs`.
+     * \brief      Computes the bitwise shifts left of `lhs` by each component
+     *             of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1375,7 +1383,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift left of `lhs` by each column of `rhs`.
+     * \return     The bitwise shift left of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1387,8 +1395,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shifts left of each column of `lhs` by
-     *             `rhs`.
+     * \brief      Computes the bitwise shifts left of each component of `lhs`
+     *             by `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1398,7 +1406,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift left of each column of `lhs` by `rhs`.
+     * \return     The bitwise shift left of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1410,8 +1418,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shifts left of each column of `lhs` by
-     *             each corresponding column of `rhs`.
+     * \brief      Computes the bitwise shifts left of each component of `lhs`
+     *             by each corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1421,8 +1429,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift left of each column of `lhs` by each
-     *             corresponding column of `rhs`.
+     * \return     The bitwise shift left of each component of `lhs` by each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(
@@ -1433,8 +1441,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shifts right of `lhs` by each column of
-     *             `rhs`.
+     * \brief      Computes the bitwise shifts right of `lhs` by each component
+     *             of `rhs`.
      *
      * \tparam T   The type of parameter `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1444,7 +1452,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift right of `lhs` by each column of `rhs`.
+     * \return     The bitwise shift right of `lhs` by each component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1456,8 +1464,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shifts right of each column of `lhs` by
-     *             `rhs`.
+     * \brief      Computes the bitwise shifts right of each component of `lhs`
+     *             by `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The type of parameter `rhs`.
@@ -1467,7 +1475,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift right of each column of `lhs` by `rhs`.
+     * \return     The bitwise shift right of each component of `lhs` by `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr std::enable_if_t<
@@ -1479,8 +1487,8 @@ namespace tue
     }
 
     /*!
-     * \brief      Computes the bitwise shifts right of each column of `lhs` by
-     *             each corresponding column of `rhs`.
+     * \brief      Computes the bitwise shifts right of each component of `lhs`
+     *             by each corresponding component of `rhs`.
      *
      * \tparam T   The component type of `lhs`.
      * \tparam U   The component type of `rhs`.
@@ -1490,8 +1498,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shift right of each column of `lhs` by each
-     *             corresponding column of `rhs`.
+     * \return     The bitwise shift right of each component of `lhs` by each
+     *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr mat<decltype(
@@ -1512,7 +1520,7 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     `true` if all the corresponding pairs of columns compare
+     * \return     `true` if all the corresponding pairs of components compare
      *             equal and `false` otherwise.
      */
     template<typename T, typename U, int C, int R>
@@ -1534,7 +1542,7 @@ namespace tue
      * \param rhs  The right-hand side operand.
      *
      * \return     `true` if at least one of the corresponding pairs of
-     *             columns compares not equal and `false` otherwise.
+     *             components compares not equal and `false` otherwise.
      */
     template<typename T, typename U, int C, int R>
     inline constexpr bool
@@ -1552,7 +1560,7 @@ namespace tue
          */
 
         /*!
-         * \brief     Computes `tue::math::sin()` for each column of `m`.
+         * \brief     Computes `tue::math::sin()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1560,7 +1568,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::sin()` for each column of `m`.
+         * \return    `tue::math::sin()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> sin(const mat<T, C, R>& m) noexcept
@@ -1569,7 +1577,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes `tue::math::cos()` for each column of `m`.
+         * \brief     Computes `tue::math::cos()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1577,7 +1585,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::cos()` for each column of `m`.
+         * \return    `tue::math::cos()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> cos(const mat<T, C, R>& m) noexcept
@@ -1586,7 +1594,7 @@ namespace tue
         }
 
         /*!
-         * \brief          Computes `tue::math::sincos()` for each column of
+         * \brief          Computes `tue::math::sincos()` for each component of
          *                 `m`.
          *
          * \tparam T       The component type of `m`.
@@ -1610,7 +1618,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes `tue::math::exp()` for each column of `m`.
+         * \brief     Computes `tue::math::exp()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1618,7 +1626,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::exp()` for each column of `m`.
+         * \return    `tue::math::exp()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> exp(const mat<T, C, R>& m) noexcept
@@ -1627,7 +1635,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes `tue::math::log()` for each column of `m`.
+         * \brief     Computes `tue::math::log()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1635,7 +1643,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::log()` for each column of `m`.
+         * \return    `tue::math::log()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> log(const mat<T, C, R>& m) noexcept
@@ -1644,7 +1652,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes `tue::math::abs()` for each column of `m`.
+         * \brief     Computes `tue::math::abs()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1652,7 +1660,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::abs()` for each column of `m`.
+         * \return    `tue::math::abs()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> abs(const mat<T, C, R>& m) noexcept
@@ -1661,8 +1669,8 @@ namespace tue
         }
 
         /*!
-         * \brief            Computes `tue::math::pow()` for each column of
-         *                   `bases` and each corresponding column of
+         * \brief            Computes `tue::math::pow()` for each component of
+         *                   `bases` and each corresponding component of
          *                   `exponents`.
          *
          * \tparam T         The component type of both `bases` `exponents`.
@@ -1672,8 +1680,8 @@ namespace tue
          * \param bases      The bases.
          * \param exponents  The exponents.
          *
-         * \return           `tue::math::pow()` for each column of `bases` and
-         *                   each corresponding column of `exponents`.
+         * \return           `tue::math::pow()` for each component of `bases`
+         *                   and each corresponding component of `exponents`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> pow(
@@ -1683,7 +1691,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes `tue::math::recip()` for each column of `m`.
+         * \brief     Computes `tue::math::recip()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1691,7 +1699,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::recip()` for each column of `m`.
+         * \return    `tue::math::recip()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> recip(const mat<T, C, R>& m) noexcept
@@ -1700,7 +1708,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes `tue::math::sqrt()` for each column of `m`.
+         * \brief     Computes `tue::math::sqrt()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1708,7 +1716,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::sqrt()` for each column of `m`.
+         * \return    `tue::math::sqrt()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> sqrt(const mat<T, C, R>& m) noexcept
@@ -1717,7 +1725,7 @@ namespace tue
         }
 
         /*!
-         * \brief     Computes `tue::math::rsqrt()` for each column of `m`.
+         * \brief     Computes `tue::math::rsqrt()` for each component of `m`.
          *
          * \tparam T  The component type of `m`.
          * \tparam C  The column count of `m`.
@@ -1725,7 +1733,7 @@ namespace tue
          *
          * \param m   A `mat`.
          *
-         * \return    `tue::math::rsqrt()` for each column of `m`.
+         * \return    `tue::math::rsqrt()` for each component of `m`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> rsqrt(const mat<T, C, R>& m) noexcept
@@ -1735,7 +1743,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::min()` for each corresponding pair of
-         *            columns from `m1` and `m2`.
+         *            components from `m1` and `m2`.
          *
          * \tparam T  The component type of `m1` and `m2`.
          * \tparam C  The column count of `m1` and `m2`.
@@ -1744,8 +1752,8 @@ namespace tue
          * \param m1  A `mat`.
          * \param m2  Another `mat`.
          *
-         * \return    `tue::math::min()` for each corresponding pair of columns
-         *            from `m1` and `m2`.
+         * \return    `tue::math::min()` for each corresponding pair of
+         *            components from `m1` and `m2`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> min(
@@ -1756,7 +1764,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::max()` for each corresponding pair of
-         *            columns from `m1` and `m2`.
+         *            components from `m1` and `m2`.
          *
          * \tparam T  The component type of `m1` and `m2`.
          * \tparam C  The column count of `m1` and `m2`.
@@ -1765,8 +1773,8 @@ namespace tue
          * \param m1  A `mat`.
          * \param m2  Another `mat`.
          *
-         * \return    `tue::math::max()` for each corresponding pair of columns
-         *            from `m1` and `m2`.
+         * \return    `tue::math::max()` for each corresponding pair of
+         *            components from `m1` and `m2`.
          */
         template<typename T, int C, int R>
         inline mat<T, C, R> max(
@@ -1777,7 +1785,7 @@ namespace tue
 
         /*!
          * \brief             Computes `tue::math::mask()` for each
-         *                    corresponding pair of columns from `conditions`
+         *                    corresponding pair of components from `conditions`
          *                    and `values`.
          *
          * \tparam T          The component type of `conditions`.
@@ -1790,7 +1798,7 @@ namespace tue
          * \param values      Another `mat`.
          *
          * \return            `tue::math::mask()` for each corresponding pair of
-         *                    columns from `conditions` and `values`.
+         *                    components from `conditions` and `values`.
          */
         template<typename T, typename U, int C, int R>
         inline mat<U, C, R> mask(
@@ -1802,8 +1810,8 @@ namespace tue
 
         /*!
          * \brief             Computes `tue::math::select()` for each
-         *                    corresponding triple of columns from `conditions`,
-         *                    `values`, and `otherwise`.
+         *                    corresponding triple of components from
+         *                    `conditions`, `values`, and `otherwise`.
          *
          * \tparam T          The component type of `conditions`.
          * \tparam U          The component type of `values` and `otherwise`.
@@ -1815,8 +1823,8 @@ namespace tue
          * \param otherwise   Another `mat`.
          *
          * \return            `tue::math::select()` for each corresponding
-         *                    triple of columns from `conditions`, `values`, and
-         *                    `otherwise`.
+         *                    triple of components from `conditions`, `values`,
+         *                    and `otherwise`.
          */
         template<typename T, typename U, int C, int R>
         inline mat<U, C, R> select(
@@ -1829,7 +1837,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less()` for each corresponding pair
-         *             of columns from `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1839,7 +1847,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less()` for each corresponding pair of
-         *             columns from `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1852,7 +1860,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less_equal()` for each corresponding
-         *             pair of columns from `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1862,7 +1870,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less_equal()` for each corresponding pair of
-         *             columns from `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1875,7 +1883,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater()` for each corresponding
-         *             pair of columns from `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1885,7 +1893,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater()` for each corresponding pair of
-         *             columns from `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1898,7 +1906,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater_equal()` for each
-         *             corresponding pair of columns from `lhs` and `rhs`.
+         *             corresponding pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1908,7 +1916,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater_equal()` for each corresponding pair
-         *             of columns from `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1921,7 +1929,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::equal()` for each corresponding pair
-         *             of columns from `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1931,7 +1939,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::equal()` for each corresponding pair of
-         *             columns from `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1944,7 +1952,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::not_equal()` for each corresponding
-         *             pair of columns from `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam C   The column count of both `lhs` and `rhs`.
@@ -1954,7 +1962,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::not_equal()` for each corresponding pair of
-         *             columns from `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
         inline mat<decltype(
@@ -1966,8 +1974,8 @@ namespace tue
         }
 
         /*!
-         * \brief      Computes the products of each column of `lhs` and each
-         *             corresponding column of `rhs`.
+         * \brief      Computes the products of each component of `lhs` and each
+         *             corresponding component of `rhs`.
          *
          * \tparam T   The component type of `lhs`.
          * \tparam U   The component type of `rhs`.
@@ -1977,8 +1985,8 @@ namespace tue
          * \param lhs  The left-hand side operand.
          * \param rhs  The right-hand side operand.
          *
-         * \return     The products of each column of `lhs` and each
-         *             corresponding column of `rhs`.
+         * \return     The products of each component of `lhs` and each
+         *             corresponding component of `rhs`.
          */
         template<typename T, typename U, int C, int R>
         inline constexpr mat<decltype(
