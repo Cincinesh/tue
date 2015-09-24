@@ -96,7 +96,7 @@ namespace tue
             const auto axis_x = tue::math::mask(nzmask, x * rangle);
             const auto axis_y = tue::math::mask(nzmask, y * rangle);
             const auto axis_z = tue::math::select(nzmask, z * rangle, T(1));
-            
+
             const auto angle =
                 tue::math::mask(nzmask, tue::math::recip(rangle));
 

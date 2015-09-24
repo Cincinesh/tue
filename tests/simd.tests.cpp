@@ -441,7 +441,7 @@ namespace
                     values.data()[i]));
             }
         }
-        
+
         static void TEST_CASE_select()
         {
             simd<sized_bool_t<sizeof(T)>, N> c;

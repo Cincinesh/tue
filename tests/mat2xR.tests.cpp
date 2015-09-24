@@ -299,28 +299,22 @@ namespace
         CONST_OR_CONSTEXPR dmat2x4 m2(dm22);
         test_assert(m2[0] == dvec4(dm22[0], 0.0, 0.0));
         test_assert(m2[1] == dvec4(dm22[1], 0.0, 0.0));
-    }
 
-    TEST_CASE(mat3xR_conversion_constructor)
-    {
-        CONST_OR_CONSTEXPR dmat2x2 m1(dm34);
-        test_assert(m1[0] == dvec2(dm34[0]));
-        test_assert(m1[1] == dvec2(dm34[1]));
+        CONST_OR_CONSTEXPR dmat2x2 m3(dm34);
+        test_assert(m3[0] == dvec2(dm34[0]));
+        test_assert(m3[1] == dvec2(dm34[1]));
 
-        CONST_OR_CONSTEXPR dmat2x4 m2(dm32);
-        test_assert(m2[0] == dvec4(dm32[0], 0.0, 0.0));
-        test_assert(m2[1] == dvec4(dm32[1], 0.0, 0.0));
-    }
+        CONST_OR_CONSTEXPR dmat2x4 m4(dm32);
+        test_assert(m4[0] == dvec4(dm32[0], 0.0, 0.0));
+        test_assert(m4[1] == dvec4(dm32[1], 0.0, 0.0));
 
-    TEST_CASE(mat4xR_conversion_constructor)
-    {
-        CONST_OR_CONSTEXPR dmat2x2 m1(dm44);
-        test_assert(m1[0] == dvec2(dm44[0]));
-        test_assert(m1[1] == dvec2(dm44[1]));
+        CONST_OR_CONSTEXPR dmat2x2 m5(dm44);
+        test_assert(m5[0] == dvec2(dm44[0]));
+        test_assert(m5[1] == dvec2(dm44[1]));
 
-        CONST_OR_CONSTEXPR dmat2x4 m2(dm42);
-        test_assert(m2[0] == dvec4(dm42[0], 0.0, 0.0));
-        test_assert(m2[1] == dvec4(dm42[1], 0.0, 0.0));
+        CONST_OR_CONSTEXPR dmat2x4 m6(dm42);
+        test_assert(m6[0] == dvec4(dm42[0], 0.0, 0.0));
+        test_assert(m6[1] == dvec4(dm42[1], 0.0, 0.0));
     }
 
     TEST_CASE(explicit_conversion_constructor)

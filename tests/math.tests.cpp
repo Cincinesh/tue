@@ -105,7 +105,7 @@ namespace
         test_assert(t == static_cast<bool16>(1));
         test_assert(f == static_cast<bool16>(0));
     }
-    
+
     TEST_CASE(select)
     {
         test_assert(math::select(true64, 1.2, 3.4) == 1.2);
