@@ -47,15 +47,15 @@ as [GLM](https://github.com/g-truc/glm):
 
 - The SIMD system supports a huge number of types. You can create 2, 4, 8, 16,
   32, and 64-component vectors of all the major arithmetic types (`float`,
-  `double`, `int8`, `int16`, `int32`, `int64`, `uint8`, `uint16`, `uint32`,
-  and `uint64`) along with sized boolean types (`bool8`, `bool16`, `bool32` and
-  `bool64`). If SIMD-intrinsic acceleration isn't available for a particular
-  type, there's a standard C++-compliant fallback. If a vector has too many
-  components for acceleration, but a smaller vector with the same component type
-  can be accelerated, then the larger vector is simply the composite of two
-  smaller vectors. For example, if float32x4 is accelerated but float32x8 isn't,
-  then float32x8 will at least be partially-accelerated in that it's made of two
-  float32x4's.
+  `double`, `int8_t`, `int16_t`, `int32_t`, `int64_t`, `uint8_t`, `uint16_t`,
+  `uint32_t`, and `uint64_t`) along with sized boolean types (`bool8`, `bool16`,
+  `bool32` and `bool64`). If SIMD-intrinsic acceleration isn't available for a
+  particular type, there's a standard C++-compliant fallback. If a vector has
+  too many components for acceleration, but a smaller vector with the same
+  component type can be accelerated, then the larger vector is simply the
+  composite of two smaller vectors. For example, if float32x4 is accelerated but
+  float32x8 isn't, then float32x8 will at least be partially-accelerated in that
+  it's made of two float32x4's.
 
 Status
 ------
