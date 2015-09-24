@@ -767,8 +767,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::sin(std::declval<T>())), 2, R>
-        sin_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> sin_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::sin(m[0]),
@@ -777,8 +776,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::cos(std::declval<T>())), 2, R>
-        cos_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> cos_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::cos(m[0]),
@@ -790,16 +788,15 @@ namespace tue
         inline void
         sincos_m(
             const mat<T, 2, R>& m,
-            decltype(tue::detail_::sin_m(m))& sin_out,
-            decltype(tue::detail_::cos_m(m))& cos_out) noexcept
+            mat<T, 2, R>& sin_out,
+            mat<T, 2, R>& cos_out) noexcept
         {
             tue::math::sincos(m[0], sin_out[0], cos_out[0]);
             tue::math::sincos(m[1], sin_out[1], cos_out[1]);
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::exp(std::declval<T>())), 2, R>
-        exp_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> exp_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::exp(m[0]),
@@ -808,8 +805,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::log(std::declval<T>())), 2, R>
-        log_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> log_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::log(m[0]),
@@ -818,8 +814,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::abs(std::declval<T>())), 2, R>
-        abs_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> abs_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::abs(m[0]),
@@ -828,33 +823,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), 2, R>
-        pow_xm(
-            const T& base, const mat<T, 2, R>& exponents) noexcept
-        {
-            return {
-                tue::math::pow(base, exponents[0]),
-                tue::math::pow(base, exponents[1]),
-            };
-        }
-
-        template<typename T, int R>
-        inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), 2, R>
-        pow_mx(
-            const mat<T, 2, R>& bases, const T& exponent) noexcept
-        {
-            return {
-                tue::math::pow(bases[0], exponent),
-                tue::math::pow(bases[1], exponent),
-            };
-        }
-
-        template<typename T, int R>
-        inline mat<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), 2, R>
-        pow_mm(
+        inline mat<T, 2, R> pow_mm(
             const mat<T, 2, R>& bases, const mat<T, 2, R>& exponents) noexcept
         {
             return {
@@ -864,8 +833,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::recip(std::declval<T>())), 2, R>
-        recip_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> recip_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::recip(m[0]),
@@ -874,8 +842,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::sqrt(std::declval<T>())), 2, R>
-        sqrt_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> sqrt_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::sqrt(m[0]),
@@ -884,8 +851,7 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(tue::math::rsqrt(std::declval<T>())), 2, R>
-        rsqrt_m(const mat<T, 2, R>& m) noexcept
+        inline mat<T, 2, R> rsqrt_m(const mat<T, 2, R>& m) noexcept
         {
             return {
                 tue::math::rsqrt(m[0]),
@@ -894,9 +860,8 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(
-            tue::math::min(std::declval<T>(), std::declval<T>())), 2, R>
-        min_mm(const mat<T, 2, R>& m1, const mat<T, 2, R>& m2) noexcept
+        inline mat<T, 2, R> min_mm(
+            const mat<T, 2, R>& m1, const mat<T, 2, R>& m2) noexcept
         {
             return {
                 tue::math::min(m1[0], m2[0]),
@@ -905,9 +870,8 @@ namespace tue
         }
 
         template<typename T, int R>
-        inline mat<decltype(
-            tue::math::max(std::declval<T>(), std::declval<T>())), 2, R>
-        max_mm(const mat<T, 2, R>& m1, const mat<T, 2, R>& m2) noexcept
+        inline mat<T, 2, R> max_mm(
+            const mat<T, 2, R>& m1, const mat<T, 2, R>& m2) noexcept
         {
             return {
                 tue::math::max(m1[0], m2[0]),
@@ -916,9 +880,7 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
-        inline mat<decltype(
-            tue::math::mask(std::declval<T>(), std::declval<U>())), 2, R>
-        mask_mm(
+        inline mat<U, 2, R> mask_mm(
             const mat<T, 2, R>& conditions,
             const mat<U, 2, R>& values) noexcept
         {
@@ -929,13 +891,7 @@ namespace tue
         }
 
         template<typename T, typename U, int R>
-        inline mat<
-            decltype(tue::math::select(
-                std::declval<T>(),
-                std::declval<U>(),
-                std::declval<U>())),
-            2, R>
-        select_mmm(
+        inline mat<U, 2, R> select_mmm(
             const mat<T, 2, R>& conditions,
             const mat<U, 2, R>& values,
             const mat<U, 2, R>& otherwise) noexcept

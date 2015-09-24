@@ -955,8 +955,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::sin(std::declval<T>())), 3>
-        sin_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> sin_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::sin(v[0]),
@@ -966,8 +965,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::cos(std::declval<T>())), 3>
-        cos_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> cos_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::cos(v[0]),
@@ -980,8 +978,8 @@ namespace tue
         inline void
         sincos_v(
             const vec<T, 3>& v,
-            decltype(tue::detail_::sin_v(v))& sin_out,
-            decltype(tue::detail_::cos_v(v))& cos_out) noexcept
+            vec<T, 3>& sin_out,
+            vec<T, 3>& cos_out) noexcept
         {
             tue::math::sincos(v[0], sin_out[0], cos_out[0]);
             tue::math::sincos(v[1], sin_out[1], cos_out[1]);
@@ -989,8 +987,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::exp(std::declval<T>())), 3>
-        exp_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> exp_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::exp(v[0]),
@@ -1000,8 +997,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::log(std::declval<T>())), 3>
-        log_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> log_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::log(v[0]),
@@ -1011,8 +1007,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::abs(std::declval<T>())), 3>
-        abs_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> abs_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::abs(v[0]),
@@ -1022,33 +1017,8 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), 3>
-        pow_xv(const T& base, const vec<T, 3>& exponents) noexcept
-        {
-            return {
-                tue::math::pow(base, exponents[0]),
-                tue::math::pow(base, exponents[1]),
-                tue::math::pow(base, exponents[2]),
-            };
-        }
-
-        template<typename T>
-        inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), 3>
-        pow_vx(const vec<T, 3>& bases, const T& exponent) noexcept
-        {
-            return {
-                tue::math::pow(bases[0], exponent),
-                tue::math::pow(bases[1], exponent),
-                tue::math::pow(bases[2], exponent),
-            };
-        }
-
-        template<typename T>
-        inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), 3>
-        pow_vv(const vec<T, 3>& bases, const vec<T, 3>& exponents) noexcept
+        inline vec<T, 3> pow_vv(
+            const vec<T, 3>& bases, const vec<T, 3>& exponents) noexcept
         {
             return {
                 tue::math::pow(bases[0], exponents[0]),
@@ -1058,8 +1028,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::recip(std::declval<T>())), 3>
-        recip_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> recip_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::recip(v[0]),
@@ -1069,8 +1038,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::sqrt(std::declval<T>())), 3>
-        sqrt_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> sqrt_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::sqrt(v[0]),
@@ -1080,8 +1048,7 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(tue::math::rsqrt(std::declval<T>())), 3>
-        rsqrt_v(const vec<T, 3>& v) noexcept
+        inline vec<T, 3> rsqrt_v(const vec<T, 3>& v) noexcept
         {
             return {
                 tue::math::rsqrt(v[0]),
@@ -1091,9 +1058,8 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::min(std::declval<T>(), std::declval<T>())), 3>
-        min_vv(const vec<T, 3>& v1, const vec<T, 3>& v2) noexcept
+        inline vec<T, 3> min_vv(
+            const vec<T, 3>& v1, const vec<T, 3>& v2) noexcept
         {
             return {
                 tue::math::min(v1[0], v2[0]),
@@ -1103,9 +1069,8 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::max(std::declval<T>(), std::declval<T>())), 3>
-        max_vv(const vec<T, 3>& v1, const vec<T, 3>& v2) noexcept
+        inline vec<T, 3> max_vv(
+            const vec<T, 3>& v1, const vec<T, 3>& v2) noexcept
         {
             return {
                 tue::math::max(v1[0], v2[0]),
@@ -1115,9 +1080,7 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline vec<decltype(
-            tue::math::mask(std::declval<T>(), std::declval<U>())), 3>
-        mask_vv(
+        inline vec<U, 3> mask_vv(
             const vec<T, 3>& conditions,
             const vec<U, 3>& values) noexcept
         {
@@ -1129,13 +1092,7 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline vec<
-            decltype(tue::math::select(
-                std::declval<T>(),
-                std::declval<U>(),
-                std::declval<U>())),
-            3>
-        select_vvv(
+        inline vec<U, 3> select_vvv(
             const vec<T, 3>& conditions,
             const vec<U, 3>& values,
             const vec<U, 3>& otherwise) noexcept

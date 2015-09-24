@@ -1022,26 +1022,12 @@ namespace
 
     TEST_CASE(pow)
     {
-        const auto v1 = math::pow(
-            1.2, dvec4(3.4, 5.6, 7.8, 9.10));
-        test_assert(v1[0] == math::pow(1.2, 3.4));
-        test_assert(v1[1] == math::pow(1.2, 5.6));
-        test_assert(v1[2] == math::pow(1.2, 7.8));
-        test_assert(v1[3] == math::pow(1.2, 9.10));
-
-        const auto v2 = math::pow(
-            dvec4(1.2, 3.4, 5.6, 7.8), 9.10);
-        test_assert(v2[0] == math::pow(1.2, 9.10));
-        test_assert(v2[1] == math::pow(3.4, 9.10));
-        test_assert(v2[2] == math::pow(5.6, 9.10));
-        test_assert(v2[3] == math::pow(7.8, 9.10));
-
-        const auto v3 = math::pow(
+        const auto v = math::pow(
             dvec4(1.2, 3.4, 5.6, 7.8), dvec4(9.10, 11.12, 13.14, 15.16));
-        test_assert(v3[0] == math::pow(1.2, 9.10));
-        test_assert(v3[1] == math::pow(3.4, 11.12));
-        test_assert(v3[2] == math::pow(5.6, 13.14));
-        test_assert(v3[3] == math::pow(7.8, 15.16));
+        test_assert(v[0] == math::pow(1.2, 9.10));
+        test_assert(v[1] == math::pow(3.4, 11.12));
+        test_assert(v[2] == math::pow(5.6, 13.14));
+        test_assert(v[3] == math::pow(7.8, 15.16));
     }
 
     TEST_CASE(recip)
@@ -1179,6 +1165,5 @@ namespace
     {
         const dvec4 v(1.2, 3.4, 5.6, 7.8);
         test_assert(math::normalize(v) == v * math::rlength(v));
-        test_assert(math::normalize(dvec4::zero()) == dvec4::zero());
     }
 }

@@ -13,8 +13,6 @@
 
 #include "math.hpp"
 
-#define greater_than > // Because ">" inside template params confuses Doxygen
-
 namespace tue
 {
     template<typename T, int C, int R>
@@ -59,6 +57,8 @@ namespace tue
 }
 
 #include "detail_/is_vec_component.hpp"
+
+#define greater_than > // Because ">" inside template params confuses Doxygen
 
 namespace tue
 {
@@ -1782,8 +1782,7 @@ namespace tue
          * \return    `tue::math::sin()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::sin(std::declval<T>())), N>
-        sin(const vec<T, N>& v) noexcept
+        inline vec<T, N> sin(const vec<T, N>& v) noexcept
         {
             return tue::detail_::sin_v(v);
         }
@@ -1799,8 +1798,7 @@ namespace tue
          * \return    `tue::math::cos()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::cos(std::declval<T>())), N>
-        cos(const vec<T, N>& v) noexcept
+        inline vec<T, N> cos(const vec<T, N>& v) noexcept
         {
             return tue::detail_::cos_v(v);
         }
@@ -1822,8 +1820,8 @@ namespace tue
         inline void
         sincos(
             const vec<T, N>& v,
-            decltype(tue::math::sin(v))& sin_out,
-            decltype(tue::math::sin(v))& cos_out) noexcept
+            vec<T, N>& sin_out,
+            vec<T, N>& cos_out) noexcept
         {
             tue::detail_::sincos_v(v, sin_out, cos_out);
         }
@@ -1839,8 +1837,7 @@ namespace tue
          * \return    `tue::math::exp()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::exp(std::declval<T>())), N>
-        exp(const vec<T, N>& v) noexcept
+        inline vec<T, N> exp(const vec<T, N>& v) noexcept
         {
             return tue::detail_::exp_v(v);
         }
@@ -1856,8 +1853,7 @@ namespace tue
          * \return    `tue::math::log()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::log(std::declval<T>())), N>
-        log(const vec<T, N>& v) noexcept
+        inline vec<T, N> log(const vec<T, N>& v) noexcept
         {
             return tue::detail_::log_v(v);
         }
@@ -1873,54 +1869,9 @@ namespace tue
          * \return    `tue::math::abs()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::abs(std::declval<T>())), N>
-        abs(const vec<T, N>& v) noexcept
+        inline vec<T, N> abs(const vec<T, N>& v) noexcept
         {
             return tue::detail_::abs_v(v);
-        }
-
-        /*!
-         * \brief            Computes `tue::math::pow()` for `base` and each
-         *                   component of `exponents`.
-         *
-         * \tparam T         The type of parameter `base` and the component type
-         *                   of `exponents`.
-         * \tparam N         The component count of `exponents`.
-         *
-         * \param base       The base.
-         * \param exponents  The exponents.
-         *
-         * \return           `tue::math::pow()` for `base` and each component of
-         *                   `exponents`.
-         */
-        template<typename T, int N>
-        inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), N>
-        pow(const T& base, const vec<T, N>& exponents) noexcept
-        {
-            return tue::detail_::pow_xv(base, exponents);
-        }
-
-        /*!
-         * \brief           Computes `tue::math::pow()` for each component of
-         *                  `bases` and `exponent`.
-         *
-         * \tparam T        The component type of `bases` and the type of
-         *                  parameter `exponent`.
-         * \tparam N        The component count of `bases`.
-         *
-         * \param bases     The bases.
-         * \param exponent  The exponent.
-         *
-         * \return          `tue::math::pow()` for each component of `bases` and
-         *                  `exponent`.
-         */
-        template<typename T, int N>
-        inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), N>
-        pow(const vec<T, N>& bases, const T& exponent) noexcept
-        {
-            return tue::detail_::pow_vx(bases, exponent);
         }
 
         /*!
@@ -1939,9 +1890,8 @@ namespace tue
          *                   and each corresponding component of `exponents`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::pow(std::declval<T>(), std::declval<T>())), N>
-        pow(const vec<T, N>& bases, const vec<T, N>& exponents) noexcept
+        inline vec<T, N> pow(
+            const vec<T, N>& bases, const vec<T, N>& exponents) noexcept
         {
             return tue::detail_::pow_vv(bases, exponents);
         }
@@ -1957,8 +1907,7 @@ namespace tue
          * \return    `tue::math::recip()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::recip(std::declval<T>())), N>
-        recip(const vec<T, N>& v) noexcept
+        inline vec<T, N> recip(const vec<T, N>& v) noexcept
         {
             return tue::detail_::recip_v(v);
         }
@@ -1974,8 +1923,7 @@ namespace tue
          * \return    `tue::math::sqrt()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::sqrt(std::declval<T>())), N>
-        sqrt(const vec<T, N>& v) noexcept
+        inline vec<T, N> sqrt(const vec<T, N>& v) noexcept
         {
             return tue::detail_::sqrt_v(v);
         }
@@ -1991,8 +1939,7 @@ namespace tue
          * \return    `tue::math::rsqrt()` for each component of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::rsqrt(std::declval<T>())), N>
-        rsqrt(const vec<T, N>& v) noexcept
+        inline vec<T, N> rsqrt(const vec<T, N>& v) noexcept
         {
             return tue::detail_::rsqrt_v(v);
         }
@@ -2011,9 +1958,7 @@ namespace tue
          *            components from `v1` and `v2`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::min(std::declval<T>(), std::declval<T>())), N>
-        min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
+        inline vec<T, N> min(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
             return tue::detail_::min_vv(v1, v2);
         }
@@ -2032,9 +1977,7 @@ namespace tue
          *            components from `v1` and `v2`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::max(std::declval<T>(), std::declval<T>())), N>
-        max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
+        inline vec<T, N> max(const vec<T, N>& v1, const vec<T, N>& v2) noexcept
         {
             return tue::detail_::max_vv(v1, v2);
         }
@@ -2056,9 +1999,7 @@ namespace tue
          *                    components from `conditions` and `values`.
          */
         template<typename T, typename U, int N>
-        inline vec<decltype(
-            tue::math::mask(std::declval<T>(), std::declval<U>())), N>
-        mask(
+        inline vec<U, N> mask(
             const vec<T, N>& conditions,
             const vec<U, N>& values) noexcept
         {
@@ -2083,13 +2024,7 @@ namespace tue
          *                    and `otherwise`.
          */
         template<typename T, typename U, int N>
-        inline vec<
-            decltype(tue::math::select(
-                std::declval<T>(),
-                std::declval<U>(),
-                std::declval<U>())),
-            N>
-        select(
+        inline vec<U, N> select(
             const vec<T, N>& conditions,
             const vec<U, N>& values,
             const vec<U, N>& otherwise) noexcept
@@ -2319,6 +2254,8 @@ namespace tue
 
         /*!
          * \brief     Computes a normalized copy of `v`.
+         * \details   If the vector length of `v` equals `0`, behavior is
+         *            undefined.
          *
          * \tparam T  The component type of `v`.
          * \tparam N  The component count of `v`.
@@ -2331,10 +2268,7 @@ namespace tue
         inline vec<decltype(tue::math::rsqrt(std::declval<T>())), N>
         normalize(const vec<T, N>& v) noexcept
         {
-            const auto length2 = tue::detail_::length2_v(v);
-            const auto nzmask = tue::math::not_equal(length2, T(0));
-            const auto rlength = tue::math::rsqrt(length2);
-            return v * tue::math::mask(nzmask, rlength);
+            return v * tue::math::rlength(v);
         }
 
         /*!@}*/

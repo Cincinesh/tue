@@ -839,23 +839,11 @@ namespace
 
     TEST_CASE(pow)
     {
-        const auto v1 = math::pow(
-            1.2, dvec3(3.4, 5.6, 7.8));
-        test_assert(v1[0] == math::pow(1.2, 3.4));
-        test_assert(v1[1] == math::pow(1.2, 5.6));
-        test_assert(v1[2] == math::pow(1.2, 7.8));
-
-        const auto v2 = math::pow(
-            dvec3(1.2, 3.4, 5.6), 7.8);
-        test_assert(v2[0] == math::pow(1.2, 7.8));
-        test_assert(v2[1] == math::pow(3.4, 7.8));
-        test_assert(v2[2] == math::pow(5.6, 7.8));
-
-        const auto v3 = math::pow(
+        const auto v = math::pow(
             dvec3(1.2, 3.4, 5.6), dvec3(7.8, 9.10, 11.12));
-        test_assert(v3[0] == math::pow(1.2, 7.8));
-        test_assert(v3[1] == math::pow(3.4, 9.10));
-        test_assert(v3[2] == math::pow(5.6, 11.12));
+        test_assert(v[0] == math::pow(1.2, 7.8));
+        test_assert(v[1] == math::pow(3.4, 9.10));
+        test_assert(v[2] == math::pow(5.6, 11.12));
     }
 
     TEST_CASE(recip)
@@ -996,6 +984,5 @@ namespace
     {
         const dvec3 v(1.2, 3.4, 5.6);
         test_assert(math::normalize(v) == v * math::rlength(v));
-        test_assert(math::normalize(dvec3::zero()) == dvec3::zero());
     }
 }

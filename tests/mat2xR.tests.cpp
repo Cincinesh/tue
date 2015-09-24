@@ -912,17 +912,9 @@ namespace
 
     TEST_CASE(pow)
     {
-        const auto m1 = math::pow(1.2, dm222);
-        test_assert(m1[0] == math::pow(1.2, dm222[0]));
-        test_assert(m1[1] == math::pow(1.2, dm222[1]));
-
-        const auto m2 = math::pow(dm22, 3.4);
-        test_assert(m2[0] == math::pow(dm22[0], 3.4));
-        test_assert(m2[1] == math::pow(dm22[1], 3.4));
-
-        const auto m3 = math::pow(dm22, dm222);
-        test_assert(m3[0] == math::pow(dm22[0], dm222[0]));
-        test_assert(m3[1] == math::pow(dm22[1], dm222[1]));
+        const auto m = math::pow(dm22, dm222);
+        test_assert(m[0] == math::pow(dm22[0], dm222[0]));
+        test_assert(m[1] == math::pow(dm22[1], dm222[1]));
     }
 
     TEST_CASE(recip)
