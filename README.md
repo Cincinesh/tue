@@ -53,9 +53,9 @@ as [GLM](https://github.com/g-truc/glm):
   particular type, there's a standard C++-compliant fallback. If a vector has
   too many components for acceleration, but a smaller vector with the same
   component type can be accelerated, then the larger vector is simply the
-  composite of two smaller vectors. For example, if float32x4 is accelerated but
-  float32x8 isn't, then float32x8 will at least be partially-accelerated in that
-  it's made of two float32x4's.
+  composite of two smaller vectors. For example, if `float32x4` is accelerated
+  but `float32x8` isn't, then `float32x8` will at least be partially-accelerated
+  in that it's made of two `float32x4`'s.
 
 Status
 ------
