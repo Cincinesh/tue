@@ -20,7 +20,7 @@ namespace tue
 {
     /*!
      * \defgroup  simd_hpp <tue/simd.hpp>
-     * \brief     The `simd` class template and its associated utility classes
+     * \brief     The `simd` class template and its associated utility structs
      *            and functions.
      * @{
      */

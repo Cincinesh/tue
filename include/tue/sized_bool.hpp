@@ -16,7 +16,7 @@ namespace tue
 {
     /*!
      * \defgroup  sized_bool_hpp <tue/sized_bool.hpp>
-     * \brief     The sized boolean types and their associated utility classes
+     * \brief     The sized boolean types and their associated utility structs
      *            and functions.
      * @{
      */
