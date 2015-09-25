@@ -2210,8 +2210,7 @@ namespace tue
          * \return    The vector length of `v`.
          */
         template<typename T, int N>
-        inline decltype(tue::math::sqrt(std::declval<T>()))
-        length(const vec<T, N>& v) noexcept
+        inline T length(const vec<T, N>& v) noexcept
         {
             return tue::math::sqrt(tue::detail_::length2_v(v));
         }
@@ -2227,8 +2226,7 @@ namespace tue
          * \return    The vector length squared of `v`.
          */
         template<typename T, int N>
-        inline constexpr T
-        length2(const vec<T, N>& v) noexcept
+        inline constexpr T length2(const vec<T, N>& v) noexcept
         {
             return tue::detail_::length2_v(v);
         }
@@ -2246,8 +2244,7 @@ namespace tue
          * \return    The reciprocal of the vector length of `v`.
          */
         template<typename T, int N>
-        inline decltype(tue::math::rsqrt(std::declval<T>()))
-        rlength(const vec<T, N>& v) noexcept
+        inline T rlength(const vec<T, N>& v) noexcept
         {
             return tue::math::rsqrt(tue::detail_::length2_v(v));
         }
@@ -2265,8 +2262,7 @@ namespace tue
          * \return    A normalized copy of `v`.
          */
         template<typename T, int N>
-        inline vec<decltype(tue::math::rsqrt(std::declval<T>())), N>
-        normalize(const vec<T, N>& v) noexcept
+        inline vec<T, N> normalize(const vec<T, N>& v) noexcept
         {
             return v * tue::math::rlength(v);
         }
