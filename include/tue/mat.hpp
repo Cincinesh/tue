@@ -29,8 +29,8 @@ namespace tue
      *
      * \tparam T  The component type. `is_vec_component<T>::value` must be
      *            `true`.
-     * \tparam C  The column count. Must be 2, 3, or 4.
-     * \tparam R  The row count. Must be 2, 3, or 4.
+     * \tparam C  The column count. Must be `2`, `3`, or `4`.
+     * \tparam R  The row count. Must be `2`, `3`, or `4`.
      */
     template<typename T, int C, int R>
     class mat;

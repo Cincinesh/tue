@@ -127,7 +127,8 @@ namespace tue
      *
      * \tparam T  The component type. `is_simd_component<T>::value` must be
      *            `true`.
-     * \tparam N  The component count. Must be 2, 4, 8, 16, 32, or 64.
+     * \tparam N  The component count. Must be `2`, `4`, `8`, `16`, `32`, or
+     *            `64`.
      */
     template<typename T, int N>
     class simd;
