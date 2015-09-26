@@ -2008,7 +2008,7 @@ namespace tue
 
         /*!
          * \brief             Computes `tue::math::select()` for each
-         *                    corresponding triple of components from
+         *                    corresponding trio of components from
          *                    `conditions`, `values`, and `otherwise`.
          *
          * \tparam T          The component type of `conditions`.
@@ -2020,7 +2020,7 @@ namespace tue
          * \param otherwise   Another `vec`.
          *
          * \return            `tue::math::select()` for each corresponding
-         *                    triple of components from `conditions`, `values`,
+         *                    trio of components from `conditions`, `values`,
          *                    and `otherwise`.
          */
         template<typename T, typename U, int N>
