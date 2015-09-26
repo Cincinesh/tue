@@ -981,7 +981,7 @@ namespace tue
          *
          * \tparam U  The type of parameter `x`.
          *
-         * \param x   The value to bitwise right left each component of this
+         * \param x   The value to bitwise shift right each component of this
          *            `vec` by.
          *
          * \return    A reference to this `vec`.
