@@ -80,7 +80,8 @@ namespace tue
          * \param w  The value to construct the fourth component with.
          */
         constexpr quat(
-            const T& x, const T& y, const T& z, const T& w) noexcept :
+            const T& x, const T& y, const T& z, const T& w) noexcept
+        :
             impl_({{ x, y, z, w }})
         {
         }
@@ -92,34 +93,44 @@ namespace tue
          * \param xyz  The values to construct the first three components with.
          * \param w    The value to construct the fourth component with.
          */
-        constexpr quat(const vec3<T>& xyz, const T& w) noexcept :
+        constexpr quat(
+            const vec3<T>& xyz, const T& w) noexcept
+        :
             impl_({{ xyz[0], xyz[1], xyz[2], w }})
         {
         }
 
         /*!
          * \brief       Explicitly casts a `vec4` to a `quat`.
+         *
          * \param xyzw  The `vec` to cast from.
          */
-        explicit constexpr quat(const vec4<T>& xyzw) noexcept :
+        explicit constexpr quat(
+            const vec4<T>& xyzw) noexcept
+        :
             impl_({{ xyzw[0], xyzw[1], xyzw[2], xyzw[3] }})
         {
         }
 
         /*!
          * \brief     Explicitly casts another `quat` to a new component type.
+         *
          * \tparam U  The component type of `q`.
+         *
          * \param q   The `quat` to cast from.
          */
         template<typename U>
-        explicit constexpr quat(const quat<U>& q) noexcept :
+        explicit constexpr quat(const quat<U>& q) noexcept
+        :
             impl_({{ T(q[0]), T(q[1]), T(q[2]), T(q[3]) }})
         {
         }
 
         /*!
          * \brief     Implicitly casts this `quat` to a new component type.
+         *
          * \tparam U  The new component type.
+         *
          * \return    A new `quat` with the new component type.
          */
         template<typename U>
@@ -148,8 +159,11 @@ namespace tue
         /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam I  The index type.
+         *
          * \param i   The index.
+         *
          * \return    A reference to the component at the given index.
          */
         template<typename I>
@@ -161,8 +175,11 @@ namespace tue
         /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam I  The index type.
+         *
          * \param i   The index.
+         *
          * \return    A reference to the component at the given index.
          */
         template<typename I>
@@ -195,6 +212,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s first component.
+         *
          * \return  A copy of this `quat`'s first component.
          */
         constexpr T x() const noexcept
@@ -204,6 +222,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s second component.
+         *
          * \return  A copy of this `quat`'s second component.
          */
         constexpr T y() const noexcept
@@ -213,6 +232,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s third component.
+         *
          * \return  A copy of this `quat`'s third component.
          */
         constexpr T z() const noexcept
@@ -222,6 +242,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s fourth component.
+         *
          * \return  A copy of this `quat`'s fourth component.
          */
         constexpr T w() const noexcept
@@ -231,6 +252,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s first three components.
+         *
          * \return  A copy of this `quat`'s first three components.
          */
         constexpr vec3<T> xyz() const noexcept
@@ -244,6 +266,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s four components.
+         *
          * \return  A copy of this `quat`'s four components.
          */
         constexpr vec4<T> xyzw() const noexcept
@@ -258,6 +281,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `quat`'s first component.
+         *
          * \param x  The new value for the first component.
          */
         void set_x(const T& x) noexcept
@@ -267,6 +291,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `quat`'s second component.
+         *
          * \param y  The new value for the second component.
          */
         void set_y(const T& y) noexcept
@@ -276,6 +301,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `quat`'s third component.
+         *
          * \param z  The new value for the third component.
          */
         void set_z(const T& z) noexcept
@@ -285,6 +311,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `quat`'s fourth component.
+         *
          * \param w  The new value for the fourth component.
          */
         void set_w(const T& w) noexcept
@@ -308,6 +335,7 @@ namespace tue
 
         /*!
          * \brief      Sets this `quat`'s first three components.
+         *
          * \param xyz  The new values for the first three components.
          */
         void set_xyz(const vec3<T>& xyz) noexcept
@@ -349,6 +377,7 @@ namespace tue
 
         /*!
          * \brief       Sets this `quat`'s four components.
+         *
          * \param xyzw  The new values for the four components.
          */
         void set_xyzw(const vec4<T>& xyzw) noexcept
@@ -361,6 +390,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s first three components.
+         *
          * \return  A copy of this `quat`'s first three components.
          */
         constexpr vec3<T> v() const noexcept
@@ -374,6 +404,7 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `quat`'s fourth component.
+         *
          * \return  A copy of this `quat`'s fourth component.
          */
         constexpr T s() const noexcept
@@ -397,6 +428,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `quat`'s first three components.
+         *
          * \param v  The new values for the first three components.
          */
         void set_v(const vec3<T>& v) noexcept
@@ -408,6 +440,7 @@ namespace tue
 
         /*!
          * \brief    Sets this `quat`'s fourth component.
+         *
          * \param s  The new value for the fourth component.
          */
         void set_s(const T& s) noexcept
@@ -423,7 +456,9 @@ namespace tue
          *            instead of right-to-left.
          *
          * \tparam U  The component type of `q`.
+         *
          * \param q   A rotation `quat`.
+         *
          * \return    A reference to this `quat`.
          */
         template<typename U>
@@ -479,8 +514,10 @@ namespace tue
     inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
     operator*(const vec3<T>& lhs, const quat<U>& rhs) noexcept
     {
-        return (rhs * quat<T>(lhs, T(0))
-            * quat<U>(-rhs[0], -rhs[1], -rhs[2], rhs[3])).v();
+        return (rhs
+                * quat<T>(lhs, T(0))
+                * quat<U>(-rhs[0], -rhs[1], -rhs[2], rhs[3])
+            ).v();
     }
 
     /*!
@@ -496,8 +533,8 @@ namespace tue
      *             equal and `false` otherwise.
      */
     template<typename T, typename U>
-    inline constexpr bool operator==(
-        const quat<T>& lhs, const quat<U>& rhs) noexcept
+    inline constexpr bool
+    operator==(const quat<T>& lhs, const quat<U>& rhs) noexcept
     {
         return lhs[0] == rhs[0]
             && lhs[1] == rhs[1]
@@ -518,8 +555,8 @@ namespace tue
      *             components compares not equal and `false` otherwise.
      */
     template<typename T, typename U>
-    inline constexpr bool operator!=(
-        const quat<T>& lhs, const quat<U>& rhs) noexcept
+    inline constexpr bool
+    operator!=(const quat<T>& lhs, const quat<U>& rhs) noexcept
     {
         return lhs[0] != rhs[0]
             || lhs[1] != rhs[1]
@@ -537,8 +574,11 @@ namespace tue
 
         /*!
          * \brief     Computes a normalized copy of `q`.
+         *
          * \tparam T  The component type of `q`.
+         *
          * \param q   A `quat`.
+         *
          * \return    A normalized copy of `q`.
          */
         template<typename T>
@@ -556,8 +596,11 @@ namespace tue
 
         /*!
          * \brief     Computes the conjugate of `q`.
+         *
          * \tparam T  The component type of `q`.
+         *
          * \param q   A `quat`.
+         *
          * \return    The conjugate of `q`.
          */
         template<typename T>
