@@ -17,6 +17,9 @@
 
 namespace tue
 {
+    template<typename T, int C, int R>
+    class mat;
+
     template<typename T>
     class vec<T, 4>
     {

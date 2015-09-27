@@ -18,6 +18,12 @@
 namespace tue
 {
     template<typename T>
+    class quat;
+
+    template<typename T, int C, int R>
+    class mat;
+
+    template<typename T>
     class vec<T, 3>
     {
         struct
@@ -368,16 +374,16 @@ namespace tue
 
         template<typename U>
         vec<T, 3>&
-        operator*=(const mat<U, 3, 3>& m) noexcept
+        operator*=(const quat<U>& q) noexcept
         {
-            return (*this) = (*this) * m;
+            return (*this) = (*this) * q;
         }
 
         template<typename U>
         vec<T, 3>&
-        operator*=(const quat<U>& q) noexcept
+        operator*=(const mat<U, 3, 3>& m) noexcept
         {
-            return (*this) = (*this) * q;
+            return (*this) = (*this) * m;
         }
 
         template<typename U>

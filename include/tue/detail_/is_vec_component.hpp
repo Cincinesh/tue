@@ -11,10 +11,13 @@
 #include <cstdint>
 #include <type_traits>
 
-#include "../sized_bool.hpp"
-
 namespace tue
 {
+    enum bool8 : std::uint8_t;
+    enum bool16 : std::uint16_t;
+    enum bool32 : std::uint32_t;
+    enum bool64 : std::uint64_t;
+
     template<typename T, int N>
     class simd;
 

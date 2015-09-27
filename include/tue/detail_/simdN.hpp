@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../simd.hpp"
+#include "../sized_bool.hpp"
 
 namespace tue
 {

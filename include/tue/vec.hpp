@@ -15,11 +15,11 @@
 
 namespace tue
 {
-    template<typename T, int C, int R>
-    class mat;
-
     template<typename T>
     class quat;
+
+    template<typename T, int C, int R>
+    class mat;
 
     /*!
      * \defgroup  vec_hpp <tue/vec.hpp>
