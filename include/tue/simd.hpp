@@ -591,7 +591,7 @@ namespace tue
          * \brief       Loads the given aligned component array into a new
          *              `simd`.
          * \details     The source array must have the same alignment as this
-         *              `simd` type. If the source array null, unaligned, or
+         *              `simd` type. If the source array is null, unaligned, or
          *              doesn't contain at least `N` components, behavior is
          *              undefined.
          *
@@ -1221,8 +1221,8 @@ namespace tue
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     `true` if all the corresponding pairs of components compare
-     *            not  equal and `false` otherwise.
+     * \return     `true` if at least one of the corresponding pairs of
+     *             components compares not equal and `false` otherwise.
      */
     template<typename T, int N>
     inline bool operator!=(
@@ -1442,7 +1442,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::min()` for each corresponding pair of
-         *            components of `s1` and `s2`.
+         *            components from `s1` and `s2`.
          *
          * \tparam T  The component type of both `s1` and `s2`.
          * \tparam N  The component count of both `s1` and `s2`.
@@ -1451,7 +1451,7 @@ namespace tue
          * \param s2  Another `simd`.
          *
          * \return    `tue::math::min()` for each corresponding pair of
-         *            components of `s1` and `s2`.
+         *            components from `s1` and `s2`.
          */
         template<typename T, int N>
         inline std::enable_if_t<std::is_arithmetic<T>::value, simd<T, N>>
@@ -1462,7 +1462,7 @@ namespace tue
 
         /*!
          * \brief     Computes `tue::math::max()` for each corresponding pair of
-         *            components of `s1` and `s2`.
+         *            components from `s1` and `s2`.
          *
          * \tparam T  The component type of both `s1` and `s2`.
          * \tparam N  The component count of both `s1` and `s2`.
@@ -1471,7 +1471,7 @@ namespace tue
          * \param s2  Another `simd`.
          *
          * \return    `tue::math::max()` for each corresponding pair of
-         *            components of `s1` and `s2`.
+         *            components from `s1` and `s2`.
          */
         template<typename T, int N>
         inline std::enable_if_t<std::is_arithmetic<T>::value, simd<T, N>>
@@ -1536,7 +1536,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less()` for each corresponding pair
-         *             of components of `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -1545,7 +1545,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline simd<sized_bool_t<sizeof(T)>, N>
@@ -1556,7 +1556,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::less_equal()` for each corresponding
-         *             pair of components of `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -1565,7 +1565,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::less_equal()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline simd<sized_bool_t<sizeof(T)>, N>
@@ -1576,7 +1576,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater()` for each corresponding
-         *             pair of components of `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -1585,7 +1585,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline simd<sized_bool_t<sizeof(T)>, N>
@@ -1596,7 +1596,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::greater_equal()` for each
-         *             corresponding pair of components of `lhs` and `rhs`.
+         *             corresponding pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -1605,7 +1605,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::greater_equal()` for each corresponding pair
-         *             of components of `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline simd<sized_bool_t<sizeof(T)>, N>
@@ -1616,7 +1616,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::equal()` for each corresponding pair
-         *             of components of `lhs` and `rhs`.
+         *             of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -1625,7 +1625,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::equal()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline simd<sized_bool_t<sizeof(T)>, N>
@@ -1636,7 +1636,7 @@ namespace tue
 
         /*!
          * \brief      Computes `tue::math::not_equal()` for each corresponding
-         *             pair of components of `lhs` and `rhs`.
+         *             pair of components from `lhs` and `rhs`.
          *
          * \tparam T   The component type of both `lhs` and `rhs`.
          * \tparam N   The component count of both `lhs` and `rhs`.
@@ -1645,7 +1645,7 @@ namespace tue
          * \param rhs  The right-hand side operand.
          *
          * \return     `tue::math::not_equal()` for each corresponding pair of
-         *             components of `lhs` and `rhs`.
+         *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
         inline simd<sized_bool_t<sizeof(T)>, N>
