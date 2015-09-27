@@ -132,8 +132,11 @@ namespace tue
 
     /*!
      * \brief     Computes the bitwise NOT of `b`.
+     *
      * \tparam T  The type of parameter 'b'.
+     *
      * \param b   A sized boolean value.
+     *
      * \return    The bitwise NOT of `b`.
      */
     template<typename T>

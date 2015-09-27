@@ -18,6 +18,7 @@ namespace tue
 
     /*!
      * \brief        Suppresses unused variable warnings.
+     *
      * \tparam Args  The parameter types with reference qualifiers removed.
      */
     template<typename... Args>

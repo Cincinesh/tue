@@ -49,8 +49,11 @@ namespace tue
 
         /*!
          * \brief     Computes the sine of `x` (measured in radians).
+         *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A floating-point number.
+         *
          * \return    The sine of `x` (measured in radians).
          */
         template<typename T>
@@ -62,8 +65,11 @@ namespace tue
 
         /*!
          * \brief     Computes the cosine of `x` (measured in radians).
+         *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A floating-point number.
+         *
          * \return    The cosine of `x` (measured in radians).
          */
         template<typename T>
@@ -95,8 +101,11 @@ namespace tue
 
         /*!
          * \brief     Computes the base-e exponential of `x`.
+         *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A floating-point number.
+         *
          * \return    The base-e exponential of `x`.
          */
         template<typename T>
@@ -108,8 +117,11 @@ namespace tue
 
         /*!
          * \brief     Computes the base-e (natural) logarithm of `x`.
+         *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A floating-point number.
+         *
          * \return    The base-e (natural) logarithm of `x`.
          */
         template<typename T>
@@ -121,8 +133,11 @@ namespace tue
 
         /*!
          * \brief     Computes the absolute value of `x`.
+         *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A number.
+         *
          * \return    The absolute value of `x`.
          */
         template<typename T>
@@ -154,7 +169,9 @@ namespace tue
          * \details   If `x` equals `0`, behavior is undefined.
          *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A floating-point number.
+         *
          * \return    The reciprocal of `x`.
          */
         template<typename T>
@@ -169,7 +186,9 @@ namespace tue
          * \details   If `x` is negative, behavior is undefined.
          *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A floating-point number.
+         *
          * \return    The nonnegative square root of `x`.
          */
         template<typename T>
@@ -182,12 +201,13 @@ namespace tue
         /*!
          * \brief     Computes the reciprocal of the nonnegative square root of
          *            `x`.
-
          * \details   If `x` is less than or equal to `0`, behavior is
          *            undefined.
          *
          * \tparam T  The type of parameter `x`.
+         *
          * \param x   A floating-point number.
+         *
          * \return    The reciprocal of the nonnegative square root of `x`.
          */
         template<typename T>
@@ -302,8 +322,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_arithmetic_simd_component<T>::value,
-            sized_bool_t<sizeof(T)>>
+            is_arithmetic_simd_component<T>::value, sized_bool_t<sizeof(T)>>
         less(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -325,8 +344,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_arithmetic_simd_component<T>::value,
-            sized_bool_t<sizeof(T)>>
+            is_arithmetic_simd_component<T>::value, sized_bool_t<sizeof(T)>>
         less_equal(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -346,8 +364,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_arithmetic_simd_component<T>::value,
-            sized_bool_t<sizeof(T)>>
+            is_arithmetic_simd_component<T>::value, sized_bool_t<sizeof(T)>>
         greater(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -369,8 +386,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_arithmetic_simd_component<T>::value,
-            sized_bool_t<sizeof(T)>>
+            is_arithmetic_simd_component<T>::value, sized_bool_t<sizeof(T)>>
         greater_equal(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -390,8 +406,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_simd_component<T>::value,
-            sized_bool_t<sizeof(T)>>
+            is_simd_component<T>::value, sized_bool_t<sizeof(T)>>
         equal(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
@@ -411,8 +426,7 @@ namespace tue
          */
         template<typename T>
         inline std::enable_if_t<
-            is_simd_component<T>::value,
-            sized_bool_t<sizeof(T)>>
+            is_simd_component<T>::value, sized_bool_t<sizeof(T)>>
         not_equal(T lhs, T rhs) noexcept
         {
             using U = sized_bool_t<sizeof(T)>;
