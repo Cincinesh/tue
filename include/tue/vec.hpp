@@ -80,6 +80,7 @@ namespace tue
 
     /*!
      * \brief     A 2-dimensional vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -87,6 +88,7 @@ namespace tue
 
     /*!
      * \brief     A 3-dimensional vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -94,6 +96,7 @@ namespace tue
 
     /*!
      * \brief     A 4-dimensional vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -188,9 +191,11 @@ namespace tue
 
         /*!
          * \brief    Constructs each component with the same value.
+         *
          * \param x  The value to construct each component with.
          */
-        inline explicit constexpr vec(const T& x) noexcept;
+        inline explicit constexpr vec(
+            const T& x) noexcept;
 
         /*!
          * \brief    Constructs each component with the value of the
@@ -200,7 +205,8 @@ namespace tue
          * \param x  The value to construct the first component with.
          * \param y  The value to construct the second component with.
          */
-        inline constexpr vec(const T& x, const T& y) noexcept;
+        inline constexpr vec(
+            const T& x, const T& y) noexcept;
 
         /*!
          * \brief    Constructs each component with the value of the
@@ -211,7 +217,8 @@ namespace tue
          * \param y  The value to construct the second component with.
          * \param z  The value to construct the third component with.
          */
-        inline constexpr vec(const T& x, const T& y, const T& z) noexcept;
+        inline constexpr vec(
+            const T& x, const T& y, const T& z) noexcept;
 
         /*!
          * \brief    Constructs each component with the value of the
@@ -234,7 +241,8 @@ namespace tue
          * \param xy  The values to construct the first two components with.
          * \param z   The value to construct the third component with.
          */
-        inline constexpr vec(const vec2<T>& xy, const T& z) noexcept;
+        inline constexpr vec(
+            const vec2<T>& xy, const T& z) noexcept;
 
         /*!
          * \brief     Constructs each component with the value of the
@@ -256,27 +264,36 @@ namespace tue
          * \param xyz  The values to construct the first three components with.
          * \param w    The value to construct the fourth component with.
          */
-        inline constexpr vec(const vec3<T>& xyz, const T& w) noexcept;
+        inline constexpr vec(
+            const vec3<T>& xyz, const T& w) noexcept;
 
         /*!
          * \brief      Truncates a larger `vec` with the same component type.
+         *
          * \tparam VN  The component count of `v`.
+         *
          * \param v    The larger `vec` to truncate.
          */
         template<int VN, typename = std::enable_if_t<(VN greater_than N)>>
-        inline explicit constexpr vec(const vec<T, VN>& v) noexcept;
+        inline explicit constexpr vec(
+            const vec<T, VN>& v) noexcept;
 
         /*!
          * \brief     Explicitly casts another `vec` to a new component type.
+         *
          * \tparam U  The component type of `v`.
+         *
          * \param v   The `vec` to cast from.
          */
         template<typename U>
-        inline explicit constexpr vec(const vec<U, N>& v) noexcept;
+        inline explicit constexpr vec(
+            const vec<U, N>& v) noexcept;
 
         /*!
          * \brief     Implicitly casts this `vec` to a new component type.
+         *
          * \tparam U  The new component type.
+         *
          * \return    A new `vec` with the new component type.
          */
         template<typename U>
@@ -284,6 +301,7 @@ namespace tue
 
         /*!
          * \brief   Returns a `vec` with each component set to `0`.
+         *
          * \return  A `vec` with each component set to `0`.
          */
         inline static constexpr vec<T, N> zero() noexcept;
@@ -331,8 +349,11 @@ namespace tue
         /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam I  The index type.
+         *
          * \param i   The index.
+         *
          * \return    A reference to the component at the given index.
          */
         template<typename I>
@@ -341,8 +362,11 @@ namespace tue
         /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam I  The index type.
+         *
          * \param i   The index.
+         *
          * \return    A reference to the component at the given index.
          */
         template<typename I>
@@ -366,12 +390,14 @@ namespace tue
 
         /*!
          * \brief   Returns a copy of this `vec`'s first component.
+         *
          * \return  A copy of this `vec`'s first component.
          */
         inline constexpr T x() const noexcept;
 
         /*!
          * \brief   Returns a copy of this `vec`'s second component.
+         *
          * \return  A copy of this `vec`'s second component.
          */
         inline constexpr T y() const noexcept;
@@ -396,6 +422,7 @@ namespace tue
 
         /*!
          * \brief    Returns a copy of this `vec`'s first two components.
+         *
          * \return   A copy of this `vec`'s first two components.
          */
         inline constexpr vec2<T> xy() const noexcept;
@@ -420,15 +447,19 @@ namespace tue
 
         /*!
          * \brief    Sets this `vec`'s first component.
+         *
          * \param x  The new value for the first component.
          */
-        inline void set_x(const T& x) noexcept;
+        inline void set_x(
+            const T& x) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s second component.
+         *
          * \param y  The new value for the second component.
          */
-        inline void set_y(const T& y) noexcept;
+        inline void set_y(
+            const T& y) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s third component.
@@ -437,7 +468,8 @@ namespace tue
          *
          * \param z  The new value for the third component.
          */
-        inline void set_z(const T& z) noexcept;
+        inline void set_z(
+            const T& z) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s fourth component.
@@ -446,7 +478,8 @@ namespace tue
          *
          * \param w  The new value for the fourth component.
          */
-        inline void set_w(const T& w) noexcept;
+        inline void set_w(
+            const T& w) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first two components.
@@ -454,13 +487,16 @@ namespace tue
          * \param x  The new value for the first component.
          * \param y  The new value for the second component.
          */
-        inline void set_xy(const T& x, const T& y) noexcept;
+        inline void set_xy(
+            const T& x, const T& y) noexcept;
 
         /*!
          * \brief     Sets this `vec`'s first two components.
+         *
          * \param xy  The new values for the first two components.
          */
-        inline void set_xy(const vec2<T>& xy) noexcept;
+        inline void set_xy(
+            const vec2<T>& xy) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first three components.
@@ -471,7 +507,8 @@ namespace tue
          * \param y  The new value for the second component.
          * \param z  The new value for the third component.
          */
-        inline void set_xyz(const T& x, const T& y, const T& z) noexcept;
+        inline void set_xyz(
+            const T& x, const T& y, const T& z) noexcept;
 
         /*!
          * \brief     Sets this `vec`'s first three components.
@@ -481,7 +518,8 @@ namespace tue
          * \param xy  The new values for the first two components.
          * \param z   The new value for the third component.
          */
-        inline void set_xyz(const vec2<T>& xy, const T& z) noexcept;
+        inline void set_xyz(
+            const vec2<T>& xy, const T& z) noexcept;
 
         /*!
          * \brief      Sets this `vec`'s first three components.
@@ -490,7 +528,8 @@ namespace tue
          *
          * \param xyz  The new values for the first three components.
          */
-        inline void set_xyz(const vec3<T>& xyz) noexcept;
+        inline void set_xyz(
+            const vec3<T>& xyz) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first four components.
@@ -525,7 +564,8 @@ namespace tue
          * \param xyz  The new values for the first three components.
          * \param w    The new value for the fourth component.
          */
-        inline void set_xyzw(const vec3<T>& xyz, const T& w) noexcept;
+        inline void set_xyzw(
+            const vec3<T>& xyz, const T& w) noexcept;
 
         /*!
          * \brief       Sets this `vec`'s first four components.
@@ -534,22 +574,26 @@ namespace tue
          *
          * \param xyzw  The new values for the first four components.
          */
-        inline void set_xyzw(const vec4<T>& xyzw) noexcept;
+        inline void set_xyzw(
+            const vec4<T>& xyzw) noexcept;
 
         /*!
          * \brief   Returns a copy of this `vec`'s first component.
+         *
          * \return  A copy of this `vec`'s first component.
          */
         inline constexpr T r() const noexcept;
 
         /*!
          * \brief   Returns a copy of this `vec`'s second component.
+         *
          * \return  A copy of this `vec`'s second component.
          */
         inline constexpr T g() const noexcept;
 
         /*!
          * \brief    Returns a copy of this `vec`'s third component.
+         *
          * \details  This overload is only available when `N` is greater than or
          *           equal to `3`.
          *
@@ -559,6 +603,7 @@ namespace tue
 
         /*!
          * \brief    Returns a copy of this `vec`'s fourth component.
+         *
          * \details  This overload is only available when `N` is greater than or
          *           equal to `4`.
          *
@@ -568,6 +613,7 @@ namespace tue
 
         /*!
          * \brief    Returns a copy of this `vec`'s first two components.
+         *
          * \return   A copy of this `vec`'s first two components.
          */
         inline constexpr vec2<T> rg() const noexcept;
@@ -592,15 +638,19 @@ namespace tue
 
         /*!
          * \brief    Sets this `vec`'s first component.
+         *
          * \param r  The new value for the first component.
          */
-        inline void set_r(const T& r) noexcept;
+        inline void set_r(
+            const T& r) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s second component.
+         *
          * \param g  The new value for the second component.
          */
-        inline void set_g(const T& g) noexcept;
+        inline void set_g(
+            const T& g) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s third component.
@@ -609,7 +659,8 @@ namespace tue
          *
          * \param b  The new value for the third component.
          */
-        inline void set_b(const T& b) noexcept;
+        inline void set_b(
+            const T& b) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s fourth component.
@@ -618,7 +669,8 @@ namespace tue
          *
          * \param a  The new value for the fourth component.
          */
-        inline void set_a(const T& a) noexcept;
+        inline void set_a(
+            const T& a) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first two components.
@@ -626,13 +678,16 @@ namespace tue
          * \param r  The new value for the first component.
          * \param g  The new value for the second component.
          */
-        inline void set_rg(const T& r, const T& g) noexcept;
+        inline void set_rg(
+            const T& r, const T& g) noexcept;
 
         /*!
          * \brief     Sets this `vec`'s first two components.
+         *
          * \param rg  The new values for the first two components.
          */
-        inline void set_rg(const vec2<T>& rg) noexcept;
+        inline void set_rg(
+            const vec2<T>& rg) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first three components.
@@ -643,7 +698,8 @@ namespace tue
          * \param g  The new value for the second component.
          * \param b  The new value for the third component.
          */
-        inline void set_rgb(const T& r, const T& g, const T& b) noexcept;
+        inline void set_rgb(
+            const T& r, const T& g, const T& b) noexcept;
 
         /*!
          * \brief     Sets this `vec`'s first three components.
@@ -653,7 +709,8 @@ namespace tue
          * \param rg  The new values for the first two components.
          * \param b   The new value for the third component.
          */
-        inline void set_rgb(const vec2<T>& rg, const T& b) noexcept;
+        inline void set_rgb(
+            const vec2<T>& rg, const T& b) noexcept;
 
         /*!
          * \brief      Sets this `vec`'s first three components.
@@ -662,7 +719,8 @@ namespace tue
          *
          * \param rgb  The new values for the first three components.
          */
-        inline void set_rgb(const vec3<T>& rgb) noexcept;
+        inline void set_rgb(
+            const vec3<T>& rgb) noexcept;
 
         /*!
          * \brief    Sets this `vec`'s first four components.
@@ -697,7 +755,8 @@ namespace tue
          * \param rgb  The new values for the first three components.
          * \param a    The new value for the fourth component.
          */
-        inline void set_rgba(const vec3<T>& rgb, const T& a) noexcept;
+        inline void set_rgba(
+            const vec3<T>& rgb, const T& a) noexcept;
 
         /*!
          * \brief       Sets this `vec`'s first four components.
@@ -706,36 +765,44 @@ namespace tue
          *
          * \param rgba  The new values for the first four components.
          */
-        inline void set_rgba(const vec4<T>& rgba) noexcept;
+        inline void set_rgba(
+            const vec4<T>& rgba) noexcept;
 
         /*!
          * \brief   Pre-increments each component of this `vec`.
+         *
          * \return  A reference to this `vec`.
          */
         inline vec<T, N>& operator++() noexcept;
 
         /*!
          * \brief   Post-increments each component of this `vec`.
+         *
          * \return  A copy of this `vec` before being incremented.
          */
         inline vec<T, N> operator++(int) noexcept;
 
         /*!
          * \brief   Pre-decrements each component of this `vec`.
+         *
          * \return  A reference to this `vec`.
          */
         inline vec<T, N>& operator--() noexcept;
 
         /*!
          * \brief   Post-decrements each component of this `vec`.
+         *
          * \return  A copy of this `vec` before being decremented.
          */
         inline vec<T, N> operator--(int) noexcept;
 
         /*!
          * \brief     Adds `x` to each component of this `vec`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to add to each component of this `vec`.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -745,8 +812,11 @@ namespace tue
         /*!
          * \brief     Adds each component of `v` to the corresponding component
          *            of this `vec`.
+         *
          * \tparam U  The component type of `v`.
+         *
          * \param v   The values to add to each component of this `vec`.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -755,8 +825,11 @@ namespace tue
 
         /*!
          * \brief     Subtracts `x` from each component of this `vec`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to subtract from each component of this `vec`.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -766,8 +839,11 @@ namespace tue
         /*!
          * \brief     Subtracts each component of `v` from the corresponding
          *            component of this `vec`.
+         *
          * \tparam U  The component type of `v`.
+         *
          * \param v   The values to subtract from each component of this `vec`.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -776,8 +852,11 @@ namespace tue
 
         /*!
          * \brief     Multiplies each component of this `vec` by `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to multiply each component of this `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -787,8 +866,11 @@ namespace tue
         /*!
          * \brief     Multiplies each component of this `vec` by the
          *            corresponding component from `v`.
+         *
          * \tparam U  The component type of `v`.
+         *
          * \param v   The values to multiply each component of this `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -804,7 +886,9 @@ namespace tue
          *            instead of right-to-left.
          *
          * \tparam U  The component type of `q`.
+         *
          * \param q   A rotation `quat`.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -814,8 +898,11 @@ namespace tue
         /*!
          * \brief     Matrix multiplies this `vec` by `m`.
          * \details   This `vec` is treated as a matrix with a single row.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   A `mat`.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -824,8 +911,11 @@ namespace tue
 
         /*!
          * \brief     Divides each component of this `vec` by `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to divide each component of this `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -835,8 +925,11 @@ namespace tue
         /*!
          * \brief     Divides each component of this `vec` by the corresponding
          *            component from `v`.
+         *
          * \tparam U  The component type of `v`.
+         *
          * \param v   The values to divide each component of this `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -845,8 +938,11 @@ namespace tue
 
         /*!
          * \brief     Modulos each component of this `vec` by `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to modulo each component of this `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -856,8 +952,11 @@ namespace tue
         /*!
          * \brief     Modulos each component of this `vec` by the corresponding
          *            component from `v`.
+         *
          * \tparam U  The component type of `v`.
+         *
          * \param v   The values to modulo each component of this `vec` by.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -895,8 +994,11 @@ namespace tue
 
         /*!
          * \brief     Bitwise ORs each component of this `vec` with `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise OR each component of this `vec` with.
+         *
          * \return    A reference to this `vec`.
          */
         template<typename U>
@@ -1138,7 +1240,8 @@ namespace tue
      *             component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() + std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() + std::declval<U>()), N>
     operator+(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::addition_operator_vv(lhs, rhs);
@@ -1203,7 +1306,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() - std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() - std::declval<U>()), N>
     operator-(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::subtraction_operator_vv(lhs, rhs);
@@ -1266,7 +1370,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() * std::declval<U>()), N>
     operator*(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_vv(lhs, rhs);
@@ -1329,7 +1434,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() / std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() / std::declval<U>()), N>
     operator/(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::division_operator_vv(lhs, rhs);
@@ -1392,7 +1498,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() % std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() % std::declval<U>()), N>
     operator%(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::modulo_operator_vv(lhs, rhs);
@@ -1457,7 +1564,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() & std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() & std::declval<U>()), N>
     operator&(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_and_operator_vv(lhs, rhs);
@@ -1520,7 +1628,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() | std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() | std::declval<U>()), N>
     operator|(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_or_operator_vv(lhs, rhs);
@@ -1585,7 +1694,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() ^ std::declval<U>()), N>
     operator^(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_xor_operator_vv(lhs, rhs);
@@ -1650,8 +1760,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(
-        std::declval<T>() shift_left std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() shift_left std::declval<U>()), N>
     operator<<(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator_vv(lhs, rhs);
@@ -1716,8 +1826,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int N>
-    inline constexpr vec<decltype(
-        std::declval<T>() shift_right std::declval<U>()), N>
+    inline constexpr
+        vec<decltype(std::declval<T>() shift_right std::declval<U>()), N>
     operator>>(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator_vv(lhs, rhs);
@@ -2020,9 +2130,9 @@ namespace tue
          * \param values      Another `vec`.
          * \param otherwise   Another `vec`.
          *
-         * \return            `tue::math::select()` for each corresponding
-         *                    trio of components from `conditions`, `values`,
-         *                    and `otherwise`.
+         * \return            `tue::math::select()` for each corresponding trio
+         *                    of components from `conditions`, `values`, and
+         *                    `otherwise`.
          */
         template<typename T, typename U, int N>
         inline vec<U, N> select(
@@ -2047,8 +2157,10 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::less(std::declval<T>(), std::declval<T>())), N>
+        inline vec<
+            decltype(tue::math::less(
+                std::declval<T>(), std::declval<T>())),
+            N>
         less(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::less_vv(lhs, rhs);
@@ -2068,8 +2180,10 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::less_equal(std::declval<T>(), std::declval<T>())), N>
+        inline vec<
+            decltype(tue::math::less_equal(
+                std::declval<T>(), std::declval<T>())),
+            N>
         less_equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::less_equal_vv(lhs, rhs);
@@ -2089,8 +2203,10 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::greater(std::declval<T>(), std::declval<T>())), N>
+        inline vec<
+            decltype(tue::math::greater(
+                std::declval<T>(), std::declval<T>())),
+            N>
         greater(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::greater_vv(lhs, rhs);
@@ -2110,8 +2226,10 @@ namespace tue
          *             of components from `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::greater_equal(std::declval<T>(), std::declval<T>())), N>
+        inline vec<
+            decltype(tue::math::greater_equal(
+                std::declval<T>(), std::declval<T>())),
+            N>
         greater_equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::greater_equal_vv(lhs, rhs);
@@ -2131,8 +2249,10 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::equal(std::declval<T>(), std::declval<T>())), N>
+        inline vec<
+            decltype(tue::math::equal(
+                std::declval<T>(), std::declval<T>())),
+            N>
         equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::equal_vv(lhs, rhs);
@@ -2152,8 +2272,10 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int N>
-        inline vec<decltype(
-            tue::math::not_equal(std::declval<T>(), std::declval<T>())), N>
+        inline vec<
+            decltype(tue::math::not_equal(
+                std::declval<T>(), std::declval<T>())),
+            N>
         not_equal(const vec<T, N>& lhs, const vec<T, N>& rhs) noexcept
         {
             return tue::detail_::not_equal_vv(lhs, rhs);
@@ -2172,7 +2294,8 @@ namespace tue
          * \return     The dot product of `lhs` and `rhs`.
          */
         template<typename T, typename U, int N>
-        inline constexpr decltype(std::declval<T>() * std::declval<U>())
+        inline constexpr
+            decltype(std::declval<T>() * std::declval<U>())
         dot(const vec<T, N>& lhs, const vec<U, N>& rhs) noexcept
         {
             return tue::detail_::dot_vv(lhs, rhs);
@@ -2190,7 +2313,8 @@ namespace tue
          * \return     The cross product of `lhs` and `rhs`.
          */
         template<typename T, typename U>
-        inline constexpr vec3<decltype(std::declval<T>() * std::declval<U>())>
+        inline constexpr
+            vec3<decltype(std::declval<T>() * std::declval<U>())>
         cross(const vec3<T>& lhs, const vec3<U>& rhs) noexcept
         {
             return {
