@@ -461,7 +461,8 @@ namespace tue
          *               \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline std::enable_if_t<(C >= 2 && R >= 2),
+        inline std::enable_if_t<
+            (C >= 2 && R >= 2),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const T& angle) noexcept
         {
@@ -508,7 +509,8 @@ namespace tue
          *                \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline std::enable_if_t<(C >= 3 && R >= 3),
+        inline std::enable_if_t<
+            (C >= 3 && R >= 3),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(
             const T& axis_x, const T& axis_y, const T& axis_z,
@@ -573,7 +575,8 @@ namespace tue
          *               \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline std::enable_if_t<(C >= 3 && R >= 3),
+        inline std::enable_if_t<
+            (C >= 3 && R >= 3),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const vec3<T>& axis, const T& angle) noexcept
         {
@@ -612,7 +615,8 @@ namespace tue
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline std::enable_if_t<(C >= 3 && R >= 3),
+        inline std::enable_if_t<
+            (C >= 3 && R >= 3),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const vec4<T>& v) noexcept
         {
@@ -645,7 +649,8 @@ namespace tue
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline std::enable_if_t<(C >= 3 && R >= 3),
+        inline std::enable_if_t<
+            (C >= 3 && R >= 3),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const T& x, const T& y, const T& z) noexcept
         {
@@ -676,7 +681,8 @@ namespace tue
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline std::enable_if_t<(C >= 3 && R >= 3),
+        inline std::enable_if_t<
+            (C >= 3 && R >= 3),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const vec3<T>& v) noexcept
         {
@@ -715,7 +721,8 @@ namespace tue
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline constexpr std::enable_if_t<(C >= 3 && R >= 3),
+        inline constexpr std::enable_if_t<
+            (C >= 3 && R >= 3),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const quat<T>& q) noexcept
         {
@@ -888,7 +895,8 @@ namespace tue
          *                \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline std::enable_if_t<(C >= 4 && R >= 4),
+        inline std::enable_if_t<
+            (C >= 4 && R >= 4),
             mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         perspective_mat(
             const T& fovy,
@@ -939,7 +947,8 @@ namespace tue
          *                \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline constexpr std::enable_if_t<(C >= 3 && R >= 4),
+        inline constexpr std::enable_if_t<
+            (C >= 3 && R >= 4),
             mat<decltype(tue::math::recip(std::declval<T>())), C, R>>
         ortho_mat(
             const T& width,
