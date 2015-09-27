@@ -1143,7 +1143,8 @@ namespace tue
      * \return    The unary plus of each component of `v`.
      */
     template<typename T, int N>
-    inline constexpr vec<decltype(+std::declval<T>()), N>
+    inline constexpr
+        vec<decltype(+std::declval<T>()), N>
     operator+(const vec<T, N>& v) noexcept
     {
         return tue::detail_::unary_plus_operator_v(v);
@@ -1160,7 +1161,8 @@ namespace tue
      * \return    The unary minus of each component of `v`.
      */
     template<typename T, int N>
-    inline constexpr vec<decltype(-std::declval<T>()), N>
+    inline constexpr
+        vec<decltype(-std::declval<T>()), N>
     operator-(const vec<T, N>& v) noexcept
     {
         return tue::detail_::unary_minus_operator_v(v);
@@ -1177,7 +1179,8 @@ namespace tue
      * \return    The bitwise NOT of each component of `v`.
      */
     template<typename T, int N>
-    inline constexpr vec<decltype(~std::declval<T>()), N>
+    inline constexpr
+        vec<decltype(~std::declval<T>()), N>
     operator~(const vec<T, N>& v) noexcept
     {
         return tue::detail_::bitwise_not_operator_v(v);

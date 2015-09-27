@@ -535,21 +535,24 @@ namespace tue
     namespace detail_
     {
         template<typename T>
-        inline constexpr vec<decltype(+std::declval<T>()), 3>
+        inline constexpr
+            vec<decltype(+std::declval<T>()), 3>
         unary_plus_operator_v(const vec<T, 3>& v) noexcept
         {
             return { +v[0], +v[1], +v[2] };
         }
 
         template<typename T>
-        inline constexpr vec<decltype(-std::declval<T>()), 3>
+        inline constexpr
+            vec<decltype(-std::declval<T>()), 3>
         unary_minus_operator_v(const vec<T, 3>& v) noexcept
         {
             return { -v[0], -v[1], -v[2] };
         }
 
         template<typename T>
-        inline constexpr vec<decltype(~std::declval<T>()), 3>
+        inline constexpr
+            vec<decltype(~std::declval<T>()), 3>
         bitwise_not_operator_v(const vec<T, 3>& v) noexcept
         {
             return { ~v[0], ~v[1], ~v[2] };

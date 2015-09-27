@@ -37,6 +37,7 @@ namespace tue
 
     /*!
      * \brief     A 2x2 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -44,6 +45,7 @@ namespace tue
 
     /*!
      * \brief     A 2x3 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -51,6 +53,7 @@ namespace tue
 
     /*!
      * \brief     A 2x4 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -58,6 +61,7 @@ namespace tue
 
     /*!
      * \brief     A 3x2 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -65,6 +69,7 @@ namespace tue
 
     /*!
      * \brief     A 3x3 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -72,6 +77,7 @@ namespace tue
 
     /*!
      * \brief     A 3x4 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -79,6 +85,7 @@ namespace tue
 
     /*!
      * \brief     A 4x2 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -86,6 +93,7 @@ namespace tue
 
     /*!
      * \brief     A 4x3 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -93,6 +101,7 @@ namespace tue
 
     /*!
      * \brief     A 4x4 matrix.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -231,15 +240,19 @@ namespace tue
         /*!
          * \brief    Constructs each component along the main diagonal with the
          *           same value, and all other components with `0`.
+         *
          * \param x  The value to construct the main diagonal with.
          */
-        inline explicit constexpr mat(const T& x) noexcept;
+        inline explicit constexpr mat(
+            const T& x) noexcept;
 
         /*!
          * \brief    Constructs each column with the same values.
-         * \param v  The values to construct each column with.
+         *
+         * \param c  The values to construct each column with.
          */
-        inline explicit constexpr mat(const vec<T, R>& v) noexcept;
+        inline explicit constexpr mat(
+            const vec<T, R>& c) noexcept;
 
         /*!
          * \brief     Constructs a `mat` with the given columns.
@@ -291,6 +304,7 @@ namespace tue
          *
          * \tparam MC  The column count of `m`.
          * \tparam MR  The row count of `m`.
+         *
          * \param m    The `mat` to cast from.
          */
         template<int MC, int MR>
@@ -298,7 +312,9 @@ namespace tue
 
         /*!
          * \brief     Explicitly casts another `mat` to a new component type.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The `mat` to cast from.
          */
         template<typename U>
@@ -306,7 +322,9 @@ namespace tue
 
         /*!
          * \brief     Implicitly casts this `mat` to a new component type.
+         *
          * \tparam U  The new component type.
+         *
          * \return    A new `mat` with the new component type.
          */
         template<typename U>
@@ -315,7 +333,9 @@ namespace tue
         /*!
          * \brief    Returns a `mat` with each component constructed with the
          *           same value.
+         *
          * \param x  The value to construct each component with.
+         *
          * \return   A `mat` with each component constructed with the same
          *           value.
          */
@@ -332,6 +352,7 @@ namespace tue
 
         /*!
          * \brief   Returns a `mat` with each component set to `0`.
+         *
          * \return  A `mat` with each component set to `0`.
          */
         inline static constexpr mat<T, C, R> zero() noexcept;
@@ -339,8 +360,11 @@ namespace tue
         /*!
          * \brief     Returns a reference to the column at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam I  The index type.
+         *
          * \param i   The index.
+         *
          * \return    A reference to the column at the given index.
          */
         template<typename I>
@@ -349,8 +373,11 @@ namespace tue
         /*!
          * \brief     Returns a reference to the column at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam I  The index type.
+         *
          * \param i   The index.
+         *
          * \return    A reference to the column at the given index.
          */
         template<typename I>
@@ -374,12 +401,14 @@ namespace tue
 
         /*!
          * \brief   Returns a pointer to this `mat`'s underlying column array.
+         *
          * \return  A pointer to this `mat`'s underlying column array.
          */
         inline const vec<T, R>* columns() const noexcept;
 
         /*!
          * \brief   Returns a pointer to this `mat`'s underlying column array.
+         *
          * \return  A pointer to this `mat`'s underlying column array.
          */
         inline vec<T, R>* columns() noexcept;
@@ -387,8 +416,11 @@ namespace tue
         /*!
          * \brief     Returns a copy of the column at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam I  The index type.
+         *
          * \param i   The index.
+         *
          * \return    A copy of the column at the given index.
          */
         template<typename I>
@@ -409,8 +441,11 @@ namespace tue
         /*!
          * \brief     Returns a copy of the row at the given index.
          * \details   No bounds checking is performed.
+         *
          * \tparam J  The index type.
+         *
          * \param j   The index.
+         *
          * \return    A copy of the row at the given index.
          */
         template<typename J>
@@ -430,32 +465,39 @@ namespace tue
 
         /*!
          * \brief   Pre-increments each component of this `mat`.
+         *
          * \return  A reference to this `mat`.
          */
         inline mat<T, C, R>& operator++() noexcept;
 
         /*!
          * \brief   Post-increments each component of this `mat`.
+         *
          * \return  A copy of this `mat` before being incremented.
          */
         inline mat<T, C, R> operator++(int) noexcept;
 
         /*!
          * \brief   Pre-decrements each component of this `mat`.
+         *
          * \return  A reference to this `mat`.
          */
         inline mat<T, C, R>& operator--() noexcept;
 
         /*!
          * \brief   Post-decrements each component of this `mat`.
+         *
          * \return  A copy of this `mat` before being decremented.
          */
         inline mat<T, C, R> operator--(int) noexcept;
 
         /*!
          * \brief     Adds `x` to each component of this `mat`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to add to each component of this `mat`.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -465,8 +507,11 @@ namespace tue
         /*!
          * \brief     Adds each component of `m` to the corresponding component
          *            of this `mat`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The values to add to each component of this `mat`.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -475,8 +520,11 @@ namespace tue
 
         /*!
          * \brief     Subtracts `x` from each component of this `mat`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to subtract from each component of this `mat`.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -486,8 +534,11 @@ namespace tue
         /*!
          * \brief     Subtracts each component of `m` from the corresponding
          *            component of this `mat`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The values to subtract from each component of this `mat`.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -496,8 +547,11 @@ namespace tue
 
         /*!
          * \brief     Multiplies each component of this `mat` by `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to multiply each component of this `mat` by.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -506,8 +560,11 @@ namespace tue
 
         /*!
          * \brief     Matrix multiplies this mat by `m`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   A `mat`.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -516,8 +573,11 @@ namespace tue
 
         /*!
          * \brief     Divides each component of this `mat` by `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to divide each component of this `mat` by.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -527,8 +587,11 @@ namespace tue
         /*!
          * \brief     Divides each component of this `mat` by the corresponding
          *            component from `m`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The values to divide each component of this `mat` by.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -537,8 +600,11 @@ namespace tue
 
         /*!
          * \brief     Modulos each component of this `mat` by `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to modulo each component of this `mat` by.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -548,8 +614,11 @@ namespace tue
         /*!
          * \brief     Modulos each component of this `mat` by the corresponding
          *            component from `m`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The values to modulo each component of this `mat` by.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -558,9 +627,12 @@ namespace tue
 
         /*!
          * \brief     Bitwise ANDs each component of this `mat` with `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise AND each component of this `mat`
          *            with.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -570,9 +642,12 @@ namespace tue
         /*!
          * \brief     Bitwise ANDs each component of this `mat` with the
          *            corresponding component from `m`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The values to bitwise AND each component of this `mat`
          *            with.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -581,8 +656,11 @@ namespace tue
 
         /*!
          * \brief     Bitwise ORs each component of this `mat` with `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise OR each component of this `mat` with.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -592,9 +670,12 @@ namespace tue
         /*!
          * \brief     Bitwise ORs each component of this `mat` with the
          *            corresponding component from `m`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The values to bitwise OR each component of this `mat`
          *            with.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -603,9 +684,12 @@ namespace tue
 
         /*!
          * \brief     Bitwise XORs each component of this `mat` with `x`.
+         *
          * \tparam U  The type of parameter `x`.
+         *
          * \param x   The value to bitwise XOR each component of this `mat`
          *            with.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -615,9 +699,12 @@ namespace tue
         /*!
          * \brief     Bitwise XORs each component of this `mat` with the
          *            corresponding component from `m`.
+         *
          * \tparam U  The component type of `m`.
+         *
          * \param m   The values to bitwise XOR each component of this `mat`
          *            with.
+         *
          * \return    A reference to this `mat`.
          */
         template<typename U>
@@ -754,7 +841,8 @@ namespace tue
      * \return    The unary plus of each component of `m`.
      */
     template<typename T, int C, int R>
-    inline constexpr mat<decltype(+std::declval<T>()), C, R>
+    inline constexpr
+        mat<decltype(+std::declval<T>()), C, R>
     operator+(const mat<T, C, R>& m) noexcept
     {
         return tue::detail_::unary_plus_operator_m(m);
@@ -772,7 +860,8 @@ namespace tue
      * \return    The unary minus of each component of `m`.
      */
     template<typename T, int C, int R>
-    inline constexpr mat<decltype(-std::declval<T>()), C, R>
+    inline constexpr
+        mat<decltype(-std::declval<T>()), C, R>
     operator-(const mat<T, C, R>& m) noexcept
     {
         return tue::detail_::unary_minus_operator_m(m);
@@ -790,7 +879,8 @@ namespace tue
      * \return    The bitwise NOT of each component of `m`.
      */
     template<typename T, int C, int R>
-    inline constexpr mat<decltype(~std::declval<T>()), C, R>
+    inline constexpr
+        mat<decltype(~std::declval<T>()), C, R>
     operator~(const mat<T, C, R>& m) noexcept
     {
         return tue::detail_::bitwise_not_operator_m(m);
@@ -856,7 +946,8 @@ namespace tue
      *             component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() + std::declval<U>()), C, R>
     operator+(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::addition_operator_mm(lhs, rhs);
@@ -924,7 +1015,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() - std::declval<U>()), C, R>
     operator-(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::subtraction_operator_mm(lhs, rhs);
@@ -989,7 +1081,8 @@ namespace tue
      * \return     The matrix product of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), C>
+    inline constexpr
+        vec<decltype(std::declval<T>() * std::declval<U>()), C>
     operator*(const vec<T, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_vm(lhs, rhs);
@@ -1010,7 +1103,8 @@ namespace tue
      * \return     The matrix product of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr vec<decltype(std::declval<T>() * std::declval<U>()), R>
+    inline constexpr
+        vec<decltype(std::declval<T>() * std::declval<U>()), R>
     operator*(const mat<T, C, R>& lhs, const vec<U, C>& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_mv(lhs, rhs);
@@ -1032,7 +1126,8 @@ namespace tue
      * \return     The matrix product of `lhs` and `rhs`.
      */
     template<typename T, typename U, int C, int N, int R>
-    inline constexpr mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
     operator*(const mat<T, N, R>& lhs, const mat<U, C, N>& rhs) noexcept
     {
         return tue::detail_::multiplication_operator_mm(lhs, rhs);
@@ -1098,7 +1193,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() / std::declval<U>()), C, R>
     operator/(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::division_operator_mm(lhs, rhs);
@@ -1164,7 +1260,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() % std::declval<U>()), C, R>
     operator%(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::modulo_operator_mm(lhs, rhs);
@@ -1232,7 +1329,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() & std::declval<U>()), C, R>
     operator&(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_and_operator_mm(lhs, rhs);
@@ -1298,7 +1396,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() | std::declval<U>()), C, R>
     operator|(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_or_operator_mm(lhs, rhs);
@@ -1366,7 +1465,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() ^ std::declval<U>()), C, R>
     operator^(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_xor_operator_mm(lhs, rhs);
@@ -1434,8 +1534,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(
-        std::declval<T>() shift_left std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() shift_left std::declval<U>()), C, R>
     operator<<(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_left_operator_mm(lhs, rhs);
@@ -1503,8 +1603,8 @@ namespace tue
      *             corresponding component of `rhs`.
      */
     template<typename T, typename U, int C, int R>
-    inline constexpr mat<decltype(
-        std::declval<T>() shift_right std::declval<U>()), C, R>
+    inline constexpr
+        mat<decltype(std::declval<T>() shift_right std::declval<U>()), C, R>
     operator>>(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
     {
         return tue::detail_::bitwise_shift_right_operator_mm(lhs, rhs);
@@ -1609,8 +1709,7 @@ namespace tue
          *                 in.
          */
         template<typename T, int C, int R>
-        inline void
-        sincos(
+        inline void sincos(
             const mat<T, C, R>& m,
             mat<T, C, R>& sin_out,
             mat<T, C, R>& cos_out) noexcept
@@ -1824,9 +1923,9 @@ namespace tue
          * \param values      Another `mat`.
          * \param otherwise   Another `mat`.
          *
-         * \return            `tue::math::select()` for each corresponding
-         *                    trio of components from `conditions`, `values`,
-         *                    and `otherwise`.
+         * \return            `tue::math::select()` for each corresponding trio
+         *                    of components from `conditions`, `values`, and
+         *                    `otherwise`.
          */
         template<typename T, typename U, int C, int R>
         inline mat<U, C, R> select(
@@ -1852,8 +1951,9 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline mat<decltype(
-            tue::math::less(std::declval<T>(), std::declval<T>())),
+        inline mat<
+            decltype(tue::math::less(
+                std::declval<T>(), std::declval<T>())),
             C, R>
         less(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
@@ -1875,8 +1975,9 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline mat<decltype(
-            tue::math::less_equal(std::declval<T>(), std::declval<T>())),
+        inline mat<
+            decltype(tue::math::less_equal(
+                std::declval<T>(), std::declval<T>())),
             C, R>
         less_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
@@ -1898,8 +1999,9 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline mat<decltype(
-            tue::math::greater(std::declval<T>(), std::declval<T>())),
+        inline mat<
+            decltype(tue::math::greater(
+                std::declval<T>(), std::declval<T>())),
             C, R>
         greater(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
@@ -1921,8 +2023,9 @@ namespace tue
          *             of components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline mat<decltype(
-            tue::math::greater_equal(std::declval<T>(), std::declval<T>())),
+        inline mat<
+            decltype(tue::math::greater_equal(
+                std::declval<T>(), std::declval<T>())),
             C, R>
         greater_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
@@ -1944,8 +2047,9 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline mat<decltype(
-            tue::math::equal(std::declval<T>(), std::declval<T>())),
+        inline mat<
+            decltype(tue::math::equal(
+                std::declval<T>(), std::declval<T>())),
             C, R>
         equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
@@ -1967,8 +2071,9 @@ namespace tue
          *             components from `lhs` and `rhs`.
          */
         template<typename T, int C, int R>
-        inline mat<decltype(
-            tue::math::not_equal(std::declval<T>(), std::declval<T>())),
+        inline mat<
+            decltype(tue::math::not_equal(
+                std::declval<T>(), std::declval<T>())),
             C, R>
         not_equal(const mat<T, C, R>& lhs, const mat<T, C, R>& rhs) noexcept
         {
@@ -1991,8 +2096,8 @@ namespace tue
          *             corresponding component of `rhs`.
          */
         template<typename T, typename U, int C, int R>
-        inline constexpr mat<decltype(
-            std::declval<T>() * std::declval<U>()), C, R>
+        inline constexpr
+            mat<decltype(std::declval<T>() * std::declval<U>()), C, R>
         comp_mult(const mat<T, C, R>& lhs, const mat<U, C, R>& rhs) noexcept
         {
             return tue::detail_::comp_mult_mm(lhs, rhs);
@@ -2010,7 +2115,8 @@ namespace tue
          * \return    The transpose of `m`.
          */
         template<typename T, int C, int R>
-        inline constexpr mat<T, R, C>
+        inline constexpr
+            mat<T, R, C>
         transpose(const mat<T, C, R>& m) noexcept
         {
             return tue::detail_::transpose_m(m);
