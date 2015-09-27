@@ -22,112 +22,128 @@ namespace tue
     class simd;
 
     template<typename T>
-    struct is_vec_component :
+    struct is_vec_component
+    :
         public std::integral_constant<bool, false>
     {
         using std::integral_constant<bool, false>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<float> :
+    struct is_vec_component<float>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<double> :
+    struct is_vec_component<double>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::int8_t> :
+    struct is_vec_component<std::int8_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::int16_t> :
+    struct is_vec_component<std::int16_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::int32_t> :
+    struct is_vec_component<std::int32_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::int64_t> :
+    struct is_vec_component<std::int64_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::uint8_t> :
+    struct is_vec_component<std::uint8_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::uint16_t> :
+    struct is_vec_component<std::uint16_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::uint32_t> :
+    struct is_vec_component<std::uint32_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<std::uint64_t> :
+    struct is_vec_component<std::uint64_t>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<bool8> :
+    struct is_vec_component<bool8>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<bool16> :
+    struct is_vec_component<bool16>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<bool32> :
+    struct is_vec_component<bool32>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_vec_component<bool64> :
+    struct is_vec_component<bool64>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<typename T, int N>
-    struct is_vec_component<simd<T, N>> :
+    struct is_vec_component<simd<T, N>>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;

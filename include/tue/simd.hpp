@@ -20,6 +20,7 @@ namespace tue
 {
     /*!
      * \defgroup  simd_hpp <tue/simd.hpp>
+     *
      * \brief     The `simd` class template and its associated utility structs
      *            and functions.
      * @{
@@ -135,6 +136,7 @@ namespace tue
 
     /*!
      * \brief     A 2-component SIMD vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -142,6 +144,7 @@ namespace tue
 
     /*!
      * \brief     A 4-component SIMD vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -149,6 +152,7 @@ namespace tue
 
     /*!
      * \brief     An 8-component SIMD vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -156,6 +160,7 @@ namespace tue
 
     /*!
      * \brief     A 16-component SIMD vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -163,6 +168,7 @@ namespace tue
 
     /*!
      * \brief     A 32-component SIMD vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -170,6 +176,7 @@ namespace tue
 
     /*!
      * \brief     A 64-component SIMD vector.
+     *
      * \tparam T  The component type.
      */
     template<typename T>
@@ -523,6 +530,7 @@ namespace tue
 
         /*!
          * \brief     Constructs each component with the same value.
+         *
          * \param x   The value to construct each component with.
          */
         explicit simd(T x) noexcept
@@ -541,7 +549,11 @@ namespace tue
          * \param y  The value to construct the second component with.
          */
         template<int M = N, typename = std::enable_if_t<M == 2>>
-        inline simd(T x, T y) noexcept;
+        simd(T x, T y) noexcept
+        {
+            this->impl_[0] = simd<T, 1>(x);
+            this->impl_[1] = simd<T, 1>(y);
+        }
 
         /*!
          * \brief    Constructs each component with the value of the
@@ -562,7 +574,9 @@ namespace tue
 
         /*!
          * \brief     Explicitly casts another `simd` to a new component type.
+         *
          * \tparam U  The component type of `s`.
+         *
          * \param s   The `simd` to cast from.
          */
         template<typename U>
@@ -575,6 +589,7 @@ namespace tue
 
         /*!
          * \brief   Returns an `simd` with each component set to `0`.
+         *
          * \return  An `simd` with each component set to `0`.
          */
         static simd<T, N> zero() noexcept
@@ -594,6 +609,7 @@ namespace tue
          *              undefined.
          *
          * \param data  The source component array.
+         *
          * \return      The new `simd`.
          */
         static simd<T, N> load(const T* data) noexcept
@@ -611,6 +627,7 @@ namespace tue
          *              `N` components, behavior is undefined.
          *
          * \param data  The source component array.
+         *
          * \return      The new `simd`.
          */
         static simd<T, N> loadu(const T* data) noexcept
@@ -1286,10 +1303,10 @@ namespace tue
          * \tparam N       The component count of `s`.
          *
          * \param s        An `simd`.
-         * \param sin_out  A reference to the `simd` to store the `sin()` results
-         *                 in.
-         * \param cos_out  A reference to the `simd` to store the `cos()` results
-         *                 in.
+         * \param sin_out  A reference to the `simd` to store the `sin()`
+         *                 results in.
+         * \param cos_out  A reference to the `simd` to store the `cos()`
+         *                 results in.
          */
         template<typename T, int N>
         inline std::enable_if_t<std::is_floating_point<T>::value>
@@ -1517,9 +1534,9 @@ namespace tue
          * \param values      Another `simd`.
          * \param otherwise   Another `simd`.
          *
-         * \return            `tue::math::select()` for each corresponding
-         *                    trio of components from `conditions`, `values`,
-         *                    and `otherwise`.
+         * \return            `tue::math::select()` for each corresponding trio
+         *                    of components from `conditions`, `values`, and
+         *                    `otherwise`.
          */
         template<typename T, typename U, int N>
         inline std::enable_if_t<

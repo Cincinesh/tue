@@ -36,10 +36,20 @@ namespace tue
             this->data_[1] = x;
         }
 
+        template<int M = 2, typename = std::enable_if_t<M == 2>>
         simd(T x, T y) noexcept
         {
             this->data_[0] = x;
             this->data_[1] = y;
+        }
+
+        template<int M = 2, typename = std::enable_if_t<M == 4>>
+        simd(T x, T y, T z, T w) noexcept
+        {
+            this->data_[0] = x;
+            this->data_[1] = y;
+            this->data_[2] = z;
+            this->data_[3] = w;
         }
 
         template<typename U>

@@ -13,21 +13,24 @@
 namespace tue
 {
     template<typename T>
-    struct is_floating_point_simd_component :
+    struct is_floating_point_simd_component
+    :
         public std::integral_constant<bool, false>
     {
         using std::integral_constant<bool, false>::integral_constant;
     };
 
     template<>
-    struct is_floating_point_simd_component<float> :
+    struct is_floating_point_simd_component<float>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
     };
 
     template<>
-    struct is_floating_point_simd_component<double> :
+    struct is_floating_point_simd_component<double>
+    :
         public std::integral_constant<bool, true>
     {
         using std::integral_constant<bool, true>::integral_constant;
