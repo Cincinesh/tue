@@ -1927,8 +1927,7 @@ namespace tue
          *                 in.
          */
         template<typename T, int N>
-        inline void
-        sincos(
+        inline void sincos(
             const vec<T, N>& v,
             vec<T, N>& sin_out,
             vec<T, N>& cos_out) noexcept

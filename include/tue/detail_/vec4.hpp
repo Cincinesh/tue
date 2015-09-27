@@ -36,34 +36,44 @@ namespace tue
 
         vec() noexcept = default;
 
-        explicit constexpr vec(const T& x) noexcept :
+        explicit constexpr vec(
+            const T& x) noexcept
+        :
             impl_({{ x, x, x, x }})
         {
         }
 
-        constexpr vec(const T& x, const T& y, const T& z, const T& w) noexcept :
+        constexpr vec(
+            const T& x, const T& y, const T& z, const T& w) noexcept
+        :
             impl_({{ x, y, z, w }})
         {
         }
 
-        constexpr vec(const vec2<T>& xy, const T& z, const T& w) noexcept :
+        constexpr vec(
+            const vec2<T>& xy, const T& z, const T& w) noexcept
+        :
             impl_({{ xy[0], xy[1], z, w }})
         {
         }
 
-        constexpr vec(const vec3<T>& xyz, const T& w) noexcept :
+        constexpr vec(
+            const vec3<T>& xyz, const T& w) noexcept
+        :
             impl_({{ xyz[0], xyz[1], xyz[2], w }})
         {
         }
 
         template<int VN, typename = std::enable_if_t<(VN > 4)>>
-        explicit constexpr vec(const vec<T, VN>& v) noexcept :
+        explicit constexpr vec(const vec<T, VN>& v) noexcept
+        :
             impl_({{ v[0], v[1], v[2], v[3] }})
         {
         }
 
         template<typename U>
-        explicit constexpr vec(const vec<U, 4>& v) noexcept :
+        explicit constexpr vec(const vec<U, 4>& v) noexcept
+        :
             impl_({{ T(v[0]), T(v[1]), T(v[2]), T(v[3]) }})
         {
         }
@@ -680,8 +690,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() + std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() + std::declval<U>()), 4>
         addition_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -694,8 +704,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() + std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() + std::declval<U>()), 4>
         addition_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -708,8 +718,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() + std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() + std::declval<U>()), 4>
         addition_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -722,8 +732,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() - std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() - std::declval<U>()), 4>
         subtraction_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -736,8 +746,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() - std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() - std::declval<U>()), 4>
         subtraction_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -750,8 +760,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() - std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() - std::declval<U>()), 4>
         subtraction_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -764,8 +774,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() * std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() * std::declval<U>()), 4>
         multiplication_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -778,8 +788,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() * std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() * std::declval<U>()), 4>
         multiplication_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -792,8 +802,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() * std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() * std::declval<U>()), 4>
         multiplication_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -806,8 +816,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() / std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() / std::declval<U>()), 4>
         division_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -820,8 +830,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() / std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() / std::declval<U>()), 4>
         division_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -834,8 +844,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() / std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() / std::declval<U>()), 4>
         division_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -848,8 +858,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() % std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() % std::declval<U>()), 4>
         modulo_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -862,8 +872,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() % std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() % std::declval<U>()), 4>
         modulo_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -876,8 +886,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() % std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() % std::declval<U>()), 4>
         modulo_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -890,8 +900,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() & std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() & std::declval<U>()), 4>
         bitwise_and_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -904,8 +914,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() & std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() & std::declval<U>()), 4>
         bitwise_and_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -918,8 +928,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() & std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() & std::declval<U>()), 4>
         bitwise_and_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -932,8 +942,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() | std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() | std::declval<U>()), 4>
         bitwise_or_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -946,8 +956,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() | std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() | std::declval<U>()), 4>
         bitwise_or_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -960,8 +970,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() | std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() | std::declval<U>()), 4>
         bitwise_or_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -974,8 +984,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() ^ std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() ^ std::declval<U>()), 4>
         bitwise_xor_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -988,8 +998,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() ^ std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() ^ std::declval<U>()), 4>
         bitwise_xor_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -1002,8 +1012,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() ^ std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() ^ std::declval<U>()), 4>
         bitwise_xor_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -1016,8 +1026,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() << std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() << std::declval<U>()), 4>
         bitwise_shift_left_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -1030,8 +1040,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() << std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() << std::declval<U>()), 4>
         bitwise_shift_left_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -1044,8 +1054,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() << std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() << std::declval<U>()), 4>
         bitwise_shift_left_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -1058,8 +1068,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() >> std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() >> std::declval<U>()), 4>
         bitwise_shift_right_operator_xv(
             const T& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -1072,8 +1082,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() >> std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() >> std::declval<U>()), 4>
         bitwise_shift_right_operator_vx(
             const vec<T, 4>& lhs, const U& rhs) noexcept
         {
@@ -1086,8 +1096,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr vec<decltype(
-            std::declval<T>() >> std::declval<U>()), 4>
+        inline constexpr
+            vec<decltype(std::declval<T>() >> std::declval<U>()), 4>
         bitwise_shift_right_operator_vv(
             const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
@@ -1144,8 +1154,7 @@ namespace tue
         }
 
         template<typename T>
-        inline void
-        sincos_v(
+        inline void sincos_v(
             const vec<T, 4>& v,
             vec<T, 4>& sin_out,
             vec<T, 4>& cos_out) noexcept
@@ -1286,8 +1295,10 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::less(std::declval<T>(), std::declval<T>())), 4>
+        inline vec<
+            decltype(tue::math::less(
+                std::declval<T>(), std::declval<T>())),
+            4>
         less_vv(
             const vec<T, 4>& lhs, const vec<T, 4>& rhs) noexcept
         {
@@ -1300,8 +1311,10 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::less_equal(std::declval<T>(), std::declval<T>())), 4>
+        inline vec<
+            decltype(tue::math::less_equal(
+                std::declval<T>(), std::declval<T>())),
+            4>
         less_equal_vv(
             const vec<T, 4>& lhs, const vec<T, 4>& rhs) noexcept
         {
@@ -1314,8 +1327,10 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::greater(std::declval<T>(), std::declval<T>())), 4>
+        inline vec<
+            decltype(tue::math::greater(
+                std::declval<T>(), std::declval<T>())),
+            4>
         greater_vv(
             const vec<T, 4>& lhs, const vec<T, 4>& rhs) noexcept
         {
@@ -1328,8 +1343,10 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::greater_equal(std::declval<T>(), std::declval<T>())), 4>
+        inline vec<
+            decltype(tue::math::greater_equal(
+                std::declval<T>(), std::declval<T>())),
+            4>
         greater_equal_vv(
             const vec<T, 4>& lhs, const vec<T, 4>& rhs) noexcept
         {
@@ -1342,8 +1359,10 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::equal(std::declval<T>(), std::declval<T>())), 4>
+        inline vec<
+            decltype(tue::math::equal(
+                std::declval<T>(), std::declval<T>())),
+            4>
         equal_vv(
             const vec<T, 4>& lhs, const vec<T, 4>& rhs) noexcept
         {
@@ -1356,8 +1375,10 @@ namespace tue
         }
 
         template<typename T>
-        inline vec<decltype(
-            tue::math::not_equal(std::declval<T>(), std::declval<T>())), 4>
+        inline vec<
+            decltype(tue::math::not_equal(
+                std::declval<T>(), std::declval<T>())),
+            4>
         not_equal_vv(
             const vec<T, 4>& lhs, const vec<T, 4>& rhs) noexcept
         {
@@ -1370,7 +1391,8 @@ namespace tue
         }
 
         template<typename T, typename U>
-        inline constexpr decltype(std::declval<T>() * std::declval<U>())
+        inline constexpr
+            decltype(std::declval<T>() * std::declval<U>())
         dot_vv(const vec<T, 4>& lhs, const vec<U, 4>& rhs) noexcept
         {
             return lhs[0] * rhs[0]
