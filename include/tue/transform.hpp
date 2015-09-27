@@ -48,10 +48,10 @@ namespace tue
          *              the axis of rotation and its magnitude the angle (again,
          *              radians counter-clockwise around the axis). You could
          *              also imagine it as the composite of three separate
-         *              rotations with each component representing an angle
-         *              around the corresponding principal axis. Rotation
-         *              vectors are most useful when rotations need to be
-         *              interpolated and/or multiplied, such as when
+         *              rotations with each component representing an angle of
+         *              rotation around the corresponding principal axis.
+         *              Rotation vectors are most useful when rotations need to
+         *              be interpolated and/or multiplied, such as when
          *              representing angular velocity.
          *            - <b>A rotation quaternion</b><br/>
          *              A rotation quaternion is a little more complicated. It's
@@ -63,7 +63,10 @@ namespace tue
          *              angle itself in the fourth component. Rotation
          *              quaternions are best used when representing an
          *              orientation in 3-dimensional space or when composing
-         *              multiple rotations into one.
+         *              multiple rotations into one. Since they're defined by
+         *              trigonometric functions, computationally expensive
+         *              trigonometry isn't needed when using them to rotate
+         *              vectors or when generating rotation matrices.
          *            - <b>A rotation matrix</b><br/>
          *              A rotation matrix is just a specific type of
          *              transformation matrix that can rotate vectors using
@@ -86,7 +89,7 @@ namespace tue
          * \return    The axis-angle vector.
          */
         template<typename T>
-        inline vec4<decltype(tue::math::rsqrt(std::declval<T>()))>
+        inline vec4<decltype(tue::math::sin(std::declval<T>()))>
         axis_angle(const T& x, const T& y, const T& z) noexcept
         {
             const auto length2 = x*x + y*y + z*z;
@@ -113,7 +116,7 @@ namespace tue
          * \return    The axis-angle vector.
          */
         template<typename T>
-        inline vec4<decltype(tue::math::rsqrt(std::declval<T>()))>
+        inline vec4<decltype(tue::math::sin(std::declval<T>()))>
         axis_angle(const vec3<T>& v) noexcept
         {
             return tue::transform::axis_angle(v[0], v[1], v[2]);
@@ -121,6 +124,7 @@ namespace tue
 
         /*!
          * \brief         Converts an axis-angle pair to a rotation vector.
+         * \details       This function assumes the axis is normalized.
          *
          * \tparam T      The axis-angle component type.
          *
@@ -132,7 +136,7 @@ namespace tue
          * \return        The rotation vector.
          */
         template<typename T>
-        inline constexpr vec3<T>
+        inline constexpr vec3<decltype(tue::math::sin(std::declval<T>()))>
         rotation_vec(
             const T& axis_x, const T& axis_y, const T& axis_z,
             const T& angle) noexcept
@@ -146,6 +150,7 @@ namespace tue
 
         /*!
          * \brief        Converts an axis-angle pair to a rotation vector.
+         * \details      This function assumes the axis is normalized.
          *
          * \tparam T     The axis-angle component type.
          *
@@ -155,7 +160,7 @@ namespace tue
          * \return       The rotation vector.
          */
         template<typename T>
-        inline constexpr vec3<T>
+        inline constexpr vec3<decltype(tue::math::sin(std::declval<T>()))>
         rotation_vec(const vec3<T>& axis, const T& angle) noexcept
         {
             return tue::transform::rotation_vec(
@@ -164,12 +169,13 @@ namespace tue
 
         /*!
          * \brief     Converts an axis-angle vector to a rotation vector.
+         * \details   This function assumes the axis is normalized.
          * \tparam T  The axis-angle component type.
          * \param v   The axis-angle vector.
          * \return    The rotation vector.
          */
         template<typename T>
-        inline constexpr vec3<T>
+        inline constexpr vec3<decltype(tue::math::sin(std::declval<T>()))>
         rotation_vec(const vec4<T>& v) noexcept
         {
             return tue::transform::rotation_vec(
@@ -178,6 +184,7 @@ namespace tue
 
         /*!
          * \brief         Converts an axis-angle pair to a rotation quaternion.
+         * \details       This function assumes the axis is normalized.
          *
          * \tparam T      The axis-angle component type.
          *
@@ -201,6 +208,7 @@ namespace tue
 
         /*!
          * \brief        Converts an axis-angle pair to a rotation quaternion.
+         * \details      This function assumes the axis is normalized.
          *
          * \tparam T     The axis-angle component type.
          *
@@ -219,6 +227,7 @@ namespace tue
 
         /*!
          * \brief     Converts an axis-angle vector to a rotation quaternion.
+         * \details   This function assumes the axis is normalized.
          * \tparam T  The axis-angle component type.
          * \param v   The axis-angle vector.
          * \return    The rotation quaternion.
@@ -271,7 +280,7 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D translation matrix.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -308,7 +317,7 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D translation matrix.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -340,7 +349,7 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D translation matrix.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -378,7 +387,7 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D translation matrix.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -410,7 +419,7 @@ namespace tue
 
         /*!
          * \brief        Computes a 2D rotation matrix.
-         * \details      The returned matrix might be the tranpose of what you
+         * \details      The returned matrix might be the transpose of what you
          *               expect from other libraries. This library generally
          *               prefers compound transformations be written from
          *               left-to-right instead of right-to-left.
@@ -449,7 +458,9 @@ namespace tue
 
         /*!
          * \brief         Computes a 3D rotation matrix from an axis-angle pair.
-         * \details       The returned matrix might be the tranpose of what you
+         * \details       This function assumes the axis is normalized.
+         *                <br/>
+         *                The returned matrix might be the transpose of what you
          *                expect from other libraries. This library generally
          *                prefers compound transformations be written from
          *                left-to-right instead of right-to-left.
@@ -514,7 +525,9 @@ namespace tue
 
         /*!
          * \brief        Computes a 3D rotation matrix from an axis-angle pair.
-         * \details      The returned matrix might be the tranpose of what you
+         * \details      This function assumes the axis is normalized.
+         *               <br/>
+         *               The returned matrix might be the transpose of what you
          *               expect from other libraries. This library generally
          *               prefers compound transformations be written from
          *               left-to-right instead of right-to-left.
@@ -552,7 +565,9 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D rotation matrix from an axis-angle vector.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   This function assumes the axis is normalized.
+         *            <br/>
+         *            The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -589,7 +604,7 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D rotation matrix from a rotation vector.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -622,7 +637,7 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D rotation matrix from a rotation vector.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -653,7 +668,9 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D rotation matrix from a rotation quaternion.
-         * \details   The returned matrix might be the tranpose of what you
+         * \details   This function assumes the quaternion is normalized.
+         *            <br/>
+         *            The returned matrix might be the transpose of what you
          *            expect from other libraries. This library generally
          *            prefers compound transformations be written from
          *            left-to-right instead of right-to-left.
@@ -680,7 +697,8 @@ namespace tue
          *            \endcode
          */
         template<typename T, int C = 4, int R = 4>
-        inline constexpr std::enable_if_t<(C >= 3 && R >= 3), mat<T, C, R>>
+        inline constexpr std::enable_if_t<(C >= 3 && R >= 3),
+            mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
         rotation_mat(const quat<T>& q) noexcept
         {
             return tue::detail_::mat_utils<T, C, R>::create(
@@ -701,10 +719,6 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D scale matrix.
-         * \details   The returned matrix might be the tranpose of what you
-         *            expect from other libraries. This library generally
-         *            prefers compound transformations be written from
-         *            left-to-right instead of right-to-left.
          *
          * \tparam T  The type of parameters `x` and `y`.
          * \tparam C  The column count of the returned matrix.
@@ -738,10 +752,6 @@ namespace tue
 
         /*!
          * \brief     Computes a 2D scale matrix.
-         * \details   The returned matrix might be the tranpose of what you
-         *            expect from other libraries. This library generally
-         *            prefers compound transformations be written from
-         *            left-to-right instead of right-to-left.
          *
          * \tparam T  The component type of `v`.
          * \tparam C  The column count of the returned matrix.
@@ -770,10 +780,6 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D scale matrix.
-         * \details   The returned matrix might be the tranpose of what you
-         *            expect from other libraries. This library generally
-         *            prefers compound transformations be written from
-         *            left-to-right instead of right-to-left.
          *
          * \tparam T  The type of parameters `x`, `y`, and `z`.
          * \tparam C  The column count of the returned matrix.
@@ -808,10 +814,6 @@ namespace tue
 
         /*!
          * \brief     Computes a 3D scale matrix.
-         * \details   The returned matrix might be the tranpose of what you
-         *            expect from other libraries. This library generally
-         *            prefers compound transformations be written from
-         *            left-to-right instead of right-to-left.
          *
          * \tparam T  The component type of `v`.
          * \tparam C  The column count of the returned matrix.
@@ -840,7 +842,7 @@ namespace tue
 
         /*!
          * \brief         Computes a 3D perspective matrix.
-         * \details       The returned matrix might be the tranpose of what you
+         * \details       The returned matrix might be the transpose of what you
          *                expect from other libraries. This library generally
          *                prefers compound transformations be written from
          *                left-to-right instead of right-to-left.
@@ -893,7 +895,7 @@ namespace tue
 
         /*!
          * \brief         Computes an orthographic projection matrix.
-         * \details       The returned matrix might be the tranpose of what you
+         * \details       The returned matrix might be the transpose of what you
          *                expect from other libraries. This library generally
          *                prefers compound transformations be written from
          *                left-to-right instead of right-to-left.
