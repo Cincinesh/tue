@@ -12,7 +12,9 @@ namespace tue
 {
     /*!
      * \defgroup  unused_hpp <tue/unused.hpp>
+     *
      * \brief     The `unused()` function template.
+     *
      * @{
      */
 

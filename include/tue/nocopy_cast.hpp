@@ -10,6 +10,11 @@
 
 #include <type_traits>
 
+/*!
+ * \defgroup  nocopy_cast_hpp <tue/nocopy_cast.hpp>
+ *
+ * \brief     The `nocopy_cast<T>()` function template.
+ */
 namespace tue
 {
     namespace detail_
@@ -30,8 +35,7 @@ namespace tue
     }
 
     /*!
-     * \defgroup  nocopy_cast_hpp <tue/nocopy_cast.hpp>
-     * \brief     The `nocopy_cast<T>()` function template.
+     * \addtogroup  nocopy_cast_hpp
      * @{
      */
 

@@ -18,7 +18,9 @@ namespace tue
 {
     /*!
      * \defgroup  mat_hpp <tue/mat.hpp>
+     *
      * \brief     The `mat` class template and its associated functions.
+     *
      * @{
      */
 

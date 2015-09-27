@@ -18,6 +18,14 @@
 #include "detail_/is_simd_component.hpp"
 #include "sized_bool.hpp"
 
+/*!
+ * \defgroup  math_hpp <tue/math.hpp>
+ *
+ * \brief     Global math functions for basic scalar types.
+ *
+ * \details   The allowable types are restricted to those which can be used as
+ *            SIMD components.
+ */
 namespace tue
 {
     namespace detail_
@@ -39,6 +47,11 @@ namespace tue
 
     namespace math
     {
+        /*!
+         * \addtogroup  math_hpp
+         * @{
+         */
+
         /*!
          * \defgroup  math_hpp <tue/math.hpp>
          * \brief     Global math functions for basic scalar types.

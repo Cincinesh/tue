@@ -18,7 +18,9 @@ namespace tue
 {
     /*!
      * \defgroup  quat_hpp <tue/quat.hpp>
+     *
      * \brief     The `quat` class template and its associated functions.
+     *
      * @{
      */
 

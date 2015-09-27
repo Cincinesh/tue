@@ -13,6 +13,12 @@
 
 #include "math.hpp"
 
+/*!
+ * \defgroup  vec_hpp <tue/vec.hpp>
+ *
+ * \brief     The `vec` class template and its associated utility structs and
+ *            functions.
+ */
 namespace tue
 {
     template<typename T>
@@ -22,9 +28,7 @@ namespace tue
     class mat;
 
     /*!
-     * \defgroup  vec_hpp <tue/vec.hpp>
-     * \brief     The `vec` class template and its associated utility structs
-     *            and functions.
+     * \addtogroup  vec_hpp
      * @{
      */
 
