@@ -20,31 +20,6 @@ namespace
 {
     using namespace tue;
 
-    template<std::size_t Size> struct sized_float_utils;
-    template<> struct sized_float_utils<4> { using type = float; };
-    template<> struct sized_float_utils<8> { using type = double; };
-
-    template<std::size_t Size> struct sized_int_utils;
-    template<> struct sized_int_utils<1> { using type = std::int8_t; };
-    template<> struct sized_int_utils<2> { using type = std::int16_t; };
-    template<> struct sized_int_utils<4> { using type = std::int32_t; };
-    template<> struct sized_int_utils<8> { using type = std::int64_t; };
-
-    template<std::size_t Size> struct sized_uint_utils;
-    template<> struct sized_uint_utils<1> { using type = std::uint8_t; };
-    template<> struct sized_uint_utils<2> { using type = std::uint16_t; };
-    template<> struct sized_uint_utils<4> { using type = std::uint32_t; };
-    template<> struct sized_uint_utils<8> { using type = std::uint64_t; };
-
-    template<std::size_t Size>
-    using sized_float_t = typename sized_float_utils<Size>::type;
-
-    template<std::size_t Size>
-    using sized_int_t = typename sized_int_utils<Size>::type;
-
-    template<std::size_t Size>
-    using sized_uint_t = typename sized_uint_utils<Size>::type;
-
     /*
      * Utility classes
      */
@@ -261,40 +236,89 @@ namespace
         }
 
         template<typename U = T>
-        static std::enable_if_t<(sizeof(U) >= 4) && !is_sized_bool<U>::value>
+        static std::enable_if_t<!is_sized_bool<U>::value>
         TEST_CASE_explicit_cast_from_float_simd()
         {
-            const auto s1 = test_simd<sized_float_t<sizeof(T)>>();
+            const auto s1 = test_simd<float>();
             const simd<T, N> s2(s1);
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
             }
+
+            const auto s3 = test_simd<double>();
+            const simd<T, N> s4(s3);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s4.data()[i] == static_cast<T>(s3.data()[i]));
+            }
         }
 
         template<typename U = T>
-        static std::enable_if_t<(sizeof(U) < 4) || is_sized_bool<U>::value>
+        static std::enable_if_t<is_sized_bool<U>::value>
         TEST_CASE_explicit_cast_from_float_simd()
         {
         }
 
         static void TEST_CASE_explicit_cast_from_int_simd()
         {
-            const auto s1 = test_simd<sized_int_t<sizeof(T)>>();
+            const auto s1 = test_simd<std::int8_t>();
             const simd<T, N> s2(s1);
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
             }
+
+            const auto s3 = test_simd<std::int16_t>();
+            const simd<T, N> s4(s3);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s4.data()[i] == static_cast<T>(s3.data()[i]));
+            }
+
+            const auto s5 = test_simd<std::int32_t>();
+            const simd<T, N> s6(s5);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s6.data()[i] == static_cast<T>(s5.data()[i]));
+            }
+
+            const auto s7 = test_simd<std::int64_t>();
+            const simd<T, N> s8(s7);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s8.data()[i] == static_cast<T>(s7.data()[i]));
+            }
         }
 
         static void TEST_CASE_explicit_cast_from_uint_simd()
         {
-            const auto s1 = test_simd<sized_uint_t<sizeof(T)>>();
+            const auto s1 = test_simd<std::uint8_t>();
             const simd<T, N> s2(s1);
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
+            }
+
+            const auto s3 = test_simd<std::uint16_t>();
+            const simd<T, N> s4(s3);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s4.data()[i] == static_cast<T>(s3.data()[i]));
+            }
+
+            const auto s5 = test_simd<std::uint32_t>();
+            const simd<T, N> s6(s5);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s6.data()[i] == static_cast<T>(s5.data()[i]));
+            }
+
+            const auto s7 = test_simd<std::uint64_t>();
+            const simd<T, N> s8(s7);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s8.data()[i] == static_cast<T>(s7.data()[i]));
             }
         }
 
@@ -302,11 +326,32 @@ namespace
         static std::enable_if_t<!std::is_floating_point<U>::value>
         TEST_CASE_explicit_cast_from_bool_simd()
         {
-            const auto s1 = test_simd<sized_bool_t<sizeof(T)>>();
+            const auto s1 = test_simd<bool8>();
             const simd<T, N> s2(s1);
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s2.data()[i] == static_cast<T>(s1.data()[i]));
+            }
+
+            const auto s3 = test_simd<bool16>();
+            const simd<T, N> s4(s3);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s4.data()[i] == static_cast<T>(s3.data()[i]));
+            }
+
+            const auto s5 = test_simd<bool32>();
+            const simd<T, N> s6(s5);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s6.data()[i] == static_cast<T>(s5.data()[i]));
+            }
+
+            const auto s7 = test_simd<bool64>();
+            const simd<T, N> s8(s7);
+            for (int i = 0; i < N; ++i)
+            {
+                test_assert(s8.data()[i] == static_cast<T>(s7.data()[i]));
             }
         }
 

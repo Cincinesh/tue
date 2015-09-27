@@ -42,9 +42,7 @@ namespace tue
             this->data_[1] = y;
         }
 
-        template<
-            typename U,
-            typename = std::enable_if_t<sizeof(U) == sizeof(T)>>
+        template<typename U>
         explicit simd(const simd<U, 2>& s) noexcept
         {
             const auto sdata = reinterpret_cast<const U*>(&s);

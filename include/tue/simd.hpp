@@ -565,9 +565,7 @@ namespace tue
          * \tparam U  The component type of `s`.
          * \param s   The `simd` to cast from.
          */
-        template<
-            typename U,
-            typename = std::enable_if_t<sizeof(U) == sizeof(T)>>
+        template<typename U>
         explicit simd(const simd<U, N>& s) noexcept
         {
             const auto simpl = reinterpret_cast<const simd<U, N/2>*>(&s);
