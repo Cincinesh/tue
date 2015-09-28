@@ -33,6 +33,7 @@ set(TUE_SOURCES
     include/tue/detail_/matmult.hpp
     include/tue/detail_/simd2.hpp
     include/tue/detail_/simdN.hpp
+    include/tue/detail_/simd_support.hpp
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp

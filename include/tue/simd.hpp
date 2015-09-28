@@ -1672,3 +1672,5 @@ namespace tue
         /*!@}*/
     }
 }
+
+#include "detail_/simd_support.hpp"
