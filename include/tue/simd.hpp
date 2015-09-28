@@ -1674,3 +1674,4 @@ namespace tue
 }
 
 #include "detail_/simd_support.hpp"
+#include "detail_/simd_specializations.hpp"
