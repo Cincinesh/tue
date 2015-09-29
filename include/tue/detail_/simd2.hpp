@@ -30,7 +30,7 @@ namespace tue
 
         simd() noexcept = default;
 
-        explicit simd(const T& x) noexcept
+        explicit simd(T x) noexcept
         {
             this->data_[0] = x;
             this->data_[1] = x;

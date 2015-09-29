@@ -417,7 +417,7 @@ namespace
         {
             auto s = test_simd();
             alignas(simd<T, N>) T data[N + 1];
-            s.store(data + 1);
+            s.storeu(data + 1);
             for (int i = 0; i < N; ++i)
             {
                 data[i + 1] = s.data()[i];

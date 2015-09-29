@@ -10,7 +10,21 @@
 
 #include "../simd.hpp"
 
+// SSE
 #ifdef TUE_SSE
+#include <cstdint>
+
+namespace tue
+{
+    namespace detail_
+    {
+        float binary_float(std::uint32_t x) noexcept
+        {
+            return reinterpret_cast<const float&>(x);
+        }
+    }
+}
+
 #include "simd/sse/bool32x4.sse.hpp"
 #include "simd/sse/float32x4.sse.hpp"
 #endif
