@@ -53,14 +53,6 @@ namespace tue
          */
 
         /*!
-         * \defgroup  math_hpp <tue/math.hpp>
-         * \brief     Global math functions for basic scalar types.
-         * \details   The allowable types are restricted to those which can be
-         *            used as SIMD components.
-         * @{
-         */
-
-        /*!
          * \brief     Computes the sine of `x` (measured in radians).
          *
          * \tparam T  The type of parameter `x`.
