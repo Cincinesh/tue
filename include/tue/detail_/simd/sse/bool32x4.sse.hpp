@@ -177,6 +177,22 @@ namespace tue
             return lhs = _mm_xor_ps(lhs, rhs);
         }
 
+#ifdef TUE_SSE2
+        inline bool equality_operator_ss(
+            bool32x4& lhs, const bool32x4& rhs) noexcept
+        {
+            return _mm_movemask_ps(
+                _mm_castsi128_ps(_mm_cmpeq_epi32(lhs, rhs))) == 0xF;
+        }
+
+        inline bool inequality_operator_ss(
+            bool32x4& lhs, const bool32x4& rhs) noexcept
+        {
+            return _mm_movemask_ps(
+                _mm_castsi128_ps(_mm_cmpeq_epi32(lhs, rhs))) != 0xF;
+        }
+#endif
+
         inline bool32x4 mask_ss(
             const bool32x4& conditions,
             const bool32x4& values) noexcept
@@ -193,5 +209,19 @@ namespace tue
                 _mm_and_ps(conditions, values),
                 _mm_andnot_ps(conditions, otherwise));
         }
+
+#ifdef TUE_SSE2
+        inline bool32x4 equal_ss(
+            const bool32x4& lhs, const bool32x4& rhs) noexcept
+        {
+            return _mm_cmpeq_epi32(lhs, rhs);
+        }
+
+        inline bool32x4 not_equal_ss(
+            const bool32x4& lhs, const bool32x4& rhs) noexcept
+        {
+            return _mm_xor_si128(_mm_cmpeq_epi32(lhs, rhs), bool32x4(true32));
+        }
+#endif
     }
 }
