@@ -6,6 +6,30 @@
 //     Please report any bugs, typos, or suggestions to
 //         https://github.com/Cincinesh/tue/issues
 
+// This file contains code based on Julien Pommier's sse_mathfun.h originally
+// published at http://gruntthepeon.free.fr/ssemath/ under the following
+// license:
+//
+// Copyright (C) 2007 Julien Pommier
+//
+// This software is provided 'as-is', without any express or implied warranty.
+// In no event will the authors be held liable for any damages arising from
+// the use of this software.
+//
+// Permission is granted to anyone to use this software for any purpose,
+// including commercial applications, and to alter it and redistribute it
+// freely, subject to the following restrictions:
+//
+// 1. The origin of this software must not be misrepresented; you must not
+//    claim that you wrote the original software. If you use this software in
+//    a product, an acknowledgment in the product documentation would be
+//    appreciated but is not required.
+// 2. Altered source versions must be plainly marked as such, and must not be
+//    misrepresented as being the original software.
+// 3. This notice may not be removed or altered from any source distribution.
+//
+// (this is the zlib license)
+
 #pragma once
 
 #include <xmmintrin.h>
@@ -13,6 +37,12 @@
 #include <type_traits>
 
 #include "../../../simd.hpp"
+
+#ifdef TUE_SSE2
+#include <emmintrin.h>
+#else
+#include <mmintrin.h>
+#endif
 
 namespace tue
 {
@@ -44,7 +74,7 @@ namespace tue
 
         explicit simd(float x) noexcept
         :
-            underlying_(_mm_set_ps1(x))
+            underlying_(_mm_set1_ps(x))
         {
         }
 
@@ -208,39 +238,189 @@ namespace tue
             return _mm_movemask_ps(_mm_cmpneq_ps(lhs, rhs)) != 0;
         }
 
-        /*inline float32x4 sin_s(const float32x4& s) noexcept
+#ifndef TUE_SSE2
+        inline void copy_mm_to_xmm(
+            const __m64& mm0, const __m64& mm1, __m128& xmm) noexcept
         {
-            float32x4 result;
-            const auto rdata = result.data();
-            const auto sdata = s.data();
-            rdata[0] = tue::math::sin(sdata[0]);
-            rdata[1] = tue::math::sin(sdata[1]);
-            return result;
+            union
+            {
+                __m64 mm[2];
+                __m128 xmm;
+            }
+            u;
+            u.mm[0] = mm0;
+            u.mm[1] = mm1;
+            xmm = u.xmm;
         }
-
-        inline float32x4 cos_s(const float32x4& s) noexcept
-        {
-            float32x4 result;
-            const auto rdata = result.data();
-            const auto sdata = s.data();
-            rdata[0] = tue::math::cos(sdata[0]);
-            rdata[1] = tue::math::cos(sdata[1]);
-            return result;
-        }
+#endif
 
         inline void sincos_s(
             const float32x4& s,
             float32x4& sin_out,
             float32x4& cos_out) noexcept
         {
-            const auto sdata = s.data();
-            const auto sout = sin_out.data();
-            const auto cout = cos_out.data();
-            tue::math::sincos(sdata[0], sout[0], cout[0]);
-            tue::math::sincos(sdata[1], sout[1], cout[1]);
+            // This sincos() implementation is based on Julien Pommier's
+            // sincos_ps(). See the top of this file for details.
+            __m128 x = s;
+
+            __m128 xmm1, xmm2, xmm3 = _mm_setzero_ps(), sign_bit_sin, y;
+#ifdef TUE_SSE2
+            __m128i emm0, emm2, emm4;
+#else
+            __m64 mm0, mm1, mm2, mm3, mm4, mm5;
+#endif
+            sign_bit_sin = x;
+
+            /* take the absolute value */
+            x = _mm_and_ps(
+                x, _mm_set1_ps(tue::detail_::binary_float(~0x80000000)));
+
+            /* extract the sign bit (upper one) */
+            sign_bit_sin = _mm_and_ps(
+                sign_bit_sin,
+                _mm_set1_ps(tue::detail_::binary_float(0x80000000)));
+
+            /* scale by 4/Pi */
+            y = _mm_mul_ps(x, _mm_set1_ps(1.27323954473516f));
+
+#ifdef TUE_SSE2
+            /* store the integer part of y in emm2 */
+            emm2 = _mm_cvttps_epi32(y);
+
+            /* j=(j+1) & (~1) (see the cephes sources) */
+            emm2 = _mm_add_epi32(emm2, _mm_set1_epi32(1));
+            emm2 = _mm_and_si128(emm2, _mm_set1_epi32(~1));
+            y = _mm_cvtepi32_ps(emm2);
+
+            emm4 = emm2;
+
+            /* get the swap sign flag for the sine */
+            emm0 = _mm_and_si128(emm2, _mm_set1_epi32(4));
+            emm0 = _mm_slli_epi32(emm0, 29);
+            __m128 swap_sign_bit_sin = _mm_castsi128_ps(emm0);
+
+            /* get the polynom selection mask for the sine*/
+            emm2 = _mm_and_si128(emm2, _mm_set1_epi32(2));
+            emm2 = _mm_cmpeq_epi32(emm2, _mm_setzero_si128());
+            __m128 poly_mask = _mm_castsi128_ps(emm2);
+#else
+            /* store the integer part of y in mm2:mm3 */
+            xmm3 = _mm_movehl_ps(xmm3, y);
+            mm2 = _mm_cvttps_pi32(y);
+            mm3 = _mm_cvttps_pi32(xmm3);
+
+            /* j=(j+1) & (~1) (see the cephes sources) */
+            mm2 = _mm_add_pi32(mm2, _mm_set1_pi32(1));
+            mm3 = _mm_add_pi32(mm3, _mm_set1_pi32(1));
+            mm2 = _mm_and_si64(mm2, _mm_set1_pi32(~1));
+            mm3 = _mm_and_si64(mm3, _mm_set1_pi32(~1));
+
+            y = _mm_cvtpi32x2_ps(mm2, mm3);
+
+            mm4 = mm2;
+            mm5 = mm3;
+
+            /* get the swap sign flag for the sine */
+            mm0 = _mm_and_si64(mm2, _mm_set1_pi32(4));
+            mm1 = _mm_and_si64(mm3, _mm_set1_pi32(4));
+            mm0 = _mm_slli_pi32(mm0, 29);
+            mm1 = _mm_slli_pi32(mm1, 29);
+            __m128 swap_sign_bit_sin;
+            copy_mm_to_xmm(mm0, mm1, swap_sign_bit_sin);
+
+            /* get the polynom selection mask for the sine */
+            mm2 = _mm_and_si64(mm2, _mm_set1_pi32(2));
+            mm3 = _mm_and_si64(mm3, _mm_set1_pi32(2));
+            mm2 = _mm_cmpeq_pi32(mm2, _mm_setzero_si64());
+            mm3 = _mm_cmpeq_pi32(mm3, _mm_setzero_si64());
+            __m128 poly_mask;
+            copy_mm_to_xmm(mm2, mm3, poly_mask);
+#endif
+            /* The magic pass: "Extended precision modular arithmetic"
+               x = ((x - y * DP1) - y * DP2) - y * DP3; */
+            xmm1 = _mm_set1_ps(-0.78515625f);
+            xmm2 = _mm_set1_ps(-2.4187564849853515625e-4f);
+            xmm3 = _mm_set1_ps(-3.77489497744594108e-8f);
+            xmm1 = _mm_mul_ps(y, xmm1);
+            xmm2 = _mm_mul_ps(y, xmm2);
+            xmm3 = _mm_mul_ps(y, xmm3);
+            x = _mm_add_ps(x, xmm1);
+            x = _mm_add_ps(x, xmm2);
+            x = _mm_add_ps(x, xmm3);
+
+#ifdef TUE_SSE2
+            emm4 = _mm_sub_epi32(emm4, _mm_set1_epi32(2));
+            emm4 = _mm_andnot_si128(emm4, _mm_set1_epi32(4));
+            emm4 = _mm_slli_epi32(emm4, 29);
+            __m128 sign_bit_cos = _mm_castsi128_ps(emm4);
+#else
+            /* get the sign flag for the cosine */
+            mm4 = _mm_sub_pi32(mm4, _mm_set1_pi32(2));
+            mm5 = _mm_sub_pi32(mm5, _mm_set1_pi32(2));
+            mm4 = _mm_andnot_si64(mm4, _mm_set1_pi32(4));
+            mm5 = _mm_andnot_si64(mm5, _mm_set1_pi32(4));
+            mm4 = _mm_slli_pi32(mm4, 29);
+            mm5 = _mm_slli_pi32(mm5, 29);
+            __m128 sign_bit_cos;
+            copy_mm_to_xmm(mm4, mm5, sign_bit_cos);
+            _mm_empty(); /* good-bye mmx */
+#endif
+            sign_bit_sin = _mm_xor_ps(sign_bit_sin, swap_sign_bit_sin);
+
+            /* Evaluate the first polynom  (0 <= x <= Pi/4) */
+            __m128 z = _mm_mul_ps(x,x);
+            y = _mm_set1_ps(2.443315711809948e-5f);
+
+            y = _mm_mul_ps(y, z);
+            y = _mm_add_ps(y, _mm_set1_ps(-1.388731625493765e-3f));
+            y = _mm_mul_ps(y, z);
+            y = _mm_add_ps(y, _mm_set1_ps(4.166664568298827e-2f));
+            y = _mm_mul_ps(y, z);
+            y = _mm_mul_ps(y, z);
+            __m128 tmp = _mm_mul_ps(z, _mm_set1_ps(0.5f));
+            y = _mm_sub_ps(y, tmp);
+            y = _mm_add_ps(y, _mm_set1_ps(1.0f));
+
+            /* Evaluate the second polynom  (Pi/4 <= x <= 0) */
+            __m128 y2 = _mm_set1_ps(-1.9515295891e-4f);
+            y2 = _mm_mul_ps(y2, z);
+            y2 = _mm_add_ps(y2, _mm_set1_ps(8.3321608736e-3f));
+            y2 = _mm_mul_ps(y2, z);
+            y2 = _mm_add_ps(y2, _mm_set1_ps(-1.6666654611e-1f));
+            y2 = _mm_mul_ps(y2, z);
+            y2 = _mm_mul_ps(y2, x);
+            y2 = _mm_add_ps(y2, x);
+
+            /* select the correct result from the two polynoms */
+            xmm3 = poly_mask;
+            __m128 ysin2 = _mm_and_ps(xmm3, y2);
+            __m128 ysin1 = _mm_andnot_ps(xmm3, y);
+            y2 = _mm_sub_ps(y2,ysin2);
+            y = _mm_sub_ps(y, ysin1);
+
+            xmm1 = _mm_add_ps(ysin1,ysin2);
+            xmm2 = _mm_add_ps(y,y2);
+
+            /* update the sign */
+            sin_out = _mm_xor_ps(xmm1, sign_bit_sin);
+            cos_out = _mm_xor_ps(xmm2, sign_bit_cos);
         }
 
-        inline float32x4 exp_s(const float32x4& s) noexcept
+        inline float32x4 sin_s(const float32x4& s) noexcept
+        {
+            float32x4 sin, cos;
+            tue::detail_::sincos_s(s, sin, cos);
+            return sin;
+        }
+
+        inline float32x4 cos_s(const float32x4& s) noexcept
+        {
+            float32x4 sin, cos;
+            tue::detail_::sincos_s(s, sin, cos);
+            return cos;
+        }
+
+        /*inline float32x4 exp_s(const float32x4& s) noexcept
         {
             float32x4 result;
             const auto rdata = result.data();
@@ -263,7 +443,7 @@ namespace tue
         inline float32x4 abs_s(const float32x4& s) noexcept
         {
             return _mm_and_ps(
-                s, float32x4(tue::detail_::binary_float(0x7FFFFFFFu)));
+                s, float32x4(tue::detail_::binary_float(0x7FFFFFFF)));
         }
 
         /*inline float32x4 pow_ss(
