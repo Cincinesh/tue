@@ -4,6 +4,10 @@ enable_testing()
 
 set(CMAKE_CXX_STANDARD 14)
 
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+endif()
+
 include_directories(
     lib/mon/include
     include)
