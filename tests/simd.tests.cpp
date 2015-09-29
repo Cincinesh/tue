@@ -20,6 +20,12 @@ namespace
 {
     using namespace tue;
 
+    template<typename T>
+    bool nearly_equal(T lhs, T rhs) noexcept
+    {
+        return lhs == rhs || math::abs(lhs - rhs) < 0.01f;
+    }
+
     /*
      * Utility classes
      */
@@ -894,7 +900,8 @@ namespace
             const auto s2 = math::sin(s1);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == math::sin(s1.data()[i]));
+                test_assert(nearly_equal(
+                    s2.data()[i], math::sin(s1.data()[i])));
             }
         }
 
@@ -904,7 +911,8 @@ namespace
             const auto s2 = math::cos(s1);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == math::cos(s1.data()[i]));
+                test_assert(nearly_equal(
+                    s2.data()[i], math::cos(s1.data()[i])));
             }
         }
 
@@ -915,8 +923,10 @@ namespace
             math::sincos(s, sin_out, cos_out);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(sin_out.data()[i] == math::sin(s.data()[i]));
-                test_assert(cos_out.data()[i] == math::cos(s.data()[i]));
+                test_assert(nearly_equal(
+                    sin_out.data()[i], math::sin(s.data()[i])));
+                test_assert(nearly_equal(
+                    cos_out.data()[i], math::cos(s.data()[i])));
             }
         }
 
@@ -926,7 +936,8 @@ namespace
             const auto s2 = math::exp(s1);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == math::exp(s1.data()[i]));
+                test_assert(nearly_equal(
+                    s2.data()[i], math::exp(s1.data()[i])));
             }
         }
 
@@ -936,7 +947,8 @@ namespace
             const auto s2 = math::log(s1);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == math::log(s1.data()[i]));
+                test_assert(nearly_equal(
+                    s2.data()[i], math::log(s1.data()[i])));
             }
         }
 
@@ -947,8 +959,8 @@ namespace
             const auto s3 = math::pow(s1, s2);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s3.data()[i] ==
-                    math::pow(s1.data()[i], s2.data()[i]));
+                test_assert(nearly_equal(
+                    s3.data()[i], math::pow(s1.data()[i], s2.data()[i])));
             }
         }
 
@@ -958,7 +970,8 @@ namespace
             const auto s2 = math::recip(s1);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == math::recip(s1.data()[i]));
+                test_assert(nearly_equal(
+                    s2.data()[i], math::recip(s1.data()[i])));
             }
         }
 
@@ -968,7 +981,8 @@ namespace
             const auto s2 = math::sqrt(s1);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == math::sqrt(s1.data()[i]));
+                test_assert(nearly_equal(
+                    s2.data()[i], math::sqrt(s1.data()[i])));
             }
         }
 
@@ -978,7 +992,8 @@ namespace
             const auto s2 = math::rsqrt(s1);
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s2.data()[i] == math::rsqrt(s1.data()[i]));
+                test_assert(nearly_equal(
+                    s2.data()[i], math::rsqrt(s1.data()[i])));
             }
         }
 
