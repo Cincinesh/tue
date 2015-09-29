@@ -606,7 +606,9 @@ namespace
             return s;
         }
 
-        static void TEST_CASE_unary_plus_operator()
+        template<typename U = T>
+        static std::enable_if_t<std::is_signed<U>::value>
+        TEST_CASE_unary_plus_operator()
         {
             const auto s1 = test_simd();
             const auto s2 = +s1;
@@ -614,6 +616,12 @@ namespace
             {
                 test_assert(s2.data()[i] == +s1.data()[i]);
             }
+        }
+
+        template<typename U = T>
+        static std::enable_if_t<!std::is_signed<U>::value>
+        TEST_CASE_unary_plus_operator()
+        {
         }
 
         static void TEST_CASE_pre_increment_operator()

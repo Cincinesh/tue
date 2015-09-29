@@ -716,7 +716,8 @@ namespace tue
      * \return    The unary plus of each component of `s`.
      */
     template<typename T, int N>
-    inline simd<T, N> operator+(const simd<T, N>& s) noexcept
+    inline std::enable_if_t<std::is_signed<T>::value, simd<T, N>>
+    operator+(const simd<T, N>& s) noexcept
     {
         return tue::detail_::unary_plus_operator_s(s);
     }
