@@ -254,7 +254,7 @@ namespace tue
         }
 
         inline void copy_xmm_to_mm(
-            const __m128& xmm, __m64& mm0, __m64& mm1,) noexcept
+            const __m128& xmm, __m64& mm0, __m64& mm1) noexcept
         {
             union
             {
