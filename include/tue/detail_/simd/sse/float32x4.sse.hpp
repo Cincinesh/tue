@@ -252,6 +252,20 @@ namespace tue
             u.mm[1] = mm1;
             xmm = u.xmm;
         }
+
+        inline void copy_xmm_to_mm(
+            const __m128& xmm, __m64& mm0, __m64& mm1,) noexcept
+        {
+            union
+            {
+                __m128 xmm;
+                __m64 mm[2];
+            }
+            u;
+            u.xmm = xmm;
+            mm0 = u.mm[0];
+            mm1 = u.mm[1];
+        }
 #endif
 
         inline void sincos_s(
@@ -504,15 +518,98 @@ namespace tue
             return y;
         }
 
-        /*inline float32x4 log_s(const float32x4& s) noexcept
+        inline float32x4 log_s(const float32x4& s) noexcept
         {
-            float32x4 result;
-            const auto rdata = result.data();
-            const auto sdata = s.data();
-            rdata[0] = tue::math::log(sdata[0]);
-            rdata[1] = tue::math::log(sdata[1]);
-            return result;
-        }*/
+            // This function's implementation is based on Julien Pommier's
+            // log_ps(). See the top of this file for details.
+            __m128 x = s;
+
+#ifdef TUE_SSE2
+            __m128i emm0;
+#else
+            __m64 mm0, mm1;
+#endif
+            __m128 one = _mm_set1_ps(1.0f);
+
+            __m128 invalid_mask = _mm_cmple_ps(x, _mm_setzero_ps());
+
+            /* cut off denormalized stuff */
+            x = _mm_max_ps(
+                x, _mm_set1_ps(tue::detail_::binary_float(0x00800000)));
+
+            /* part 1: x = frexpf(x, &e); */
+#ifndef TUE_SSE2
+            copy_xmm_to_mm(x, mm0, mm1);
+            mm0 = _mm_srli_pi32(mm0, 23);
+            mm1 = _mm_srli_pi32(mm1, 23);
+#else
+            emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
+#endif
+            /* keep only the fractional part */
+            x = _mm_and_ps(
+                x, _mm_set1_ps(tue::detail_::binary_float(~0x7f800000)));
+            x = _mm_or_ps(x, _mm_set1_ps(0.5f));
+
+#ifndef TUE_SSE2
+            /* now e=mm0:mm1 contain the really base-2 exponent */
+            mm0 = _mm_sub_pi32(mm0, _mm_set1_pi32(0x7F));
+            mm1 = _mm_sub_pi32(mm1, _mm_set1_pi32(0x7F));
+            __m128 e = _mm_cvtpi32x2_ps(mm0, mm1);
+            _mm_empty(); /* bye bye mmx */
+#else
+            emm0 = _mm_sub_epi32(emm0, _mm_set1_epi32(0x7F));
+            __m128 e = _mm_cvtepi32_ps(emm0);
+#endif
+
+            e = _mm_add_ps(e, one);
+
+            /* part2:
+            if( x < SQRTHF ) {
+            e -= 1;
+            x = x + x - 1.0;
+            } else { x = x - 1.0; }
+            */
+            __m128 mask = _mm_cmplt_ps(x, _mm_set1_ps(0.707106781186547524f));
+            __m128 tmp = _mm_and_ps(x, mask);
+            x = _mm_sub_ps(x, one);
+            e = _mm_sub_ps(e, _mm_and_ps(one, mask));
+            x = _mm_add_ps(x, tmp);
+
+            __m128 z = _mm_mul_ps(x, x);
+
+            __m128 y = _mm_set1_ps(7.0376836292e-2f);
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(-1.1514610310e-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(1.1676998740e-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(-1.2420140846e-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(1.4249322787e-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(-1.6668057665e-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(2.0000714765e-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(-2.4999993993e-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(3.3333331174e-1f));
+            y = _mm_mul_ps(y, x);
+
+            y = _mm_mul_ps(y, z);
+
+            tmp = _mm_mul_ps(e, _mm_set1_ps(-2.12194440e-4f));
+            y = _mm_add_ps(y, tmp);
+
+            tmp = _mm_mul_ps(z, _mm_set1_ps(0.5f));
+            y = _mm_sub_ps(y, tmp);
+
+            tmp = _mm_mul_ps(e, _mm_set1_ps(0.693359375f));
+            x = _mm_add_ps(x, y);
+            x = _mm_add_ps(x, tmp);
+            x = _mm_or_ps(x, invalid_mask); // negative arg will be NAN
+            return x;
+        }
 
         inline float32x4 abs_s(const float32x4& s) noexcept
         {
