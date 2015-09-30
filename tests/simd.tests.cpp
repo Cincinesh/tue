@@ -21,9 +21,9 @@ namespace
     using namespace tue;
 
     template<typename T>
-    bool nearly_equal(T lhs, T rhs) noexcept
+    bool nearly_equal(T lhs, T rhs, float threshold = 0.01f) noexcept
     {
-        return lhs == rhs || math::abs(lhs - rhs) < 0.01f;
+        return lhs == rhs || math::abs(lhs - rhs) < threshold;
     }
 
     /*
@@ -945,7 +945,7 @@ namespace
             for (int i = 0; i < N; ++i)
             {
                 test_assert(nearly_equal(
-                    s2.data()[i], math::exp(s1.data()[i])));
+                    s2.data()[i], math::exp(s1.data()[i]), 0.5f));
             }
         }
 

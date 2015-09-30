@@ -259,7 +259,7 @@ namespace tue
             float32x4& sin_out,
             float32x4& cos_out) noexcept
         {
-            // This sincos() implementation is based on Julien Pommier's
+            // This function's implementation is based on Julien Pommier's
             // sincos_ps(). See the top of this file for details.
             __m128 x = s;
 
@@ -420,17 +420,91 @@ namespace tue
             return cos;
         }
 
-        /*inline float32x4 exp_s(const float32x4& s) noexcept
+        inline float32x4 exp_s(const float32x4& s) noexcept
         {
-            float32x4 result;
-            const auto rdata = result.data();
-            const auto sdata = s.data();
-            rdata[0] = tue::math::exp(sdata[0]);
-            rdata[1] = tue::math::exp(sdata[1]);
-            return result;
+            // This function's implementation is based on Julien Pommier's
+            // exp_ps(). See the top of this file for details.
+            __m128 x = s;
+
+            __m128 tmp = _mm_setzero_ps(), fx;
+#ifdef TUE_SSE2
+            __m128i emm0;
+#else
+            __m64 mm0, mm1;
+#endif
+            __m128 one = _mm_set1_ps(1.0f);
+
+            x = _mm_min_ps(x, _mm_set1_ps(88.3762626647949f));
+            x = _mm_max_ps(x, _mm_set1_ps(-88.3762626647949f));
+
+            /* express exp(x) as exp(g + n*log(2)) */
+            fx = _mm_mul_ps(x, _mm_set1_ps(1.44269504088896341f));
+            fx = _mm_add_ps(fx, _mm_set1_ps(0.5f));
+
+            /* how to perform a floorf with SSE: just below */
+#ifndef TUE_SSE2
+            /* step 1 : cast to int */
+            tmp = _mm_movehl_ps(tmp, fx);
+            mm0 = _mm_cvttps_pi32(fx);
+            mm1 = _mm_cvttps_pi32(tmp);
+
+            /* step 2 : cast back to float */
+            tmp = _mm_cvtpi32x2_ps(mm0, mm1);
+#else
+            emm0 = _mm_cvttps_epi32(fx);
+            tmp = _mm_cvtepi32_ps(emm0);
+#endif
+            /* if greater, substract 1 */
+            __m128 mask = _mm_cmpgt_ps(tmp, fx);
+            mask = _mm_and_ps(mask, one);
+            fx = _mm_sub_ps(tmp, mask);
+
+            tmp = _mm_mul_ps(fx, _mm_set1_ps(0.693359375f));
+            __m128 z = _mm_mul_ps(fx, _mm_set1_ps(-2.12194440e-4f));
+            x = _mm_sub_ps(x, tmp);
+            x = _mm_sub_ps(x, z);
+
+            z = _mm_mul_ps(x, x);
+
+            __m128 y = _mm_set1_ps(1.9875691500E-4f);
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(1.3981999507E-3f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(8.3334519073E-3f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(4.1665795894E-2f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(1.6666665459E-1f));
+            y = _mm_mul_ps(y, x);
+            y = _mm_add_ps(y, _mm_set1_ps(5.0000001201E-1f));
+            y = _mm_mul_ps(y, z);
+            y = _mm_add_ps(y, x);
+            y = _mm_add_ps(y, one);
+
+            /* build 2^n */
+#ifndef TUE_SSE2
+            z = _mm_movehl_ps(z, fx);
+            mm0 = _mm_cvttps_pi32(fx);
+            mm1 = _mm_cvttps_pi32(z);
+            mm0 = _mm_add_pi32(mm0, _mm_set1_pi32(0x7F));
+            mm1 = _mm_add_pi32(mm1, _mm_set1_pi32(0x7F));
+            mm0 = _mm_slli_pi32(mm0, 23);
+            mm1 = _mm_slli_pi32(mm1, 23);
+
+            __m128 pow2n;
+            copy_mm_to_xmm(mm0, mm1, pow2n);
+            _mm_empty();
+#else
+            emm0 = _mm_cvttps_epi32(fx);
+            emm0 = _mm_add_epi32(emm0, _mm_set1_epi32(0x7F));
+            emm0 = _mm_slli_epi32(emm0, 23);
+            __m128 pow2n = _mm_castsi128_ps(emm0);
+#endif
+            y = _mm_mul_ps(y, pow2n);
+            return y;
         }
 
-        inline float32x4 log_s(const float32x4& s) noexcept
+        /*inline float32x4 log_s(const float32x4& s) noexcept
         {
             float32x4 result;
             const auto rdata = result.data();
