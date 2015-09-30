@@ -560,7 +560,6 @@ namespace tue
             emm0 = _mm_sub_epi32(emm0, _mm_set1_epi32(0x7F));
             __m128 e = _mm_cvtepi32_ps(emm0);
 #endif
-
             e = _mm_add_ps(e, one);
 
             /* part2:
