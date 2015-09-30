@@ -29,6 +29,7 @@ namespace tue
 #include "simd/sse/float32x4.sse.hpp"
 
 #ifdef TUE_SSE2
-#include "simd/sse/bool64x2.sse.hpp"
+#include "simd/sse2/bool64x2.sse2.hpp"
 #endif
+
 #endif
