@@ -40,6 +40,7 @@ set(TUE_SOURCES
     include/tue/detail_/simd_specializations.hpp
     include/tue/detail_/simd_support.hpp
     include/tue/detail_/simd/sse/bool32x4.sse.hpp
+    include/tue/detail_/simd/sse/bool64x2.sse.hpp
     include/tue/detail_/simd/sse/float32x4.sse.hpp
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp

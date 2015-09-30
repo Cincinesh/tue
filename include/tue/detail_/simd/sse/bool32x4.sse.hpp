@@ -181,15 +181,13 @@ namespace tue
         inline bool equality_operator_ss(
             bool32x4& lhs, const bool32x4& rhs) noexcept
         {
-            return _mm_movemask_ps(
-                _mm_castsi128_ps(_mm_cmpeq_epi32(lhs, rhs))) == 0xF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) == 0xFFFF;
         }
 
         inline bool inequality_operator_ss(
             bool32x4& lhs, const bool32x4& rhs) noexcept
         {
-            return _mm_movemask_ps(
-                _mm_castsi128_ps(_mm_cmpeq_epi32(lhs, rhs))) != 0xF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) != 0xFFFF;
         }
 #endif
 
