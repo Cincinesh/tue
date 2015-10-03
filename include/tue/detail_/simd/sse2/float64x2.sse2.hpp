@@ -414,10 +414,81 @@ namespace tue
             return y;
         }
 
-        /*inline float64x2 log_s(const float64x2& s) noexcept
+        inline float64x2 log_s(const float64x2& s) noexcept
         {
-            // TODO
-        }*/
+            // This function's implementation is based on Julien Pommier's
+            // log_ps(). See the top of this file for details.
+            __m128d x = s;
+
+            __m128i emm0;
+
+            __m128d one = _mm_set1_pd(1.0);
+
+            __m128d invalid_mask = _mm_cmple_pd(x, _mm_setzero_pd());
+
+            /* cut off denormalized stuff */
+            x = _mm_max_pd(x, _mm_set1_ps(binary_double(1ull << 52ull)));
+
+            /* part 1: x = frexpf(x, &e); */
+            emm0 = _mm_srli_epi64(_mm_castps_si128(x), 52);
+
+            /* keep only the fractional part */
+            x = _mm_and_pd(x, _mm_set1_pd(binary_double(~(0x7FFull << 52ull))));
+            x = _mm_or_pd(x, _mm_set1_pd(0.5));
+
+            emm0 = _mm_sub_epi64(emm0, _mm_set1_epi64x(0x3FF));
+            emm0 = _mm_shuffle_epi32(emm0, _MM_SHUFFLE(3, 1, 2, 0));
+            __m128d e = _mm_cvtepi32_pd(emm0);
+
+            e = _mm_add_pd(e, one);
+
+            /* part2:
+            if( x < SQRTHF ) {
+            e -= 1;
+            x = x + x - 1.0;
+            } else { x = x - 1.0; }
+            */
+            __m128d mask = _mm_cmplt_pd(x, _mm_set1_pd(0.707106781186547524));
+            __m128d tmp = _mm_and_pd(x, mask);
+            x = _mm_sub_pd(x, one);
+            e = _mm_sub_pd(e, _mm_and_pd(one, mask));
+            x = _mm_add_pd(x, tmp);
+
+            __m128d z = _mm_mul_pd(x, x);
+
+            __m128d y = _mm_set1_pd(7.0376836292e-2);
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(-1.1514610310e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(1.1676998740e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(-1.2420140846e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(1.4249322787e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(-1.6668057665e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(2.0000714765e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(-2.4999993993e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(3.3333331174e-1));
+            y = _mm_mul_pd(y, x);
+
+            y = _mm_mul_pd(y, z);
+
+            tmp = _mm_mul_pd(e, _mm_set1_pd(-2.12194440e-4));
+            y = _mm_add_pd(y, tmp);
+
+            tmp = _mm_mul_pd(z, _mm_set1_pd(0.5));
+            y = _mm_sub_pd(y, tmp);
+
+            tmp = _mm_mul_pd(e, _mm_set1_pd(0.693359375));
+            x = _mm_add_pd(x, y);
+            x = _mm_add_pd(x, tmp);
+            x = _mm_or_pd(x, invalid_mask); // negative arg will be NAN
+            return x;
+        }
 
         inline float64x2 abs_s(const float64x2& s) noexcept
         {
@@ -425,26 +496,26 @@ namespace tue
                 s, float64x2(binary_double(0x7FFFFFFFFFFFFFFFull)));
         }
 
-        /*inline float64x2 pow_ss(
+        inline float64x2 pow_ss(
             const float64x2& bases, const float64x2& exponents) noexcept
         {
-            // TODO
-        }*/
+            return exp_s(float64x2(_mm_mul_pd(log_s(bases), exponents)));
+        }
 
-        /*inline float64x2 recip_s(const float64x2& s) noexcept
+        inline float64x2 recip_s(const float64x2& s) noexcept
         {
-            // TODO
-        }*/
+            return _mm_div_pd(_mm_set1_pd(1.0), s);
+        }
 
         inline float64x2 sqrt_s(const float64x2& s) noexcept
         {
             return _mm_sqrt_pd(s);
         }
 
-        /*inline float64x2 rsqrt_s(const float64x2& s) noexcept
+        inline float64x2 rsqrt_s(const float64x2& s) noexcept
         {
-            // TODO
-        }*/
+            return _mm_div_pd(_mm_set1_pd(1.0), _mm_sqrt_pd(s));
+        }
 
         inline float64x2 min_ss(
             const float64x2& s1, const float64x2& s2) noexcept

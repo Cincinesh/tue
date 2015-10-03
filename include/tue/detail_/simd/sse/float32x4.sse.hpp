@@ -613,7 +613,7 @@ namespace tue
         inline float32x4 pow_ss(
             const float32x4& bases, const float32x4& exponents) noexcept
         {
-            return exp_s(log_s(bases) * exponents);
+            return exp_s(float32x4(_mm_mul_ps(log_s(bases), exponents)));
         }
 
         inline float32x4 recip_s(const float32x4& s) noexcept
