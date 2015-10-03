@@ -54,10 +54,12 @@ namespace tue
         }
 
         template<int M = 4, typename = std::enable_if_t<M == 2>>
-        inline simd(bool32 x, bool32 y) noexcept;
+        inline simd(
+            bool32 x, bool32 y) noexcept;
 
         template<int M = 4, typename = std::enable_if_t<M == 4>>
-        simd(bool32 x, bool32 y, bool32 z, bool32 w) noexcept
+        inline simd(
+            bool32 x, bool32 y, bool32 z, bool32 w) noexcept
         :
             underlying_(_mm_setr_ps(
                 tue::detail_::binary_float(x),
@@ -66,6 +68,18 @@ namespace tue
                 tue::detail_::binary_float(w)))
         {
         }
+
+        template<int M = 4, typename = std::enable_if_t<M == 8>>
+        inline simd(
+            bool32 s0, bool32 s1, bool32 s2, bool32 s3,
+            bool32 s4, bool32 s5, bool32 s6, bool32 s7) noexcept;
+
+        template<int M = 4, typename = std::enable_if_t<M == 16>>
+        inline simd(
+            bool32  s0, bool32  s1, bool32  s2, bool32  s3,
+            bool32  s4, bool32  s5, bool32  s6, bool32  s7,
+            bool32  s8, bool32  s9, bool32 s10, bool32 s11,
+            bool32 s12, bool32 s13, bool32 s14, bool32 s15) noexcept;
 
         template<typename U>
         explicit simd(const simd<U, 4>& s) noexcept

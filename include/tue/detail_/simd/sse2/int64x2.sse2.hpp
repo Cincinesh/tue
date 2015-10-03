@@ -52,18 +52,35 @@ namespace tue
         }
 
         template<int M = 2, typename = std::enable_if_t<M == 2>>
-        inline simd(std::int64_t x, std::int64_t y) noexcept
+        inline simd(
+            std::int64_t x, std::int64_t y) noexcept
         :
             underlying_(_mm_set_epi64x(y, x))
         {
         }
 
-        template<int M = 2, typename = std::enable_if_t<M == 2>>
+        template<int M = 2, typename = std::enable_if_t<M == 4>>
         inline simd(
-            std::int64_t x,
-            std::int64_t y,
-            std::int64_t z,
-            std::int64_t w) noexcept;
+            std::int64_t x, std::int64_t y,
+            std::int64_t z, std::int64_t w) noexcept;
+
+        template<int M = 2, typename = std::enable_if_t<M == 8>>
+        inline simd(
+            std::int64_t s0, std::int64_t s1,
+            std::int64_t s2, std::int64_t s3,
+            std::int64_t s4, std::int64_t s5,
+            std::int64_t s6, std::int64_t s7) noexcept;
+
+        template<int M = 2, typename = std::enable_if_t<M == 16>>
+        inline simd(
+            std::int64_t  s0, std::int64_t  s1,
+            std::int64_t  s2, std::int64_t  s3,
+            std::int64_t  s4, std::int64_t  s5,
+            std::int64_t  s6, std::int64_t  s7,
+            std::int64_t  s8, std::int64_t  s9,
+            std::int64_t s10, std::int64_t s11,
+            std::int64_t s12, std::int64_t s13,
+            std::int64_t s14, std::int64_t s15) noexcept;
 
         template<typename U>
         explicit simd(const simd<U, 2>& s) noexcept

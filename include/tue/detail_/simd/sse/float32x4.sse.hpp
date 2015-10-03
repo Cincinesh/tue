@@ -79,14 +79,28 @@ namespace tue
         }
 
         template<int M = 4, typename = std::enable_if_t<M == 2>>
-        inline simd(float x, float y) noexcept;
+        inline simd(
+            float x, float y) noexcept;
 
         template<int M = 4, typename = std::enable_if_t<M == 4>>
-        simd(float x, float y, float z, float w) noexcept
+        inline simd(
+            float x, float y, float z, float w) noexcept
         :
             underlying_(_mm_setr_ps(x, y, z, w))
         {
         }
+
+        template<int M = 4, typename = std::enable_if_t<M == 8>>
+        inline simd(
+            float s0, float s1, float s2, float s3,
+            float s4, float s5, float s6, float s7) noexcept;
+
+        template<int M = 4, typename = std::enable_if_t<M == 16>>
+        inline simd(
+            float  s0, float  s1, float  s2, float  s3,
+            float  s4, float  s5, float  s6, float  s7,
+            float  s8, float  s9, float s10, float s11,
+            float s12, float s13, float s14, float s15) noexcept;
 
         template<typename U>
         explicit simd(const simd<U, 4>& s) noexcept

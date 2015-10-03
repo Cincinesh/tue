@@ -218,29 +218,97 @@ namespace
         template<int M = N>
         static std::enable_if_t<M == 2> TEST_CASE_component_constructor()
         {
-            const simd<T, N> s = { static_cast<T>(12LL), static_cast<T>(34LL) };
-            test_assert(s.data()[0] == static_cast<T>(12LL));
-            test_assert(s.data()[1] == static_cast<T>(34LL));
+            const simd<T, N> s = {
+                static_cast<T>(1LL),
+                static_cast<T>(2LL),
+            };
+
+            test_assert(s.data()[0] == static_cast<T>(1LL));
+            test_assert(s.data()[1] == static_cast<T>(2LL));
         }
 
         template<int M = N>
         static std::enable_if_t<M == 4> TEST_CASE_component_constructor()
         {
             const simd<T, N> s = {
-                static_cast<T>(12LL),
-                static_cast<T>(34LL),
-                static_cast<T>(56LL),
-                static_cast<T>(78LL),
+                static_cast<T>(1LL),
+                static_cast<T>(2LL),
+                static_cast<T>(3LL),
+                static_cast<T>(4LL),
             };
 
-            test_assert(s.data()[0] == static_cast<T>(12LL));
-            test_assert(s.data()[1] == static_cast<T>(34LL));
-            test_assert(s.data()[2] == static_cast<T>(56LL));
-            test_assert(s.data()[3] == static_cast<T>(78LL));
+            test_assert(s.data()[0] == static_cast<T>(1LL));
+            test_assert(s.data()[1] == static_cast<T>(2LL));
+            test_assert(s.data()[2] == static_cast<T>(3LL));
+            test_assert(s.data()[3] == static_cast<T>(4LL));
         }
 
         template<int M = N>
-        static std::enable_if_t<(M > 4)> TEST_CASE_component_constructor()
+        static std::enable_if_t<M == 8> TEST_CASE_component_constructor()
+        {
+            const simd<T, N> s = {
+                static_cast<T>(1LL),
+                static_cast<T>(2LL),
+                static_cast<T>(3LL),
+                static_cast<T>(4LL),
+                static_cast<T>(5LL),
+                static_cast<T>(6LL),
+                static_cast<T>(7LL),
+                static_cast<T>(8LL),
+            };
+
+            test_assert(s.data()[0] == static_cast<T>(1LL));
+            test_assert(s.data()[1] == static_cast<T>(2LL));
+            test_assert(s.data()[2] == static_cast<T>(3LL));
+            test_assert(s.data()[3] == static_cast<T>(4LL));
+            test_assert(s.data()[4] == static_cast<T>(5LL));
+            test_assert(s.data()[5] == static_cast<T>(6LL));
+            test_assert(s.data()[6] == static_cast<T>(7LL));
+            test_assert(s.data()[7] == static_cast<T>(8LL));
+        }
+
+        template<int M = N>
+        static std::enable_if_t<M == 16> TEST_CASE_component_constructor()
+        {
+            const simd<T, N> s = {
+                static_cast<T>(1LL),
+                static_cast<T>(2LL),
+                static_cast<T>(3LL),
+                static_cast<T>(4LL),
+                static_cast<T>(5LL),
+                static_cast<T>(6LL),
+                static_cast<T>(7LL),
+                static_cast<T>(8LL),
+                static_cast<T>(9LL),
+                static_cast<T>(10LL),
+                static_cast<T>(11LL),
+                static_cast<T>(12LL),
+                static_cast<T>(13LL),
+                static_cast<T>(14LL),
+                static_cast<T>(15LL),
+                static_cast<T>(16LL),
+            };
+
+            test_assert(s.data()[0] == static_cast<T>(1LL));
+            test_assert(s.data()[1] == static_cast<T>(2LL));
+            test_assert(s.data()[2] == static_cast<T>(3LL));
+            test_assert(s.data()[3] == static_cast<T>(4LL));
+            test_assert(s.data()[4] == static_cast<T>(5LL));
+            test_assert(s.data()[5] == static_cast<T>(6LL));
+            test_assert(s.data()[6] == static_cast<T>(7LL));
+            test_assert(s.data()[7] == static_cast<T>(8LL));
+            test_assert(s.data()[8] == static_cast<T>(9LL));
+            test_assert(s.data()[9] == static_cast<T>(10LL));
+            test_assert(s.data()[10] == static_cast<T>(11LL));
+            test_assert(s.data()[11] == static_cast<T>(12LL));
+            test_assert(s.data()[12] == static_cast<T>(13LL));
+            test_assert(s.data()[13] == static_cast<T>(14LL));
+            test_assert(s.data()[14] == static_cast<T>(15LL));
+            test_assert(s.data()[15] == static_cast<T>(16LL));
+        }
+
+        template<int M = N>
+        static std::enable_if_t<(M > 16)> TEST_CASE_component_constructor()
         {
         }
 

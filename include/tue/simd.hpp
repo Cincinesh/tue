@@ -573,6 +573,58 @@ namespace tue
         }
 
         /*!
+         * \brief     Constructs each component with the value of the
+         *            corresponding argument.
+         * \details   This overload is only available when `N` equals `8`.
+         *
+         * \param s0  The value to construct the first component with.
+         * \param s1  The value to construct the second component with.
+         * \param s2  The value to construct the third component with.
+         * \param s3  The value to construct the fourth component with.
+         * \param s4  The value to construct the fifth component with.
+         * \param s5  The value to construct the sixth component with.
+         * \param s6  The value to construct the seventh component with.
+         * \param s7  The value to construct the eighth component with.
+         */
+        template<int M = N, typename = std::enable_if_t<M == 8>>
+        simd(T s0, T s1, T s2, T s3, T s4, T s5, T s6, T s7) noexcept
+        {
+            this->impl_[0] = simd<T, 4>(s0, s1, s2, s3);
+            this->impl_[1] = simd<T, 4>(s4, s5, s6, s7);
+        }
+
+        /*!
+         * \brief      Constructs each component with the value of the
+         *             corresponding argument.
+         * \details    This overload is only available when `N` equals `16`.
+         *
+         * \param s0   The value to construct the first component with.
+         * \param s1   The value to construct the second component with.
+         * \param s2   The value to construct the third component with.
+         * \param s3   The value to construct the fourth component with.
+         * \param s4   The value to construct the fifth component with.
+         * \param s5   The value to construct the sixth component with.
+         * \param s6   The value to construct the seventh component with.
+         * \param s7   The value to construct the eighth component with.
+         * \param s8   The value to construct the ninth component with.
+         * \param s9   The value to construct the tenth component with.
+         * \param s10  The value to construct the eleventh component with.
+         * \param s11  The value to construct the twelfth component with.
+         * \param s12  The value to construct the thirteenth component with.
+         * \param s13  The value to construct the fourteenth component with.
+         * \param s14  The value to construct the fifteenth component with.
+         * \param s15  The value to construct the sixteenth component with.
+         */
+        template<int M = N, typename = std::enable_if_t<M == 16>>
+        simd(
+            T s0, T s1, T  s2, T  s3, T  s4, T  s5, T  s6, T  s7,
+            T s8, T s9, T s10, T s11, T s12, T s13, T s14, T s15) noexcept
+        {
+            this->impl_[0] = simd<T, 8>(s0, s1,  s2,  s3,  s4,  s5,  s6,  s7);
+            this->impl_[1] = simd<T, 8>(s8, s9, s10, s11, s12, s13, s14, s15);
+        }
+
+        /*!
          * \brief     Explicitly casts another `simd` to a new component type.
          *
          * \tparam U  The component type of `s`.

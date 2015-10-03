@@ -26,12 +26,24 @@ namespace tue
         template<typename U>
         static bool8x16 explicit_cast(const simd<U, 16>& s) noexcept
         {
-            bool8x16 result;
-            for (int i = 0; i < 16; ++i)
-            {
-                result.data()[i] = bool8(s.data()[i]);
-            }
-            return result;
+            return {
+                bool8(s.data()[0]),
+                bool8(s.data()[1]),
+                bool8(s.data()[2]),
+                bool8(s.data()[3]),
+                bool8(s.data()[4]),
+                bool8(s.data()[5]),
+                bool8(s.data()[6]),
+                bool8(s.data()[7]),
+                bool8(s.data()[8]),
+                bool8(s.data()[9]),
+                bool8(s.data()[10]),
+                bool8(s.data()[11]),
+                bool8(s.data()[12]),
+                bool8(s.data()[13]),
+                bool8(s.data()[14]),
+                bool8(s.data()[15]),
+            };
         }
 
         inline static bool8x16 explicit_cast(const int8x16& s) noexcept;
@@ -54,10 +66,30 @@ namespace tue
         }
 
         template<int M = 16, typename = std::enable_if_t<M == 2>>
-        inline simd(bool8 x, bool8 y) noexcept;
+        inline simd(
+            bool8 x, bool8 y) noexcept;
 
         template<int M = 16, typename = std::enable_if_t<M == 4>>
-        inline simd(bool8 x, bool8 y, bool8 z, bool8 w) noexcept;
+        inline simd(
+            bool8 x, bool8 y, bool8 z, bool8 w) noexcept;
+
+        template<int M = 16, typename = std::enable_if_t<M == 8>>
+        inline simd(
+            bool8 s0, bool8 s1, bool8 s2, bool8 s3,
+            bool8 s4, bool8 s5, bool8 s6, bool8 s7) noexcept;
+
+        template<int M = 16, typename = std::enable_if_t<M == 16>>
+        inline simd(
+            bool8  s0, bool8  s1, bool8  s2, bool8  s3,
+            bool8  s4, bool8  s5, bool8  s6, bool8  s7,
+            bool8  s8, bool8  s9, bool8 s10, bool8 s11,
+            bool8 s12, bool8 s13, bool8 s14, bool8 s15) noexcept
+        :
+            underlying_(_mm_setr_epi8(
+                s0, s1,  s2,  s3,  s4,  s5,  s6,  s7,
+                s8, s9, s10, s11, s12, s13, s14, s15))
+        {
+        }
 
         template<typename U>
         explicit simd(const simd<U, 16>& s) noexcept

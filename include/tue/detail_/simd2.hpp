@@ -44,13 +44,15 @@ namespace tue
         }
 
         template<int M = 2, typename = std::enable_if_t<M == 4>>
-        simd(T x, T y, T z, T w) noexcept
-        {
-            this->data_[0] = x;
-            this->data_[1] = y;
-            this->data_[2] = z;
-            this->data_[3] = w;
-        }
+        inline simd(T x, T y, T z, T w) noexcept;
+
+        template<int M = 2, typename = std::enable_if_t<M == 8>>
+        inline simd(T s0, T s1, T s2, T s3, T s4, T s5, T s6, T s7) noexcept;
+
+        template<int M = 2, typename = std::enable_if_t<M == 16>>
+        inline simd(
+            T s0, T s1, T  s2, T  s3, T  s4, T  s5, T  s6, T  s7,
+            T s8, T s9, T s10, T s11, T s12, T s13, T s14, T s15) noexcept;
 
         template<typename U>
         explicit simd(const simd<U, 2>& s) noexcept

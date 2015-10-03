@@ -26,12 +26,16 @@ namespace tue
         template<typename U>
         static int16x8 explicit_cast(const simd<U, 8>& s) noexcept
         {
-            int16x8 result;
-            for (int i = 0; i < 8; ++i)
-            {
-                result.data()[i] = std::int16_t(s.data()[i]);
-            }
-            return result;
+            return {
+                std::int16_t(s.data()[0]),
+                std::int16_t(s.data()[1]),
+                std::int16_t(s.data()[2]),
+                std::int16_t(s.data()[3]),
+                std::int16_t(s.data()[4]),
+                std::int16_t(s.data()[5]),
+                std::int16_t(s.data()[6]),
+                std::int16_t(s.data()[7]),
+            };
         }
 
         inline static int16x8 explicit_cast(const bool16x8& s) noexcept;
@@ -54,14 +58,36 @@ namespace tue
         }
 
         template<int M = 8, typename = std::enable_if_t<M == 2>>
-        inline simd(std::int16_t x, std::int16_t y) noexcept;
+        inline simd(
+            std::int16_t x, std::int16_t y) noexcept;
 
         template<int M = 8, typename = std::enable_if_t<M == 4>>
         inline simd(
-            std::int16_t x,
-            std::int16_t y,
-            std::int16_t z,
-            std::int16_t w) noexcept;
+            std::int16_t x, std::int16_t y,
+            std::int16_t z, std::int16_t w) noexcept;
+
+        template<int M = 8, typename = std::enable_if_t<M == 8>>
+        inline simd(
+            std::int16_t s0, std::int16_t s1,
+            std::int16_t s2, std::int16_t s3,
+            std::int16_t s4, std::int16_t s5,
+            std::int16_t s6, std::int16_t s7) noexcept
+        :
+            underlying_(_mm_setr_epi16(
+                s0, s1, s2, s3, s4, s5, s6, s7))
+        {
+        }
+
+        template<int M = 8, typename = std::enable_if_t<M == 16>>
+        inline simd(
+            std::int16_t  s0, std::int16_t  s1,
+            std::int16_t  s2, std::int16_t  s3,
+            std::int16_t  s4, std::int16_t  s5,
+            std::int16_t  s6, std::int16_t  s7,
+            std::int16_t  s8, std::int16_t  s9,
+            std::int16_t s10, std::int16_t s11,
+            std::int16_t s12, std::int16_t s13,
+            std::int16_t s14, std::int16_t s15) noexcept;
 
         template<typename U>
         explicit simd(const simd<U, 8>& s) noexcept

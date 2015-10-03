@@ -26,12 +26,16 @@ namespace tue
         template<typename U>
         static bool16x8 explicit_cast(const simd<U, 8>& s) noexcept
         {
-            bool16x8 result;
-            for (int i = 0; i < 8; ++i)
-            {
-                result.data()[i] = bool16(s.data()[i]);
-            }
-            return result;
+            return {
+                bool16(s.data()[0]),
+                bool16(s.data()[1]),
+                bool16(s.data()[2]),
+                bool16(s.data()[3]),
+                bool16(s.data()[4]),
+                bool16(s.data()[5]),
+                bool16(s.data()[6]),
+                bool16(s.data()[7]),
+            };
         }
 
         inline static bool16x8 explicit_cast(const int16x8& s) noexcept;
@@ -54,10 +58,29 @@ namespace tue
         }
 
         template<int M = 8, typename = std::enable_if_t<M == 2>>
-        inline simd(bool16 x, bool16 y) noexcept;
+        inline simd(
+            bool16 x, bool16 y) noexcept;
 
         template<int M = 8, typename = std::enable_if_t<M == 4>>
-        inline simd(bool16 x, bool16 y, bool16 z, bool16 w) noexcept;
+        inline simd(
+            bool16 x, bool16 y, bool16 z, bool16 w) noexcept;
+
+        template<int M = 8, typename = std::enable_if_t<M == 8>>
+        inline simd(
+            bool16 s0, bool16 s1, bool16 s2, bool16 s3,
+            bool16 s4, bool16 s5, bool16 s6, bool16 s7) noexcept
+        :
+            underlying_(_mm_setr_epi16(
+                s0, s1, s2, s3, s4, s5, s6, s7))
+        {
+        }
+
+        template<int M = 8, typename = std::enable_if_t<M == 16>>
+        inline simd(
+            bool16  s0, bool16  s1, bool16  s2, bool16  s3,
+            bool16  s4, bool16  s5, bool16  s6, bool16  s7,
+            bool16  s8, bool16  s9, bool16 s10, bool16 s11,
+            bool16 s12, bool16 s13, bool16 s14, bool16 s15) noexcept;
 
         template<typename U>
         explicit simd(const simd<U, 8>& s) noexcept
