@@ -47,8 +47,10 @@ namespace tue
 #include "simd/sse2/float64x2.sse2.hpp"
 #include "simd/sse2/int8x16.sse2.hpp"
 #include "simd/sse2/int16x8.sse2.hpp"
+#include "simd/sse2/int32x4.sse2.hpp"
 #include "simd/sse2/uint8x16.sse2.hpp"
 #include "simd/sse2/uint16x8.sse2.hpp"
-#endif
+#include "simd/sse2/uint32x4.sse2.hpp"
 
+#endif
 #endif

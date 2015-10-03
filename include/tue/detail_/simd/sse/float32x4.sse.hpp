@@ -648,7 +648,6 @@ namespace tue
             return _mm_max_ps(s1, s2);
         }
 
-        template<typename T, typename U>
         inline float32x4 mask_ss(
             const bool32x4& conditions,
             const float32x4& values) noexcept
@@ -656,7 +655,6 @@ namespace tue
             return _mm_and_ps(conditions, values);
         }
 
-        template<typename T, typename U>
         inline float32x4 select_sss(
             const bool32x4& conditions,
             const float32x4& values,

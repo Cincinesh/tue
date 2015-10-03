@@ -134,13 +134,11 @@ namespace tue
 
     namespace detail_
     {
-        template<typename T>
         inline uint8x16& pre_increment_operator_s(uint8x16& s) noexcept
         {
             return s = _mm_add_epi8(s, uint8x16(1));
         }
 
-        template<typename T>
         inline uint8x16 post_increment_operator_s(uint8x16& s) noexcept
         {
             const auto result = s;
@@ -148,13 +146,11 @@ namespace tue
             return result;
         }
 
-        template<typename T>
         inline uint8x16& pre_decrement_operator_s(uint8x16& s) noexcept
         {
             return s = _mm_sub_epi8(s, uint8x16(1));
         }
 
-        template<typename T>
         inline uint8x16 post_decrement_operator_s(uint8x16& s) noexcept
         {
             const auto result = s;
@@ -162,187 +158,160 @@ namespace tue
             return result;
         }
 
-        template<typename T>
         inline uint8x16 bitwise_not_operator_s(const uint8x16& s) noexcept
         {
             return _mm_xor_si128(s, uint8x16(0xFF));
         }
 
-        template<typename T>
         inline uint8x16 addition_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_add_epi8(lhs, rhs);
         }
 
-        template<typename T>
         inline uint8x16 subtraction_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_sub_epi8(lhs, rhs);
         }
 
-        /*template<typename T>
-        inline uint8x16 multiplication_operator_ss(
+        /*inline uint8x16 multiplication_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline uint8x16 division_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline uint8x16 modulo_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }*/
 
-        template<typename T>
         inline uint8x16 bitwise_and_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_and_si128(lhs, rhs);
         }
 
-        template<typename T>
         inline uint8x16 bitwise_or_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_or_si128(lhs, rhs);
         }
 
-        template<typename T>
         inline uint8x16 bitwise_xor_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_xor_si128(lhs, rhs);
         }
 
-        /*template<typename T>
-        inline uint8x16 bitwise_shift_left_operator_ss(
+        /*inline uint8x16 bitwise_shift_left_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline uint8x16 bitwise_shift_right_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }*/
 
-        template<typename T>
         inline uint8x16& addition_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return lhs = _mm_add_epi8(lhs, rhs);
         }
 
-        template<typename T>
         inline uint8x16& subtraction_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return lhs = _mm_sub_epi8(lhs, rhs);
         }
 
-        /*template<typename T>
-        inline uint8x16& multiplication_assignment_operator_ss(
+        /*inline uint8x16& multiplication_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline uint8x16& division_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline uint8x16& modulo_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }*/
 
-        template<typename T>
         inline uint8x16& bitwise_and_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return lhs = _mm_and_si128(lhs, rhs);
         }
 
-        template<typename T>
         inline uint8x16& bitwise_or_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return lhs = _mm_or_si128(lhs, rhs);
         }
 
-        template<typename T>
         inline uint8x16& bitwise_xor_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return lhs = _mm_xor_si128(lhs, rhs);
         }
 
-        /*template<typename T>
-        inline uint8x16& bitwise_shift_left_assignment_operator_ss(
+        /*inline uint8x16& bitwise_shift_left_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline uint8x16& bitwise_shift_right_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }*/
 
-        template<typename T>
         inline bool equality_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) == 0xFFFF;
         }
 
-        template<typename T>
         inline bool inequality_operator_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) != 0xFFFF;
         }
 
-        template<typename T>
         inline uint8x16 abs_s(const uint8x16& s) noexcept
         {
             return s;
         }
 
-        template<typename T>
         inline uint8x16 min_ss(
             const uint8x16& s1, const uint8x16& s2) noexcept
         {
             return _mm_min_epu8(s1, s2);
         }
 
-        template<typename T>
         inline uint8x16 max_ss(
             const uint8x16& s1, const uint8x16& s2) noexcept
         {
             return _mm_max_epu8(s1, s2);
         }
 
-        template<typename T, typename U>
         inline uint8x16 mask_ss(
             const bool8x16& conditions,
             const uint8x16& values) noexcept
@@ -350,7 +319,6 @@ namespace tue
             return _mm_and_si128(conditions, values);
         }
 
-        template<typename T, typename U>
         inline uint8x16 select_sss(
             const bool8x16& conditions,
             const uint8x16& values,
@@ -361,42 +329,36 @@ namespace tue
                 _mm_andnot_si128(conditions, otherwise));
         }
 
-        /*template<typename T>
-        inline bool8x16 less_ss(
+        /*inline bool8x16 less_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline bool8x16 less_equal_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline bool8x16 greater_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }
 
-        template<typename T>
         inline bool8x16 greater_equal_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             // TODO
         }*/
 
-        template<typename T>
         inline bool8x16 equal_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
             return _mm_cmpeq_epi8(lhs, rhs);
         }
 
-        template<typename T>
         inline bool8x16 not_equal_ss(
             const uint8x16& lhs, const uint8x16& rhs) noexcept
         {
