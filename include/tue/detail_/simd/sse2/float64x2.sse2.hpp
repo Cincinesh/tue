@@ -427,10 +427,10 @@ namespace tue
             __m128d invalid_mask = _mm_cmple_pd(x, _mm_setzero_pd());
 
             /* cut off denormalized stuff */
-            x = _mm_max_pd(x, _mm_set1_ps(binary_double(1ull << 52ull)));
+            x = _mm_max_pd(x, _mm_set1_pd(binary_double(1ull << 52ull)));
 
             /* part 1: x = frexpf(x, &e); */
-            emm0 = _mm_srli_epi64(_mm_castps_si128(x), 52);
+            emm0 = _mm_srli_epi64(_mm_castpd_si128(x), 52);
 
             /* keep only the fractional part */
             x = _mm_and_pd(x, _mm_set1_pd(binary_double(~(0x7FFull << 52ull))));

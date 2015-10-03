@@ -12,6 +12,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>
+#include <type_traits>
 #include <tue/math.hpp>
 #include <tue/sized_bool.hpp>
 #include <tue/unused.hpp>
@@ -23,7 +24,9 @@ namespace
     template<typename T>
     bool nearly_equal(T lhs, T rhs) noexcept
     {
-        return lhs == rhs || math::abs(lhs - rhs) < math::abs(rhs * 0.0003f);
+        return lhs == rhs
+            || math::abs(lhs - rhs) < math::abs(rhs * 0.0003f)
+            || rhs == std::numeric_limits<T>::infinity();
     }
 
     /*
