@@ -266,9 +266,7 @@ namespace tue
             y = _mm_cvtepi32_pd(emm2);
 
             /* Convert to epi64 */
-            emm2 = _mm_shuffle_epi32(emm2, _MM_SHUFFLE(1, 1, 0, 0));
-            emm2 = _mm_and_si128(emm2, bool32x4(
-                true32, false32, true32, false32));
+            emm2 = _mm_shuffle_epi32(emm2, _MM_SHUFFLE(3, 1, 2, 0));
 
             emm4 = emm2;
 
@@ -356,12 +354,67 @@ namespace tue
             return cos;
         }
 
-        /*inline float64x2 exp_s(const float64x2& s) noexcept
+        inline float64x2 exp_s(const float64x2& s) noexcept
         {
-            // TODO
+            // This function's implementation is based on Julien Pommier's
+            // exp_ps(). See the top of this file for details.
+            __m128d x = s;
+
+            __m128d tmp = _mm_setzero_pd(), fx;
+            __m128i emm0;
+
+            __m128d one = _mm_set1_pd(1.0);
+
+            x = _mm_min_pd(x, _mm_set1_pd(88.3762626647949));
+            x = _mm_max_pd(x, _mm_set1_pd(-88.3762626647949));
+
+            /* express exp(x) as exp(g + n*log(2)) */
+            fx = _mm_mul_pd(x, _mm_set1_pd(1.44269504088896341));
+            fx = _mm_add_pd(fx, _mm_set1_pd(0.5));
+
+            /* how to perform a floorf with SSE: just below */
+            emm0 = _mm_cvttpd_epi32(fx);
+            tmp = _mm_cvtepi32_pd(emm0);
+
+            /* if greater, substract 1 */
+            __m128d mask = _mm_cmpgt_pd(tmp, fx);
+            mask = _mm_and_pd(mask, one);
+            fx = _mm_sub_pd(tmp, mask);
+
+            tmp = _mm_mul_pd(fx, _mm_set1_pd(0.693359375));
+            __m128d z = _mm_mul_pd(fx, _mm_set1_pd(-2.12194440e-4));
+            x = _mm_sub_pd(x, tmp);
+            x = _mm_sub_pd(x, z);
+
+            z = _mm_mul_pd(x, x);
+
+            __m128d y = _mm_set1_pd(1.9875691500e-4);
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(1.3981999507e-3));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(8.3334519073e-3));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(4.1665795894e-2));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(1.6666665459e-1));
+            y = _mm_mul_pd(y, x);
+            y = _mm_add_pd(y, _mm_set1_pd(5.0000001201e-1));
+            y = _mm_mul_pd(y, z);
+            y = _mm_add_pd(y, x);
+            y = _mm_add_pd(y, one);
+
+            /* build 2^n */
+            emm0 = _mm_cvttpd_epi32(fx);
+            emm0 = _mm_shuffle_epi32(emm0, _MM_SHUFFLE(3, 1, 2, 0));
+            emm0 = _mm_add_epi64(emm0, _mm_set1_epi64x(0x3FF));
+            emm0 = _mm_slli_epi64(emm0, 52);
+            __m128d pow2n = _mm_castsi128_pd(emm0);
+
+            y = _mm_mul_pd(y, pow2n);
+            return y;
         }
 
-        inline float64x2 log_s(const float64x2& s) noexcept
+        /*inline float64x2 log_s(const float64x2& s) noexcept
         {
             // TODO
         }*/

@@ -477,17 +477,17 @@ namespace tue
 
             z = _mm_mul_ps(x, x);
 
-            __m128 y = _mm_set1_ps(1.9875691500E-4f);
+            __m128 y = _mm_set1_ps(1.9875691500e-4f);
             y = _mm_mul_ps(y, x);
-            y = _mm_add_ps(y, _mm_set1_ps(1.3981999507E-3f));
+            y = _mm_add_ps(y, _mm_set1_ps(1.3981999507e-3f));
             y = _mm_mul_ps(y, x);
-            y = _mm_add_ps(y, _mm_set1_ps(8.3334519073E-3f));
+            y = _mm_add_ps(y, _mm_set1_ps(8.3334519073e-3f));
             y = _mm_mul_ps(y, x);
-            y = _mm_add_ps(y, _mm_set1_ps(4.1665795894E-2f));
+            y = _mm_add_ps(y, _mm_set1_ps(4.1665795894e-2f));
             y = _mm_mul_ps(y, x);
-            y = _mm_add_ps(y, _mm_set1_ps(1.6666665459E-1f));
+            y = _mm_add_ps(y, _mm_set1_ps(1.6666665459e-1f));
             y = _mm_mul_ps(y, x);
-            y = _mm_add_ps(y, _mm_set1_ps(5.0000001201E-1f));
+            y = _mm_add_ps(y, _mm_set1_ps(5.0000001201e-1f));
             y = _mm_mul_ps(y, z);
             y = _mm_add_ps(y, x);
             y = _mm_add_ps(y, one);
