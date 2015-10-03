@@ -303,13 +303,13 @@ namespace tue
         inline uint16x8 min_ss(
             const uint16x8& s1, const uint16x8& s2) noexcept
         {
-            return _mm_min_epu8(s1, s2);
+            return _mm_min_epu16(s1, s2);
         }
 
         inline uint16x8 max_ss(
             const uint16x8& s1, const uint16x8& s2) noexcept
         {
-            return _mm_max_epu8(s1, s2);
+            return _mm_max_epu16(s1, s2);
         }
 
         inline uint16x8 mask_ss(
