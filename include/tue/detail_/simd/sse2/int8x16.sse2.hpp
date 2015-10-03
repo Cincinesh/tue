@@ -303,7 +303,7 @@ namespace tue
         inline int8x16& bitwise_xor_assignment_operator_ss(
             int8x16& lhs, const int8x16& rhs) noexcept
         {
-            return _mm_xor_si128(lhs, rhs);
+            return lhs = _mm_xor_si128(lhs, rhs);
         }
 
         /*template<typename T>

@@ -35,6 +35,7 @@ namespace tue
         }
 
         inline static uint8x16 explicit_cast(const bool8x16& s) noexcept;
+
         inline static uint8x16 explicit_cast(const int8x16& s) noexcept;
 
     public:
@@ -290,7 +291,7 @@ namespace tue
         inline uint8x16& bitwise_xor_assignment_operator_ss(
             uint8x16& lhs, const uint8x16& rhs) noexcept
         {
-            return _mm_xor_si128(lhs, rhs);
+            return lhs = _mm_xor_si128(lhs, rhs);
         }
 
         /*template<typename T>

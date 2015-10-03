@@ -42,10 +42,13 @@ set(TUE_SOURCES
     include/tue/detail_/simd/sse/bool32x4.sse.hpp
     include/tue/detail_/simd/sse/float32x4.sse.hpp
     include/tue/detail_/simd/sse2/bool8x16.sse2.hpp
+    include/tue/detail_/simd/sse2/bool16x8.sse2.hpp
     include/tue/detail_/simd/sse2/bool64x2.sse2.hpp
     include/tue/detail_/simd/sse2/float64x2.sse2.hpp
     include/tue/detail_/simd/sse2/int8x16.sse2.hpp
+    include/tue/detail_/simd/sse2/int16x8.sse2.hpp
     include/tue/detail_/simd/sse2/uint8x16.sse2.hpp
+    include/tue/detail_/simd/sse2/uint16x8.sse2.hpp
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp
