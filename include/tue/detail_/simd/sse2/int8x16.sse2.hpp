@@ -36,6 +36,8 @@ namespace tue
 
         inline static int8x16 explicit_cast(const bool8x16& s) noexcept;
 
+        inline static int8x16 explicit_cast(const uint8x16& s) noexcept;
+
     public:
         using component_type = std::int8_t;
 
@@ -116,10 +118,16 @@ namespace tue
 }
 
 #include "bool8x16.sse2.hpp"
+#include "uint8x16.sse2.hpp"
 
 namespace tue
 {
     inline int8x16 int8x16::explicit_cast(const bool8x16& s) noexcept
+    {
+        return __m128i(s);
+    }
+
+    inline int8x16 int8x16::explicit_cast(const uint8x16& s) noexcept
     {
         return __m128i(s);
     }

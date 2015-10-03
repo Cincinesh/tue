@@ -45,6 +45,7 @@ set(TUE_SOURCES
     include/tue/detail_/simd/sse2/bool64x2.sse2.hpp
     include/tue/detail_/simd/sse2/float64x2.sse2.hpp
     include/tue/detail_/simd/sse2/int8x16.sse2.hpp
+    include/tue/detail_/simd/sse2/uint8x16.sse2.hpp
     include/tue/detail_/vec2.hpp
     include/tue/detail_/vec3.hpp
     include/tue/detail_/vec4.hpp
