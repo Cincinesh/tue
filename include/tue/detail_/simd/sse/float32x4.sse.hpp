@@ -53,7 +53,7 @@ namespace tue
 
     private:
         template<typename U>
-        static simd<float, 4> explicit_cast(const simd<U, 4>& s) noexcept
+        static float32x4 explicit_cast(const simd<U, 4>& s) noexcept
         {
             return {
                 float(s.data()[0]),
@@ -79,7 +79,7 @@ namespace tue
         }
 
         template<int M = 4, typename = std::enable_if_t<M == 2>>
-        simd(float x, float y) noexcept;
+        inline simd(float x, float y) noexcept;
 
         template<int M = 4, typename = std::enable_if_t<M == 4>>
         simd(float x, float y, float z, float w) noexcept
@@ -105,17 +105,17 @@ namespace tue
             return underlying_;
         }
 
-        static simd<float, 4> zero() noexcept
+        static float32x4 zero() noexcept
         {
             return _mm_setzero_ps();
         }
 
-        static simd<float, 4> load(const float* data) noexcept
+        static float32x4 load(const float* data) noexcept
         {
             return _mm_load_ps(data);
         }
 
-        static simd<float, 4> loadu(const float* data) noexcept
+        static float32x4 loadu(const float* data) noexcept
         {
             return _mm_loadu_ps(data);
         }
@@ -140,7 +140,12 @@ namespace tue
             return reinterpret_cast<float*>(&underlying_);
         }
     };
+}
 
+#include "bool32x4.sse.hpp"
+
+namespace tue
+{
     namespace detail_
     {
         inline float32x4 unary_plus_operator_s(const float32x4& s) noexcept
