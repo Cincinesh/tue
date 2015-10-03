@@ -962,7 +962,7 @@ namespace
 
         static void TEST_CASE_pow()
         {
-            const auto s1 = test_simd();
+            const auto s1 = test_simd_abs();
             const auto s2 = test_simd2();
             const auto s3 = math::pow(s1, s2);
             for (int i = 0; i < N; ++i)

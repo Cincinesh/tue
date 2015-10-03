@@ -122,6 +122,7 @@ namespace tue
 
         /*!
          * \brief     Computes the base-e (natural) logarithm of `x`.
+         * \details   If `x` is negative, behavior is undefined.
          *
          * \tparam T  The type of parameter `x`.
          *
@@ -154,6 +155,7 @@ namespace tue
 
         /*!
          * \brief     Computes `x` raised to the power `y`.
+         * \details   If `x` is negative, behavior is undefined.
          *
          * \tparam T  The type of parameters `x` and `y`.
          *

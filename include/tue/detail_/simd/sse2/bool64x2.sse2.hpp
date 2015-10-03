@@ -194,16 +194,19 @@ namespace tue
                 _mm_andnot_si128(conditions, otherwise));
         }
 
-        /*inline bool64x2 equal_ss(
+        inline bool64x2 equal_ss(
             const bool64x2& lhs, const bool64x2& rhs) noexcept
         {
-            return _mm_cmpeq_epi64(lhs, rhs);
+            const auto cmp = _mm_cmpeq_epi32(lhs, rhs);
+            const auto hi = _mm_shuffle_epi32(cmp, _MM_SHUFFLE(3, 3, 1, 1));
+            const auto lo = _mm_shuffle_epi32(cmp, _MM_SHUFFLE(2, 2, 0, 0));
+            return _mm_and_si128(hi, lo);
         }
 
         inline bool64x2 not_equal_ss(
             const bool64x2& lhs, const bool64x2& rhs) noexcept
         {
-            return _mm_xor_si128(_mm_cmpeq_epi64(lhs, rhs), bool64x2(true64));
-        }*/
+            return _mm_xor_si128(equal_ss(lhs, rhs), bool64x2(true64));
+        }
     }
 }

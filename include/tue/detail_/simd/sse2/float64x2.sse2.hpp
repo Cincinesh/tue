@@ -155,8 +155,8 @@ namespace tue
 
         inline float64x2 unary_minus_operator_s(const float64x2& s) noexcept
         {
-            return _mm_xor_pd(s, float64x2(tue::detail_::binary_double(
-                0x8000000000000000ull)));
+            return _mm_xor_pd(
+                s, float64x2(binary_double(0x8000000000000000ull)));
         }
 
         inline float64x2& pre_decrement_operator_s(float64x2& s) noexcept
@@ -246,12 +246,13 @@ namespace tue
             sign_bit_sin = x;
 
             /* take the absolute value */
-            x = _mm_and_pd(x, _mm_set1_pd(
-                tue::detail_::binary_double(~0x8000000000000000ull)));
+            x = _mm_and_pd(
+                x, _mm_set1_pd(binary_double(~0x8000000000000000ull)));
 
             /* extract the sign bit (upper one) */
-            sign_bit_sin = _mm_and_pd(sign_bit_sin, _mm_set1_pd(
-                tue::detail_::binary_double(0x8000000000000000ull)));
+            sign_bit_sin = _mm_and_pd(
+                sign_bit_sin,
+                _mm_set1_pd(binary_double(0x8000000000000000ull)));
 
             /* scale by 4/Pi */
             y = _mm_mul_pd(x, _mm_set1_pd(1.27323954473516));
@@ -344,14 +345,14 @@ namespace tue
         inline float64x2 sin_s(const float64x2& s) noexcept
         {
             float64x2 sin, cos;
-            tue::detail_::sincos_s(s, sin, cos);
+            sincos_s(s, sin, cos);
             return sin;
         }
 
         inline float64x2 cos_s(const float64x2& s) noexcept
         {
             float64x2 sin, cos;
-            tue::detail_::sincos_s(s, sin, cos);
+            sincos_s(s, sin, cos);
             return cos;
         }
 
@@ -367,8 +368,8 @@ namespace tue
 
         inline float64x2 abs_s(const float64x2& s) noexcept
         {
-            return _mm_and_pd(s, float64x2(tue::detail_::binary_double(
-                0x7FFFFFFFFFFFFFFFull)));
+            return _mm_and_pd(
+                s, float64x2(binary_double(0x7FFFFFFFFFFFFFFFull)));
         }
 
         /*inline float64x2 pow_ss(

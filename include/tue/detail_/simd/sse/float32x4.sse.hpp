@@ -162,8 +162,7 @@ namespace tue
 
         inline float32x4 unary_minus_operator_s(const float32x4& s) noexcept
         {
-            return _mm_xor_ps(
-                s, float32x4(tue::detail_::binary_float(0x80000000u)));
+            return _mm_xor_ps(s, float32x4(binary_float(0x80000000u)));
         }
 
         inline float32x4& pre_decrement_operator_s(float32x4& s) noexcept
@@ -286,13 +285,11 @@ namespace tue
             sign_bit_sin = x;
 
             /* take the absolute value */
-            x = _mm_and_ps(
-                x, _mm_set1_ps(tue::detail_::binary_float(~0x80000000)));
+            x = _mm_and_ps(x, _mm_set1_ps(binary_float(~0x80000000)));
 
             /* extract the sign bit (upper one) */
             sign_bit_sin = _mm_and_ps(
-                sign_bit_sin,
-                _mm_set1_ps(tue::detail_::binary_float(0x80000000)));
+                sign_bit_sin, _mm_set1_ps(binary_float(0x80000000)));
 
             /* scale by 4/Pi */
             y = _mm_mul_ps(x, _mm_set1_ps(1.27323954473516f));
@@ -423,14 +420,14 @@ namespace tue
         inline float32x4 sin_s(const float32x4& s) noexcept
         {
             float32x4 sin, cos;
-            tue::detail_::sincos_s(s, sin, cos);
+            sincos_s(s, sin, cos);
             return sin;
         }
 
         inline float32x4 cos_s(const float32x4& s) noexcept
         {
             float32x4 sin, cos;
-            tue::detail_::sincos_s(s, sin, cos);
+            sincos_s(s, sin, cos);
             return cos;
         }
 
@@ -534,8 +531,7 @@ namespace tue
             __m128 invalid_mask = _mm_cmple_ps(x, _mm_setzero_ps());
 
             /* cut off denormalized stuff */
-            x = _mm_max_ps(
-                x, _mm_set1_ps(tue::detail_::binary_float(0x00800000)));
+            x = _mm_max_ps(x, _mm_set1_ps(binary_float(0x00800000)));
 
             /* part 1: x = frexpf(x, &e); */
 #ifndef TUE_SSE2
@@ -546,8 +542,7 @@ namespace tue
             emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
 #endif
             /* keep only the fractional part */
-            x = _mm_and_ps(
-                x, _mm_set1_ps(tue::detail_::binary_float(~0x7f800000)));
+            x = _mm_and_ps(x, _mm_set1_ps(binary_float(~0x7f800000)));
             x = _mm_or_ps(x, _mm_set1_ps(0.5f));
 
 #ifndef TUE_SSE2
@@ -612,21 +607,14 @@ namespace tue
 
         inline float32x4 abs_s(const float32x4& s) noexcept
         {
-            return _mm_and_ps(
-                s, float32x4(tue::detail_::binary_float(0x7FFFFFFF)));
+            return _mm_and_ps(s, float32x4(binary_float(0x7FFFFFFF)));
         }
 
-        /*inline float32x4 pow_ss(
+        inline float32x4 pow_ss(
             const float32x4& bases, const float32x4& exponents) noexcept
         {
-            float32x4 result;
-            const auto rdata = result.data();
-            const auto bdata = bases.data();
-            const auto edata = exponents.data();
-            rdata[0] = tue::math::pow(bdata[0], edata[0]);
-            rdata[1] = tue::math::pow(bdata[1], edata[1]);
-            return result;
-        }*/
+            return exp_s(log_s(bases) * exponents);
+        }
 
         inline float32x4 recip_s(const float32x4& s) noexcept
         {
