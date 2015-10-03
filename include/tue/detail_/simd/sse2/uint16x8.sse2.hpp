@@ -286,13 +286,13 @@ namespace tue
         inline bool equality_operator_ss(
             const uint16x8& lhs, const uint16x8& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi16(lhs, rhs)) == 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) == 0xFFFF;
         }
 
         inline bool inequality_operator_ss(
             const uint16x8& lhs, const uint16x8& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi16(lhs, rhs)) != 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) != 0xFFFF;
         }
 
         inline uint16x8 abs_s(const uint16x8& s) noexcept
@@ -300,17 +300,17 @@ namespace tue
             return s;
         }
 
-        inline uint16x8 min_ss(
+        /*inline uint16x8 min_ss(
             const uint16x8& s1, const uint16x8& s2) noexcept
         {
-            return _mm_min_epu16(s1, s2);
+            // TODO
         }
 
         inline uint16x8 max_ss(
             const uint16x8& s1, const uint16x8& s2) noexcept
         {
-            return _mm_max_epu16(s1, s2);
-        }
+            // TODO
+        }*/
 
         inline uint16x8 mask_ss(
             const bool16x8& conditions,

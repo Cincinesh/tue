@@ -54,7 +54,7 @@ namespace tue
         template<int M = 2, typename = std::enable_if_t<M == 2>>
         inline simd(std::int64_t x, std::int64_t y) noexcept
         :
-            underlying_(_mm_setr_epi64x(x, y))
+            underlying_(_mm_set_epi64x(y, x))
         {
         }
 
@@ -298,21 +298,26 @@ namespace tue
         inline bool equality_operator_ss(
             const int64x2& lhs, const int64x2& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi64(lhs, rhs)) == 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) == 0xFFFF;
         }
 
         inline bool inequality_operator_ss(
             const int64x2& lhs, const int64x2& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi64(lhs, rhs)) != 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) != 0xFFFF;
         }
 
-        /*inline int64x2 abs_s(const int64x2& s) noexcept
+        inline int64x2 abs_s(const int64x2& s) noexcept
         {
-            // TODO
+            const auto nmask = _mm_shuffle_epi32(
+                _mm_cmplt_epi32(s, _mm_setzero_si128()),
+                _MM_SHUFFLE(3, 3, 1, 1));
+            return _mm_or_si128(
+                _mm_and_si128(nmask, unary_minus_operator_s(s)),
+                _mm_andnot_si128(nmask, s));
         }
 
-        inline int64x2 min_ss(
+        /*inline int64x2 min_ss(
             const int64x2& s1, const int64x2& s2) noexcept
         {
             // TODO

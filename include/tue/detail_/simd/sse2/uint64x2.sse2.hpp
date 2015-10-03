@@ -54,7 +54,7 @@ namespace tue
         template<int M = 2, typename = std::enable_if_t<M == 2>>
         simd(std::uint64_t x, std::uint64_t y) noexcept
         :
-            underlying_(_mm_setr_epi64x(x, y))
+            underlying_(_mm_set_epi64x(y, x))
         {
         }
 
@@ -288,13 +288,13 @@ namespace tue
         inline bool equality_operator_ss(
             const uint64x2& lhs, const uint64x2& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi64(lhs, rhs)) == 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) == 0xFFFF;
         }
 
         inline bool inequality_operator_ss(
             const uint64x2& lhs, const uint64x2& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi64(lhs, rhs)) != 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) != 0xFFFF;
         }
 
         inline uint64x2 abs_s(const uint64x2& s) noexcept

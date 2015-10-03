@@ -313,17 +313,17 @@ namespace tue
                 _mm_andnot_si128(nmask, s));
         }
 
-        inline int8x16 min_ss(
+        /*inline int8x16 min_ss(
             const int8x16& s1, const int8x16& s2) noexcept
         {
-            return _mm_min_epi8(s1, s2);
+            // TODO
         }
 
         inline int8x16 max_ss(
             const int8x16& s1, const int8x16& s2) noexcept
         {
-            return _mm_max_epi8(s1, s2);
-        }
+            // TODO
+        }*/
 
         inline int8x16 mask_ss(
             const bool8x16& conditions,

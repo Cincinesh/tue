@@ -175,13 +175,13 @@ namespace tue
         inline bool equality_operator_ss(
             bool16x8& lhs, const bool16x8& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi16(lhs, rhs)) == 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) == 0xFFFF;
         }
 
         inline bool inequality_operator_ss(
             bool16x8& lhs, const bool16x8& rhs) noexcept
         {
-            return _mm_movemask_epi8(_mm_cmpeq_epi16(lhs, rhs)) != 0xFFFF;
+            return _mm_movemask_epi8(_mm_cmpeq_epi8(lhs, rhs)) != 0xFFFF;
         }
 
         inline bool16x8 mask_ss(
