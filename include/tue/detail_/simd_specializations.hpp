@@ -29,7 +29,20 @@ namespace tue
 #include "simd/sse/float32x4.sse.hpp"
 
 #ifdef TUE_SSE2
+
+namespace tue
+{
+    namespace detail_
+    {
+        double binary_double(std::uint64_t x) noexcept
+        {
+            return reinterpret_cast<const double&>(x);
+        }
+    }
+}
+
 #include "simd/sse2/bool64x2.sse2.hpp"
+#include "simd/sse2/float64x2.sse2.hpp"
 #endif
 
 #endif
