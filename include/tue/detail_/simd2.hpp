@@ -287,28 +287,26 @@ namespace tue
         }
 
         template<typename T>
-        inline simd<T, 2> bitwise_shift_left_operator_ss(
-            const simd<T, 2>& lhs, const simd<T, 2>& rhs) noexcept
+        inline simd<T, 2> bitwise_shift_left_operator_si(
+            const simd<T, 2>& lhs, int rhs) noexcept
         {
             simd<T, 2> s;
             const auto sdata = s.data();
             const auto ldata = lhs.data();
-            const auto rdata = rhs.data();
-            sdata[0] = ldata[0] << rdata[0];
-            sdata[1] = ldata[1] << rdata[1];
+            sdata[0] = ldata[0] << rhs;
+            sdata[1] = ldata[1] << rhs;
             return s;
         }
 
         template<typename T>
-        inline simd<T, 2> bitwise_shift_right_operator_ss(
-            const simd<T, 2>& lhs, const simd<T, 2>& rhs) noexcept
+        inline simd<T, 2> bitwise_shift_right_operator_si(
+            const simd<T, 2>& lhs, int rhs) noexcept
         {
             simd<T, 2> s;
             const auto sdata = s.data();
             const auto ldata = lhs.data();
-            const auto rdata = rhs.data();
-            sdata[0] = ldata[0] >> rdata[0];
-            sdata[1] = ldata[1] >> rdata[1];
+            sdata[0] = ldata[0] >> rhs;
+            sdata[1] = ldata[1] >> rhs;
             return s;
         }
 
@@ -401,24 +399,22 @@ namespace tue
         }
 
         template<typename T>
-        inline simd<T, 2>& bitwise_shift_left_assignment_operator_ss(
-            simd<T, 2>& lhs, const simd<T, 2>& rhs) noexcept
+        inline simd<T, 2>& bitwise_shift_left_assignment_operator_si(
+            simd<T, 2>& lhs, int rhs) noexcept
         {
             const auto ldata = lhs.data();
-            const auto rdata = rhs.data();
-            ldata[0] <<= rdata[0];
-            ldata[1] <<= rdata[1];
+            ldata[0] <<= rhs;
+            ldata[1] <<= rhs;
             return lhs;
         }
 
         template<typename T>
-        inline simd<T, 2>& bitwise_shift_right_assignment_operator_ss(
-            simd<T, 2>& lhs, const simd<T, 2>& rhs) noexcept
+        inline simd<T, 2>& bitwise_shift_right_assignment_operator_si(
+            simd<T, 2>& lhs, int rhs) noexcept
         {
             const auto ldata = lhs.data();
-            const auto rdata = rhs.data();
-            ldata[0] >>= rdata[0];
-            ldata[1] >>= rdata[1];
+            ldata[0] >>= rhs;
+            ldata[1] >>= rhs;
             return lhs;
         }
 

@@ -981,42 +981,40 @@ namespace tue
 
     /*!
      * \brief      Computes the bitwise shifts left of each component of `lhs`
-     *             by each corresponding component of `rhs`.
+     *             by `rhs`.
      *
-     * \tparam T   The component type of both `lhs` and `rhs`.
-     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \tparam T   The component type of `lhs`.
+     * \tparam N   The component count of `lhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shifts left of each component of `lhs` by each
-     *             corresponding component of `rhs`.
+     * \return     The bitwise shifts left of each component of `lhs` by `rhs`.
      */
     template<typename T, int N>
     inline simd<T, N> operator<<(
-        const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        const simd<T, N>& lhs, int rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_operator_ss(lhs, rhs);
+        return tue::detail_::bitwise_shift_left_operator_si(lhs, rhs);
     }
 
     /*!
      * \brief      Computes the bitwise shifts right of each component of `lhs`
-     *             by each corresponding component of `rhs`.
+     *             by `rhs`.
      *
-     * \tparam T   The component type of both `lhs` and `rhs`.
-     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \tparam T   The component type of `lhs`.
+     * \tparam N   The component count of `lhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
      *
-     * \return     The bitwise shifts right of each component of `lhs` by each
-     *             corresponding component of `rhs`.
+     * \return     The bitwise shifts right of each component of `lhs` by `rhs`.
      */
     template<typename T, int N>
     inline simd<T, N> operator>>(
-        const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        const simd<T, N>& lhs, int rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_operator_ss(lhs, rhs);
+        return tue::detail_::bitwise_shift_right_operator_si(lhs, rhs);
     }
 
     /*!
@@ -1172,11 +1170,10 @@ namespace tue
     }
 
     /*!
-     * \brief      Bitwise shifts left each component of `lhs` by each
-     *             corresponding component of `rhs`.
+     * \brief      Bitwise shifts left each component of `lhs` by `rhs`.
      *
-     * \tparam T   The component type of both `lhs` and `rhs`.
-     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \tparam T   The component type of `lhs`.
+     * \tparam N   The component count of `lhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -1185,18 +1182,17 @@ namespace tue
      */
     template<typename T, int N>
     inline simd<T, N>& operator<<=(
-        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        simd<T, N>& lhs, int rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_left_assignment_operator_ss(
+        return tue::detail_::bitwise_shift_left_assignment_operator_si(
             lhs, rhs);
     }
 
     /*!
-     * \brief      Bitwise shifts right each component of `lhs` by each
-     *             corresponding component of `rhs`.
+     * \brief      Bitwise shifts right each component of `lhs` by `rhs`.
      *
-     * \tparam T   The component type of both `lhs` and `rhs`.
-     * \tparam N   The component count of both `lhs` and `rhs`.
+     * \tparam T   The component type of `lhs`.
+     * \tparam N   The component count of `lhs`.
      *
      * \param lhs  The left-hand side operand.
      * \param rhs  The right-hand side operand.
@@ -1205,9 +1201,9 @@ namespace tue
      */
     template<typename T, int N>
     inline simd<T, N>& operator>>=(
-        simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        simd<T, N>& lhs, int rhs) noexcept
     {
-        return tue::detail_::bitwise_shift_right_assignment_operator_ss(
+        return tue::detail_::bitwise_shift_right_assignment_operator_si(
             lhs, rhs);
     }
 

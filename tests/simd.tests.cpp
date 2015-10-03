@@ -609,6 +609,18 @@ namespace
             return s;
         }
 
+        static const simd<T, N>& test_simd_abs() noexcept
+        {
+            static bool initialized = false;
+            static simd<T, N> s;
+            if (!initialized)
+            {
+                s = math::abs(test_simd());
+                initialized = true;
+            }
+            return s;
+        }
+
         template<typename U = T>
         static std::enable_if_t<std::is_signed<U>::value>
         TEST_CASE_unary_plus_operator()
@@ -892,18 +904,7 @@ namespace
     {
         using arithmetic_simd_tests<Alias, T, N>::test_simd;
         using arithmetic_simd_tests<Alias, T, N>::test_simd2;
-
-        static const simd<T, N>& test_simd_abs() noexcept
-        {
-            static bool initialized = false;
-            static simd<T, N> s;
-            if (!initialized)
-            {
-                s = math::abs(test_simd());
-                initialized = true;
-            }
-            return s;
-        }
+        using arithmetic_simd_tests<Alias, T, N>::test_simd_abs;
 
         static void TEST_CASE_sin()
         {
@@ -1031,21 +1032,7 @@ namespace
     {
         using arithmetic_simd_tests<Alias, T, N>::test_simd;
         using arithmetic_simd_tests<Alias, T, N>::test_simd2;
-
-        static const simd<T, N>& test_simd_shift() noexcept
-        {
-            static bool initialized = false;
-            static simd<T, N> s;
-            if (!initialized)
-            {
-                for (int i = 0; i < N; ++i)
-                {
-                    s.data()[i] = i+1;
-                }
-                initialized = true;
-            }
-            return s;
-        }
+        using arithmetic_simd_tests<Alias, T, N>::test_simd_abs;
 
         static void TEST_CASE_bitwise_not_operator()
         {
@@ -1108,24 +1095,22 @@ namespace
         static void TEST_CASE_bitwise_shift_left_operator()
         {
             const auto s1 = test_simd();
-            const auto s2 = test_simd_shift();
-            const auto s3 = s1 << s2;
+            const auto s2 = s1 << 2;
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s3.data()[i] ==
-                    static_cast<T>(s1.data()[i] << s2.data()[i]));
+                test_assert(s2.data()[i] ==
+                    static_cast<T>(s1.data()[i] << 2));
             }
         }
 
         static void TEST_CASE_bitwise_shift_right_operator()
         {
-            const auto s1 = test_simd();
-            const auto s2 = test_simd_shift();
-            const auto s3 = s1 >> s2;
+            const auto s1 = test_simd_abs();
+            const auto s2 = s1 >> 2;
             for (int i = 0; i < N; ++i)
             {
-                test_assert(s3.data()[i] ==
-                    static_cast<T>(s1.data()[i] >> s2.data()[i]));
+                test_assert(s2.data()[i] ==
+                    static_cast<T>(s1.data()[i] >> 2));
             }
         }
 
@@ -1180,24 +1165,22 @@ namespace
         static void TEST_CASE_bitwise_shift_left_assignment_operator()
         {
             auto s1 = test_simd();
-            const auto s2 = test_simd_shift();
-            test_assert(&(s1 <<= s2) == &s1);
+            test_assert(&(s1 <<= 2) == &s1);
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s1.data()[i] ==
-                    static_cast<T>(test_simd().data()[i] << s2.data()[i]));
+                    static_cast<T>(test_simd().data()[i] << 2));
             }
         }
 
         static void TEST_CASE_bitwise_shift_right_assignment_operator()
         {
-            auto s1 = test_simd();
-            const auto s2 = test_simd_shift();
-            test_assert(&(s1 >>= s2) == &s1);
+            auto s1 = test_simd_abs();
+            test_assert(&(s1 >>= 2) == &s1);
             for (int i = 0; i < N; ++i)
             {
                 test_assert(s1.data()[i] ==
-                    static_cast<T>(test_simd().data()[i] >> s2.data()[i]));
+                    static_cast<T>(test_simd_abs().data()[i] >> 2));
             }
         }
 

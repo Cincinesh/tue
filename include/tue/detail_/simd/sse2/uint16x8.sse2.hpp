@@ -211,17 +211,17 @@ namespace tue
             return _mm_xor_si128(lhs, rhs);
         }
 
-        /*inline uint16x8 bitwise_shift_left_operator_ss(
-            const uint16x8& lhs, const uint16x8& rhs) noexcept
+        inline uint16x8 bitwise_shift_left_operator_si(
+            const uint16x8& lhs, int rhs) noexcept
         {
-            // TODO
+            return _mm_slli_epi16(lhs, rhs);
         }
 
-        inline uint16x8 bitwise_shift_right_operator_ss(
-            const uint16x8& lhs, const uint16x8& rhs) noexcept
+        inline uint16x8 bitwise_shift_right_operator_si(
+            const uint16x8& lhs, int rhs) noexcept
         {
-            // TODO
-        }*/
+            return _mm_srli_epi16(lhs, rhs);
+        }
 
         inline uint16x8& addition_assignment_operator_ss(
             uint16x8& lhs, const uint16x8& rhs) noexcept
@@ -271,17 +271,17 @@ namespace tue
             return lhs = _mm_xor_si128(lhs, rhs);
         }
 
-        /*inline uint16x8& bitwise_shift_left_assignment_operator_ss(
-            uint16x8& lhs, const uint16x8& rhs) noexcept
+        inline uint16x8& bitwise_shift_left_assignment_operator_si(
+            uint16x8& lhs, int rhs) noexcept
         {
-            // TODO
+            return lhs = _mm_slli_epi16(lhs, rhs);
         }
 
-        inline uint16x8& bitwise_shift_right_assignment_operator_ss(
-            uint16x8& lhs, const uint16x8& rhs) noexcept
+        inline uint16x8& bitwise_shift_right_assignment_operator_si(
+            uint16x8& lhs, int rhs) noexcept
         {
-            // TODO
-        }*/
+            return lhs = _mm_srli_epi16(lhs, rhs);
+        }
 
         inline bool equality_operator_ss(
             const uint16x8& lhs, const uint16x8& rhs) noexcept

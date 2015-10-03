@@ -221,14 +221,14 @@ namespace tue
             return _mm_xor_si128(lhs, rhs);
         }
 
-        /*inline int8x16 bitwise_shift_left_operator_ss(
-            const int8x16& lhs, const int8x16& rhs) noexcept
+        /*inline int8x16 bitwise_shift_left_operator_si(
+            const int8x16& lhs, int rhs) noexcept
         {
             // TODO
         }
 
-        inline int8x16 bitwise_shift_right_operator_ss(
-            const int8x16& lhs, const int8x16& rhs) noexcept
+        inline int8x16 bitwise_shift_right_operator_si(
+            const int8x16& lhs, int rhs) noexcept
         {
             // TODO
         }*/
@@ -281,14 +281,14 @@ namespace tue
             return lhs = _mm_xor_si128(lhs, rhs);
         }
 
-        /*inline int8x16& bitwise_shift_left_assignment_operator_ss(
-            int8x16& lhs, const int8x16& rhs) noexcept
+        /*inline int8x16& bitwise_shift_left_assignment_operator_si(
+            int8x16& lhs, int rhs) noexcept
         {
             // TODO
         }
 
-        inline int8x16& bitwise_shift_right_assignment_operator_ss(
-            int8x16& lhs, const int8x16& rhs) noexcept
+        inline int8x16& bitwise_shift_right_assignment_operator_si(
+            int8x16& lhs, int rhs) noexcept
         {
             // TODO
         }*/

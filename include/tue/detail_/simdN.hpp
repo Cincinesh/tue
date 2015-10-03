@@ -217,34 +217,32 @@ namespace tue
         }
 
         template<typename T, int N>
-        inline simd<T, N> bitwise_shift_left_operator_ss(
-            const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        inline simd<T, N> bitwise_shift_left_operator_si(
+            const simd<T, N>& lhs, int rhs) noexcept
         {
             simd<T, N> s;
             const auto simpl = reinterpret_cast<simd<T, N/2>*>(&s);
             const auto limpl = reinterpret_cast<const simd<T, N/2>*>(&lhs);
-            const auto rimpl = reinterpret_cast<const simd<T, N/2>*>(&rhs);
 
-            simpl[0] = tue::detail_::bitwise_shift_left_operator_ss(
-                limpl[0], rimpl[0]);
-            simpl[1] = tue::detail_::bitwise_shift_left_operator_ss(
-                limpl[1], rimpl[1]);
+            simpl[0] = tue::detail_::bitwise_shift_left_operator_si(
+                limpl[0], rhs);
+            simpl[1] = tue::detail_::bitwise_shift_left_operator_si(
+                limpl[1], rhs);
             return s;
         }
 
         template<typename T, int N>
-        inline simd<T, N> bitwise_shift_right_operator_ss(
-            const simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        inline simd<T, N> bitwise_shift_right_operator_si(
+            const simd<T, N>& lhs, int rhs) noexcept
         {
             simd<T, N> s;
             const auto simpl = reinterpret_cast<simd<T, N/2>*>(&s);
             const auto limpl = reinterpret_cast<const simd<T, N/2>*>(&lhs);
-            const auto rimpl = reinterpret_cast<const simd<T, N/2>*>(&rhs);
 
-            simpl[0] = tue::detail_::bitwise_shift_right_operator_ss(
-                limpl[0], rimpl[0]);
-            simpl[1] = tue::detail_::bitwise_shift_right_operator_ss(
-                limpl[1], rimpl[1]);
+            simpl[0] = tue::detail_::bitwise_shift_right_operator_si(
+                limpl[0], rhs);
+            simpl[1] = tue::detail_::bitwise_shift_right_operator_si(
+                limpl[1], rhs);
             return s;
         }
 
@@ -353,28 +351,26 @@ namespace tue
         }
 
         template<typename T, int N>
-        inline simd<T, N>& bitwise_shift_left_assignment_operator_ss(
-            simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        inline simd<T, N>& bitwise_shift_left_assignment_operator_si(
+            simd<T, N>& lhs, int rhs) noexcept
         {
             const auto limpl = reinterpret_cast<simd<T, N/2>*>(&lhs);
-            const auto rimpl = reinterpret_cast<const simd<T, N/2>*>(&rhs);
-            tue::detail_::bitwise_shift_left_assignment_operator_ss(
-                limpl[0], rimpl[0]);
-            tue::detail_::bitwise_shift_left_assignment_operator_ss(
-                limpl[1], rimpl[1]);
+            tue::detail_::bitwise_shift_left_assignment_operator_si(
+                limpl[0], rhs);
+            tue::detail_::bitwise_shift_left_assignment_operator_si(
+                limpl[1], rhs);
             return lhs;
         }
 
         template<typename T, int N>
-        inline simd<T, N>& bitwise_shift_right_assignment_operator_ss(
-            simd<T, N>& lhs, const simd<T, N>& rhs) noexcept
+        inline simd<T, N>& bitwise_shift_right_assignment_operator_si(
+            simd<T, N>& lhs, int rhs) noexcept
         {
             const auto limpl = reinterpret_cast<simd<T, N/2>*>(&lhs);
-            const auto rimpl = reinterpret_cast<const simd<T, N/2>*>(&rhs);
-            tue::detail_::bitwise_shift_right_assignment_operator_ss(
-                limpl[0], rimpl[0]);
-            tue::detail_::bitwise_shift_right_assignment_operator_ss(
-                limpl[1], rimpl[1]);
+            tue::detail_::bitwise_shift_right_assignment_operator_si(
+                limpl[0], rhs);
+            tue::detail_::bitwise_shift_right_assignment_operator_si(
+                limpl[1], rhs);
             return lhs;
         }
 

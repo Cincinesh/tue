@@ -233,17 +233,17 @@ namespace tue
             return _mm_xor_si128(lhs, rhs);
         }
 
-        /*inline int32x4 bitwise_shift_left_operator_ss(
-            const int32x4& lhs, const int32x4& rhs) noexcept
+        inline int32x4 bitwise_shift_left_operator_si(
+            const int32x4& lhs, int rhs) noexcept
         {
-            // TODO
+            return _mm_slli_epi32(lhs, rhs);
         }
 
-        inline int32x4 bitwise_shift_right_operator_ss(
-            const int32x4& lhs, const int32x4& rhs) noexcept
+        inline int32x4 bitwise_shift_right_operator_si(
+            const int32x4& lhs, int rhs) noexcept
         {
-            // TODO
-        }*/
+            return _mm_srli_epi32(lhs, rhs);
+        }
 
         inline int32x4& addition_assignment_operator_ss(
             int32x4& lhs, const int32x4& rhs) noexcept
@@ -293,17 +293,17 @@ namespace tue
             return lhs = _mm_xor_si128(lhs, rhs);
         }
 
-        /*inline int32x4& bitwise_shift_left_assignment_operator_ss(
-            int32x4& lhs, const int32x4& rhs) noexcept
+        inline int32x4& bitwise_shift_left_assignment_operator_si(
+            int32x4& lhs, int rhs) noexcept
         {
-            // TODO
+            return lhs = _mm_slli_epi32(lhs, rhs);
         }
 
-        inline int32x4& bitwise_shift_right_assignment_operator_ss(
-            int32x4& lhs, const int32x4& rhs) noexcept
+        inline int32x4& bitwise_shift_right_assignment_operator_si(
+            int32x4& lhs, int rhs) noexcept
         {
-            // TODO
-        }*/
+            return lhs = _mm_srli_epi32(lhs, rhs);
+        }
 
         inline bool equality_operator_ss(
             const int32x4& lhs, const int32x4& rhs) noexcept
