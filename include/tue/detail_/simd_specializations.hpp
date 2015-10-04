@@ -18,7 +18,7 @@ namespace tue
 {
     namespace detail_
     {
-        float binary_float(std::uint32_t x) noexcept
+        inline float binary_float(std::uint32_t x) noexcept
         {
             return reinterpret_cast<const float&>(x);
         }
@@ -34,7 +34,7 @@ namespace tue
 {
     namespace detail_
     {
-        double binary_double(std::uint64_t x) noexcept
+        inline double binary_double(std::uint64_t x) noexcept
         {
             return reinterpret_cast<const double&>(x);
         }

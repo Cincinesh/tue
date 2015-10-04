@@ -11,7 +11,6 @@
 static_assert(sizeof(float) == 4, "float is not 32-bits wide");
 static_assert(sizeof(double) == 8, "double is not 64-bits wide");
 
-#include <cstddef>
 #include <cstdint>
 #include <type_traits>
 
@@ -494,8 +493,11 @@ namespace tue
         template<typename T, int N>
         inline constexpr std::size_t alignof_simd() noexcept
         {
-            return (sizeof(T) * N) < alignof(std::max_align_t)
-                 ? (sizeof(T) * N) : alignof(std::max_align_t);
+#ifdef __GNUC__
+            return (sizeof(T) * N) < 128 ? (sizeof(T) * N) : 128;
+#else
+            return (sizeof(T) * N);
+#endif
         }
     }
 }

@@ -27,7 +27,7 @@ namespace
     {
         test_assert(alignof(quat<short>) == alignof(short[4]));
         test_assert(alignof(fquat) == alignof(float[4]));
-        //test_assert(alignof(dquat) == alignof(double[4]));
+        test_assert(alignof(dquat) <= alignof(double[4]));
     }
 
     TEST_CASE(component_type)

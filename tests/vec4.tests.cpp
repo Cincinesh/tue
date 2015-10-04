@@ -32,7 +32,7 @@ namespace
     {
         test_assert(alignof(vec4<short>) == alignof(short[4]));
         test_assert(alignof(fvec4) == alignof(float[4]));
-        //test_assert(alignof(dvec4) == alignof(double[4]));
+        test_assert(alignof(dvec4) <= alignof(double[4]));
         test_assert(alignof(ivec4) == alignof(int[4]));
         test_assert(alignof(uvec4) == alignof(unsigned int[4]));
     }
