@@ -7,7 +7,7 @@
 //         https://github.com/Cincinesh/tue/issues
 
 #include <tue/quat.hpp>
-#include <mon/test_case.hpp>
+#include "tue.tests.hpp"
 
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>

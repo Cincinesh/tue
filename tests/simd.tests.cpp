@@ -7,7 +7,7 @@
 //         https://github.com/Cincinesh/tue/issues
 
 #include <tue/simd.hpp>
-#include <mon/test_case.hpp>
+#include "tue.tests.hpp"
 
 #include <cstddef>
 #include <cstdint>
@@ -20,14 +20,6 @@
 namespace
 {
     using namespace tue;
-
-    template<typename T>
-    bool nearly_equal(T lhs, T rhs) noexcept
-    {
-        return lhs == rhs
-            || math::abs(lhs - rhs) < math::abs(rhs * 0.0003f)
-            || rhs == std::numeric_limits<T>::infinity();
-    }
 
     /*
      * Utility classes

@@ -7,7 +7,7 @@
 //         https://github.com/Cincinesh/tue/issues
 
 #include <tue/mat.hpp>
-#include <mon/test_case.hpp>
+#include "tue.tests.hpp"
 
 #include <type_traits>
 #include <tue/math.hpp>
