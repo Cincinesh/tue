@@ -17,7 +17,7 @@
 namespace tue
 {
     template<typename T>
-    class alignas(sizeof(T) * 2) simd<T, 2>
+    class alignas(tue::detail_::alignof_simd<T, 2>()) simd<T, 2>
     {
         std::enable_if_t<is_simd_component<T>::value, T[2]> data_;
 

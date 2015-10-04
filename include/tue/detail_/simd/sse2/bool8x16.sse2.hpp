@@ -18,7 +18,8 @@
 namespace tue
 {
     template<>
-    class alignas(sizeof(bool8) * 16) simd<bool8, 16>
+    class alignas(tue::detail_::alignof_simd<bool8, 16>())
+    simd<bool8, 16>
     {
         __m128i underlying_;
 

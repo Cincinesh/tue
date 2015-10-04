@@ -111,34 +111,34 @@ namespace
 
     TEST_CASE(size)
     {
-        test_assert(sizeof(mat<short, 3, 2>) == sizeof(short) * 3 * 2);
-        test_assert(sizeof(mat<short, 3, 3>) == sizeof(short) * 3 * 3);
-        test_assert(sizeof(mat<short, 3, 4>) == sizeof(short) * 3 * 4);
-        test_assert(sizeof(mat3x2<short>) == sizeof(short) * 3 * 2);
-        test_assert(sizeof(mat3x3<short>) == sizeof(short) * 3 * 3);
-        test_assert(sizeof(mat3x4<short>) == sizeof(short) * 3 * 4);
-        test_assert(sizeof(fmat3x2) == sizeof(float) * 3 * 2);
-        test_assert(sizeof(fmat3x3) == sizeof(float) * 3 * 3);
-        test_assert(sizeof(fmat3x4) == sizeof(float) * 3 * 4);
-        test_assert(sizeof(dmat3x2) == sizeof(double) * 3 * 2);
-        test_assert(sizeof(dmat3x3) == sizeof(double) * 3 * 3);
-        test_assert(sizeof(dmat3x4) == sizeof(double) * 3 * 4);
+        test_assert(sizeof(mat<short, 3, 2>) == sizeof(vec2<short>[3]));
+        test_assert(sizeof(mat<short, 3, 3>) == sizeof(vec3<short>[3]));
+        test_assert(sizeof(mat<short, 3, 4>) == sizeof(vec4<short>[3]));
+        test_assert(sizeof(mat3x2<short>) == sizeof(vec2<short>[3]));
+        test_assert(sizeof(mat3x3<short>) == sizeof(vec3<short>[3]));
+        test_assert(sizeof(mat3x4<short>) == sizeof(vec4<short>[3]));
+        test_assert(sizeof(fmat3x2) == sizeof(fvec2[3]));
+        test_assert(sizeof(fmat3x3) == sizeof(fvec3[3]));
+        test_assert(sizeof(fmat3x4) == sizeof(fvec4[3]));
+        test_assert(sizeof(dmat3x2) == sizeof(dvec2[3]));
+        test_assert(sizeof(dmat3x3) == sizeof(dvec3[3]));
+        test_assert(sizeof(dmat3x4) == sizeof(dvec4[3]));
     }
 
     TEST_CASE(alignment)
     {
-        test_assert(alignof(mat<short, 3, 2>) == alignof(short));
-        test_assert(alignof(mat<short, 3, 3>) == alignof(short));
-        test_assert(alignof(mat<short, 3, 4>) == alignof(short));
-        test_assert(alignof(mat3x2<short>) == alignof(short));
-        test_assert(alignof(mat3x3<short>) == alignof(short));
-        test_assert(alignof(mat3x4<short>) == alignof(short));
-        test_assert(alignof(fmat3x2) == alignof(float));
-        test_assert(alignof(fmat3x3) == alignof(float));
-        test_assert(alignof(fmat3x4) == alignof(float));
-        test_assert(alignof(dmat3x2) == alignof(double));
-        test_assert(alignof(dmat3x3) == alignof(double));
-        test_assert(alignof(dmat3x4) == alignof(double));
+        test_assert(alignof(mat<short, 3, 2>) == alignof(vec2<short>[3]));
+        test_assert(alignof(mat<short, 3, 3>) == alignof(vec3<short>[3]));
+        test_assert(alignof(mat<short, 3, 4>) == alignof(vec4<short>[3]));
+        test_assert(alignof(mat3x2<short>) == alignof(vec2<short>[3]));
+        test_assert(alignof(mat3x3<short>) == alignof(vec3<short>[3]));
+        test_assert(alignof(mat3x4<short>) == alignof(vec4<short>[3]));
+        test_assert(alignof(fmat3x2) == alignof(fvec2[3]));
+        test_assert(alignof(fmat3x3) == alignof(fvec3[3]));
+        test_assert(alignof(fmat3x4) == alignof(fvec4[3]));
+        test_assert(alignof(dmat3x2) == alignof(dvec2[3]));
+        test_assert(alignof(dmat3x3) == alignof(dvec3[3]));
+        test_assert(alignof(dmat3x4) == alignof(dvec4[3]));
     }
 
     TEST_CASE(component_type)

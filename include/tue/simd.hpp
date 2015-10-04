@@ -11,6 +11,7 @@
 static_assert(sizeof(float) == 4, "float is not 32-bits wide");
 static_assert(sizeof(double) == 8, "double is not 64-bits wide");
 
+#include <cstddef>
 #include <cstdint>
 #include <type_traits>
 
@@ -488,6 +489,15 @@ namespace tue
     using bool64x8 = simd8<bool64>;
 
     /*!@}*/
+    namespace detail_
+    {
+        template<typename T, int N>
+        inline constexpr std::size_t alignof_simd() noexcept
+        {
+            return (sizeof(T) * N) < alignof(std::max_align_t)
+                 ? (sizeof(T) * N) : alignof(std::max_align_t);
+        }
+    }
 }
 
 #include "detail_/simd2.hpp"
@@ -499,7 +509,7 @@ namespace tue
      * @{
      */
     template<typename T, int N>
-    class alignas(sizeof(T) * N) simd
+    class alignas(tue::detail_::alignof_simd<T, N>()) simd
     {
         std::enable_if_t<
             is_simd_component<T>::value

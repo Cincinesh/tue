@@ -174,12 +174,13 @@ namespace
 
         static void TEST_CASE_size()
         {
-            test_assert(sizeof(simd<T, N>) == sizeof(T) * N);
+            test_assert(sizeof(simd<T, N>) == sizeof(T[N]));
         }
 
         static void TEST_CASE_alignment()
         {
-            test_assert(alignof(simd<T, N>) == sizeof(T) * N);
+            test_assert((
+                alignof(simd<T, N>) == tue::detail_::alignof_simd<T, N>()));
         }
 
         static void TEST_CASE_component_type()

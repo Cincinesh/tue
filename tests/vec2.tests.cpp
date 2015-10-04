@@ -21,20 +21,20 @@ namespace
 
     TEST_CASE(size)
     {
-        test_assert(sizeof(vec2<short>) == sizeof(short) * 2);
-        test_assert(sizeof(fvec2) == sizeof(float) * 2);
-        test_assert(sizeof(dvec2) == sizeof(double) * 2);
-        test_assert(sizeof(ivec2) == sizeof(int) * 2);
-        test_assert(sizeof(uvec2) == sizeof(unsigned int) * 2);
+        test_assert(sizeof(vec2<short>) == sizeof(short[2]));
+        test_assert(sizeof(fvec2) == sizeof(float[2]));
+        test_assert(sizeof(dvec2) == sizeof(double[2]));
+        test_assert(sizeof(ivec2) == sizeof(int[2]));
+        test_assert(sizeof(uvec2) == sizeof(unsigned int[2]));
     }
 
     TEST_CASE(alignment)
     {
-        test_assert(alignof(vec2<short>) == alignof(short));
-        test_assert(alignof(fvec2) == alignof(float));
-        test_assert(alignof(dvec2) == alignof(double));
-        test_assert(alignof(ivec2) == alignof(int));
-        test_assert(alignof(uvec2) == alignof(unsigned int));
+        test_assert(alignof(vec2<short>) == alignof(short[2]));
+        test_assert(alignof(fvec2) == alignof(float[2]));
+        test_assert(alignof(dvec2) == alignof(double[2]));
+        test_assert(alignof(ivec2) == alignof(int[2]));
+        test_assert(alignof(uvec2) == alignof(unsigned int[2]));
     }
 
     TEST_CASE(component_type)

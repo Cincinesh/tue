@@ -18,16 +18,16 @@ namespace
 
     TEST_CASE(size)
     {
-        test_assert(sizeof(quat<short>) == sizeof(short) * 4);
-        test_assert(sizeof(fquat) == sizeof(float) * 4);
-        test_assert(sizeof(dquat) == sizeof(double) * 4);
+        test_assert(sizeof(quat<short>) == sizeof(short[4]));
+        test_assert(sizeof(fquat) == sizeof(float[4]));
+        test_assert(sizeof(dquat) == sizeof(double[4]));
     }
 
     TEST_CASE(alignment)
     {
-        test_assert(alignof(quat<short>) == alignof(short));
-        test_assert(alignof(fquat) == alignof(float));
-        test_assert(alignof(dquat) == alignof(double));
+        test_assert(alignof(quat<short>) == alignof(short[4]));
+        test_assert(alignof(fquat) == alignof(float[4]));
+        test_assert(alignof(dquat) == alignof(double[4]));
     }
 
     TEST_CASE(component_type)
