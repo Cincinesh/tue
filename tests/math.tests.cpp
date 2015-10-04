@@ -17,30 +17,30 @@ namespace
 
     TEST_CASE(sin)
     {
-        test_assert(math::sin(1.2) == std::sin(1.2));
+        test_assert(nearly_equal(math::sin(1.2), std::sin(1.2)));
     }
 
     TEST_CASE(cos)
     {
-        test_assert(math::cos(1.2) == std::cos(1.2));
+        test_assert(nearly_equal(math::cos(1.2), std::cos(1.2)));
     }
 
     TEST_CASE(sincos)
     {
         double s, c;
         math::sincos(1.2, s, c);
-        test_assert(s == std::sin(1.2));
-        test_assert(c == std::cos(1.2));
+        test_assert(nearly_equal(s, std::sin(1.2)));
+        test_assert(nearly_equal(c, std::cos(1.2)));
     }
 
     TEST_CASE(exp)
     {
-        test_assert(math::exp(1.2) == std::exp(1.2));
+        test_assert(nearly_equal(math::exp(1.2), std::exp(1.2)));
     }
 
     TEST_CASE(log)
     {
-        test_assert(math::log(1.2) == std::log(1.2));
+        test_assert(nearly_equal(math::log(1.2), std::log(1.2)));
     }
 
     TEST_CASE(abs)
@@ -54,22 +54,22 @@ namespace
 
     TEST_CASE(pow)
     {
-        test_assert(math::pow(1.2, 3.4) == std::pow(1.2, 3.4));
+        test_assert(nearly_equal(math::pow(1.2, 3.4), std::pow(1.2, 3.4)));
     }
 
     TEST_CASE(recip)
     {
-        test_assert(math::recip(1.2) == 1 / 1.2);
+        test_assert(nearly_equal(math::recip(1.2), 1 / 1.2));
     }
 
     TEST_CASE(sqrt)
     {
-        test_assert(math::sqrt(1.2) == std::sqrt(1.2));
+        test_assert(nearly_equal(math::sqrt(1.2), std::sqrt(1.2)));
     }
 
     TEST_CASE(rsqrt)
     {
-        test_assert(math::rsqrt(1.2) == 1 / std::sqrt(1.2));
+        test_assert(nearly_equal(math::rsqrt(1.2), 1 / std::sqrt(1.2)));
     }
 
     TEST_CASE(min)

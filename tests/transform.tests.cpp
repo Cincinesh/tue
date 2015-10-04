@@ -141,18 +141,18 @@ namespace
         math::sincos(7.8, s, c);
 
         const auto m1 = transform::rotation_mat(1.2, 3.4, 5.6, 7.8);
-        test_assert(m1[0][0] == 1.2*1.2*(1-c) + c);
-        test_assert(m1[0][1] == 1.2*3.4*(1-c) - 5.6*s);
-        test_assert(m1[0][2] == 1.2*5.6*(1-c) + 3.4*s);
-        test_assert(m1[0][3] == 0.0);
-        test_assert(m1[1][0] == 1.2*3.4*(1-c) + 5.6*s);
-        test_assert(m1[1][1] == 3.4*3.4*(1-c) + c);
-        test_assert(m1[1][2] == 3.4*5.6*(1-c) - 1.2*s);
-        test_assert(m1[1][3] == 0.0);
-        test_assert(m1[2][0] == 1.2*5.6*(1-c) - 3.4*s);
-        test_assert(m1[2][1] == 3.4*5.6*(1-c) + 1.2*s);
-        test_assert(m1[2][2] == 5.6*5.6*(1-c) + c);
-        test_assert(m1[2][3] == 0.0);
+        test_assert(nearly_equal(m1[0][0], 1.2*1.2*(1-c) + c));
+        test_assert(nearly_equal(m1[0][1], 1.2*3.4*(1-c) - 5.6*s));
+        test_assert(nearly_equal(m1[0][2], 1.2*5.6*(1-c) + 3.4*s));
+        test_assert(nearly_equal(m1[0][3], 0.0));
+        test_assert(nearly_equal(m1[1][0], 1.2*3.4*(1-c) + 5.6*s));
+        test_assert(nearly_equal(m1[1][1], 3.4*3.4*(1-c) + c));
+        test_assert(nearly_equal(m1[1][2], 3.4*5.6*(1-c) - 1.2*s));
+        test_assert(nearly_equal(m1[1][3], 0.0));
+        test_assert(nearly_equal(m1[2][0], 1.2*5.6*(1-c) - 3.4*s));
+        test_assert(nearly_equal(m1[2][1], 3.4*5.6*(1-c) + 1.2*s));
+        test_assert(nearly_equal(m1[2][2], 5.6*5.6*(1-c) + c));
+        test_assert(nearly_equal(m1[2][3], 0.0));
         test_assert(m1[3] == dvec4(0.0, 0.0, 0.0, 1.0));
 
         const auto m2 = transform::rotation_mat<double, 3, 3>(
@@ -267,12 +267,14 @@ namespace
     TEST_CASE(perspective_mat)
     {
         const auto m1 = transform::perspective_mat(1.2, 3.4, 5.6, 7.8);
-        test_assert(m1[0][0] == math::cos(1.2/2) / math::sin(1.2/2) / 3.4);
+        test_assert(nearly_equal(
+            m1[0][0], math::cos(1.2/2) / math::sin(1.2/2) / 3.4));
         test_assert(m1[0][1] == 0.0);
         test_assert(m1[0][2] == 0.0);
         test_assert(m1[0][3] == 0.0);
         test_assert(m1[1][0] == 0.0);
-        test_assert(m1[1][1] == math::cos(1.2/2) / math::sin(1.2/2));
+        test_assert(nearly_equal(
+            m1[1][1], math::cos(1.2/2) / math::sin(1.2/2)));
         test_assert(m1[1][2] == 0.0);
         test_assert(m1[1][3] == 0.0);
         test_assert(m1[2][0] == 0.0);
