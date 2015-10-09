@@ -121,10 +121,40 @@ namespace tue
 
     /*!
      * \brief     An `N`-component SIMD vector.
+     *
      * \details   `simd` has the same size requirements as `T[N]` and its
      *            alignment equals its size. It's accelerated by compiler and
      *            architecture-specific SIMD intrinsics where possible, but
-     *            standards-compliant fallbacks are always available otherwise.
+     *            compatibility fallbacks are always available otherwise.
+     *
+     *            `simd` types may contain platform-specific implicit
+     *            constructors and conversion operators for converting to and
+     *            from the underlying SIMD intrinsic type. The current mapping
+     *            is as follows:
+     *
+     *            <b>SSE</b>
+     *            `simd` Type | SIMD Intrinsic
+     *            ----------- | --------------
+     *            `bool32x4`  | `__m128`
+     *            `float32x4` | `__m128`
+     *
+     *            <b>SSE2</b>
+     *            `simd` Type | SIMD Intrinsic
+     *            ----------- | --------------
+     *            `bool8x16`  | `__m128i`
+     *            `bool16x8`  | `__m128i`
+     *            `bool32x4`  | `__m128i` and `__m128`
+     *            `bool64x2`  | `__m128i` and `__m128d`
+     *            `int8x16`   | `__m128i`
+     *            `int16x8`   | `__m128i`
+     *            `int32x4`   | `__m128i`
+     *            `int64x2`   | `__m128i`
+     *            `uint8x16`  | `__m128i`
+     *            `uint16x8`  | `__m128i`
+     *            `uint32x4`  | `__m128i`
+     *            `uint64x2`  | `__m128i`
+     *            `float32x4` | `__m128`
+     *            `float64x2` | `__m128d`
      *
      * \tparam T  The component type. `is_simd_component<T>::value` must be
      *            `true`.
