@@ -235,6 +235,10 @@ namespace tue
         static constexpr int component_count = C * R;
 
         /*!
+         * \name Constructors, Conversions, and Factory Functions
+         * @{
+         */
+        /*!
          * \brief  Default constructs each component.
          */
         mat() noexcept = default;
@@ -359,6 +363,7 @@ namespace tue
          */
         inline static constexpr mat<T, C, R> zero() noexcept;
 
+        /*!@}*/
         /*!
          * \brief     Returns a reference to the column at the given index.
          * \details   No bounds checking is performed.

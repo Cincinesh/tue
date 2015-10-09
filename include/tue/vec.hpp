@@ -189,6 +189,10 @@ namespace tue
         static constexpr int component_count = N;
 
         /*!
+         * \name Constructors, Conversions, and Factory Functions
+         * @{
+         */
+        /*!
          * \brief  Default constructs each component.
          */
         vec() noexcept = default;
@@ -350,6 +354,7 @@ namespace tue
          */
         inline static constexpr vec<T, N> w_axis() noexcept;
 
+        /*!@}*/
         /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.

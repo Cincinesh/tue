@@ -68,6 +68,10 @@ namespace tue
         static constexpr int component_count = 4;
 
         /*!
+         * \name Constructors, Conversions, and Factory Functions
+         * @{
+         */
+        /*!
          * \brief  Default constructs each component.
          */
         quat() noexcept = default;
@@ -158,6 +162,7 @@ namespace tue
             return { T(0), T(0), T(0), T(1) };
         }
 
+        /*!@}*/
         /*!
          * \brief     Returns a reference to the component at the given index.
          * \details   No bounds checking is performed.

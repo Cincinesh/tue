@@ -40,6 +40,7 @@
       <publicattributes title=""/>
       <protectedattributes title=""/>
       <privateattributes title=""/>
+      <membergroups visible="yes"/>
       <publicmethods title=""/>
       <publicstaticmethods title=""/>
       <protectedmethods title=""/>
@@ -47,7 +48,6 @@
       <privatemethods title=""/>
       <privatestaticmethods title=""/>
       <related title="" subtitle=""/>
-      <membergroups visible="yes"/>
     </memberdecl>
     <detaileddescription title=""/>
     <memberdef>

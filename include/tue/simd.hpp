@@ -566,6 +566,10 @@ namespace tue
         static constexpr bool is_accelerated = false;
 
         /*!
+         * \name Constructors, Conversions, and Factory Functions
+         * @{
+         */
+        /*!
          * \brief  Default constructs each component.
          */
         simd() noexcept = default;
@@ -732,6 +736,7 @@ namespace tue
             return s;
         }
 
+        /*!@}*/
         /*!
          * \brief       Store's this `simd`'s underlying component array in
          *              the given aligned component array.
