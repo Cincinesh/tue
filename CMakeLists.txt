@@ -24,7 +24,6 @@ set(MON_SOURCES
 
 # tue
 set(TUE_SOURCES
-    docs/index.md
     include/tue/detail_/is_arithmetic_simd_component.hpp
     include/tue/detail_/is_floating_point_simd_component.hpp
     include/tue/detail_/is_integral_simd_component.hpp
@@ -65,6 +64,8 @@ set(TUE_SOURCES
     include/tue/transform.hpp
     include/tue/unused.hpp
     include/tue/vec.hpp
+    docs/DoxygenLayout.xml
+    docs/index.md
     Doxyfile
     LICENSE_1_0.txt
     README.md)
