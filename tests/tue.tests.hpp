@@ -13,6 +13,12 @@
 #include <cmath>
 #include <limits>
 
+#ifdef _MSC_VER
+#define CONST_OR_CONSTEXPR const
+#else
+#define CONST_OR_CONSTEXPR constexpr
+#endif
+
 namespace
 {
     template<typename T>
