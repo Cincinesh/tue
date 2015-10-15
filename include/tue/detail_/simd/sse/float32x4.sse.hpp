@@ -258,6 +258,10 @@ namespace tue
         }
 
 #ifndef TUE_SSE2
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4799)
+#endif
         inline void copy_mm_to_xmm(
             const __m64& mm0, const __m64& mm1, __m128& xmm) noexcept
         {
@@ -285,6 +289,9 @@ namespace tue
             mm0 = u.mm[0];
             mm1 = u.mm[1];
         }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 #endif
 
         inline void sincos_s(
@@ -561,9 +568,6 @@ namespace tue
 #else
             emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
 #endif
-            /* keep only the fractional part */
-            x = _mm_and_ps(x, _mm_set1_ps(binary_float(~0x7f800000)));
-            x = _mm_or_ps(x, _mm_set1_ps(0.5f));
 
 #ifndef TUE_SSE2
             /* now e=mm0:mm1 contain the really base-2 exponent */
@@ -576,6 +580,10 @@ namespace tue
             __m128 e = _mm_cvtepi32_ps(emm0);
 #endif
             e = _mm_add_ps(e, one);
+
+            /* keep only the fractional part */
+            x = _mm_and_ps(x, _mm_set1_ps(binary_float(~0x7f800000)));
+            x = _mm_or_ps(x, _mm_set1_ps(0.5f));
 
             /* part2:
             if( x < SQRTHF ) {
