@@ -573,10 +573,10 @@ namespace tue
             __m128 e = _mm_cvtpi32x2_ps(mm0, mm1);
             _mm_empty(); /* bye bye mmx */
 #else
+            emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
+
             emm0 = _mm_sub_epi32(emm0, _mm_set1_epi32(0x7F));
             __m128 e = _mm_cvtepi32_ps(emm0);
-
-            emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
 #endif
             e = _mm_add_ps(e, one);
 
