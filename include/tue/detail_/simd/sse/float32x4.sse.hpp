@@ -341,6 +341,12 @@ namespace tue
             emm2 = _mm_and_si128(emm2, _mm_set1_epi32(2));
             emm2 = _mm_cmpeq_epi32(emm2, _mm_setzero_si128());
             __m128 poly_mask = _mm_castsi128_ps(emm2);
+
+            /* get the sign flag for the cosine */
+            emm4 = _mm_sub_epi32(emm4, _mm_set1_epi32(2));
+            emm4 = _mm_andnot_si128(emm4, _mm_set1_epi32(4));
+            emm4 = _mm_slli_epi32(emm4, 29);
+            __m128 sign_bit_cos = _mm_castsi128_ps(emm4);
 #else
             /* store the integer part of y in mm2:mm3 */
             xmm3 = _mm_movehl_ps(xmm3, y);
@@ -373,25 +379,7 @@ namespace tue
             mm3 = _mm_cmpeq_pi32(mm3, _mm_setzero_si64());
             __m128 poly_mask;
             copy_mm_to_xmm(mm2, mm3, poly_mask);
-#endif
-            /* The magic pass: "Extended precision modular arithmetic"
-               x = ((x - y * DP1) - y * DP2) - y * DP3; */
-            xmm1 = _mm_set1_ps(-0.78515625f);
-            xmm2 = _mm_set1_ps(-2.4187564849853515625e-4f);
-            xmm3 = _mm_set1_ps(-3.77489497744594108e-8f);
-            xmm1 = _mm_mul_ps(y, xmm1);
-            xmm2 = _mm_mul_ps(y, xmm2);
-            xmm3 = _mm_mul_ps(y, xmm3);
-            x = _mm_add_ps(x, xmm1);
-            x = _mm_add_ps(x, xmm2);
-            x = _mm_add_ps(x, xmm3);
 
-#ifdef TUE_SSE2
-            emm4 = _mm_sub_epi32(emm4, _mm_set1_epi32(2));
-            emm4 = _mm_andnot_si128(emm4, _mm_set1_epi32(4));
-            emm4 = _mm_slli_epi32(emm4, 29);
-            __m128 sign_bit_cos = _mm_castsi128_ps(emm4);
-#else
             /* get the sign flag for the cosine */
             mm4 = _mm_sub_pi32(mm4, _mm_set1_pi32(2));
             mm5 = _mm_sub_pi32(mm5, _mm_set1_pi32(2));
@@ -404,6 +392,18 @@ namespace tue
             _mm_empty(); /* good-bye mmx */
 #endif
             sign_bit_sin = _mm_xor_ps(sign_bit_sin, swap_sign_bit_sin);
+
+            /* The magic pass: "Extended precision modular arithmetic"
+               x = ((x - y * DP1) - y * DP2) - y * DP3; */
+            xmm1 = _mm_set1_ps(-0.78515625f);
+            xmm2 = _mm_set1_ps(-2.4187564849853515625e-4f);
+            xmm3 = _mm_set1_ps(-3.77489497744594108e-8f);
+            xmm1 = _mm_mul_ps(y, xmm1);
+            xmm2 = _mm_mul_ps(y, xmm2);
+            xmm3 = _mm_mul_ps(y, xmm3);
+            x = _mm_add_ps(x, xmm1);
+            x = _mm_add_ps(x, xmm2);
+            x = _mm_add_ps(x, xmm3);
 
             /* Evaluate the first polynom  (0 <= x <= Pi/4) */
             __m128 z = _mm_mul_ps(x,x);
@@ -488,6 +488,7 @@ namespace tue
 
             /* step 2 : cast back to float */
             tmp = _mm_cvtpi32x2_ps(mm0, mm1);
+            _mm_empty();
 #else
             emm0 = _mm_cvttps_epi32(fx);
             tmp = _mm_cvtepi32_ps(emm0);
@@ -565,11 +566,7 @@ namespace tue
             copy_xmm_to_mm(x, mm0, mm1);
             mm0 = _mm_srli_pi32(mm0, 23);
             mm1 = _mm_srli_pi32(mm1, 23);
-#else
-            emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
-#endif
 
-#ifndef TUE_SSE2
             /* now e=mm0:mm1 contain the really base-2 exponent */
             mm0 = _mm_sub_pi32(mm0, _mm_set1_pi32(0x7F));
             mm1 = _mm_sub_pi32(mm1, _mm_set1_pi32(0x7F));
@@ -578,6 +575,8 @@ namespace tue
 #else
             emm0 = _mm_sub_epi32(emm0, _mm_set1_epi32(0x7F));
             __m128 e = _mm_cvtepi32_ps(emm0);
+
+            emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
 #endif
             e = _mm_add_ps(e, one);
 
