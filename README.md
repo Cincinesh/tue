@@ -57,15 +57,6 @@ as [GLM](https://github.com/g-truc/glm):
   but `float32x8` isn't, then `float32x8` will at least be partially-accelerated
   in that it's made of two `float32x4`'s.
 
-Status
-------
-Tuesday is currently a work-in-progress and has no version numbering scheme. It
-is, however, well-tested with unit tests and already in a useful state.
-
-See [issues I've opened]
-(https://github.com/Cincinesh/tue/issues/created_by/Cincinesh)
-for a list of currently-planned additions.
-
 Requirements
 ------------
 Tuesday requires Visual Studio 2015 or a fully C++14 compliant compiler such as
