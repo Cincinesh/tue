@@ -618,4 +618,56 @@ namespace tue
 
         /*!@}*/
     }
+    
+    /*!
+     * \addtogroup  quat_hpp
+     * @{
+     */
+    
+    /*!
+     * \brief     Swaps each corresponding pair of components from `q1` and
+     *            `q2`.
+     *
+     * \tparam T  The component type of both `q1` and `q2`.
+     *
+     * \param q1  A `quat`.
+     * \param q2  Another `quat`.
+     */
+    template<typename T>
+    inline void swap(quat<T>& q1, quat<T>& q2) noexcept
+    {
+        using std::swap;
+        swap(q1[0], q2[0]);
+        swap(q1[1], q2[1]);
+        swap(q1[2], q2[2]);
+        swap(q1[3], q2[3]);
+    }
+    
+    /*!@}*/
+}
+
+/**/
+namespace std
+{
+    /*!
+     * \addtogroup  quat_hpp
+     * @{
+     */
+    
+    /*!
+     * \brief     Swaps each corresponding pair of components from `q1` and
+     *            `q2`.
+     *
+     * \tparam T  The component type of both `q1` and `q2`.
+     *
+     * \param q1  A `quat`.
+     * \param q2  Another `quat`.
+     */
+    template<typename T>
+    inline void swap(tue::quat<T>& q1, tue::quat<T>& q2) noexcept
+    {
+        tue::swap(q1, q2);
+    }
+    
+    /*!@}*/
 }

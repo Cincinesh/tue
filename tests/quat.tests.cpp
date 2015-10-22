@@ -357,4 +357,26 @@ namespace
         CONST_OR_CONSTEXPR auto q = math::conjugate(dquat(1.2, 3.4, 5.6, 7.8));
         test_assert(q == dquat(-1.2, -3.4, -5.6, 7.8));
     }
+    
+    TEST_CASE(tue_swap)
+    {
+        const fquat q1(1.2f, 3.4f, 5.6f, 7.8f);
+        const fquat q2(9.10f, 11.12f, 13.14f, 15.16f);
+        fquat q3 = q1;
+        fquat q4 = q2;
+        tue::swap(q3, q4);
+        test_assert(q3 == q2);
+        test_assert(q4 == q1);
+    }
+    
+    TEST_CASE(std_swap)
+    {
+        const fquat q1(1.2f, 3.4f, 5.6f, 7.8f);
+        const fquat q2(9.10f, 11.12f, 13.14f, 15.16f);
+        fquat q3 = q1;
+        fquat q4 = q2;
+        std::swap(q3, q4);
+        test_assert(q3 == q2);
+        test_assert(q4 == q1);
+    }
 }
