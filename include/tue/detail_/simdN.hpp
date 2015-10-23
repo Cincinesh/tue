@@ -660,5 +660,14 @@ namespace tue
             simpl[1] = tue::detail_::not_equal_ss(limpl[1], rimpl[1]);
             return s;
         }
+
+        template<typename T, int N>
+        inline void swap_ss(simd<T, N>& s1, simd<T, N>& s2) noexcept
+        {
+            const auto s1impl = reinterpret_cast<simd<T, N/2>*>(&s1);
+            const auto s2impl = reinterpret_cast<simd<T, N/2>*>(&s2);
+            tue::detail_::swap_ss(s1impl[0], s2impl[0]);
+            tue::detail_::swap_ss(s1impl[1], s2impl[1]);
+        }
     }
 }

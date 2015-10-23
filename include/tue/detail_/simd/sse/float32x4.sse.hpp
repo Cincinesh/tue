@@ -722,5 +722,12 @@ namespace tue
         {
             return _mm_cmpneq_ps(lhs, rhs);
         }
+
+        inline void swap_ss(float32x4& s1, float32x4& s2) noexcept
+        {
+            const auto tmp = s1;
+            s1 = s2;
+            s2 = tmp;
+        }
     }
 }

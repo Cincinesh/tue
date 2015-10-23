@@ -391,5 +391,12 @@ namespace tue
         {
             return _mm_xor_si128(_mm_cmpeq_epi16(lhs, rhs), uint16x8(0xFFFF));
         }
+
+        inline void swap_ss(uint16x8& s1, uint16x8& s2) noexcept
+        {
+            const auto tmp = s1;
+            s1 = s2;
+            s2 = tmp;
+        }
     }
 }

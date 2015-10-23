@@ -9,6 +9,7 @@
 #pragma once
 
 #include <type_traits>
+#include <utility>
 
 #include "../math.hpp"
 #include "../simd.hpp"
@@ -690,6 +691,16 @@ namespace tue
             sdata[0] = ldata[0] != rdata[0] ? U(~0LL) : U(0LL);
             sdata[1] = ldata[1] != rdata[1] ? U(~0LL) : U(0LL);
             return s;
+        }
+
+        template<typename T>
+        inline void swap_ss(simd<T, 2>& s1, simd<T, 2>& s2) noexcept
+        {
+            using std::swap;
+            const auto s1data = s1.data();
+            const auto s2data = s2.data();
+            swap(s1data[0], s2data[0]);
+            swap(s1data[1], s2data[1]);
         }
     }
 }

@@ -605,6 +605,24 @@ namespace
             }
         }
 
+        static void TEST_CASE_tue_swap()
+        {
+            auto s1 = test_simd();
+            auto s2 = test_simd2();
+            tue::swap(s1, s2);
+            test_assert(s1 == test_simd2());
+            test_assert(s2 == test_simd());
+        }
+
+        static void TEST_CASE_std_swap()
+        {
+            auto s1 = test_simd();
+            auto s2 = test_simd2();
+            std::swap(s1, s2);
+            test_assert(s1 == test_simd2());
+            test_assert(s2 == test_simd());
+        }
+
         static void run_all()
         {
             TEST_CASE_alias();
@@ -631,6 +649,8 @@ namespace
             TEST_CASE_select();
             TEST_CASE_equal();
             TEST_CASE_not_equal();
+            TEST_CASE_tue_swap();
+            TEST_CASE_std_swap();
         }
     };
 

@@ -226,5 +226,12 @@ namespace tue
         {
             return _mm_xor_si128(equal_ss(lhs, rhs), bool64x2(true64));
         }
+
+        inline void swap_ss(bool64x2& s1, bool64x2& s2) noexcept
+        {
+            const auto tmp = s1;
+            s1 = s2;
+            s2 = tmp;
+        }
     }
 }

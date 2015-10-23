@@ -13,6 +13,7 @@ static_assert(sizeof(double) == 8, "double is not 64-bits wide");
 
 #include <cstdint>
 #include <type_traits>
+#include <utility>
 
 #include "sized_bool.hpp"
 
@@ -1769,4 +1770,54 @@ namespace tue
 
         /*!@}*/
     }
+
+    /*!
+     * \addtogroup  simd_hpp
+     * @{
+     */
+
+    /*!
+     * \brief     Swaps each corresponding pair of components from `s1` and
+     *            `s2`.
+     *
+     * \tparam T  The component type of both `s1` and `s2`.
+     * \tparam N  The component count of both `s1` and `s2`.
+     *
+     * \param s1  An `simd`.
+     * \param s2  Another `simd`.
+     */
+    template<typename T, int N>
+    inline void swap(simd<T, N>& s1, simd<T, N>& s2) noexcept
+    {
+        tue::detail_::swap_ss(s1, s2);
+    }
+
+    /*!@}*/
+}
+
+/**/
+namespace std
+{
+    /*!
+     * \addtogroup  simd_hpp
+     * @{
+     */
+
+    /*!
+     * \brief     Swaps each corresponding pair of components from `s1` and
+     *            `s2`.
+     *
+     * \tparam T  The component type of both `s1` and `s2`.
+     * \tparam N  The component count of both `s1` and `s2`.
+     *
+     * \param s1  An `simd`.
+     * \param s2  Another `simd`.
+     */
+    template<typename T, int N>
+    inline void swap(tue::simd<T, N>& s1, tue::simd<T, N>& s2) noexcept
+    {
+        tue::detail_::swap_ss(s1, s2);
+    }
+
+    /*!@}*/
 }
