@@ -1125,6 +1125,14 @@ namespace tue
         }
 
         template<typename T, int R>
+        inline void swap_mm(mat<T, 3, R>& m1, mat<T, 3, R>& m2) noexcept
+        {
+            tue::detail_::swap_vv(m1[0], m2[0]);
+            tue::detail_::swap_vv(m1[1], m2[1]);
+            tue::detail_::swap_vv(m1[2], m2[2]);
+        }
+
+        template<typename T, int R>
         struct mat_utils<T, 3, R>
         {
             template<

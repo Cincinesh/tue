@@ -2425,8 +2425,8 @@ namespace tue
      * \tparam T  The component type of both `v1` and `v2`.
      * \tparam N  The component count of both `v1` and `v2`.
      *
-     * \param q1  A `vec`.
-     * \param q2  Another `vec`.
+     * \param v1  A `vec`.
+     * \param v2  Another `vec`.
      */
     template<typename T, int N>
     inline void swap(vec<T, N>& v1, vec<T, N>& v2) noexcept
@@ -2452,8 +2452,8 @@ namespace std
      * \tparam T  The component type of both `v1` and `v2`.
      * \tparam N  The component count of both `v1` and `v2`.
      *
-     * \param q1  A `vec`.
-     * \param q2  Another `vec`.
+     * \param v1  A `vec`.
+     * \param v2  Another `vec`.
      */
     template<typename T, int N>
     inline void swap(tue::vec<T, N>& v1, tue::vec<T, N>& v2) noexcept

@@ -10,6 +10,7 @@
 #include "tue.tests.hpp"
 
 #include <type_traits>
+#include <utility>
 #include <tue/math.hpp>
 #include <tue/sized_bool.hpp>
 #include <tue/unused.hpp>
@@ -1162,5 +1163,23 @@ namespace
         test_assert(m3[1] == dm34.row(1));
         test_assert(m3[2] == dm34.row(2));
         test_assert(m3[3] == dm34.row(3));
+    }
+
+    TEST_CASE(tue_swap)
+    {
+        dmat3x2 m1 = dm32;
+        dmat3x2 m2 = dm322;
+        tue::swap(m1, m2);
+        test_assert(m1 == dm322);
+        test_assert(m2 == dm32);
+    }
+
+    TEST_CASE(std_swap)
+    {
+        dmat3x2 m1 = dm32;
+        dmat3x2 m2 = dm322;
+        std::swap(m1, m2);
+        test_assert(m1 == dm322);
+        test_assert(m2 == dm32);
     }
 }

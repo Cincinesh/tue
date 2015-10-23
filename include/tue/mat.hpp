@@ -1660,6 +1660,13 @@ namespace tue
     }
 
     /*!@}*/
+}
+
+#undef shift_right
+#undef shift_left
+
+namespace tue
+{
     namespace math
     {
         /*!
@@ -2131,7 +2138,56 @@ namespace tue
 
         /*!@}*/
     }
+
+    /*!
+     * \addtogroup  mat_hpp
+     * @{
+     */
+
+    /*!
+     * \brief     Swaps each corresponding pair of components from `m1` and
+     *            `m2`.
+     *
+     * \tparam T  The component type of both `m1` and `m2`.
+     * \tparam C  The column count of both `m1` and `m2`.
+     * \tparam R  The row count of both `m1` and `m2`.
+     *
+     * \param m1  A `mat`.
+     * \param m2  Another `mat`.
+     */
+    template<typename T, int C, int R>
+    inline void swap(mat<T, C, R>& m1, mat<T, C, R>& m2) noexcept
+    {
+        tue::detail_::swap_mm(m1, m2);
+    }
+
+    /*!@}*/
 }
 
-#undef shift_right
-#undef shift_left
+/**/
+namespace std
+{
+    /*!
+     * \addtogroup  mat_hpp
+     * @{
+     */
+
+    /*!
+     * \brief     Swaps each corresponding pair of components from `m1` and
+     *            `m2`.
+     *
+     * \tparam T  The component type of both `m1` and `m2`.
+     * \tparam C  The column count of both `m1` and `m2`.
+     * \tparam R  The row count of both `m1` and `m2`.
+     *
+     * \param m1  A `mat`.
+     * \param m2  Another `mat`.
+     */
+    template<typename T, int C, int R>
+    inline void swap(tue::mat<T, C, R>& m1, tue::mat<T, C, R>& m2) noexcept
+    {
+        tue::detail_::swap_mm(m1, m2);
+    }
+
+    /*!@}*/
+}
