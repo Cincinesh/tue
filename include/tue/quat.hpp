@@ -618,12 +618,12 @@ namespace tue
 
         /*!@}*/
     }
-    
+
     /*!
      * \addtogroup  quat_hpp
      * @{
      */
-    
+
     /*!
      * \brief     Swaps each corresponding pair of components from `q1` and
      *            `q2`.
@@ -642,7 +642,7 @@ namespace tue
         swap(q1[2], q2[2]);
         swap(q1[3], q2[3]);
     }
-    
+
     /*!@}*/
 }
 
@@ -653,7 +653,7 @@ namespace std
      * \addtogroup  quat_hpp
      * @{
      */
-    
+
     /*!
      * \brief     Swaps each corresponding pair of components from `q1` and
      *            `q2`.
@@ -668,6 +668,6 @@ namespace std
     {
         tue::swap(q1, q2);
     }
-    
+
     /*!@}*/
 }
