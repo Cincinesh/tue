@@ -10,6 +10,7 @@
 #include "tue.tests.hpp"
 
 #include <type_traits>
+#include <utility>
 #include <tue/mat.hpp>
 #include <tue/math.hpp>
 #include <tue/quat.hpp>
@@ -986,5 +987,27 @@ namespace
     {
         const dvec3 v(1.2, 3.4, 5.6);
         test_assert(math::normalize(v) == v * math::rlength(v));
+    }
+
+    TEST_CASE(tue_swap)
+    {
+        const dvec3 v1(1.2, 3.4, 5.6);
+        const dvec3 v2(7.8, 9.10, 11.12);
+        dvec3 v3 = v1;
+        dvec3 v4 = v2;
+        tue::swap(v3, v4);
+        test_assert(v3 == v2);
+        test_assert(v4 == v1);
+    }
+
+    TEST_CASE(std_swap)
+    {
+        const dvec3 v1(1.2, 3.4, 5.6);
+        const dvec3 v2(7.8, 9.10, 11.12);
+        dvec3 v3 = v1;
+        dvec3 v4 = v2;
+        std::swap(v3, v4);
+        test_assert(v3 == v2);
+        test_assert(v4 == v1);
     }
 }

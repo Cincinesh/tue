@@ -10,6 +10,7 @@
 #include "tue.tests.hpp"
 
 #include <type_traits>
+#include <utility>
 #include <tue/mat.hpp>
 #include <tue/math.hpp>
 #include <tue/sized_bool.hpp>
@@ -1167,5 +1168,27 @@ namespace
     {
         const dvec4 v(1.2, 3.4, 5.6, 7.8);
         test_assert(math::normalize(v) == v * math::rlength(v));
+    }
+
+    TEST_CASE(tue_swap)
+    {
+        const dvec4 v1(1.2, 3.4, 5.6, 7.8);
+        const dvec4 v2(9.10, 11.12, 13.14, 15.16);
+        dvec4 v3 = v1;
+        dvec4 v4 = v2;
+        tue::swap(v3, v4);
+        test_assert(v3 == v2);
+        test_assert(v4 == v1);
+    }
+
+    TEST_CASE(std_swap)
+    {
+        const dvec4 v1(1.2, 3.4, 5.6, 7.8);
+        const dvec4 v2(9.10, 11.12, 13.14, 15.16);
+        dvec4 v3 = v1;
+        dvec4 v4 = v2;
+        std::swap(v3, v4);
+        test_assert(v3 == v2);
+        test_assert(v4 == v1);
     }
 }

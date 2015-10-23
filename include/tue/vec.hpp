@@ -1886,6 +1886,13 @@ namespace tue
     }
 
     /*!@}*/
+}
+
+#undef shift_right
+#undef shift_left
+
+namespace tue
+{
     namespace math
     {
         /*!
@@ -2405,7 +2412,54 @@ namespace tue
 
         /*!@}*/
     }
+
+    /*!
+     * \addtogroup  vec_hpp
+     * @{
+     */
+
+    /*!
+     * \brief     Swaps each corresponding pair of components from `v1` and
+     *            `v2`.
+     *
+     * \tparam T  The component type of both `v1` and `v2`.
+     * \tparam N  The component count of both `v1` and `v2`.
+     *
+     * \param q1  A `vec`.
+     * \param q2  Another `vec`.
+     */
+    template<typename T, int N>
+    inline void swap(vec<T, N>& v1, vec<T, N>& v2) noexcept
+    {
+        tue::detail_::swap_vv(v1, v2);
+    }
+
+    /*!@}*/
 }
 
-#undef shift_right
-#undef shift_left
+/**/
+namespace std
+{
+    /*!
+     * \addtogroup  vec_hpp
+     * @{
+     */
+
+    /*!
+     * \brief     Swaps each corresponding pair of components from `v1` and
+     *            `v2`.
+     *
+     * \tparam T  The component type of both `v1` and `v2`.
+     * \tparam N  The component count of both `v1` and `v2`.
+     *
+     * \param q1  A `vec`.
+     * \param q2  Another `vec`.
+     */
+    template<typename T, int N>
+    inline void swap(tue::vec<T, N>& v1, tue::vec<T, N>& v2) noexcept
+    {
+        tue::detail_::swap_vv(v1, v2);
+    }
+
+    /*!@}*/
+}

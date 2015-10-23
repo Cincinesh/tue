@@ -9,6 +9,7 @@
 #include <tue/quat.hpp>
 #include "tue.tests.hpp"
 
+#include <utility>
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
 
@@ -360,10 +361,10 @@ namespace
 
     TEST_CASE(tue_swap)
     {
-        const fquat q1(1.2f, 3.4f, 5.6f, 7.8f);
-        const fquat q2(9.10f, 11.12f, 13.14f, 15.16f);
-        fquat q3 = q1;
-        fquat q4 = q2;
+        const dquat q1(1.2, 3.4, 5.6, 7.8);
+        const dquat q2(9.10, 11.12, 13.14, 15.16);
+        dquat q3 = q1;
+        dquat q4 = q2;
         tue::swap(q3, q4);
         test_assert(q3 == q2);
         test_assert(q4 == q1);
@@ -371,10 +372,10 @@ namespace
 
     TEST_CASE(std_swap)
     {
-        const fquat q1(1.2f, 3.4f, 5.6f, 7.8f);
-        const fquat q2(9.10f, 11.12f, 13.14f, 15.16f);
-        fquat q3 = q1;
-        fquat q4 = q2;
+        const dquat q1(1.2, 3.4, 5.6, 7.8);
+        const dquat q2(9.10, 11.12, 13.14, 15.16);
+        dquat q3 = q1;
+        dquat q4 = q2;
         std::swap(q3, q4);
         test_assert(q3 == q2);
         test_assert(q4 == q1);

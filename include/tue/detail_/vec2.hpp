@@ -1047,6 +1047,14 @@ namespace tue
         }
 
         template<typename T>
+        inline void swap_vv(vec<T, 2>& v1, vec<T, 2>& v2) noexcept
+        {
+            using std::swap;
+            swap(v1[0], v2[0]);
+            swap(v1[1], v2[1]);
+        }
+
+        template<typename T>
         struct vec_utils<T, 2>
         {
             template<typename X, typename Y, typename Z, typename W>
