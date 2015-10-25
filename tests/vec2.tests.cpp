@@ -834,4 +834,16 @@ namespace
         test_assert(v3 == v2);
         test_assert(v4 == v1);
     }
+
+    TEST_CASE(std_hash)
+    {
+        std::hash<dvec2> hash_dvec2;
+        const dvec2 v1(1.2, 3.4);
+        const dvec2 v2(1.2, 3.4);
+        const dvec2 v3(1.2, 0.0);
+        const dvec2 v4(0.0, 3.4);
+        test_assert(hash_dvec2(v1) == hash_dvec2(v2));
+        test_assert(hash_dvec2(v1) != hash_dvec2(v3));
+        test_assert(hash_dvec2(v1) != hash_dvec2(v4));
+    }
 }

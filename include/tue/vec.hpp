@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <cstddef>
+#include <functional>
 #include <type_traits>
 #include <utility>
 
@@ -2460,6 +2462,21 @@ namespace std
     {
         tue::detail_::swap_vv(v1, v2);
     }
+
+    /*!
+     * \brief     Functor that implements a hash function for `vec`'s.
+     *
+     * \tparam T  The `vec` component type.
+     * \tparam N  The `vec` component count.
+     */
+    template<typename T, int N>
+    struct hash<tue::vec<T, N>>
+    {
+        inline std::size_t operator()(const tue::vec<T, N>& v) const noexcept
+        {
+            return tue::detail_::hash_v(v);
+        }
+    };
 
     /*!@}*/
 }

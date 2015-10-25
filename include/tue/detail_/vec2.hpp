@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <cstddef>
+#include <functional>
 #include <type_traits>
 #include <utility>
 
@@ -1052,6 +1054,13 @@ namespace tue
             using std::swap;
             swap(v1[0], v2[0]);
             swap(v1[1], v2[1]);
+        }
+
+        template<typename T>
+        inline std::size_t hash_v(const vec<T, 2>& v) noexcept
+        {
+            std::hash<T> hashT;
+            return hashT(v[0]) ^ hashT(v[1]);
         }
 
         template<typename T>
