@@ -9,6 +9,8 @@
 #include <tue/quat.hpp>
 #include "tue.tests.hpp"
 
+#include <functional>
+#include <type_traits>
 #include <utility>
 #include <tue/unused.hpp>
 #include <tue/vec.hpp>
@@ -379,5 +381,21 @@ namespace
         std::swap(q3, q4);
         test_assert(q3 == q2);
         test_assert(q4 == q1);
+    }
+
+    TEST_CASE(std_hash)
+    {
+        std::hash<dquat> hash_dquat;
+        const dquat q1(1.2, 3.4, 5.6, 7.8);
+        const dquat q2(1.2, 3.4, 5.6, 7.8);
+        const dquat q3(1.2, 3.4, 5.6, 0.0);
+        const dquat q4(1.2, 3.4, 0.0, 7.8);
+        const dquat q5(1.2, 0.0, 5.6, 7.8);
+        const dquat q6(0.0, 3.4, 5.6, 7.8);
+        test_assert(hash_dquat(q1) == hash_dquat(q2));
+        test_assert(hash_dquat(q1) != hash_dquat(q3));
+        test_assert(hash_dquat(q1) != hash_dquat(q4));
+        test_assert(hash_dquat(q1) != hash_dquat(q5));
+        test_assert(hash_dquat(q1) != hash_dquat(q6));
     }
 }

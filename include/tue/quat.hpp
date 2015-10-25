@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <cstddef>
+#include <functional>
 #include <type_traits>
 #include <utility>
 
@@ -668,6 +670,21 @@ namespace std
     {
         tue::swap(q1, q2);
     }
+
+    /*!
+     * \brief     Functor that implements a hash function for `quat`'s.
+     *
+     * \tparam T  The `quat` component type.
+     */
+    template<typename T>
+    struct hash<tue::quat<T>>
+    {
+        inline std::size_t operator()(const tue::quat<T>& q) const noexcept
+        {
+            std::hash<T> hashT;
+            return hashT(q[0]) ^ hashT(q[1]) ^ hashT(q[2]) ^ hashT(q[3]);
+        }
+    };
 
     /*!@}*/
 }

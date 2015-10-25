@@ -9,6 +9,7 @@
 #include <tue/vec.hpp>
 #include "tue.tests.hpp"
 
+#include <functional>
 #include <type_traits>
 #include <utility>
 #include <tue/mat.hpp>
