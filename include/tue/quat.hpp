@@ -679,6 +679,13 @@ namespace std
     template<typename T>
     struct hash<tue::quat<T>>
     {
+        /*!
+         * \brief    Calculates the hash of the given `quat`.
+         *
+         * \param q  A `quat`.
+         *
+         * \return   The hash of the given `quat`.
+         */
         inline std::size_t operator()(const tue::quat<T>& q) const noexcept
         {
             std::hash<T> hashT;

@@ -2201,6 +2201,13 @@ namespace std
     template<typename T, int C, int R>
     struct hash<tue::mat<T, C, R>>
     {
+        /*!
+         * \brief    Calculates the hash of the given `mat`.
+         *
+         * \param m  A `mat`.
+         *
+         * \return   The hash of the given `mat`.
+         */
         inline std::size_t operator()(const tue::mat<T, C, R>& m) const noexcept
         {
             return tue::detail_::hash_m(m);

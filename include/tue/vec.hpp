@@ -2472,6 +2472,13 @@ namespace std
     template<typename T, int N>
     struct hash<tue::vec<T, N>>
     {
+        /*!
+         * \brief    Calculates the hash of the given `vec`.
+         *
+         * \param v  A `vec`.
+         *
+         * \return   The hash of the given `vec`.
+         */
         inline std::size_t operator()(const tue::vec<T, N>& v) const noexcept
         {
             return tue::detail_::hash_v(v);
