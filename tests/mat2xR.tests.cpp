@@ -1045,4 +1045,19 @@ namespace
         test_assert(m1 == dm222);
         test_assert(m2 == dm22);
     }
+
+    TEST_CASE(std_hash)
+    {
+        std::hash<dmat2x2> hash_dmat2x2;
+        const dvec2 v0(0.0, 0.1);
+        const dvec2 v1(1.0, 1.1);
+        const dvec2 v2(2.0, 2.1);
+        const dmat2x2 m1(v1, v2);
+        const dmat2x2 m2(v1, v2);
+        const dmat2x2 m3(v0, v2);
+        const dmat2x2 m4(v1, v0);
+        test_assert(hash_dmat2x2(m1) == hash_dmat2x2(m2));
+        test_assert(hash_dmat2x2(m1) != hash_dmat2x2(m3));
+        test_assert(hash_dmat2x2(m1) != hash_dmat2x2(m4));
+    }
 }

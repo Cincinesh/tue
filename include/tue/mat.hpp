@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <cstddef>
+#include <functional>
 #include <type_traits>
 #include <utility>
 
@@ -2188,6 +2190,22 @@ namespace std
     {
         tue::detail_::swap_mm(m1, m2);
     }
+
+    /*!
+     * \brief     Functor that implements a hash function for `mat`'s.
+     *
+     * \tparam T  The `mat` component type.
+     * \tparam C  The `mat` column count.
+     * \tparam R  The `mat` row count.
+     */
+    template<typename T, int C, int R>
+    struct hash<tue::mat<T, C, R>>
+    {
+        inline std::size_t operator()(const tue::mat<T, C, R>& m) const noexcept
+        {
+            return tue::detail_::hash_m(m);
+        }
+    };
 
     /*!@}*/
 }
