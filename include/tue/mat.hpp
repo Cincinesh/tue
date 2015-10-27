@@ -2131,11 +2131,25 @@ namespace tue
          * \return    The transpose of `m`.
          */
         template<typename T, int C, int R>
-        inline constexpr
-            mat<T, R, C>
-        transpose(const mat<T, C, R>& m) noexcept
+        inline constexpr mat<T, R, C> transpose(const mat<T, C, R>& m) noexcept
         {
             return tue::detail_::transpose_m(m);
+        }
+
+        /*!
+         * \brief     Computes the determinant of `m`.
+         *
+         * \tparam T  The component type of `m`.
+         * \tparam N  The column and row count of `m`.
+         *
+         * \param m   A `mat`.
+         *
+         * \return    The determinant of `m`.
+         */
+        template<typename T, int N>
+        inline constexpr T det(const mat<T, N, N>& m) noexcept
+        {
+            return tue::detail_::det_m(m);
         }
 
         /*!@}*/

@@ -1125,6 +1125,14 @@ namespace tue
             };
         }
 
+        template<typename T>
+        inline constexpr T det_m(const mat<T, 3, 3>& m) noexcept
+        {
+            return m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2])
+                 - m[1][0] * (m[0][1] * m[2][2] - m[2][1] * m[0][2])
+                 + m[2][1] * (m[0][1] * m[1][2] - m[1][1] * m[0][2]);
+        }
+
         template<typename T, int R>
         inline void swap_mm(mat<T, 3, R>& m1, mat<T, 3, R>& m2) noexcept
         {
