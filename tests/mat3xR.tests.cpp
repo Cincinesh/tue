@@ -1165,6 +1165,18 @@ namespace
         test_assert(m3[3] == dm34.row(3));
     }
 
+    TEST_CASE(det)
+    {
+        CONST_OR_CONSTEXPR auto m = dm33;
+        CONST_OR_CONSTEXPR auto expected =
+            ( m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2])
+            - m[1][0] * (m[0][1] * m[2][2] - m[2][1] * m[0][2])
+            + m[2][0] * (m[0][1] * m[1][2] - m[1][1] * m[0][2]));
+
+        CONST_OR_CONSTEXPR auto actual = math::det(m);
+        test_assert(actual == expected);
+    }
+
     TEST_CASE(tue_swap)
     {
         dmat3x2 m1 = dm32;
