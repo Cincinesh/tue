@@ -680,11 +680,11 @@ namespace std
     struct hash<tue::quat<T>>
     {
         /*!
-         * \brief    Calculates the hash of the given `quat`.
+         * \brief    Computes a hash code for `q`.
          *
          * \param q  A `quat`.
          *
-         * \return   The hash of the given `quat`.
+         * \return   A hash code for `q`.
          */
         inline std::size_t operator()(const tue::quat<T>& q) const noexcept
         {

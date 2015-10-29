@@ -2216,11 +2216,11 @@ namespace std
     struct hash<tue::mat<T, C, R>>
     {
         /*!
-         * \brief    Calculates the hash of the given `mat`.
+         * \brief    Computes a hash code for `m`.
          *
          * \param m  A `mat`.
          *
-         * \return   The hash of the given `mat`.
+         * \return   A hash code for `m`.
          */
         inline std::size_t operator()(const tue::mat<T, C, R>& m) const noexcept
         {

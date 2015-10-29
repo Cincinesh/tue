@@ -2473,11 +2473,11 @@ namespace std
     struct hash<tue::vec<T, N>>
     {
         /*!
-         * \brief    Calculates the hash of the given `vec`.
+         * \brief    Computes a hash code for `v`.
          *
          * \param v  A `vec`.
          *
-         * \return   The hash of the given `vec`.
+         * \return   A hash code for `v`.
          */
         inline std::size_t operator()(const tue::vec<T, N>& v) const noexcept
         {
