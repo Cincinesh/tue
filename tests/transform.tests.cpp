@@ -264,6 +264,19 @@ namespace
         test_assert(m4 == m2);
     }
 
+    TEST_CASE(pose_mat_2d)
+    {
+        const auto m1 = transform::pose_mat(dvec2(1.2 ,3.4), 5.6);
+        test_assert(m1[0] == dvec4(math::cos(5.6), -math::sin(5.6), 0.0, 1.2));
+        test_assert(m1[1] == dvec4(math::sin(5.6),  math::cos(5.6), 0.0, 3.4));
+        test_assert(m1[2] == dvec4(          0.0 ,            0.0 , 1.0, 0.0));
+        test_assert(m1[3] == dvec4(          0.0 ,            0.0 , 0.0, 1.0));
+
+        const auto m2 = transform::pose_mat<double, 2, 3>(dvec2(1.2 ,3.4), 5.6);
+        test_assert(m2[0] == dvec3(math::cos(5.6), -math::sin(5.6), 1.2));
+        test_assert(m2[1] == dvec3(math::sin(5.6),  math::cos(5.6), 3.4));
+    }
+
     TEST_CASE(perspective_mat)
     {
         const auto m1 = transform::perspective_mat(1.2, 3.4, 5.6, 7.8);

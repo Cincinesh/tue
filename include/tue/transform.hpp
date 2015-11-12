@@ -866,6 +866,54 @@ namespace tue
         }
 
         /*!
+         * \brief     Computes a 2D position matrix.
+         * \details   A position matrix is conceptually a rotation followed by
+         *            a translation.
+         *            <br/>
+         *            The returned matrix might be the transpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The component type of the parameters.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 2, 3, or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         *
+         * \param translation  The translation vector.
+         * \param rotation     The rotation (measured in radians
+         *                     counter-clockwise).
+         *
+         * \return    A 2D position matrix. Values beyond the requested
+         *            matrix dimensions are truncated.
+         *
+         *            \code
+         *            // Where x and y are the components of `translation`.
+         *            [  cos(rotation),   sin(rotation),  0,  0 ]
+         *            [ -sin(rotation),   cos(rotation),  0,  0 ]
+         *            [ R == 3 ? x : 0,  R == 3 ? y : 0,  1,  0 ]
+         *            [ R == 4 ? x : 0,  R == 4 ? y : 0,  0,  1 ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline std::enable_if_t<(C >= 2 && R >= 3), mat<T, C, R>>
+        pose_mat(const vec2<T>& translation, const T& rotation) noexcept
+        {
+            const auto& x = translation[0];
+            const auto& y = translation[1];
+
+            T s, c;
+            tue::math::sincos(rotation, s, c);
+
+            return tue::detail_::mat_utils<T, C, R>::create(
+                c, -s, R == 3 ? x : T(0), R == 4 ? x : T(0),
+                s,  c, R == 3 ? y : T(0), R == 4 ? y : T(0),
+                0,  0,                1 ,                0 ,
+                0,  0,                0 ,                1 );
+        }
+
+        /*!
          * \brief         Computes a 3D perspective matrix.
          * \details       The returned matrix might be the transpose of what you
          *                expect from other libraries. This library generally
