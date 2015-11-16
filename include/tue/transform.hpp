@@ -914,6 +914,66 @@ namespace tue
         }
 
         /*!
+         * \brief     Computes a 3D position matrix.
+         * \details   A position matrix is conceptually a rotation followed by
+         *            a translation.
+         *            <br/>
+         *            The returned matrix might be the transpose of what you
+         *            expect from other libraries. This library generally
+         *            prefers compound transformations be written from
+         *            left-to-right instead of right-to-left.
+         *
+         * \tparam T  The component type of the parameters.
+         * \tparam C  The column count of the returned matrix.
+         *            Must be 3 or 4. Defaults to 4.
+         * \tparam R  The row count of the returned matrix.
+         *            Must be 4. Defaults to 4.
+         *
+         * \param translation  The translation vector.
+         * \param rotation     The rotation quaternion.
+         *
+         * \return    A 3D position matrix. Values beyond the requested
+         *            matrix dimensions are truncated.
+         *
+         *            \code
+         *            // Where x, y, z, and w are the components of the rotation
+         *            // quaternion and tx, ty, and tz are the components of
+         *            // the translation vector.
+         *
+         *            [ 1 - 2yy - 2zz,      2xy + 2zw,      2xz - 2yw,  tx ]
+         *            [     2xy - 2zw,  1 - 2xx - 2zz,      2yz + 2xw,  ty ]
+         *            [     2xz + 2yw,      2yz - 2xw,  1 - 2xx - 2yy,  tz ]
+         *            [             0,              0,              0,   1 ]
+         *            \endcode
+         */
+        template<typename T, int C = 4, int R = 4>
+        inline constexpr std::enable_if_t<
+            (C >= 3 && R >= 4),
+            mat<decltype(tue::math::sin(std::declval<T>())), C, R>>
+        pose_mat(
+            const vec3<T>& translation,
+            const quat<T>& rotation) noexcept
+        {
+            return tue::detail_::mat_utils<T, C, R>::create(
+                T(1) -
+                T(2)*rotation[1]*rotation[1] - T(2)*rotation[2]*rotation[2],
+                T(2)*rotation[0]*rotation[1] - T(2)*rotation[2]*rotation[3],
+                T(2)*rotation[0]*rotation[2] + T(2)*rotation[1]*rotation[3],
+                0,
+                T(2)*rotation[0]*rotation[1] + T(2)*rotation[2]*rotation[3],
+                T(1) -
+                T(2)*rotation[0]*rotation[0] - T(2)*rotation[2]*rotation[2],
+                T(2)*rotation[1]*rotation[2] - T(2)*rotation[0]*rotation[3],
+                0,
+                T(2)*rotation[0]*rotation[2] - T(2)*rotation[1]*rotation[3],
+                T(2)*rotation[1]*rotation[2] + T(2)*rotation[0]*rotation[3],
+                T(1) -
+                T(2)*rotation[0]*rotation[0] - T(2)*rotation[1]*rotation[1],
+                0,
+                translation[0], translation[1], translation[2], 1);
+        }
+
+        /*!
          * \brief         Computes a 3D perspective matrix.
          * \details       The returned matrix might be the transpose of what you
          *                expect from other libraries. This library generally

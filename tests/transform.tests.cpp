@@ -277,6 +277,31 @@ namespace
         test_assert(m2[1] == dvec3(math::sin(5.6),  math::cos(5.6), 3.4));
     }
 
+    TEST_CASE(pose_mat_3d)
+    {
+        CONST_OR_CONSTEXPR auto tx = 9.10, ty = 11.12, tz = 13.14;
+        CONST_OR_CONSTEXPR auto x = 1.2, y = 3.4, z = 5.6, w = 7.8;
+        CONST_OR_CONSTEXPR auto m1 = transform::pose_mat(
+            dvec3(tx, ty, tz), dquat(x, y, z, w));
+        test_assert(m1[0][0] == 1 - 2*y*y - 2*z*z);
+        test_assert(m1[0][1] == 2*x*y - 2*z*w);
+        test_assert(m1[0][2] == 2*x*z + 2*y*w);
+        test_assert(m1[0][3] == 0.0);
+        test_assert(m1[1][0] == 2*x*y + 2*z*w);
+        test_assert(m1[1][1] == 1 - 2*x*x - 2*z*z);
+        test_assert(m1[1][2] == 2*y*z - 2*x*w);
+        test_assert(m1[1][3] == 0.0);
+        test_assert(m1[2][0] == 2*x*z - 2*y*w);
+        test_assert(m1[2][1] == 2*y*z + 2*x*w);
+        test_assert(m1[2][2] == 1 - 2*x*x - 2*y*y);
+        test_assert(m1[2][3] == 0.0);
+        test_assert(m1[3] == dvec4(tx, ty, tz, 1.0));
+
+        CONST_OR_CONSTEXPR auto m2 = transform::pose_mat<double, 3, 4>(
+            dvec3(tx, ty, tz), dquat(x, y, z, w));
+        test_assert(m2 == dmat3x4(m1));
+    }
+
     TEST_CASE(perspective_mat)
     {
         const auto m1 = transform::perspective_mat(1.2, 3.4, 5.6, 7.8);
