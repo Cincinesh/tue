@@ -21,6 +21,17 @@ namespace tue
     class size2d;
 
     template<typename T>
+    class size3d;
+
+    using fsize3d = size3d<float>;
+
+    using dsize3d = size3d<double>;
+
+    using isize3d = size3d<int>;
+
+    using usize3d = size3d<unsigned int>;
+
+    template<typename T>
     class size3d
     {
         struct
