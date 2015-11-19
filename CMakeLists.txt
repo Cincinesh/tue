@@ -60,6 +60,7 @@ set(TUE_SOURCES
     include/tue/nocopy_cast.hpp
     include/tue/quat.hpp
     include/tue/simd.hpp
+    include/tue/size2d.hpp
     include/tue/size3d.hpp
     include/tue/sized_bool.hpp
     include/tue/transform.hpp
