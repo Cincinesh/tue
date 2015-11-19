@@ -82,6 +82,7 @@ set(TUE_TEST_SOURCES
     tests/nocopy_cast.tests.cpp
     tests/quat.tests.cpp
     tests/simd.tests.cpp
+    tests/size2d.tests.cpp
     tests/size3d.tests.cpp
     tests/sized_bool.tests.cpp
     tests/transform.tests.cpp

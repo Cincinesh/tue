@@ -55,7 +55,7 @@ namespace tue
 
         constexpr size2d(const T& width, const T& height) noexcept
         :
-            impl_({{ width, height, depth }})
+            impl_({{ width, height }})
         {
         }
 

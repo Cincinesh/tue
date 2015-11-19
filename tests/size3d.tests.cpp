@@ -10,6 +10,7 @@
 #include "tue.tests.hpp"
 
 #include <type_traits>
+#include <tue/size2d.hpp>
 #include <tue/unused.hpp>
 
 namespace
@@ -50,16 +51,16 @@ namespace
 
     TEST_CASE(component_count)
     {
-        constexpr auto v3s = size3d<short>::component_count;
-        constexpr auto fv3 = fsize3d::component_count;
-        constexpr auto dv3 = dsize3d::component_count;
-        constexpr auto iv3 = isize3d::component_count;
-        constexpr auto uv3 = usize3d::component_count;
-        test_assert(v3s == 3);
-        test_assert(fv3 == 3);
-        test_assert(dv3 == 3);
-        test_assert(iv3 == 3);
-        test_assert(uv3 == 3);
+        constexpr auto s3s = size3d<short>::component_count;
+        constexpr auto fs3 = fsize3d::component_count;
+        constexpr auto ds3 = dsize3d::component_count;
+        constexpr auto is3 = isize3d::component_count;
+        constexpr auto us3 = usize3d::component_count;
+        test_assert(s3s == 3);
+        test_assert(fs3 == 3);
+        test_assert(ds3 == 3);
+        test_assert(is3 == 3);
+        test_assert(us3 == 3);
     }
 
     TEST_CASE(default_constructor)
@@ -84,13 +85,13 @@ namespace
         test_assert(size[2] == 5.6);
     }
 
-    /*TEST_CASE(extend_size2d_constructor)
+    TEST_CASE(extend_size2d_constructor)
     {
         CONST_OR_CONSTEXPR dsize3d size = { { 1.2, 3.4 }, 5.6 };
         test_assert(size[0] == 1.2);
         test_assert(size[1] == 3.4);
         test_assert(size[2] == 5.6);
-    }*/
+    }
 
     TEST_CASE(explicit_conversion_constructor)
     {
@@ -165,12 +166,12 @@ namespace
         test_assert(depth == 5.6);
     }
 
-    /*TEST_CASE(width_height)
+    TEST_CASE(width_height)
     {
         CONST_OR_CONSTEXPR dsize3d size(1.2, 3.4, 5.6);
         CONST_OR_CONSTEXPR auto width_height = size.width_height();
-        test_assert(xy == dsize2d(1.2, 3.4));
-    }*/
+        test_assert(width_height == dsize2d(1.2, 3.4));
+    }
 
     TEST_CASE(width_height_depth)
     {
@@ -199,10 +200,10 @@ namespace
         test_assert(size[1] == 9.10);
         test_assert(size[2] == 5.6);
 
-        /*size.set_width_height(dsize2d(11.12, 13.14));
+        size.set_width_height(dsize2d(11.12, 13.14));
         test_assert(size[0] == 11.12);
         test_assert(size[1] == 13.14);
-        test_assert(size[2] == 5.6);*/
+        test_assert(size[2] == 5.6);
     }
 
     TEST_CASE(set_width_height_depth)
@@ -214,10 +215,10 @@ namespace
         test_assert(size[1] == 9.10);
         test_assert(size[2] == 11.12);
 
-        /*size.set_width_height_depth(dsize2d(13.14, 15.16), 17.18);
+        size.set_width_height_depth(dsize2d(13.14, 15.16), 17.18);
         test_assert(size[0] == 13.14);
         test_assert(size[1] == 15.16);
-        test_assert(size[2] == 17.18);*/
+        test_assert(size[2] == 17.18);
 
         size.set_width_height_depth(dsize3d(19.20, 21.22, 23.24));
         test_assert(size[0] == 19.20);

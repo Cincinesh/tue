@@ -14,6 +14,7 @@
 #include <utility>
 
 #include "detail_/is_vec_component.hpp"
+#include "size2d.hpp"
 
 namespace tue
 {
