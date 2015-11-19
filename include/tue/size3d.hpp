@@ -203,7 +203,8 @@ namespace tue
     };
 
     template<typename T, typename U>
-    inline bool operator==(const size3d<T>& lhs, const size3d<U>& rhs) noexcept
+    inline constexpr bool operator==(
+        const size3d<T>& lhs, const size3d<U>& rhs) noexcept
     {
         return lhs[0] == rhs[0]
             && lhs[1] == rhs[1]
@@ -211,7 +212,8 @@ namespace tue
     }
 
     template<typename T, typename U>
-    inline bool operator!=(const size3d<T>& lhs, const size3d<U>& rhs) noexcept
+    inline constexpr bool operator!=(
+        const size3d<T>& lhs, const size3d<U>& rhs) noexcept
     {
         return lhs[0] != rhs[0]
             || lhs[1] != rhs[1]
@@ -223,8 +225,8 @@ namespace tue
     {
         using std::swap;
         swap(size1[0], size2[0]);
-        swap(size1[0], size2[0]);
-        swap(size1[0], size2[0]);
+        swap(size1[1], size2[1]);
+        swap(size1[2], size2[2]);
     }
 }
 
