@@ -16,22 +16,53 @@
 #include "detail_/is_vec_component.hpp"
 #include "size2d.hpp"
 
+/*!
+ * \defgroup  size3d_hpp <tue/size3d.hpp>
+ *
+ * \brief     The `size3d` class template and its associated functions.
+ */
 namespace tue
 {
     template<typename T>
     class size2d;
 
+    /*!
+     * \addtogroup  size3d_hpp
+     * @{
+     */
+
+    /*!
+     * \brief     An 3-dimensional size (width, height, and depth).
+     * \details   `size3d` has the same size and alignment requirements as
+     *            `T[3]`.
+     *
+     * \tparam T  The component type. `is_vec_component<T>::value` must be
+     *            `true`.
+     */
     template<typename T>
     class size3d;
 
+    /*!
+     * \brief  A `size3d` with `float` components.
+     */
     using fsize3d = size3d<float>;
 
+    /*!
+     * \brief  A `size3d` with `double` components.
+     */
     using dsize3d = size3d<double>;
 
+    /*!
+     * \brief  A `size3d` with `int` components.
+     */
     using isize3d = size3d<int>;
 
+    /*!
+     * \brief  A `size3d` with `unsigned int` components.
+     */
     using usize3d = size3d<unsigned int>;
 
+    /**/
     template<typename T>
     class size3d
     {
@@ -42,22 +73,44 @@ namespace tue
         impl_;
 
     public:
+        /*!
+         * \brief  This `size3d` type's component type.
+         */
         using component_type = T;
 
+        /*!
+         * \brief  This `size3d` type's component count.
+         */
         static constexpr int component_count = 3;
 
+        /*!
+         * \name Constructors, Conversions, and Factory Functions
+         * @{
+         */
+        /*!
+         * \brief  Default constructs each component.
+         */
         size3d() noexcept = default;
 
-        explicit constexpr size3d(const T& width_height_depth) noexcept
+        /*!
+         * \brief    Constructs each component with the same value.
+         *
+         * \param x  The value to construct each component with.
+         */
+        explicit constexpr size3d(const T& x) noexcept
         :
-            impl_({{
-                width_height_depth,
-                width_height_depth,
-                width_height_depth,
-            }})
+            impl_({{ x, x, x }})
         {
         }
 
+        /*!
+         * \brief         Constructs each component with the value of the
+         *                corresponding argument.
+         *
+         * \param width   The value to construct the `width` component with.
+         * \param height  The value to construct the `height` component with.
+         * \param depth   The value to construct the `depth` component with.
+         */
         constexpr size3d(
             const T& width, const T& height, const T& depth) noexcept
         :
@@ -65,23 +118,43 @@ namespace tue
         {
         }
 
+        /*!
+         * \brief        Constructs each component with the value of the
+         *               corresponding argument.
+         *
+         * \param width_height  The values to construct the `width` and `height`
+         *                      components with.
+         *
+         * \param depth  The value to construct the `depth` component with.
+         */
         constexpr size3d(const size2d<T>& width_height, const T& depth) noexcept
         :
             impl_({{ width_height[0], width_height[1], depth }})
         {
         }
 
+        /*!
+         * \brief        Explicitly casts another `size3d` to a new component
+         *               type.
+         *
+         * \tparam U     The component type of `other`.
+         *
+         * \param other  The `size3d` to cast from.
+         */
         template<typename U>
-        explicit constexpr size3d(const size3d<U>& width_height_depth) noexcept
+        explicit constexpr size3d(const size3d<U>& other) noexcept
         :
-            impl_({{
-                T(width_height_depth[0]),
-                T(width_height_depth[1]),
-                T(width_height_depth[2]),
-            }})
+            impl_({{ T(other[0]), T(other[1]), T(other[2]) }})
         {
         }
 
+        /*!
+         * \brief     Implicitly casts this `size3d` to a new component type.
+         *
+         * \tparam U  The new component type.
+         *
+         * \return    A new `size3d` with the new component type.
+         */
         template<typename U>
         constexpr operator size3d<U>() const noexcept
         {
